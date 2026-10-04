@@ -22,6 +22,19 @@
 
 export const DEFAULT_BRIDGE = "http://localhost:8790";
 
+/** Combine abort signals (the caller's stop + a hard timeout). Portable: uses
+ *  AbortSignal.any when present, else a small shim, so it works in every
+ *  browser the surface runs in. */
+function anySignal(signals) {
+  const list = signals.filter(Boolean);
+  if (list.length === 1) return list[0];
+  if (typeof AbortSignal !== "undefined" && AbortSignal.any) return AbortSignal.any(list);
+  const ctl = new AbortController();
+  const onAbort = (e) => { try { ctl.abort(e?.target?.reason ?? e); } catch { ctl.abort(); } };
+  for (const s of list) { if (s.aborted) { onAbort({ target: s }); break; } s.addEventListener("abort", onAbort, { once: true }); }
+  return ctl.signal;
+}
+
 /** Where heimdall is looked for, in order. A caller's stored/override base is
  *  tried first, then the standard local port on both names. */
 export const BRIDGE_CANDIDATES = Object.freeze([
@@ -81,14 +94,46 @@ export const TIER_ORDER = Object.freeze(["local", "fleet", "remote", "frontier"]
 export const FREE_TIERS = Object.freeze(["local", "fleet"]);
 export function isFreeModel(m) { return !!m && FREE_TIERS.includes(m.tier || tierOf(m)); }
 
-/** The model to ride when a session pinned none: the nearest FREE one (local,
- *  then fleet), else any unsealed, else the first. The free and automatic
- *  choice — heimdall still routes whatever is picked. Pure and testable. */
+/** True for a model that reasons for CODE, not prose (open hands). Named on the
+ *  id, which is the only signal heimdall's tag exposes. A code specialist is
+ *  never auto-picked to WRITE: measured live — `qwen2.5-coder:1.5b` handed the
+ *  fold's own persona + the generate nudge collapsed into a "Certainly, I'd be
+ *  happy to help…" teaser, while a general model under the identical prompt
+ *  wrote the full piece. Code mode pins its own model and is unaffected. */
+const CODE_MODEL_RE = /(^|[-_:./])coder?([-_:./]|$)|code[-_]?(llama|qwen|gemma|starcoder|deepseek)|starcoder|codestral|codellama|magicoder|granite[-_]?code|wizardcoder|phind/i;
+// An embed model returns vectors, not text: it can never answer a turn, so it
+// is never auto-picked either (Ollama lists `nomic-embed-text` beside the chat
+// models, and picking it would answer nothing).
+const EMBED_MODEL_RE = /embed|bge-|e5-|gte-|minilm|nomic-embed|mxbai/i;
+export function isCodeModel(m) {
+  const id = String(m?.id || m?.name || "");
+  return CODE_MODEL_RE.test(id);
+}
+export function isEmbedModel(m) {
+  const id = String(m?.id || m?.name || "");
+  return EMBED_MODEL_RE.test(id);
+}
+/** A model that can serve an ordinary prose turn: not a code specialist, not an
+ *  embedder. Auto-pick prefers these. */
+export function isChatModel(m) { return !isCodeModel(m) && !isEmbedModel(m); }
+
+
+/** The model to ride when a session pinned none: the nearest FREE GENERAL one
+ *  (local, then fleet), else any free one, else any unsealed, else the first.
+ *  A code-specialist model is PREFERRED AGAINST — it is a poor prose mouth, and
+ *  auto-pick serves ordinary chat first. The free and automatic choice —
+ *  heimdall still routes whatever is picked. Pure and testable. */
 export function autoPick(models) {
   const list = Array.isArray(models) ? models : [];
-  return list.find((m) => !m.sealed && (m.tier || tierOf(m)) === "local")
-    || list.find((m) => !m.sealed && (m.tier || tierOf(m)) === "fleet")
-    || list.find((m) => !m.sealed)
+  const by = (pred) => list.find(pred);
+  const free = (tier) => list.filter((m) => !m.sealed && (m.tier || tierOf(m)) === tier && isChatModel(m));
+  return free("local")[0]
+    || free("fleet")[0]
+    || by((m) => isChatModel(m) && !m.sealed && (m.tier || tierOf(m)) === "local")
+    || by((m) => isChatModel(m) && !m.sealed && (m.tier || tierOf(m)) === "fleet")
+    || by((m) => isChatModel(m) && !m.sealed)
+    || by((m) => !isEmbedModel(m) && !m.sealed)   // a coder beats nothing; an embedder never answers
+    || list.find((m) => !isEmbedModel(m))
     || list[0] || null;
 }
 
@@ -132,26 +177,35 @@ export async function listModels({ base = null, fetchImpl = fetch } = {}) {
  *  resolved value is { text, tokens } (tokens counted per delta). A sealed
  *  model is forced sealed-external unless the caller chose "explicit".
  *  Rejects with { status, message } on bridge/provider errors. */
-export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch } = {}) {
+export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000 } = {}) {
   const url = bridgeBase(base) + "/v1/chat/completions";
   // Sealed by default for outside models: the Fold selects the privacy mode
   // and seals first. Raw spans never leave — only what the caller put in
   // `messages` rides the wire.
   const effective = privacy ?? "sealed-external";
   const body = chatBody(model, messages, { privacy: effective, temperature, maxTokens });
+  // A HARD total timeout, always: a stream that stalls must release the
+  // surface. The caller's own signal (a stop button) still aborts earlier; this
+  // is the floor so a hung turn can never leave the composer disabled forever.
+  const timeoutCtl = new AbortController();
+  const timer = setTimeout(() => timeoutCtl.abort(new Error("chat timed out")), totalTimeoutMs);
+  const combined = signal ? anySignal([signal, timeoutCtl.signal]) : timeoutCtl.signal;
   let res;
   try {
     res = await fetchImpl(url, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(body),
-      signal,
+      signal: combined,
     });
   } catch (e) {
-    const err = new Error("bridge unreachable: " + (e?.message || e));
-    err.status = 0;
+    clearTimeout(timer);
+    const timedOut = /timed out|abort/i.test(String(e?.message || e?.name || ""));
+    const err = new Error(timedOut ? "the turn timed out (" + Math.round(totalTimeoutMs / 1000) + "s)" : "bridge unreachable: " + (e?.message || e));
+    err.status = timedOut ? 504 : 0;
     throw err;
   }
+  clearTimeout(timer);
   if (res.status === 400) {
     let msg = "heimdall refused the request";
     try { msg = (await res.json())?.error?.message || msg; } catch {}
@@ -247,6 +301,46 @@ export function removeProviderKey(provider, { base = null, fetchImpl = fetch } =
   return setProviderKey(provider, null, { base, remove: true, fetchImpl });
 }
 
+/** Split a machine-door answer into prose and any TOOL CALLS the door returned
+ *  AS TEXT. A small coding model sometimes emits the call itself
+ *  (`{"name": "write", "arguments": {"content": …, "filePath": …}}`) in a text
+ *  part instead of letting the door execute it — measured live against
+ *  qwen2.5-coder:1.5b. That is a tool INVOCATION, not the answer: it must never
+ *  render as prose. Returns { text, calls:[{name, arguments}], leftover }. Pure
+ *  and testable. A fenced code block is prose and is kept whole. */
+export function splitToolCalls(answer) {
+  const raw = String(answer ?? "");
+  const calls = [];
+  const tryParse = (s) => {
+    try { const j = JSON.parse(s); if (j && typeof j.name === "string" && ("arguments" in j || "args" in j)) { calls.push({ name: j.name, arguments: j.arguments ?? j.args ?? {} }); return true; } } catch {}
+    return false;
+  };
+  // Balanced-brace scan, skipping braces inside strings, so a JSON object in a
+  // sentence is not mistaken for the end of one and a fenced block is untouched
+  // only if it is not a bare call. Fenced blocks are protected first.
+  const fences = [];
+  let work = raw.replace(/```[\s\S]*?```/g, (m) => { fences.push(m); return `\u0000${fences.length - 1}\u0000`; });
+  let out = "", i = 0;
+  while (i < work.length) {
+    const open = work.indexOf("{", i);
+    if (open < 0) { out += work.slice(i); break; }
+    let depth = 0, j = open, inStr = false, esc = false, closed = -1;
+    for (; j < work.length; j++) {
+      const c = work[j];
+      if (inStr) { if (esc) esc = false; else if (c === "\\") esc = true; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true;
+      else if (c === "{") depth++;
+      else if (c === "}") { depth--; if (depth === 0) { closed = j; break; } }
+    }
+    if (closed < 0) { out += work.slice(i); break; }
+    const chunk = work.slice(open, closed + 1);
+    if (tryParse(chunk)) { out += work.slice(i, open); i = closed + 1; }
+    else { out += work.slice(i, open + 1); i = open + 1; }
+  }
+  out = out.replace(/\u0000(\d+)\u0000/g, (_, n) => fences[+n]);
+  return { text: out.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim(), calls, leftover: raw };
+}
+
 /** Whether a coding machine (opencode) is attached behind the bridge. */
 export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
   try { const r = await fetchImpl(bridgeBase(base) + "/api/code/status", { cache: "no-store" }); return r.ok ? r.json() : null; }
@@ -268,6 +362,27 @@ export async function code(prompt, { base = null, title = null, model = null, ag
   });
   if (!r.ok) {
     let msg = "the coding machine did not answer";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Generate an artifact THROUGH heimdall — the bridge routes the turn to
+ *  penelope's generation system (the weave): void detection (units read from
+ *  the ask, a void read with a hunt) and writing across prompts (one unit per
+ *  draw, field → hunt → mouth, test decides). The chat never talks to penelope
+ *  directly. Returns the Weaving@1 result — artifact, void, evidence (units,
+ *  outcomes), verification. */
+export async function generate(intent, { base = null, artifact = "text", model = null, noModel = false, signal = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/weave", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ intent, artifact, model, noModel }),
+    signal,
+  });
+  if (!r.ok) {
+    let msg = "penelope's generation did not answer";
     try { msg = (await r.json())?.error || msg; } catch {}
     const err = new Error(msg); err.status = r.status; throw err;
   }

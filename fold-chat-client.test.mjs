@@ -188,3 +188,39 @@ test("listProviderKeys returns names only, never key values", async () => {
   assert.deepEqual(out.providers, [{ provider: "anthropic", set: true }]);
   assert.equal(JSON.stringify(out).includes("sk-"), false);
 });
+// ── regression: a code specialist / an embedder is never auto-picked to write,
+//    and a tool-call returned as text is split out of the answer. Measured live:
+//    auto-pick chose qwen2.5-coder:1.5b for "write an essay", which hedged into
+//    a 265-char teaser under the fold persona; and the machine door returned
+//    `{"name":"write","arguments":{…}}` as the answer text.
+test("autoPick prefers a general chat model over a coder and an embedder", async () => {
+  const { autoPick, isCodeModel, isEmbedModel, isChatModel } = await import("./fold-chat-client.js");
+  const models = [
+    { id: "qwen2.5-coder:1.5b", tier: "local" },
+    { id: "nomic-embed-text:latest", tier: "local" },
+    { id: "gemma2:2b", tier: "local" },
+  ];
+  assert.equal(isCodeModel({ id: "qwen2.5-coder:1.5b" }), true);
+  assert.equal(isEmbedModel({ id: "nomic-embed-text:latest" }), true);
+  assert.equal(isChatModel({ id: "gemma2:2b" }), true);
+  assert.equal(autoPick(models)?.id, "gemma2:2b");
+  // The control: with only a coder + embedder left, it still returns something
+  // (the coder) rather than nothing — but never the embedder.
+  assert.equal(autoPick([{ id: "nomic-embed-text:latest", tier: "local" }, { id: "qwen2.5-coder:1.5b", tier: "local" }])?.id, "qwen2.5-coder:1.5b");
+});
+
+test("splitToolCalls lifts a tool call out of the prose, keeps code fences whole", async () => {
+  const { splitToolCalls } = await import("./fold-chat-client.js");
+  const only = splitToolCalls('{"name": "write", "arguments": {"content": "x", "filePath": "a.txt"}}');
+  assert.deepEqual(only.calls, [{ name: "write", arguments: { content: "x", filePath: "a.txt" } }]);
+  assert.equal(only.text, "");
+  const mixed = splitToolCalls('Writing it now.\n{"name": "edit", "arguments": {"filePath": "s.js"}}\nDone.');
+  assert.deepEqual(mixed.calls.map((c) => c.name), ["edit"]);
+  assert.equal(mixed.text, "Writing it now.\n\nDone.");
+  const fenced = splitToolCalls("Here:\n```html\n<div>{a}</div>\n```");
+  assert.equal(fenced.calls.length, 0);
+  assert.match(fenced.text, /```html/);
+  const braces = splitToolCalls("plain prose with a {brace} in it");
+  assert.equal(braces.calls.length, 0);
+  assert.equal(braces.text, "plain prose with a {brace} in it");
+});
