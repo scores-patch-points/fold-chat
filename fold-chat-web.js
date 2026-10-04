@@ -114,7 +114,7 @@ function oaAbstract(inv) {
 /** Read a page's text: direct first, then the public proxies, then the text
  *  readers. Returns { ok, text, title, via, url } — `via` names who fetched it
  *  (a third party learns the address when a proxy/reader is used). */
-export async function readText(url, { fetchImpl = fetch, timeoutMs = 12000 } = {}) {
+export async function readText(url, { fetchImpl = fetch, timeoutMs = 8000 } = {}) {
   const titleOf = (raw) => oneLine(((String(raw).match(/<title[^>]*>([^<]*)/i) || [])[1] || ""));
   const attempt = async (target, via) => {
     const r = await fetchT(fetchImpl, target, timeoutMs);
@@ -155,11 +155,25 @@ export async function searchWeb(query, { scopes = ["wikipedia", "github", "archi
   }));
   for (const list of settled) results.push(...list);
   // Read the top few into passages (the material the answer is grounded on).
+  // Pages that answer a browser directly come first (Wikipedia articles read
+  // as HTML); DOI/journal links often only serve PDFs or refuse cross-origin
+  // reads, so they are tried last — and every read is time-boxed so one slow
+  // host cannot hold the turn.
+  const rank = (r) => (/wikipedia\.org\/wiki\//.test(r.url) ? 0 : /(^|\.)doi\.org|pdf|\.pdf$/i.test(r.url) ? 3 : /github\.com/.test(r.url) ? 2 : 1);
+  const ordered = [...results].sort((a, b) => rank(a) - rank(b));
+  const readable = ordered.filter((r) => rank(r) < 3);
+  const pool = readable.length ? readable : ordered;
+  const chosen = [];
+  const seen = new Set();
+  for (const r of pool) { if (!r.url || seen.has(r.url)) continue; seen.add(r.url); chosen.push(r); if (chosen.length >= read * 3) break; }
+  const reads = await Promise.all(chosen.map(async (r) => {
+    const rd = await readText(r.url, { fetchImpl, timeoutMs: 8000 });
+    return { r, rd };
+  }));
   const passages = [];
-  for (const r of results.slice(0, read)) {
-    if (!r.url) continue;
-    const rd = await readText(r.url, { fetchImpl });
-    if (rd.ok) { passages.push({ ref: r.source + " — " + r.title, source: r.url, text: rd.text, via: rd.via, url: r.url }); trace.push({ read: r.url, via: rd.via, chars: rd.text.length }); }
+  for (const { r, rd } of reads) {
+    if (rd.ok && passages.length < read) { passages.push({ ref: r.source + " — " + r.title, source: r.url, text: rd.text, via: rd.via, url: r.url }); trace.push({ read: r.url, via: rd.via, chars: rd.text.length }); }
+    else if (rd.ok) trace.push({ read: r.url, via: rd.via, chars: rd.text.length, skipped: true });
     else trace.push({ read: r.url, via: null, ok: false });
   }
   return { results, passages, trace };

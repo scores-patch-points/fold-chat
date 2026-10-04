@@ -429,53 +429,72 @@ export function mount(root, opts = {}) {
   }
   // The transparency block: the holodeck's per-turn record, on the message.
   // What was addressed, what is NOT in the material, and the one-line record.
+  // The ENTIRE per-turn disclosure is ONE collapsed block. The head shows the
+  // line a reader needs at a glance (the mechanical warrant); grounding, web
+  // reads, and the model/route footnote all live inside the panel, opened only
+  // on demand. It starts collapsed — except a turn that carries a real problem
+  // (unsupported figures/names) opens itself, disclosed rather than hidden.
   function renderDisclosure(body, rec, meta) {
     const box = el("div", "disclosure");
-    const head = el("div", "disc-head");
-    head.append(el("span", "disc-title", "Grounding"),
-      el("span", "disc-sub", rec.hasMaterial ? `${rec.coverage.grounded}/${rec.coverage.total} sentences addressed` : "no material carried"));
-    box.append(head);
+    const openByDefault = !!((rec.unsupported?.numbers?.length || rec.unsupported?.names?.length));
+    box.classList.toggle("open", openByDefault);
 
+    const head = el("button", "disc-head");
+    head.type = "button";
+    head.setAttribute("aria-expanded", openByDefault ? "true" : "false");
+    head.append(
+      el("span", "disc-caret", "▸"),
+      el("span", "disc-title", "disclosure"),
+      el("span", "disc-sub", rec.hasMaterial ? `${rec.coverage.grounded}/${rec.coverage.total} addressed` : "no material carried"),
+      el("span", "disc-line", rec.line),
+    );
+    const panel = el("div", "disc-panel");
+
+    // Grounding — what was addressed, what is not in the material.
     if (rec.sources && rec.sources.length) {
-      box.append(el("div", "disc-label", "Addressed sources"));
+      panel.append(el("div", "disc-label", "Addressed sources"));
       const ul = el("div", "disc-sources");
       for (const s of rec.sources) {
         const row = el("div", "disc-source");
         row.append(el("code", "disc-ref", s.address), el("span", "disc-text", s.text));
         ul.append(row);
       }
-      box.append(ul);
+      panel.append(ul);
     }
 
     const bad = [...(rec.unsupported?.numbers || []), ...(rec.unsupported?.names || [])];
     if (bad.length) {
-      box.append(el("div", "disc-bad", "Not in the material: " + bad.join(", ")));
+      panel.append(el("div", "disc-bad", "Not in the material: " + bad.join(", ")));
     } else if (rec.hasMaterial) {
-      box.append(el("div", "disc-ok", "Nothing unsupported"));
+      panel.append(el("div", "disc-ok", "Nothing unsupported"));
     }
 
     if (rec.ungrounded && rec.ungrounded.length) {
-      box.append(el("div", "disc-label", `${rec.ungrounded.length} sentence(s) with no address`));
+      panel.append(el("div", "disc-label", `${rec.ungrounded.length} sentence(s) with no address`));
       const ul = el("div", "disc-ungrounded");
       for (const t of rec.ungrounded.slice(0, 6)) ul.append(el("div", "disc-text", t));
-      box.append(ul);
+      panel.append(ul);
     }
 
+    // Web — what was searched and read for this turn.
     if (rec.web && rec.web.length) {
       const reads = rec.web.filter((w) => w.read || w.engine || w.ok === false);
-      box.append(el("div", "disc-label", "Web"));
+      panel.append(el("div", "disc-label", "Web"));
       const ul = el("div", "disc-ungrounded");
       for (const w of reads.slice(0, 8)) {
         const label = w.read ? `read ${w.read}${w.via ? " via " + w.via : ""}${w.chars ? " · " + w.chars + " chars" : ""}` : w.scope ? `${w.engine || w.scope}${w.n != null ? " · " + w.n + " result(s)" : ""}${w.ok === false ? " — " + (w.why || "no answer") : ""}` : "";
         if (label) ul.append(el("div", "disc-text", label));
       }
-      box.append(ul);
+      panel.append(ul);
     }
 
-    const foot = el("div", "disc-foot");
-    foot.append(el("span", "disc-rec", rec.line));
-    if (meta && meta.model) foot.append(el("span", "disc-meta", `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
-    box.append(foot);
+    // The route/mouth footnote — part of the disclosure, so it collapses too.
+    if (meta && meta.model) {
+      panel.append(el("div", "disc-foot", `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
+    }
+
+    head.onclick = () => { const open = box.classList.toggle("open"); head.setAttribute("aria-expanded", open ? "true" : "false"); };
+    box.append(head, panel);
     body.append(box);
   }
 
@@ -496,7 +515,7 @@ export function mount(root, opts = {}) {
         const disc = el("button", "act", "disclosure"); disc.onclick = () => { const d = body.querySelector(".disclosure"); if (d) d.hidden = !d.hidden; };
         acts.append(cont, fork, disc); body.append(acts);
       }
-      if (transparency && meta.grounding) renderDisclosure(body, meta.grounding, meta);
+      if (transparency && meta.grounding && meta.grounding.examined) renderDisclosure(body, meta.grounding, meta);
     } else {
       body.textContent = content;
       if (meta.index != null) {
@@ -576,6 +595,30 @@ export function mount(root, opts = {}) {
     const ac = new AbortController();
     E.send.disabled = true; E.input.disabled = true;
     E.stage.textContent = m.sealed ? "sealed-external · working…" : "working…";
+    // WEB SEARCH runs BEFORE the model sees the turn — its passages join the
+    // history as a system message, so the answer can actually rest on the web
+    // (not just be checked against it after the fact). The raw page never
+    // leaves; only the reading rides the wire. A failed search is a disclosed
+    // gap on the trace, never a broken turn.
+    let webPassages = [], webTrace = null;
+    if (webOn) {
+      const q = lastUserText(s);
+      if (q) {
+        E.stage.textContent = "searching the web…";
+        try {
+          const w = await web.searchWeb(q);
+          webPassages = w.passages || [];
+          webTrace = w.trace || null;
+          if (webPassages.length) {
+            const block = webPassages.map((p, i) => `[W${i + 1}] ${p.ref}\n${p.text.slice(0, 4000)}`).join("\n\n");
+            history.unshift({ role: "system", content: "The web sources below were read for this question. Answer from them where they cover it; where they do not, say plainly what is missing. Never claim a source you cannot show.\n\n" + block });
+            E.stage.textContent = `read ${webPassages.length} web source(s) — ${m.sealed ? "sealed-external · working…" : "working…"}`;
+          } else E.stage.textContent = "web search found nothing readable — working…";
+        } catch (e) {
+          webTrace = [{ scope: "web", ok: false, why: String(e?.message || e) }];
+        }
+      }
+    }
     try {
       const out = await client.chat(m.id, history, {
         base: bridge, privacy: "sealed-external",
@@ -591,21 +634,6 @@ export function mount(root, opts = {}) {
       let text = ground.stripSelfCitations(out.text).text;
       const bad = memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} });
       if (bad) text = text + "\n\n" + memory.identityCorrection(bad, { readerName });
-      // Web search is a MATERIAL CHANNEL, not decoration: when the turn asked
-      // for outside ground (or the workspace carried none), the search reads a
-      // few real pages and their passages join the material the answer is
-      // checked against — with its own trace on the record. A failed search is
-      // a disclosed gap on the trace, never a broken turn.
-      let webPassages = [], webTrace = null;
-      if (webOn) {
-        try {
-          const w = await web.searchWeb(lastUserText(s));
-          webPassages = w.passages || [];
-          webTrace = w.trace || null;
-        } catch (e) {
-          webTrace = [{ scope: "web", ok: false, why: String(e?.message || e) }];
-        }
-      }
       const material = [...materialOf(s), ...webPassages.map((p) => ({ ref: p.ref, source: p.source, text: p.text }))];
       const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
       const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
@@ -911,7 +939,7 @@ export function mount(root, opts = {}) {
   // Auto-detect the bridge first (the override, then the standard local port),
   // then list whatever it serves. A page served from GitHub Pages finds the
   // person's own heimdall this way, with no URL to type.
-  client.detectBridge({ override: opts.bridge || null }).then((found) => {
+  client.detectBridge({ override: opts.bridge || localStorage.getItem("fold-chat:bridge") || null }).then((found) => {
     if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
     else toast("heimdall not found — run `heimdall up`");
     // The code door's URL (the Fold's opencode) — read it so Code mode embeds

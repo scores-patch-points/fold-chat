@@ -127,9 +127,7 @@
   .agentbar { display: flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
   .agentbtn { border: none; background: transparent; color: var(--mut); border-radius: 999px; padding: 5px 14px; font-size: 12.5px; font-weight: 600; }
   .agentbtn.on { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
-  .webtoggle { border: 1px solid var(--line); background: var(--bg); color: var(--mut); font-size: 12.5px; font-weight: 600; padding: 6px 14px; border-radius: 999px; }
-  .webtoggle:hover { background: var(--side); color: var(--ink); }
-  .webtoggle.on { background: var(--acc); border-color: var(--acc); color: #fff; }
+  .webtoggle-old { display: none; }
   .curmodel { border: none; background: transparent; color: var(--mut); font-size: 12.5px; font-weight: 600; padding: 7px 10px; border-radius: 999px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .curmodel:hover { background: var(--side2); color: var(--ink); }
   .curmodel:empty { display: none; }
@@ -170,11 +168,20 @@
   .act:hover { color: var(--acc-deep); text-decoration: underline; }
 
   /* the transparency block: the grounding record on a message */
-  .disclosure { margin-top: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--side); padding: 10px 12px; font-size: 12.5px; }
+  .disclosure { margin-top: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--side); font-size: 12.5px; overflow: hidden; }
   .disclosure[hidden] { display: none; }
-  .disc-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  /* The whole per-turn disclosure is collapsible and starts collapsed: the head
+     is the clickable summary line; the panel holds everything and is hidden
+     unless .open. */
+  .disc-head { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left; border: 0; background: none; cursor: pointer; font: inherit; padding: 9px 12px; color: var(--ink2); }
+  .disc-head:hover { background: var(--side2); }
+  .disc-caret { color: var(--dim); transition: transform .15s ease; display: inline-block; }
+  .disclosure.open .disc-caret { transform: rotate(90deg); }
   .disc-title { font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
-  .disc-sub { font-size: 12px; color: var(--dim); }
+  .disc-sub { font-size: 12px; color: var(--dim); white-space: nowrap; }
+  .disc-line { margin-left: auto; font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+  .disc-panel { display: none; padding: 2px 12px 12px; }
+  .disclosure.open .disc-panel { display: block; }
   .disc-label { font-weight: 600; color: var(--ink2); margin: 8px 0 3px; }
   .disc-sources, .disc-ungrounded { display: flex; flex-direction: column; gap: 3px; }
   .disc-source { display: flex; gap: 8px; align-items: baseline; }
@@ -183,9 +190,7 @@
   .disc-bad { margin-top: 6px; color: #b45309; }
   html[data-theme="dark"] .disc-bad { color: #f0b429; }
   .disc-ok { margin-top: 6px; color: var(--ok); }
-  .disc-foot { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
-  .disc-rec { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--mut); }
-  .disc-meta { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
+  .disc-foot { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
 
   /* ---------------- welcome (LibreChat's centered logo + name + composer) ---------------- */
   .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0 20px 3vh; }
@@ -203,6 +208,8 @@
   .composer .tools .sp { flex: 1; }
   .composer .cbtn { width: 36px; height: 36px; border: none; border-radius: 50%; background: transparent; color: var(--mut); display: grid; place-items: center; }
   .composer .cbtn:hover { background: var(--side2); color: var(--ink); }
+  .composer .cbtn.web.on { background: var(--acc); color: #fff; }
+  .composer .cbtn.web.on:hover { background: var(--acc); color: #fff; }
   .composer .cbtn.send { background: var(--ink); color: var(--bg); }
   html[data-theme="dark"] .composer .cbtn.send { background: var(--acc-grad); color: #fff; }
   .composer .cbtn.send:hover { background: var(--acc-deep); color: #fff; }
@@ -305,7 +312,6 @@
   <main class="main">
     <div class="topbar">
       <div class="agentbar" id="agentSlot"></div>
-      <button class="webtoggle" id="webToggle" title="Search the web before answering">Web</button>
       <div class="sp"></div>
       <button class="iconbtn" id="topFocus" title="Focus">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
@@ -332,6 +338,9 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21.4 11.05l-9.19 9.19a5 5 0 0 1-7.07-7.07l9.19-9.19a3.5 3.5 0 0 1 4.95 4.95l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
           </button>
           <div class="sp"></div>
+          <button type="button" class="cbtn web" id="webToggle" title="Search the web for this message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+          </button>
           <button type="button" class="cbtn" id="mic" title="Voice (coming soon)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
           </button>
