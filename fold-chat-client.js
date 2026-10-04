@@ -76,6 +76,21 @@ export const TIERS = Object.freeze({
   frontier: { id: "frontier", label: "Frontier · sealed", note: "sealed-external — the reading only" },
 });
 export const TIER_ORDER = Object.freeze(["local", "fleet", "remote", "frontier"]);
+// Free tiers: a model here costs nothing and never leaves the trust domain
+// (in-tab WebLLM, this machine's Ollama, and the fold's own linked hosts).
+export const FREE_TIERS = Object.freeze(["local", "fleet"]);
+export function isFreeModel(m) { return !!m && FREE_TIERS.includes(m.tier || tierOf(m)); }
+
+/** The model to ride when a session pinned none: the nearest FREE one (local,
+ *  then fleet), else any unsealed, else the first. The free and automatic
+ *  choice — heimdall still routes whatever is picked. Pure and testable. */
+export function autoPick(models) {
+  const list = Array.isArray(models) ? models : [];
+  return list.find((m) => !m.sealed && (m.tier || tierOf(m)) === "local")
+    || list.find((m) => !m.sealed && (m.tier || tierOf(m)) === "fleet")
+    || list.find((m) => !m.sealed)
+    || list[0] || null;
+}
 
 /** Which tier a listed model belongs to. A sealed model is always frontier;
  *  otherwise its kind (or provider) names the tier. Pure and testable. */
@@ -202,6 +217,36 @@ export async function frontier({ base = null, fetchImpl = fetch } = {}) {
   return r.json();
 }
 
+/** Which providers already have a key set on the machine (names only). */
+export async function listProviderKeys({ base = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/providers/keys", { cache: "no-store" });
+  if (!r.ok) throw new Error("heimdall bridge answered " + r.status);
+  return r.json();
+}
+
+/** Store a provider API key (anthropic, openai, …) SERVER-SIDE on this machine.
+ *  The key is posted to the localhost bridge, written beside the CLI's own
+ *  state, and never echoed back — the page keeps nothing. `remove:true` clears
+ *  it. Returns { ok, provider, stored, configured, frontierModels }. */
+export async function setProviderKey(provider, key, { base = null, remove = false, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/providers/keys", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(remove ? { provider, remove: true } : { provider, key }),
+  });
+  if (!r.ok) {
+    let msg = "heimdall refused the key";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Remove a stored provider key from this machine. */
+export function removeProviderKey(provider, { base = null, fetchImpl = fetch } = {}) {
+  return setProviderKey(provider, null, { base, remove: true, fetchImpl });
+}
+
 /** Whether a coding machine (opencode) is attached behind the bridge. */
 export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
   try { const r = await fetchImpl(bridgeBase(base) + "/api/code/status", { cache: "no-store" }); return r.ok ? r.json() : null; }
@@ -212,15 +257,33 @@ export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
  *  opencode machine door, whose own model calls are routed by the bridge. The
  *  chat never talks to opencode directly. Returns
  *  { sessionId, text, activity, ms, lane }. */
-export async function code(prompt, { base = null, title = null, model = null, agent = null, signal = null, fetchImpl = fetch } = {}) {
+export async function code(prompt, { base = null, title = null, model = null, agent = null, sessionId = null, signal = null, fetchImpl = fetch } = {}) {
   const r = await fetchImpl(bridgeBase(base) + "/api/code", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ prompt, title, model, agent }),
+    body: JSON.stringify({ prompt, title, model, agent, sessionId }),
     signal,
   });
   if (!r.ok) {
     let msg = "the coding machine did not answer";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Read a document THROUGH the khora (the perceiver), never forwarded raw.
+ *  Returns EORead@1 — referents, relations, basis. The surface shows the
+ *  reading; a model never receives the raw file. */
+export async function read(text, { base = null, source = null, sessionId = null, signal = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/read", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ text, source, sessionId }),
+    signal,
+  });
+  if (!r.ok) {
+    let msg = "the khora read did not answer";
     try { msg = (await r.json())?.error || msg; } catch {}
     const err = new Error(msg); err.status = r.status; throw err;
   }

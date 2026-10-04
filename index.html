@@ -46,6 +46,10 @@
   .side-top { padding: 12px 12px 6px; }
   .models { display: flex; flex-direction: column; gap: 2px; }
   .tier { display: flex; align-items: baseline; gap: 8px; padding: 10px 10px 3px; }
+  .tier.clickable { cursor: pointer; border-radius: 8px; user-select: none; }
+  .tier.clickable:hover { background: var(--side2); }
+  .tier-caret { font-size: 10px; color: var(--mut); width: 10px; }
+  .tier-count { font-size: 10px; color: var(--dim); background: var(--side2); border-radius: 999px; padding: 0 6px; }
   .tier-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
   .tier-note { font-size: 11px; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .model { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; color: var(--ink2); }
@@ -107,6 +111,15 @@
 
   /* ---------------- main ---------------- */
   .main { flex: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
+  /* Code mode pivots to the Fold's opencode surface — a full pane, the chat
+     thread and composer stepped aside. */
+  .codepane { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+  .codepane-bar { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--line); color: var(--mut); font-size: 12.5px; }
+  .codepane-bar .sp { flex: 1; }
+  .codepane-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .codepane-btn, .codepane-open { border: 1px solid var(--line2); background: var(--bg); color: var(--ink2); border-radius: 8px; padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; text-decoration: none; }
+  .codepane-btn:hover, .codepane-open:hover { border-color: var(--acc); color: var(--ink); }
+  .codepane-frame { flex: 1; width: 100%; border: none; background: var(--bg); min-height: 0; }
   .topbar { display: flex; align-items: center; gap: 10px; padding: 10px 16px; }
   .pill { display: flex; align-items: center; gap: 9px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; background: var(--bg); font-weight: 600; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
   .pill:hover { background: var(--side); }
@@ -114,6 +127,9 @@
   .agentbar { display: flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
   .agentbtn { border: none; background: transparent; color: var(--mut); border-radius: 999px; padding: 5px 14px; font-size: 12.5px; font-weight: 600; }
   .agentbtn.on { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .webtoggle { border: 1px solid var(--line); background: var(--bg); color: var(--mut); font-size: 12.5px; font-weight: 600; padding: 6px 14px; border-radius: 999px; }
+  .webtoggle:hover { background: var(--side); color: var(--ink); }
+  .webtoggle.on { background: var(--acc); border-color: var(--acc); color: #fff; }
   .curmodel { border: none; background: transparent; color: var(--mut); font-size: 12.5px; font-weight: 600; padding: 7px 10px; border-radius: 999px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .curmodel:hover { background: var(--side2); color: var(--ink); }
   .curmodel:empty { display: none; }
@@ -152,6 +168,24 @@
   .msg:hover .actions { opacity: 1; }
   .act { background: transparent; border: none; color: var(--mut); font-size: 12px; padding: 0; }
   .act:hover { color: var(--acc-deep); text-decoration: underline; }
+
+  /* the transparency block: the grounding record on a message */
+  .disclosure { margin-top: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--side); padding: 10px 12px; font-size: 12.5px; }
+  .disclosure[hidden] { display: none; }
+  .disc-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .disc-title { font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mut); }
+  .disc-sub { font-size: 12px; color: var(--dim); }
+  .disc-label { font-weight: 600; color: var(--ink2); margin: 8px 0 3px; }
+  .disc-sources, .disc-ungrounded { display: flex; flex-direction: column; gap: 3px; }
+  .disc-source { display: flex; gap: 8px; align-items: baseline; }
+  .disc-ref { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--acc-deep); background: var(--acc-soft); border-radius: 5px; padding: 0 5px; white-space: nowrap; }
+  .disc-text { color: var(--mut); overflow: hidden; text-overflow: ellipsis; }
+  .disc-bad { margin-top: 6px; color: #b45309; }
+  html[data-theme="dark"] .disc-bad { color: #f0b429; }
+  .disc-ok { margin-top: 6px; color: var(--ok); }
+  .disc-foot { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .disc-rec { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--mut); }
+  .disc-meta { font: 11.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--dim); }
 
   /* ---------------- welcome (LibreChat's centered logo + name + composer) ---------------- */
   .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0 20px 3vh; }
@@ -205,6 +239,14 @@
   .field input[type="text"]:focus, .field select:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
   .field .models { border: 1px solid var(--line); border-radius: 12px; padding: 4px 4px 6px; }
   .field .tier { padding: 9px 8px 3px; }
+  .keyrow { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .keyrow .keyname { width: 78px; flex: none; font-size: 13px; font-weight: 600; color: var(--ink2); }
+  .keyrow input { flex: 1; padding: 8px 10px; border: 1px solid var(--line2); border-radius: 9px; background: var(--bg); color: var(--ink); font: inherit; }
+  .keyrow input:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
+  .keyrow .btn { padding: 8px 12px; }
+  .keyrow.saved { background: color-mix(in srgb, var(--ok) 12%, transparent); border-radius: 9px; }
+  .keyrow .btn.saved { background: var(--ok); color: #fff; border-color: var(--ok); }
+  .keyrow .btn.err { border-color: #dc2626; color: #dc2626; }
   .seg { display: inline-flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
   .seg button { border: none; background: transparent; color: var(--mut); border-radius: 999px; padding: 6px 16px; font-size: 13px; font-weight: 600; }
   .seg button.on { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
@@ -263,6 +305,7 @@
   <main class="main">
     <div class="topbar">
       <div class="agentbar" id="agentSlot"></div>
+      <button class="webtoggle" id="webToggle" title="Search the web before answering">Web</button>
       <div class="sp"></div>
       <button class="iconbtn" id="topFocus" title="Focus">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
@@ -323,6 +366,14 @@
     </div>
 
     <div class="field">
+      <label>API keys</label>
+      <div class="hint" style="margin:0 0 8px">Entered here, stored on <b>this machine</b> beside `heimdall key` — never in this page, never sent to an outside model.</div>
+      <div class="keyrow"><span class="keyname">Anthropic</span><input type="password" id="keyAnthropic" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="anthropic">Save</button></div>
+      <div class="keyrow"><span class="keyname">OpenAI</span><input type="password" id="keyOpenai" placeholder="sk-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="openai">Save</button></div>
+      <div class="hint" id="keyStatus">No provider keys saved on this machine yet.</div>
+    </div>
+
+    <div class="field">
       <label>Models</label>
       <div class="models" id="models"></div>
       <div class="hint">Each tier is a different trust boundary — an outside model is sealed-external, the reading only.</div>
@@ -354,6 +405,18 @@
         </div>
         <div class="grow"></div>
       </div>
+    </div>
+
+    <div class="field">
+      <label>Transparency</label>
+      <div class="row">
+        <div class="seg" id="setTransparency">
+          <button data-transparency="1">On</button>
+          <button data-transparency="0">Off</button>
+        </div>
+        <div class="grow"></div>
+      </div>
+      <div class="hint">On: every answer carries its grounding record — addressed sources, what is not in the material, and the on-record line.</div>
     </div>
 
     <div class="about" id="setAbout"></div>

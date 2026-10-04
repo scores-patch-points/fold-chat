@@ -15,6 +15,8 @@
 import * as client from "./fold-chat-client.js";
 import { artifactsOf, previewable } from "./fold-chat-artifacts.js";
 import * as memory from "./fold-chat-memory.js";
+import * as ground from "./fold-chat-ground.js";
+import * as web from "./fold-chat-web.js";
 
 const DEFAULT_BRIDGE = "http://localhost:8790";
 const PRESETS = Object.freeze({
@@ -138,17 +140,30 @@ export function mount(root, opts = {}) {
   let preset = localStorage.getItem("fold-chat:preset") || "fold";
   let meterInfo = null;
   const collapsed = load("fold-chat:collapse", {});
+  // Transparency: show the grounding record on every answer. On by default —
+  // the fold would rather disclose than dress up. Persisted per browser.
+  let transparency = (() => { try { const v = localStorage.getItem("fold-chat:transparency"); return v == null ? true : v === "1"; } catch { return true; } })();
+  function setTransparency(on) {
+    transparency = !!on;
+    try { localStorage.setItem("fold-chat:transparency", transparency ? "1" : "0"); } catch (e) {}
+    if (activeId) open(activeId);
+  }
+  // Web search: when on, a turn searches the keyless sources (Wikipedia, GitHub,
+  // the Internet Archive, OpenAlex, Crossref), reads the top hits, and grounds
+  // the answer on them — the holodeck's mechanism.
+  let webOn = (() => { try { return localStorage.getItem("fold-chat:web") === "1"; } catch { return false; } })();
 
   const E = {
     railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"), railSettings: $("railSettings"),
     side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), chatNew: $("chatNew"),
-    agentSlot: $("agentSlot"), curModel: $("curModel"),
+    agentSlot: $("agentSlot"), curModel: $("curModel"), webToggle: $("webToggle"),
     topNew: $("topNew"), topFocus: $("topFocus"), sealBadge: $("sealBadge"),
-    welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"),
+    welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"), main: document.querySelector("main.main"),
     composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
     footer: $("footer"), drawer: $("drawer"), toast: $("toast"), footEvidence: $("footEvidence"), ver: $("ver"),
     settingsModal: $("settingsModal"), settingsClose: $("settingsClose"), settingsCancel: $("settingsCancel"), settingsSave: $("settingsSave"),
-    setBridge: $("setBridge"), setPreset: $("setPreset"), setTheme: $("setTheme"), setMode: $("setMode"), setAbout: $("setAbout"),
+    setBridge: $("setBridge"), bridgeDetect: $("bridgeDetect"), bridgeStatus: $("bridgeStatus"), setPreset: $("setPreset"), setTheme: $("setTheme"), setMode: $("setMode"), setTransparency: $("setTransparency"), setAbout: $("setAbout"),
+    keyAnthropic: $("keyAnthropic"), keyOpenai: $("keyOpenai"), keyStatus: $("keyStatus"),
   };
   E.ver.textContent = "v0.1";
 
@@ -160,10 +175,58 @@ export function mount(root, opts = {}) {
   const modeBtns = {};
   for (const [k, label] of [["chat", "Chat"], ["code", "Code"]]) {
     const b = el("button", "agentbtn" + (mode === k ? " on" : ""), label);
-    b.onclick = () => { mode = k; try { localStorage.setItem("fold-chat:mode", k); } catch (e) {} for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === k); E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold"; };
+    b.onclick = () => setMode(k);
     modeBtns[k] = b; modeBar.append(b);
   }
   if (E.agentSlot) E.agentSlot.append(modeBar); else E.composer.before(modeBar);
+
+  // Code mode PIVOTS the UX to the opencode setup: the Fold's own opencode
+  // surface (the OpenCode UI the bridge dispatches to) is embedded and the
+  // fold-chat thread/composer step aside. Chat mode restores the fold surface.
+  let codePane = null;
+  function opencodeUiUrl() {
+    if (codeUi) return codeUi;
+    return localStorage.getItem("fold-chat:codeui") || "http://127.0.0.1:4099/";
+  }
+  function ensureCodePane() {
+    if (codePane) return codePane;
+    codePane = el("div", "codepane");
+    const bar = el("div", "codepane-bar");
+    const label = el("span", "codepane-label", "Code · the Fold's opencode — the machine door behind heimdall");
+    const open = el("a", "codepane-open", "open ↗");
+    open.href = opencodeUiUrl(); open.target = "_blank"; open.rel = "noopener";
+    const reload = el("button", "codepane-btn", "reload");
+    bar.append(label, el("span", "sp"), reload, open);
+    const frame = document.createElement("iframe");
+    frame.className = "codepane-frame";
+    frame.setAttribute("title", "The Fold's opencode");
+    frame.src = opencodeUiUrl();
+    reload.onclick = () => { frame.src = "about:blank"; setTimeout(() => { frame.src = opencodeUiUrl(); }, 60); };
+    codePane.append(bar, frame);
+    E.main.append(codePane);
+    return codePane;
+  }
+  function paintMode() {
+    const code = mode === "code";
+    if (code) ensureCodePane();
+    if (codePane) codePane.style.display = code ? "" : "none";
+    E.welcome.style.display = code ? "none" : "";
+    // In chat mode the thread only shows when it has messages (the empty
+    // welcome otherwise owns the view); in code mode it steps aside entirely.
+    E.thread.style.display = code ? "none" : (E.threadCol.children.length ? "" : "none");
+    E.composerWrap.style.display = code ? "none" : "";
+    if (E.stage) E.stage.style.display = code ? "none" : "";
+  }
+  function setMode(k) {
+    mode = k;
+    try { localStorage.setItem("fold-chat:mode", k); } catch (e) {}
+    for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === k);
+    E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold";
+    if (k === "code") ensureCodePane();
+    paintMode();
+  }
+  // codeUi is set once the bridge tells us its opencode URL (see bootWiring).
+  let codeUi = null;
 
   function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), 1600); }
 
@@ -173,21 +236,29 @@ export function mount(root, opts = {}) {
     catch (e) { models = []; toast("heimdall bridge not answering — run heimdall up"); }
     renderModels();
   }
-  function selectedModel() { return models.find((m) => m.id === sessions[activeId]?.model) || models.find((m) => !m.sealed) || models[0] || null; }
+  function selectedModel() { return models.find((m) => m.id === sessions[activeId]?.model) || client.autoPick(models); }
   function providerColor(p) { const s = String(p || ""); let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return `hsl(${h} 60% 45%)`; }
   function renderModels() {
     E.models.innerHTML = "";
     if (!models.length) { E.models.append(el("div", "empty-hint", "no models — start the heimdall bridge")); return; }
     const cur = sessions[activeId]?.model;
+    const free = new Set(client.FREE_TIERS);
     const groups = {};
     for (const m of models) { const t = m.tier || client.tierOf(m); (groups[t] || (groups[t] = [])).push(m); }
     for (const t of client.TIER_ORDER) {
       const list = groups[t]; if (!list || !list.length) continue;
       const meta = client.TIERS[t] || { label: t, note: "" };
-      const head = el("div", "tier");
+      // The free tiers start collapsed; a tier the person opened (or a paid
+      // tier) stays open. The collapse is remembered per browser.
+      const isCollapsed = collapsed[t] ?? free.has(t);
+      const head = el("div", "tier clickable" + (isCollapsed ? "" : " open"));
+      head.append(el("span", "tier-caret", isCollapsed ? "▸" : "▾"));
       head.append(el("span", "tier-label", meta.label));
+      head.append(el("span", "tier-count", String(list.length)));
       if (meta.note) head.append(el("span", "tier-note", meta.note));
+      head.onclick = () => { collapsed[t] = !isCollapsed; save("fold-chat:collapse", collapsed); renderModels(); };
       E.models.append(head);
+      if (isCollapsed) continue;
       for (const m of list) {
         const row = el("div", "model" + (m.id === cur ? " on" : ""));
         const dot = el("span", "pdot"); dot.style.background = providerColor(m.provider);
@@ -304,11 +375,16 @@ export function mount(root, opts = {}) {
   // The empty state is LibreChat's: the composer rides centered under the
   // welcome title. Once a thread exists, the composer docks above the footer.
   function setView(empty) {
-    E.welcome.style.display = empty ? "" : "none";
-    E.thread.style.display = empty ? "none" : "";
-    if (!E.composerWrap) return;
-    if (empty) { if (E.composerWrap.parentElement !== E.welcome) E.welcome.append(E.composerWrap); }
-    else if (E.footer && E.composerWrap.nextElementSibling !== E.footer) E.footer.before(E.composerWrap);
+    // The mode owns the top-level view; setView only arranges within chat mode.
+    if (mode !== "code") {
+      E.welcome.style.display = empty ? "" : "none";
+      E.thread.style.display = empty ? "none" : "";
+      if (E.composerWrap) {
+        if (empty) { if (E.composerWrap.parentElement !== E.welcome) E.welcome.append(E.composerWrap); }
+        else if (E.footer && E.composerWrap.nextElementSibling !== E.footer) E.footer.before(E.composerWrap);
+      }
+    }
+    paintMode();
   }
   function open(id) {
     activeId = id;
@@ -316,7 +392,7 @@ export function mount(root, opts = {}) {
     E.threadCol.innerHTML = "";
     const msgs = s?.messages || [];
     setView(!msgs.length);
-    for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i });
+    for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, model: s?.model });
     renderChats(); renderModels(); updateSeal();
   }
   function newChat() {
@@ -351,6 +427,58 @@ export function mount(root, opts = {}) {
     card.append(bar, inner);
     body.append(card);
   }
+  // The transparency block: the holodeck's per-turn record, on the message.
+  // What was addressed, what is NOT in the material, and the one-line record.
+  function renderDisclosure(body, rec, meta) {
+    const box = el("div", "disclosure");
+    const head = el("div", "disc-head");
+    head.append(el("span", "disc-title", "Grounding"),
+      el("span", "disc-sub", rec.hasMaterial ? `${rec.coverage.grounded}/${rec.coverage.total} sentences addressed` : "no material carried"));
+    box.append(head);
+
+    if (rec.sources && rec.sources.length) {
+      box.append(el("div", "disc-label", "Addressed sources"));
+      const ul = el("div", "disc-sources");
+      for (const s of rec.sources) {
+        const row = el("div", "disc-source");
+        row.append(el("code", "disc-ref", s.address), el("span", "disc-text", s.text));
+        ul.append(row);
+      }
+      box.append(ul);
+    }
+
+    const bad = [...(rec.unsupported?.numbers || []), ...(rec.unsupported?.names || [])];
+    if (bad.length) {
+      box.append(el("div", "disc-bad", "Not in the material: " + bad.join(", ")));
+    } else if (rec.hasMaterial) {
+      box.append(el("div", "disc-ok", "Nothing unsupported"));
+    }
+
+    if (rec.ungrounded && rec.ungrounded.length) {
+      box.append(el("div", "disc-label", `${rec.ungrounded.length} sentence(s) with no address`));
+      const ul = el("div", "disc-ungrounded");
+      for (const t of rec.ungrounded.slice(0, 6)) ul.append(el("div", "disc-text", t));
+      box.append(ul);
+    }
+
+    if (rec.web && rec.web.length) {
+      const reads = rec.web.filter((w) => w.read || w.engine || w.ok === false);
+      box.append(el("div", "disc-label", "Web"));
+      const ul = el("div", "disc-ungrounded");
+      for (const w of reads.slice(0, 8)) {
+        const label = w.read ? `read ${w.read}${w.via ? " via " + w.via : ""}${w.chars ? " · " + w.chars + " chars" : ""}` : w.scope ? `${w.engine || w.scope}${w.n != null ? " · " + w.n + " result(s)" : ""}${w.ok === false ? " — " + (w.why || "no answer") : ""}` : "";
+        if (label) ul.append(el("div", "disc-text", label));
+      }
+      box.append(ul);
+    }
+
+    const foot = el("div", "disc-foot");
+    foot.append(el("span", "disc-rec", rec.line));
+    if (meta && meta.model) foot.append(el("span", "disc-meta", `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
+    box.append(foot);
+    body.append(box);
+  }
+
   function appendMsg(role, content, meta = {}) {
     const wrap = el("div", "msg " + role);
     const av = el("div", "av", role === "user" ? "You" : "F");
@@ -365,8 +493,10 @@ export function mount(root, opts = {}) {
         const acts = el("div", "actions");
         const cont = el("button", "act", "continue"); cont.onclick = () => continueFrom(meta.index);
         const fork = el("button", "act", "fork"); fork.onclick = () => forkAt(activeId, meta.index);
-        acts.append(cont, fork); body.append(acts);
+        const disc = el("button", "act", "disclosure"); disc.onclick = () => { const d = body.querySelector(".disclosure"); if (d) d.hidden = !d.hidden; };
+        acts.append(cont, fork, disc); body.append(acts);
       }
+      if (transparency && meta.grounding) renderDisclosure(body, meta.grounding, meta);
     } else {
       body.textContent = content;
       if (meta.index != null) {
@@ -409,6 +539,29 @@ export function mount(root, opts = {}) {
   // an ungrounded identity claim stand (resolution, never invention).
   let readerName = (() => { try { return localStorage.getItem("fold-chat:reader") || null; } catch { return null; } })();
 
+  // The material this surface can ground against: the person's OWN messages.
+  // The chat never touches the workspace, so what it carries is what they gave
+  // it. Each message is a source with a stable tag (S1, S2, …).
+  // MATERIAL is what the fold actually READ — the khora readings of attached
+  // files, and pasted documents. Conversational turns are NOT material: a
+  // greeting is not a claim, so it is never checked for grounding (the
+  // holodeck's lesson). A message counts only when it carries a substantive
+  // body of its own (a pasted document), never chit-chat.
+  function materialOf(s) {
+    const out = [];
+    for (const a of s.attachments || []) {
+      if (a.reading) out.push({ ref: `attachment · ${a.name}`, source: a.name, text: a.reading });
+    }
+    const pasted = (s.messages || []).filter((x) => x.role === "user" && !x.attachment && String(x.content || "").trim().length >= 240);
+    pasted.forEach((x, i) => out.push({ ref: `you · pasted ${i + 1}`, source: `S${i + 1}`, text: x.content }));
+    return out;
+  }
+  // The latest thing the person actually asked — the web search query.
+  function lastUserText(s) {
+    const m = [...(s.messages || [])].reverse().find((x) => x.role === "user");
+    return String(m?.content || "").trim();
+  }
+
   async function run(id = activeId, continuing = false) {
     const s = sessions[id]; if (!s) return;
     const m = models.find((x) => x.id === s.model) || selectedModel();
@@ -431,17 +584,39 @@ export function mount(root, opts = {}) {
       });
       E.stage.textContent = "";
       body.classList.remove("live");
-      // The guard: if the model asserted an identity the record cannot ground,
-      // the fold withdraws it — the claim never stands.
-      let text = out.text;
+      // The fold's grounding: strip a self-citation the model invented, then
+      // check the identity guard, then attribute the answer to the material the
+      // conversation carries and build the record (disclosed when transparency
+      // is on). The model proposes; the record decides.
+      let text = ground.stripSelfCitations(out.text).text;
       const bad = memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} });
       if (bad) text = text + "\n\n" + memory.identityCorrection(bad, { readerName });
+      // Web search is a MATERIAL CHANNEL, not decoration: when the turn asked
+      // for outside ground (or the workspace carried none), the search reads a
+      // few real pages and their passages join the material the answer is
+      // checked against — with its own trace on the record. A failed search is
+      // a disclosed gap on the trace, never a broken turn.
+      let webPassages = [], webTrace = null;
+      if (webOn) {
+        try {
+          const w = await web.searchWeb(lastUserText(s));
+          webPassages = w.passages || [];
+          webTrace = w.trace || null;
+        } catch (e) {
+          webTrace = [{ scope: "web", ok: false, why: String(e?.message || e) }];
+        }
+      }
+      const material = [...materialOf(s), ...webPassages.map((p) => ({ ref: p.ref, source: p.source, text: p.text }))];
+      const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
+      const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
+      const record = ground.turnRecord(text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed });
+      if (webTrace) record.web = webTrace;
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: text, at: now() });
+      s.messages.push({ role: "assistant", content: text, at: now(), grounding: record });
       s.sealed = !!m.sealed;
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
-      appendMsg("assistant", text, { sealed: m.sealed, index: idx });
+      appendMsg("assistant", text, { sealed: m.sealed, index: idx, grounding: record, model: m.id });
       renderChats();
     } catch (err) {
       E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
@@ -462,7 +637,11 @@ export function mount(root, opts = {}) {
     E.send.disabled = true; E.input.disabled = true;
     E.stage.textContent = "coding · the fold dispatches to the machine door…";
     try {
-      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef() });
+      // ITERATE VIA THE RECORD: a session that already coded continues its own
+      // opencode session (the EOT ledger for code) — the next turn builds on
+      // what the last one did, never a fresh session.
+      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef(), sessionId: s.codeSessionId || null });
+      if (out.sessionId) s.codeSessionId = out.sessionId;
       E.stage.textContent = "";
       body.classList.remove("live"); body.textContent = "";
       if (Array.isArray(out.activity) && out.activity.length) {
@@ -476,7 +655,7 @@ export function mount(root, opts = {}) {
         else renderArtifact(body, b.artifact);
       }
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: text, at: now() });
+      s.messages.push({ role: "assistant", content: text, at: now(), codeSessionId: s.codeSessionId });
       s.updated = now();
       save("fold-chat:sessions", sessions);
       renderChats();
@@ -524,16 +703,20 @@ export function mount(root, opts = {}) {
     const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
     for (const b of E.setTheme.querySelectorAll("button")) b.classList.toggle("on", b.dataset.theme === cur);
   }
-  function paintMode() { for (const b of E.setMode.querySelectorAll("button")) b.classList.toggle("on", b.dataset.mode === mode); }
+  function paintModeSetting() { for (const b of E.setMode.querySelectorAll("button")) b.classList.toggle("on", b.dataset.mode === mode); }
+  function paintTransparency() { for (const b of E.setTransparency.querySelectorAll("button")) b.classList.toggle("on", b.dataset.transparency === (transparency ? "1" : "0")); }
   E.setTheme.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; document.documentElement.setAttribute("data-theme", b.dataset.theme); try { localStorage.setItem("fold-chat:theme", b.dataset.theme); } catch (e2) {} paintTheme(); };
-  E.setMode.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; mode = b.dataset.mode; try { localStorage.setItem("fold-chat:mode", mode); } catch (e2) {} for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === mode); E.input.placeholder = mode === "code" ? "Describe the change to make…" : "Message the fold"; paintMode(); };
+  E.setMode.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; setMode(b.dataset.mode); paintModeSetting(); };
+  E.setTransparency.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; setTransparency(b.dataset.transparency === "1"); paintTransparency(); };
 
   function openSettings() {
     for (const [k, p] of Object.entries(PRESETS)) if (!E.setPreset.querySelector(`option[value="${k}"]`)) E.setPreset.append(new Option(p.label, k));
     E.setBridge.value = bridge;
     E.setPreset.value = preset;
-    paintTheme(); paintMode();
+    paintTheme(); paintModeSetting(); paintTransparency();
     E.setAbout.innerHTML = `bridge <b>${esc(bridge)}</b> · version <b>v0.1</b> · cloud models are <b>sealed-external</b> by default; raw workspace tokens never leave.`;
+    updateBridgeStatus();
+    refreshKeyStatus();
     E.settingsModal.hidden = false;
     E.setBridge.focus();
   }
@@ -546,6 +729,65 @@ export function mount(root, opts = {}) {
     toast("settings saved");
     // The bridge may have moved — re-list the models it serves.
     if (next && next !== bridge) location.reload();
+  }
+  // The bridge line under the field: found / not found, and the gate it reports.
+  function updateBridgeStatus() {
+    if (!E.bridgeStatus) return;
+    if (bridgeHello) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b> — every model and the sealed-external gate route here.`;
+    else if (bridge && models.length) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b>.`;
+    else E.bridgeStatus.innerHTML = `not found — run <b>heimdall up</b>, then Detect.`;
+  }
+  E.bridgeDetect.onclick = async () => {
+    E.bridgeStatus.textContent = "looking for heimdall…";
+    const found = await client.detectBridge({ override: E.setBridge.value.trim() || null });
+    if (found.ok) {
+      bridge = found.base; bridgeHello = found.hello;
+      E.setBridge.value = bridge;
+      try { localStorage.setItem("fold-chat:bridge", bridge); } catch (e) {}
+      await refreshModels();
+      updateBridgeStatus();
+      toast("heimdall found at " + bridge);
+    } else {
+      bridgeHello = null; updateBridgeStatus(); toast("no heimdall on localhost:8790");
+    }
+  };
+  // Provider keys: posted to the localhost bridge, stored server-side (beside
+  // `heimdall key`), and never kept in this page. The field is cleared on save.
+  async function refreshKeyStatus() {
+    if (!E.keyStatus) return;
+    try {
+      const j = await client.listProviderKeys({ base: bridge });
+      const set = (j.providers || []).map((p) => p.provider);
+      E.keyStatus.textContent = set.length ? "set on this machine: " + set.join(", ") : "No provider keys stored yet.";
+    } catch { E.keyStatus.textContent = "heimdall bridge not answering — start it to store keys."; }
+  }
+  async function saveProviderKey(provider, input) {
+    const key = (input.value || "").trim();
+    if (!key) { toast("enter a key first"); input.focus(); return; }
+    const btn = E.settingsModal.querySelector(`button[data-provider="${provider}"]`);
+    const row = btn?.closest(".keyrow");
+    try {
+      const j = await client.setProviderKey(provider, key, { base: bridge });
+      input.value = "";
+      // Acknowledge unmistakably: the row itself turns "✓ saved".
+      if (btn) { btn.textContent = "✓ saved"; btn.classList.add("saved"); }
+      if (row) row.classList.add("saved");
+      toast(`${provider} key stored on this machine`);
+      const set = j.configured || [];
+      E.keyStatus.textContent = set.length
+        ? `saved on this machine: ${set.join(", ")} — ${j.frontierModels || 0} frontier model(s) reachable; keys are used server-side, never by this page.`
+        : "No provider keys stored yet.";
+      await refreshModels();
+    } catch (e) {
+      if (btn) btn.classList.add("err");
+      E.keyStatus.textContent = `could not store the ${provider} key: ${String(e.message || e)}`;
+      toast(String(e.message || e));
+    }
+  }
+  for (const [provider, input] of [["anthropic", E.keyAnthropic], ["openai", E.keyOpenai]]) {
+    const btn = E.settingsModal.querySelector(`button[data-provider="${provider}"]`);
+    if (btn) btn.onclick = () => saveProviderKey(provider, input);
+    if (input) input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveProviderKey(provider, input); } });
   }
   E.railSettings.onclick = openSettings;
   E.settingsClose.onclick = E.settingsCancel.onclick = closeSettings;
@@ -605,21 +847,80 @@ export function mount(root, opts = {}) {
   E.railEvidence.onclick = E.footEvidence.onclick = (e) => { e.preventDefault(); toggleDrawer(); };
   E.railTheme.onclick = () => { const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", cur); try { localStorage.setItem("fold-chat:theme", cur); } catch (e) {} };
   E.topFocus.onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {}); else document.exitFullscreen?.(); };
-  E.attach.onclick = () => toast("attachments land with the opencode adapter");
+  // Web search on/off — a turn searches the keyless sources and grounds on them.
+  function paintWeb() { if (E.webToggle) E.webToggle.classList.toggle("on", webOn); }
+  if (E.webToggle) E.webToggle.onclick = () => {
+    webOn = !webOn;
+    try { localStorage.setItem("fold-chat:web", webOn ? "1" : "0"); } catch (e) {}
+    paintWeb();
+    toast(webOn ? "web search on — answers will ground on the sources" : "web search off");
+  };
+  // Attachments are READ THROUGH THE KHORA, never forwarded raw. The file's
+  // bytes go to the bridge's read door (→ the khora's model-free constitutional
+  // reader), and only the READING (referents, relations, basis) enters the
+  // thread and the model's context. The raw file never leaves this page.
+  E.attach.onclick = () => {
+    const pick = document.createElement("input");
+    pick.type = "file";
+    pick.accept = ".txt,.md,.csv,.tsv,.json,.html,.js,.mjs,.srt,.vtt,.eml,.log";
+    pick.onchange = async () => {
+      const file = pick.files?.[0];
+      if (!file) return;
+      E.stage.textContent = "reading · the khora reads the attachment (model-free)…";
+      try {
+        const raw = await file.text();
+        const reading = await client.read(raw, { base: bridge, source: file.name, sessionId: sessions[activeId]?.codeSessionId || null });
+        const s = sessions[activeId] || (newChat(), sessions[activeId]);
+        const note = readingNote(file.name, raw.length, reading);
+        s.attachments = [...(s.attachments || []), { name: file.name, bytes: raw.length, referents: (reading.referents || []).length, relations: (reading.relations || []).length }];
+        // The reading rides the history as grounded material — never the raw
+        // file. The model receives what the khora read, not what was uploaded.
+        s.messages.push({ role: "user", content: note, at: now(), attachment: file.name });
+        s.updated = now();
+        save("fold-chat:sessions", sessions);
+        appendMsg("user", note, { attachment: file.name });
+        E.stage.textContent = "";
+        toast(`read ${file.name} through the khora — ${(reading.referents || []).length} referent(s), ${(reading.relations || []).length} relation(s)`);
+      } catch (err) {
+        E.stage.textContent = "";
+        toast("khora read failed: " + err.message);
+      }
+    };
+    pick.click();
+  };
   E.mic.onclick = () => toast("voice is not wired yet");
+
+  /** Render a khora reading (EORead@1) as a grounded note for the thread —
+   *  referents, relations, basis; the raw bytes are never shown or sent. */
+  function readingNote(name, bytes, r) {
+    const refs = (r.referents || []).map((x) => (x.surfaces || []).join("/")).filter(Boolean).slice(0, 20);
+    const rels = (r.relations || []).map((x) => `${x.end1 ?? x.subject ?? ""} ${x.label ?? x.relation ?? ""} ${x.end2 ?? x.object ?? ""}`.trim()).filter(Boolean).slice(0, 20);
+    return [
+      `[attachment read by the khora · ${name} · ${bytes} bytes]`,
+      `basis: ${r.basis || "constitutional read"}`,
+      refs.length ? `referents: ${refs.join(", ")}` : "referents: none admitted",
+      rels.length ? `relations: ${rels.join("; ")}` : "relations: none admitted",
+      (r.stagesNotRun || []).length ? `stages not run: ${(r.stagesNotRun || []).join(", ")}` : "",
+    ].filter(Boolean).join("\n");
+  }
 
   /* ---------------- boot ---------------- */
   try { const t = localStorage.getItem("fold-chat:theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   renderProjects();
+  paintWeb();
   // Auto-detect the bridge first (the override, then the standard local port),
   // then list whatever it serves. A page served from GitHub Pages finds the
   // person's own heimdall this way, with no URL to type.
   client.detectBridge({ override: opts.bridge || null }).then((found) => {
     if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
     else toast("heimdall not found — run `heimdall up`");
+    // The code door's URL (the Fold's opencode) — read it so Code mode embeds
+    // the real surface, not a guessed port. Best-effort: defaults to 4099.
+    client.codeStatus({ base: bridge }).then((st) => { if (st?.url) codeUi = st.url; }).catch(() => {}).finally(() => paintMode());
     refreshModels().then(() => {
       const first = Object.values(sessions).sort((a, b) => new Date(b.updated || 0) - new Date(a.updated || 0))[0];
       if (first) open(first.id); else newChat();
+      paintMode();
       refreshMeter();
       updateBridgeStatus();
     });

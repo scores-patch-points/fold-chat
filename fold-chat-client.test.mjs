@@ -3,7 +3,7 @@
 // network.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus } from "./fold-chat-client.js";
+import { listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus, detectBridge, setProviderKey, listProviderKeys } from "./fold-chat-client.js";
 
 /** A fake heimdall bridge over the OpenAI/extra routes. */
 function fakeBridge({ models = [], meterBody = null, chatChunks = null, chatStatus = 200, chatError = null } = {}) {
@@ -104,7 +104,7 @@ test("code goes THROUGH the bridge (never opencode directly)", async () => {
     calls.push(url);
     if (url.endsWith("/api/code/status")) return { ok: true, status: 200, json: async () => ({ configured: true, url: "http://127.0.0.1:4096" }) };
     if (url.endsWith("/api/code")) {
-      assert.deepEqual(JSON.parse(opts.body), { prompt: "fix the test", title: null, model: null, agent: null });
+      assert.deepEqual(JSON.parse(opts.body), { prompt: "fix the test", title: null, model: null, agent: null, sessionId: null });
       return { ok: true, status: 200, json: async () => ({ sessionId: "ses_1", text: "done", activity: [{ tool: "edit", status: "completed", title: "src/util.js" }], ms: 12, lane: "opencode" }) };
     }
     return { ok: false, status: 404, json: async () => ({}) };
@@ -130,4 +130,53 @@ test("meter and ledger return the heimdall accounting", async () => {
   assert.equal(m.counts["open remote"], 2);
   const l = await ledger({ base: "http://x:8790", fetchImpl });
   assert.deepEqual(l.entries, []);
+});
+
+test("detectBridge finds the first answering local port", async () => {
+  const seen = [];
+  const fetchImpl = async (url) => {
+    seen.push(url);
+    if (url.startsWith("http://127.0.0.1:8790")) return { ok: true, status: 200, json: async () => ({ bridge: true, port: 8790 }) };
+    return { ok: false, status: 0, json: async () => ({}) };
+  };
+  const found = await detectBridge({ fetchImpl });
+  assert.equal(found.ok, true);
+  assert.equal(found.base, "http://127.0.0.1:8790");
+  assert.equal(found.hello.port, 8790);
+  assert.ok(seen[0].startsWith("http://localhost:8790"), "the standard port is probed first");
+});
+
+test("detectBridge reports not-found without throwing", async () => {
+  const fetchImpl = async () => { throw new Error("refused"); };
+  const found = await detectBridge({ fetchImpl });
+  assert.equal(found.ok, false);
+  assert.equal(found.base, null);
+});
+
+test("setProviderKey POSTs to the bridge's server-side key route", async () => {
+  let captured = null;
+  const fetchImpl = async (url, opts = {}) => {
+    captured = { url, body: JSON.parse(opts.body) };
+    return { ok: true, status: 200, json: async () => ({ ok: true, provider: "anthropic", stored: true, configured: ["anthropic"], frontierModels: 2 }) };
+  };
+  const out = await setProviderKey("anthropic", "sk-ant-xyz", { base: "http://x:8790", fetchImpl });
+  assert.match(captured.url, /\/api\/providers\/keys$/);
+  assert.deepEqual(captured.body, { provider: "anthropic", key: "sk-ant-xyz" });
+  assert.equal(out.stored, true);
+  assert.equal(out.frontierModels, 2);
+});
+
+test("a refused key surfaces the bridge's message", async () => {
+  const fetchImpl = async () => ({ ok: false, status: 403, json: async () => ({ error: "provider keys can only be set from this machine" }) });
+  await assert.rejects(() => setProviderKey("openai", "sk-x", { base: "http://x:8790", fetchImpl }), (e) => e.status === 403 && /this machine/.test(e.message));
+});
+
+test("listProviderKeys returns names only, never key values", async () => {
+  const fetchImpl = async (url) => {
+    assert.match(url, /\/api\/providers\/keys$/);
+    return { ok: true, status: 200, json: async () => ({ providers: [{ provider: "anthropic", set: true }], keySource: "server-side (never a browser)" }) };
+  };
+  const out = await listProviderKeys({ base: "http://x:8790", fetchImpl });
+  assert.deepEqual(out.providers, [{ provider: "anthropic", set: true }]);
+  assert.equal(JSON.stringify(out).includes("sk-"), false);
 });

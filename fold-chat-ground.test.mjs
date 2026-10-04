@@ -1,0 +1,74 @@
+// fold-chat-ground.test.mjs — the grounding mechanisms, falsifiable:
+//   stripSelfCitations  a model's own bracket address is neutralized
+//   attribute/coverage  a sentence is addressed only to material it shares a
+//                       PHRASE with, and never when it commits to a name the
+//                       material lacks (the Bryan-TX-PD veto)
+//   unsupportedClaims   figures and names the material does not say
+//   turnRecord          the holodeck's one-line record
+import test from "node:test";
+import assert from "node:assert/strict";
+import { splitSentences, tokenize, overlap, stripSelfCitations, namesIn, numbersIn, attribute, coverage, unsupportedClaims, turnRecord, MIN_RUN } from "./fold-chat-ground.js";
+
+test("splitSentences splits on sentence punctuation and newlines, not abbreviations", () => {
+  assert.deepEqual(splitSentences("One claim. Two claims!\nA third."), ["One claim.", "Two claims!", "A third."]);
+  assert.deepEqual(splitSentences("See Dr. Smith now. Done."), ["See Dr. Smith now.", "Done."]);
+});
+
+test("overlap finds the longest shared run in order; MIN_RUN is 2", () => {
+  assert.equal(overlap(tokenize("missing contract funds"), tokenize("about the missing contract funds today")), 3);
+  assert.equal(overlap(tokenize("alpha"), tokenize("beta")), 0);
+  assert.equal(MIN_RUN, 2);
+});
+
+test("stripSelfCitations neutralizes a bracket address the model invented", () => {
+  const r = stripSelfCitations("The funds are gone [audit#80-174]. See above.");
+  assert.equal(r.removed, 1);
+  assert.match(r.text, /citation removed — not issued by this instrument/);
+  assert.doesNotMatch(r.text, /\[audit#80-174\]/);
+});
+
+test("namesIn reads a name whole across accents; a lone capital is not a name", () => {
+  assert.deepEqual(namesIn("Anna Pávlovna greeted Éloise"), ["Anna Pávlovna"]);
+  assert.ok(namesIn("the MNPD BOLO was issued").includes("MNPD BOLO"));
+  assert.deepEqual(namesIn("Today is fine."), []);
+});
+
+test("attribute: a shared phrase is addressed; a lone shared word is not", () => {
+  const material = [{ ref: "you · message 1", source: "S1", text: "The audit found the contract funds are unaccounted for." }];
+  const cov = coverage("The contract funds are unaccounted for, the report says. I cannot verify the rest.", material);
+  assert.ok(cov.grounded >= 1, "the shared phrase is addressed");
+  assert.match(cov.entries.find((e) => e.ref).address, /^you · message 1#\d+-\d+$/);
+  // A single shared word is not a phrase: not addressed.
+  const lone = attribute("Search happened.", [{ ref: "m", source: "S1", text: "The search records are attached." }]);
+  assert.equal(lone[0].ref, null);
+});
+
+test("the veto: a shared phrase does NOT warrant a name the material lacks", () => {
+  // The Bryan TX PD / MNPD BOLO incident: the phrase is real, the subject is not.
+  const material = [{ ref: "S1", source: "S1", text: "Hendersonville TN PD: the reason was MNPD BOLO." }];
+  const out = attribute("Bryan TX PD: the reason was MNPD BOLO.", material);
+  assert.equal(out[0].ref, null, "the invented subject is not warranted by the shared phrase");
+});
+
+test("unsupportedClaims names the figures and names the material does not say", () => {
+  const material = [{ ref: "S1", source: "S1", text: "The audit found the contract funds are unaccounted for." }];
+  const u = unsupportedClaims("The contract funds total $4.2 million and were signed by Jane Doe.", material);
+  assert.ok(u.numbers.includes("4.2"), "an invented figure is caught");
+  assert.ok(u.names.some((n) => /Jane Doe/.test(n)), "an invented name is caught");
+});
+
+test("turnRecord is the holodeck's one-line record, with addresses checked", () => {
+  const material = [{ ref: "you · message 1", source: "S1", text: "The audit found the contract funds are unaccounted for." }];
+  const rec = turnRecord("The contract funds are unaccounted for. They total $4.2 million.", material, { turn: 2 });
+  assert.match(rec.line, /^On record · turn 2 · /);
+  assert.match(rec.line, /address.* checked/);
+  assert.match(rec.line, /not in the material/);
+  assert.ok(rec.sources.length >= 1);
+  assert.ok(rec.unsupported.numbers.includes("4.2"));
+});
+
+test("turnRecord with no material says the answer stands on the model alone", () => {
+  const rec = turnRecord("Hello there.", [], { turn: 1 });
+  assert.match(rec.line, /no material carried/);
+  assert.equal(rec.hasMaterial, false);
+});
