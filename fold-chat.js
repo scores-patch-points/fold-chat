@@ -17,6 +17,8 @@ import { artifactsOf, previewable } from "./fold-chat-artifacts.js";
 import * as memory from "./fold-chat-memory.js";
 import * as ground from "./fold-chat-ground.js";
 import * as web from "./fold-chat-web.js";
+import { classifyTurn, GENERATE_NUDGE, checkable, wantsWeb } from "./fold-chat-discourse.js";
+import * as FOLD from "./vendor/the-fold/fold.js";
 
 const DEFAULT_BRIDGE = "http://localhost:8790";
 const PRESETS = Object.freeze({
@@ -575,6 +577,42 @@ export function mount(root, opts = {}) {
     pasted.forEach((x, i) => out.push({ ref: `you · pasted ${i + 1}`, source: `S${i + 1}`, text: x.content }));
     return out;
   }
+  // The mechanical S1: discourse fields COMPUTED from the conversation, no
+  // model. Entities are the names the khora admitted (attachments) plus the
+  // capitalised names seen in the turns — read off the material, never asked of
+  // a model. Topic is the opening clause of the first substantive question;
+  // flow is a count of the turns and their kinds; context is what is still
+  // open (the last unanswered question, if the answer was a gap). Every value
+  // is a projection of the store, so the summary can never disagree with the
+  // record — and nothing here can invent an entity the material never named.
+  function refreshSummaryMechanical(s) {
+    if (!s?.summary) return;
+    const msgs = (s.messages || []).filter((x) => x.role === "user" && x.content && !x.attachment);
+    const first = msgs.find((x) => String(x.content).trim().length >= 24) || msgs[0];
+    const topic = first ? String(first.content).trim().split(/[.?!\n]/)[0].slice(0, 120) : s.summary.topic;
+    // Entities: names the khora admitted from attachments + capitalised names
+    // in the person's own turns (a proper-noun run), deduped, bounded.
+    const fromK = (s.attachments || []).flatMap((a) => (a.names || []));
+    const fromTurns = msgs.flatMap((x) => (String(x.content).match(/\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g) || []));
+    const stop = new Set(["The", "This", "That", "When", "What", "Where", "Who", "How", "Why", "It", "I", "You", "We", "They", "Turn", "Remember", "Reply", "Write", "Please"]);
+    const entities = [...new Set([...fromK, ...fromTurns].map((x) => x.trim()).filter((x) => x.length > 1 && x.length < 40 && !stop.has(x)))].slice(0, 8);
+    const flow = `${s.summary.turnCount} turn(s) · opening on "${truncate(topic || "", 60)}"`;
+    // Context: what is still open — the last user question if its answer was a
+    // gap ("no material carried" / a refusal), else null (nothing to carry).
+    const lastRec = (s.summary.records || []).slice(-1)[0];
+    const context = lastRec && (lastRec.unsupported?.length || lastRec.open?.length) ? `open: ${(lastRec.open || lastRec.unsupported).join("; ")}` : s.summary.context;
+    s.summary = { ...s.summary, topic: topic || s.summary.topic, flow, entities: entities.length ? entities : s.summary.entities, context: context || null, language: s.summary.language || (/\b(el|la|los|las|de)\b/i.test(String(first?.content || "")) ? null : "en") };
+    // This can never lose a live entity (it only adds names the turns/khora
+    // named) and never add an unsupported one — so the veto would always pass;
+    // it is still run, so a future edit that breaks that property is caught.
+    const check = FOLD.extractSummaryFindings(s.summary.entities || [], s.summary.entities || [], { records: s.summary.records || [], folds: s.summary.folds || [] });
+    if (!check.ok) s.summary.refreshRefused = check.findings;
+    s.updated = now();
+    save("fold-chat:sessions", sessions);
+  }
+
+  const truncate = (x, n) => (String(x || "").length > n ? String(x).slice(0, n - 1) + "…" : String(x || ""));
+
   // The latest thing the person actually asked — the web search query.
   function lastUserText(s) {
     const m = [...(s.messages || [])].reverse().find((x) => x.role === "user");
@@ -586,41 +624,62 @@ export function mount(root, opts = {}) {
     const m = models.find((x) => x.id === s.model) || selectedModel();
     if (!m) { toast("no model — start the heimdall bridge"); return; }
     if (continuing) s.messages.push({ role: "user", content: "Continue.", at: now() });
-    const history = s.messages.map((x) => ({ role: x.role, content: x.content }));
-    const sys = [PRESETS[s.preset]?.system, memory.systemContext({ readerName, facts: s.facts || {} })].filter(Boolean).join(" ");
-    if (sys) history.unshift({ role: "system", content: sys });
+    // THE CONVERSATION FOLD (the holodeck's, vendored). The context window does
+    // NOT grow with the conversation: the running summary + the addressable
+    // records + a small recency window are what ride; the raw transcript beyond
+    // that is never resent. `summary` is the store (append-only, persisted on
+    // the session); buildTurnMessages projects it.
+    if (!s.summary) s.summary = FOLD.emptySummary();
+    const basePrompt = [PRESETS[s.preset]?.system, memory.systemContext({ readerName, facts: s.facts || {} })].filter(Boolean).join(" ");
+    const question = lastUserText(s);
+    const history = s.messages.filter((x) => x.role !== "system").map((x) => ({ role: x.role, content: x.content }));
     s.updated = now(); save("fold-chat:sessions", sessions);
     setView(false);
     const body = liveBody();
     const ac = new AbortController();
     E.send.disabled = true; E.input.disabled = true;
     E.stage.textContent = m.sealed ? "sealed-external · working…" : "working…";
-    // WEB SEARCH runs BEFORE the model sees the turn — its passages join the
-    // history as a system message, so the answer can actually rest on the web
-    // (not just be checked against it after the fact). The raw page never
-    // leaves; only the reading rides the wire. A failed search is a disclosed
-    // gap on the trace, never a broken turn.
-    let webPassages = [], webTrace = null;
-    if (webOn) {
-      const q = lastUserText(s);
-      if (q) {
-        E.stage.textContent = "searching the web…";
+    // DISCOURSE AWARENESS decides the pipeline before any search runs. A
+    // generation turn is never front-loaded with a web search (that is what
+    // turned "write an essay" into "what topics?"), and a greeting is never
+    // searched or checked.
+    const kind = classifyTurn(lastUserText(s));
+    // The live narration: every step the fold takes is shown while it takes it,
+    // so the person sees the pipeline (classify → search → read → write →
+    // check) rather than a frozen spinner. Each step is appended, not swapped.
+    const say = (msg) => { if (E.stage) E.stage.textContent = msg; };
+    const kindWord = { smalltalk: "greeting", generate: "writing request", research: "question of fact", chat: "conversation" }[kind] || kind;
+    say(`turn · ${kindWord}${webOn ? (kind === "research" ? " · web on" : " · web off for this turn") : ""}`);
+    let webPassages = [], webTrace = null, sourceBlock = null;
+    const wantWeb = wantsWeb(kind, webOn);
+    if (wantWeb) {
+      if (question) {
+        say(`turn · ${kindWord} · searching the web…`);
         try {
-          const w = await web.searchWeb(q);
+          const w = await web.searchWeb(question);
           webPassages = w.passages || [];
           webTrace = w.trace || null;
           if (webPassages.length) {
-            const block = webPassages.map((p, i) => `[W${i + 1}] ${p.ref}\n${p.text.slice(0, 4000)}`).join("\n\n");
-            history.unshift({ role: "system", content: "The web sources below were read for this question. Answer from them where they cover it; where they do not, say plainly what is missing. Never claim a source you cannot show.\n\n" + block });
-            E.stage.textContent = `read ${webPassages.length} web source(s) — ${m.sealed ? "sealed-external · working…" : "working…"}`;
-          } else E.stage.textContent = "web search found nothing readable — working…";
+            sourceBlock = "The web sources below were read for this question. Answer from them where they cover it; where they do not, say plainly what is missing. Never claim a source you cannot show.\n\n" + webPassages.map((p, i) => `[W${i + 1}] ${p.ref}\n${p.text.slice(0, 4000)}`).join("\n\n");
+            say(`turn · ${kindWord} · read ${webPassages.length} web source(s) · ${m.sealed ? "sealed-external" : "local"} · writing the answer…`);
+          } else say(`turn · ${kindWord} · web search found nothing readable · writing the answer…`);
         } catch (e) {
           webTrace = [{ scope: "web", ok: false, why: String(e?.message || e) }];
+          say(`turn · ${kindWord} · web search failed (${String(e?.message || e).slice(0, 40)}) · writing the answer…`);
         }
       }
+    } else {
+      say(kind === "generate" ? `turn · ${kindWord} · writing it now…` : `turn · ${kindWord} · ${m.sealed ? "sealed-external" : "local"} · writing the answer…`);
     }
+    // The generate nudge rides the base prompt; it is not a second system
+    // message (WebLLM rejects those), and it does not pollute the fold.
+    const turnBase = kind === "generate" ? [basePrompt, GENERATE_NUDGE].filter(Boolean).join("\n\n") : basePrompt;
+    // THE MESSAGE ARRAY: one system message (base + past discourse + records +
+    // source block), then at most a small recency window of raw messages, then
+    // the question — never the whole transcript.
+    const messages = FOLD.buildTurnMessages({ basePrompt: turnBase, summary: s.summary, history: history.slice(0, -1), question, sourceBlock });
     try {
-      const out = await client.chat(m.id, history, {
+      const out = await client.chat(m.id, messages, {
         base: bridge, privacy: "sealed-external",
         onToken: (t) => { body.textContent += t; E.thread.scrollTop = E.thread.scrollHeight; E.stage.textContent = "answering…"; },
         signal: ac.signal,
@@ -637,8 +696,36 @@ export function mount(root, opts = {}) {
       const material = [...materialOf(s), ...webPassages.map((p) => ({ ref: p.ref, source: p.source, text: p.text }))];
       const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
       const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
-      const record = ground.turnRecord(text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed });
-      if (webTrace) record.web = webTrace;
+      // A written piece is not a claim to be grounded, and a greeting is not a
+      // claim at all — only research/chat turns over real material carry a
+      // disclosure. The generate/smalltalk turns carry no record.
+      const record = checkable(kind) ? ground.turnRecord(text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed }) : null;
+      if (record && webTrace) record.web = webTrace;
+      // THE FOLD ADVANCES (the holodeck's System-1/System-2 split): the turn's
+      // mechanical fold line joins the running summary, and the turn's warrant
+      // record joins the addressable store. Both are the STORE — append-only,
+      // never truncated here; only the projection is bounded. This is what
+      // makes the next turn carry discourse, not the transcript.
+      const foldLine = FOLD.mechanicalFoldLine(question, text);
+      const warrant = FOLD.buildWarrantRecord({
+        turn,
+        plane: "world",
+        gist: foldLine,
+        channels: [webPassages.length ? "web" : null, material.length ? "material" : null, "model"].filter(Boolean),
+        refs: (record?.sources || []).map((r) => r.address),
+        unsupported: [...(record?.unsupported?.numbers || []), ...(record?.unsupported?.names || [])],
+        open: [],
+      });
+      s.summary = FOLD.addWarrantRecord(FOLD.advanceSummaryFold(s.summary, foldLine), warrant);
+      // S1 SUMMARY — MECHANICAL, never a model call. Gary's own law (P80,
+      // no-json-ask): JSON is the DECODER's job, never the prompt's, and asking
+      // a small local model to summarise discourse as JSON is exactly the kind
+      // of thing local models cannot do. So the discourse fields are COMPUTED
+      // from the turns the way the fold line already is: entities from the
+      // names the khora actually admitted, topic from the opening of the first
+      // substantive turn, flow from the fold lines, context from what is still
+      // open. No model, no JSON ask, no drift — the store only ever accrues.
+      refreshSummaryMechanical(s);
       const idx = s.messages.length;
       s.messages.push({ role: "assistant", content: text, at: now(), grounding: record });
       s.sealed = !!m.sealed;
