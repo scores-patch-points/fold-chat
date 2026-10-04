@@ -211,14 +211,44 @@ export function turnRecord(answer, material = [], { turn = 1, question = "", mod
   const line = has
     ? `On record · turn ${turn} · ${bits.join(" · ")}`
     : `On record · turn ${turn} · no material carried · the answer stands on the model alone`;
+  // The facing page rides the record when material was read (never over a
+  // greeting): the spread the surface renders.
+  const facing = has ? facingPage(answer, material) : { sources: [], response: [], has: false };
   // examined: the panel is shown ONLY when the fold actually read material
   // (the holodeck's lesson — a grounding report over nothing is noise, and a
   // greeting is not a claim). A materialless turn carries examined:false and
   // the surface renders no panel at all.
-  return { turn, hasMaterial: has, examined: has, coverage: cov, unsupported: uns, sources, ungrounded, line };
+  return { turn, hasMaterial: has, examined: has, coverage: cov, unsupported: uns, sources, ungrounded, facing, line };
 }
 
 const nbOrd = (n, a, b) => n + " " + (n === 1 ? a : (b || a + "s"));
+
+/** The facing page: the turn as a book spread (the holodeck's own construction,
+ *  ported lean). LEFT are the SOURCES — each cited passage numbered S1, S2, …
+ *  by first use, carrying the verbatim sentence read from the real material and
+ *  its permanent address (ref#byteStart-byteEnd). RIGHT is the RESPONSE — every
+ *  sentence tagged [S#] to the passage it draws from, or [M] for the mouth's own
+ *  prose (ungrounded). Nothing is re-summarized: the snip is the material's own
+ *  bytes and the tags are the turn's own attributions, laid side by side.
+ *  Returns { sources, response, has }. */
+export function facingPage(answer, material = []) {
+  const entries = attribute(answer, material);
+  const fnum = new Map();
+  for (const e of entries) if (e.ref && !fnum.has(e.address)) fnum.set(e.address, fnum.size + 1);
+  const cites = new Map();
+  for (const e of entries) if (e.ref) cites.set(e.address, (cites.get(e.address) || 0) + 1);
+  const sources = [...fnum.entries()].map(([address, n]) => {
+    const e = entries.find((x) => x.address === address);
+    return { n: "S" + n, address, ref: e?.ref ?? null, span: e?.span ?? null, text: String(e?.text ?? "").trim(), cite: cites.get(address) || 0 };
+  });
+  const response = entries.map((e) => ({
+    tag: e.ref && fnum.has(e.address) ? "S" + fnum.get(e.address) : "M",
+    text: String(e.text ?? "").trim(),
+    grounded: !!(e.ref && fnum.has(e.address)),
+    address: e.ref ? e.address : null,
+  }));
+  return { sources, response, has: sources.length > 0 };
+}
 
 /** The fold-voice note appended under an answer that overreached — what the
  *  material does not say, named. */

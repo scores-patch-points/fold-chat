@@ -157,8 +157,8 @@ export function mount(root, opts = {}) {
 
   const E = {
     railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"), railSettings: $("railSettings"),
-    side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), chatNew: $("chatNew"),
-    agentSlot: $("agentSlot"), curModel: $("curModel"), webToggle: $("webToggle"),
+    side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), projNewProject: $("projNewProject"), chatNew: $("chatNew"),
+    agentSlot: $("agentSlot"), engagementSlot: $("engagementSlot"), curModel: $("curModel"), webToggle: $("webToggle"),
     topNew: $("topNew"), topFocus: $("topFocus"), sealBadge: $("sealBadge"),
     welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"), main: document.querySelector("main.main"),
     composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
@@ -169,65 +169,30 @@ export function mount(root, opts = {}) {
   };
   E.ver.textContent = "v0.1";
 
-  // Chat | Code — both go through the same bridge; Code dispatches to the
-  // machine door (opencode) behind heimdall, Chat to the routed models. The
-  // toggle rides the topbar as LibreChat's agent selector.
-  let mode = localStorage.getItem("fold-chat:mode") || "chat";
-  const modeBar = el("div", "agentbar");
-  const modeBtns = {};
+  // Engagements — ONE thread, one project, two affordances. This is the
+  // Claude / Claude-Code shape: the tabs are sibling modes over a SHARED
+  // session, not one app embedded in a pane. `chat` answers from the routed
+  // models (heimdall /v1); `code` dispatches the same turn through the SAME
+  // bridge to the machine door (the khora conductor: read → derive → execute →
+  // retain). The answer, its tool activity, and the project's folder all land
+  // in the one thread. Nothing is a separate app with its own store.
+  let engagement = localStorage.getItem("fold-chat:engagement") || localStorage.getItem("fold-chat:mode") || "chat";
+  const engBar = el("div", "agentbar");
+  const engBtns = {};
   for (const [k, label] of [["chat", "Chat"], ["code", "Code"]]) {
-    const b = el("button", "agentbtn" + (mode === k ? " on" : ""), label);
-    b.onclick = () => setMode(k);
-    modeBtns[k] = b; modeBar.append(b);
+    const b = el("button", "agentbtn" + (engagement === k ? " on" : ""), label);
+    b.onclick = () => setEngagement(k);
+    engBtns[k] = b; engBar.append(b);
   }
-  if (E.agentSlot) E.agentSlot.append(modeBar); else E.composer.before(modeBar);
+  if (E.engagementSlot) E.engagementSlot.append(engBar); else E.composer.before(engBar);
 
-  // Code mode PIVOTS the UX to the opencode setup: the Fold's own opencode
-  // surface (the OpenCode UI the bridge dispatches to) is embedded and the
-  // fold-chat thread/composer step aside. Chat mode restores the fold surface.
-  let codePane = null;
-  function opencodeUiUrl() {
-    if (codeUi) return codeUi;
-    return localStorage.getItem("fold-chat:codeui") || "http://127.0.0.1:4099/";
-  }
-  function ensureCodePane() {
-    if (codePane) return codePane;
-    codePane = el("div", "codepane");
-    const bar = el("div", "codepane-bar");
-    const label = el("span", "codepane-label", "Code · the Fold's opencode — the machine door behind heimdall");
-    const open = el("a", "codepane-open", "open ↗");
-    open.href = opencodeUiUrl(); open.target = "_blank"; open.rel = "noopener";
-    const reload = el("button", "codepane-btn", "reload");
-    bar.append(label, el("span", "sp"), reload, open);
-    const frame = document.createElement("iframe");
-    frame.className = "codepane-frame";
-    frame.setAttribute("title", "The Fold's opencode");
-    frame.src = opencodeUiUrl();
-    reload.onclick = () => { frame.src = "about:blank"; setTimeout(() => { frame.src = opencodeUiUrl(); }, 60); };
-    codePane.append(bar, frame);
-    E.main.append(codePane);
-    return codePane;
-  }
-  function paintMode() {
-    const code = mode === "code";
-    if (code) ensureCodePane();
-    if (codePane) codePane.style.display = code ? "" : "none";
-    E.welcome.style.display = code ? "none" : "";
-    // In chat mode the thread only shows when it has messages (the empty
-    // welcome otherwise owns the view); in code mode it steps aside entirely.
-    E.thread.style.display = code ? "none" : (E.threadCol.children.length ? "" : "none");
-    E.composerWrap.style.display = code ? "none" : "";
-    if (E.stage) E.stage.style.display = code ? "none" : "";
-  }
-  function setMode(k) {
-    mode = k;
-    try { localStorage.setItem("fold-chat:mode", k); } catch (e) {}
-    for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === k);
+  function setEngagement(k) {
+    engagement = k;
+    try { localStorage.setItem("fold-chat:engagement", k); } catch (e) {}
+    for (const [kk, bb] of Object.entries(engBtns)) bb.classList.toggle("on", kk === k);
     E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold";
-    if (k === "code") ensureCodePane();
-    paintMode();
   }
-  // codeUi is set once the bridge tells us its opencode URL (see bootWiring).
+  // codeUi is the machine door's UI URL, kept only for the "open ↗" affordance.
   let codeUi = null;
 
   function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), 1600); }
@@ -287,6 +252,66 @@ export function mount(root, opts = {}) {
   }
 
   /* ---------------- projects ---------------- */
+  // A project is the shared container (Claude's shape): a name, an optional
+  // FOLDER (the working directory code turns are bound to, and the same folder
+  // the conductor reads), and a PRESET the project's sessions inherit. Chat
+  // turns and code turns hang off the same project — that is what "sharing
+  // projects" means: one place a conversation and the machine door both start
+  // from. The project carries no files itself; the folder is the ground.
+  function projectSub(p) {
+    const parts = [];
+    if (p.cwd) parts.push(p.cwd);
+    const pr = PRESETS[p.preset]; if (pr) parts.push(pr.label);
+    return parts.join(" · ") || "no folder yet";
+  }
+  function newProjectDialog(existing = null) {
+    const modal = el("div", "modal");
+    const sheet = el("div", "sheet dialog-sheet");
+    const head = el("div", "sheet-head");
+    head.append(el("h2", "", existing ? "Project settings" : "New project"), el("div", "grow"));
+    const close = el("button", "sheet-close"); close.innerHTML = CLOSE_SVG; head.append(close);
+    const nameField = el("div", "field");
+    nameField.append(el("label", "", "Name"));
+    const name = document.createElement("input");
+    name.type = "text"; name.value = existing?.name || ""; name.placeholder = "Project name"; name.autocomplete = "off";
+    nameField.append(name);
+    const cwdField = el("div", "field");
+    cwdField.append(el("label", "", "Folder (working directory)"));
+    const cwd = document.createElement("input");
+    cwd.type = "text"; cwd.value = existing?.cwd || ""; cwd.placeholder = "/Users/you/Documents/your-project"; cwd.autocomplete = "off"; cwd.spellcheck = false;
+    cwdField.append(cwd, el("div", "hint", "Code turns read and edit this folder through the conductor. Leave blank for a chat-only project."));
+    const presetField = el("div", "field");
+    presetField.append(el("label", "", "Preset"));
+
+    return new Promise((resolve) => {
+      const sel = document.createElement("select");
+      for (const [k, p] of Object.entries(PRESETS)) sel.append(new Option(p.label, k));
+      sel.value = existing?.preset || preset;
+      presetField.append(sel);
+      const foot = el("div", "sheet-foot");
+      const cancel = el("button", "btn", "Cancel");
+      const ok = el("button", "btn primary", existing ? "Save" : "Create");
+      foot.append(el("div", "grow"), cancel, ok);
+      sheet.append(head, nameField, cwdField, presetField, foot);
+      modal.append(sheet);
+      const done = (v) => { modal.remove(); document.removeEventListener("keydown", onKey); resolve(v); };
+      const onKey = (e) => { if (e.key === "Escape") done(null); };
+      document.addEventListener("keydown", onKey);
+      cancel.onclick = close.onclick = () => done(null);
+      ok.onclick = () => { const n = name.value.trim(); done(n ? { name: n, cwd: cwd.value.trim(), preset: sel.value } : null); };
+      modal.onclick = (e) => { if (e.target === modal) done(null); };
+      document.body.append(modal);
+      name.focus(); name.select();
+    });
+  }
+  function projectMenu(id, anchor) {
+    const p = projects[id]; if (!p) return;
+    menuAt(anchor, [
+      { label: "Settings…", onClick: async () => { const v = await newProjectDialog(p); if (v) { Object.assign(p, v); save("fold-chat:projects", projects); renderProjects(); } } },
+      { sep: true },
+      { label: "Delete", danger: true, onClick: () => { delete projects[id]; for (const s of Object.values(sessions)) if (s.project === id) s.project = null; if (filterProject === id) filterProject = null; save("fold-chat:projects", projects); save("fold-chat:sessions", sessions); renderProjects(); renderChats(); } },
+    ]);
+  }
   function renderProjects() {
     E.projects.innerHTML = "";
     const all = el("div", "folder" + (filterProject === null ? " on" : ""));
@@ -294,19 +319,33 @@ export function mount(root, opts = {}) {
     all.onclick = () => { filterProject = null; renderProjects(); renderChats(); };
     E.projects.append(all);
     for (const [id, p] of Object.entries(projects)) {
-      const row = el("div", "folder" + (filterProject === id ? " on" : ""));
-      row.append(icon("folder"), el("span", "", p.name));
+      const row = el("div", "project" + (filterProject === id ? " on" : ""));
+      const ico = el("span", "pico", (p.name || "P").trim().slice(0, 1).toUpperCase());
+      const meta = el("div", "pmeta");
+      meta.append(el("div", "pname", p.name), el("div", "psub", projectSub(p)));
+      const menu = el("button", "pmenu", "⋯");
+      menu.onclick = (ev) => { ev.stopPropagation(); projectMenu(id, menu); };
+      row.append(ico, meta, menu);
       row.onclick = () => { filterProject = id; renderProjects(); renderChats(); };
       E.projects.append(row);
     }
   }
+  E.chatNew.parentElement?.addEventListener("click", (e) => { if (e.target.closest("button")) return; });
+  // ＋ makes a project (with a folder + preset); ▶ starts a fresh session in the
+  // selected project — the same thing Claude's "new session in a project" does.
+  E.projNewProject.onclick = async (e) => {
+    e.stopPropagation();
+    const v = await newProjectDialog();
+    if (!v) return;
+    const id = sid(); projects[id] = { id, ...v };
+    save("fold-chat:projects", projects);
+    filterProject = id;
+    renderProjects(); renderChats();
+  };
   E.projAdd.onclick = async (e) => {
     e.stopPropagation();
-    const name = await askDialog({ title: "New project", placeholder: "Project name", okLabel: "Create" });
-    if (!name) return;
-    const id = sid(); projects[id] = { id, name };
-    save("fold-chat:projects", projects);
-    renderProjects();
+    if (!filterProject) { toast("pick a project first"); return; }
+    newChat();
   };
 
   /* ---------------- chats ---------------- */
@@ -364,9 +403,9 @@ export function mount(root, opts = {}) {
     const v = await chooseDialog({ title: "Move to project", items });
     if (v == null) return;
     if (v === "new") {
-      const name = await askDialog({ title: "New project", placeholder: "Project name", okLabel: "Create" });
-      if (!name) return;
-      const nid = sid(); projects[nid] = { id: nid, name }; save("fold-chat:projects", projects);
+      const made = await newProjectDialog();
+      if (!made) return;
+      const nid = sid(); projects[nid] = { id: nid, ...made }; save("fold-chat:projects", projects);
       s.project = nid;
     } else s.project = v === "none" ? null : v;
     save("fold-chat:sessions", sessions);
@@ -377,16 +416,14 @@ export function mount(root, opts = {}) {
   // The empty state is LibreChat's: the composer rides centered under the
   // welcome title. Once a thread exists, the composer docks above the footer.
   function setView(empty) {
-    // The mode owns the top-level view; setView only arranges within chat mode.
-    if (mode !== "code") {
-      E.welcome.style.display = empty ? "" : "none";
-      E.thread.style.display = empty ? "none" : "";
-      if (E.composerWrap) {
-        if (empty) { if (E.composerWrap.parentElement !== E.welcome) E.welcome.append(E.composerWrap); }
-        else if (E.footer && E.composerWrap.nextElementSibling !== E.footer) E.footer.before(E.composerWrap);
-      }
+    // One thread always: the empty state only chooses whether the composer
+    // rides under the welcome title. No mode owns a separate pane.
+    E.welcome.style.display = empty ? "" : "none";
+    E.thread.style.display = empty ? "none" : "";
+    if (E.composerWrap) {
+      if (empty) { if (E.composerWrap.parentElement !== E.welcome) E.welcome.append(E.composerWrap); }
+      else if (E.footer && E.composerWrap.nextElementSibling !== E.footer) E.footer.before(E.composerWrap);
     }
-    paintMode();
   }
   function open(id) {
     activeId = id;
@@ -394,21 +431,35 @@ export function mount(root, opts = {}) {
     E.threadCol.innerHTML = "";
     const msgs = s?.messages || [];
     setView(!msgs.length);
-    for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, model: s?.model });
+    for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, model: s?.model, cwd: msgs[i].cwd });
     renderChats(); renderModels(); updateSeal();
   }
   function newChat() {
     const id = sid();
     const m = models.find((x) => !x.sealed) || models[0] || null;
-    sessions[id] = { id, title: "New chat", messages: [], model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset, createdAt: now(), updated: now() };
+    const p = filterProject ? projects[filterProject] : null;
+    sessions[id] = { id, title: "New chat", messages: [], model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
     save("fold-chat:sessions", sessions);
     open(id);
     E.input.focus();
   }
+  function cloneSession(src, overrides) {
+    // Forks and continues are the same conversation moved forward: they keep
+    // the project, the folder, the learned facts, and the attachments — never
+    // silently drop the link the way the old code did.
+    return {
+      id: overrides.id, title: overrides.title, messages: overrides.messages,
+      model: src.model, sealed: src.sealed, preset: src.preset,
+      project: src.project ?? null, cwd: src.cwd ?? null,
+      facts: src.facts ? { ...src.facts } : undefined,
+      attachments: src.attachments ? src.attachments.map((a) => ({ ...a })) : undefined,
+      createdAt: now(), updated: now(),
+    };
+  }
   function forkAt(id, upto) {
     const src = sessions[id]; if (!src) return;
     const fid = sid();
-    sessions[fid] = { id: fid, title: (src.title || "chat") + " · fork", model: src.model, sealed: src.sealed, preset: src.preset, createdAt: now(), updated: now(), messages: (src.messages || []).slice(0, upto + 1).map((m) => ({ ...m })) };
+    sessions[fid] = cloneSession(src, { id: fid, title: (src.title || "chat") + " · fork", messages: (src.messages || []).slice(0, upto + 1).map((m) => ({ ...m })) });
     save("fold-chat:sessions", sessions);
     open(fid);
   }
@@ -451,6 +502,35 @@ export function mount(root, opts = {}) {
       el("span", "disc-line", rec.line),
     );
     const panel = el("div", "disc-panel");
+
+    // The facing page: the same turn as a book spread — SOURCES on the left
+    // (each cited passage numbered S#, its permanent address and the verbatim
+    // snip read from the real material), RESPONSE on the right with every
+    // sentence tagged [S#] to what it draws from or [M] for the mouth's own
+    // prose. The holodeck's construction, laid beside the disclosure.
+    if (rec.facing && rec.facing.has) {
+      const face = el("div", "facing");
+      const left = el("div", "face-sources");
+      left.append(el("div", "disc-label", "Sources"));
+      for (const s of rec.facing.sources) {
+        const card = el("div", "face-source");
+        card.append(el("span", "face-n", s.n));
+        card.append(el("code", "face-addr", s.address));
+        card.append(el("div", "face-snip", s.text));
+        left.append(card);
+      }
+      const right = el("div", "face-response");
+      right.append(el("div", "disc-label", "Response"));
+      for (const r of rec.facing.response) {
+        const row = el("div", "face-sent" + (r.grounded ? "" : " m"));
+        row.append(el("span", "face-tag" + (r.grounded ? "" : " m"), "[" + r.tag + "]"));
+        row.append(el("span", "face-text", r.text));
+        if (r.address) row.append(el("code", "face-ground", "grounded on " + r.address));
+        right.append(row);
+      }
+      face.append(left, right);
+      panel.append(face);
+    }
 
     // Grounding — what was addressed, what is not in the material.
     if (rec.sources && rec.sources.length) {
@@ -548,7 +628,7 @@ export function mount(root, opts = {}) {
   function continueFrom(index) {
     const s = sessions[activeId]; if (!s) return;
     const id = sid();
-    sessions[id] = { id, title: (s.title || "chat") + " · continue", model: s.model, sealed: s.sealed, preset: s.preset, createdAt: now(), updated: now(), messages: s.messages.slice(0, index + 1).map((m) => ({ ...m })) };
+    sessions[id] = cloneSession(s, { id, title: (s.title || "chat") + " · continue", messages: s.messages.slice(0, index + 1).map((m) => ({ ...m })) });
     save("fold-chat:sessions", sessions);
     open(id);
     run(id, true);
@@ -818,10 +898,10 @@ export function mount(root, opts = {}) {
     const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
     for (const b of E.setTheme.querySelectorAll("button")) b.classList.toggle("on", b.dataset.theme === cur);
   }
-  function paintModeSetting() { for (const b of E.setMode.querySelectorAll("button")) b.classList.toggle("on", b.dataset.mode === mode); }
+  function paintModeSetting() { for (const b of E.setMode.querySelectorAll("button")) b.classList.toggle("on", b.dataset.mode === engagement); }
   function paintTransparency() { for (const b of E.setTransparency.querySelectorAll("button")) b.classList.toggle("on", b.dataset.transparency === (transparency ? "1" : "0")); }
   E.setTheme.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; document.documentElement.setAttribute("data-theme", b.dataset.theme); try { localStorage.setItem("fold-chat:theme", b.dataset.theme); } catch (e2) {} paintTheme(); };
-  E.setMode.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; setMode(b.dataset.mode); paintModeSetting(); };
+  E.setMode.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; setEngagement(b.dataset.mode); paintModeSetting(); };
   E.setTransparency.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; setTransparency(b.dataset.transparency === "1"); paintTransparency(); };
 
   function openSettings() {
