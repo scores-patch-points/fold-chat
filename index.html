@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>fold · chat</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body { font: 15px/1.5 system-ui, sans-serif; background: #0d1117; color: #e6edf3; }
+  .fc { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+
+  .fc-side { border-right: 1px solid #21262d; padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+  .fc-brand { font-weight: 700; letter-spacing: .02em; }
+  .fc-runtime { font-size: 12px; color: #8b949e; }
+  .fc-btn { background: #21262d; color: inherit; border: 1px solid #30363d; border-radius: 8px; padding: 7px 10px; cursor: pointer; font: inherit; }
+  .fc-btn:hover { background: #30363d; }
+  .fc-sessions { display: flex; flex-direction: column; gap: 4px; }
+  .fc-session { text-align: left; background: transparent; border: 1px solid transparent; border-radius: 6px; color: #8b949e; padding: 6px 8px; cursor: pointer; font: inherit; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fc-session:hover { color: #e6edf3; }
+  .fc-active { border-color: #30363d; color: #e6edf3; }
+  .fc-meter { font-size: 12px; color: #8b949e; border-top: 1px solid #21262d; padding-top: 8px; }
+
+  .fc-main { display: flex; flex-direction: column; height: 100vh; min-width: 0; }
+  .fc-head { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #21262d; }
+  .fc-title { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fc-model { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #8b949e; }
+  .fc-model select { background: #0d1117; color: inherit; border: 1px solid #30363d; border-radius: 6px; padding: 4px 6px; max-width: 320px; }
+  .fc-seal { font-size: 11px; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .fc-seal-on { background: #163b1f; color: #56d364; border: 1px solid #2ea043; }
+  .fc-seal-off { background: #21262d; color: #8b949e; border: 1px solid #30363d; }
+
+  .fc-thread { flex: 1; overflow-y: auto; padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+  .fc-msg { display: grid; grid-template-columns: 72px 1fr; gap: 10px; max-width: 860px; }
+  .fc-who { color: #8b949e; font-size: 13px; padding-top: 2px; }
+  .fc-body { white-space: pre-wrap; word-break: break-word; }
+  .fc-sealed-msg { border-left: 2px solid #2ea043; padding-left: 10px; }
+  .fc-user .fc-body { color: #c9d1d9; }
+
+  .fc-composer { display: flex; gap: 10px; padding: 12px 18px; border-top: 1px solid #21262d; }
+  .fc-input { flex: 1; resize: none; background: #161b22; color: inherit; border: 1px solid #30363d; border-radius: 10px; padding: 10px 12px; font: inherit; }
+  .fc-send { background: #238636; color: white; border: 1px solid #2ea043; border-radius: 10px; padding: 0 18px; cursor: pointer; font: inherit; }
+  .fc-send:disabled { opacity: .5; cursor: default; }
+
+  .fc-drawer { border-top: 1px solid #21262d; padding: 14px 18px; max-height: 40vh; overflow-y: auto; font-size: 13px; }
+  .fc-drawer h3 { margin: 0 0 6px; font-size: 13px; color: #8b949e; }
+  .fc-invariant { color: #56d364; }
+  .fc-ledger { border-collapse: collapse; margin-top: 10px; width: 100%; font-size: 12px; }
+  .fc-ledger th, .fc-ledger td { border: 1px solid #21262d; padding: 4px 8px; text-align: left; }
+  .fc-ledger th { color: #8b949e; font-weight: 600; }
+  .fc-empty { color: #8b949e; }
+  @media (max-width: 720px) { .fc { grid-template-columns: 1fr; } .fc-side { display: none; } }
+</style>
+</head>
+<body>
+<script type="module">
+  import { mount } from "./fold-chat.js";
+  mount(document.getElementById("chat"));
+</script>
+<div id="chat"></div>
+</body>
+</html>

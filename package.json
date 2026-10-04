@@ -1,0 +1,10 @@
+{
+  "name": "fold-chat",
+  "private": true,
+  "type": "module",
+  "description": "The Fold's chat version — a browser surface over the heimdall bridge. No build step; index.html is the app.",
+  "scripts": {
+    "serve": "python3 -m http.server 8814 --bind 127.0.0.1",
+    "test": "node --test"
+  }
+}
