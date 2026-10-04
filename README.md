@@ -17,25 +17,54 @@ straight at the one process that already routes the whole Fold's models:
   fold-chat (browser, static)
         │  GET /api/tags            → every model heimdall can serve
         │  POST /v1/chat/completions (SSE, heimdall_privacy:"sealed-external")
+        │  POST /api/code             (the code lane — same bridge, same project)
         ▼
   heimdall bridge  (localhost:8790)
         │  fleet · linked native hosts · remote providers
         │  sealed-external gate + dispatch ledger + savings meter
+        │  the machine door: khora read → janus derive → execute → penelope retain
         ▼
   local organs (WebLLM, Ollama, phones)  ·  outside models (sealed projection only)
 ```
 
+## One thread, one project, two engagements
+
+Chat and Code are **sibling engagements over a shared session**, not one app
+embedded inside another (the Claude / Claude-Code shape). The topbar selector
+switches what a turn *does*; it never changes the thread, the store, or the
+project:
+
+- **Chat** answers from the routed models (`/v1/chat/completions`).
+- **Code** dispatches the same turn through the same bridge to the **machine
+  door** (`/api/code`) — the khora conductor, which reads the project, derives
+  over it with janus, executes for real, and retains the trace with penelope.
+  Its tool activity and answer render inline in the one conversation.
+
+A **project** is the shared container: a name, an optional **folder** (the
+working directory a code turn is bound to), and a preset its sessions inherit.
+A chat turn and a code turn hang off the same project, so both start from the
+same place. Projects support create / settings / delete.
+
+Every code turn carries a **code record** (the same collapsed disclosure a chat
+turn carries): the folder, the lane, the tool steps, the time — so code is as
+inspectable as chat, and always says it ran through the bridge.
+
 Serve `index.html` from localhost (`python3 -m http.server 8814`) and run
 `heimdall up` — the page finds the bridge on `localhost:8790` and lists every
-model heimdall can serve. The GitHub Pages deployment is the same page; full
-model access needs the local bridge, exactly like the fold's own local serving.
+model heimdall can serve. For code, run the conductor door
+(`khora/native/conductor/server.mjs`) and start heimdall with
+`HEIMDALL_OPENCODE=http://127.0.0.1:4098`. The GitHub Pages deployment is the
+same page; full model access needs the local bridge, exactly like the fold's own
+local serving.
 
 ## Secure chat with outside models
 
 This is the part wired into heimdall's secure-outside-model work:
 
-- **The chat never carries raw workspace material.** Only the caller's own
-  messages ride the wire; there is no file/span/address access in this surface.
+- **The chat never carries raw workspace material to an outside model.** Only the
+  caller's own messages ride the chat wire. The code lane reads the project
+  folder *on this machine* through the conductor — the raw bytes never leave the
+  trust domain.
 - **Sealed by default.** Every request sends `heimdall_privacy:"sealed-external"`.
   Models heimdall marks frontier/sealed-only (from the per-model heimdall
   metadata in `/api/tags`) show a green **sealed-external** badge; if the gate
@@ -49,20 +78,21 @@ This is the part wired into heimdall's secure-outside-model work:
 ## Files
 
 - `index.html` — the page (no build step).
-- `fold-chat.js` — the app: sessions, model picker, streaming chat, sealed
-  badge, evidence drawer. localStorage holds sessions and the bridge override
-  (`fold-chat:bridge`).
-- `fold-chat-client.js` — the heimdall wire: `listModels`, `chat`, `meter`,
-  `ledger`, `frontier`. Browser + node.
+- `fold-chat.js` — the app: sessions, projects (folder + preset), the chat/code
+  engagement selector, streaming chat, the code lane, sealed badge, evidence
+  drawer. localStorage holds sessions, projects, and the bridge override
+  (`fold-chat:bridge`); the engagement is `fold-chat:engagement`.
+- `fold-chat-client.js` — the heimdall wire: `listModels`, `chat`, `code`
+  (carries the project `cwd`), `read`, `meter`, `ledger`, `frontier`. Browser + node.
 - `fold-chat-client.test.mjs` — fake-bridge tests (sealed gate, SSE streaming,
-  meter). Run: `node --test`.
+  code lane carries the folder, meter). Run: `node --test`.
 
 ## Roadmap (the LibreChat features, Fold-native)
 
 - **Artifacts** — generative UI blocks in the thread (React/HTML/Mermaid) rendered as sealed, provenance-attached artifacts.
 - **Memory** — sessions already persist; fold the record (khora reading) into the thread the way holodeck-ask does, as notes, never raw.
 - **Search** — route search through khora's retrieval so the chat can cite ground without exposing spans.
-- **Agents/MCP** — the opencode-fold adapter surfaces opencode's session API as an OpenAI-compatible endpoint, so chat can drive real coding work through the same sealed door.
+- **Agents/MCP** — the opencode-fold fork exposes opencode's session API, and the conductor speaks that same wire, so chat drives real coding work through the same sealed door.
 
 ## The Fold context
 

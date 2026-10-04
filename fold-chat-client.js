@@ -254,14 +254,16 @@ export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
 }
 
 /** Run one coding job THROUGH heimdall — the bridge dispatches to the local
- *  opencode machine door, whose own model calls are routed by the bridge. The
- *  chat never talks to opencode directly. Returns
+ *  machine door (the khora conductor, or a raw opencode server), whose own
+ *  model calls are routed by the bridge. The chat never talks to the door
+ *  directly. `cwd` binds the job to the project's folder when given, so the
+ *  door reads and edits the same place the project stands. Returns
  *  { sessionId, text, activity, ms, lane }. */
-export async function code(prompt, { base = null, title = null, model = null, agent = null, sessionId = null, signal = null, fetchImpl = fetch } = {}) {
+export async function code(prompt, { base = null, title = null, model = null, agent = null, sessionId = null, cwd = null, signal = null, fetchImpl = fetch } = {}) {
   const r = await fetchImpl(bridgeBase(base) + "/api/code", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ prompt, title, model, agent, sessionId }),
+    body: JSON.stringify({ prompt, title, model, agent, sessionId, cwd }),
     signal,
   });
   if (!r.ok) {

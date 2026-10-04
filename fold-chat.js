@@ -586,6 +586,7 @@ export function mount(root, opts = {}) {
     const body = el("div", "body");
     if (meta.sealed) body.classList.add("sealed-body");
     if (role === "assistant") {
+      if (meta.cwd) body.append(el("span", "chip folderchip", "📁 " + meta.cwd));
       for (const b of artifactsOf(content)) {
         if (b.kind === "prose") { if (b.text.trim()) body.append(el("div", "", b.text.trim())); }
         else renderArtifact(body, b.artifact);
@@ -597,7 +598,8 @@ export function mount(root, opts = {}) {
         const disc = el("button", "act", "disclosure"); disc.onclick = () => { const d = body.querySelector(".disclosure"); if (d) d.hidden = !d.hidden; };
         acts.append(cont, fork, disc); body.append(acts);
       }
-      if (transparency && meta.grounding && meta.grounding.examined) renderDisclosure(body, meta.grounding, meta);
+      if (transparency && meta.grounding && meta.grounding.code) renderCodeDisclosure(body, meta.grounding, meta);
+      else if (transparency && meta.grounding && meta.grounding.examined) renderDisclosure(body, meta.grounding, meta);
     } else {
       body.textContent = content;
       if (meta.index != null) {
@@ -611,6 +613,32 @@ export function mount(root, opts = {}) {
     E.threadCol.append(wrap);
     E.thread.scrollTop = E.thread.scrollHeight;
     return body;
+  }
+  // The code turn's disclosure: the same collapsed block, but it reports what
+  // the machine door DID — the lane, the folder, the tool steps, and the time —
+  // so a code turn is as inspectable as a chat turn, and always says it ran
+  // through the bridge (never opencode reached directly).
+  function renderCodeDisclosure(body, rec, meta) {
+    const box = el("div", "disclosure");
+    const head = el("button", "disc-head");
+    head.type = "button";
+    head.append(
+      el("span", "disc-caret", "▸"),
+      el("span", "disc-title", "code record"),
+      el("span", "disc-sub", `${(rec.activity || []).length} tool step(s)`),
+      el("span", "disc-line", rec.cwd || rec.lane || "machine door"),
+    );
+    const panel = el("div", "disc-panel");
+    if (rec.activity && rec.activity.length) {
+      panel.append(el("div", "disc-label", "Tool activity"));
+      const ul = el("div", "disc-ungrounded");
+      for (const a of rec.activity) ul.append(el("div", "disc-text", `${a.tool}${a.title ? " · " + a.title : ""}${a.status ? " [" + a.status + "]" : ""}`));
+      panel.append(ul);
+    }
+    panel.append(el("div", "disc-foot", `${meta.model || "heimdall"} · via heimdall → ${rec.lane || "machine door"}${rec.cwd ? " · " + rec.cwd : ""}${rec.ms ? " · " + rec.ms + "ms" : ""}`));
+    head.onclick = () => { const open = box.classList.toggle("open"); head.setAttribute("aria-expanded", open ? "true" : "false"); };
+    box.append(head, panel);
+    body.append(box);
   }
   function liveBody() { const b = appendMsg("assistant", "", {}); b.classList.add("live"); return b; }
 
@@ -820,25 +848,31 @@ export function mount(root, opts = {}) {
     }
   }
 
-  // The coding lane: dispatched THROUGH heimdall to the local opencode
-  // machine door. Renders the agent's tool activity then its answer.
-  // The model opencode reasons with is itself routed by heimdall (a
-  // `heimdall` provider in opencode's config pointing at the bridge's /v1).
+  // The coding lane — the SAME thread, dispatched THROUGH heimdall to the
+  // machine door. It is not a separate app: the user's message, the agent's
+  // tool activity, and its answer all render inline in the one conversation,
+  // and the project's folder (cwd) binds the job so the machine door reads and
+  // edits the same place the project stands. The model the door reasons with is
+  // itself routed by heimdall (a `heimdall` provider pointing at the bridge's
+  // /v1), so no model is reached outside the fold stack.
   const CODE_MODEL = { providerID: "heimdall", modelID: "qwen2.5-coder:1.5b" };
   function codeModelRef() { try { const v = JSON.parse(localStorage.getItem("fold-chat:codemodel") || "null"); return v || CODE_MODEL; } catch { return CODE_MODEL; } }
+  function sessionCwd(s) { return s?.cwd || (s?.project ? projects[s.project]?.cwd : null) || null; }
   async function runCode(id = activeId) {
     const s = sessions[id]; if (!s) return;
+    const cwd = sessionCwd(s);
     const body = liveBody();
     E.send.disabled = true; E.input.disabled = true;
-    E.stage.textContent = "coding · the fold dispatches to the machine door…";
+    E.stage.textContent = cwd ? `coding · ${cwd} · through the conductor…` : "coding · the fold dispatches to the machine door…";
     try {
       // ITERATE VIA THE RECORD: a session that already coded continues its own
-      // opencode session (the EOT ledger for code) — the next turn builds on
+      // conductor session (the EOT ledger for code) — the next turn builds on
       // what the last one did, never a fresh session.
-      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef(), sessionId: s.codeSessionId || null });
+      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef(), sessionId: s.codeSessionId || null, cwd });
       if (out.sessionId) s.codeSessionId = out.sessionId;
       E.stage.textContent = "";
       body.classList.remove("live"); body.textContent = "";
+      if (cwd) body.append(el("span", "chip folderchip", "📁 " + cwd));
       if (Array.isArray(out.activity) && out.activity.length) {
         const list = el("div", "activity");
         for (const a of out.activity) list.append(el("div", "actrow", `${a.tool}${a.title ? " · " + a.title : ""}${a.status ? "  [" + a.status + "]" : ""}`));
@@ -850,9 +884,15 @@ export function mount(root, opts = {}) {
         else renderArtifact(body, b.artifact);
       }
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: text, at: now(), codeSessionId: s.codeSessionId });
+      // The code turn carries its own record: the tools that ran, the folder,
+      // and the lane. Disclosed on the message like a chat turn, so the fold's
+      // transparency holds across both engagements.
+      const codeRec = { code: true, cwd, lane: out.lane || "opencode", activity: out.activity || [], ms: out.ms };
+      s.messages.push({ role: "assistant", content: text, at: now(), codeSessionId: s.codeSessionId, cwd, grounding: codeRec });
       s.updated = now();
       save("fold-chat:sessions", sessions);
+      const live = body.closest(".msg"); if (live) live.remove();
+      appendMsg("assistant", text, { index: idx, cwd, grounding: codeRec, model: codeModelRef().modelID });
       renderChats();
     } catch (err) {
       E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
@@ -877,7 +917,7 @@ export function mount(root, opts = {}) {
     setView(false);
     appendMsg("user", text, { index: s.messages.length - 1 });
     renderChats();
-    if (mode === "code") runCode(activeId);
+    if (engagement === "code") runCode(activeId);
     else {
       if (!models.length) { toast("no model — start the heimdall bridge"); return; }
       run(activeId, false);
@@ -1109,13 +1149,12 @@ export function mount(root, opts = {}) {
   client.detectBridge({ override: opts.bridge || localStorage.getItem("fold-chat:bridge") || null }).then((found) => {
     if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
     else toast("heimdall not found — run `heimdall up`");
-    // The code door's URL (the Fold's opencode) — read it so Code mode embeds
-    // the real surface, not a guessed port. Best-effort: defaults to 4099.
-    client.codeStatus({ base: bridge }).then((st) => { if (st?.url) codeUi = st.url; }).catch(() => {}).finally(() => paintMode());
+    // The machine door's own UI URL, kept for the optional "open ↗" affordance;
+    // code turns run over the bridge regardless.
+    client.codeStatus({ base: bridge }).then((st) => { if (st?.url) codeUi = st.url; }).catch(() => {});
     refreshModels().then(() => {
       const first = Object.values(sessions).sort((a, b) => new Date(b.updated || 0) - new Date(a.updated || 0))[0];
       if (first) open(first.id); else newChat();
-      paintMode();
       refreshMeter();
       updateBridgeStatus();
     });

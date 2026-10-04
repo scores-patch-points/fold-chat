@@ -100,11 +100,14 @@ test("a refused sealed request surfaces the bridge's gate message", async () => 
 
 test("code goes THROUGH the bridge (never opencode directly)", async () => {
   const calls = [];
+  let codeBody = null;
+  let firstCode = null;
   const fetchImpl = async (url, opts = {}) => {
     calls.push(url);
     if (url.endsWith("/api/code/status")) return { ok: true, status: 200, json: async () => ({ configured: true, url: "http://127.0.0.1:4096" }) };
     if (url.endsWith("/api/code")) {
-      assert.deepEqual(JSON.parse(opts.body), { prompt: "fix the test", title: null, model: null, agent: null, sessionId: null });
+      codeBody = JSON.parse(opts.body);
+      if (!firstCode) { firstCode = codeBody; assert.deepEqual(firstCode, { prompt: "fix the test", title: null, model: null, agent: null, sessionId: null, cwd: null }); }
       return { ok: true, status: 200, json: async () => ({ sessionId: "ses_1", text: "done", activity: [{ tool: "edit", status: "completed", title: "src/util.js" }], ms: 12, lane: "opencode" }) };
     }
     return { ok: false, status: 404, json: async () => ({}) };
@@ -116,6 +119,11 @@ test("code goes THROUGH the bridge (never opencode directly)", async () => {
   assert.equal(out.text, "done");
   assert.equal(out.lane, "opencode");
   assert.ok(calls.every((u) => u.startsWith("http://x:8790/")), "the chat only ever called the heimdall bridge");
+
+  // The project's folder rides the wire so the door stands where the project
+  // stands — a code turn and a chat turn share the same place.
+  await code("edit it", { base: "http://x:8790", fetchImpl, cwd: "/Users/me/proj" });
+  assert.equal(codeBody.cwd, "/Users/me/proj");
 });
 
 test("a code job with no machine attached surfaces the bridge's message", async () => {
