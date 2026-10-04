@@ -7,7 +7,7 @@
 //   turnRecord          the holodeck's one-line record
 import test from "node:test";
 import assert from "node:assert/strict";
-import { splitSentences, tokenize, overlap, stripSelfCitations, namesIn, numbersIn, attribute, coverage, unsupportedClaims, turnRecord, MIN_RUN } from "./fold-chat-ground.js";
+import { splitSentences, tokenize, overlap, stripSelfCitations, namesIn, numbersIn, attribute, coverage, unsupportedClaims, turnRecord, facingPage, MIN_RUN } from "./fold-chat-ground.js";
 
 test("splitSentences splits on sentence punctuation and newlines, not abbreviations", () => {
   assert.deepEqual(splitSentences("One claim. Two claims!\nA third."), ["One claim.", "Two claims!", "A third."]);
@@ -65,10 +65,40 @@ test("turnRecord is the holodeck's one-line record, with addresses checked", () 
   assert.match(rec.line, /not in the material/);
   assert.ok(rec.sources.length >= 1);
   assert.ok(rec.unsupported.numbers.includes("4.2"));
+  assert.equal(rec.facing.has, true, "the record carries the facing page when material was read");
 });
 
 test("turnRecord with no material says the answer stands on the model alone", () => {
   const rec = turnRecord("Hello there.", [], { turn: 1 });
   assert.match(rec.line, /no material carried/);
   assert.equal(rec.hasMaterial, false);
+  assert.equal(rec.facing.has, false, "no material means no facing page");
+});
+
+test("facingPage: sources are numbered S# with address+verbatim snip; response tags [S#]/[M]", () => {
+  const material = [
+    { ref: "you · pasted 1", source: "S1", text: "The audit found the contract funds are unaccounted for." },
+    { ref: "you · pasted 2", source: "S2", text: "The report was filed in March by the comptroller." },
+  ];
+  const face = facingPage(
+    "The contract funds are unaccounted for. The report was filed in March by the comptroller. I cannot verify the rest.",
+    material,
+  );
+  assert.equal(face.has, true);
+  assert.equal(face.sources.length, 2, "two cited passages become two sources");
+  assert.equal(face.sources[0].n, "S1");
+  assert.match(face.sources[0].address, /^you · pasted 1#\d+-\d+$/);
+  assert.match(face.sources[0].text, /contract funds are unaccounted/);
+  // The first two sentences cite S1 and S2; the third is the mouth's own prose.
+  assert.equal(face.response[0].tag, "S1");
+  assert.equal(face.response[1].tag, "S2");
+  assert.equal(face.response[2].tag, "M");
+  assert.equal(face.response[2].grounded, false);
+});
+
+test("facingPage over no material has no sources, and every sentence is [M]", () => {
+  const face = facingPage("A greeting is not a claim.", []);
+  assert.equal(face.has, false);
+  assert.equal(face.sources.length, 0);
+  assert.ok(face.response.every((r) => r.tag === "M" && !r.grounded));
 });
