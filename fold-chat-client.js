@@ -151,3 +151,28 @@ export async function frontier({ base = null, fetchImpl = fetch } = {}) {
   if (!r.ok) throw new Error("heimdall bridge answered " + r.status);
   return r.json();
 }
+
+/** Whether a coding machine (opencode) is attached behind the bridge. */
+export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
+  try { const r = await fetchImpl(bridgeBase(base) + "/api/code/status", { cache: "no-store" }); return r.ok ? r.json() : null; }
+  catch (e) { return null; }
+}
+
+/** Run one coding job THROUGH heimdall — the bridge dispatches to the local
+ *  opencode machine door, whose own model calls are routed by the bridge. The
+ *  chat never talks to opencode directly. Returns
+ *  { sessionId, text, activity, ms, lane }. */
+export async function code(prompt, { base = null, title = null, model = null, agent = null, signal = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/code", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ prompt, title, model, agent }),
+    signal,
+  });
+  if (!r.ok) {
+    let msg = "the coding machine did not answer";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}

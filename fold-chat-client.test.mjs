@@ -3,7 +3,7 @@
 // network.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { listModels, chat, meter, ledger, isSealed } from "./fold-chat-client.js";
+import { listModels, chat, meter, ledger, isSealed, code, codeStatus } from "./fold-chat-client.js";
 
 /** A fake heimdall bridge over the OpenAI/extra routes. */
 function fakeBridge({ models = [], meterBody = null, chatChunks = null, chatStatus = 200, chatError = null } = {}) {
@@ -75,6 +75,31 @@ test("a refused sealed request surfaces the bridge's gate message", async () => 
     () => chat("gpt-oss-120b", [{ role: "user", content: "hi" }], { base: "http://x:8790", fetchImpl }),
     (e) => e.status === 400 && /sealed-only/.test(e.message),
   );
+});
+
+test("code goes THROUGH the bridge (never opencode directly)", async () => {
+  const calls = [];
+  const fetchImpl = async (url, opts = {}) => {
+    calls.push(url);
+    if (url.endsWith("/api/code/status")) return { ok: true, status: 200, json: async () => ({ configured: true, url: "http://127.0.0.1:4096" }) };
+    if (url.endsWith("/api/code")) {
+      assert.deepEqual(JSON.parse(opts.body), { prompt: "fix the test", title: null, model: null, agent: null });
+      return { ok: true, status: 200, json: async () => ({ sessionId: "ses_1", text: "done", activity: [{ tool: "edit", status: "completed", title: "src/util.js" }], ms: 12, lane: "opencode" }) };
+    }
+    return { ok: false, status: 404, json: async () => ({}) };
+  };
+  const st = await codeStatus({ base: "http://x:8790", fetchImpl });
+  assert.equal(st.configured, true);
+  const out = await code("fix the test", { base: "http://x:8790", fetchImpl });
+  assert.equal(out.sessionId, "ses_1");
+  assert.equal(out.text, "done");
+  assert.equal(out.lane, "opencode");
+  assert.ok(calls.every((u) => u.startsWith("http://x:8790/")), "the chat only ever called the heimdall bridge");
+});
+
+test("a code job with no machine attached surfaces the bridge's message", async () => {
+  const fetchImpl = async () => ({ ok: false, status: 501, json: async () => ({ error: "no coding machine attached" }) });
+  await assert.rejects(() => code("x", { base: "http://x:8790", fetchImpl }), (e) => e.status === 501 && /coding machine/.test(e.message));
 });
 
 test("meter and ledger return the heimdall accounting", async () => {

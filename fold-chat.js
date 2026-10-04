@@ -70,6 +70,18 @@ export function mount(root, opts = {}) {
   presetWrap.append(presetHead, presetSel);
   E.models.after(presetWrap);
 
+  // Chat | Code — both go through the same bridge; Code dispatches to the
+  // machine door (opencode) behind heimdall, Chat to the routed models.
+  let mode = localStorage.getItem("fold-chat:mode") || "chat";
+  const modeBar = el("div", "modebar");
+  const modeBtns = {};
+  for (const [k, label] of [["chat", "Chat"], ["code", "Code"]]) {
+    const b = el("button", "modebtn" + (mode === k ? " on" : ""), label);
+    b.onclick = () => { mode = k; try { localStorage.setItem("fold-chat:mode", k); } catch (e) {} for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === k); E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold"; };
+    modeBtns[k] = b; modeBar.append(b);
+  }
+  E.composer.before(modeBar);
+
   function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), 1600); }
 
   /* ---------------- models ---------------- */
@@ -314,11 +326,43 @@ export function mount(root, opts = {}) {
     }
   }
 
+  // The coding lane: dispatched THROUGH heimdall to the local opencode
+  // machine door. Renders the agent's tool activity then its answer.
+  async function runCode(id = activeId) {
+    const s = sessions[id]; if (!s) return;
+    const body = liveBody();
+    E.send.disabled = true; E.input.disabled = true;
+    E.stage.textContent = "coding · the fold dispatches to the machine door…";
+    try {
+      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title });
+      E.stage.textContent = "";
+      body.classList.remove("live"); body.textContent = "";
+      if (Array.isArray(out.activity) && out.activity.length) {
+        const list = el("div", "activity");
+        for (const a of out.activity) list.append(el("div", "actrow", `${a.tool}${a.title ? " · " + a.title : ""}${a.status ? "  [" + a.status + "]" : ""}`));
+        body.append(list);
+      }
+      const text = out.text || "(the machine door returned no text)";
+      for (const b of artifactsOf(text)) {
+        if (b.kind === "prose") { if (b.text.trim()) body.append(el("div", "", b.text.trim())); }
+        else renderArtifact(body, b.artifact);
+      }
+      const idx = s.messages.length;
+      s.messages.push({ role: "assistant", content: text, at: now() });
+      s.updated = now();
+      save("fold-chat:sessions", sessions);
+      renderChats();
+    } catch (err) {
+      E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
+    } finally {
+      E.send.disabled = false; E.input.disabled = false; E.input.focus(); refreshMeter();
+    }
+  }
+
   E.composer.onsubmit = (e) => {
     e.preventDefault();
     const text = E.input.value.trim();
     if (!text) return;
-    if (!models.length) { toast("no model — start the heimdall bridge"); return; }
     E.input.value = "";
     const s = sessions[activeId] || (newChat(), sessions[activeId]);
     s.messages.push({ role: "user", content: text, at: now() });
@@ -328,7 +372,11 @@ export function mount(root, opts = {}) {
     E.welcome.style.display = "none"; E.thread.style.display = "";
     appendMsg("user", text, { index: s.messages.length - 1 });
     renderChats();
-    run(activeId, false);
+    if (mode === "code") runCode(activeId);
+    else {
+      if (!models.length) { toast("no model — start the heimdall bridge"); return; }
+      run(activeId, false);
+    }
   };
   E.input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); E.composer.requestSubmit(); } });
   E.input.addEventListener("input", () => { E.input.style.height = "auto"; E.input.style.height = Math.min(E.input.scrollHeight, 200) + "px"; });
