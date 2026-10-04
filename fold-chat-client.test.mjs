@@ -3,7 +3,7 @@
 // network.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { listModels, chat, meter, ledger, isSealed, code, codeStatus } from "./fold-chat-client.js";
+import { listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus } from "./fold-chat-client.js";
 
 /** A fake heimdall bridge over the OpenAI/extra routes. */
 function fakeBridge({ models = [], meterBody = null, chatChunks = null, chatStatus = 200, chatError = null } = {}) {
@@ -54,6 +54,27 @@ test("listModels reads heimdall metadata and marks frontier models sealed", asyn
   assert.equal(frontierModel.location, "external");
   assert.equal(isSealed({ frontier: "groq", privacy: "sealed-external" }), true);
   assert.equal(isSealed({ webllm: "x" }), false);
+});
+
+test("every model lands on a tier: on-device, fleet, remote, or frontier", async () => {
+  const { fetchImpl } = fakeBridge({
+    models: [
+      { name: "gemma2:2b", heimdall: { webllm: "gemma-2-2b-it-q4f16_1-MLC", workers: 1 } },
+      { name: "qwen2.5:3b", heimdall: {} },
+      { name: "llama-on-phone", heimdall: { workers: 2 } },
+      { name: "box-gpu:7b", heimdall: { native: "mac-mini" } },
+      { name: "gpt-oss-120b", heimdall: { frontier: "groq", privacy: "sealed-external", location: "external" } },
+    ],
+  });
+  const models = await listModels({ base: "http://x:8790", fetchImpl });
+  const tier = (id) => models.find((m) => m.id === id).tier;
+  assert.equal(tier("gemma2:2b"), "local");
+  assert.equal(tier("qwen2.5:3b"), "local");
+  assert.equal(tier("llama-on-phone"), "fleet");
+  assert.equal(tier("box-gpu:7b"), "fleet");
+  assert.equal(tier("gpt-oss-120b"), "frontier");
+  assert.deepEqual(Object.keys(TIERS), ["local", "fleet", "remote", "frontier"]);
+  assert.equal(tierOf({ sealed: true, provider: "local" }), "frontier", "sealed always wins");
 });
 
 test("chat streams tokens and lands the sealed-external gate on the body", async () => {

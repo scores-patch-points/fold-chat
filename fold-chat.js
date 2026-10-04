@@ -14,11 +14,12 @@
 
 import * as client from "./fold-chat-client.js";
 import { artifactsOf, previewable } from "./fold-chat-artifacts.js";
+import * as memory from "./fold-chat-memory.js";
 
 const DEFAULT_BRIDGE = "http://localhost:8790";
 const PRESETS = Object.freeze({
-  plain: { label: "Plain", system: "You are a helpful assistant. Reply directly and naturally." },
-  fold: { label: "Fold", system: "You are helping the Fold. Answer plainly. Where the conversation carries grounded material, answer from it; where it does not, say what is missing instead of filling it in. Never claim a source you cannot show." },
+  plain: { label: "Plain", system: "You are a helpful assistant. Reply directly, briefly, and naturally, the way a person would. If the person just says hi or asks how you are, answer in kind and offer to help — do not ask them for files or material." },
+  fold: { label: "Fold", system: "You are the fold — the reading and research surface over this person's own material: their audits, transcripts, reports, pages, and records. Reply plainly, in a warm, grounded voice. Where the conversation carries grounded material, answer from it; where it does not, say what is missing instead of filling it in. Never claim a source you cannot show, and never state a personal fact you were not given. When greeted — hi, hey, how are you — answer warmly and briefly, say what you can help with, and never ask them to produce passages or files." },
   code: { label: "Code", system: "You are a coding assistant. Prefer concrete, working code. Put substantial snippets in a fenced block with its language so they render as artifacts." },
   build: { label: "Build", system: "You are a generative UI assistant. When asked to build something, produce a complete, self-contained HTML document inside a ```html fence — it renders live in an isolated preview." },
 });
@@ -39,8 +40,95 @@ const sid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 
 function load(key, def) { try { return JSON.parse(localStorage.getItem(key) || "null") ?? def; } catch { return def; } }
 function save(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
 
+const CLOSE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>';
+
+// Inline text dialog — replaces window.prompt. Resolves the trimmed value on
+// OK (empty string allowed), or null on cancel / Escape / backdrop.
+function askDialog({ title, value = "", placeholder = "", okLabel = "OK" } = {}) {
+  return new Promise((resolve) => {
+    const modal = el("div", "modal");
+    const sheet = el("div", "sheet dialog-sheet");
+    const head = el("div", "sheet-head");
+    head.append(el("h2", "", title), el("div", "grow"));
+    const close = el("button", "sheet-close"); close.innerHTML = CLOSE_SVG;
+    head.append(close);
+    const field = el("div", "field");
+    const input = document.createElement("input");
+    input.type = "text"; input.value = value; input.placeholder = placeholder; input.autocomplete = "off"; input.spellcheck = false;
+    field.append(input);
+    const foot = el("div", "sheet-foot");
+    const cancel = el("button", "btn", "Cancel");
+    const ok = el("button", "btn primary", okLabel);
+    foot.append(el("div", "grow"), cancel, ok);
+    sheet.append(head, field, foot);
+    modal.append(sheet);
+    const done = (v) => { modal.remove(); document.removeEventListener("keydown", onKey); resolve(v); };
+    const onKey = (e) => { if (e.key === "Escape") done(null); };
+    document.addEventListener("keydown", onKey);
+    cancel.onclick = close.onclick = () => done(null);
+    ok.onclick = () => done(input.value.trim());
+    modal.onclick = (e) => { if (e.target === modal) done(null); };
+    input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); ok.click(); } });
+    document.body.append(modal);
+    input.focus(); input.select();
+  });
+}
+
+// Inline chooser — resolves the chosen value, or null on cancel.
+function chooseDialog({ title, items = [] } = {}) {
+  return new Promise((resolve) => {
+    const modal = el("div", "modal");
+    const sheet = el("div", "sheet dialog-sheet");
+    const head = el("div", "sheet-head");
+    head.append(el("h2", "", title), el("div", "grow"));
+    const close = el("button", "sheet-close"); close.innerHTML = CLOSE_SVG;
+    head.append(close);
+    const list = el("div", "choose-list");
+    const done = (v) => { modal.remove(); document.removeEventListener("keydown", onKey); resolve(v); };
+    const onKey = (e) => { if (e.key === "Escape") done(null); };
+    document.addEventListener("keydown", onKey);
+    for (const it of items) {
+      const b = el("button", "choose-item" + (it.danger ? " danger" : ""), it.label);
+      b.onclick = () => done(it.value);
+      list.append(b);
+    }
+    sheet.append(head, list);
+    modal.append(sheet);
+    close.onclick = () => done(null);
+    modal.onclick = (e) => { if (e.target === modal) done(null); };
+    document.body.append(modal);
+  });
+}
+
+// Anchored popup menu. items: [{ label, onClick, danger?, sep? }].
+function menuAt(anchor, items) {
+  document.querySelectorAll(".pop").forEach((p) => p.remove());
+  const pop = el("div", "pop");
+  for (const it of items) {
+    if (it.sep) { pop.append(el("div", "sep")); continue; }
+    const b = el("button", it.danger ? "danger" : "", it.label);
+    b.onclick = () => { pop.remove(); it.onClick?.(); };
+    pop.append(b);
+  }
+  document.body.append(pop);
+  const r = anchor.getBoundingClientRect();
+  const pr = pop.getBoundingClientRect();
+  const left = Math.min(r.left, window.innerWidth - pr.width - 8);
+  let top = r.bottom + 6;
+  if (top + pr.height > window.innerHeight - 8) top = Math.max(8, r.top - pr.height - 6);
+  pop.style.left = Math.max(8, left) + "px";
+  pop.style.top = top + "px";
+  const away = (e) => { if (!pop.contains(e.target)) { pop.remove(); document.removeEventListener("mousedown", away); } };
+  setTimeout(() => document.addEventListener("mousedown", away), 0);
+  return pop;
+}
+
 export function mount(root, opts = {}) {
-  const bridge = opts.bridge || localStorage.getItem("fold-chat:bridge") || DEFAULT_BRIDGE;
+  // Where heimdall is. The stored override / opts.bridge is preferred; on boot
+  // the surface also probes the standard local port itself, so a fresh
+  // GitHub-Pages page finds a bridge the person never had to type in.
+  let bridge = opts.bridge || localStorage.getItem("fold-chat:bridge") || DEFAULT_BRIDGE;
+  let bridgeHello = null;
   const sessions = load("fold-chat:sessions", {});
   const projects = load("fold-chat:projects", {});
   let activeId = null;
@@ -49,38 +137,33 @@ export function mount(root, opts = {}) {
   let models = [];
   let preset = localStorage.getItem("fold-chat:preset") || "fold";
   let meterInfo = null;
+  const collapsed = load("fold-chat:collapse", {});
 
   const E = {
-    railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"),
+    railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"), railSettings: $("railSettings"),
     side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), chatNew: $("chatNew"),
-    endpointPill: $("endpointPill"), topNew: $("topNew"), topPlus: $("topPlus"), topFocus: $("topFocus"), sealBadge: $("sealBadge"),
+    agentSlot: $("agentSlot"), curModel: $("curModel"),
+    topNew: $("topNew"), topFocus: $("topFocus"), sealBadge: $("sealBadge"),
     welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"),
-    composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
-    drawer: $("drawer"), toast: $("toast"), footEvidence: $("footEvidence"), ver: $("ver"),
+    composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
+    footer: $("footer"), drawer: $("drawer"), toast: $("toast"), footEvidence: $("footEvidence"), ver: $("ver"),
+    settingsModal: $("settingsModal"), settingsClose: $("settingsClose"), settingsCancel: $("settingsCancel"), settingsSave: $("settingsSave"),
+    setBridge: $("setBridge"), setPreset: $("setPreset"), setTheme: $("setTheme"), setMode: $("setMode"), setAbout: $("setAbout"),
   };
   E.ver.textContent = "v0.1";
 
-  // preset selector, injected under the model list
-  const presetWrap = el("div", "sec");
-  const presetHead = el("div", "sec-head", "Preset");
-  const presetSel = el("select");
-  presetSel.style.cssText = "margin:0 10px;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink)";
-  for (const [k, p] of Object.entries(PRESETS)) presetSel.append(new Option(p.label, k));
-  presetSel.value = preset;
-  presetWrap.append(presetHead, presetSel);
-  E.models.after(presetWrap);
-
   // Chat | Code — both go through the same bridge; Code dispatches to the
-  // machine door (opencode) behind heimdall, Chat to the routed models.
+  // machine door (opencode) behind heimdall, Chat to the routed models. The
+  // toggle rides the topbar as LibreChat's agent selector.
   let mode = localStorage.getItem("fold-chat:mode") || "chat";
-  const modeBar = el("div", "modebar");
+  const modeBar = el("div", "agentbar");
   const modeBtns = {};
   for (const [k, label] of [["chat", "Chat"], ["code", "Code"]]) {
-    const b = el("button", "modebtn" + (mode === k ? " on" : ""), label);
+    const b = el("button", "agentbtn" + (mode === k ? " on" : ""), label);
     b.onclick = () => { mode = k; try { localStorage.setItem("fold-chat:mode", k); } catch (e) {} for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === k); E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold"; };
     modeBtns[k] = b; modeBar.append(b);
   }
-  E.composer.before(modeBar);
+  if (E.agentSlot) E.agentSlot.append(modeBar); else E.composer.before(modeBar);
 
   function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), 1600); }
 
@@ -96,13 +179,23 @@ export function mount(root, opts = {}) {
     E.models.innerHTML = "";
     if (!models.length) { E.models.append(el("div", "empty-hint", "no models — start the heimdall bridge")); return; }
     const cur = sessions[activeId]?.model;
-    for (const m of models) {
-      const row = el("div", "model" + (m.id === cur ? " on" : ""));
-      const dot = el("span", "pdot"); dot.style.background = providerColor(m.provider);
-      row.append(dot, el("span", "name", m.id));
-      if (m.sealed) row.append(el("span", "seal", "sealed"));
-      row.onclick = () => setModel(m.id);
-      E.models.append(row);
+    const groups = {};
+    for (const m of models) { const t = m.tier || client.tierOf(m); (groups[t] || (groups[t] = [])).push(m); }
+    for (const t of client.TIER_ORDER) {
+      const list = groups[t]; if (!list || !list.length) continue;
+      const meta = client.TIERS[t] || { label: t, note: "" };
+      const head = el("div", "tier");
+      head.append(el("span", "tier-label", meta.label));
+      if (meta.note) head.append(el("span", "tier-note", meta.note));
+      E.models.append(head);
+      for (const m of list) {
+        const row = el("div", "model" + (m.id === cur ? " on" : ""));
+        const dot = el("span", "pdot"); dot.style.background = providerColor(m.provider);
+        row.append(dot, el("span", "name", m.id));
+        if (m.sealed) row.append(el("span", "seal", "sealed"));
+        row.onclick = () => setModel(m.id);
+        E.models.append(row);
+      }
     }
   }
   function setModel(id) {
@@ -112,9 +205,12 @@ export function mount(root, opts = {}) {
     updateSeal();
   }
   function updateSeal() {
-    const sealed = !!sessions[activeId]?.sealed;
-    E.sealBadge.className = "sealbadge " + (sealed ? "seal-on" : "seal-off");
-    E.welcomeSub.textContent = sealed ? "sealed-external — verbatim spans withheld; the reading only" : "Chat with the fold";
+    const s = sessions[activeId];
+    const m = models.find((x) => x.id === s?.model);
+    if (E.curModel) E.curModel.textContent = m ? m.id : "";
+    const sealed = !!s?.sealed;
+    if (E.sealBadge) E.sealBadge.className = "sealbadge " + (sealed ? "seal-on" : "seal-off");
+    E.welcomeSub.textContent = sealed ? "sealed-external — verbatim spans withheld; the reading only" : "Contact: The Fold";
   }
 
   /* ---------------- projects ---------------- */
@@ -131,10 +227,11 @@ export function mount(root, opts = {}) {
       E.projects.append(row);
     }
   }
-  E.projAdd.onclick = () => {
-    const name = prompt("Project name");
-    if (!name || !name.trim()) return;
-    const id = sid(); projects[id] = { id, name: name.trim() };
+  E.projAdd.onclick = async (e) => {
+    e.stopPropagation();
+    const name = await askDialog({ title: "New project", placeholder: "Project name", okLabel: "Create" });
+    if (!name) return;
+    const id = sid(); projects[id] = { id, name };
     save("fold-chat:projects", projects);
     renderProjects();
   };
@@ -170,39 +267,55 @@ export function mount(root, opts = {}) {
       const ic = el("span", "cicon"); ic.style.background = providerColor(s.model);
       const t = el("span", "ct", s.title || "New chat");
       const menu = el("button", "menu", "⋯");
-      menu.onclick = (ev) => { ev.stopPropagation(); chatMenu(s.id); };
+      menu.onclick = (ev) => { ev.stopPropagation(); chatMenu(s.id, menu); };
       row.append(ic, t, menu);
       row.onclick = () => open(s.id);
       g.append(row);
     }
     E.chats.append(g);
   }
-  function chatMenu(id) {
+  function chatMenu(id, anchor) {
     const s = sessions[id]; if (!s) return;
-    const act = prompt(`"${s.title || "New chat"}" — type: pin / unpin / rename / project / delete`, s.pinned ? "unpin" : "pin");
-    if (act == null) return;
-    const a = act.trim().toLowerCase();
-    if (a === "pin") s.pinned = true;
-    else if (a === "unpin") s.pinned = false;
-    else if (a === "rename") { const n = prompt("New title", s.title || ""); if (n != null && n.trim()) s.title = n.trim(); }
-    else if (a === "delete") { delete sessions[id]; if (activeId === id) { activeId = null; } save("fold-chat:sessions", sessions); renderChats(); if (!activeId) newChat(); return; }
-    else if (a === "project") {
-      const names = Object.values(projects).map((p) => p.name);
-      const n = prompt("Project name (blank to remove)", s.project && projects[s.project] ? projects[s.project].name : "");
-      if (n != null) { const found = Object.entries(projects).find(([, p]) => p.name === n.trim()); s.project = found ? found[0] : null; }
-    }
+    menuAt(anchor, [
+      { label: s.pinned ? "Unpin" : "Pin", onClick: () => { s.pinned = !s.pinned; save("fold-chat:sessions", sessions); renderChats(); } },
+      { label: "Rename…", onClick: async () => { const n = await askDialog({ title: "Rename chat", value: s.title || "", okLabel: "Rename" }); if (n) { s.title = n; save("fold-chat:sessions", sessions); renderChats(); } } },
+      { label: "Move to project…", onClick: () => moveToProject(s) },
+      { sep: true },
+      { label: "Delete", danger: true, onClick: () => { delete sessions[id]; if (activeId === id) activeId = null; save("fold-chat:sessions", sessions); renderChats(); if (!activeId) newChat(); } },
+    ]);
+  }
+  async function moveToProject(s) {
+    const items = [{ label: "No project", value: "none" }];
+    for (const [id, p] of Object.entries(projects)) items.push({ label: p.name, value: id });
+    items.push({ label: "New project…", value: "new" });
+    const v = await chooseDialog({ title: "Move to project", items });
+    if (v == null) return;
+    if (v === "new") {
+      const name = await askDialog({ title: "New project", placeholder: "Project name", okLabel: "Create" });
+      if (!name) return;
+      const nid = sid(); projects[nid] = { id: nid, name }; save("fold-chat:projects", projects);
+      s.project = nid;
+    } else s.project = v === "none" ? null : v;
     save("fold-chat:sessions", sessions);
-    renderChats();
+    renderProjects(); renderChats();
   }
 
   /* ---------------- open / render thread ---------------- */
+  // The empty state is LibreChat's: the composer rides centered under the
+  // welcome title. Once a thread exists, the composer docks above the footer.
+  function setView(empty) {
+    E.welcome.style.display = empty ? "" : "none";
+    E.thread.style.display = empty ? "none" : "";
+    if (!E.composerWrap) return;
+    if (empty) { if (E.composerWrap.parentElement !== E.welcome) E.welcome.append(E.composerWrap); }
+    else if (E.footer && E.composerWrap.nextElementSibling !== E.footer) E.footer.before(E.composerWrap);
+  }
   function open(id) {
     activeId = id;
     const s = sessions[id];
     E.threadCol.innerHTML = "";
     const msgs = s?.messages || [];
-    if (msgs.length) { E.welcome.style.display = "none"; E.thread.style.display = ""; }
-    else { E.welcome.style.display = ""; E.thread.style.display = "none"; }
+    setView(!msgs.length);
     for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i });
     renderChats(); renderModels(); updateSeal();
   }
@@ -271,12 +384,12 @@ export function mount(root, opts = {}) {
   function liveBody() { const b = appendMsg("assistant", "", {}); b.classList.add("live"); return b; }
 
   /* ---------------- memory: edit / continue ---------------- */
-  function editMessage(index) {
+  async function editMessage(index) {
     const s = sessions[activeId]; const m = s?.messages?.[index];
     if (!m || m.role !== "user") return;
-    const next = prompt("Edit your message", m.content);
-    if (next == null || !next.trim() || next.trim() === m.content) return;
-    s.messages = s.messages.slice(0, index).concat([{ ...m, content: next.trim(), at: now() }]);
+    const next = await askDialog({ title: "Edit message", value: m.content, okLabel: "Save" });
+    if (next == null || !next || next === m.content) return;
+    s.messages = s.messages.slice(0, index).concat([{ ...m, content: next, at: now() }]);
     save("fold-chat:sessions", sessions);
     open(activeId);
     run(activeId, true);
@@ -291,15 +404,21 @@ export function mount(root, opts = {}) {
   }
 
   /* ---------------- run ---------------- */
+  // The identity + memory pipeline: the fold holds who the person is, learns
+  // it only when stated, carries it in the system context, and refuses to let
+  // an ungrounded identity claim stand (resolution, never invention).
+  let readerName = (() => { try { return localStorage.getItem("fold-chat:reader") || null; } catch { return null; } })();
+
   async function run(id = activeId, continuing = false) {
     const s = sessions[id]; if (!s) return;
     const m = models.find((x) => x.id === s.model) || selectedModel();
     if (!m) { toast("no model — start the heimdall bridge"); return; }
     if (continuing) s.messages.push({ role: "user", content: "Continue.", at: now() });
     const history = s.messages.map((x) => ({ role: x.role, content: x.content }));
-    if (PRESETS[s.preset]?.system) history.unshift({ role: "system", content: PRESETS[s.preset].system });
+    const sys = [PRESETS[s.preset]?.system, memory.systemContext({ readerName, facts: s.facts || {} })].filter(Boolean).join(" ");
+    if (sys) history.unshift({ role: "system", content: sys });
     s.updated = now(); save("fold-chat:sessions", sessions);
-    E.welcome.style.display = "none"; E.thread.style.display = "";
+    setView(false);
     const body = liveBody();
     const ac = new AbortController();
     E.send.disabled = true; E.input.disabled = true;
@@ -312,12 +431,17 @@ export function mount(root, opts = {}) {
       });
       E.stage.textContent = "";
       body.classList.remove("live");
+      // The guard: if the model asserted an identity the record cannot ground,
+      // the fold withdraws it — the claim never stands.
+      let text = out.text;
+      const bad = memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} });
+      if (bad) text = text + "\n\n" + memory.identityCorrection(bad, { readerName });
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: out.text, at: now() });
+      s.messages.push({ role: "assistant", content: text, at: now() });
       s.sealed = !!m.sealed;
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
-      appendMsg("assistant", out.text, { sealed: m.sealed, index: idx });
+      appendMsg("assistant", text, { sealed: m.sealed, index: idx });
       renderChats();
     } catch (err) {
       E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
@@ -328,13 +452,17 @@ export function mount(root, opts = {}) {
 
   // The coding lane: dispatched THROUGH heimdall to the local opencode
   // machine door. Renders the agent's tool activity then its answer.
+  // The model opencode reasons with is itself routed by heimdall (a
+  // `heimdall` provider in opencode's config pointing at the bridge's /v1).
+  const CODE_MODEL = { providerID: "heimdall", modelID: "qwen2.5-coder:1.5b" };
+  function codeModelRef() { try { const v = JSON.parse(localStorage.getItem("fold-chat:codemodel") || "null"); return v || CODE_MODEL; } catch { return CODE_MODEL; } }
   async function runCode(id = activeId) {
     const s = sessions[id]; if (!s) return;
     const body = liveBody();
     E.send.disabled = true; E.input.disabled = true;
     E.stage.textContent = "coding · the fold dispatches to the machine door…";
     try {
-      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title });
+      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef() });
       E.stage.textContent = "";
       body.classList.remove("live"); body.textContent = "";
       if (Array.isArray(out.activity) && out.activity.length) {
@@ -366,10 +494,13 @@ export function mount(root, opts = {}) {
     E.input.value = "";
     const s = sessions[activeId] || (newChat(), sessions[activeId]);
     s.messages.push({ role: "user", content: text, at: now() });
+    // Learn the person's name only when they state it — never guessed.
+    const learned = memory.extractStatedName(text);
+    if (learned) { s.facts = { ...(s.facts || {}), name: learned }; readerName = learned; try { localStorage.setItem("fold-chat:reader", learned); } catch (e) {} }
     s.title = s.title === "New chat" ? text.slice(0, 46) : s.title;
     s.updated = now();
     save("fold-chat:sessions", sessions);
-    E.welcome.style.display = "none"; E.thread.style.display = "";
+    setView(false);
     appendMsg("user", text, { index: s.messages.length - 1 });
     renderChats();
     if (mode === "code") runCode(activeId);
@@ -381,11 +512,46 @@ export function mount(root, opts = {}) {
   E.input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); E.composer.requestSubmit(); } });
   E.input.addEventListener("input", () => { E.input.style.height = "auto"; E.input.style.height = Math.min(E.input.scrollHeight, 200) + "px"; });
 
-  presetSel.onchange = () => {
-    preset = presetSel.value;
+  /* ---------------- settings ---------------- */
+  // The bridge, the preset, the theme, and the default mode — the surface's
+  // configuration, kept out of the conversation sidebar.
+  function applyPreset(next) {
+    preset = next;
     try { localStorage.setItem("fold-chat:preset", preset); } catch (e) {}
     const s = sessions[activeId]; if (s) { s.preset = preset; save("fold-chat:sessions", sessions); }
-  };
+  }
+  function paintTheme() {
+    const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    for (const b of E.setTheme.querySelectorAll("button")) b.classList.toggle("on", b.dataset.theme === cur);
+  }
+  function paintMode() { for (const b of E.setMode.querySelectorAll("button")) b.classList.toggle("on", b.dataset.mode === mode); }
+  E.setTheme.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; document.documentElement.setAttribute("data-theme", b.dataset.theme); try { localStorage.setItem("fold-chat:theme", b.dataset.theme); } catch (e2) {} paintTheme(); };
+  E.setMode.onclick = (e) => { const b = e.target.closest("button"); if (!b) return; mode = b.dataset.mode; try { localStorage.setItem("fold-chat:mode", mode); } catch (e2) {} for (const [kk, bb] of Object.entries(modeBtns)) bb.classList.toggle("on", kk === mode); E.input.placeholder = mode === "code" ? "Describe the change to make…" : "Message the fold"; paintMode(); };
+
+  function openSettings() {
+    for (const [k, p] of Object.entries(PRESETS)) if (!E.setPreset.querySelector(`option[value="${k}"]`)) E.setPreset.append(new Option(p.label, k));
+    E.setBridge.value = bridge;
+    E.setPreset.value = preset;
+    paintTheme(); paintMode();
+    E.setAbout.innerHTML = `bridge <b>${esc(bridge)}</b> · version <b>v0.1</b> · cloud models are <b>sealed-external</b> by default; raw workspace tokens never leave.`;
+    E.settingsModal.hidden = false;
+    E.setBridge.focus();
+  }
+  function closeSettings() { E.settingsModal.hidden = true; }
+  function saveSettings() {
+    const next = E.setBridge.value.trim();
+    if (next) { try { localStorage.setItem("fold-chat:bridge", next); } catch (e) {} }
+    applyPreset(E.setPreset.value);
+    closeSettings();
+    toast("settings saved");
+    // The bridge may have moved — re-list the models it serves.
+    if (next && next !== bridge) location.reload();
+  }
+  E.railSettings.onclick = openSettings;
+  E.settingsClose.onclick = E.settingsCancel.onclick = closeSettings;
+  E.settingsSave.onclick = saveSettings;
+  E.settingsModal.addEventListener("click", (e) => { if (e.target === E.settingsModal) closeSettings(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !E.settingsModal.hidden) closeSettings(); });
 
   /* ---------------- evidence drawer ---------------- */
   async function refreshMeter() { try { meterInfo = await client.meter({ base: bridge }); } catch { meterInfo = null; } }
@@ -415,23 +581,47 @@ export function mount(root, opts = {}) {
     } else E.drawer.append(el("p", "empty-hint", "no dispatch records yet — send a message."));
   }
 
+  /* ---------------- collapsible sections ---------------- */
+  for (const head of document.querySelectorAll(".sec-head")) {
+    const sec = head.closest(".sec");
+    const key = sec?.dataset.sec;
+    if (key && collapsed[key]) sec.classList.add("collapsed");
+    head.onclick = (e) => {
+      if (e.target.closest("button")) return;
+      sec.classList.toggle("collapsed");
+      if (key) { collapsed[key] = sec.classList.contains("collapsed"); save("fold-chat:collapse", collapsed); }
+    };
+  }
+
   /* ---------------- rail / topbar ---------------- */
   E.railToggle.onclick = () => { E.side.classList.toggle("hide"); E.railToggle.classList.toggle("on", !E.side.classList.contains("hide")); };
-  E.railNew.onclick = E.chatNew.onclick = E.topNew.onclick = E.topPlus.onclick = newChat;
-  E.railSearch.onclick = () => { const q = prompt("Search chats", search); search = q == null ? search : q.trim(); renderChats(); };
+  for (const b of [E.railNew, E.chatNew, E.topNew, E.topPlus]) if (b) b.onclick = newChat;
+  E.railSearch.onclick = async () => {
+    const q = await askDialog({ title: "Search chats", value: search, placeholder: "Search titles", okLabel: "Search" });
+    if (q == null) return;
+    search = q.trim();
+    renderChats();
+  };
   E.railEvidence.onclick = E.footEvidence.onclick = (e) => { e.preventDefault(); toggleDrawer(); };
   E.railTheme.onclick = () => { const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", cur); try { localStorage.setItem("fold-chat:theme", cur); } catch (e) {} };
   E.topFocus.onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {}); else document.exitFullscreen?.(); };
   E.attach.onclick = () => toast("attachments land with the opencode adapter");
   E.mic.onclick = () => toast("voice is not wired yet");
-  E.endpointPill.onclick = () => toast("endpoint: heimdall bridge @ " + bridge);
 
   /* ---------------- boot ---------------- */
   try { const t = localStorage.getItem("fold-chat:theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   renderProjects();
-  refreshModels().then(() => {
-    const first = Object.values(sessions).sort((a, b) => new Date(b.updated || 0) - new Date(a.updated || 0))[0];
-    if (first) open(first.id); else newChat();
-    refreshMeter();
+  // Auto-detect the bridge first (the override, then the standard local port),
+  // then list whatever it serves. A page served from GitHub Pages finds the
+  // person's own heimdall this way, with no URL to type.
+  client.detectBridge({ override: opts.bridge || null }).then((found) => {
+    if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
+    else toast("heimdall not found — run `heimdall up`");
+    refreshModels().then(() => {
+      const first = Object.values(sessions).sort((a, b) => new Date(b.updated || 0) - new Date(a.updated || 0))[0];
+      if (first) open(first.id); else newChat();
+      refreshMeter();
+      updateBridgeStatus();
+    });
   });
 }

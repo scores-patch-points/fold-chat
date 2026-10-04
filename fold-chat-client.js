@@ -22,10 +22,35 @@
 
 export const DEFAULT_BRIDGE = "http://localhost:8790";
 
+/** Where heimdall is looked for, in order. A caller's stored/override base is
+ *  tried first, then the standard local port on both names. */
+export const BRIDGE_CANDIDATES = Object.freeze([
+  "http://localhost:8790",
+  "http://127.0.0.1:8790",
+]);
+
 /** The bridge a caller points at. Overridable (localStorage in the page,
  *  constructor arg in tests). */
 export function bridgeBase(override = null) {
   return String(override || DEFAULT_BRIDGE).replace(/\/+$/, "");
+}
+
+/** Find the running heimdall bridge without the person typing it. Probes each
+ *  candidate (the override first) with /bridge/hello, falling back to /api/tags
+ *  for an older bridge. Returns { ok, base, hello } — never throws. */
+export async function detectBridge({ override = null, candidates = BRIDGE_CANDIDATES, fetchImpl = fetch, timeoutMs = 1500 } = {}) {
+  const list = [...new Set([...(override ? [override] : []), ...candidates].map(bridgeBase))];
+  for (const base of list) {
+    try {
+      const r = await fetchImpl(base + "/bridge/hello", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
+      if (r.ok) { const j = await r.json().catch(() => null); if (j && j.bridge) return { ok: true, base, hello: j }; }
+    } catch {}
+    try {
+      const r = await fetchImpl(base + "/api/tags", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
+      if (r.ok) return { ok: true, base, hello: null };
+    } catch {}
+  }
+  return { ok: false, base: null, hello: null };
 }
 
 /** Normalize an OpenAI-compatible chat body the bridge understands. */
@@ -41,9 +66,31 @@ export function isSealed(meta) {
   return !!(meta?.frontier || meta?.privacy === "sealed-external");
 }
 
+/** The tiers a model can live on, ordered from the nearest executor outward.
+ *  This mirrors heimdall's own lanes (deterministic/local · open remote ·
+ *  frontier) plus the fold's fleet of linked hosts and workers. */
+export const TIERS = Object.freeze({
+  local: { id: "local", label: "On this device", note: "runs here — nothing leaves" },
+  fleet: { id: "fleet", label: "The fleet", note: "linked hosts & workers" },
+  remote: { id: "remote", label: "Open remote", note: "configured outside providers" },
+  frontier: { id: "frontier", label: "Frontier · sealed", note: "sealed-external — the reading only" },
+});
+export const TIER_ORDER = Object.freeze(["local", "fleet", "remote", "frontier"]);
+
+/** Which tier a listed model belongs to. A sealed model is always frontier;
+ *  otherwise its kind (or provider) names the tier. Pure and testable. */
+export function tierOf(m) {
+  if (!m) return "local";
+  if (m.sealed) return "frontier";
+  const k = m.kind || String(m.provider || "");
+  if (k === "webllm" || k === "local") return "local";
+  if (k === "fleet" || k === "native") return "fleet";
+  return "remote";
+}
+
 /** Read the bridge's model list from /api/tags (Ollama shape, but carries the
  *  heimdall per-model metadata: webllm/native workers, or frontier+privacy).
- *  Returns [{ id, sealed, location, provider, contextWindow }]. */
+ *  Returns [{ id, sealed, location, provider, contextWindow, tier }]. */
 export async function listModels({ base = null, fetchImpl = fetch } = {}) {
   const r = await fetchImpl(bridgeBase(base) + "/api/tags", { cache: "no-store" });
   if (!r.ok) throw new Error("heimdall bridge answered " + r.status);
@@ -52,13 +99,16 @@ export async function listModels({ base = null, fetchImpl = fetch } = {}) {
   for (const m of Array.isArray(j?.models) ? j.models : []) {
     if (!m?.name) continue;
     const h = m.heimdall || {};
-    out.push({
+    const model = {
       id: String(m.name),
       sealed: isSealed(h),
+      kind: h.frontier ? "frontier" : h.native ? "native" : h.webllm ? "webllm" : h.workers ? "fleet" : "local",
       provider: h.frontier ?? h.native ?? (h.webllm ? "webllm" : h.workers ? "fleet" : "local"),
       location: h.location ?? "local",
       contextWindow: h.context_window ?? null,
-    });
+    };
+    model.tier = tierOf(model);
+    out.push(model);
   }
   return out;
 }
