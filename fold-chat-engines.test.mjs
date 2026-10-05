@@ -1,7 +1,9 @@
-import { test } from "node:test";
+import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { parseBrave, searchDirect, ENGINES } from "./fold-chat-engines.js";
+import { parseBrave, searchDirect, ENGINES, resetEngineCooldowns, engineCooling, COOLDOWN_BASE_MS } from "./fold-chat-engines.js";
+
+beforeEach(() => resetEngineCooldowns());   // the cooldown is shared state; each test starts clean
 
 const sample = fs.readFileSync(new URL("./test-support/brave-serp-sample.html", import.meta.url), "utf8");
 
@@ -104,4 +106,49 @@ test("direct defaults ON as the extension (chrome.runtime.id) and OFF on a plain
     assert.ok(plain.some((h) => /holodeck-proxy/.test(h)), "on a plain page it still goes through the relay");
     assert.ok(!plain.includes("search.brave.com"));
   } finally { if (saved === undefined) delete globalThis.chrome; else globalThis.chrome = saved; }
+});
+
+// ── a refusal is not a markup change ────────────────────────────────────────────────────────────
+const ddgPage = (n) => "<html><head><title>x at DuckDuckGo</title></head><body>" + Array.from({ length: n }, (_, i) => `<div class="result"><a class="result__a" href="//duckduckgo.com/l/?uddg=${encodeURIComponent("https://d" + i + ".test/p")}">DDG result ${i}</a><a class="result__snippet">snippet ${i}</a></div>`).join("") + "</body></html>";
+const captcha429 = "<html><head><title>Brave Search</title></head><body>" + "<p>Too many requests — please complete the captcha to continue.</p>".repeat(900) + "</body></html>";
+
+test("a 73 KB rate-limit page is reported as RATE LIMITED, never as 'the markup may have changed'", async () => {
+  const f = async (u) => (/search\.brave\.com/.test(u) ? resp(captcha429, false, 429) : resp(ddgChallenge));
+  const out = await searchDirect("q", { fetchImpl: f });
+  const brave = out.tried.find((t) => t.id === "brave");
+  assert.equal(brave.why, "rate limited (HTTP 429)");
+  assert.ok(!/markup/.test(brave.why));
+  assert.ok(out.blocked.includes("brave"));
+});
+
+test("parseBrave: a captcha / too-many-requests body is blocked even when the status is 200", () => {
+  const p = parseBrave(captcha429);
+  assert.equal(p.blocked, true);
+  assert.ok(!p.shape, "not misread as a markup change");
+});
+
+test("parseBrave: a big page with no rate-limit words and nothing parsed IS still a markup change", () => {
+  assert.match(parseBrave("<html>" + "<div>ordinary page content</div>".repeat(1500) + "</html>").shape, /markup may have changed/);
+});
+
+test("a refused engine is left alone — cooldown doubles on repeated refusals, clears on an answer", async () => {
+  let t = 1_000_000;
+  const asked = [];
+  const refuse = async (u) => { asked.push(/brave/.test(u) ? "brave" : "ddg"); return /brave/.test(u) ? resp(captcha429, false, 429) : resp(ddgPage(8)); };
+  await searchDirect("q", { fetchImpl: refuse, now: () => t });
+  assert.equal(engineCooling("brave", t), true);
+  assert.equal(engineCooling("brave", t + COOLDOWN_BASE_MS + 1), false, "first refusal: ~2 min");
+  const before = asked.filter((x) => x === "brave").length;
+  const again = await searchDirect("q", { fetchImpl: refuse, now: () => t + 1000 });
+  assert.equal(asked.filter((x) => x === "brave").length, before, "not asked again while cooling");
+  assert.equal(again.tried.find((x) => x.id === "brave").why, "cooling down after a refusal");
+  assert.equal(again.engine, "ddg", "the other engine still answers");
+  // second refusal after the first wait doubles it
+  await searchDirect("q", { fetchImpl: refuse, now: () => t + COOLDOWN_BASE_MS + 5 });
+  assert.equal(engineCooling("brave", t + COOLDOWN_BASE_MS + 5 + COOLDOWN_BASE_MS + 1), true, "second refusal: ~4 min");
+  // an answer clears it
+  resetEngineCooldowns();
+  const ok = async () => resp(page(8));
+  await searchDirect("q", { fetchImpl: ok, now: () => t });
+  assert.equal(engineCooling("brave", t), false);
 });
