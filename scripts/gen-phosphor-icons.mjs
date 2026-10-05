@@ -45,6 +45,33 @@ const ICONS = [
   // time, work, conversation, ideas
   "calendar", "clock", "chat-circle", "question", "lightbulb", "sparkle",
   "magnifying-glass", "detective",
+  // history, landmarks, maps, exploration
+  "map-trifold", "castle-turret", "church", "bridge", "scroll",
+  "hourglass", "compass", "globe-hemisphere-west", "mountains", "lighthouse",
+  // writing, poetry, language
+  "feather", "notebook", "book-bookmark", "quotes", "translate",
+  // coding, math
+  "terminal-window", "brackets-curly", "git-branch", "laptop", "function",
+  "calculator", "math-operations", "test-tube",
+  // health, body
+  "heartbeat", "tooth", "virus", "syringe", "barbell",
+  // money
+  "piggy-bank", "wallet", "coins", "trend-up",
+  // music
+  "guitar", "piano-keys", "vinyl-record", "microphone-stage", "music-note",
+  // travel, outdoors
+  "tent", "sailboat", "bicycle", "airplane-takeoff",
+  // food
+  "coffee", "pizza", "hamburger", "carrot", "cooking-pot",
+  // weather
+  "cloud", "sun", "cloud-sun", "cloud-rain", "snowflake", "thermometer",
+  "umbrella", "wind", "moon",
+  // animals, nature
+  "paw-print", "cat", "dog", "fish", "butterfly", "bird", "horse", "flower",
+  // sport
+  "football", "basketball", "trophy",
+  // conversation (the neutral default for a chat that has no subject yet)
+  "chat-teardrop", "chat-circle-dots",
 ];
 
 const present = new Set(readdirSync(srcDir).map((f) => f.replace(/\.svg$/, "")));
