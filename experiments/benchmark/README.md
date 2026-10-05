@@ -4,6 +4,7 @@ Questions with known answers, used to test how searching behaves on a real brows
 
 - `questions.json` — 54 development questions (35 easy, 15 hard, 4 no-answer controls). **Tuned on; do not use to adopt anything.**
 - `holdout.json` — 33 questions written after the rule was frozen (24 English answerable, 3 non-English, 6 controls).
+- `holdout2.json` — 76 more questions (24 English answerable, 4 English controls; es fr de ja ru zh × 6 answerable + 2 controls) for the v2/v3/v4 tests.
 - `seed-en.json` — the English background (word → number of cards it stood in) derived from the development SERPs.
 - `collect-in-page.js` — collects results from DuckDuckGo **inside a browser page**. Node's fetch is challenged/429'd by the
   engines on the same address where a browser gets 200 OK, so a Node run measures Node, not the product.

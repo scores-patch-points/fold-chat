@@ -113,82 +113,11 @@ test("makeMemo ships with the English seed, so snippetFirst can be switched on w
   assert.equal(makeMemo({ backgroundSeed: null }).background.byLang.size, 0);
 });
 
-// ── v2: independent chains (Bukhari), placement against a null (Fisher), little input (Chomsky / Sullivan) ──
-import { registrable, chainsOf, placement, DECLARED_V2 } from "./fold-chat-snippets.js";
-// every card needs its OWN tail: an identical sentence on every card is (correctly) read as a copy and merges them into one chain
+
+// ── v4 (opt-in, experimental): ask the priors first — see RESULTS.md; v2/v3 were falsified and removed ──
+import { functionWordsOf } from "./fold-chat-snippets.js";
+// every card needs its OWN tail: an identical sentence on every card is a copy
 const uniq = (k) => " " + Array.from({ length: 12 }, (_, j) => `w${k}x${j}`).join(" ");
-
-test("registrable domain: en. and simple.wikipedia.org are ONE publisher; two .co.uk sites are two", () => {
-  assert.equal(registrable("en.wikipedia.org"), registrable("simple.wikipedia.org"));
-  assert.notEqual(registrable("a.co.uk"), registrable("b.co.uk"));
-  assert.equal(registrable("www.example.com"), "example.com");
-});
-
-const cardsFor = (rs) => rs.map((r) => ({ r, host: new URL(r.url).hostname, seq: (r.title + " " + r.snippet).toLowerCase().match(/[\p{L}\p{N}']+/gu) || [] })).map((c) => ({ ...c, w: new Set(c.seq) }));
-
-test("chainsOf: cards sharing a run of 6 words are one chain even on different domains; same domain is one chain", () => {
-  const copy = "the quick brown fox jumps over the lazy dog near the river bank today";
-  const rs = [card("a.test", "A", copy + uniq(1)), card("b.test", "B", "Mirror: " + copy + uniq(2)), card("c.test", "C", "Something entirely different and unrelated to foxes at all." + uniq(3)), card("sub.c.test", "C2", "Another page from the same publisher with its own words." + uniq(4))];
-  const ch = chainsOf(cardsFor(rs));
-  assert.equal(ch[0], ch[1], "the mirror is the same chain");
-  assert.equal(ch[2], ch[3], "same registrable domain is the same chain");
-  assert.notEqual(ch[0], ch[2]);
-});
-
-const PHRASING = ["Canberra serves as the capital city of Australia.", "The seat of government of Australia is Canberra.", "Australia: national capital Canberra, in the ACT.", "Many visitors ask which Australia city leads; Canberra does.", "Capital city Canberra, home of Parliament House in Australia.", "Founded as the capital in 1913, Canberra is the Australia seat of power."];
-const topic = (host, extra, k) => card(host, `Capital ${host}`, `${PHRASING[k - 10]} ${extra}` + uniq(k));
-const EIGHT = ["a.test", "b.test", "c.test", "d.test", "e.test", "f.test"].map((h, i) => topic(h, `Source number ${i} adds its own distinct words ${["alpha beta", "gamma delta", "epsilon zeta", "eta theta", "iota kappa", "lambda mu"][i]} here.`, i + 10))
-  .concat([card("g.test", "Sydney", "Sydney is the largest city of Australia and a tourist magnet." + uniq(30)), card("h.test", "Perth", "Perth sits on the west coast of Australia near the ocean." + uniq(31))]);
-
-test("v2: six independent chains agreeing on a rare term are PLACED against the null and the cards are sufficient", () => {
-  const out = snippetsSufficient(EIGHT, "what is the capital of Australia", { background: bgEn(), lang: "en", rule: "v2" });
-  assert.equal(out.sufficient, true, out.why);
-  assert.equal(out.term, "canberra");
-  assert.ok(out.chains >= 6 && out.placement <= DECLARED_V2.alpha);
-});
-
-test("v2: three mirrors of one page are ONE witness — too few independent chains", () => {
-  const body = "Canberra is the capital of Australia, chosen as a compromise between Sydney and Melbourne in 1908.";
-  const mirrors = [card("en.wikipedia.org", "Canberra", body + pad), card("simple.wikipedia.org", "Canberra", body + pad), card("wikiwand.example", "Canberra", body + pad), card("x.test", "Other", "Sydney is a large city of Australia." + uniq(40))];
-  const out = snippetsSufficient(mirrors, "what is the capital of Australia", { background: bgEn(), lang: "en", rule: "v2" });
-  assert.equal(out.sufficient, false);
-  assert.match(out.why, /independent chain/);
-  // v1 counted hosts, so it would have been fooled by the two wikipedia hostnames plus the third mirror:
-  assert.equal(snippetsSufficient(mirrors, "what is the capital of Australia", { background: bgEn(), lang: "en" }).sufficient, true);
-});
-
-test("v2: a term that merely belongs to the topic's vocabulary is refused — it is what chance among these cards gives (Fisher)", () => {
-  // five publishers, each writing about "uranium halflife" with 20 words drawn from one shared 40-word topic vocabulary
-  const vocab = Array.from({ length: 40 }, (_, i) => `topicword${i}`);
-  const draw = (seed) => { let x = seed >>> 0; const out = new Set(); let guard = 0; while (out.size < 20 && guard++ < 10000) { x = (Math.imul(x, 1664525) + 1013904223) >>> 0; out.add(vocab[(x >>> 16) % 40]); } return [...out]; };
-  const rs = ["a", "b", "c", "d", "e"].map((h, i) => card(h + ".test", `Uranium halflife ${h}`, `uranium halflife discussed here: ${draw(i * 7919 + 13).join(" ")}.` + uniq(50 + i)));
-  const out = snippetsSufficient(rs, "uranium halflife", { background: bgEn(), lang: "en", rule: "v2" });
-  assert.equal(out.sufficient, false);
-  assert.ok(out.placement !== undefined, "it got as far as a placement, so the refusal is the null's, not a count: " + out.why);
-  assert.ok(out.placement > DECLARED_V2.alpha, out.why);
-});
-
-test("placement: a figure is placed against a null built by shuffling, deterministically", () => {
-  const chains = Array.from({ length: 6 }, (_, i) => new Set(["shared", ...Array.from({ length: 10 }, (_, j) => `w${i}_${j}`)]));
-  const p1 = placement(chains, 6, { seed: "q" }), p2 = placement(chains, 6, { seed: "q" });
-  assert.equal(p1, p2);
-  assert.ok(p1 <= 0.05, "6 of 6 chains sharing one term out of a large pool is far from chance: " + p1);
-  const same = Array.from({ length: 4 }, () => new Set(Array.from({ length: 6 }, (_, j) => `w${j}`)));
-  assert.ok(placement(same, 3, { seed: "q" }) > 0.05, "when every chain draws from the same few terms, 3 agreeing is what chance gives");
-});
-
-test("v2: speaks with three SERPs (24 cards) of same-language background, abstains below — a parameter set from little input", () => {
-  const thin = makeBackground({ en: { n: DECLARED_V2.minBackground - 1, df: { what: 10, is: 20, the: 22, of: 20, a: 20 } } });
-  assert.equal(snippetsSufficient(EIGHT, "what is the capital of Australia", { background: thin, lang: "en", rule: "v2" }).abstained, true);
-  const ok = makeBackground({ en: { n: DECLARED_V2.minBackground, df: { what: 10, is: 20, the: 22, of: 20, a: 20 } } });
-  assert.equal(snippetsSufficient(EIGHT, "what is the capital of Australia", { background: ok, lang: "en", rule: "v2" }).abstained, false);
-  // v1 still wants 80
-  assert.equal(snippetsSufficient(EIGHT, "what is the capital of Australia", { background: ok, lang: "en" }).abstained, true);
-});
-
-// ── v3: ask the priors first (Bayes · Chomsky · Sullivan) ──────────────────────────────────────────
-import { functionWordsOf, DECLARED_V3 } from "./fold-chat-snippets.js";
-
 test("functionWordsOf: closed-class forms from the khora's gold-treebank priors; null where there is no committed prior", () => {
   const es = functionWordsOf("es");
   assert.ok(es.has("por") && es.has("de") && es.has("que"));
@@ -207,32 +136,34 @@ const ARG = [
   es("f.test", 6, "Córdoba es una ciudad del interior de Argentina conocida por sus sierras."),
 ];
 
-test("v3 speaks in Spanish with NO learned background, because the prior says which words are filler — and v2 cannot", () => {
-  const v3 = snippetsSufficient(ARG, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es", rule: "v3" });
-  assert.equal(v3.sufficient, true, v3.why);
-  assert.ok(["buenos", "aires"].includes(v3.term), v3.term);
-  const v2 = snippetsSufficient(ARG, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es", rule: "v2" });
-  assert.equal(v2.abstained, true);
+// ── v4: v1 + ask the priors first ───────────────────────────────────────────────────────────────────
+import { DECLARED_V4 } from "./fold-chat-snippets.js";
+
+test("v4 speaks in Spanish with NO learned background (function-word prior, strict mode); v1 cannot", () => {
+  const v4 = snippetsSufficient(ARG, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es", rule: "v4" });
+  assert.equal(v4.sufficient, true, v4.why);
+  assert.equal(v4.strict, true);
+  assert.equal(snippetsSufficient(ARG, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es" }).abstained, true);
 });
 
-test("v3 with no list and no background ABSTAINS (German has no committed prior): it does not guess", () => {
-  const out = snippetsSufficient(ARG, "was ist die Hauptstadt von Argentinien?", { background: makeBackground(), lang: "de", rule: "v3" });
+test("v4 abstains where there is neither a background nor a committed function-word prior (German)", () => {
+  const out = snippetsSufficient(ARG, "was ist die Hauptstadt von Argentinien?", { background: makeBackground(), lang: "de", rule: "v4" });
   assert.equal(out.abstained, true);
   assert.match(out.why, /no function-word prior/);
 });
 
-test("v3's stricter mode: with no learned background EVERY content word of the question must be on a card, and 4 chains must agree", () => {
-  assert.equal(DECLARED_V3.topicFracNoBackground, 1.0);
-  assert.equal(DECLARED_V3.minChainsNoBackground, 4);
-  // 3 of the 5 chains carry "capital" + "argentina"; the other two say only one of them → not enough on-topic chains
-  const partial = [ARG[0], ARG[1], ARG[2], es("d.test", 4, "Argentina is large and has a famous steak culture here."), es("e.test", 5, "La capital del país tiene un puerto muy activo desde hace siglos."), ARG[5]];
-  const out = snippetsSufficient(partial, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es", rule: "v3" });
-  assert.equal(out.sufficient, false);
-  assert.match(out.why, /independent chain/);
+test("v4's strict mode wants ALL the question's content words on a card and 4 distinct sites", () => {
+  assert.equal(DECLARED_V4.strictMinHosts, 4);
+  const three = ARG.slice(0, 3).concat([ARG[5], card("z.test", "x", "Texto sin relación alguna con el tema de la pregunta formulada." + uniq(99)), card("y.test", "y", "Otro texto distinto sobre fútbol y música popular de la región." + uniq(98))]);
+  assert.equal(snippetsSufficient(three, "¿cuál es la capital de Argentina?", { background: makeBackground(), lang: "es", rule: "v4" }).sufficient, false);
 });
 
-test("v3 with a learned background uses it too — function words are common AND the learned shares count", () => {
-  const bgEs = makeBackground({ es: { n: 40, df: { es: 38, la: 39, de: 40, el: 36, y: 35, por: 30, en: 34, que: 33, cuál: 5 } } });
-  const out = snippetsSufficient(ARG, "¿cuál es la capital de Argentina?", { background: bgEs, lang: "es", rule: "v3" });
-  assert.equal(out.sufficient, true, out.why);
+test("v4 with a learned background of 24+ cards uses it (floor 24, not 80) and behaves as v1 does in English", () => {
+  const out = snippetsSufficient(SERP, "what is the capital of Australia", { background: bgEn(), lang: "en", rule: "v4" });
+  const v1 = snippetsSufficient(SERP, "what is the capital of Australia", { background: bgEn(), lang: "en" });
+  assert.equal(out.sufficient, v1.sufficient);
+  assert.equal(out.term, v1.term);
+  const small = makeBackground({ en: { n: 30, df: { what: 20, is: 28, the: 29, of: 27, a: 26 } } });
+  assert.equal(snippetsSufficient(SERP, "what is the capital of Australia", { background: small, lang: "en", rule: "v4" }).abstained, false);
+  assert.equal(snippetsSufficient(SERP, "what is the capital of Australia", { background: small, lang: "en" }).abstained, true, "v1 still wants 80");
 });

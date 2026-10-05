@@ -282,3 +282,53 @@ Run once on the SAME 48 non-English SERPs and the English ones (no v4 outcome ha
 - **D4** all six languages at k = 3 (three other same-language SERPs as background): precision ≥ 90%, coverage ≥ 25% over 36, ≤ 1 of 12 controls
 - **D5** English: v4 precision ≥ 90% and fires on ≥ 16 of 24 (≥ 0.95 × v1's 17)
 Any failure → that part is not adopted.
+
+### Outcome of v4 (run once, frozen; no outcome had been seen before the criteria were written)
+
+| criterion | result | |
+|---|---|---|
+| **D1** es fr ru zh, k = 0: precision ≥ 90% **and** coverage ≥ 25% | precision **5/5**, coverage **5/24 = 20.8%** (es 2, fr 2, ru 1, **zh 0**) | **fail** (one firing short of 6/24) |
+| **D2** same languages: ≤ 1 of 8 controls fire | **0 / 8** | pass |
+| **D3** de, ja at k = 0 abstain on all 16 | **16 / 16** abstained, 0 fired | pass |
+| **D4** six languages, k = 3: precision ≥ 90%, coverage ≥ 25%, ≤ 1 of 12 controls | precision **11/11**, coverage **30.6%**, controls **2 / 12** (`frc1`→"romulus", `zhc2`→"传说") | **fail** (controls) |
+| **D5** English: precision ≥ 90% and ≥ 16/24 fire | **18/24**, precision **18/18**, controls 0/4 (v1: 17/24) | pass |
+
+Verdict by the standard written down first: **D1 and D4 fail, so v4's non-English support is not adopted.** English is a wash
+(18 vs 17 firings is noise). What the numbers do say:
+
+- **When the rule speaks it is right.** 16 of 16 non-English firings (5 at k = 0, 11 at k = 3) carried the answer; at k = 0 it
+  fired on none of 8 controls and abstained where it had no list. The failure is *how rarely it speaks* at k = 0 (strict mode:
+  every content word on a card, ≥ 4 sites) and, at k = 3, *what it will speak about*.
+- **Chinese is a prior problem, not a rule problem.** The committed `pos-cmn` prior is Traditional-script
+  (UD Chinese-GSD); DuckDuckGo returned Simplified, so most function words (为 与 这 …) are not in the list and zh never fired.
+  The simplified prior (`pos-cmn-hans`) exists in the khora working tree but is not committed — not ours to build on yet.
+  German and Japanese have no committed prior at all (v4 correctly abstained on all 16).
+- **The two control fires are the uranium-238 failure again.** "Who was the first king of Mars?" → cards about Romulus (son of
+  Mars, first king of Rome); "capital of Atlantis" (zh) → cards about the Atlantis legend. The cards agree on a rare term about the
+  topic; no answer exists. A rule that checks *agreement* cannot see *absence*, in any language, with or without priors.
+- **The oracle is the headline, across seven languages.** The answer is in the top-8 snippets for **all 36 of 36** answerable
+  non-English questions (es fr de ja ru zh) and for 23 of 24 English holdout-#2 questions' worth of fired cards (v1/v4: 17–18/18
+  right). Over every set so far — dev 50/50, holdout #1 23/24 (uranium-238 the exception), non-English 36/36 — a snippet contains
+  the answer almost always. **The bottleneck is not finding the answer; it is knowing when to trust the cards.** Every rule above
+  is an attempt at that decision, and each fails on questions with *no* answer. A rule that decides is the wrong shape; see
+  "What next".
+
+### What was learned from the archons, honestly
+
+- **Bukhari / Fisher (v2):** the principles were not refuted, but this null on this little evidence (≤ 8 cards) cannot reach
+  significance — a real answer in 4 chains looks like chance. Wrong tool at this scale.
+- **Bayes / Chomsky / Sullivan (v3, v4):** asking the priors first **works as a safety property** — priors-based commonness gave
+  100% precision on 16 firings in four languages the tab had never searched, and correct abstention where it had no prior. It did
+  not buy coverage, and it did not fix the no-answer failure.
+- v2/v3 are removed from the code (history keeps them: `872392c`). v4 stays as an **opt-in experimental rule** (`rule: "v4"`),
+  because it is safe where it speaks; it is not enabled anywhere and not recommended until its prior and coverage problems are fixed.
+
+### What next (not built)
+
+1. **Do not decide; speculate and verify.** Hand the model the top snippets immediately (the oracle says the answer is there
+   ~97% of the time), start the page reads in parallel, and let the pages *verify or contradict*: if no read page states the
+   handed answer, say so. That removes the decision that every rule failed at, and it uses the reads as a witness (Bukhari's
+   actual point) rather than as a gate. Needs a UI that can show an answer that is then confirmed or retracted.
+2. A second sense (Sullivan): check the agreed term against a **fetched page** only for the one best card, not three — one
+   confirming read instead of three.
+3. Commit `pos-cmn-hans`, a German and a Japanese UD prior in the khora, then re-run D1 unchanged.
