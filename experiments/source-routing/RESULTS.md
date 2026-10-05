@@ -66,3 +66,118 @@ The answer was available quickly; the time went on waiting for sources that coul
    keyed by URL + fingerprint). Falsified if a follow-up about the same pages still fetches.
 5. **A mention-book door** (khora `reading-log.js::mentionBookFromLog`, served by the heimdall bridge) is what the
    surf needs to work as THE-HOLOGRAPH §6 describes. Not built; belongs to whoever owns heimdall.
+
+## Extension-page fetch, measured (2026-10-05)
+
+The built MV3 extension (`scripts/build-extension.mjs`) loaded unpacked into Playwright's Chromium 153; every call below
+is made **from the extension page** (`web.search("web", q, 0, { direct: true })`, `web.readText(url, { direct: true })`)
+by `fold-ext-e2e.mjs`. One harness condition: headless Chromium's `HeadlessChrome` user agent is answered by Brave with a
+429 and a slider captcha, so the harness sends an ordinary Chrome UA (a person's browser already does).
+
+**Item 1 — not tripped at the pre-registered size, tripped under sustained load.** 12/12 paced (2.5–3 s) Brave requests
+answered, 18–20 results each; median 651 ms (run A) and 621 ms (run B); range 433–3642 ms. DuckDuckGo answered a bot
+challenge on every query (~100–200 ms), so these are single-engine results. After roughly 45 Brave searches from one
+address inside an hour (several harness runs), Brave answered **429 with a captcha page, even with the ordinary UA**.
+So the falsifier holds for a burst of 12 and does not hold for harness-rate sustained use. What a person's real rate does
+(a deep turn issues several searches) is not measured.
+
+**Item 2 — INCOMPLETE; no verdict at n = 36.** Only 18 pages were tried (queries 1–6 of 12): 17 read, 1 refused
+(investopedia.com — it returned a 51-character shell on one run and a refusal on others). The three short reads (567, 540,
+259 chars) were judged from their text: two are Cornell LII definitions, one a LawShelf page that opens with a promo
+banner — real, short pages, not shells. The other six queries never got a search answer (item 1's 429), so their pages
+were not tried. To finish: once Brave has cooled, `FOLD_E2E_SKIP_SEARCH=1 FOLD_E2E_READS_FROM=6 node fold-ext-e2e.mjs`.
+
+**Item 3 — partly tripped.** The parser did not silently return 0, but a 429 captcha page was reported as
+"the page is large but nothing parsed — the engine's markup may have changed". In `searchDirect` the parser's `shape`
+wins over the HTTP status, so a rate limit (back off) and a markup change (fix the parser) read the same. Treat
+`r.status === 429`, or a challenge body, as `blocked` before looking at `shape`.
+
+Also measured: no request went through the relay or any public CORS proxy (18 hosts contacted in all: Brave, DuckDuckGo,
+Wikipedia, the pages read, the loopback bridge). Both engines are asked for every query, so DuckDuckGo sees each query
+too, even though it only ever answered with a challenge.
+
+---
+
+## Snippet-first: answer from the search snippets before opening any page (2026-10-05)
+
+A search engine's results are an index; each card carries the sentence around the hit. If the cards
+already hold the answer, a page read (a fetch, a parse, 1–2 s, a chance of refusal) buys nothing.
+
+### Development set (54 queries, DuckDuckGo from real Chromium, top 8 snippets each) — TUNED ON, not a test
+
+| | |
+|---|---|
+| Oracle: answer present in the top-8 snippets | **easy 35/35, hard 15/15** (includes es/fr/de/ja/ru/zh; deep facts like tungsten's melting point, the Bergen Kontor's closing year, Golden Gate rivets) |
+| R1 "tells" rule (question words that discriminate cards, ≥ 2 sites carry all) | fires 7/35 easy, 4/15 hard; 0/4 control false fires; one wrong |
+| A "agreement" rule (a term ≥ 3 sites share, rare across the other questions' cards) | fires on **everything incl. 4/4 controls** — padding, not discrimination → **falsified** |
+| A2 (agreement among **on-topic** cards only; common words dropped via the background corpus, no stoplist) | `3 sites, term ≤ 2%, question word rare ≤ 10%, on-topic ≥ 70%`: fires 23/35 easy + 7/15 hard (60% of answerable), right 29/30, **0/4 control false fires**. The one wrong answer: Spanish — "por" looks rare against an English-dominated background |
+
+Weakness found: the background corpus is language-specific. Thresholds were picked after seeing this data, so
+these numbers are optimistic and **cannot** be used to adopt anything.
+
+### HOLDOUT — pre-registered BEFORE any holdout query was run
+
+Frozen rule (`fold-chat-snippets.js`, A2): on-topic card = carries ≥ 70% of the question's words that are rare
+(≤ 10% of background cards); agreed term = a non-question word in ≥ 3 distinct sites' on-topic cards and ≤ 2% of
+background cards; handed = up to 5 distinct-site cards carrying the term. Background = the 54 development SERPs,
+**kept per language** (`detectLang` run on the question plus the cards' text — the question alone is too short for it: it calls "who wrote Moby Dick" unknown; decided before any holdout query ran); **abstain** (read pages as before) when the language is unknown or its
+background has fewer than 80 cards. 33 new queries, never seen: 24 English answerable (18 easy + 6 hard), 3 non-English
+answerable, 6 no-answer controls. Answer = a pre-written regex over the handed text.
+
+Snippet-first earns **default ON** only if ALL hold; any single failure keeps it off:
+- **S1** precision ≥ 90% (answer present in the handed text, among English answerable questions where it fires)
+- **S2** coverage ≥ 40% (fires on ≥ 40% of English answerable questions)
+- **S3** at most 1 of the 6 controls fires
+- **S4** the 3 non-English questions all abstain (the background for their languages is far under 80 cards)
+
+Not tested, so not claimed: pages the engines rank badly, questions whose answer is a long explanation, the
+quality of DuckDuckGo vs Brave snippets (collected from DuckDuckGo only, to spare Brave), anything outside this one hour.
+
+### HOLDOUT outcome (run once, frozen rule, frozen background, nothing tuned after seeing it)
+
+| criterion (pre-registered) | result | |
+|---|---|---|
+| **S1** precision ≥ 90% | **14 / 15 = 93.3%** | pass |
+| **S2** coverage ≥ 40% | **15 / 24 = 62.5%** of the English answerable questions | pass |
+| **S3** ≤ 1 of 6 controls fire | **0 / 6** | pass |
+| **S4** the 3 non-English questions abstain | **3 / 3** (no background for de/fr/es) | pass |
+
+All four hold, so by the standard written down before the run, snippet-first **earns** the right to be
+switched on. The code evaluated is a mechanical, comment-stripped copy of the shipped `fold-chat-snippets.js`
+(`experiments/benchmark/build-page-bundle.mjs`), run in the page that collected the results.
+
+**Audit** (done because "answer present" is a regex and some regexes are loose): for all 15 firing questions the
+handed cards were read. In the 14 counted as right the answer is stated in the card — "symbol Na", "four strings",
+"fell … 476", "273.15 K", "1 tablespoon equals exactly 3 teaspoons", "√144 = 12", "about 1455", "1538°C",
+"15 June 1215", Portuguese/yen/Rembrandt/Vivaldi/Nairobi. No credit was incidental. Note the agreed *term* is often
+not the answer ("chart", "languages", "answer") — the rule picks the on-topic cards by the term; the answer rides
+along in them.
+
+**The one failure, and what it means:** *"what is the half-life of uranium-238"* fired on the term "mode" and
+handed four cards that never state the answer (4.5 billion years); the answer was not in the top-8 snippets at all
+(oracle ✗) — the one holdout question where it wasn't. The rule cannot see that: it checks that independent sites
+agree on a rare word about the topic, not that the answer is present. With snippet-first on, such a turn is answered
+from cards that do not hold the answer (the fold's grounding check will say the sources do not state it) where a
+page read might have found it. That is the price: roughly 1 in 15 firing turns.
+
+**What changed in the code:** `fold-chat-snippets.js` (the rule, a per-language background, abstain when the
+language has < 80 cards of background), `fold-chat-snippets-seed.js` (365 English cards' word counts),
+`searchWeb({ snippetFirst })` (judges web-engine cards only; the tab's background learns each SERP after it is judged; `deep`
+always reads), the experiment harness under `experiments/benchmark/`.
+
+### Why it is still OFF by default
+
+- Both runs used **DuckDuckGo** snippets. The extension asks **Brave** first and usually gets its answer first. Brave's
+  snippets (longer, often date-prefixed) were not measured, so enabling this on the main path would apply an
+  unmeasured rule to most traffic. Next test: the same holdout from Brave, ~35 searches — and Brave throttles at ~45/hour
+  from one address, so it must be coordinated with the extension session that also needs Brave.
+- 33 holdout queries; 95% interval on 14/15 is roughly 70–99%. Famous-ish facts, English, one afternoon.
+- The failure above is silent on the card side. Reasonable mitigations before enabling: show the person that the answer
+  came from search snippets (the passages are already labelled `snippetOnly`), and offer "read the pages".
+- Cold start: only English has a seed. Any other language reads pages until its background reaches 80 cards.
+
+**To switch it on:** `searchWeb(q, { snippetFirst: true, memo })` with `memo = makeMemo()` (seeded). Nothing else.
+
+**Dev-set false start, kept for the record:** the first rule (R1, "question words that tell cards apart") fired on 20% of
+questions — on real result sets the topic word is in most snippets, so nothing "tells". The first agreement rule
+fired on all four controls (padding). Both were falsified on the development set before the holdout was written.

@@ -1,0 +1,380 @@
+[
+ {
+  "id": "cap-au",
+  "q": "what is the capital of Australia",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Canberra"
+ },
+ {
+  "id": "cap-ca",
+  "q": "what is the capital of Canada",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Ottawa"
+ },
+ {
+  "id": "wall",
+  "q": "what year did the Berlin Wall fall",
+  "lang": "en",
+  "kind": "fact",
+  "re": "1989"
+ },
+ {
+  "id": "boil-f",
+  "q": "what is the boiling point of water at sea level in fahrenheit",
+  "lang": "en",
+  "kind": "number",
+  "re": "212"
+ },
+ {
+  "id": "pride",
+  "q": "who wrote Pride and Prejudice",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Austen"
+ },
+ {
+  "id": "everest",
+  "q": "how tall is Mount Everest",
+  "lang": "en",
+  "kind": "number",
+  "re": "8,?84[89]|29,03[0-9]|29,032"
+ },
+ {
+  "id": "bones",
+  "q": "how many bones are in the adult human body",
+  "lang": "en",
+  "kind": "number",
+  "re": "206"
+ },
+ {
+  "id": "light",
+  "q": "what is the speed of light in kilometers per second",
+  "lang": "en",
+  "kind": "number",
+  "re": "299,?792|300,000"
+ },
+ {
+  "id": "hansa",
+  "q": "when did the Hanseatic League dissolve",
+  "lang": "en",
+  "kind": "fact",
+  "re": "1669|1862"
+ },
+ {
+  "id": "mona",
+  "q": "who painted the Mona Lisa",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Leonardo"
+ },
+ {
+  "id": "gold",
+  "q": "what is the atomic number of gold",
+  "lang": "en",
+  "kind": "number",
+  "re": "\\b79\\b"
+ },
+ {
+  "id": "penicillin",
+  "q": "who discovered penicillin",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Fleming"
+ },
+ {
+  "id": "ww2",
+  "q": "when did World War II end",
+  "lang": "en",
+  "kind": "fact",
+  "re": "1945"
+ },
+ {
+  "id": "jupiter",
+  "q": "what is the largest planet in the solar system",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Jupiter"
+ },
+ {
+  "id": "phone",
+  "q": "who invented the telephone",
+  "lang": "en",
+  "kind": "fact",
+  "re": "Bell"
+ },
+ {
+  "id": "chromo",
+  "q": "how many chromosomes do humans have",
+  "lang": "en",
+  "kind": "number",
+  "re": "46|23 pairs"
+ },
+ {
+  "id": "titanic",
+  "q": "what year did the Titanic sink",
+  "lang": "en",
+  "kind": "fact",
+  "re": "1912"
+ },
+ {
+  "id": "soccer",
+  "q": "how many players are on the field for one soccer team",
+  "lang": "en",
+  "kind": "number",
+  "re": "\\b11\\b|eleven"
+ },
+ {
+  "id": "http404",
+  "q": "what does HTTP status 404 mean",
+  "lang": "en",
+  "kind": "definition",
+  "re": "not found"
+ },
+ {
+  "id": "egg",
+  "q": "how long to hard boil an egg",
+  "lang": "en",
+  "kind": "howto",
+  "re": "(9|10|11|12|13)\\s*(?:-|–|to)?\\s*(?:\\d+\\s*)?min"
+ },
+ {
+  "id": "nash",
+  "q": "what was the population of Nashville in the 2020 census",
+  "lang": "en",
+  "kind": "number",
+  "re": "689,?447|689,"
+ },
+ {
+  "id": "rivets",
+  "q": "how many rivets does the Eiffel Tower have",
+  "lang": "en",
+  "kind": "number",
+  "re": "2\\.5 million|2,500,000|18,038"
+ },
+ {
+  "id": "tides",
+  "q": "what causes ocean tides",
+  "lang": "en",
+  "kind": "definition",
+  "re": "moon|gravit"
+ },
+ {
+  "id": "gitundo",
+  "q": "how to undo the last git commit",
+  "lang": "en",
+  "kind": "howto",
+  "re": "git reset|git revert|--soft"
+ },
+ {
+  "id": "pypdf",
+  "q": "python library for parsing pdf",
+  "lang": "en",
+  "kind": "tool",
+  "re": "PyPDF|pdfplumber|PyMuPDF|pdfminer"
+ },
+ {
+  "id": "rustHttp",
+  "q": "rust crate for async http client",
+  "lang": "en",
+  "kind": "tool",
+  "re": "reqwest|hyper|ureq|surf"
+ },
+ {
+  "id": "creatine",
+  "q": "does creatine cause kidney damage",
+  "lang": "en",
+  "kind": "health",
+  "re": "kidney"
+ },
+ {
+  "id": "es-cap",
+  "q": "¿cuál es la capital de Australia?",
+  "lang": "es",
+  "kind": "fact",
+  "re": "Canberra"
+ },
+ {
+  "id": "fr-mona",
+  "q": "qui a peint la Joconde ?",
+  "lang": "fr",
+  "kind": "fact",
+  "re": "Vinci|L[ée]onard"
+ },
+ {
+  "id": "de-wall",
+  "q": "wann fiel die Berliner Mauer",
+  "lang": "de",
+  "kind": "fact",
+  "re": "1989"
+ },
+ {
+  "id": "ja-cap",
+  "q": "日本の首都はどこですか",
+  "lang": "ja",
+  "kind": "fact",
+  "re": "東京"
+ },
+ {
+  "id": "ru-cap",
+  "q": "какая столица Австралии",
+  "lang": "ru",
+  "kind": "fact",
+  "re": "Канберр"
+ },
+ {
+  "id": "zh-eiffel",
+  "q": "埃菲尔铁塔有多高",
+  "lang": "zh",
+  "kind": "number",
+  "re": "330|324|300"
+ },
+ {
+  "id": "es-wall",
+  "q": "¿en qué año cayó el muro de Berlín?",
+  "lang": "es",
+  "kind": "fact",
+  "re": "1989"
+ },
+ {
+  "id": "fr-cap",
+  "q": "quelle est la capitale du Canada",
+  "lang": "fr",
+  "kind": "fact",
+  "re": "Ottawa"
+ },
+ {
+  "id": "h-tungsten",
+  "q": "what is the melting point of tungsten in celsius",
+  "lang": "en",
+  "kind": "hard",
+  "re": "3,?422"
+ },
+ {
+  "id": "h-c14",
+  "q": "what is the half-life of carbon-14",
+  "lang": "en",
+  "kind": "hard",
+  "re": "5,?730"
+ },
+ {
+  "id": "h-sanger",
+  "q": "who won the 1958 Nobel Prize in Chemistry",
+  "lang": "en",
+  "kind": "hard",
+  "re": "Sanger"
+ },
+ {
+  "id": "h-westph",
+  "q": "when was the Treaty of Westphalia signed",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1648"
+ },
+ {
+  "id": "h-pompeii",
+  "q": "which Roman emperor ruled when Pompeii was destroyed",
+  "lang": "en",
+  "kind": "hard",
+  "re": "Titus"
+ },
+ {
+  "id": "h-bergen",
+  "q": "when did the Hanseatic Kontor in Bergen close",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1754"
+ },
+ {
+  "id": "h-holsten",
+  "q": "when was the Holstentor in Lübeck completed",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1478"
+ },
+ {
+  "id": "h-gg",
+  "q": "how many rivets are in the Golden Gate Bridge",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1\\.2 million|1,200,000"
+ },
+ {
+  "id": "h-metro",
+  "q": "when was the Metropolitan Government of Nashville and Davidson County established",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1963"
+ },
+ {
+  "id": "h-ryman",
+  "q": "what year was the Ryman Auditorium completed",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1892"
+ },
+ {
+  "id": "h-mariana",
+  "q": "how deep is the Challenger Deep in the Mariana Trench",
+  "lang": "en",
+  "kind": "hard",
+  "re": "10,?9[0-9]{2}|11,0[0-9]{2}|10,?935|10,?984"
+ },
+ {
+  "id": "h-n2",
+  "q": "what is the boiling point of liquid nitrogen in kelvin",
+  "lang": "en",
+  "kind": "hard",
+  "re": "77(\\.\\d+)?\\s*K|77\\.3"
+ },
+ {
+  "id": "h-sugar",
+  "q": "what is the chemical formula of table sugar sucrose",
+  "lang": "en",
+  "kind": "hard",
+  "re": "C12H22O11|C₁₂H₂₂O₁₁"
+ },
+ {
+  "id": "h-steps",
+  "q": "how many steps does the Eiffel Tower have to the top",
+  "lang": "en",
+  "kind": "hard",
+  "re": "1,?665|1,?710|674|1,?792"
+ },
+ {
+  "id": "h-messner",
+  "q": "who first climbed Everest without supplemental oxygen",
+  "lang": "en",
+  "kind": "hard",
+  "re": "Messner|Habeler"
+ },
+ {
+  "id": "n-hansa",
+  "q": "how many rivets does the Hanseatic League have",
+  "lang": "en",
+  "kind": "control",
+  "re": "(?!)"
+ },
+ {
+  "id": "n-antarctica",
+  "q": "who was the first emperor of Antarctica",
+  "lang": "en",
+  "kind": "control",
+  "re": "(?!)"
+ },
+ {
+  "id": "n-moon",
+  "q": "what is the capital city of the Moon",
+  "lang": "en",
+  "kind": "control",
+  "re": "(?!)"
+ },
+ {
+  "id": "n-mars",
+  "q": "what year did Napoleon land on Mars",
+  "lang": "en",
+  "kind": "control",
+  "re": "(?!)"
+ }
+]

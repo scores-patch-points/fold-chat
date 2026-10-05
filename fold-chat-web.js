@@ -16,6 +16,8 @@ import { impressionOf } from "./fold-chat-impression.js";
 import { declaredBlocksFromHtml } from "./fold-chat-strand.js";
 import { searchDirect } from "./fold-chat-engines.js";
 import { isExtension } from "./fold-chat-exit.js";
+import { snippetsSufficient, snippetPassages, makeBackground, learnBackground, languageOf } from "./fold-chat-snippets.js";
+import SNIPPET_SEED from "./fold-chat-snippets-seed.js";
 import { routeSources, probeSources, noteRateLimited, coolingDown, isRateLimitError } from "./fold-chat-route.js";
 
 export const SCOPES = Object.freeze([
@@ -276,7 +278,7 @@ export function recipeFromHtml(raw) {
 // THE LIBRARIAN'S MEMORY. A tab keeps what it has already read (a follow-up about the
 // same pages costs no fetch) and which hosts turned it away through every door (they
 // are not tried again for a while). The caller owns it: pass one `memo` per tab.
-export function makeMemo() { return { pages: new Map(), dead: new Map() }; }
+export function makeMemo({ backgroundSeed = SNIPPET_SEED } = {}) { return { pages: new Map(), dead: new Map(), background: makeBackground(backgroundSeed) }; }
 export const MEMO_TTL_MS = 10 * 60 * 1000;
 export const DEAD_HOST_MS = 5 * 60 * 1000;
 export const MEMO_MAX_PAGES = 40;
@@ -595,7 +597,7 @@ export function resolveEffort({ original = null, composer = "balanced", changed 
  *  read is replaced by the next candidate rather than left as a hole. Declared, not measured: the 2026-10-05
  *  recipe trace lost 2 of its first 3 reads to a paywall. */
 const EXTRA_CANDIDATES = 4;
-export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read = EFFORT.balanced.read, effort = "balanced", perScope = 4, fetchImpl = fetch, onStep = null, route = true, memo = null, webBudgetMs = WEB_BUDGET_MS, direct = isExtension() } = {}) {   // as the extension: asked directly, no relay, no proxy, no reader
+export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read = EFFORT.balanced.read, effort = "balanced", perScope = 4, fetchImpl = fetch, onStep = null, route = true, memo = null, webBudgetMs = WEB_BUDGET_MS, direct = isExtension(), snippetFirst = false } = {}) {   // as the extension: asked directly, no relay, no proxy, no reader
   const cfg = EFFORT[effort] || EFFORT.balanced;
   scopes = cfg.scopes;
   read = cfg.read;
@@ -728,6 +730,24 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   const reads = [];
   const CONC = 3;
   let okReads = 0, nextIdx = 0;
+  // THE CATALOG CARD BEFORE THE BOOK (off by default until experiments/source-routing/RESULTS.md says it earns
+  // its place): when independent sites' own snippets agree on a rare term about what the ask is about, the cards
+  // are handed over as snippets and no page is fetched. Only the web engines' cards are judged (that is what was
+  // measured); the tab's background memory learns the SERP AFTER it is judged. `deep` always reads.
+  {
+    const cards = results.filter((r) => r.kind === "web");
+    const bg = memo && memo.background;
+    if (cards.length && (snippetFirst || bg)) {
+      const sf = snippetFirst && effort !== "deep" ? snippetsSufficient(cards, query, { background: bg }) : null;
+      if (sf) trace.push({ scope: "snippets", ok: true, engine: "catalog cards", sufficient: sf.sufficient, abstained: sf.abstained, why: sf.why, hosts: sf.hosts, lang: sf.lang, term: sf.term });
+      if (bg) learnBackground(bg, sf ? sf.lang : languageOf(query, cards), cards);
+      if (sf && sf.sufficient) {
+        const passages = snippetPassages(sf.covering);
+        for (const p of passages) step({ phase: "snippet", url: p.url, site: p.source, title: p.ref });
+        return { results, passages, trace };
+      }
+    }
+  }
   const worker = async () => {
     while (okReads < want && nextIdx < chosen.length) {
       const i = nextIdx++;

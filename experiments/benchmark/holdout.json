@@ -1,0 +1,233 @@
+[
+ {
+  "id": "o-sodium",
+  "q": "what is the chemical symbol for sodium",
+  "re": "\\bNa\\b",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-moby",
+  "q": "who wrote the novel Moby Dick",
+  "re": "Melville",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-chern",
+  "q": "in what year did the Chernobyl disaster happen",
+  "re": "1986",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-violin",
+  "q": "how many strings does a standard violin have",
+  "re": "\\b(four|4)\\b",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-kenya",
+  "q": "what is the capital of Kenya",
+  "re": "Nairobi",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-relat",
+  "q": "who developed the theory of general relativity",
+  "re": "Einstein",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-ocean",
+  "q": "what is the largest ocean on Earth",
+  "re": "Pacific",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-rome",
+  "q": "when did the Western Roman Empire fall",
+  "re": "476",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-hobbit",
+  "q": "who is the author of The Hobbit",
+  "re": "Tolkien",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-kelvin",
+  "q": "what is the freezing point of water in Kelvin",
+  "re": "273",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-brazil",
+  "q": "what language is spoken in Brazil",
+  "re": "Portuguese",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-tsp",
+  "q": "how many teaspoons are in a tablespoon",
+  "re": "\\b3\\b|three",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-moon",
+  "q": "what year did humans first land on the Moon",
+  "re": "1969",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-sqrt",
+  "q": "what is the square root of 144",
+  "re": "\\b12\\b|twelve",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-vivaldi",
+  "q": "who composed The Four Seasons",
+  "re": "Vivaldi",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-cont",
+  "q": "how many continents are there",
+  "re": "\\b7\\b|seven",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-diamond",
+  "q": "what is the hardest natural substance",
+  "re": "diamond",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-yen",
+  "q": "what is the currency of Japan",
+  "re": "\\byen\\b",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-u238",
+  "q": "what is the half-life of uranium-238",
+  "re": "4\\.5 billion|4\\.468|4,468",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-gutenberg",
+  "q": "when was the Gutenberg Bible printed",
+  "re": "145[0-5]",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-utzon",
+  "q": "who designed the Sydney Opera House",
+  "re": "Utzon",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-iron",
+  "q": "what is the melting point of iron in celsius",
+  "re": "1,?53[0-9]",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-nightwatch",
+  "q": "who painted The Night Watch",
+  "re": "Rembrandt",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-magna",
+  "q": "what year was the Magna Carta sealed",
+  "re": "1215",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-de",
+  "q": "wer schrieb Faust",
+  "re": "Goethe",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-fr",
+  "q": "quelle est la capitale du Brésil",
+  "re": "Bras[ií]lia",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "o-es",
+  "q": "¿quién escribió Don Quijote?",
+  "re": "Cervantes",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "oc-greenland",
+  "q": "who was the first emperor of Greenland",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "oc-atlantis",
+  "q": "what is the capital city of Atlantis",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "oc-roman",
+  "q": "how many rivets does the Roman Empire have",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "oc-cleo",
+  "q": "what year did Cleopatra land on Mercury",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "oc-2077",
+  "q": "who won the Nobel Prize in Chemistry in 2077",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "oc-pancake",
+  "q": "what is the airspeed velocity of a pancake",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ }
+]
