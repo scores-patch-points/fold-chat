@@ -27,6 +27,14 @@ Still untested: a *service-worker / extension-page* fetch with host permissions 
 Origin) rather than a same-origin page fetch in Chromium. The numbers say it should work; the only way to
 know is to run `experiments/source-routing/` equivalents inside the loaded extension.
 
+> **Caveat on H1 (added later, from the khora language session).** The surf's failure was measured against the reader as it was:
+> beings need a recurrence floor (2+ arrivals plus keyness in the caseless tier) before they exist, and `/api/read` returned no
+> mention addresses. The khora's position is that *a name is known by its effect on the record, not by capitals or recurrence* —
+> a once-mentioned being is still a being, and a surface-projected mention book that drops once-mentioned names or pronoun-only
+> sentences under-counts exactly the beings the holograph treats as real. That floor is slated to change. So H1 is falsified **for
+> that reader and that door**, not for the surf: the 3/7 includes the very misses (rivets, "dissolve") that such a floor would
+> cause. Re-run `experiments/` F1–F4 unchanged when the khora lands the change and the heimdall door returns mention addresses.
+
 ## Where a real turn's time goes (one 28 s turn, relay transport)
 
 | time | what |
