@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { search, readText, searchWeb, SCOPES, queriesFor, onTopic } from "./fold-chat-web.js";
+import { search, readText, searchWeb, SCOPES, queriesFor, onTopic, EFFORT, EFFORT_LEVELS, normEffort, effortOfTurn, resolveEffort } from "./fold-chat-web.js";
 
 const resp = (body, { ok = true, status = 200 } = {}) => ({
   ok, status, json: async () => body, text: async () => (typeof body === "string" ? body : JSON.stringify(body)),
@@ -71,13 +71,14 @@ test("readText: a page only a text reader can read is marked as the reader", asy
 
 test("searchWeb merges scopes, reads the top hits into passages, and traces every step", async () => {
   const f = async (url) => {
-    if (/en\.wikipedia\.org/.test(url)) return resp({ query: { search: [{ title: "Fold", snippet: "s", wordcount: 1 }] } });
-    if (/api\.github\.com/.test(url)) return resp({ total_count: 1, items: [{ full_name: "a/b", html_url: "https://github.com/a/b", description: "d", stargazers_count: 1 }] });
+    if (/en\.wikipedia\.org\/w\/api/.test(url)) return resp({ query: { search: [{ title: "Fold", snippet: "s", wordcount: 1 }] } });
+    if (/api\.github\.com/.test(url)) return resp({ total_count: 1, items: [{ full_name: "a/b", html_url: "https://github.com/a/b", description: "the fold, a small library", stargazers_count: 1 }] });
     if (/archive\.org/.test(url)) return resp({ response: { numFound: 0, docs: [] } });
     if (/openalex\.org/.test(url)) return resp({ meta: { count: 0 }, results: [] });
     if (/crossref\.org/.test(url)) return resp({ message: { "total-results": 0, items: [] } });
+    if (/holodeck-proxy.*\/search/.test(url)) return resp({ engine: "DuckDuckGo", results: [{ title: "The fold", url: "https://example.org/fold", snippet: "the fold", source: "example.org" }] });
     // page reads
-    if (/wikipedia\.org\/wiki|github\.com\/a\/b/.test(url)) return resp("<title>T</title><p>" + "body ".repeat(50) + "</p>");
+    if (/wikipedia\.org\/wiki|github\.com\/a\/b|example\.org\/fold/.test(url)) return resp("<title>T</title><p>" + "body ".repeat(50) + "</p>");
     throw new Error("no route " + url);
   };
   const out = await searchWeb("the fold", { fetchImpl: f, read: 2 });
@@ -110,4 +111,39 @@ test("effort levers: fast reads fewer sources, deep reads more and strict-gates"
   assert.ok(fast.passages.length >= 1, "fast still reads");
   const deep = await searchWeb("find the relationship between Judy and Zachary Liff from Nashville", { fetchImpl: f, effort: "deep" });
   assert.ok(deep.passages.every((p) => /whitepages/.test(p.ref)), "deep strict gate reads only the people record, skips the film");
+});
+
+test("effort levels: the menu lists exactly the levers searchWeb knows", () => {
+  assert.deepEqual(EFFORT_LEVELS.map((l) => l.key), Object.keys(EFFORT));
+  assert.equal(normEffort("deep"), "deep");
+  assert.equal(normEffort("bogus"), "balanced");
+  assert.equal(normEffort("toString"), "balanced", "inherited keys are not levels");
+  assert.equal(normEffort(undefined, null), null);
+});
+
+test("effortOfTurn reads the turn's own record, from either side of the pair", () => {
+  const msgs = [
+    { role: "user", content: "a", effort: "fast" },
+    { role: "assistant", content: "A", grounding: { effort: "fast" } },
+    { role: "user", content: "b" },                                  // legacy: no effort field
+    { role: "assistant", content: "B", grounding: { effort: "deep" } },
+    { role: "user", content: "hi" },                                 // greeting: no record
+    { role: "assistant", content: "hello", grounding: null },
+  ];
+  assert.equal(effortOfTurn(msgs, 0), "fast");
+  assert.equal(effortOfTurn(msgs, 1), "fast");
+  assert.equal(effortOfTurn(msgs, 2), "deep", "a legacy ask takes the effort its answer recorded");
+  assert.equal(effortOfTurn(msgs, 3), "deep");
+  assert.equal(effortOfTurn(msgs, 4), null);
+  assert.equal(effortOfTurn(msgs, 5), null);
+  assert.equal(effortOfTurn(msgs, 99), null);
+  assert.equal(effortOfTurn(null, 0), null);
+});
+
+test("resolveEffort: a re-run keeps the original turn's effort unless the control was moved", () => {
+  assert.equal(resolveEffort({ original: "fast", composer: "deep", changed: false }), "fast");
+  assert.equal(resolveEffort({ original: "fast", composer: "deep", changed: true }), "deep");
+  assert.equal(resolveEffort({ original: null, composer: "deep" }), "deep", "a fresh send takes the composer");
+  assert.equal(resolveEffort({ original: "nonsense", composer: "fast" }), "fast");
+  assert.equal(resolveEffort({}), "balanced");
 });
