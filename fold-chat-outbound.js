@@ -86,7 +86,7 @@ export function createOutbound({ storage = null, key = "fold-chat:outbound", max
     /** The one-line truth, computed from the ledger and never asserted. */
     summary(list = entries) {
       const hosts = new Map();
-      const levels = { gate: 0, abstract: 0, worlds: 0, direct: 0 };
+      const levels = { gate: 0, masked: 0, abstract: 0, worlds: 0, direct: 0 };
       let leaks = 0, bytes = 0, unverified = 0, mismatched = 0;
       for (const e of list) {
         const h = hosts.get(e.host || "?") || { host: e.host || "?", requests: 0, bytes: 0 }; h.requests++; h.bytes += e.bytes; hosts.set(e.host || "?", h);
@@ -95,7 +95,7 @@ export function createOutbound({ storage = null, key = "fold-chat:outbound", max
         if (e.via === "heimdall") { if (!e.verification) unverified++; else if (e.verification.verified === false) mismatched++; }
       }
       const sealed = list.filter((e) => e.grade.sealed).length;
-      return { requests: list.length, hosts: [...hosts.values()], levels, sealed, raw: list.length - sealed, leaks, bytes, unverified, mismatched };
+      return { requests: list.length, hosts: [...hosts.values()], levels, sealed, raw: list.filter((e) => e.grade.raw).length, leaks, bytes, unverified, mismatched };
     },
     /** Everything, as JSON a person can keep: the exact content, grades and verifications. Credentials never enter it. */
     exportJson(list = entries) { return JSON.stringify({ exportedAt: now(), summary: api.summary(list), entries: list }, null, 2); },
@@ -109,6 +109,7 @@ export function describeSummary(s) {
   const parts = [`${s.requests} request${s.requests === 1 ? "" : "s"} left this machine`, `${s.hosts.length} host${s.hosts.length === 1 ? "" : "s"}`, formatBytes(s.bytes)];
   const lv = [];
   if (s.levels.worlds) lv.push(`${s.levels.worlds} as possible worlds`);
+  if (s.levels.masked) lv.push(`${s.levels.masked} with private details masked`);
   if (s.levels.abstract) lv.push(`${s.levels.abstract} abstracted`);
   if (s.levels.gate) lv.push(`${s.levels.gate} as raw content under the gate`);
   if (s.levels.direct) lv.push(`${s.levels.direct} direct from this page (not through heimdall)`);

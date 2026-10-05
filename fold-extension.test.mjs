@@ -47,10 +47,19 @@ test("manifest: the extension-page CSP allows no inline script, no eval, no remo
   assert.ok(!/unsafe-inline|unsafe-eval|https?:|\*/.test(csp), csp);
 });
 
+test("manifest: the artifact sandbox page gets a relaxed CSP of its own, with no remote code and no wildcard", () => {
+  assert.deepEqual(manifest.sandbox.pages, ["fold-sandbox.html"]);
+  const csp = manifest.content_security_policy.sandbox;
+  assert.match(csp, /^sandbox allow-scripts;/);
+  assert.match(csp, /script-src 'self' 'unsafe-inline' 'unsafe-eval'/);
+  assert.ok(!/https?:|\*|data:|blob:/.test(csp), csp);
+  assert.match(manifest.content_security_policy.extension_pages, /^script-src 'self'/, "the sandbox's looseness never reaches the pages that hold the person's chats");
+});
+
 test("package: every page is clean under that CSP and every import resolves — no problems", () => {
   const { problems, files } = collect(ROOT, manifest);
   assert.deepEqual(problems, []);
-  for (const f of ["manifest.json", "index.html", "fold-boot.js", "fold-exit-install.js", "fold-theme-boot.js", "fold-chat.js", "fold-chat-exit.js", "fold-chat-web.js", "fold-chat-engines.js", "fold-background.js", "fold-options.html", "fold-options.js"]) assert.ok(files.includes(f), f + " ships");
+  for (const f of ["manifest.json", "index.html", "fold-boot.js", "fold-exit-install.js", "fold-theme-boot.js", "fold-chat.js", "fold-chat-exit.js", "fold-chat-web.js", "fold-chat-engines.js", "fold-background.js", "fold-options.html", "fold-options.js", "fold-sandbox.html", "fold-sandbox.js", "fold-chat-sandframe.js"]) assert.ok(files.includes(f), f + " ships");
 });
 
 test("package: tests, eval output, experiments and dependencies are not shipped", () => {

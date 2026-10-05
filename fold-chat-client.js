@@ -35,6 +35,9 @@ function anySignal(signals) {
   return ctl.signal;
 }
 
+import { createDeid, namesIn } from "./fold-chat-deid.js";
+import { informalTerms } from "./fold-chat-informal.js";
+
 /** Where heimdall is looked for, in order. A caller's stored/override base is
  *  tried first, then the standard local port on both names. */
 export const BRIDGE_CANDIDATES = Object.freeze([
@@ -231,6 +234,15 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
     err.status = 400;
     throw err;
   }
+  // A 403 from the bridge is a GATE speaking (e.g. the safety-and-ethics gate): carry its own words, so the turn's
+  // typed failure note says WHY instead of "answered 403".
+  if (res.status === 403) {
+    let msg = "heimdall refused the request";
+    try { const j = await res.json(); msg = (typeof j?.error === "string" ? j.error : j?.error?.message) || msg; } catch {}
+    const err = new Error(msg);
+    err.status = 403;
+    throw err;
+  }
   if (!res.ok || !res.body) {
     const err = new Error("heimdall bridge answered " + res.status);
     err.status = res.status;
@@ -320,6 +332,73 @@ export async function setProviderKey(provider, key, { base = null, remove = fals
 /** Remove a stored provider key from this machine. */
 export function removeProviderKey(provider, { base = null, fetchImpl = fetch } = {}) {
   return setProviderKey(provider, null, { base, remove: true, fetchImpl });
+}
+
+/** "Test again": heimdall re-tests the key it ALREADY holds (this page never has it)
+ *  and answers in plain words. Same shape as setProviderKey. A heimdall that predates
+ *  the check rejects with status 404. */
+export async function testProviderKey(provider, { base = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/providers/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ provider }) });
+  if (!r.ok) {
+    let msg = "heimdall could not test the key";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Ask a running heimdall to load the keys it already holds (key-free). Resolves
+ *  { ok, models } or rejects with status 404 when that heimdall is too old to know how. */
+export async function reloadProviderKeys({ base = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/providers/refresh", { method: "POST" });
+  if (!r.ok) { const err = new Error("heimdall could not reload its keys"); err.status = r.status; throw err; }
+  return r.json();
+}
+
+const PROVIDER_NAMES = { anthropic: "Anthropic", openai: "OpenAI" };
+const providerLabel = (p) => PROVIDER_NAMES[p] || (p ? p[0].toUpperCase() + p.slice(1) : "The provider");
+
+/** Where one provider's key stands, from the app's point of view: is a key stored,
+ *  and has the running heimdall LOADED it (does the model list show a sealed model
+ *  from that provider)? A key can be saved yet not loaded — a heimdall that started
+ *  before the key, or one that could not reload. Pure.
+ *  Returns { state: "not_saved" | "saved_not_loaded" | "loaded", models: [ids], masked } */
+export function keyLoadState(provider, { stored = [], models = [] } = {}) {
+  const entry = (Array.isArray(stored) ? stored : []).find((p) => p?.provider === provider && p.set !== false);
+  const mine = (Array.isArray(models) ? models : []).filter((m) => m?.sealed && m.provider === provider).map((m) => m.id);
+  if (mine.length) return { state: "loaded", models: mine, masked: entry?.masked || "" };
+  return { state: entry ? "saved_not_loaded" : "not_saved", models: [], masked: entry?.masked || "" };
+}
+
+/** Plain-language result of adding (or re-testing) a key, for the settings panel.
+ *  heimdall writes the wording itself (its `report`); this adds the one thing only the
+ *  app can know — whether its own model list now shows the provider — and covers a
+ *  heimdall too old to test. `models` is the app's refreshed model list.
+ *  Returns { tone: "ok"|"warn"|"bad", headline, lines: [string], ok }. Never contains a key. */
+export function describeKeyResult(provider, resp, { models = null } = {}) {
+  const name = providerLabel(provider);
+  const rep = resp?.report;
+  if (!rep) {
+    // An older heimdall: it stored the key but cannot test it or say what loaded.
+    const n = Number(resp?.frontierModels) || 0;
+    const lines = [
+      `Saved on this computer${resp?.masked ? ` (${resp.masked})` : ""}. This heimdall is an older version, so it cannot test the key or say what it unlocked.`,
+      n > 0
+        ? `It reports ${n} outside model${n === 1 ? "" : "s"} reachable now. Look under "Frontier · sealed" in the model list.`
+        : `It is not offering any ${name} model yet. Restart heimdall (stop it, then: heimdall up) so it loads the key. The key is saved, nothing is lost.`,
+    ];
+    return { tone: "warn", headline: `${name} key saved, but it was not tested`, lines, ok: false };
+  }
+  const lines = [...(rep.lines || [])];
+  let tone = rep.tone || (rep.ok ? "ok" : "warn");
+  if (rep.ok && Array.isArray(models)) {
+    const seen = models.filter((m) => m?.sealed && m.provider === provider);
+    if (!seen.length) {
+      tone = "warn";
+      lines.push(`The key works, but this page's model list does not show any ${name} model yet. Press "Detect" next to the heimdall address, or reload the page.`);
+    }
+  }
+  return { tone, headline: rep.headline || `${name} key`, lines, ok: !!rep.ok && tone === "ok" };
 }
 
 /** Split a machine-door answer into prose and any TOOL CALLS the door returned
@@ -518,12 +597,31 @@ const NOT_A_CODE_WRITER = /voxtral|lunaris|whisper|tts|image|chroma|embed|rolepl
 // order and keeps the first that does.
 const REMOTE_PREFERENCE = [/^openai-fast$/, /^GLM-[\d.]+-Flash$/i, /^pollinations:openai-fast$/, /claude.*haiku/i, /deepseek.*flash/i, /sonnet/i];
 
-/** The sealed remote models worth trying for a code draw, best first. Pure. */
-export function remoteCandidates(models) {
+// What a remote model did the last time it was asked, kept for this page's life so the app stops asking the same dead door.
+// A 404 means the bridge does not actually serve it (it only LISTS it): skip for 30 minutes. A timeout or an empty answer is
+// worth another go soon: 5 minutes. The model that last answered goes first.
+const modelHealth = new Map();   // id → { until, why }
+let lastGoodModel = null;
+export function noteModelHealth(model, outcome, { now = Date.now() } = {}) {
+  if (outcome === "ok") { lastGoodModel = model; modelHealth.delete(model); return; }
+  const ms = outcome === "404" || outcome === "quota" ? 30 * 60_000 : 5 * 60_000;   // not served / out of daily quota: no point asking again soon
+  modelHealth.set(model, { until: now + ms, why: outcome });
+}
+export function resetModelHealth() { modelHealth.clear(); lastGoodModel = null; }
+export const outcomeOfError = (e) => { const m = String(e?.message || e); return /\b404\b/.test(m) ? "404" : /\b429\b|quota|rate.?limit/i.test(m) ? "quota" : /timed out|timeout/i.test(m) ? "timeout" : "error"; };
+
+/** The sealed remote models worth trying for a code draw, best first. Pure (the memory above is read, never written, here).
+ *  `provider:model` and the bare `model` are one endpoint under two names — only one is kept. */
+export function remoteCandidates(models, { now = Date.now() } = {}) {
   const sealed = (Array.isArray(models) ? models : []).filter((m) => m && m.sealed && !NOT_A_CODE_WRITER.test(String(m.id)));
+  const ids = new Set(sealed.map((m) => String(m.id)));
+  const bare = (id) => (id.includes(":") && !/^[^:]*\d/.test(id) ? id.slice(id.indexOf(":") + 1) : id);   // "pollinations:openai-fast" → "openai-fast"; "gemma4:31b" keeps its tag
+  const unique = sealed.filter((m) => { const id = String(m.id); const b = bare(id); return b === id || !ids.has(b); });
+  const alive = unique.filter((m) => { const h = modelHealth.get(String(m.id)); return !h || h.until <= now; });
   const ranked = [];
-  for (const re of REMOTE_PREFERENCE) for (const m of sealed) if (re.test(String(m.id)) && !ranked.includes(m.id)) ranked.push(m.id);
-  for (const m of sealed) if (!ranked.includes(m.id)) ranked.push(m.id);
+  if (lastGoodModel && alive.some((m) => m.id === lastGoodModel)) ranked.push(lastGoodModel);
+  for (const re of REMOTE_PREFERENCE) for (const m of alive) if (re.test(String(m.id)) && !ranked.includes(m.id)) ranked.push(m.id);
+  for (const m of alive) if (!ranked.includes(m.id)) ranked.push(m.id);
   return ranked;
 }
 
@@ -532,14 +630,45 @@ const REMOTE_CODE_SYSTEM = "You are a careful senior engineer. Do exactly what t
 /** One sealed remote draw for a code task. Tries `candidates` in order — each
  *  with its own short deadline — and returns the first that answers:
  *  { text, model, tried:[{model, error}] }. `prior` is the previous attempt's
- *  code (a repair carries it, so the remote model fixes rather than restarts). */
-export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 60000, maxTokens = 4096, onTry = null, run = null, fetchImpl = fetch } = {}) {
+ *  code (a repair carries it, so the remote model fixes rather than restarts).
+ *
+ *  The task and the prior code are DE-IDENTIFIED before they leave (fold-chat-deid.js):
+ *  names, paths, emails, keys and everything in `taint` become placeholders, the
+ *  map stays here, and the reply is mapped back before it is returned. If a scan of
+ *  the masked bytes still finds a private detail, nothing is sent. `mask:false`
+ *  sends as written (graded "gate", raw) — only for a caller that means to.
+ *  `readNames(text) → [surface]` is the holograph's read of the request (khora referents, local):
+ *  what the request NAMES is masked even when the Fold never saw it before. A read that fails or
+ *  comes back empty (it does for one-liners) falls back to namesIn(), capitalised multi-word names. Lowercase, SMS-style and
+ *  handle-style names are found by informalNames() (fold-chat-informal.js) — always, since the read needs a capital. */
+export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 40000, maxTokens = 4096, onTry = null, run = null, taint = null, mask = true, readNames = null, readTimeoutMs = 4000, fetchImpl = fetch } = {}) {
   const tried = [];
   // Every part of the request says where it came from — the audit grades the
   // request from this, and refuses what it cannot place.
   const parts = [{ role: "system", content: REMOTE_CODE_SYSTEM, provenance: "template" }];
   if (prior) parts.push({ role: "user", content: "Here is the previous attempt:\n```\n" + String(prior).slice(0, 24000) + "\n```", provenance: "generated" });
   parts.push({ role: "user", content: prompt, provenance: "ask" });
+  let deid = null;
+  if (mask) {
+    const asked = parts.filter((p) => p.provenance !== "template").map((p) => p.content).join("\n\n");
+    let named = [], viaRead = false;
+    if (typeof readNames === "function") {
+      try { named = await Promise.race([Promise.resolve(readNames(asked)), new Promise((_, rej) => setTimeout(() => rej(new Error("read deadline")), readTimeoutMs))]) || []; viaRead = named.length > 0; } catch { named = []; }
+    }
+    // The read and namesIn both find a name by its capital. Informal typing has none, so the slot-and-priors finder always runs too.
+    named = [...new Set([...named, ...namesIn(asked)])].map((term) => ({ term, kind: "name" })).concat(informalTerms(asked).map((f) => ({ ...f, kind: "name" })));
+    deid = createDeid({ taint, extra: named });
+    deid.viaRead = viaRead;
+    const own = parts.map((p, i) => i).filter((i) => parts[i].provenance !== "template");   // the Fold's own instructions are not the person's
+    const masked = deid.maskAll(own.map((i) => parts[i].content));
+    const left = masked.flatMap((m) => deid.residual(m));
+    if (left.length) {
+      const err = new Error("not sent: private details could not be taken out of the request (" + [...new Set(left.map((h) => h.kind))].join(", ") + ")");
+      err.status = 0; err.tried = []; err.sent = [];
+      throw err;
+    }
+    own.forEach((i, k) => { parts[i] = { ...parts[i], content: masked[k], provenance: "masked" }; });
+  }
   const messages = parts.map(({ role, content }) => ({ role, content }));
   const segments = parts.map((p) => ({ role: p.role, chars: p.content.length, provenance: p.provenance }));
   const sent = [];
@@ -550,11 +679,14 @@ export async function remoteCode(prompt, { candidates, prior = null, base = null
     onTry?.(model, auditId);
     try {
       const out = await chat(model, messages, { base, privacy: "sealed-external", signal, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run } });
-      const text = String(out?.text ?? "").trim();
-      if (text) return { text, model, tried, sent, auditId };
+      const text = String(deid ? deid.unmask(out?.text ?? "") : out?.text ?? "").trim();
+      if (text) noteModelHealth(model, "ok");
+      else noteModelHealth(model, "empty");
+      if (text) return { text, model, tried, sent, auditId, masked: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null };
       tried.push({ model, error: "answered with nothing" });
     } catch (e) {
       if (signal?.aborted || e?.name === "AbortError") throw e;
+      noteModelHealth(model, outcomeOfError(e));
       tried.push({ model, error: String(e?.message || e).slice(0, 120) });
     }
   }

@@ -17,6 +17,11 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
+/** Files shipped although no entry point imports them yet. fold-chat-sandframe.js is the seam the artifact
+ *  frames use to run inside the extension (fold-chat-sandbox.js and fold-chat.js adopt it with a one-word change
+ *  at each srcdoc site); it ships now so the e2e can drive it, and drops out of this list once they import it. */
+export const EXTRA_ENTRIES = Object.freeze(["fold-chat-sandframe.js"]);
+
 /** Relative specifiers a JS module imports/re-exports (static and literal dynamic). */
 export function importsOf(src) {
   const code = String(src);
@@ -60,6 +65,7 @@ export function collect(root = ROOT, manifest = JSON.parse(fs.readFileSync(path.
   entry(manifest.options_ui && manifest.options_ui.page);
   entry(manifest.action && manifest.action.default_popup);
   for (const p of (manifest.sandbox && manifest.sandbox.pages) || []) entry(p);
+  for (const p of EXTRA_ENTRIES) entry(p);
   for (const v of Object.values(manifest.icons || {})) entry(v);
   for (const v of Object.values((manifest.action && manifest.action.default_icon) || {})) entry(v);
 

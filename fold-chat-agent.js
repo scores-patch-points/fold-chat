@@ -52,6 +52,14 @@ export function planFor(task, { maxRounds = DEFAULT_ROUNDS, hasTest = false, pip
   return steps;
 }
 
+/** The first prompt when the person reset to an earlier version: the code as it stood, then what to change. Only the WRITER sees this —
+ *  the reader and the requirement check work from the person's own words, never from the page source. */
+export function withBase(task, base) {
+  if (!base || !base.code) return task;
+  const html = base.kind === "html";
+  return `Here is the current ${html ? "page" : "file"}. Change it as asked and reply with the whole updated file.\n\n\`\`\`${html ? "html" : "js"}\n${base.code}\n\`\`\`\n\nChange: ${task}`;
+}
+
 /** The next prompt: the task, the problems the last attempt actually showed. */
 export function repairPrompt({ task, round, findings }) {
   const list = findings.map((f, i) => `${i + 1}. ${f}`).join("\n");
@@ -112,6 +120,11 @@ export function requirementsOf(task) {
     for (const w of m[1].split(/\s*,\s*(?:and\s+|or\s+)?|\s+(?:and|or)\s+/)) add(w, "control");
   }
   for (const m of t.matchAll(new RegExp("\\b([A-Z][\\w-]{1,20})\\s+" + NOUN + "\\b", "g"))) add(m[1], "control");
+  // "10%, 15% and 20% tip buttons" — percentage labels, alone or in a list, with at most one word before the noun
+  const PCT = "\\d+(?:\\.\\d+)?%";
+  for (const m of t.matchAll(new RegExp("((?:" + PCT + "(?:\\s*,\\s*(?:and\\s+|or\\s+)?|\\s+(?:and|or)\\s+))*" + PCT + ")\\s+(?:[a-z]+\\s+)?" + NOUN + "\\b", "gi"))) {
+    for (const w of m[1].split(/\s*,\s*(?:and\s+|or\s+)?|\s+(?:and|or)\s+/)) add(w, "control");
+  }
   return [...out.values()];
 }
 
@@ -123,7 +136,7 @@ export function reasoningSpec({ facts, requirements = [] }) {
   const at = (e) => `${e.message}${e.line ? ` (line ${e.line})` : ""}`;
   u.push({ ref: "u-load", end1: "the page", label: "loads without throwing", end2: "when it is opened", tested: 1,
     counterexamples: facts.loaded === false ? ["measured: the page never finished loading (it hung or blocked)"] : (facts.loadErrors || []).map((e) => `measured: loading threw ${at(e)}`) });
-  if (facts.loaded !== false) u.push({ ref: "u-render", end1: "the page", label: "shows something", end2: "once it has loaded", tested: 1, counterexamples: facts.rendered ? [] : ["measured: the page is blank — no text, controls or visuals"] });
+  if (facts.loaded !== false && facts.page !== false) u.push({ ref: "u-render", end1: "the page", label: "shows something", end2: "once it has loaded", tested: 1, counterexamples: facts.rendered ? [] : ["measured: the page is blank — no text, controls or visuals"] });
   if (facts.controls > 0) u.push({ ref: "u-click", end1: "every control on the page", label: "responds without throwing", end2: "when clicked", tested: Math.max(1, facts.clicked || 0),
     counterexamples: (facts.clickErrors || []).map((e) => `measured: a click threw ${at(e)}`) });
   if (requirements.length) {
@@ -173,6 +186,7 @@ export function abortableSleep(ms, signal) {
  * @param actPipeline  "penelope" | "khora" — which pipeline the dispatch rides (shown, not branched on)
  * @param escalate     async (prompt, { round, prior, signal, onTry }) → door answer — a SEALED remote draw. Used when the local
  *                     machine is busy (>= escalateBusyS), slow (> slowAfterMs) or returns nothing usable; sticky once used.
+ * @param base          { code, kind } — the version the person reset to; the first writer prompt carries it, nothing else does
  * @param onVersion    ({ round, text, kind, maker, activity, units, ms }) → void — each attempt's code the moment it lands, before it is observed (the fold keeps these)
  * @param deriveTimeoutMs janus is model-free and answers in ~1s when idle, but khora's proxy is single-threaded: measured 22–60s when it was busy
  *                     (36–48% of a run). The ruling gets this long, then the round is judged from the measured facts and the feed says so.
@@ -183,7 +197,7 @@ export function abortableSleep(ms, signal) {
  * @param maxRounds    the budget; the loop never exceeds it
  * @returns { ok, stopped, exhausted, error, rounds, artifact, sessionId, events }
  */
-export async function runAgent({ task, dispatch, observe, read = null, derive = null, actPipeline = "penelope", emit = () => {}, signal = null, maxRounds = DEFAULT_ROUNDS, sessionId = null, verification = null, clock = () => Date.now(), sleep = abortableSleep, maxBusyWaits = 4, onVersion = null, deriveTimeoutMs = 4000, pageToRemote = true, escalate = null, slowAfterMs = 90000, escalateBusyS = 8 }) {
+export async function runAgent({ task, dispatch, observe, read = null, derive = null, actPipeline = "penelope", emit = () => {}, signal = null, maxRounds = DEFAULT_ROUNDS, sessionId = null, verification = null, clock = () => Date.now(), sleep = abortableSleep, maxBusyWaits = 4, base = null, onVersion = null, deriveTimeoutMs = 4000, pageToRemote = true, escalate = null, slowAfterMs = 90000, escalateBusyS = 8 }) {
   const budget = Math.max(1, Math.min(MAX_ROUNDS, Math.floor(maxRounds) || DEFAULT_ROUNDS));
   const events = [];
   const t0 = clock();
@@ -213,11 +227,12 @@ export async function runAgent({ task, dispatch, observe, read = null, derive = 
   const requirements = requirementsOf(task);
   ev("requirements", { terms: requirements.map((r) => r.term) });
 
-  let prompt = task;
+  let prompt = withBase(task, base);
+  const expect = base && base.kind === "html" ? "html" : expectedKind(task);   // editing a page stays a page, whatever the words say
   let findings = [];
   let escalated = false;
   let prevSigs = null;
-  if (pageToRemote && escalate && actPipeline === "penelope" && expectedKind(task) === "html") {
+  if (pageToRemote && escalate && actPipeline === "penelope" && expect === "html") {
     escalated = true;
     ev("escalate", { round: 1, why: "page", reason: "this is a web page, and the code writer on this computer only writes functions" });
   }
@@ -318,10 +333,10 @@ export async function runAgent({ task, dispatch, observe, read = null, derive = 
         ev("derive", { round: n, pipeline: "janus", error: String(err?.message || err), fallback: true });
         ruling = null;
       }
-      const hard = findingsOf({ checks: [], verdict, text, calls, kind, expect: expectedKind(task) });
+      const hard = findingsOf({ checks: [], verdict, text, calls, kind, expect });
       roundFindings = [...hard, ...refutedFindings(spec, ruling)];
     } else {
-      roundFindings = findingsOf({ checks, verdict, text, calls, kind, expect: expectedKind(task) });
+      roundFindings = findingsOf({ checks, verdict, text, calls, kind, expect });
     }
     findings = roundFindings;
     rounds.push({ n, ms: out?.ms ?? null, lane: out?.lane || null, kind, chars: text.length, checks, findings: [...findings], ruled: !!ruling });

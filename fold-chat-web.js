@@ -13,11 +13,13 @@
 // and a combined { results, more, engine } per scope.
 
 import { impressionOf } from "./fold-chat-impression.js";
-import { declaredBlocksFromHtml } from "./fold-chat-strand.js";
+import { declaredBlocksFromHtml, looksBlocked } from "./fold-chat-strand.js";
 import { searchDirect } from "./fold-chat-engines.js";
 import { isExtension } from "./fold-chat-exit.js";
+import { contactsOfRaw } from "./fold-chat-tip.js";
 import { snippetsSufficient, snippetPassages, makeBackground, learnBackground, languageOf } from "./fold-chat-snippets.js";
 import SNIPPET_SEED from "./fold-chat-snippets-seed.js";
+import { entityFromTitle, mentions, fold } from "./fold-chat-mind.js";
 import { routeSources, probeSources, noteRateLimited, coolingDown, isRateLimitError } from "./fold-chat-route.js";
 
 export const SCOPES = Object.freeze([
@@ -130,13 +132,9 @@ let LOCAL_BRIDGE = null;
 export function setBridge(base) { LOCAL_BRIDGE = base ? String(base).replace(/\/+$/, "") : null; }
 export const getBridge = () => LOCAL_BRIDGE;
 
-/** A relay's answer that is really a block page (a paywall, a captcha, a bot wall), not the page asked for. A
- *  short page that says so is a FAILED read — it must never be handed on as the page's text. */
-export function looksBlocked(text) {
-  const t = String(text ?? "");
-  if (t.length > 4000) return false;
-  return /access issue|captcha|Just a moment|Access Denied|enable javascript and cookies|are you a robot|unusual traffic|request blocked|403 Forbidden|402 Payment/i.test(t);
-}
+/** A relay's answer that is really a block page (a paywall, a captcha, a bot wall), not the page asked for — see
+ *  fold-chat-strand.js looksBlocked (one definition, shared with the strand). */
+export { looksBlocked };
 
 /** Open-web search through the fold's Cloudflare Worker relay: the Worker does
  *  the server-side DuckDuckGo/Brave fetch (keyless, CORS-open) that a static
@@ -334,6 +332,8 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
     const raw = await readCapped(r);
     let text = stripTags(raw);
     const recipe = /ld\+json/i.test(raw) ? recipeDataFromHtml(raw) : null;
+    // how the page's own creator says to reach them (kept only when the page offered something; used only if the person clicks 'Tip the creator')
+    const contacts = /<(a|form|script)\b/i.test(raw) ? contactsOfRaw(raw, url) : null;
     // a HowTo / FAQPage / QAPage the page declares: carried so the Sources-only answer can quote it whole
     const declared = /ld\+json/i.test(raw) ? declaredBlocksFromHtml(raw) : [];
     { const rec = recipe ? recipeFromHtml(raw) : ""; if (rec) text = rec + "\n\n" + text; }
@@ -343,7 +343,7 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
     if (looksBlocked(text)) throw new Error("blocked");
     if (text.length < 40) throw new Error("too short");
     if (text.length > 24000) text = text.slice(0, 24000);
-    return { ok: true, text, title: titleOf(raw) || oneLine(text.split("\n")[0]).slice(0, 80), via, url, ...(recipe ? { recipe } : {}), ...(declared.length ? { declared } : {}) };
+    return { ok: true, text, title: titleOf(raw) || oneLine(text.split("\n")[0]).slice(0, 80), via, url, ...(recipe ? { recipe } : {}), ...(declared.length ? { declared } : {}), ...(contacts ? { contacts } : {}) };
   };
   // WIKIPEDIA HAS AN INDEX, NOT JUST PAGES. Its plain-text extract is the article's prose
   // (no markup, no tables, no DOM to parse) in ~200 ms, CORS-open — against ~900 KB of HTML
@@ -530,6 +530,54 @@ export function applyGate(poolAll, entities, query, cfg = {}) {
   return { pool, skippedOff, why, fallback };
 }
 
+// ── the TITLE gate: read the entity's own page before pages that merely share its name ───────────────────────
+// Measured 2026-10-05 ("Who founded the city of Nashville, and when?"): the swarm gate passes every result that
+// MENTIONS "Nashville", so 'Nashville SC' and a school-shooting page were read for a founding question — and the
+// retrieved text then tripped the model channel's safety gate. A page whose own title (entityFromTitle, the
+// site-name and "(disambiguation)" wrapper shed) shares no word with the ask, or only carries the entity as part of
+// a longer name for ANOTHER thing, is moved behind the candidates that fit, so it is read only if the others fail.
+const stemOf = (w) => { const f = fold(w); return f.length > 5 ? f.slice(0, 5) : f; };
+const wordsOf = (t) => (fold(t).match(/[\p{L}\p{N}]+/gu) || []);
+const TITLE_SEP = /\s+[|\u2014\u2013\u00b7:]\s+|\s-\s/;
+/** The words a result's own TITLE gives, the page name first: "Nashville, Tennessee - Wikipedia" → "Nashville, Tennessee". */
+export function pageNameOf(title) { const t = entityFromTitle(title); const first = String(t).split(TITLE_SEP)[0]; return (first || t).trim(); }
+/** Is this title the entity's OWN page: the entity alone, or the entity then a comma / parenthetical qualifier? */
+export function isOwnPage(title, entity) {
+  const n = fold(pageNameOf(title)).trim(), e = fold(entity).trim();
+  if (!n || !e) return false;
+  return n === e || n.startsWith(e + ",") || n.startsWith(e + " (");
+}
+/** Judge each pooled result's title against the ask. Returns { pool, off:[{ title, why }] } with the off-topic
+ *  titles moved to the END of the pool (never deleted: they are read only if every better candidate failed). Pure.
+ *    "no-shared-word"      — the title shares no content word (stem-matched) and no named entity of the ask;
+ *    "shares-only-the-name" — the title carries an entity of the ask inside a longer name for another thing
+ *                            ("Nashville SC", "Nashville school shooting") while another candidate IS the entity's own
+ *                            page and the title shares nothing else the ask said. */
+export function titleGate(pool, query, entities = entitiesOf(query)) {
+  const list = Array.isArray(pool) ? pool : [];
+  if (list.length < 2) return { pool: list, off: [] };
+  const entWords = new Set(entities.flatMap((e) => wordsOf(e)).map(stemOf));
+  const askStems = new Set([...contentTerms(query), ...entities.flatMap((e) => wordsOf(e))].map(stemOf));
+  const plainStems = new Set(contentTerms(query).map(stemOf).filter((x) => !entWords.has(x)));   // what the ask says besides the names
+  if (!askStems.size) return { pool: list, off: [] };
+  const hasOwn = entities.length > 0 && list.some((r) => entities.some((e) => isOwnPage(r.title, e)));
+  const verdict = (r) => {
+    const name = pageNameOf(r.title);
+    const tw = wordsOf(name);
+    if (!tw.length) return null;
+    if (!tw.some((w) => askStems.has(stemOf(w)))) return "no-shared-word";
+    if (hasOwn && !entities.some((e) => isOwnPage(r.title, e)) && entities.some((e) => mentions(name, e)) && !tw.some((w) => plainStems.has(stemOf(w)))) {
+      const extra = tw.filter((w) => !askStems.has(stemOf(w)));
+      if (extra.length) return "shares-only-the-name";
+    }
+    return null;
+  };
+  const keep = [], off = [];
+  for (const r of list) { const why = verdict(r); (why ? off : keep).push(why ? { r, why } : r); }
+  if (!keep.length) return { pool: list, off: [] };    // nothing fits better: leave the order alone
+  return { pool: [...keep, ...off.map((o) => o.r)], off: off.map((o) => ({ title: String(o.r.title || ""), url: o.r.url || null, why: o.why })) };
+}
+
 /** Is a search result ON-TOPIC for the ask? The swarm's verdict. */
 export function onTopic(r, entities = []) {
   return framings(r, entities).matters;
@@ -681,6 +729,24 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
     step({ phase: "routed", picked: ["web", ...apiScopes], skipped, webDown });
   }
   for (const list of settled) results.push(...list);
+  // THE CATALOG CARD BEFORE THE BOOK (off by default until experiments/source-routing/RESULTS.md says it earns
+  // its place): when independent sites' own snippets agree on a rare term about what the ask is about, the cards
+  // are handed over as snippets and no page is fetched. Only the web engines' cards are judged (that is what was
+  // measured); the tab's background memory learns the SERP AFTER it is judged. `deep` always reads.
+  {
+    const cards = results.filter((r) => r.kind === "web");
+    const bg = memo && memo.background;
+    if (cards.length && (snippetFirst || bg)) {
+      const sf = snippetFirst && effort !== "deep" ? snippetsSufficient(cards, query, { background: bg }) : null;
+      if (sf) trace.push({ scope: "snippets", ok: true, engine: "catalog cards", sufficient: sf.sufficient, abstained: sf.abstained, why: sf.why, hosts: sf.hosts, lang: sf.lang, term: sf.term });
+      if (bg) learnBackground(bg, sf ? sf.lang : languageOf(query, cards), cards);
+      if (sf && sf.sufficient) {
+        const passages = snippetPassages(sf.covering);
+        for (const p of passages) step({ phase: "snippet", url: p.url, site: p.source, title: p.ref });
+        return { results, passages, trace };
+      }
+    }
+  }
   // Read the top few into passages (the material the answer is grounded on).
   // Pages that answer a browser directly come first (Wikipedia articles read
   // as HTML); DOI/journal links often only serve PDFs or refuse cross-origin
@@ -702,6 +768,13 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   if (cfg.gate) {
     const g = applyGate(poolAll, entities, query, cfg);
     pool = g.pool; skippedOff = g.skippedOff;
+    // THE TITLE GATE: a page named for another thing that shares the entity's name is read only after the entity's own pages.
+    const tg = titleGate(pool, query, entities);
+    if (tg.off.length) {
+      pool = tg.pool;
+      trace.push({ scope: "topic", ok: true, engine: "title gate", demoted: tg.off.map((o) => `${o.title} (${o.why})`) });
+      step({ phase: "demoted", n: tg.off.length, titles: tg.off.map((o) => o.title) });
+    }
     if (g.skippedOff > 0 || g.fallback) {
       trace.push({ scope: "topic", ok: true, skippedOff: g.skippedOff, engine: "swarm gate", strict: !!cfg.strict, dissent: g.why, ...(g.fallback ? { fallback: "the gate passed nothing; ranked top results read instead" } : {}) });
       if (g.skippedOff > 0) step({ phase: "skipped", n: g.skippedOff });
@@ -730,24 +803,6 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   const reads = [];
   const CONC = 3;
   let okReads = 0, nextIdx = 0;
-  // THE CATALOG CARD BEFORE THE BOOK (off by default until experiments/source-routing/RESULTS.md says it earns
-  // its place): when independent sites' own snippets agree on a rare term about what the ask is about, the cards
-  // are handed over as snippets and no page is fetched. Only the web engines' cards are judged (that is what was
-  // measured); the tab's background memory learns the SERP AFTER it is judged. `deep` always reads.
-  {
-    const cards = results.filter((r) => r.kind === "web");
-    const bg = memo && memo.background;
-    if (cards.length && (snippetFirst || bg)) {
-      const sf = snippetFirst && effort !== "deep" ? snippetsSufficient(cards, query, { background: bg }) : null;
-      if (sf) trace.push({ scope: "snippets", ok: true, engine: "catalog cards", sufficient: sf.sufficient, abstained: sf.abstained, why: sf.why, hosts: sf.hosts, lang: sf.lang, term: sf.term });
-      if (bg) learnBackground(bg, sf ? sf.lang : languageOf(query, cards), cards);
-      if (sf && sf.sufficient) {
-        const passages = snippetPassages(sf.covering);
-        for (const p of passages) step({ phase: "snippet", url: p.url, site: p.source, title: p.ref });
-        return { results, passages, trace };
-      }
-    }
-  }
   const worker = async () => {
     while (okReads < want && nextIdx < chosen.length) {
       const i = nextIdx++;
@@ -769,7 +824,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
     if (rd.ok) {
       const e = impressionOf(rd.text, query, { budget: IMPRESSION_BUDGET });
       const kept = { chars: e.shadow.chars, kept: e.shadow.kept, hash: e.shadow.hash };
-      if (passages.length < want) { passages.push({ ref: r.source + " — " + r.title, source: r.url, text: e.text, via: rd.via, url: r.url, shadow: e.shadow, ...(rd.recipe ? { recipe: rd.recipe } : {}), ...(rd.declared ? { declared: rd.declared } : {}) }); trace.push({ read: r.url, via: rd.via, ...kept }); }
+      if (passages.length < want) { passages.push({ ref: r.source + " — " + r.title, source: r.url, text: e.text, via: rd.via, url: r.url, shadow: e.shadow, ...(rd.recipe ? { recipe: rd.recipe } : {}), ...(rd.declared ? { declared: rd.declared } : {}), ...(rd.contacts ? { contacts: rd.contacts } : {}) }); trace.push({ read: r.url, via: rd.via, ...kept }); }
       else trace.push({ read: r.url, via: rd.via, ...kept, skipped: true });
     } else trace.push({ read: r.url, via: null, ok: false });
   }

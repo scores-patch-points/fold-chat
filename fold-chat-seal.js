@@ -2,11 +2,15 @@
 //
 // "sealed-external" is heimdall's GATE: the request declared a privacy mode and
 // the bridge let it through. It says nothing about what the outside model can
-// READ. The Fold's sealed design is stronger and has three rungs, and every
+// READ. The Fold's sealed design is stronger and has four rungs, and every
 // outbound request is graded against exactly one of them — never rounded up:
 //
 //   gate      raw content under the gate. The provider can read the ask and any
 //             code it carries. Honest, useful, and NOT the possible-worlds seal.
+//   masked    the ask and code, still readable as text, with names, paths, emails,
+//             keys and the like swapped for placeholders locally and a scan of the
+//             exact bytes finding none left (fold-chat-deid.js). Pseudonymization of
+//             the particulars only: what the code DOES stays visible. Not "sealed".
 //   abstract  private particulars replaced by opaque symbols; a local scan of
 //             the exact bytes finds none of them. Pseudonymization — relationships
 //             and repeated queries can still reveal information.
@@ -47,6 +51,7 @@ export const PROVENANCE = Object.freeze({
   ask: "what the person typed this turn",
   generated: "code or text a model produced in this run",
   symbolic: "opaque symbols and formal relations — no particulars",
+  masked: "the ask or code with its private particulars swapped for placeholders on this device — the structure is still readable",
   world: "one possible world in a set",
   "workspace-file": "bytes read from the person's own files",
   "local-read": "text the khora read from the person's documents",
@@ -67,7 +72,7 @@ export function withProvenance(parts) {
 
 // ───────────────────────── what must not appear in what left ─────────────────────────
 
-const SECRET_PATTERNS = [
+export const SECRET_PATTERNS = [
   ["private key", /-----BEGIN [A-Z ]*PRIVATE KEY-----/],
   ["AWS access key", /\bAKIA[0-9A-Z]{16}\b/],
   ["GitHub token", /\bgh[pousr]_[A-Za-z0-9]{30,}\b/],
@@ -81,7 +86,7 @@ const PATH_PATTERNS = [
   ["home directory path", /(?:\/Users|\/home)\/[A-Za-z0-9._-]+\//],
   ["Windows user path", /[A-Za-z]:\\Users\\[^\\\s]+\\/],
 ];
-const EMAIL = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/;
+export const EMAIL = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/;
 
 /** Credentials, local paths and emails in `text`. Each hit names what it found and where, never echoing the secret. */
 export function scanSecrets(text) {
@@ -147,10 +152,13 @@ export function gradeRequest(req, { taint = null } = {}) {
   if (!req.gate) leaks.push({ type: "gate", detail: "the request did not declare heimdall_privacy:\"sealed-external\"" });
   const raw = provenance.some((p) => p === "ask" || p === "generated");
   const symbolicOnly = provenance.length > 0 && provenance.every((p) => p === "template" || p === "symbolic" || p === "world");
+  const maskedOnly = provenance.length > 0 && provenance.every((p) => p === "template" || p === "symbolic" || p === "world" || p === "masked");
   let level = "gate";
+  if (maskedOnly && !symbolicOnly && !leaks.length) level = "masked";
   if (symbolicOnly && !leaks.length) level = "abstract";
   if (level === "abstract" && req.worlds && req.worlds.n >= 3 && req.symmetry?.passed === true) level = "worlds";
   if (level === "abstract" && req.worlds && req.worlds.n >= 3 && req.symmetry?.passed !== true) notes.push(req.symmetry ? "the world set FAILED the symmetry audit — graded as abstract only" : "the world set was not symmetry-audited — graded as abstract only");
+  if (level === "masked") notes.push("masked: names, paths, emails and keys were replaced by placeholders on this device and a scan found none left; the outside provider can still read the structure of the request and the code");
   if (raw) notes.push("raw content: the outside provider can read the ask" + (provenance.includes("generated") ? " and the code it carries" : ""));
   return { level, leaks, notes, sealed: (level === "abstract" || level === "worlds") && leaks.length === 0, raw, secretHits: secretHits.length, particularHits: taintHits.length };
 }

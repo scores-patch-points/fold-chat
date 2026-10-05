@@ -159,6 +159,21 @@ test("chat() sends the world SLOT in a header and never anything about which wor
   assert.ok(!JSON.stringify(seen[0]).includes("real"));
 });
 
+test("remoteCode: by default each attempt is graded masked — not raw, not sealed — and the summary says so", async () => {
+  const ledger = createOutbound({ storage: store() });
+  setAuditHook({ before: (i) => ledger.sendModel({ auditId: i.auditId, model: i.model, messages: i.messages, segments: i.segments, purpose: i.purpose }).done });
+  try {
+    await remoteCode("a timer for dr.kim@clinic.org", { candidates: ["live"], prior: "<b>old</b>", fetchImpl: bridgeFetch([]) });
+    const [e] = ledger.list();
+    assert.deepEqual(e.segments.map((s) => s.provenance), ["template", "masked", "masked"]);
+    assert.equal(e.grade.level, "masked"); assert.equal(e.grade.sealed, false); assert.equal(e.grade.raw, false); assert.equal(e.grade.leaks.length, 0);
+    assert.ok(!JSON.stringify(e.messages).includes("dr.kim@clinic.org"), "the ledger holds what left, and the address did not");
+    const sum = ledger.summary();
+    assert.equal(sum.levels.masked, 1); assert.equal(sum.raw, 0);
+    assert.match(describeSummary(sum), /1 with private details masked/);
+  } finally { setAuditHook(null); }
+});
+
 test("a failed chat is reported to the hook as failed", async () => {
   const events = [];
   setAuditHook({ before: () => (r) => events.push(r) });
@@ -166,13 +181,13 @@ test("a failed chat is reported to the hook as failed", async () => {
   assert.equal(events[0].ok, false);
 });
 
-test("remoteCode: each fan-out attempt is its OWN audited request with provenance — raw content is graded gate, not sealed", async () => {
+test("remoteCode: each fan-out attempt is its OWN audited request with provenance — sent as written (mask:false) it is graded gate, raw, not sealed", async () => {
   const seen = [], ledger = createOutbound({ storage: store() });
   setAuditHook({ before: (i) => ledger.sendModel({ auditId: i.auditId, model: i.model, messages: i.messages, segments: i.segments, purpose: i.purpose }).done });
   const answers = { dead: null, live: "<p>x</p>" };
   const fetchImpl = async (url, opts) => { seen.push(JSON.parse(opts.body).model); if (answers[JSON.parse(opts.body).model] == null) return { ok: false, status: 502 }; return bridgeFetch([])(url, opts); };
   try {
-    const out = await remoteCode("a timer", { candidates: ["dead", "live"], prior: "<b>old</b>", fetchImpl });
+    const out = await remoteCode("a timer", { candidates: ["dead", "live"], prior: "<b>old</b>", mask: false, fetchImpl });
     assert.equal(out.model, "live");
     assert.deepEqual(seen, ["dead", "live"], "two providers were sent the same content");
     const l = ledger.list();

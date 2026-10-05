@@ -102,7 +102,8 @@ export function sourceIdentities(sources = []) {
 // A capitalised name phrase: "Wikipedia", "The Weather Channel", "the BBC", "Dr. Ruth Smith".
 const CAP = String.raw`\p{Lu}[\p{L}\p{N}&'’-]*(?:\.[\p{L}\p{N}]+)*`;
 const NAME = String.raw`(?:the\s+)?${CAP}(?:\s+(?:(?:of|for|and|&|de|del|von|van|la|le|du)\s+)?${CAP}){0,5}`;
-const SAYS = String.raw`(?:says|said|states|stated|reports|reported|notes|noted|writes|wrote|claims|claimed|explains|explained|indicates|indicated|suggests|suggested|confirms|confirmed|lists|listed|describes|described|estimates|estimated|shows|showed|mentions|mentioned)`;
+// only REPORTING verbs: "Jane Austen wrote it" or "the guide lists three steps" is content, not an attribution
+const SAYS = String.raw`(?:says|said|states|stated|reports|reported|notes|noted|claims|claimed|explains|explained|indicates|indicated|suggests|suggested)`;
 const PATTERNS = [
   // a generic reference ("according to the information provided") — no name, but it claims there is something
   { re: /(?<![\p{L}])[Aa]ccording to\s+(the\s+(?:information|sources?|search results?|passages?|text|documents?|articles?|pages?|material|context|data)(?:\s+(?:provided|given|above|you gave|available))?)\s*(?:[,:]\s*)?/gu, lead: true, generic: true },

@@ -22,7 +22,9 @@
     "http://localhost/*"
   ],
   "optional_host_permissions": ["https://*/*"],
+  "sandbox": { "pages": ["fold-sandbox.html"] },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'none'"
+    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'none'",
+    "sandbox": "sandbox allow-scripts; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'"
   }
 }

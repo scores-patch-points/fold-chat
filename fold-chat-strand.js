@@ -23,6 +23,7 @@
 
 import { impressionOf, sentencesWithOffsets } from "./fold-chat-impression.js";
 import { snipOfPassage } from "./fold-chat-snip.js";
+import { contactOfPassage } from "./fold-chat-tip.js";
 
 export const STRAND = Object.freeze({
   perPassageChars: 700,    // how much of one source a strand quotes (impression budget)
@@ -30,6 +31,7 @@ export const STRAND = Object.freeze({
   maxPassages: 5,          // sources quoted
   maxItems: 12,            // Q&A pairs / how-to steps quoted from one declared block
   leadChars: 600,          // a Wikipedia lead
+  minSnipWords: 8,         // a prose passage shorter than this (a caption, a heading) is not worth quoting alone
 });
 
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -37,6 +39,15 @@ const host = (u) => { try { return new URL(String(u)).hostname.replace(/^www\./,
 const isWiki = (u) => /^https?:\/\/[a-z-]+\.wikipedia\.org\/wiki\//i.test(String(u || ""));
 const titleOf = (p) => { const r = String(p?.ref ?? ""); return (r.includes(" — ") ? r.slice(r.indexOf(" — ") + 3) : r).trim(); };
 const siteOf = (p) => { const r = String(p?.ref ?? ""); const s = r.includes(" — ") ? r.slice(0, r.indexOf(" — ")) : ""; return host(p?.url || p?.source) || s; };
+
+/** Text that is really a block page (a paywall, a captcha, a bot-challenge, an error wall), not the page asked for. A short
+ *  page that says so is a FAILED read — never handed on as the page's text, and never quoted as a snip. (Lives here so the
+ *  strand and the page reader share one definition; fold-chat-web.js re-exports it.) */
+export function looksBlocked(text) {
+  const t = String(text ?? "");
+  if (t.length > 4000) return false;
+  return /access issue|captcha|Just a moment|Access Denied|enable javascript and cookies|are you a robot|robot or human|unusual traffic|request blocked|403 Forbidden|402 Payment|complete the (?:security )?challenge|verify (?:that )?you(?:'| a)?re? (?:a )?human|verify you are human|checking your (?:browser|connection)|security check|attention required|pardon our interruption|ddos protection|please enable cookies|challenge-platform|cf-chl|prove you(?:'| a)?re? (?:not )?a (?:bot|robot|human)|not a robot|verifying you are human/i.test(t);
+}
 
 // ── structured blocks a page declares (JSON-LD) ────────────────────────────
 const cleanHtml = (v) => String(v ?? "").replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d)).replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;|&#39;/g, "'").replace(/\s+/g, " ").trim();
@@ -93,6 +104,7 @@ function snipFrom(p, pi, base) {
     source: p.url || p.source || null, title: titleOf(p), site: siteOf(p),
     shadow: p.shadow ? { hash: p.shadow.hash || null, chars: p.shadow.chars || null } : null,
     ellipsisBefore: false, ellipsisAfter: false, range: null,
+    ...((c) => (c ? { contact: c } : {}))(contactOfPassage(p)),   // for the tip control only: how the creator's own page says to reach them
     ...base,
   };
 }
@@ -124,11 +136,14 @@ function leadOf(text, chars) {
   const t = String(text ?? "");
   const sents = sentencesWithOffsets(t);
   if (!sents.length) return null;
-  let end = sents[0].end;
+  // A "sentence" that ends in an abbreviation (St., Dr., No., a lone initial) is not over: never stop on one.
+  const ABBREV = /(?:\b(?:mr|mrs|ms|dr|prof|sr|jr|st|vs|etc|no|fig|inc|ltd|co|mt|ave|gen|col|capt|lt|sgt|rev|vol|approx|est)\.|\b[A-Z]\.)$/i;
+  let end = sents[0].end, last = 0;
   for (let i = 1; i < sents.length; i++) {
     if (sents[i].end - sents[0].start > chars || !/^\s*$/.test(t.slice(end, sents[i].start))) break;
-    end = sents[i].end;
+    end = sents[i].end; last = i;
   }
+  while (last > 0 && ABBREV.test(t.slice(sents[last].start, end).trim())) { last--; end = sents[last].end; }
   return { start: sents[0].start, end, ellipsisBefore: false, ellipsisAfter: end < t.trimEnd().length };
 }
 
@@ -147,6 +162,7 @@ export function snipsOf(passages, question, { limits = STRAND } = {}) {
   };
   list.forEach((p, pi) => {
     const text = String(p?.text ?? "");
+    if (looksBlocked(text) && !p?.recipe && !(Array.isArray(p?.declared) && p.declared.length)) return;   // a block page is never quoted
     // 1. a structured block the page declares
     const rc = snipOfPassage(p);
     if (rc) {
@@ -165,7 +181,10 @@ export function snipsOf(passages, question, { limits = STRAND } = {}) {
       if (g) { add(p, pi, snipFrom(p, pi, { kind: "lead", text: norm(text.slice(g.start, g.end)), credit: siteOf(p), range: { start: g.start, end: g.end }, ellipsisBefore: g.ellipsisBefore, ellipsisAfter: g.ellipsisAfter })); return; }
     }
     // 3. the sentences that differ the ask, adjacent ones merged
-    for (const g of groupsOf(text, question, limits.perPassageChars)) {
+    const groups = groupsOf(text, question, limits.perPassageChars);
+    const words = (g) => text.slice(g.start, g.end).trim().split(/\s+/).length;
+    const long = groups.filter((g) => words(g) >= (limits.minSnipWords ?? STRAND.minSnipWords));
+    for (const g of long.length ? long : groups) {
       add(p, pi, snipFrom(p, pi, { kind: "passage", text: norm(text.slice(g.start, g.end)), credit: siteOf(p), range: { start: g.start, end: g.end }, ellipsisBefore: g.ellipsisBefore, ellipsisAfter: g.ellipsisAfter }));
     }
   });
@@ -217,8 +236,8 @@ export function creditText(s) {
 // ── the stored shape ───────────────────────────────────────────────────────
 /** A snip as stored on the message: plain data, small. (The recipe card is kept whole — it is the card's own data.) */
 export function storeSnip(s) {
-  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name } = s;
-  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
+  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name, contact } = s;
+  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
 }
 
 /** May this STORED assistant message carry model-written (non-notice) content? The invariant: only when the turn

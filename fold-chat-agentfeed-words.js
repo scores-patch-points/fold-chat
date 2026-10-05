@@ -157,7 +157,7 @@ export function whyOnline(e = {}) {
   if (e.why === "empty") return "the last attempt came back with nothing usable";
   return scrub(r) || "this computer couldn't do it in time";
 }
-export const REASSURANCE = "Only your request and the code so far are sent. Nothing else from your computer leaves it.";
+export const REASSURANCE = "Only your request and the code so far are sent, with names, folder paths, emails and keys swapped for placeholders. The code itself can still be read. Nothing else from your computer leaves it.";
 
 /** A bridge/door error → { text, detail } in plain words. */
 export function plainError(message) {
@@ -254,7 +254,7 @@ export function describe(e, ctx = {}) {
       const clause = String(ev.reason || "").replace(/^the local machine is /i, "local is ").replace(/^the local machine took /i, "local took ").replace(/^the local draw /i, "local draw ");
       return {
         title: "Asking a more powerful AI online for help", detail: cap(why), bullets: [REASSURANCE], tone: "warn",
-        tech: `Escalating to a sealed remote model ${clause ? "— " + clause : ""}\nonly your task text and the last attempt's code leave this machine, through heimdall's sealed-external gate — never workspace files`,
+        tech: `Escalating to a sealed remote model ${clause ? "— " + clause : ""}\nonly your task text and the last attempt's code leave this machine, de-identified (names, paths, emails, keys → placeholders, mapped back here), through heimdall's sealed-external gate — never workspace files`,
       };
     }
     case "tool": { const t = toolWords(ev); return { title: t.title, detail: t.detail, bullets: [], tech: t.tech, tone: "info" }; }
@@ -281,7 +281,7 @@ export function describe(e, ctx = {}) {
     case "audit": {
       const entries = ev.entries || [], sum = ev.summary || {};
       const n = entries.length;
-      const L = { gate: "raw · the provider can read it", abstract: "abstracted", worlds: "possible worlds", direct: "direct from this page" };
+      const L = { gate: "raw · the provider can read it", masked: "private details masked", abstract: "abstracted", worlds: "possible worlds", direct: "direct from this page" };
       const tech = `${plural(n, "request")} left this machine (audit)\n` + [`${(sum.hosts || []).map((h) => h.host).join(", ") || "—"} · ${bytesOf(sum.bytes || 0)}${sum.leaks ? ` · ⚠ ${sum.leaks} leak(s) flagged` : " · no leaks flagged"}`]
         .concat(entries.map((x) => `${x.model || x.host} · ${L[x.level] || x.level} · ${x.bytes} B · ${x.verified === true ? "ledger agrees" : x.verified === false ? "ledger DISAGREES: " + (x.problems?.[0] ?? "") : x.via === "direct" ? "no second ledger (direct)" : "not yet verified"}${x.status === "failed" ? " · failed" : ""}`)).join("\n");
       const direct = n > 0 && entries.every((x) => x.via === "direct" || x.level === "direct");
@@ -289,8 +289,10 @@ export function describe(e, ctx = {}) {
       const allOk = n > 0 && entries.every((x) => x.verified === true);
       const raw = entries.some((x) => x.level === "gate");
       const summarised = entries.some((x) => x.level === "abstract" || x.level === "worlds");
+      const masked = entries.some((x) => x.level === "masked");
       const bullets = [];
       if (raw) bullets.push("The outside service can read this text.");
+      else if (masked) bullets.push("Names, folder paths, emails and keys were swapped for placeholders before sending. The code itself can still be read.");
       else if (summarised) bullets.push("Only a summary was sent, not your exact words.");
       const verdict = bad ? { tone: "bad", text: "Something was sent that I didn't intend — open it to see" }
         : allOk ? { tone: "ok", text: "Double-checked: what was sent matches what I meant to send" }

@@ -39,8 +39,8 @@ test("going online: plain reasons and one reassurance line", () => {
   assert.equal(whyOnline({ why: "empty", reason: "x" }), "the last attempt came back with nothing usable");
   const d = describe({ type: "escalate", why: "slow", reason: "the local machine took over 75s" });
   assert.equal(d.title, "Asking a more powerful AI online for help");
-  assert.deepEqual(d.bullets, [REASSURANCE]); assert.equal(REASSURANCE, "Only your request and the code so far are sent. Nothing else from your computer leaves it.");
-  assert.match(d.tech, /Escalating to a sealed remote model — local took over 75s\nonly your task text .* heimdall's sealed-external gate — never workspace files/);
+  assert.deepEqual(d.bullets, [REASSURANCE]); assert.match(REASSURANCE, /^Only your request and the code so far are sent, with names, folder paths, emails and keys swapped for placeholders\. The code itself can still be read\. Nothing else from your computer leaves it\.$/);
+  assert.match(d.tech, /Escalating to a sealed remote model — local took over 75s\nonly your task text .* de-identified .* heimdall's sealed-external gate — never workspace files/);
   assert.doesNotMatch(plainOnly(d), BANNED);
 });
 

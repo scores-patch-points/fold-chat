@@ -536,3 +536,40 @@ test("a NON-page request still starts local, and with escalation off nothing cha
   assert.equal(b.calls.length, 1, "no remote available → the local writer is all there is");
   assert.equal(r.ok, true);
 });
+
+test("a reset base reaches ONLY the writer: the reader and the requirement check never see the page source", async () => {
+  const { runAgent, withBase } = await import("./fold-chat-agent.js");
+  const base = { kind: "html", code: '<!doctype html><meta charset="utf-8"><div id="Display">0</div><button id="Inc">+</button>' };
+  const seen = { read: null, prompts: [], reqs: null };
+  const events = [];
+  await runAgent({
+    task: "make the number bigger", base, maxRounds: 1, pageToRemote: false,
+    read: async (t) => { seen.read = t; return null; },
+    dispatch: async (prompt) => { seen.prompts.push(prompt); return { text: "<!doctype html><button>x</button>", maker: { kind: "penelope" } }; },
+    observe: async () => ({ checks: [], facts: {} }),
+    emit: (e) => events.push(e),
+  });
+  assert.equal(seen.read, "make the number bigger", "khora reads the person's words, not the code");
+  assert.match(seen.prompts[0], /<div id="Display">0<\/div>/, "the writer gets the current page");
+  assert.match(seen.prompts[0], /Change: make the number bigger/);
+  const terms = (events.find((e) => e.type === "requirements") || {}).terms || [];
+  assert.ok(!terms.some((t) => /utf|display|inc/i.test(t)), "requirements come from the ask, not the source: " + terms);
+  assert.equal(withBase("t", null), "t");
+});
+
+test("requirementsOf: percentage buttons the ask names are held to, alone or in a list", async () => {
+  const { requirementsOf } = await import("./fold-chat-agent.js");
+  const terms = (t) => requirementsOf(t).map((r) => r.term);
+  assert.deepEqual(terms("a tip calculator with 10%, 15% and 20% tip buttons and a bill input"), ["10%", "15%", "20%"]);
+  assert.deepEqual(terms("add a 25% button"), ["25%"]);
+  assert.deepEqual(terms("make it 50% faster and 20% smaller"), [], "percentages that are not controls are not requirements");
+  assert.deepEqual(terms("Increment, Decrement and Reset buttons"), ["increment", "decrement", "reset"], "the capitalised-name rule still works");
+});
+
+test("a function or module that draws nothing is not 'blank': only a page is held to rendering something", async () => {
+  const { reasoningSpec } = await import("./fold-chat-agent.js");
+  const labels = (spec) => spec.universals.map((u) => u.ref);
+  assert.ok(!labels(reasoningSpec({ facts: { loaded: true, rendered: false, page: false, controls: 0 } })).includes("u-render"), "a module has no u-render claim");
+  assert.ok(labels(reasoningSpec({ facts: { loaded: true, rendered: false, page: true, controls: 0 } })).includes("u-render"), "a page still does");
+  assert.ok(labels(reasoningSpec({ facts: { loaded: true, rendered: false, controls: 0 } })).includes("u-render"), "facts that do not say stay held to it");
+});

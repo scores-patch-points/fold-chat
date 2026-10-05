@@ -57,7 +57,11 @@ export function withProbe(html, nonce, opts) {
 /** Wrap a bare script so the probe can watch it run. */
 export function pageFor(code, kind) {
   if (kind === "html") return code;
-  if (kind === "js") return `<!doctype html><html><head><meta charset="utf-8"></head><body><script>\n${String(code).replace(/<\/script/gi, "<\\/script")}\n<\/script></body></html>`;
+  if (kind === "js") {
+    // A module ("export function …", "import …") is not a classic script: run it as one, or `export` is a SyntaxError that was never the model's fault.
+    const isModule = /^\s*(?:export|import)\b/m.test(String(code));
+    return `<!doctype html><html><head><meta charset="utf-8"></head><body><script${isModule ? ' type="module"' : ""}>\n${String(code).replace(/<\/script/gi, "<\\/script")}\n<\/script></body></html>`;
+  }
   return code;
 }
 
@@ -85,7 +89,7 @@ export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host =
     frame.style.cssText = "position:fixed;left:0;top:0;width:900px;height:640px;border:0;opacity:0;pointer-events:none;z-index:-1";
     const finish = () => {
       if (finished) return; finished = true;
-      clearTimeout(timer); window.removeEventListener("message", onMsg); signal?.removeEventListener?.("abort", finish);
+      clearTimeout(timer); clearTimeout(hardCap); document.removeEventListener("visibilitychange", onVisible); window.removeEventListener("message", onMsg); signal?.removeEventListener?.("abort", finish);
       frame.remove();
       const checks = [];
       const rendered = !!loaded && (loaded.textLen > 0 || loaded.visuals > 0 || loaded.controls > 0 || loaded.inputs > 0);
@@ -97,7 +101,8 @@ export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host =
         checks.push({ name: "loads without errors", ok: true, detail: loaded.title ? `“${loaded.title}”` : null });
       }
       if (loaded) {
-        checks.push({ name: "renders something visible", ok: rendered, detail: rendered ? `${loaded.textLen} chars of text · ${loaded.controls} control(s) · ${loaded.inputs} input(s) · ${loaded.visuals} visual(s)` : "the page is blank" });
+        // Only a PAGE is expected to draw something; a function or module that draws nothing is exactly as asked.
+        if (kind === "html") checks.push({ name: "renders something visible", ok: rendered, detail: rendered ? `${loaded.textLen} chars of text · ${loaded.controls} control(s) · ${loaded.inputs} input(s) · ${loaded.visuals} visual(s)` : "the page is blank" });
         if (loaded.controls > 0) {
           if (!done) checks.push({ name: "controls respond", ok: null, detail: `clicked ${loaded.controls} control(s); the sandbox did not report back` });
           else checks.push({ name: "controls respond", ok: clickErrors.length === 0, detail: clickErrors.length ? `a click threw: ${clickErrors[0].message}` : `clicked ${done.clicked}; ${done.changed} changed the page` });
@@ -105,7 +110,7 @@ export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host =
       }
       if (consoleErrors.length) checks.push({ name: "console", ok: null, detail: consoleErrors.slice(0, 2).join(" · ") });
       const facts = {
-        loaded: !!loaded, loadErrors, clickErrors, rendered,
+        loaded: !!loaded, loadErrors, clickErrors, rendered, page: kind === "html",
         controls: loaded?.controls || 0, clicked: done?.clicked || 0, changed: done?.changed || 0,
         labels: loaded?.labels || [], text: loaded?.text || "", title: loaded?.title || "",
       };
@@ -121,7 +126,16 @@ export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host =
     };
     window.addEventListener("message", onMsg);
     signal?.addEventListener?.("abort", finish);
-    const timer = setTimeout(finish, timeoutMs);
+    // A tab in the background does not run the test frame at all, so "it never reported back" there means "nobody looked", not
+    // "the page hung". Judge only a frame that had the chance to run: if the tab is hidden when the clock runs out, wait for it to
+    // be shown and start the clock again (a hard cap keeps a forgotten tab from holding the run forever).
+    const hidden = () => typeof document !== "undefined" && document.visibilityState === "hidden";
+    let timer = null, hardCap = null;
+    const arm = () => { clearTimeout(timer); timer = setTimeout(() => { if (!loaded && hidden()) return; finish(); }, timeoutMs); };
+    const onVisible = () => { if (!hidden() && !loaded && !finished) arm(); };
+    document.addEventListener("visibilitychange", onVisible);
+    hardCap = setTimeout(finish, Math.max(timeoutMs, 300000));
+    arm();
     // The probe is injected ahead of the artifact, so the browser's line numbers are offset by its length (and by the one
     // wrapper line for a bare script). Report lines relative to the MODEL'S code — "line 63" must mean line 63 of what it wrote.
     const probeLines = (probeScript(nonce, { click: true }).match(/\n/g) || []).length;

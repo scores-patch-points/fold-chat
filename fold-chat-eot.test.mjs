@@ -139,3 +139,52 @@ test("describeEvent gives the one-line view: stage, transform, unit, bytes, sour
   const d = describeEvent(e.provenance.events.find((x) => x.unit === "beta" && x.range), src);
   assert.equal(d.unit, "beta"); assert.match(d.range, /^bytes \d+–\d+$/); assert.match(d.source, /^artifact-version/); assert.equal(d.short.length, 8);
 });
+
+test("the trace lines up with the events one for one, and the cursor sees only attempts that exist by then", async () => {
+  const { createFold, addVersion, addEvent } = await import("./fold-chat-fold.js");
+  const { eotFromFold, versionAtCursor } = await import("./fold-chat-eot.js");
+  const f = createFold({ task: "a counter" });
+  addEvent(f, { type: "read", referents: 1, relations: 0 });
+  addVersion(f, { round: 1, maker: { kind: "remote", model: "m" }, code: "<b>one</b>", kind: "html" });
+  addEvent(f, { type: "check", round: 1, name: "page opens", ok: true });
+  addVersion(f, { round: 2, maker: { kind: "remote", model: "m" }, code: "<b>two</b>\n<i>more</i>", kind: "html" });
+  addEvent(f, { type: "done", ok: true, rounds: 2, passed: 1 });
+  const trace = []; const eot = eotFromFold(f, { trace });
+  assert.equal(trace.length, eot.provenance.events.length);
+  trace.forEach((t, i) => assert.equal(t.event_id, eot.provenance.events[i].event_id));
+  assert.equal(versionAtCursor(f, trace, 0), null, "at the very first event there is no draft yet");
+  const firstDraw = trace.findIndex((t) => t.round === 1 && t.stage === "draw");
+  assert.equal(versionAtCursor(f, trace, firstDraw).round, 1);
+  const lastOfOne = trace.map((t) => t.round).lastIndexOf(1);
+  assert.equal(versionAtCursor(f, trace, lastOfOne).round, 1, "attempt 2 does not exist yet at attempt 1's last event");
+  assert.equal(versionAtCursor(f, trace, trace.length - 1).round, 2);
+});
+
+test("codeOfEvent: an edit event is the WHOLE file with every change marked; a unit's draw is exactly its bytes; checks carry no code", async () => {
+  const { createFold, addVersion, addEvent } = await import("./fold-chat-fold.js");
+  const { eotFromFold, codeOfEvent } = await import("./fold-chat-eot.js");
+  const f = createFold({ task: "a counter" });
+  const one = "function counter() {\n  return 0;\n}\n\nfunction inc() {\n  return 1;\n}";
+  const two = "function counter() {\n  return 0;\n}\n\nfunction inc() {\n  return 2;\n}\n// é done";
+  addVersion(f, { round: 1, maker: { kind: "penelope" }, kind: "js", code: one, units: ["counter", "inc"], activity: [{ tool: "field", status: "done", title: "counter" }, { tool: "mouth", status: "done", title: "inc" }] });
+  addEvent(f, { type: "check", round: 1, name: "loads", ok: true });
+  addVersion(f, { round: 2, maker: { kind: "remote", model: "m" }, kind: "js", code: two });
+  addEvent(f, { type: "done", ok: true, rounds: 2, passed: 1 });
+  const eot = eotFromFold(f), P = eot.provenance, srcs = new Map(P.sources.map((x) => [x.source_id, x]));
+  const code = (pred) => P.events.map((e) => codeOfEvent(f, e, srcs)).filter(Boolean).find(pred);
+  const edit2 = code((c) => c.kind === "diff" && c.round === 2);
+  assert.ok(edit2, "attempt 2's edit event has a diff");
+  assert.equal(edit2.from, 1);
+  assert.equal(edit2.diff.filter((d) => d.op === "eq").length, 6, "the unchanged lines are all there, not just the hunk");
+  assert.deepEqual(edit2.diff.filter((d) => d.op !== "eq").map((d) => d.op + ":" + d.line.trim()), ["del:return 1;", "add:return 2;", "add:// é done"]);
+  const first = code((c) => c.kind === "diff" && c.round === 1);
+  assert.equal(first.from, null); assert.equal(first.removed, 0, "the first draft is all additions");
+  const unit = code((c) => c.kind === "range" && c.round === 1);
+  assert.ok(unit && unit.text.length < one.length, "a unit's draw is a slice of the file");
+  assert.ok(one.includes(unit.text), "and the slice is verbatim from the attempt");
+  assert.equal(unit.startLine >= 1, true);
+  const checks = P.events.filter((e) => e.stage === "verify" && e.transform === "artifact→observation");
+  assert.ok(checks.length && checks.every((e) => codeOfEvent(f, e, srcs) === null), "a check changed no code");
+  const mat = P.events.find((e) => e.stage === "materialize");
+  assert.equal(codeOfEvent(f, mat, srcs).kind, "whole");
+});

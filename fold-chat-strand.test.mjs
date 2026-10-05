@@ -169,3 +169,12 @@ test("STATIC GUARD: every model call in run() goes through the one barred wrappe
   assert.match(body.slice(w, w + 600), /modelBarred/);
   assert.match(body, /modelBarred = /);
 });
+
+test("a Wikipedia lead never stops on an abbreviation: 'sent to study at St.' is not the end of a sentence", () => {
+  const t = "Freddie Mercury was a British singer. In 1954, at the age of eight, Mercury was sent to study at St. Peter's School near Panchgani. He later moved to England and joined a band.";
+  const { snips } = snipsOf([{ ref: "Wikipedia — Freddie Mercury", url: "https://en.wikipedia.org/wiki/Freddie_Mercury", text: t }], "who", { limits: { ...STRAND, leadChars: 80 } });
+  assert.ok(!/St\.$/.test(snips[0].text), snips[0].text);
+  assert.equal(snips[0].text, "Freddie Mercury was a British singer.");
+  const whole = snipsOf([{ ref: "Wikipedia — F", url: "https://en.wikipedia.org/wiki/F", text: t }], "who", { limits: { ...STRAND, leadChars: 140 } }).snips[0].text;
+  assert.ok(whole.endsWith("Panchgani."), whole);
+});

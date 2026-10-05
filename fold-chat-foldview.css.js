@@ -19,7 +19,7 @@ export const FOLDVIEW_CSS = `
 .fv-chips, .fv-filters { display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin:0 0 8px; }
 .fv-vchip, .fv-filter { font: inherit; font-size:12px; border:1px solid var(--line, #e2e2e8); background: var(--bg, #fff); color: var(--ink, #16161a); border-radius:999px; padding:1px 10px; cursor:pointer; }
 .fv-vchip.on, .fv-filter.on { border-color: var(--fv-b); color: var(--fv-b); font-weight:700; } .fv-vchip.held { box-shadow: inset 0 0 0 1px var(--fv-ok); }
-.fv-art .art { margin: 0; border-radius: 8px; } .fv-art iframe { width:100%; min-height:240px; border:0; }
+.fv-art .art { margin: 0; border-radius: 8px; } .fv-art iframe { width:100%; min-height:300px; height:340px; border:1px solid var(--line, #e2e2e8); border-radius:8px; background:#fff; display:block; }
 .fv-problems { margin: 8px 0 0; padding-left: 18px; color: var(--fv-bad); } .fv-problems li { margin: 2px 0; }
 .fv-code { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
 .fv-round { margin: 10px 0 2px; color: var(--fv-a); font-weight:700; text-transform: uppercase; font-size:11px; letter-spacing:.06em; border-top:1px dashed var(--line, #e2e2e8); padding-top:6px; } .fv-round:first-of-type { border-top:0; margin-top:2px; }
@@ -54,4 +54,21 @@ export const FOLDVIEW_CSS = `
 .fv-fl { display:grid; grid-template-columns: 34px 74px minmax(0,1fr); border-left: 3px solid var(--m, var(--fv-a)); }
 .fv-n { color: var(--mut, #6b6b78); text-align:right; padding-right:8px; user-select:none; font-size:12px; } .fv-gut { color: var(--m, var(--fv-a)); font-size:11px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding-right:6px; }
 .fv-src { white-space: pre-wrap; overflow-wrap:anywhere; }
+.fv-scrub { display:flex; align-items:center; gap:8px; padding:5px 10px; border-bottom:1px solid var(--line, #e2e2e8); font-size:12px; }
+.fv-scrub.on { background: color-mix(in srgb, var(--fv-c) 9%, transparent); }
+.fv-step { font: inherit; width:22px; height:22px; border:1px solid var(--line, #e2e2e8); background: var(--bg, #fff); color: var(--ink, #16161a); border-radius:6px; cursor:pointer; line-height:1; padding:0; } .fv-step:disabled { opacity:.3; cursor:default; }
+.fv-range { flex: 1 1 90px; min-width:70px; max-width:260px; accent-color: var(--fv-b); cursor:pointer; }
+.fv-where { color: var(--mut, #6b6b78); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; flex: 1 1 120px; }
+.fv-reset { font: inherit; font-size:12px; font-weight:700; border:1px solid var(--fv-c); color: var(--fv-c); background: transparent; border-radius:999px; padding:1px 11px; cursor:pointer; white-space:nowrap; } .fv-reset:hover { background: color-mix(in srgb, var(--fv-c) 14%, transparent); }
+.fv-marker { color: var(--fv-c); font-weight:700; white-space:nowrap; } .fv-undo { font: inherit; border:0; background:transparent; color: var(--fv-b); text-decoration: underline dotted; cursor:pointer; padding:0; }
+.fv-row.future, .fv-ev.future { opacity:.38; } .fv-row.cur, .fv-ev.cur { background: color-mix(in srgb, var(--fv-b) 10%, transparent); box-shadow: inset 3px 0 0 var(--fv-b); } .fv-ev.mark { box-shadow: inset 3px 0 0 var(--fv-c); }
+.fv-row { cursor:pointer; }
+.fv-codetag { font-size:11px; font-weight:700; color: var(--fv-b); border:1px solid currentColor; border-radius:999px; padding:0 7px; }
+.fv-codebox { margin: 6px 0 4px 26px; border:1px solid var(--line, #e2e2e8); border-radius:8px; overflow:hidden; cursor:default; background: var(--bg, #fff); }
+.fv-codehead { display:flex; align-items:center; gap:10px; padding:4px 8px; background: var(--side2, #f1f1f4); border-bottom:1px solid var(--line, #e2e2e8); } .fv-codehead .fv-cap { flex:1; min-width:0; overflow-wrap:anywhere; }
+.fv-codelines { max-height:360px; overflow:auto; }
+.fv-cl { display:grid; grid-template-columns: 34px 14px minmax(0,1fr); } .fv-sign { color: var(--mut, #6b6b78); font-weight:700; text-align:center; }
+.fv-cl-add { background: color-mix(in srgb, var(--fv-ok) 13%, transparent); } .fv-cl-add .fv-sign { color: var(--fv-ok); }
+.fv-cl-del { background: color-mix(in srgb, var(--fv-bad) 13%, transparent); } .fv-cl-del .fv-sign, .fv-cl-del .fv-src { color: var(--fv-bad); }
+.fv-steps { margin: 4px 0 8px; } .fv-steps > summary { cursor:pointer; color: var(--mut, #6b6b78); font-size:12.5px; padding: 3px 0; list-style:none; } .fv-steps > summary::before { content:"▸ "; } .fv-steps[open] > summary::before { content:"▾ "; }
 `;

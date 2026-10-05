@@ -104,9 +104,14 @@ await ask("write an essay about the potential extinction of dolphins", 60000);
     !askedForTopics,
     `askedForTopics=${askedForTopics} · refused=${refused} · head="${ans.slice(0, 80)}"`,
     "the reply asks for topics → the generation path failed (the original bug)");
-  ok("a write request carries NO grounding disclosure",
-    (await panelCount()) === 0,
-    `panels=${await panelCount()}`,
+  // 2026-10-05: this used to assert panelCount() === 0. A writing turn has always carried the quiet
+  // "how this was answered" line (its record), so that held only while the essay was still being written when
+  // the 60 s wait ended. What the claim means is that a written piece is not SCORED as a claim — no "✱ N of M
+  // sentences have no source" mark — and that is what is checked.
+  const scoredAsClaim = await page.evaluate(() => /\d+ of \d+ sentences? (has|have) no source/.test([...document.querySelectorAll(".msg.assistant")].slice(-1)[0]?.innerText || ""));
+  ok("a write request is NOT scored as a claim (no \"✱ N of M sentences have no source\" mark)",
+    !scoredAsClaim,
+    `scoredAsClaim=${scoredAsClaim}`,
     "a written piece is grounded as if it were a claim → wrong discourse class");
 }
 
@@ -364,6 +369,21 @@ ok("the surface raises no page error during the whole run",
     j.lane === "penelope-code-agent" && noRequested,
     `lane=${j.lane} activity=${JSON.stringify((j.activity || []).slice(0, 4))}`,
     "a hallucinated tool request is surfaced as activity → the doctrine is broken");
+}
+
+// ── F10. the everyday-chat defects (a blank bubble, a forged attribution, a leaked [W1], the model speaking
+// alone, Sources-only making no model call …) — deterministic: the chat endpoint and Wikipedia are stubbed at the
+// network layer in fresh contexts. See fold-e2e-everyday-checks.mjs. ──
+{
+  const { runEverydayChecks } = await import("./fold-e2e-everyday-checks.mjs");
+  await runEverydayChecks({ browser, URL, ok });
+}
+
+// ── F11. chat quality: a gate refusal falls back to the strand, the live turn feed, the + beside Chats, the models-loaded
+// footer, and no-bridge Sources only. See fold-e2e-turn-feedback.mjs. ──
+{
+  const { runTurnFeedbackChecks } = await import("./fold-e2e-turn-feedback.mjs");
+  await runTurnFeedbackChecks({ browser, URL, ok });
 }
 
 await browser.close();

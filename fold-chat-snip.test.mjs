@@ -51,7 +51,7 @@ test("metaLine leaves out what the page did not declare", () => {
 
 test("the tip wording says it is in development and that nothing is sent; the model is told not to retype the recipe", () => {
   assert.match(TIP.status, /in development/i);
-  assert.match(TIP.status, /nothing is sent/i);
-  assert.match(TIP.clicked, /nothing was sent or charged/i);
+  assert.match(TIP.status, /email draft/i);
+  assert.match(TIP.status, /nothing is paid or sent/i);
   assert.match(CARD_PROMPT, /Do NOT write out, retype/);
 });

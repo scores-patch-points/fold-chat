@@ -247,13 +247,62 @@ export function createFeed(host, { live = false, onStop = null, onRetry = null, 
   };
   function paintLive() {
     if (!live || liveBox.hidden) return;
-    liveV.textContent = liveWords(stage, stagePipe);
+    liveV.textContent = turnVerb || liveWords(stage, stagePipe);
+    paintTurnSteps();
     const el_ = stage ? Date.now() - stageStart : t0 ? Date.now() - t0 : 0;
     liveM.textContent = `${el_ < 1000 ? "0s" : secs(el_)} · press Esc to stop `;
     if (stage === "act" && Date.now() - stageStart > 8000) { hint.textContent = slowWords(stagePipe, canGoOnline) + " Stop cancels it."; hint.hidden = false; }
     spin.textContent = SPIN[frame++ % SPIN.length];
   }
   const startClock = () => { if (live && !tick) tick = later(paintLive, 250); };
+
+  // ---- a CHAT turn's steps (type "t", built by fold-chat-turnfeed.js): the same rows, each with its own clock ----
+  // begin → a row whose elapsed time ticks while it is in flight; end → the row settles with its real duration and
+  // result; a step that is still going past its declared `slowAfter` says, honestly, what it is waiting on.
+  let turnVerb = "";
+  const tsteps = new Map();
+  function paintTurnSteps() {
+    if (!live) return;
+    for (const t of tsteps.values()) {
+      if (t.done) continue;
+      const ms = Date.now() - t.start;
+      t.s.time(ms);
+      if (t.slowAfter && ms > t.slowAfter && !t.slowed) { t.slowed = true; t.s.kind("warn", "\u21bb").note("\u2014 " + t.slow); hint.textContent = t.slow; hint.hidden = false; }
+    }
+  }
+  const toneKind = (tone) => (tone === "bad" ? "bad" : tone === "ok" ? "ok" : tone === "warn" ? "warn" : "info");
+  function turnEvent(e) {
+    switch (e.op) {
+      case "begin": {
+        const sp = step("run", e.title, { limit: 3 });
+        tsteps.set(e.id, { s: sp, start: Date.now(), slowAfter: e.slowAfter || 0, slow: e.slow || "", slowed: false, done: false });
+        if (live) { startClock(); }
+        break;
+      }
+      case "note": { const t = tsteps.get(e.id); if (t) t.s.add({ text: e.text, kind: toneKind(e.tone) }); break; }
+      case "end": {
+        const t = tsteps.get(e.id); if (!t) break;
+        t.done = true;
+        if (e.title) t.s.label(e.title);
+        t.s.kind(toneKind(e.tone)).time(e.ms || 0).note(e.note ? "\u2014 " + e.note : "");
+        if (![...tsteps.values()].some((x) => x.slowed && !x.done)) hint.hidden = true;
+        break;
+      }
+      case "line": {
+        const sp = step(toneKind(e.tone) === "info" ? "info" : toneKind(e.tone), e.title, { limit: 3 });
+        if (e.note) sp.note("\u2014 " + e.note);
+        break;
+      }
+      case "verb": turnVerb = e.text || ""; paintLive(); break;
+      case "done": {
+        for (const t of tsteps.values()) t.done = true;
+        turnVerb = ""; endAll(); finish(e.ok ? "ok" : "bad");
+        footLine.textContent = (e.ok ? SIGN.ok : SIGN.bad) + (e.title || (e.ok ? "Done" : "Stopped"));
+        footRes.set(e.detail ? [{ text: e.detail, kind: "cont" }] : []);
+        break;
+      }
+    }
+  }
 
   function foldPlan() {
     if (!planSteps || collapsed) return;
@@ -281,6 +330,7 @@ export function createFeed(host, { live = false, onStop = null, onRetry = null, 
     events.push(e);
     const d = describe(e, { live, remote: actMeta.remote, continuing: actMeta.continuing, round, of, tries });
     switch (e.type) {
+      case "t": turnEvent(e); break;
       case "start":
         t0 = Date.now() - (e.at || 0);
         stageStart = Date.now();

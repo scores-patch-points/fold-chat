@@ -16,6 +16,7 @@
 // Pure: no DOM, no network.
 
 import { foldedLines, artifactOf } from "./fold-chat-fold.js";
+import { diffLines, diffStat } from "./fold-chat-workspace.js";
 
 // ───────────────────────── sha256 (synchronous, so ids can be derived inline) ─────────────────────────
 const K = new Uint32Array([
@@ -92,11 +93,12 @@ const PEN_STAGE = { swarm: ["arrange", "unit-spec"], field: ["draw", "field→sn
  * Build the ArrangementEOT for a fold. Deterministic: the same fold always yields the same document, ids included.
  * Returns { schema:"ArrangementEOT@2", …, provenance: Provenance@2 }.
  */
-export function eotFromFold(fold, { now = null } = {}) {
+export function eotFromFold(fold, { now = null, trace = null } = {}) {
   const led = new EotLedger({ artifact: "html-or-code", position: null });
   const task = String(fold.task || "");
   const taskSrc = led.source({ kind: "task", locator: sha256Hex(task).slice(0, 20), anchor: byteRange(0, utf8Len(task)), meta: { text: task.slice(0, 300) } });
   const intent = led.event({ stage: "intent", source_id: taskSrc, transform: "request→task" });
+  if (trace) trace.push({ event_id: intent, seq: 0, round: null, stage: "intent" });   // trace[i] describes events[i]: which action-log entry and attempt it came from
   let chain = intent;
   const lastEventOfRound = new Map();
   const verByRound = new Map(fold.versions.map((v) => [v.round, v]));
@@ -143,7 +145,7 @@ export function eotFromFold(fold, { now = null } = {}) {
         break;
       default: id = null;
     }
-    if (id) { chain = id; if (e.round != null) lastEventOfRound.set(e.round, id); }
+    if (id) { chain = id; if (e.round != null) lastEventOfRound.set(e.round, id); if (trace && !trace.some((t) => t.event_id === id)) trace.push({ event_id: id, seq: e.seq, round: e.round, stage: e.stage }); }
   }
   const eot = led.eot({ root: chain });
   return {
@@ -155,6 +157,46 @@ export function eotFromFold(fold, { now = null } = {}) {
     product: { language: artifactOf(fold)?.kind || null, bytes: artifactOf(fold) ? utf8Len(artifactOf(fold).code) : 0 },
     ...(now ? { builtAt: now } : {}),
   };
+}
+
+/** Which attempt EXISTS once the first k+1 events have happened — the cursor's view of the artifact. Null before any draft. */
+export function versionAtCursor(fold, trace, k) {
+  const DRAFTY = new Set(["draw", "edit", "fold", "observe", "verify", "done"]);   // events that only happen once an attempt's code exists
+  let round = null;
+  for (let i = 0; i <= k && i < trace.length; i++) { const t = trace[i]; if (t.round != null && DRAFTY.has(t.stage) && fold.versions.some((v) => v.round === t.round)) round = t.round; }
+  return round == null ? null : fold.versions.find((v) => v.round === round) || null;
+}
+
+/**
+ * The code an event stands for — what you read when you click it in the EOT.
+ *   edit events (attempt→attempt, request→first-draft)  → "diff": the WHOLE file with every added / removed line marked
+ *   events with a byte range inside an attempt            → "range": exactly those bytes, cut out of that attempt's code
+ *   fold / materialize / whole-file draws                 → "whole": the attempt's complete code
+ *   everything else (reads, checks, rulings)              → null: they changed no code
+ */
+export function codeOfEvent(fold, ev, sources = new Map()) {
+  const src = ev.source_id ? sources.get(ev.source_id) : null;
+  if (!src || src.kind !== "artifact-version") return null;
+  const m = /^attempt-(\d+):/.exec(String(src.locator || ""));
+  const v = m ? fold.versions.find((x) => x.round === Number(m[1])) : null;
+  if (!v) return null;
+  const code = String(v.code || "");
+  if (ev.stage === "repair" && (ev.transform === "attempt→attempt" || ev.transform === "request→first-draft")) {
+    const at = fold.versions.indexOf(v), prev = at > 0 ? fold.versions[at - 1] : null;
+    const diff = diffLines(prev ? prev.code : null, code);
+    const stat = diffStat(diff);
+    return { kind: "diff", round: v.round, from: prev ? prev.round : null, diff, added: stat.added, removed: stat.removed, lines: v.lines };
+  }
+  const total = new TextEncoder().encode(code).length;
+  const r = ev.range;
+  if (r && (r.start > 0 || r.end < total) && r.end > r.start) {
+    const bytes = new TextEncoder().encode(code);
+    const text = new TextDecoder().decode(bytes.slice(r.start, Math.min(r.end, total)));
+    const startLine = new TextDecoder().decode(bytes.slice(0, r.start)).split("\n").length;
+    return { kind: "range", round: v.round, text, startLine, endLine: startLine + text.replace(/\n$/, "").split("\n").length - 1, bytes: [r.start, r.end], lines: v.lines };
+  }
+  if (r || ev.stage === "fold" || ev.stage === "materialize") return { kind: "whole", round: v.round, text: code, startLine: 1, endLine: v.lines, bytes: [0, total], lines: v.lines };
+  return null;
 }
 
 /** One compact line for an event, for display: what happened to which bytes, from where. */

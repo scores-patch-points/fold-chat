@@ -246,7 +246,8 @@ test("remoteCandidates ranks the measured-fast sealed models first and drops wha
     M("gemma2:2b", false), M("Voxtral-Small-24B-2507"), M("llm7:openai-fast"), M("L3-8B-Lunaris-v1-Turbo"),
     M("DeepSeek-V4.1-Flash"), M("GLM-5.3-Flash"), M("pollinations:openai-fast"), M("openai-fast"), M("Inkling"),
   ]);
-  assert.deepEqual(ids.slice(0, 3), ["openai-fast", "GLM-5.3-Flash", "pollinations:openai-fast"]);
+  assert.deepEqual(ids.slice(0, 2), ["openai-fast", "GLM-5.3-Flash"]);
+  assert.ok(!ids.includes("pollinations:openai-fast"), "its alias is the SAME endpoint — asking it again cost a measured two minutes");
   assert.ok(ids.includes("DeepSeek-V4.1-Flash") && ids.includes("Inkling"), "unranked frontier models stay as last resorts");
   for (const bad of ["gemma2:2b", "Voxtral-Small-24B-2507", "llm7:openai-fast", "L3-8B-Lunaris-v1-Turbo"]) assert.ok(!ids.includes(bad), bad + " is never a code writer");
   assert.deepEqual(remoteCandidates([]), []);
@@ -277,6 +278,54 @@ test("remoteCode goes out SEALED, carries only the task and the prior code, and 
   assert.match(msgs, /make a timer/);
 });
 
+test("remoteCode de-identifies what leaves, maps the reply back, and records only the masked bytes", async () => {
+  const { createTaint } = await import("./fold-chat-seal.js");
+  const taint = createTaint().add("Eleanor Voss", "local-read").add("/Users/mlacy/clinic", "folder path");
+  const seen = [], audited = [];
+  const { setAuditHook } = await import("./fold-chat-client.js");
+  setAuditHook({ before: (i) => { audited.push(i); return null; } });
+  try {
+    const echo = async (url, opts) => {
+      const body = JSON.parse(opts.body); seen.push(body);
+      const said = body.messages.at(-1).content.match(/TERM_\d+/)[0];
+      const data = "data: " + JSON.stringify({ choices: [{ delta: { content: "```js\n// for " + said + "\n```" } }] }) + "\n\ndata: [DONE]\n\n";
+      return { ok: true, status: 200, body: new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode(data)); c.close(); } }) };
+    };
+    const out = await remoteCode("build a page for Eleanor Voss, files in /Users/mlacy/clinic", { candidates: ["m"], prior: "<h1>Eleanor Voss</h1>", taint, fetchImpl: echo });
+    const wire = JSON.stringify(seen[0].messages);
+    assert.ok(!/Eleanor|Voss|mlacy/.test(wire), "nothing identifying is on the wire: " + wire);
+    assert.match(out.text, /\/\/ for Eleanor Voss/, "the reply comes back with the real name");
+    assert.equal(out.masked.count >= 2, true);
+    assert.deepEqual(audited[0].segments.map((x) => x.provenance), ["template", "masked", "masked"], "the audit is told what it is");
+    assert.ok(!/Eleanor/.test(JSON.stringify(audited[0].messages)), "the ledger entry holds the masked bytes, not the originals");
+  } finally { setAuditHook(null); }
+});
+
+test("remoteCode masks what the holograph's read names in the ask, and falls back to capitalised names when the read is empty or down", async () => {
+  const seen = [];
+  const run = (readNames) => remoteCode("make a timer for Eleanor Voss, desk run by Priya, ping Mike when done", { candidates: ["m"], readNames, fetchImpl: remoteBridge({ m: "ok" }, seen) });
+  await run(async () => ["Priya", "Eleanor Voss"]);
+  await run(async () => []);
+  await run(async () => { throw new Error("khora down"); });
+  const wire = seen.map((b) => JSON.stringify(b.messages));
+  assert.ok(!/Priya|Voss/.test(wire[0]), "the read's referents are masked");
+  assert.ok(!/Voss|Priya/.test(wire[1]) && !/Voss|Priya/.test(wire[2]), "an empty or failed read still masks the capitalised name and the one after 'by'");
+  assert.match(wire[1], /Mike/, "a lone ordinary-word name with no cue and no read is the known gap — pinned so it is not overclaimed");
+});
+
+test("remoteCode sends nothing when a private detail cannot be taken out", async () => {
+  const taint = { scan: () => [{ term: "a term the masker cannot find in the text", kind: "local-read", at: 0 }] };   // a registry that still reports a hit after masking
+  const seen = [];
+  await assert.rejects(remoteCode("Voss", { candidates: ["m"], taint, fetchImpl: remoteBridge({ m: "x" }, seen) }), (e) => /not sent/.test(e.message) && !/cannot find/.test(e.message));
+  assert.equal(seen.length, 0);
+});
+
+test("remoteCode with mask:false sends as written", async () => {
+  const seen = [];
+  await remoteCode("mail a@b.org", { candidates: ["m"], mask: false, fetchImpl: remoteBridge({ m: "ok" }, seen) });
+  assert.match(JSON.stringify(seen[0].messages), /a@b\.org/);
+});
+
 test("remoteCode: when no sealed model answers it says which were tried and why", async () => {
   await assert.rejects(
     remoteCode("t", { candidates: ["a", "b"], fetchImpl: remoteBridge({ a: new Error("x"), b: "" }) }),
@@ -287,4 +336,35 @@ test("remoteCode: when no sealed model answers it says which were tried and why"
 test("remoteCode honors Stop between models", async () => {
   const ac = new AbortController(); ac.abort();
   await assert.rejects(remoteCode("t", { candidates: ["a"], signal: ac.signal, fetchImpl: remoteBridge({ a: "x" }) }), (e) => e.name === "AbortError");
+});
+
+test("chat: a 403 from the bridge is a GATE speaking — its own words reach the turn's typed failure note", async () => {
+  const { chat } = await import("./fold-chat-client.js");
+  const { errorNotice } = await import("./fold-chat-gaps.js");
+  const fetchImpl = async () => ({ ok: false, status: 403, json: async () => ({ error: "refused by the safety-and-ethics gate (AntiStrauss): the call contravenes the standing law", type: "antistrauss_blocked" }) });
+  await assert.rejects(() => chat("gemma2:2b", [{ role: "user", content: "hi" }], { base: "http://x:8790", fetchImpl }), (e) => {
+    assert.equal(e.status, 403);
+    assert.match(e.message, /safety-and-ethics gate/);
+    assert.match(errorNotice(e).text, /request was refused \(refused by the safety-and-ethics gate/);
+    return true;
+  });
+});
+
+test("remoteCandidates: an alias of the same endpoint is tried once; dead models are skipped; the last one that worked goes first", async () => {
+  const C = await import("./fold-chat-client.js");
+  C.resetModelHealth();
+  const sealed = (id) => ({ id, sealed: true });
+  const models = [sealed("pollinations:openai-fast"), sealed("openai-fast"), sealed("GLM-5.3-Flash"), sealed("gemma4:31b"), sealed("deepseek-v4-flash")];
+  const ids = C.remoteCandidates(models);
+  assert.equal(ids.filter((i) => /openai-fast/.test(i)).length, 1, "pollinations:openai-fast and openai-fast are one endpoint");
+  assert.ok(ids.includes("gemma4:31b"), "a model's own colon tag (gemma4:31b) is not mistaken for a provider prefix");
+  C.noteModelHealth("openai-fast", "404", { now: 1000 });
+  assert.ok(!C.remoteCandidates(models, { now: 2000 }).includes("openai-fast"), "a 404 is skipped");
+  assert.ok(C.remoteCandidates(models, { now: 1000 + 31 * 60_000 }).includes("openai-fast"), "…but not forever");
+  C.noteModelHealth("deepseek-v4-flash", "ok");
+  assert.equal(C.remoteCandidates(models, { now: 2000 })[0], "deepseek-v4-flash", "the last model that answered goes first");
+  assert.equal(C.outcomeOfError(new Error("heimdall bridge answered 404")), "404");
+  assert.equal(C.outcomeOfError(new Error("heimdall bridge answered 429: Daily token quota exceeded")), "quota");
+  assert.equal(C.outcomeOfError(new Error("the turn timed out (60s)")), "timeout");
+  C.resetModelHealth();
 });

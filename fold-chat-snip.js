@@ -6,14 +6,15 @@
 // introduce which sources were found and how they differ, and that is all (Constitution II.9 — the mouth may
 // phrase, never originate; and the creator's work is cited, not laundered into the model's voice).
 //
-// TIPPING is a feature in development. Nothing is sent, stored or charged; the card says so plainly, and the
-// control it carries only explains that — a placeholder that never pretends to have done something.
+// TIPPING is a feature in development. The Fold pays and sends nothing. The "Tip the creator" control finds how the
+// creator's own site says to reach them and opens the person's own email app with a draft (fold-chat-tip.js); the
+// person reads and sends it themselves. The card says so plainly.
+import { contactOfPassage } from "./fold-chat-tip.js";
 
 /** What the tip prompt says. One string, so the wording is the same wherever it appears and a test can pin it. */
 export const TIP = Object.freeze({
   prompt: "Like this recipe? Tip its creator.",
-  status: "Tipping is a feature in development — nothing is sent yet.",
-  clicked: "Tipping creators is in development. Nothing was sent or charged.",
+  status: "Tipping is a feature in development. The button opens an email draft to the creator; nothing is paid or sent by the Fold.",
 });
 
 // Declared, not measured (Constitution II.11): enough for any real recipe, small enough that a stored turn never
@@ -45,6 +46,8 @@ export function snipOfPassage(p, { now = () => new Date().toISOString() } = {}) 
     url,
     yield: r.yield || "", prep: r.prep || "", cook: r.cook || "", total: r.total || "", calories: r.calories || "",
     ingredients, steps, truncated,
+    // how the creator's own page says to reach them (kept here only, for the card's tip control; never sent anywhere)
+    ...((c) => (c ? { contact: c } : {}))(contactOfPassage(p)),
     snippedAt: now(),
   };
 }

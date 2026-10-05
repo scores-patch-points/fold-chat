@@ -20,7 +20,26 @@ const out = await page.evaluate(async () => {
     clickError: await time('<!doctype html><button onclick="undefinedFn()">Boom</button>'),
     blank: await time("<!doctype html><html><body></body></html>"),
     script: await time("const a = 1; a.b.c;", { kind: "js" }),
+    moduleOk: await time("export function slugify(t) { return String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }\nexport default slugify;", { kind: "js" }),
+    moduleBad: await time("export function f() { return nope.x; }\nf();", { kind: "js" }),
   };
+});
+// A tab in the background cannot run the test frame: silence there must not be judged a hang. Mute the probe's messages,
+// pretend the tab is hidden, and watch the verdict wait for it to be shown.
+const bg = await page.evaluate(async () => {
+  const m = await import("/fold-chat-sandbox.js?" + Date.now());
+  const mute = (e) => { if (e.data && e.data.__foldprobe) e.stopImmediatePropagation(); };
+  window.addEventListener("message", mute, true);
+  Object.defineProperty(document, "visibilityState", { configurable: true, get: () => "hidden" });
+  let settled = null; const t0 = Date.now();
+  const p = m.observeArtifact("<!doctype html><button>x</button>", { kind: "html", timeoutMs: 600 }).then((r) => { settled = { ms: Date.now() - t0, r }; });
+  await new Promise((r) => setTimeout(r, 1800));
+  const whileHidden = settled === null;
+  Object.defineProperty(document, "visibilityState", { configurable: true, get: () => "visible" });
+  document.dispatchEvent(new Event("visibilitychange"));
+  await p;
+  window.removeEventListener("message", mute, true);
+  return { whileHidden, afterShown: settled.ms - 1800, never: settled.r.checks.find((c) => c.name === "loads without errors") };
 });
 await browser.close();
 const R = [];
@@ -35,5 +54,8 @@ check("a runtime error at load is caught", out.loadError.facts.loadErrors.length
 check("a click that throws is caught as a CLICK error, not a load error", out.clickError.facts.clickErrors.length >= 1 && out.clickError.facts.loadErrors.length === 0 && name(out.clickError, "controls respond").ok === false, JSON.stringify(out.clickError.facts.clickErrors[0]));
 check("a blank page is reported blank", out.blank.facts.rendered === false && name(out.blank, "renders something visible").ok === false, JSON.stringify(out.blank.facts));
 check("a bare script that throws is caught", out.script.facts.loadErrors.length >= 1, JSON.stringify(out.script.facts.loadErrors[0]));
+check("a tab in the background is NOT judged a hang: the verdict waits until it is shown, then runs its own clock", bg.whileHidden && bg.afterShown >= 400 && bg.never && bg.never.ok === false, JSON.stringify(bg));
+check("a MODULE (export/import) is run as a module — `export` is not a syntax error — and a function that draws nothing is not 'blank'", out.moduleOk.facts.loaded && out.moduleOk.facts.loadErrors.length === 0 && !out.moduleOk.checks.some((c) => c.ok === false) && !out.moduleOk.checks.some((c) => c.name === "renders something visible"), JSON.stringify(out.moduleOk.checks));
+check("…but a module that really throws is still caught", out.moduleBad.facts.loadErrors.length >= 1 && /nope/i.test(out.moduleBad.facts.loadErrors[0].message), JSON.stringify(out.moduleBad.facts.loadErrors[0]));
 console.log(`\n${R.filter(Boolean).length}/${R.length} stand`);
 process.exit(R.every(Boolean) ? 0 : 1);

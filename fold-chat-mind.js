@@ -125,18 +125,38 @@ export function entityFromTitle(title) {
   return t.trim();
 }
 
-/** Capitalised runs ("Judge Richard Henderson") — ONLY in scripts where case marks names. */
-export function casedRuns(text, script = scriptOf(text), { minLength = 2 } = {}) {
+/** Capitalised runs ("Judge Richard Henderson") — ONLY in scripts where case marks names.
+ *  A linking particle ("van", "de", "al"…) only counts as a whole word, and a run ends at a sentence boundary
+ *  ("Napoleon Bonaparte also…" is "Napoleon Bonaparte", never "Napoleon Bonaparte al"; "Henderson. The French"
+ *  is two things). Measured defects 2026-10-05 (ethos study E4): 7.4% of runs ended in a particle fragment. */
+const INITIAL = /^\p{Lu}\.$/u;                 // "J." in "J. R. R. Tolkien" is part of a name, not a sentence end
+const TITLE_DOT = /^(?:Mr|Mrs|Ms|Dr|Prof|St|Sr|Jr|Mt|Gen|Col|Capt|Lt|Sgt|Rev|Hon)\.$/u;
+export function casedRuns(text, script = scriptOf(text), { minLength = 2, functionWords = null } = {}) {
+  // functionWords: a Set of case-folded closed-class words (the ethos-derived list, eval/priors/out/function-words-v1.json),
+  // INJECTED, never typed here. A sentence-initial run sheds leading ones ("Then Napoleon Bonaparte" → "Napoleon Bonaparte").
+  const fw = functionWords instanceof Set ? functionWords : null;
   if (!capitalisationIsSignificant(script)) return [];
   const s = String(text ?? ""), out = [];
-  const re = /(?<![\p{L}\p{N}])(\p{Lu}[\p{L}\p{N}.'’-]*(?:[ \t]+(?:\p{Lu}[\p{L}\p{N}.'’-]*|de|da|di|del|della|du|des|la|le|von|van|der|den|ter|of|y|e|bin|ibn|al))*)/gu;
+  const PARTICLE = "(?:de|da|di|del|della|du|des|la|le|von|van|der|den|ter|of|y|e|bin|ibn|al)(?![\\p{L}\\p{N}])";
+  const re = new RegExp("(?<![\\p{L}\\p{N}])(\\p{Lu}[\\p{L}\\p{N}.'’-]*(?:[ \\t]+(?:\\p{Lu}[\\p{L}\\p{N}.'’-]*|" + PARTICLE + "))*)", "gu");
   let m;
   while ((m = re.exec(s)) !== null) {
-    const run = m[1].replace(/[\s.'’-]+$/u, "");
+    // cut the run at the first token that ends a sentence (a word ending in '.', that is not an initial or a title)
+    const toks = m[1].split(/[ \t]+/); const kept = [];
+    for (const t of toks) {
+      if (/\.$/.test(t) && !INITIAL.test(t) && !TITLE_DOT.test(t)) { kept.push(t.replace(/\.+$/u, "")); break; }
+      kept.push(t);
+    }
+    while (kept.length && new RegExp("^" + PARTICLE + "$", "u").test(kept[kept.length - 1])) kept.pop(); // never end on a particle
+    // a possessive is not part of a name ("Tolkien's" → "Tolkien"; Latin-script possessive, harmless elsewhere)
+    const run = kept.join(" ").replace(/['’]s$/iu, "").replace(/[\s.'’-]+$/u, "");
     // A sentence-initial single capitalised WORD is a sentence opener, not a name.
     const atStart = m.index === 0 || /[.!?¿¡]\s*$/u.test(s.slice(0, m.index));
-    if (atStart && !/\s/.test(run)) continue;
-    if (run.length >= minLength) out.push({ surface: run, start: m.index, end: m.index + run.length });
+    let surface = run, shed = false;
+    if (atStart && fw) { const parts = run.split(/\s+/); while (parts.length > 1 && fw.has(fold(parts[0]))) { parts.shift(); shed = true; } if (parts.length === 1 && fw.has(fold(parts[0]))) continue; surface = parts.join(" "); }
+    // a lone capitalised word left AFTER a shed opener ("The French" → "French") is no longer sentence-initial
+    if (atStart && !shed && !/\s/.test(surface)) continue;
+    if (surface.length >= minLength) out.push({ surface, start: m.index + (run.length - surface.length), end: m.index + run.length });
   }
   return out;
 }
@@ -255,16 +275,27 @@ export function activated(question, record) {
  * Read a question in the light of the chat's referent record.
  *
  *   resolveQuestion(question, record, { hints })
- *   hints (all optional, injected from the ethos priors, never typed here):
- *     personalPronouns: [forms]   — surface forms of third-person personal pronouns in the language
- *     titles:           [forms]   — honorific titles that begin a personal name
+ *   hints (injected from the ethos priors — eval/priors/out/hints-v1.json — never typed here):
+ *     carryTriggers:    [forms] — pronoun forms that signal 'the last answer's referent' in this language
+ *     personalPronouns: [forms] — gendered personal forms; when one is matched, only person-like referents carry
+ *                                 (not for Russian: он/его also refer to masculine inanimates — use those as triggers only,
+ *                                 i.e. put them in carryTriggers and leave them out of personalPronouns)
+ *     titles:           [forms] — honorific titles that begin a personal name
+ *
+ * WHEN IT CARRIES — only on a trigger. The first version carried on ANY short question with no entity of its own;
+ * measured on 60 new-topic questions (ethos study E4, 2026-10-05) 85% wrongly inherited the last topic's referents.
+ * Gating on the language's pronoun forms cut that to 18% (en+ru, any pronoun) and, with gendered forms only,
+ * to 0/60 — at the price of carrying less (50% carry-correct in English, 85% in Russian). A question with no
+ * trigger therefore carries NOTHING (reason 'no-trigger'): the retrieval step may still try the previous turn's
+ * referents as a SECOND query and keep them only if the results' titles agree (titleAgreement).
+ * A language with no pronoun prior (es, zh…) has no trigger and so never carries: a typed gap, not a guess.
  *
  * Returns { said, resolved, carried:[{surface, by}], reason, script, segments }.
  *   - the question names a known referent  → nothing is carried (reason 'names-its-own')
  *   - the question names its own entity    → nothing is carried (reason 'has-own-entity')
  *   - the question is long enough to stand → nothing is carried (reason 'self-sufficient')
- *   - otherwise the record's top referents are carried ('activation:last-answer'),
- *     preferring person-like ones when a personal pronoun was matched.
+ *   - no trigger form in the question      → nothing is carried (reason 'no-trigger')
+ *   - otherwise the record's top referents are carried ('activation:last-answer+pronoun').
  * The carry is APPENDED to the question as 'about: A; B' for the search, and `resolved`
  * is that string — the surface shows `carried` to the person; it never rewrites `said`.
  */
@@ -276,14 +307,18 @@ export function resolveQuestion(question, record, { hints = null } = {}) {
   if (activated(said, record).length) return { ...base, reason: "names-its-own" };
   if (casedRuns(said, script).length) return { ...base, reason: "has-own-entity" };
   if (segs.length >= DECLARED.selfSufficientSegments) return { ...base, reason: "self-sufficient" };
+  const forms = (arr) => (Array.isArray(arr) ? arr : []).map(fold);
+  const triggers = new Set([...forms(hints?.carryTriggers), ...forms(hints?.personalPronouns)]);
+  const hit = segs.some((x) => triggers.has(fold(x.text)));
+  if (!hit) return { ...base, reason: "no-trigger" };
   let pool = [...record.entities];
-  const pronounHit = hints?.personalPronouns?.some((p) => segs.some((s) => fold(s.text) === fold(p)));
-  if (pronounHit) {
+  const personal = new Set(forms(hints?.personalPronouns));
+  if (segs.some((x) => personal.has(fold(x.text)))) {
     const people = pool.filter((e) => personLike(e.surface, hints));
     if (people.length) pool = people;
   }
   pool.sort((x, y) => y.weight - x.weight);
-  const carried = pool.slice(0, DECLARED.carryMax).map((e) => ({ surface: e.surface, by: pronounHit ? "activation:last-answer+pronoun" : "activation:last-answer" }));
+  const carried = pool.slice(0, DECLARED.carryMax).map((e) => ({ surface: e.surface, by: "activation:last-answer+pronoun" }));
   if (!carried.length) return { ...base, reason: "nothing-to-carry" };
   return { ...base, carried, resolved: `${said} (about: ${carried.map((c) => c.surface).join("; ")})`, reason: "carried" };
 }

@@ -25,3 +25,36 @@ experiments/**/report.html
 experiments/**/report-data.json
 experiments/context-growth/simulation*.json
 experiments/context-growth/real-sessions.json
+
+# snips study: fetched web pages, their text, the app copy it imports from, and run logs (scripts, asks, results stay)
+eval/snips/cache/
+eval/snips/data/pages/
+eval/snips/app
+eval/snips/*.log
+eval/controls-results*.json
+
+# --- general rules, so new runs don't need a new line each time ---
+# fetched / captured web content, wherever a harness puts it
+**/cache/
+**/pages/
+**/raw/
+**/raw-*/
+*.body
+*.har
+*.mhtml
+*.warc
+# per-run model/test output and generated worksheets
+**/data/out/
+**/results/
+**/*-results*.json
+**/*-results*.jsonl
+eval/worksheet.txt
+# test-runner / e2e artifacts
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+screenshots/
+tmp/
+.tmp/
+*.tmp

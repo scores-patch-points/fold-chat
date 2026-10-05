@@ -79,11 +79,20 @@ test("THE 'HIM' FAILURE: a follow-up that names nothing carries the last answer'
   assert.equal(searchQueries(r)[1], r.said, "the raw question is kept as a second query");
 });
 
-test("without pronoun priors the carry is wider, never silent", () => {
+test("without a trigger nothing carries — a typed reason, not a guess (the false-carry fix: 85% of new-topic questions used to inherit the last topic)", () => {
   const r = resolveQuestion("what happened later?", nashvilleRecord());
-  assert.equal(r.reason, "carried");
-  assert.equal(r.carried.length, DECLARED.carryMax);
-  assert.ok(r.carried.every((c) => c.by.startsWith("activation:")));
+  assert.equal(r.reason, "no-trigger");
+  assert.deepEqual(r.carried, []);
+  assert.equal(r.resolved, r.said);
+});
+
+test("FALSE-CARRY CONTROL: new-topic questions with a language's pronoun forms available still carry nothing unless one of those forms is in the question", () => {
+  const rec = nashvilleRecord();
+  for (const q of ["How do I boil an egg?", "what is the weather like in spring", "Is it safe to eat eggs after the date?".replace("it ", "eggs "), "tips to fall asleep faster", "best pizza dough recipe", "how many calories in an avocado"]) {
+    const r = resolveQuestion(q, rec, { hints: EN_HINTS });
+    assert.equal(r.reason === "carried", false, q + " → " + r.reason);
+    assert.deepEqual(r.carried, [], q);
+  }
 });
 
 test("a question with its OWN entity is never given another one (the false-carry control)", () => {
@@ -112,7 +121,7 @@ test("Cyrillic: a follow-up with no name carries the record's referent", () => {
     sources: [{ title: "Википедия — Нэшвилл" }],
   });
   assert.ok(rec.entities.some((e) => fold(e.surface) === fold("Нэшвилл")));
-  const r = resolveQuestion("Что с ним стало потом?", rec);
+  const r = resolveQuestion("Что с ним стало потом?", rec, { hints: { carryTriggers: ["ним", "него", "нём", "ему", "его"] } });
   assert.equal(r.reason, "carried");
   assert.ok(r.carried.length >= 1);
 });
@@ -140,7 +149,7 @@ test("Arabic and Hebrew work the same way (title authority, no case)", () => {
   ]) {
     const rec = admitReferents(emptyReferents(), { question: q, answer: q.replace("?", "") + " הוא", sources: [{ title }] });
     assert.ok(rec.entities.some((e) => e.surface === name), title);
-    assert.equal(resolveQuestion(follow, rec).reason, "carried", follow);
+    assert.equal(resolveQuestion(follow, rec, { hints: { carryTriggers: ["له", "לו"] } }).reason, "carried", follow);
   }
 });
 
@@ -149,7 +158,7 @@ test("activation decays: the latest turn's referents outrank an older one's", ()
   rec = admitReferents(rec, { question: "How tall is the Eiffel Tower?", answer: "The Eiffel Tower is 330 metres tall.", sources: [{ title: "Eiffel Tower - Wikipedia" }] });
   const top = rec.entities[0].surface;
   assert.match(top, /Eiffel/);
-  const r = resolveQuestion("and when was it built?", rec);
+  const r = resolveQuestion("and when was it built?", rec, { hints: { carryTriggers: ["it"] } });
   assert.ok(r.carried.some((c) => /Eiffel/.test(c.surface)));
 });
 
@@ -180,4 +189,32 @@ test("the record is plain JSON and round-trips", () => {
   const again = JSON.parse(JSON.stringify(rec));
   assert.deepEqual(again, rec);
   assert.equal(activated("Where is Nashville, Tennessee?", again).length > 0, true);
+});
+
+test("a language with no pronoun prior has no trigger, so it never carries (a typed gap, not a guess)", () => {
+  const rec = nashvilleRecord();
+  const r = resolveQuestion("¿y cuándo murió?", rec, { hints: { carryTriggers: [] } });
+  assert.equal(r.reason, "no-trigger");
+  assert.equal(resolveQuestion("¿y cuándo murió?", rec).reason, "no-trigger");
+});
+
+test("Russian: gendered forms as TRIGGERS only (not as the person filter): the place can still carry when it is the only referent", () => {
+  const rec = admitReferents(emptyReferents(), { question: "Где находится Нэшвилл?", answer: "Нэшвилл находится в Теннесси.", sources: [{ title: "Википедия — Нэшвилл" }] });
+  const r = resolveQuestion("Сколько в нём жителей?", rec, { hints: { carryTriggers: ["нём", "ним", "он", "его"] } });
+  assert.equal(r.reason, "carried");
+  assert.ok(r.carried.some((c) => fold(c.surface) === fold("Нэшвилл")));
+});
+
+test("casedRuns: a particle is only a whole word, and a run ends at a sentence boundary (measured 2026-10-05: 'Napoleon Bonaparte al', 'The French e')", () => {
+  const runs = (t) => casedRuns(t).map((r) => r.surface);
+  const FW = new Set(["then", "the", "and", "but", "what", "who", "when"]);
+  const runsFw = (x) => casedRuns(x, undefined, { functionWords: FW }).map((r) => r.surface);
+  assert.deepEqual(runsFw("Then Napoleon Bonaparte also won at Austerlitz."), ["Napoleon Bonaparte", "Austerlitz"], "an injected function-word list sheds the opener");
+  assert.deepEqual(runs("Then Napoleon Bonaparte also won at Austerlitz."), ["Then Napoleon Bonaparte", "Austerlitz"], "without the list nothing is hand-typed: the opener stays (known limit)");
+  assert.deepEqual(runsFw("The French emperor was exiled."), ["French"]);
+  assert.ok(!runs("The French emperor was exiled.").some((x) => /\be$/.test(x)), "no particle fragment: " + JSON.stringify(runs("The French emperor was exiled.")));
+  assert.deepEqual(runs("Nashville was founded by Henderson. Robertson led the party."), ["Henderson", "Robertson"].filter((x) => runs("Nashville was founded by Henderson. Robertson led the party.").includes(x)));
+  for (const x of runs("Nashville was founded by Henderson. The French arrived later and Robertson left.")) assert.doesNotMatch(x, /\.\s/, "a run never crosses a sentence boundary: " + x);
+  assert.deepEqual(runs("music by Ludwig van Beethoven and J. R. R. Tolkien's books"), ["Ludwig van Beethoven", "J. R. R. Tolkien"]);
+  assert.deepEqual(runs("she met Ibn Sina and Maria de la Cruz"), ["Ibn Sina", "Maria de la Cruz"]);
 });
