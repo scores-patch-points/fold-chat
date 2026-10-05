@@ -19,6 +19,8 @@ import * as memory from "./fold-chat-memory.js";
 import * as ground from "./fold-chat-ground.js";
 import * as web from "./fold-chat-web.js";
 import { classifyTurn, GENERATE_NUDGE, checkable, wantsWeb, generationArtifact } from "./fold-chat-discourse.js";
+import * as topic from "./fold-chat-topic.js";
+import { PHOSPHOR, PHOSPHOR_VIEWBOX } from "./fold-chat-icons.js";
 import * as FOLD from "./vendor/the-fold/fold.js";
 
 const DEFAULT_BRIDGE = "http://localhost:8790";
@@ -39,6 +41,19 @@ function icon(name) {
   const p = document.createElementNS(NS, "path");
   p.setAttribute("d", name === "folder" ? "M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" : "M12 3l9 5-9 5-9-5zM3 13l9 5 9-5");
   svg.append(p); return svg;
+}
+// A Phosphor icon, by name, from the vendored set (fold-chat-icons.js). The
+// chat's topic icon — the same mark in the sidebar and on the assistant's
+// messages, so a conversation wears what it became about.
+function phosphor(name, size = 16) {
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", PHOSPHOR_VIEWBOX);
+  svg.setAttribute("fill", "currentColor");
+  svg.setAttribute("width", String(size)); svg.setAttribute("height", String(size));
+  svg.setAttribute("aria-hidden", "true");
+  svg.innerHTML = PHOSPHOR[name] || PHOSPHOR[topic.FALLBACK_ICON] || "";
+  return svg;
 }
 const now = () => new Date().toISOString();
 const sid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
@@ -358,6 +373,22 @@ export function mount(root, opts = {}) {
     if (t >= startToday - 7 * 864e5) return "Previous 7 days";
     return "Older";
   }
+  // What a chat has BECOME. Until the conversation has found its subject the
+  // chat keeps the provisional name (its opening words) and the plain provider
+  // mark. Once it has run TURNS_TO_NAME turns, the name is redrawn from the
+  // salient terms of the whole exchange, and the icon is the Phosphor mark most
+  // similar to it — then both are LOCKED, so the chat's identity is stable. A
+  // name the person set by hand is never touched (titleAuto === false).
+  function maybeName(s) {
+    if (!s || s.titleAuto === false || s.named) return;
+    const msgs = s.messages || [];
+    if (topic.userTurns(msgs) < topic.TURNS_TO_NAME) return;
+    const { title, icon } = topic.topicOf(msgs);
+    if (title) s.title = title;
+    s.icon = icon;
+    s.named = true;
+    save("fold-chat:sessions", sessions);
+  }
   function renderChats() {
     E.chats.innerHTML = "";
     let list = Object.values(sessions);
@@ -377,7 +408,9 @@ export function mount(root, opts = {}) {
     g.append(el("div", "group-label", label));
     for (const s of arr) {
       const row = el("div", "chat" + (s.id === activeId ? " on" : ""));
-      const ic = el("span", "cicon"); ic.style.background = providerColor(s.model);
+      const ic = el("span", "cicon" + (s.icon ? " glyph" : ""));
+      if (s.icon) { ic.style.color = providerColor(s.model); ic.append(phosphor(s.icon)); }
+      else ic.style.background = providerColor(s.model);
       const t = el("span", "ct", s.title || "New chat");
       const menu = el("button", "menu", "⋯");
       menu.onclick = (ev) => { ev.stopPropagation(); chatMenu(s.id, menu); };
@@ -391,7 +424,7 @@ export function mount(root, opts = {}) {
     const s = sessions[id]; if (!s) return;
     menuAt(anchor, [
       { label: s.pinned ? "Unpin" : "Pin", onClick: () => { s.pinned = !s.pinned; save("fold-chat:sessions", sessions); renderChats(); } },
-      { label: "Rename…", onClick: async () => { const n = await askDialog({ title: "Rename chat", value: s.title || "", okLabel: "Rename" }); if (n) { s.title = n; save("fold-chat:sessions", sessions); renderChats(); } } },
+      { label: "Rename…", onClick: async () => { const n = await askDialog({ title: "Rename chat", value: s.title || "", okLabel: "Rename" }); if (n) { s.title = n; s.titleAuto = false; save("fold-chat:sessions", sessions); renderChats(); } } },
       { label: "Move to project…", onClick: () => moveToProject(s) },
       { sep: true },
       { label: "Delete", danger: true, onClick: () => { delete sessions[id]; if (activeId === id) activeId = null; save("fold-chat:sessions", sessions); renderChats(); if (!activeId) newChat(); } },
@@ -429,6 +462,10 @@ export function mount(root, opts = {}) {
   function open(id) {
     activeId = id;
     const s = sessions[id];
+    // A conversation that already found its subject (a chat from before this
+    // feature, or one whose reply arrived while the tab was closed) is named
+    // and given its icon the moment it is opened.
+    maybeName(s);
     E.threadCol.innerHTML = "";
     const msgs = s?.messages || [];
     setView(!msgs.length);
@@ -439,7 +476,7 @@ export function mount(root, opts = {}) {
     const id = sid();
     const m = models.find((x) => !x.sealed) || models[0] || null;
     const p = filterProject ? projects[filterProject] : null;
-    sessions[id] = { id, title: "New chat", messages: [], model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
+    sessions[id] = { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
     save("fold-chat:sessions", sessions);
     open(id);
     E.input.focus();
@@ -450,6 +487,7 @@ export function mount(root, opts = {}) {
     // silently drop the link the way the old code did.
     return {
       id: overrides.id, title: overrides.title, messages: overrides.messages,
+      titleAuto: src.titleAuto !== false, named: !!src.named, icon: src.icon ?? null,
       model: src.model, sealed: src.sealed, preset: src.preset,
       project: src.project ?? null, cwd: src.cwd ?? null,
       facts: src.facts ? { ...src.facts } : undefined,
@@ -592,7 +630,13 @@ export function mount(root, opts = {}) {
 
   function appendMsg(role, content, meta = {}) {
     const wrap = el("div", "msg " + role);
-    const av = el("div", "av", role === "user" ? "You" : "F");
+    const av = el("div", "av");
+    // The assistant wears the chat's topic icon (the Phosphor mark the sidebar
+    // shows); the person keeps "You". Until a topic emerges, the fold's own "F".
+    const sIcon = role === "assistant" ? sessions[activeId]?.icon : null;
+    if (role === "user") av.textContent = "You";
+    else if (sIcon && PHOSPHOR[sIcon]) { av.classList.add("topic"); av.append(phosphor(sIcon, 17)); av.title = sIcon; }
+    else av.textContent = "F";
     const body = el("div", "body");
     if (meta.sealed) body.classList.add("sealed-body");
     if (role === "assistant") {
@@ -941,6 +985,7 @@ export function mount(root, opts = {}) {
       const idx = s.messages.length;
       s.messages.push({ role: "assistant", content: text, at: now(), grounding: record });
       s.sealed = !!m.sealed;
+      maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
       appendMsg("assistant", text, { sealed: m.sealed, index: idx, grounding: record, model: m.id });
@@ -1012,6 +1057,7 @@ export function mount(root, opts = {}) {
       const codeRec = { code: true, cwd, lane: out.lane || "opencode", activity, ms: out.ms };
       s.messages.push({ role: "assistant", content: text, at: now(), codeSessionId: s.codeSessionId, cwd, grounding: codeRec });
       s.updated = now();
+      maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
       appendMsg("assistant", text, { index: idx, cwd, grounding: codeRec, model: codeModelRef().modelID });
@@ -1061,6 +1107,7 @@ export function mount(root, opts = {}) {
       const idx = s.messages.length;
       s.messages.push({ role: "assistant", content: text, at: now(), generate: genRec });
       s.updated = now();
+      maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
       E.stage.textContent = "";

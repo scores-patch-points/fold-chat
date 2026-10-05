@@ -84,6 +84,13 @@ This is the part wired into heimdall's secure-outside-model work:
   (`fold-chat:bridge`); the engagement is `fold-chat:engagement`.
 - `fold-chat-client.js` — the heimdall wire: `listModels`, `chat`, `code`
   (carries the project `cwd`), `read`, `meter`, `ledger`, `frontier`. Browser + node.
+- `fold-chat-topic.js` — what a chat becomes about: `titleOf` draws a name from
+  the salient terms of the whole exchange (the surface swaps it in at the fourth
+  turn), and `iconOf` picks the Phosphor icon most similar to it by cosine over
+  a shared lexicon. Pure and node-testable.
+- `fold-chat-icons.js` — a curated subset of Phosphor (MIT), GENERATED from the
+  SVGs under `vendor/phosphor/regular` by `scripts/gen-phosphor-icons.mjs`, so
+  the surface ships its icons locally and reaches no CDN.
 - `fold-chat-client.test.mjs` — fake-bridge tests (sealed gate, SSE streaming,
   code lane carries the folder, meter). Run: `node --test`.
 
