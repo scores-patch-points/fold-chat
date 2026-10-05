@@ -4,7 +4,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyTurn, checkable, wantsWeb, GENERATE_NUDGE } from "./fold-chat-discourse.js";
+import { classifyTurn, checkable, wantsWeb, GENERATE_NUDGE, generationArtifact } from "./fold-chat-discourse.js";
 
 test("greetings classify as smalltalk", () => {
   for (const q of ["hi", "hey", "Hello", "good morning", "how are you", "thanks!", "bye"]) {
@@ -43,6 +43,20 @@ test("a bare statement is chat", () => {
   assert.equal(classifyTurn("ok"), "chat");
 });
 
+test("a bare conversational continuation is chat, never a research lookup", () => {
+  for (const q of ["well?", "well", "so?", "and?", "go on", "continue", "right?", "really?", "hmm", "got it"]) {
+    assert.equal(classifyTurn(q), "chat", q);
+  }
+});
+
+test("the continuation rule is narrow — real questions stay research", () => {
+  for (const q of ["why?", "who is the president?", "what is a closure?", "how many people live there?"]) {
+    assert.equal(classifyTurn(q), "research", q);
+  }
+  // A continuation that opens a longer turn is not swallowed by the marker.
+  assert.equal(classifyTurn("well, who is the president?"), "research");
+});
+
 test("only research/chat turns may carry a grounding disclosure", () => {
   assert.equal(checkable("research"), true);
   assert.equal(checkable("chat"), true);
@@ -61,4 +75,12 @@ test("web search runs only for a research turn with web on", () => {
 test("the generate nudge tells the fold to write it now, not interview", () => {
   assert.match(GENERATE_NUDGE, /Write it now/);
   assert.match(GENERATE_NUDGE, /Do not ask them what topics/);
+});
+
+test("a prose artifact ask routes to penelope's generation; html/app keeps the fold's build", () => {
+  assert.equal(generationArtifact("write an essay about dolphins"), "text");
+  assert.equal(generationArtifact("compose a report on the audit"), "text");
+  assert.equal(generationArtifact("draft a blog post"), "text");
+  assert.equal(generationArtifact("create a landing page"), null, "penelope has no html adapter — the fold's own build keeps it");
+  assert.equal(generationArtifact("hi"), null);
 });
