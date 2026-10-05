@@ -181,3 +181,104 @@ always reads), the experiment harness under `experiments/benchmark/`.
 **Dev-set false start, kept for the record:** the first rule (R1, "question words that tell cards apart") fired on 20% of
 questions — on real result sets the topic word is in most snippets, so nothing "tells". The first agreement rule
 fired on all four controls (padding). Both were falsified on the development set before the holdout was written.
+
+---
+
+## v2 of the snippet rule — what the archons asked for (2026-10-05)
+
+Polled in the khora's own handle table (README.md): **Bukhari** (`corroboration.js`: *stands only on independent chains; a
+shared chain is one witness*), **Fisher** (`measure.js`: *a figure is a placement against a permutation null, or it is
+refused*), **Chomsky** (*principles are universal, parameters are set from little input*), **Sullivan** (*morphology by
+elimination, learned per language from its own material above nulls; the unmarked learned as unmarked*), **Bayes**
+(`prior-query.js`: *ask what the priors know before a hand-written template* — the router's English cue regexes are such
+templates; not addressed here), **Frege** (aliases; not addressed here).
+
+What v1's failures say: the uranium-238 false fire agreed on "mode" — a word that belongs to the topic's vocabulary and would
+be shared by chance among those cards. v1 counted *sites*, so `en.` and `simple.wikipedia.org` were two witnesses. And v1 gave
+up in every language but English until it had 80 cards.
+
+### v2 (frozen BEFORE any v2 data was collected; `snippetsSufficient(…, { rule: "v2" })`)
+
+1. **Independent chains (Bukhari).** A card's chain is its registrable domain (`en.` and `simple.wikipedia.org` are one);
+   cards sharing a run of ≥ 6 consecutive words are merged into one chain. "Sites" in v1 → "chains" here.
+2. **Placement against a null (Fisher).** On-topic cards and rare-term candidates as in v1. The best term's chain count
+   `c*` must be ≥ 3 **and** placed against a degree-preserving permutation null of the cards × terms incidence matrix
+   (300 seeded swap-draws; every card keeps its number of terms, every term its number of cards): fire only if
+   `P(null max chain count ≥ c*) ≤ 0.05`. Otherwise refused, with the placement in the trace.
+3. **Little input (Chomsky / Sullivan).** The per-language background threshold drops from 80 cards to 24 (three
+   SERPs); below that, abstain. The learning curve is measured, not assumed (B-criteria below).
+
+### Experiment A — Fisher + Bukhari on English: a fresh holdout (28 queries: 24 answerable incl. 8 hard, 4 controls)
+v1 (as shipped) and v2 run on the same results with the same English seed background.
+- **A1** v2 precision ≥ 90% among the questions it fires on
+- **A2** v2 coverage ≥ 0.8 × v1's (the null must not cost more than a fifth of v1's firings)
+- **A3** v2 fires on ≤ 1 of the 4 controls, and no more often than v1
+- **A4** v2 precision ≥ v1's
+Any failure → v2 does not replace v1.
+
+### Experiment B — Chomsky / Sullivan across languages: a learning curve (48 queries: es fr de ja ru zh × 6 answerable + 2 controls)
+Background for a question = the cards of `k` OTHER same-language SERPs from this set (leave-one-out, k = 0…7), no English.
+- **B1** at k ≥ 3 (≥ 24 cards): precision ≥ 90% and coverage ≥ 25% over the 36 answerable questions
+- **B2** at k ≥ 3: at most 1 of the 12 controls fires
+- **B3** at k = 0 the rule abstains on all 48 (a rule that speaks with no background is guessing)
+Any failure → the language support stays at "abstain until 80 cards", and the curve is reported as it is.
+
+Not tested, so not claimed: Brave snippets (all collection is DuckDuckGo), pages the engines rank badly, long-form answers.
+
+### v3 — ask the priors first (Bayes · Chomsky · Sullivan). Frozen BEFORE any v2/v3 outcome on this data was looked at
+
+The khora ships **POSPrior@1** for many languages: Universal Dependencies *gold* treebanks, real counts per form and
+part-of-speech (e.g. French: 39,683 forms from 354,647 tokens). Closed-class forms (UPOS ADP · DET · PRON · AUX · CCONJ ·
+SCONJ · PART for ≥ 50% of a form's ≥ 5 tokens) are the language's function words — 1–2 KB per language: Spanish `por de el la
+que`, French `de le la à les`, Russian `в и на`, Chinese `的 在 是`. That is "what is common" with a giver, in a language the
+tab has never searched in. Only priors **committed** in the khora (HEAD `cceb530`) are used — the language session's
+untracked files are not stable and are not ours to build on. Committed: ar zh el en fa fi fr he ko la ru sa es tr.
+**German and Japanese have no committed closed-class prior, so v3 must abstain there when it has no background.**
+
+v3 = v2, plus: (1) a word is *common* if it is a function word of the language **or** (when ≥ 24 cards of learned background
+exist) its learned share is over the v2 threshold; (2) with **no** learned background but a function-word list, the rule speaks
+in a **stricter** mode — *when you cannot tell content from filler, demand all of it*: every content word of the question must
+be on an on-topic card (`topicFrac = 1.0`) and ≥ 4 independent chains must agree (`minChains = 4`). No list and no background →
+abstain. Evaluated on the same 48 non-English SERPs and the 28 English ones of Experiments A/B, once.
+
+- **C1** (es fr ru zh, learned background k = 0): precision ≥ 90% **and** coverage ≥ 25% over the 24 answerable
+- **C2** same languages: at most 1 of the 8 controls fires
+- **C3** de and ja at k = 0 abstain on all 16 queries (no list, no background → no guessing)
+- **C4** English (Experiment A data): v3 precision ≥ v2's and v3 coverage ≥ 0.95 × v2's
+Any failure → that part is not adopted.
+
+### Outcome of v2 and v3 (run once, frozen; English holdout #2 = 28 queries, other languages = 48 queries)
+
+| rule | English holdout #2 | other languages |
+|---|---|---|
+| **v1** (as shipped) | fires 17/24, precision **17/17**, coverage 70.8%, controls 0/4 — a second holdout in agreement with the first | abstains (needs 80 cards) |
+| **v2** (chains + Fisher placement) | **fires 0/24** | **0/36 at every background size k = 0…7** |
+| **v3** (v2 + function words, strict mode) | **fires 0/24** | **0/24** in es fr ru zh at k = 0; abstains on all 16 de/ja queries as predicted |
+
+**A1, A2, A4, B1, C1 are FALSIFIED.** (A3, B2, B3, C2, C3 and C4 pass only vacuously — a rule that never fires cannot misfire.)
+v2 and v3 are not adopted.
+
+**Why (read after the verdict, from the refusal messages — not used to tune anything):** on the 24 English answerable
+questions v2 refused 12 times at the Fisher placement ("cairo" in 4 chains: p = 0.249; "edison" in 5 chains: p = 0.060),
+7 times because fewer than 3 independent chains carried the question's rare words, 3 times because merging collapsed the
+cards to fewer than 3 chains, and twice with no shared rare term. The placement cannot reach α = 0.05 with ≤ 8 cards: under
+a null that lets every chain draw its terms from the pool, some term lands in 4 of 5 chains by chance often enough that a
+real answer in 4 chains looks like chance. A max-over-pool statistic needs more witnesses than a search page holds. The
+principle (a figure is a placement against a null) was not refuted; **this null, on this much evidence, has no power.**
+
+### v4 — the one idea v2/v3 never got to test: ask the priors first. Frozen BEFORE any v4 outcome
+
+v4 is **v1** (the rule that replicated) with three changes and nothing else:
+1. **Function words are common** (khora POSPrior@1, committed priors: `fold-chat-function-words.js`): a function word of the
+   language counts as share 1 whatever the learned background says.
+2. **Little input (Chomsky/Sullivan):** the learned-background floor drops from 80 cards to 24 (three SERPs).
+3. **No learned background but a function-word list → stricter mode** (`topicFrac = 1.0`, `minHosts = 4`): when content cannot be
+   told from filler, demand all of it. No list and no background → abstain.
+
+Run once on the SAME 48 non-English SERPs and the English ones (no v4 outcome has been looked at; v2/v3 gave 0/…).
+- **D1** es fr ru zh at k = 0: precision ≥ 90% **and** coverage ≥ 25% over the 24 answerable
+- **D2** same languages: ≤ 1 of the 8 controls fires
+- **D3** de and ja at k = 0: abstain on all 16
+- **D4** all six languages at k = 3 (three other same-language SERPs as background): precision ≥ 90%, coverage ≥ 25% over 36, ≤ 1 of 12 controls
+- **D5** English: v4 precision ≥ 90% and fires on ≥ 16 of 24 (≥ 0.95 × v1's 17)
+Any failure → that part is not adopted.

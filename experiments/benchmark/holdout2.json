@@ -1,0 +1,534 @@
+[
+ {
+  "id": "e-hamlet",
+  "q": "who wrote the play Hamlet",
+  "re": "Shakespeare",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-egypt",
+  "q": "what is the capital of Egypt",
+  "re": "Cairo",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-frrev",
+  "q": "in what year did the French Revolution begin",
+  "re": "1789",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-planets",
+  "q": "how many planets are in the solar system",
+  "re": "\\b8\\b|eight",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-desert",
+  "q": "what is the largest desert in the world",
+  "re": "Antarctic|Sahara",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-bulb",
+  "q": "who invented the light bulb",
+  "re": "Edison",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-iron",
+  "q": "what is the chemical symbol for iron",
+  "re": "\\bFe\\b",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-giraffe",
+  "q": "what is the tallest animal in the world",
+  "re": "giraffe",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-pres",
+  "q": "who was the first president of the United States",
+  "re": "Washington",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-prime",
+  "q": "what is the smallest prime number",
+  "re": "\\b2\\b|two",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-co2",
+  "q": "what gas do plants absorb from the air",
+  "re": "carbon dioxide|CO2",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-odyssey",
+  "q": "who wrote the Odyssey",
+  "re": "Homer",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-turkey",
+  "q": "what is the capital of Turkey",
+  "re": "Ankara",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-leap",
+  "q": "how many days are in a leap year",
+  "re": "366",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-sound",
+  "q": "what is the speed of sound in air in meters per second",
+  "re": "343|340",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "e-polio",
+  "q": "who developed the polio vaccine",
+  "re": "Salk",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-pu239",
+  "q": "what is the half-life of plutonium-239",
+  "re": "24,?100|24\\.1",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-rosetta",
+  "q": "when was the Rosetta Stone discovered",
+  "re": "1799",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-brooklyn",
+  "q": "who designed the Brooklyn Bridge",
+  "re": "Roebling",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-ethanol",
+  "q": "what is the boiling point of ethanol in celsius",
+  "re": "78",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-suez",
+  "q": "what year was the Suez Canal opened",
+  "re": "1869",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-guggen",
+  "q": "who was the architect of the Guggenheim Museum in New York",
+  "re": "Wright",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-gold",
+  "q": "what is the density of gold in grams per cubic centimeter",
+  "re": "19\\.3",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "eh-panama",
+  "q": "how long is the Panama Canal in kilometers",
+  "re": "\\b8[0-2](\\.\\d+)?\\s*(km|kilomet)|51 (miles|mi)|\\b82\\b",
+  "lang": "en",
+  "kind": "answerable"
+ },
+ {
+  "id": "ec-sun",
+  "q": "what is the capital city of the Sun",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "ec-pacific",
+  "q": "how many rivets does the Pacific Ocean have",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "ec-venus",
+  "q": "what year did Shakespeare land on Venus",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "ec-2099",
+  "q": "who won the 2099 World Series",
+  "re": "(?!)",
+  "lang": "en",
+  "kind": "control"
+ },
+ {
+  "id": "es1",
+  "q": "¿cuál es la capital de Argentina?",
+  "re": "Buenos Aires",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "es2",
+  "q": "¿quién escribió Cien años de soledad?",
+  "re": "Garc[ií]a M[aá]rquez|Gabo",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "es3",
+  "q": "¿en qué año comenzó la Primera Guerra Mundial?",
+  "re": "1914",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "es4",
+  "q": "¿cuál es el río más largo de España?",
+  "re": "Tajo",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "es5",
+  "q": "¿quién pintó Las Meninas?",
+  "re": "Vel[aá]zquez",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "es6",
+  "q": "¿cuántos jugadores hay en la cancha por equipo en baloncesto?",
+  "re": "\\b5\\b|cinco",
+  "lang": "es",
+  "kind": "answerable"
+ },
+ {
+  "id": "esc1",
+  "q": "¿quién fue el primer emperador de la Luna?",
+  "re": "(?!)",
+  "lang": "es",
+  "kind": "control"
+ },
+ {
+  "id": "esc2",
+  "q": "¿cuál es la capital de la Atlántida?",
+  "re": "(?!)",
+  "lang": "es",
+  "kind": "control"
+ },
+ {
+  "id": "fr1",
+  "q": "quelle est la capitale de l'Italie ?",
+  "re": "Rome",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "fr2",
+  "q": "qui a écrit Les Misérables ?",
+  "re": "Hugo",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "fr3",
+  "q": "en quelle année a eu lieu la Révolution française ?",
+  "re": "1789",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "fr4",
+  "q": "quel est le plus haut sommet des Alpes ?",
+  "re": "Mont[ -]Blanc",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "fr5",
+  "q": "qui a composé le Boléro ?",
+  "re": "Ravel",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "fr6",
+  "q": "combien de joueurs y a-t-il dans une équipe de football ?",
+  "re": "\\b11\\b|onze",
+  "lang": "fr",
+  "kind": "answerable"
+ },
+ {
+  "id": "frc1",
+  "q": "qui a été le premier roi de Mars ?",
+  "re": "(?!)",
+  "lang": "fr",
+  "kind": "control"
+ },
+ {
+  "id": "frc2",
+  "q": "quelle est la capitale de l'Atlantide ?",
+  "re": "(?!)",
+  "lang": "fr",
+  "kind": "control"
+ },
+ {
+  "id": "de1",
+  "q": "was ist die Hauptstadt von Österreich?",
+  "re": "Wien",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "de2",
+  "q": "wer komponierte die Neunte Sinfonie?",
+  "re": "Beethoven",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "de3",
+  "q": "in welchem Jahr wurde die Berliner Mauer gebaut?",
+  "re": "1961",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "de4",
+  "q": "wer entdeckte die Röntgenstrahlen?",
+  "re": "R[oö]e?ntgen",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "de5",
+  "q": "wie hoch ist die Zugspitze?",
+  "re": "2\\.?962",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "de6",
+  "q": "wer schrieb Die Leiden des jungen Werther?",
+  "re": "Goethe",
+  "lang": "de",
+  "kind": "answerable"
+ },
+ {
+  "id": "dec1",
+  "q": "wer war der erste Kaiser des Mondes?",
+  "re": "(?!)",
+  "lang": "de",
+  "kind": "control"
+ },
+ {
+  "id": "dec2",
+  "q": "was ist die Hauptstadt von Atlantis?",
+  "re": "(?!)",
+  "lang": "de",
+  "kind": "control"
+ },
+ {
+  "id": "ja1",
+  "q": "フランスの首都はどこですか",
+  "re": "パリ",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "ja2",
+  "q": "夏目漱石の代表作は何ですか",
+  "re": "吾輩は猫である|こころ|坊っちゃん",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "ja3",
+  "q": "日本で一番高い山は何ですか",
+  "re": "富士山",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "ja4",
+  "q": "明治維新は何年ですか",
+  "re": "1868",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "ja5",
+  "q": "東京タワーの高さは何メートルですか",
+  "re": "333",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "ja6",
+  "q": "源氏物語の作者は誰ですか",
+  "re": "紫式部",
+  "lang": "ja",
+  "kind": "answerable"
+ },
+ {
+  "id": "jac1",
+  "q": "月の初代皇帝は誰ですか",
+  "re": "(?!)",
+  "lang": "ja",
+  "kind": "control"
+ },
+ {
+  "id": "jac2",
+  "q": "アトランティスの首都はどこですか",
+  "re": "(?!)",
+  "lang": "ja",
+  "kind": "control"
+ },
+ {
+  "id": "ru1",
+  "q": "какая столица Франции",
+  "re": "Париж",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ru2",
+  "q": "кто написал Война и мир",
+  "re": "Толстой",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ru3",
+  "q": "в каком году началась Великая Отечественная война",
+  "re": "1941",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ru4",
+  "q": "какая самая высокая гора в России",
+  "re": "Эльбрус",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ru5",
+  "q": "кто написал Евгений Онегин",
+  "re": "Пушкин",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ru6",
+  "q": "кто изобрёл радио",
+  "re": "Попов|Маркони",
+  "lang": "ru",
+  "kind": "answerable"
+ },
+ {
+  "id": "ruc1",
+  "q": "кто был первым императором Луны",
+  "re": "(?!)",
+  "lang": "ru",
+  "kind": "control"
+ },
+ {
+  "id": "ruc2",
+  "q": "какая столица Атлантиды",
+  "re": "(?!)",
+  "lang": "ru",
+  "kind": "control"
+ },
+ {
+  "id": "zh1",
+  "q": "法国的首都是哪里",
+  "re": "巴黎",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zh2",
+  "q": "《红楼梦》的作者是谁",
+  "re": "曹雪芹",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zh3",
+  "q": "中国最长的河流是什么",
+  "re": "长江",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zh4",
+  "q": "世界最高的山峰是什么",
+  "re": "珠穆朗玛|珠峰",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zh5",
+  "q": "秦始皇统一六国是哪一年",
+  "re": "221",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zh6",
+  "q": "李白是哪个朝代的诗人",
+  "re": "唐",
+  "lang": "zh",
+  "kind": "answerable"
+ },
+ {
+  "id": "zhc1",
+  "q": "月球的第一位皇帝是谁",
+  "re": "(?!)",
+  "lang": "zh",
+  "kind": "control"
+ },
+ {
+  "id": "zhc2",
+  "q": "亚特兰蒂斯的首都是什么",
+  "re": "(?!)",
+  "lang": "zh",
+  "kind": "control"
+ }
+]
