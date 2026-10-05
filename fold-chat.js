@@ -427,7 +427,19 @@ export function mount(root, opts = {}) {
       { label: "Rename…", onClick: async () => { const n = await askDialog({ title: "Rename chat", value: s.title || "", okLabel: "Rename" }); if (n) { s.title = n; s.titleAuto = false; save("fold-chat:sessions", sessions); renderChats(); } } },
       { label: "Move to project…", onClick: () => moveToProject(s) },
       { sep: true },
-      { label: "Delete", danger: true, onClick: () => { delete sessions[id]; if (activeId === id) activeId = null; save("fold-chat:sessions", sessions); renderChats(); if (!activeId) newChat(); } },
+      { label: "Delete", danger: true, onClick: () => {
+        const wasActive = activeId === id;
+        delete sessions[id];
+        save("fold-chat:sessions", sessions);
+        // Deleting the open chat must not resurrect a fresh "New chat" in its
+        // place — that read as "delete does nothing". Fall to the next most
+        // recent chat in view, or to the empty welcome when none are left.
+        if (wasActive) {
+          const pool = (filterProject ? Object.values(sessions).filter((s) => s.project === filterProject) : Object.values(sessions))
+            .sort((a, b) => new Date(b.updated || b.createdAt || 0) - new Date(a.updated || a.createdAt || 0));
+          if (pool.length) open(pool[0].id); else closeThread();
+        } else renderChats();
+      } },
     ]);
   }
   async function moveToProject(s) {
@@ -480,6 +492,14 @@ export function mount(root, opts = {}) {
     save("fold-chat:sessions", sessions);
     open(id);
     E.input.focus();
+  }
+  // No chat is open: the welcome state, with nothing selected. Reached when the
+  // last chat is deleted — the send path (and every + button) opens a new one.
+  function closeThread() {
+    activeId = null;
+    E.threadCol.innerHTML = "";
+    setView(true);
+    renderChats(); renderModels(); updateSeal(); paintGrounding();
   }
   function cloneSession(src, overrides) {
     // Forks and continues are the same conversation moved forward: they keep
