@@ -1,0 +1,41 @@
+{
+  "repo": "scores-patch-points/khora",
+  "khora": {
+    "commit": "cceb530a2c20cce234b6b26f69646dccb90d15ab",
+    "dirtyNative": 0
+  },
+  "note": "FROZEN COPY of the static import closure of `entries`. Refresh with `node scripts/vendor-khora.mjs`; verify with --check. Never edit by hand.",
+  "entries": [
+    "organs/source.js",
+    "organs/fact-block.js",
+    "organs/cite.js",
+    "organs/grounding.js",
+    "organs/witness-sentences.js",
+    "organs/run-dmca.js",
+    "organs/corroboration.js",
+    "the-fold/relative.js"
+  ],
+  "files": {
+    "adapters/text/priors.js": "4a23db12c801354e1618c60951c7b5a80541994bdf6b89c5c1fc64bacb5cb80f",
+    "adapters/text/spans.js": "ed29b9710a1274463bdba47f08e1e1defb0e2de84c27cb3f851b36453ef8a2d8",
+    "kernel/continuation.js": "24e1a8b368a3fcf4b18c68c7fd4b677857fab431e7ce2018b56da56f4f5dc7b8",
+    "kernel/cube.js": "6cd6d10254eb697382f498a17ac6a75bd470521192fc0f87435d036333c06480",
+    "kernel/notes.js": "6f88feddc618f5fe4d51963caf2991874bec322dbef724bccd271714b57ddd78",
+    "kernel/surprise-segments.js": "64f6840a98aa0478b409605f4e8f886a9a888d03283ccfd21b93f8898617a42a",
+    "kernel/task-log.js": "63847a30f48ba4a8017efc5db5ddc3098a051067ee017a2b8d5eac28fc06eccd",
+    "organs/aposiopesis.js": "7a81abe0423da59583fac6a1e4778c4ffd56cc60739a61cfc9e7d14ab0ad0262",
+    "organs/cite.js": "5f6fb996afc22125af641984f8e8055d7a21491be14739bfe448d74ef9a49c97",
+    "organs/corroboration.js": "26872078b4ba49f48247e6f9fe60308e7b4e9ff1930b175536f16c9a9ee9d699",
+    "organs/creativity-table.js": "f723324ad02d84342a164a28d4930f12cdac6dfa0c2c8f0af3012629558b4168",
+    "organs/fact-block.js": "e97380e55cefe64fc7dc2fcdd8362f11da2a7f5429e2886bfcbde273e140942e",
+    "organs/grounding.js": "9ece33bed76bf7ea30f07fb63536d3bcfd3eb5999986f873ba2943ff44c1eee7",
+    "organs/measure.js": "a6e4298399cca0fd94fcdca6327e78802f21b27f6d2e9d056b44b3d4dd2554cc",
+    "organs/run-dmca.js": "071148879e7f67eaf55793062d886a6057c3ad72a2b0811d5ff14d36e535685a",
+    "organs/source.js": "c35f1ee372fa4d971d1d10ad438d5a3ed9f75a99dcd203a9b11084e944e015e3",
+    "organs/web.js": "4ebd01fb6b5e56c15716bb32f911ce2a2ca142db5a3125ee317cda62cf71bdbe",
+    "organs/witness-sentences.js": "424d8ed0913066c01156088c32e0d8afe217db0c9fee5e438acea0bb0fe977e6",
+    "the-fold/relative.js": "d2a3bf70a9950dc1885295bf8578910c3a9cd1c8516cdd86e4d77932f3aa9bf3"
+  },
+  "skips": [],
+  "missing": []
+}
