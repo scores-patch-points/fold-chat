@@ -1,0 +1,435 @@
+// fold-chat-assemble.js — the BACKWARD path: build the answer FROM the sources, not check it after.
+// Pure: no DOM, no IO, no model. Study and bars: docs/BACKWARDS-GROUNDING-PREREG.md; design and limits: docs/BACKWARDS-GROUNDING.md.
+//
+// Forward grounding lets a model write sentences and then looks for a source sentence that says the same thing; a word-matching
+// gate cannot tell a good rewording from a bad one. Backward grounding turns it round (THE-HOLOGRAPH §"the skeleton-first turn":
+// "the record can compose the answer's skeleton and the mouth can be reduced to voicing it"):
+//
+//   1. HOLONS   every sentence of every page read is an addressed unit: { address: "<ref>#<start>-<end>", text }. Its identity IS its
+//               address (THE-ADDRESS A1-A3): `page.text.slice(start, end) === text` or the holon is refused.
+//   2. SELECT   the holons that bear on the ask, by REFERENT identity (the page's own subject, or the referent's rarest word on the
+//               holon), by the ask's telling words (words under half of the pooled holons carry; no stoplist beyond the closed-class
+//               lists the gate already uses), and by ANSWER TYPE (a quantity in a dimension, a year). Below the declared floor there is
+//               no answer: a typed gap, never a near-miss sentence.
+//   3. EMIT     each output sentence is `verbatim` (the holon, unchanged — the default, the product rule "find, snip, cite, never
+//               rewrite") or `derived` (a unit conversion, or an ordering of two sourced quantities/years: the rule, the numbers and EVERY
+//               premise address ride on it and `verifyAssembly` recomputes them). A mechanical REWORDING is never emitted: the paraphrase
+//               tool nominates a source sentence, it does not certify equivalence (docs/BACKWARDS-GROUNDING.md), so the answer is quoted.
+//   4. IDENTITY by consequence (essay: identity-is-the-fold-at-a-point; seed: "two figures are the same iff they make the same
+//               difference to the ground"): relative to the ground (the holons), a sentence's CONSEQUENCE is the set of ground atoms it
+//               selects — its window holon, the ground figure each of its figures equals (same quantity in another declared unit, to its
+//               own precision), its names, its content terms. `sameClaim` = equal, non-empty consequences. Empty is `undecidable`, typed.
+//   `certify` is the forward gate kept as the CHECK on any voiced sentence, plus the structure the gate cannot read (a negation or an
+//   ordering is `undecidable`, never accepted) and a unit veto ("330 feet" is not "330 metres").
+//
+// Declared, not measured (Constitution II.11): the numbers in ASSEMBLE, the cue tables below (English-first and the languages the eval
+// asks in), the unit table (the gate's own). Nothing here keys on capitals for scripts without case.
+
+import { sentencesWithOffsets } from "./fold-chat-impression.js";
+import { segments, fold, scriptOf, casedRuns, entityFromTitle, capitalisationIsSignificant } from "./fold-chat-mind.js";
+import { detectLang } from "./fold-chat-lang.js";
+import { FUNCTION_WORDS } from "./fold-chat-function-words.js";
+import { attribute, claimOf, namesIn, figuresIn, figureMatches, stemOf, unitOfWord } from "./fold-chat-ground.js";
+
+export const ASSEMBLE = Object.freeze({
+  maxPageChars: 12000,   // what the app hands the gate per page
+  minWords: 5,           // a shorter line is a heading or a label (the impression's own floor)
+  maxWords: 140,         // a longer run is a table or a wall
+  commonShare: 0.5,      // a word in at least this share of the pooled holons tells them apart not at all
+  coverageFloor: 0.5,    // share of the ask's telling words a holon must carry to bear on it
+  maxSentences: 3,       // sentences quoted (derived lines ride beside their premises and are not counted)
+});
+
+// Words that only REPORT a measurement beside a figure with a unit ("stands 330 m high"): the unit fixes the dimension, so which of these is used is not the claim.
+const MEASURE_WORDS = new Set(["reach", "reaches", "reached", "measure", "measures", "measured", "rise", "rises", "rose", "span", "spans", "extend", "extends", "weigh", "weighs", "weighed", "cover", "covers", "high", "tall", "long", "wide", "deep", "thick", "heavy", "height", "length", "width", "depth", "weight", "altitude", "elevation", "distance", "size", "stands", "stand", "lies", "located", "situated", "about", "around", "approximately", "roughly", "nearly"]);
+const TERMINATOR = /[.!?。！？…]["')\]”’」』]*$/u;
+const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+const wordsOf = (s) => segments(s).map((x) => fold(x.text));
+const ASCII_LETTERS = /^[a-z]+$/;
+const stem = (t) => (ASCII_LETTERS.test(t) ? stemOf(t) : t);
+
+const refOfUrl = (u) => { try { return decodeURIComponent(new URL(String(u)).pathname.split("/").filter(Boolean).pop() || String(u)); } catch { return String(u || ""); } };
+
+/** The entity a page names itself by (title if given, else the last path segment): referent identity of the PAGE. */
+export function subjectOf(page) {
+  const raw = page?.title ? String(page.title) : refOfUrl(page?.url || page?.source || page?.ref || "").replace(/\.(html?|php|aspx?)$/i, "").replace(/[_+-]+/g, " ");
+  const t = entityFromTitle(raw.replace(/_/g, " "));
+  return wordsOf(t);
+}
+
+// ── holons ─────────────────────────────────────────────────────────────────
+
+/** Every sentence of the pages as an addressed holon. `pages` = [{ url|source, ref?, title?, text }]; page rank = index. */
+export function holonsOf(pages, { limits = ASSEMBLE } = {}) {
+  const out = [];
+  (Array.isArray(pages) ? pages : []).forEach((p, pi) => {
+    const text = String(p?.text ?? "").slice(0, limits.maxPageChars);
+    const ref = String(p?.ref || refOfUrl(p?.url || p?.source));
+    const subject = subjectOf(p);
+    for (const s of sentencesWithOffsets(text)) {
+      if (!TERMINATOR.test(s.text)) continue;                                 // a line with no stop is a heading, a nav item, a table row
+      const n = segments(s.text).length;
+      if (n < limits.minWords || n > limits.maxWords) continue;
+      out.push({ address: `${ref}#${s.start}-${s.end}`, ref, p: pi, source: p?.url || p?.source || null, start: s.start, end: s.end, text: s.text, words: n, subject });
+    }
+  });
+  return out;
+}
+
+/** THE-ADDRESS A3: a holon reads back as its own bytes or it is refused. */
+export function verifyHolon(h, pages) {
+  const p = (pages || [])[h?.p];
+  if (!p) return false;
+  const text = String(p.text ?? "").slice(0, ASSEMBLE.maxPageChars);
+  return text.slice(h.start, h.end) === h.text;
+}
+
+// ── the ask ────────────────────────────────────────────────────────────────
+
+// What kind of answer the ask wants — DECLARED cue tables (English first, then the languages the eval asks in). Each language's cues are
+// the plain interrogatives of that language, not the eval's sentences. An unlisted language has no typed answer: it falls back to
+// referent + telling words, which is the weaker rule, not a wrong one.
+const YEAR_CUES = [/\b(?:what year|which year|in what year|when|what date|which date)\b/iu, /\b(?:en qué año|en que año|cuándo|cuando|qué año|fecha)\b/iu, /\b(?:quelle année|en quelle année|quand|date)\b/iu, /\b(?:welchem jahr|in welchem jahr|wann|welches jahr|datum)\b/iu, /\b(?:em que ano|qual ano|quando|data)\b/iu, /(?:в каком году|какого года|когда|дата|год)/iu, /(?:哪一年|哪年|何时|什么时候|几年|年份)/u, /(?:いつ|何年)/u, /(?:متى|أي عام|في أي عام|أي سنة|عام|سنة)/u, /(?:कब|किस वर्ष|किस साल|कौन सा वर्ष)/u, /\b(?:mwaka gani|lini|ilianguka lini|mwaka)\b/iu];
+const QTY_CUES = [/\b(?:how (?:tall|high|long|far|deep|wide|heavy|big|much|many)|what is the (?:height|length|depth|weight|population|speed))\b/iu, /\b(?:cuánto mide|qué altura|cuántos|cuánto)\b/iu, /\b(?:quelle hauteur|combien|quelle est la hauteur)\b/iu, /\b(?:wie hoch|wie lang|wie viele|wie groß)\b/iu, /\b(?:qual a altura|quanto mede|quantos)\b/iu, /(?:какова высота|какая высота|сколько)/iu, /(?:多高|多长|多少|有多)/u, /(?:何メートル|どのくらい|高さ)/u, /(?:ما ارتفاع|كم ارتفاع|ما طول|كم)/u, /(?:कितनी ऊँचाई|कितना|कितनी)/u, /\b(?:urefu gani|ni mrefu kiasi gani|kiasi gani)\b/iu];
+const cueHit = (tables, q) => tables.some((r) => r.test(q));
+// Words that only TYPE the answer (they say "a year", "how tall"), never what it is about: not matched against the holons.
+const CUE_WORDS = new Set(["year", "years", "when", "date", "tall", "high", "long", "much", "many", "how", "height", "length", "which", "what", "who", "whom", "where", "older", "younger", "taller", "longer", "larger", "bigger", "first", "born", "population", "number"]);
+
+// A comparison ask names two referents and a comparative; the comparative says WHICH quantity. English only (declared limit).
+const COMPARE = [
+  [/\b(?:older|oldest|earlier|born first|founded first|came first)\b/i, { kind: "year", bigger: false, label: "Older" }],
+  [/\b(?:younger|later|born later)\b/i, { kind: "year", bigger: true, label: "Younger" }],
+  [/\b(?:taller|higher|tallest|highest)\b/i, { kind: "len", bigger: true, label: "Taller", words: ["tall", "height", "high", "tallest", "highest"] }],
+  [/\b(?:longer|longest)\b/i, { kind: "len", bigger: true, label: "Longer", words: ["long", "length", "longest", "flows", "flow"] }],
+  [/\b(?:shorter|shortest)\b/i, { kind: "len", bigger: false, label: "Shorter", words: ["long", "length", "tall", "height", "high"] }],
+  [/\b(?:heavier|heaviest)\b/i, { kind: "mass", bigger: true, label: "Heavier", words: ["weigh", "weighs", "weight", "mass", "heavy"] }],
+];
+const YEAR_EVENT = new Set(["founded", "established", "born", "built", "completed", "opened", "chartered", "created", "since", "began", "incorporated", "formed", "dating", "constructed", "launched", "teaching"]);
+const RATE_CUES = /(?:\bper second\b|\/\s*s\b|\bpar seconde\b|\bpor segundo\b|в секунду|每秒|毎秒|في الثانية|प्रति सेकंड)/iu;
+
+/** What the ask is about and what shape of answer it wants. Pure; the holons give the document frequencies. */
+export function askOf(question, holons = []) {
+  const q = String(question ?? "");
+  const script = scriptOf(q);
+  const det = (() => { try { return detectLang(q); } catch { return { lang: "und" }; } })();
+  const lang = det.lang || "und";
+  const fw = new Set([...(FUNCTION_WORDS[lang] || []), ...(FUNCTION_WORDS.en || [])].map((w) => fold(w)));
+  const referents = capitalisationIsSignificant(script)
+    ? casedRuns(q, script, { functionWords: fw }).map((r) => ({ surface: r.surface, toks: wordsOf(r.surface).filter((t) => !fw.has(t)) })).filter((r) => r.toks.length)
+    : [];
+  const refToks = new Set(referents.flatMap((r) => r.toks));
+  const qToks = wordsOf(q);
+  const wants = { year: cueHit(YEAR_CUES, q), quantity: cueHit(QTY_CUES, q), unit: null, rate: RATE_CUES.test(q) };
+  // a unit the ask names ("in feet", "in miles") is the unit it wants; figuresIn reads the unit only beside a number, so look the word up
+  for (const t of qToks) { const u = unitOfWord(t); if (u) { wants.unit = { ...u, word: t }; wants.quantity = true; break; } }
+  let compare = null;
+  if (referents.length >= 2) for (const [re, spec] of COMPARE) if (re.test(q)) { compare = spec; break; }
+  const terms = [...new Set(qToks.filter((t) => !fw.has(t) && !CUE_WORDS.has(t) && !refToks.has(t) && !(wants.unit && t === wants.unit.word) && !/^\d+$/.test(t)).map(stem))];
+  const referentTerms = [...new Set([...refToks].map(stem))];
+  return { question: q, lang, script, referents, terms, referentTerms, wants, compare };
+}
+
+// ── selection ──────────────────────────────────────────────────────────────
+
+const tokenSet = (h) => (h._set ||= new Set(wordsOf(h.text).map(stem)));
+const isYear = (f) => f.numeric && !f.unit && /^\d{3,4}$/.test(f.norm) && f.v >= 500 && f.v <= 2200;
+const figsOf = (h) => (h._figs ||= figuresIn(h.text));
+
+/** Does holon h carry referent r? By the page's own subject (equal, or beginning with the referent: identity, not containment) or by the
+ *  referent's rarest word on the holon. */
+function carries(h, r, df) {
+  const sub = h.subject.filter(Boolean);
+  const rt = r.toks;
+  if (sub.length && sub.length >= rt.length && rt.every((t, i) => sub[i] === t)) return "subject";
+  let rare = rt[0], best = Infinity;
+  for (const t of rt) { const d = df.get(stem(t)) || 0; if (d > 0 && d < best) { best = d; rare = t; } }
+  return tokenSet(h).has(stem(rare)) ? "mention" : null;
+}
+
+function scoreHolons(ask, holons) {
+  const N = Math.max(1, holons.length);
+  const df = new Map();
+  for (const h of holons) for (const t of tokenSet(h)) df.set(t, (df.get(t) || 0) + 1);
+  const telling = ask.terms.filter((t) => (df.get(t) || 0) > 0 && (df.get(t) || 0) / N < ASSEMBLE.commonShare);
+  const w = (t) => Math.log(1 + N / (df.get(t) || 1));
+  const rows = [];
+  for (const h of holons) {
+    const set = tokenSet(h);
+    const present = telling.filter((t) => set.has(t));
+    const cov = telling.length ? present.length / telling.length : 1;
+    const car = ask.referents.map((r) => carries(h, r, df));
+    const carried = ask.referents.length ? car.some(Boolean) : true;
+    const figs = figsOf(h);
+    let typed = true, typeWhy = "";
+    if (ask.wants.year) { typed = figs.some(isYear); typeWhy = "year"; }
+    if (ask.wants.quantity && ask.wants.unit) { typed = figs.some((f) => f.unit && f.unit.dim === ask.wants.unit.dim); typeWhy = "quantity:" + ask.wants.unit.dim; }
+    else if (ask.wants.quantity && !ask.wants.year) { typed = figs.some((f) => f.numeric); typeWhy = "quantity"; }
+    const score = present.reduce((a, t) => a + w(t), 0) + (car.includes("subject") ? 2 : 0) + (car.some((c) => c === "mention") ? 1 : 0) + (typed ? 1.5 : 0);
+    rows.push({ h, cov, carried, typed, typeWhy, score, present });
+  }
+  return { rows, telling, df };
+}
+
+// ── derivation ─────────────────────────────────────────────────────────────
+
+const sig = (norm) => String(norm).replace(/^0+\.?0*/, "").replace(/\./, "").replace(/0+$/, "").length || 1;
+function fmt(v, digits) {
+  if (!isFinite(v)) return String(v);
+  const s = Number(v.toPrecision(digits));
+  return String(s);
+}
+const factorOf = (u) => u.f;
+
+/** Does the figure carry a per-second rate ("299,792,458 metres per second", "m/s")? */
+const isRate = (h, fig) => /^\s*[\p{L}²³]+\s*(?:per second|\/\s*s\b)/iu.test(h.text.slice(fig.end));
+
+/** A unit conversion premise → derived line. `fig` is the source figure (with its unit), `target` the ask's unit. */
+function convert(h, fig, target) {
+  const digits = Math.min(6, sig(fig.norm) + 2);
+  const value = (fig.v * factorOf(fig.unit)) / factorOf(target);
+  const rate = isRate(h, fig);
+  return {
+    text: `${fig.raw} ${displayUnit(h, fig)}${rate ? "/s" : ""} = ${fmt(value, digits)} ${target.word}${rate ? "/s" : ""}`,
+    derivation: { rule: "unit-conversion", premises: [{ address: h.address, figure: fig.raw, unit: fig.unit.w, at: [fig.start, fig.end] }], from: fig.unit.w, to: target.w, factor: factorOf(fig.unit) / factorOf(target), value: Number(value.toPrecision(digits)), digits, rate, table: "fold-chat-ground UNIT_TABLE" },
+  };
+}
+const displayUnit = (h, fig) => { const rest = h.text.slice(fig.end).replace(/^\s?/, ""); const m = rest.match(/^[\p{L}²³]+/u); return m ? m[0] : fig.unit.w; };
+
+/** Recompute a derived sentence from its premises: the checker's half of "carries its derivation". */
+export function verifyDerivation(d, holons) {
+  const dv = d?.derivation;
+  if (!dv) return { ok: false, why: "no-derivation" };
+  const by = new Map(holons.map((h) => [h.address, h]));
+  if (dv.rule === "unit-conversion") {
+    const pr = dv.premises?.[0]; const h = by.get(pr?.address);
+    if (!h) return { ok: false, why: "premise-address" };
+    const fig = figsOf(h).find((f) => f.start === pr.at[0] && f.end === pr.at[1]);
+    if (!fig || !fig.unit || fig.raw !== pr.figure) return { ok: false, why: "premise-figure" };
+    const to = unitOfWord(dv.to);
+    if (!to || fig.unit.dim !== to.dim) return { ok: false, why: "dimension" };
+    const v = Number(((fig.v * fig.unit.f) / to.f).toPrecision(dv.digits));
+    return { ok: v === dv.value && String(d.text).includes(String(v)), why: v === dv.value ? "" : "arithmetic" };
+  }
+  if (dv.rule === "compare-quantity" || dv.rule === "compare-year") {
+    for (const pr of dv.premises || []) {
+      const h = by.get(pr.address);
+      if (!h) return { ok: false, why: "premise-address" };
+      const fig = figsOf(h).find((f) => f.start === pr.at[0] && f.end === pr.at[1]);
+      if (!fig || fig.raw !== pr.figure) return { ok: false, why: "premise-figure" };
+      const base = dv.rule === "compare-year" ? fig.v : fig.v * (fig.unit?.f ?? NaN);
+      if (!(Math.abs(base - pr.base) <= 1e-9 * Math.max(1, Math.abs(base)))) return { ok: false, why: "arithmetic" };
+    }
+    const [a, b] = dv.premises;
+    const gt = a.base > b.base;
+    return { ok: dv.winner === (gt === dv.bigger ? 0 : 1) && a.base !== b.base, why: "order" };
+  }
+  return { ok: false, why: "unknown-rule" };
+}
+
+function compareDerivation(ask, rows, df) {
+  const spec = ask.compare; if (!spec) return null;
+  const picks = [];
+  for (let k = 0; k < Math.min(2, ask.referents.length); k++) {
+    const r = ask.referents[k];
+    let best = null;
+    for (const row of rows) {
+      const h = row.h;
+      if (!carries(h, r, df)) continue;
+      const set = tokenSet(h);
+      const figs = figsOf(h);
+      let fig = null;
+      if (spec.kind === "year") { if (![...YEAR_EVENT].some((w) => set.has(stem(w)))) continue; fig = figs.find(isYear); }
+      else {
+        if (!spec.words.some((w) => set.has(stem(w)))) continue;
+        fig = figs.find((f) => f.unit && f.unit.dim === spec.kind && f.numeric);
+      }
+      if (!fig) continue;
+      const score = row.score + (carries(h, r, df) === "subject" ? 2 : 0);
+      if (!best || score > best.score) best = { h, fig, score, r };
+    }
+    if (!best) return { gap: { kind: "no-figure-of-kind", about: r.surface, detail: spec.kind } };
+    picks.push(best);
+  }
+  if (picks.length < 2) return null;
+  const base = (p) => (spec.kind === "year" ? p.fig.v : p.fig.v * p.fig.unit.f);
+  const a = base(picks[0]), b = base(picks[1]);
+  if (a === b) return { gap: { kind: "no-difference", about: ask.referents.map((r) => r.surface).join(" / "), detail: "equal" } };
+  const winner = (a > b) === spec.bigger ? 0 : 1;
+  const show = (p) => `${p.r.surface}: ${p.fig.raw}${p.fig.unit ? " " + displayUnit(p.h, p.fig) : ""}`;
+  const cmp = a > b ? ">" : "<";
+  return {
+    premises: picks,
+    sentence: {
+      text: `${spec.label}: ${picks[winner].r.surface} (${show(picks[0])} ${cmp} ${show(picks[1])})`,
+      address: picks.map((p) => p.h.address), how: "derived",
+      derivation: { rule: spec.kind === "year" ? "compare-year" : "compare-quantity", kind: spec.kind, bigger: spec.bigger, winner, premises: picks.map((p) => ({ address: p.h.address, figure: p.fig.raw, unit: p.fig.unit?.w || null, at: [p.fig.start, p.fig.end], base: base(p) })) },
+    },
+  };
+}
+
+// ── assemble ───────────────────────────────────────────────────────────────
+
+/**
+ * assemble({ question, pages }) → { sentences:[{ text, address:[…], how:'verbatim'|'derived', derivation? }], gaps:[{ kind, about, detail }], ask, holons: n, ms }
+ * Never calls a model; never emits a sentence that is not a holon of the pages or a derivation recomputable from holons.
+ */
+export function assemble({ question, pages = [], limits = ASSEMBLE, now = () => Date.now() } = {}) {
+  const t0 = now();
+  const done = (sentences, gaps, ask, n) => ({ sentences, gaps, ask, holons: n, ms: now() - t0 });
+  const ok = (Array.isArray(pages) ? pages : []).filter((p) => String(p?.text ?? "").trim());
+  if (!ok.length) return done([], [{ kind: "no-source", about: String(question ?? ""), detail: "no page was read" }], askOf(question, []), 0);
+  const holons = holonsOf(ok, { limits }).filter((h) => verifyHolon(h, ok));
+  const ask = askOf(question, holons);
+  if (!holons.length) return done([], [{ kind: "no-source", about: ask.question, detail: "no readable sentence on any page" }], ask, 0);
+  const { rows, telling, df } = scoreHolons(ask, holons);
+  const bearing = rows.filter((r) => r.carried && r.cov >= limits.coverageFloor && (telling.length || ask.referents.length || ask.wants.year || ask.wants.quantity));
+  const sentences = [], gaps = [];
+
+  // a comparison derives from two sourced quantities, each with its own premise; the premises are quoted beside it
+  if (ask.compare) {
+    const cmp = compareDerivation(ask, rows, df);
+    if (cmp?.sentence) {
+      for (const p of cmp.premises) sentences.push({ text: p.h.text, address: [p.h.address], how: "verbatim" });
+      sentences.push(cmp.sentence);
+      return done(sentences, gaps, ask, holons.length);
+    }
+    if (cmp?.gap) gaps.push({ ...cmp.gap, about: cmp.gap.about });
+  }
+
+  const typedOk = bearing.filter((r) => r.typed);
+  const pool = typedOk;
+  if (!pool.length) {
+    const near = rows.filter((r) => r.carried && r.cov >= limits.coverageFloor);
+    if (bearing.length && !typedOk.length) gaps.push({ kind: "no-figure-of-kind", about: ask.question, detail: [...new Set(near.map((r) => r.typeWhy).filter(Boolean))].join(",") || "typed answer wanted" });
+    else if (rows.some((r) => r.carried)) gaps.push({ kind: "no-holon-bears", about: ask.question, detail: `best coverage ${Math.max(...rows.filter((r) => r.carried).map((r) => r.cov)).toFixed(2)} < ${limits.coverageFloor}` });
+    else {
+      const dl = (() => { try { return detectLang(ok.map((p) => String(p.text).slice(0, 800)).join(" ")); } catch { return {}; } })();
+      gaps.push(dl.lang && dl.lang !== ask.lang && dl.confident ? { kind: "language-gap", about: ask.question, detail: `${ask.lang} ask, ${dl.lang} sources` } : { kind: "no-holon-bears", about: ask.question, detail: "no sentence carries the ask's referent" });
+    }
+    return done(sentences, gaps, ask, holons.length);
+  }
+  pool.sort((a, b) => b.score - a.score || a.h.p - b.h.p || a.h.start - b.h.start);
+  const seen = [];
+  const keep = [];
+  for (const r of pool) {
+    const key = norm(r.h.text).toLowerCase();
+    if (seen.some((k) => k === key || k.includes(key) || key.includes(k))) continue;
+    seen.push(key); keep.push(r);
+    if (keep.length >= limits.maxSentences) break;
+  }
+  for (const r of keep) sentences.push({ text: r.h.text, address: [r.h.address], how: "verbatim", score: Number(r.score.toFixed(3)) });
+
+  // a unit the ask names that no kept holon states: convert the best holon's figure of that dimension (rule, factor and premise ride on it)
+  const target = ask.wants.unit;
+  if (target) {
+    const states = keep.some((r) => figsOf(r.h).some((f) => f.unit && f.unit.dim === target.dim && f.unit.f === target.f));
+    if (!states) {
+      const src = keep.find((r) => figsOf(r.h).some((f) => f.unit && f.unit.dim === target.dim));
+      if (src) {
+        const fig = figsOf(src.h).find((f) => f.unit && f.unit.dim === target.dim && f.numeric && isRate(src.h, f) === !!ask.wants.rate);
+        if (fig) { const d = convert(src.h, fig, target); sentences.push({ text: d.text, address: [src.h.address], how: "derived", derivation: d.derivation }); }
+      }
+    }
+  }
+  return done(sentences, gaps, ask, holons.length);
+}
+
+/** The checker's half of B2: every verbatim sentence reads back as its address; every derived one recomputes. Returns { ok, violations }. */
+export function verifyAssembly(result, pages) {
+  const ok = (Array.isArray(pages) ? pages : []).filter((p) => String(p?.text ?? "").trim());
+  const holons = holonsOf(ok);
+  const violations = [];
+  const byAddr = new Map(holons.map((h) => [h.address, h]));
+  for (const s of result?.sentences || []) {
+    if (s.how === "verbatim") {
+      const h = byAddr.get(s.address?.[0]);
+      if (!h || h.text !== s.text || !verifyHolon(h, ok)) violations.push({ text: s.text, why: "verbatim-not-at-address" });
+    } else if (s.how === "derived") {
+      const v = verifyDerivation(s, holons);
+      if (!v.ok) violations.push({ text: s.text, why: "derivation:" + v.why });
+      for (const a of s.address || []) if (!byAddr.has(a)) violations.push({ text: s.text, why: "derived-premise-address" });
+    } else violations.push({ text: s.text, why: "unknown-how" });
+  }
+  return { ok: violations.length === 0, violations };
+}
+
+// ── identity by consequence ────────────────────────────────────────────────
+
+// Structure a lexical gate cannot read. A sentence carrying one is `undecidable`: it is never accepted and never merged (declared cue
+// tables: English, es, fr, de, ru, zh, ja, ar; an unlisted language is not guarded — said in docs/BACKWARDS-GROUNDING.md).
+const NEGATION = /(?:\b(?:not|never|no|nor|neither|without|cannot|isn't|wasn't|doesn't|didn't|won't|n't)\b|n['’]t\b|\b(?:nunca|jamás|tampoco|sin)\b|\b(?:jamais|ne\s+\w+\s+pas|n['’]\w+\s+pas|aucun|sans)\b|\b(?:nicht|nie|niemals|kein|keine|ohne)\b|(?:\bне\b|\bнет\b|никогда|без\b)|(?:不是|没有|沒有|从未|從未|未曾|並非|并非)|(?:ではない|ていない|なかった|ません)|(?:\bلم\b|\bليس\b|\bلا\b|\bبدون\b))/iu;
+const COMPARATIVE = /(?:\bthan\b|\b(?:taller|shorter|longer|older|younger|larger|bigger|smaller|higher|lower|heavier|lighter|earlier|later|more|less|most|least|before|after)\b|\bque\b.*\b(?:más|menos|mayor|menor)\b|\b(?:más|menos|mayor|menor|plus|moins|mehr|weniger|älter|größer)\b|\bчем\b|(?:比|より)|(?:أكثر|أقل|أكبر|أقدم))/iu;
+
+function nearFig(v, c) { return Math.abs(v - c.v) <= 0.5 * Math.pow(10, -c.dec) + 1e-9 * Math.abs(c.v); }
+/** A claim figure `c` and a ground figure `w` say the same quantity. Stricter than the gate on one point: when the claim names a unit,
+ *  the ground figure must carry a unit of that dimension and match after conversion (330 feet is not 330 metres, 7,300 kilograms is not
+ *  7,300 tonnes); a claim silent about its unit falls back to the gate's own figureMatches. */
+function figureSame(c, w) {
+  if (c.unit) return !!(w.unit && c.numeric && w.numeric && c.unit.dim === w.unit.dim && nearFig((w.v * w.unit.f) / c.unit.f, c));
+  return figureMatches(c, w);
+}
+
+/**
+ * consequenceOf(sentence, pages) → { atoms:[…sorted strings], key, address, why } — the fold of the ground at the sentence.
+ * Empty `atoms` means the sentence makes no difference to this ground: `why` says in a typed word where it stopped
+ * ('unread-structure' | 'cross-language' | 'figure-unit' | the gate's own reasons | 'no-material').
+ */
+export function consequenceOf(sentence, pages) {
+  const s = String(sentence ?? "");
+  const ok = (Array.isArray(pages) ? pages : []).filter((p) => String(p?.text ?? "").trim());
+  const none = (why, detail = "") => ({ atoms: [], key: "", address: null, why, detail });
+  if (!ok.length) return none("no-material");
+  const bare = claimOf(s);
+  if (NEGATION.test(bare)) return none("unread-structure", "negation");
+  if (COMPARATIVE.test(bare)) return none("unread-structure", "comparison");
+  const material = ok.map((p) => ({ ref: String(p.ref || refOfUrl(p.url || p.source)), source: p.url || p.source, text: String(p.text).slice(0, ASSEMBLE.maxPageChars) }));
+  const [e] = attribute(s, material);
+  if (!e || !e.ref) return none(e?.why || "no-material", e?.detail || "");
+  const m = material.find((x) => x.source === e.source) || material[0];
+  const sents = sentencesWithOffsets(m.text);
+  const idx = Math.max(0, sents.findIndex((x) => e.span.start >= x.start && e.span.start <= x.end));
+  const lo = Math.max(0, idx - 1), hi = Math.min(sents.length - 1, idx + 1);
+  const win = sents.slice(lo, hi + 1);
+  const holon = sents[idx];
+  const address = `${m.ref}#${holon.start}-${holon.end}`;
+  const gfigs = [];
+  for (const w of win) for (const f of figuresIn(w.text, w.start)) gfigs.push({ ...f, holon: `${m.ref}#${w.start}-${w.end}` });
+  const atoms = new Set([`holon:${address}`]);
+  for (const c of figuresIn(bare)) {
+    const hit = gfigs.find((w) => figureSame(c, w));       // earliest in the ground: the canonical atom of a quantity stated in several units
+    if (!hit) return none("figure-unit", c.raw + (c.unit ? " " + c.unit.w : ""));
+    atoms.add(`fig:${hit.unit ? hit.unit.dim : "n"}:${Number((hit.v * (hit.unit?.f ?? 1)).toPrecision(9))}@${hit.start}`);
+  }
+  const topic = new Set(wordsOf(`${m.ref}`).map(stem));
+  const nameKey = (n) => wordsOf(String(n).replace(/['’]s\b/gu, "")).map(stem).join("_");
+  for (const n of namesIn(bare)) atoms.add("name:" + nameKey(n));
+  const fw = new Set([...(FUNCTION_WORDS.en || []), ...(FUNCTION_WORDS[detectLang(bare).lang] || [])].map((x) => fold(x)));
+  const nameToks = new Set(namesIn(bare).flatMap((n) => wordsOf(String(n).replace(/['’]s\b/gu, ""))).map(stem));
+  const figToks = new Set(figuresIn(bare).flatMap((f) => wordsOf(f.raw)));
+  for (const t of wordsOf(bare)) {
+    const st = stem(t);
+    if (fw.has(t) || topic.has(st) || nameToks.has(st) || figToks.has(t) || /^\d/.test(t) || t.length < 4 || MEASURE_WORDS.has(t) || MEASURE_WORDS.has(st)) continue;
+    if (unitOfWord(t)) continue;
+    atoms.add("term:" + st);
+  }
+  const list = [...atoms].sort();
+  return { atoms: list, key: list.join("|"), address, why: "" };
+}
+
+/** Same claim, by consequence: relative to this ground, both sentences select the same window, the same figures, the same names, and the
+ *  content terms of one are those of the other (a sentence may say less, never something else). `undecidable` is typed, never a guess. */
+export function sameClaim(a, b, pages) {
+  const ca = consequenceOf(a, pages), cb = consequenceOf(b, pages);
+  if (!ca.atoms.length || !cb.atoms.length) return { verdict: "undecidable", why: !ca.atoms.length ? ca.why : cb.why, detail: !ca.atoms.length ? ca.detail : cb.detail, a: ca, b: cb };
+  const parts = (c) => ({ holon: c.atoms.filter((x) => x.startsWith("holon:")).join(), fig: c.atoms.filter((x) => x.startsWith("fig:")).join("|"), name: c.atoms.filter((x) => x.startsWith("name:")).join("|"), term: c.atoms.filter((x) => x.startsWith("term:")).map((x) => x.slice(5)) });
+  const A = parts(ca), B = parts(cb);
+  const sub = (x, y) => x.every((t) => y.includes(t));
+  const same = A.holon === B.holon && A.fig === B.fig && A.name === B.name && (sub(A.term, B.term) || sub(B.term, A.term));
+  return { verdict: same ? "same" : "different", a: ca, b: cb };
+}
+
+/** The forward gate kept as the CHECK: may this (voiced or foreign) sentence stand against these pages? */
+export function certify(sentence, pages) {
+  const c = consequenceOf(sentence, pages);
+  return c.atoms.length ? { accepted: true, address: c.address, atoms: c.atoms } : { accepted: false, why: c.why, detail: c.detail };
+}

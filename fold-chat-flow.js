@@ -65,9 +65,10 @@ export function isMove(question, act = actOf(question)) {
 export function planTurn(question, priorMessages, opts = {}) {
   const plan = turnPlan(question, priorMessages, opts);
   const act = actOf(question);
-  // a meta ask is already a reply about the previous answer; a carried-referent ask names its referent. Everything else that
-  // would be SEARCHED (a standalone or an elliptical ask) is first asked: is it a move about the conversation?
-  if (plan.mode === "web" && plan.kind !== "carried" && isMove(question, act)) {
+  // a meta ask is already a reply about the previous answer. Everything else that would be SEARCHED (a standalone, an elliptical or a
+  // carried-pronoun ask) is first asked: is it a move about the conversation? "prove it" carries a pronoun, and the pronoun trigger would
+  // have searched the last answer's referent with "prove it" tacked on (measured, eval/gary-flow); the push-back is the stronger reading.
+  if (plan.mode === "web" && isMove(question, act)) {
     return plan.thread?.has
       ? { ...plan, act, kind: "move", mode: "thread", search: null, modelMay: true, reason: "move-with-thread" }
       : { ...plan, act, kind: "move", mode: "cold-gap", search: null, modelMay: false, reason: "move-cold" };

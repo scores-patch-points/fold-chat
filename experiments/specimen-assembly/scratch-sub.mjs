@@ -1,0 +1,14 @@
+import fs from "node:fs";
+import { makeOracle } from "./lib/pagecheck.mjs";
+import { subtract, collectAtoms } from "./lib/pagesub.mjs";
+import { Ledger } from "./lib/solver.mjs";
+const src = fs.readFileSync("pages/tip-suite.html", "utf8");
+const atoms = collectAtoms(src);
+console.log("atoms", atoms.length, { html: atoms.filter(a=>a.kind==="html").length, js: atoms.filter(a=>a.kind==="js").length, css: atoms.filter(a=>a.kind==="css").length });
+const o = await makeOracle();
+const L = new Ledger();
+const t = Date.now();
+const r = await subtract(src, o, { ledger: L, onState: (s) => process.stdout.write(`\r${s.step} ${s.bytes}B ${s.note.slice(0,60)}          `) });
+console.log("\n", r.stats, Date.now() - t, "ms", src.length, "->", r.html.length);
+fs.writeFileSync("out/probe/tip-calc.html", r.html);
+await o.close();

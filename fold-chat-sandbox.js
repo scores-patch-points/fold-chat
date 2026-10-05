@@ -11,6 +11,7 @@
 // Browser only — it needs a DOM; the loop's logic is tested in node with a
 // fake observer and this is exercised by the live e2e.
 
+import { sampleCalls, describeTrial } from "./fold-chat-trial.js";
 /** The probe injected ahead of the artifact. It reports over postMessage with a
  *  per-run nonce; the parent only believes messages from this iframe. */
 function probeScript(nonce, { click }) {
@@ -23,21 +24,28 @@ var ce=console.error;console.error=function(){send("console",{message:[].slice.c
 function snap(){var b=document.body;return {text:(b&&b.innerText||"").replace(/\\s+/g," ").trim(),html:b?b.innerHTML.length:0,vis:document.querySelectorAll("canvas,svg,img,video").length}}
 // Ready when the DOM is ready — NOT when every image, font and external script has finished (a slow or blocked
 // resource would hold "load" back and a perfectly good page would be reported as hung). "load" is only a fallback.
+// PACING WITHOUT TIMERS: a browser throttles chained timers in an off-screen or long-hidden frame to about one a MINUTE (measured in
+// the app's own pane: six chained 120ms timers never finished in 30s). Message-channel tasks are not throttled, so pacing is done
+// by yielding a number of tasks; a timer is only the fallback (whichever fires first wins).
+function after(ms,n,cb){var d=false;function fin(){if(d)return;d=true;cb()}try{var c=new MessageChannel(),k=0;c.port1.onmessage=function(){if(++k<n)c.port2.postMessage(0);else{try{c.port1.close()}catch(e){}fin()}};c.port2.postMessage(0)}catch(e){}setTimeout(fin,ms)}
 var began=false;
-function begin(){ if(began)return; began=true; setTimeout(go,200); }
+function begin(){ if(began)return; began=true; after(200,2,go); }
 function go(){
   var s0=snap(),title=document.title||"";
   var ctl=[].slice.call(document.querySelectorAll("button,[role=button],input[type=button],input[type=submit],a[href^='#']")).slice(0,${click ? 12 : 0});
   var inputs=document.querySelectorAll("input,textarea,select").length;
   var labels=[].slice.call(document.querySelectorAll("button,[role=button],input,textarea,select,a,label,h1,h2,h3")).map(function(e){return (e.innerText||e.value||e.placeholder||e.getAttribute("aria-label")||e.title||"").replace(/\\s+/g," ").trim().toLowerCase()}).filter(Boolean).slice(0,60);
   send("loaded",{title:title,textLen:s0.text.length,sample:s0.text.slice(0,80),visuals:s0.vis,controls:ctl.length,inputs:inputs,labels:labels,text:s0.text.slice(0,3000).toLowerCase()});
-  var changed=0,i=0;
-  (function next(){
-    if(i>=ctl.length){send("done",{clicked:ctl.length,changed:changed});return}
-    var c=ctl[i++],before=snap();
-    try{c.click()}catch(e){send("error",{message:"click threw: "+e.message})}
-    setTimeout(function(){var a=snap();if(a.text!==before.text||a.html!==before.html)changed++;next()},120);
-  })();
+  // ONE synchronous burst: a frame in a throttled pane gets a turn about every 0.7s (measured), so waiting between clicks would never
+  // finish. A click handler updates the page synchronously, so each click is compared with the page right after it. One short
+  // yield at the end catches a page that answers a moment later.
+  var changed=0;
+  for(var i=0;i<ctl.length;i++){
+    var before=snap();
+    try{ctl[i].click()}catch(e){send("error",{message:"click threw: "+e.message})}
+    var a=snap(); if(a.text!==before.text||a.html!==before.html)changed++;
+  }
+  after(120,3,function(){var f=snap(); if(!changed&&(f.text!==s0.text||f.html!==s0.html))changed=1; send("done",{clicked:ctl.length,changed:changed})});
 }
 if(document.readyState==="interactive"||document.readyState==="complete")begin();
 else{document.addEventListener("DOMContentLoaded",begin);window.addEventListener("load",begin);}
@@ -66,12 +74,69 @@ export function pageFor(code, kind) {
 }
 
 /**
+ * Call functions the code defines and report what came back. `exprs` are expressions such as `slugify("Hello, World!")`; each is
+ * evaluated inside the code's own scope (a direct eval in the same module), in the same sandboxed frame as everything else:
+ * scripts only, no same-origin, no network of the app's. Resolves to [{ expr, ok:true, value } | { expr, ok:false, error }] —
+ * `value` is already text (JSON where it can be). Never rejects. A function that never returns is cut off after `timeoutMs`.
+ */
+export function callMany(code, exprs, { timeoutMs = 5000, host = document.body, signal = null } = {}) {
+  return new Promise((resolve) => {
+    const list = (exprs || []).map(String).filter(Boolean).slice(0, 12);
+    if (!list.length) { resolve([]); return; }
+    const nonce = "r" + Math.random().toString(36).slice(2);
+    const frame = document.createElement("iframe");
+    frame.setAttribute("sandbox", "allow-scripts"); frame.setAttribute("aria-hidden", "true");
+    frame.style.cssText = "position:fixed;left:0;top:0;width:400px;height:300px;border:0;opacity:0;pointer-events:none;z-index:-1";
+    let finished = false, timer = null;
+    const finish = (results) => {
+      if (finished) return; finished = true;
+      clearTimeout(timer); window.removeEventListener("message", onMsg); signal?.removeEventListener?.("abort", onAbort); frame.remove();
+      const got = new Map((results || []).map((r) => [r.expr, r]));
+      resolve(list.map((expr) => got.get(expr) || { expr, ok: false, error: "did not finish (it may loop forever or wait on something)" }));
+    };
+    const onAbort = () => finish([]);
+    const onMsg = (e) => { const d = e.data; if (e.source === frame.contentWindow && d && d.__foldrun === nonce) finish(d.results); };
+    window.addEventListener("message", onMsg);
+    signal?.addEventListener?.("abort", onAbort);
+    timer = setTimeout(() => finish([]), timeoutMs);
+    const isModule = /^\s*(?:export|import)\b/m.test(String(code));
+    const runner = `
+;(async () => {
+  const out = [];
+  for (const expr of ${JSON.stringify(list).replace(/</g, "\\u003c")}) {
+    try {
+      const v = await eval(expr);
+      let t; try { t = v === undefined ? "undefined" : typeof v === "function" ? "[function]" : JSON.stringify(v); if (t === undefined) t = String(v); } catch (_) { t = String(v); }
+      out.push({ expr, ok: true, value: t.length > 160 ? t.slice(0, 159) + "…" : t });
+    } catch (e) { out.push({ expr, ok: false, error: String((e && e.name ? e.name + ": " : "") + (e && e.message ? e.message : e)).slice(0, 160) }); }
+  }
+  parent.postMessage({ __foldrun: ${JSON.stringify(nonce)}, results: out }, "*");
+})();`;
+    frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8"></head><body><script${isModule ? ' type="module"' : ""}>\n${String(code).replace(/<\/script/gi, "<\\/script")}\n${runner}\n<\/script></body></html>`;
+    host.append(frame);
+  });
+}
+
+/**
  * Observe an artifact. Resolves to { checks:[{name, ok, detail?}] }. Never
  * rejects on the artifact's own faults — those ARE the result.
  *   ok:true  → evidence the work holds     ok:false → a problem to repair
  *   ok:null  → information only (never fails the round)
  */
-export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host = document.body, signal = null } = {}) {
+/** How much longer to wait on a busy machine: this page's own timer lag, measured now. A starved computer runs the test frame slowly,
+ *  and a good page must not be called "hung" because the machine was busy (measured: load average ~300 → a 12s wait was never enough). */
+export async function patienceFactor(sampleMs = 100) {
+  const t0 = typeof performance !== "undefined" ? performance.now() : Date.now();
+  await new Promise((r) => setTimeout(r, sampleMs));
+  const lag = (typeof performance !== "undefined" ? performance.now() : Date.now()) - t0 - sampleMs;
+  return lag > 1500 ? 4 : lag > 600 ? 3 : lag > 250 ? 2 : 1;
+}
+export async function observeArtifact(code, opts = {}) {
+  const f = await patienceFactor();
+  return observeOnce(code, { ...opts, timeoutMs: Math.min(48000, (opts.timeoutMs ?? 12000) * f) });
+}
+
+function observeOnce(code, { kind = "html", timeoutMs = 12000, host = document.body, signal = null } = {}) {
   return new Promise((resolve) => {
     if (kind !== "html" && kind !== "js") {
       resolve({ checks: [{ name: "runs as code", ok: null, detail: `a ${kind} answer is not run` }] });
@@ -114,6 +179,19 @@ export function observeArtifact(code, { kind = "html", timeoutMs = 12000, host =
         controls: loaded?.controls || 0, clicked: done?.clicked || 0, changed: done?.changed || 0,
         labels: loaded?.labels || [], text: loaded?.text || "", title: loaded?.title || "",
       };
+      // A function that merely loads has not shown it works: call it with sample inputs and REPORT what came back (never judged —
+      // ok:null — the person and the checker see the values). Only for code with no load error.
+      if (kind === "js" && loaded && !loadErrors.length) {
+        const calls = sampleCalls(code);
+        if (calls.length) {
+          callMany(code, calls, { host, signal }).then((trials) => {
+            facts.trials = trials;
+            checks.push({ name: "tried it", ok: null, detail: trials.map(describeTrial).join("\n") });
+            resolve({ checks, facts });
+          });
+          return;
+        }
+      }
       resolve({ checks, facts });
     };
     const onMsg = (e) => {

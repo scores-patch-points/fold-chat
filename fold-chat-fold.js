@@ -152,6 +152,60 @@ export function foldedLines(fold, version = artifactOf(fold)) {
   return cur.map((l, i) => ({ n: i + 1, ...l }));
 }
 
+/**
+ * The FRAMES of a fold: the moments the CONTENT changes — not the actions taken about it (reading the ask, checking, escalating).
+ * Frame 0 is the empty start. Then, per attempt:
+ *   the first draft  → one frame per unit as it is folded in (penelope's units), or one frame if the code has none;
+ *   a later attempt  → one frame per CHANGE (a run of added/removed lines), applied in order to the attempt before;
+ *   an identical re-draft → no frame at all (nothing changed).
+ * Every frame holds the full code as it stood, so any frame can be shown, replayed or reset to. Pure.
+ *   frame = { n, round, versionN, kind:"start"|"first"|"unit"|"change"|"revision", label, code, complete, step:[k,m]|null, added, removed }
+ *   `complete` is true on the last frame of an attempt — the whole attempt, not a half-applied one.
+ */
+export function framesOf(fold) {
+  const frames = [{ n: 0, round: null, versionN: null, kind: "start", label: "the ask", code: "", complete: false, step: null, added: 0, removed: 0 }];
+  const push = (f) => frames.push({ n: frames.length, step: null, complete: false, added: 0, removed: 0, ...f });
+  fold.versions.forEach((v, i) => {
+    const prev = i > 0 ? fold.versions[i - 1] : null;
+    const diff = diffLines(prev ? prev.code : null, v.code);
+    const stat = diffStat(diff);
+    if (prev && !stat.added && !stat.removed) return;                 // the same code again changed nothing
+    const base = { round: v.round, versionN: v.n };
+    if (!prev) {
+      const lines = foldedLines(fold, v), order = [];
+      for (const l of lines) if (l.unit && !order.includes(l.unit)) order.push(l.unit);
+      if (order.length >= 2) {
+        order.forEach((u, k) => {
+          const keep = new Set(order.slice(0, k + 1));
+          let end = -1; lines.forEach((l, idx) => { if (l.unit && keep.has(l.unit)) end = idx; });
+          const last = k === order.length - 1;
+          push({ ...base, kind: "unit", label: `unit ${u}`, code: last ? v.code : lines.slice(0, end + 1).map((l) => l.text).join("\n"), complete: last, step: [k + 1, order.length], added: last ? stat.added : 0, removed: 0 });
+        });
+        return;
+      }
+      push({ ...base, kind: "first", label: "first draft", code: v.code, complete: true, added: stat.added, removed: 0 });
+      return;
+    }
+    // changes = runs of consecutive non-equal ops; frame k applies the first k of them to the attempt before
+    const groupOf = []; let g = 0, inRun = false;
+    diff.forEach((d, j) => { if (d.op === "eq") { inRun = false; groupOf[j] = 0; } else { if (!inRun) { g++; inRun = true; } groupOf[j] = g; } });
+    const m = g;
+    if (m < 2 || m > 12) { push({ ...base, kind: "revision", label: `attempt ${v.round}`, code: v.code, complete: true, added: stat.added, removed: stat.removed }); return; }
+    for (let k = 1; k <= m; k++) {
+      const out = []; let added = 0, removed = 0;
+      diff.forEach((d, j) => {
+        const gj = groupOf[j];
+        if (d.op === "eq") out.push(d.line);
+        else if (gj <= k) { if (d.op === "add") out.push(d.line); }   // applied: the new line is in, the old one is out
+        else if (d.op === "del") out.push(d.line);                      // not yet applied: the old line is still there
+        if (gj === k) { if (d.op === "add") added++; else if (d.op === "del") removed++; }
+      });
+      push({ ...base, kind: "change", label: `change ${k} of ${m}`, code: out.join("\n"), complete: k === m, step: [k, m], added, removed });
+    }
+  });
+  return frames;
+}
+
 /** Who wrote how much of the folded output — a one-line honest summary. */
 export function authorship(lines) {
   const by = new Map();

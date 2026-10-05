@@ -14,9 +14,9 @@
 
 import { formatBytes } from "./fold-chat-outbound.js";
 
-const KINDS = { USER: ["username", "usernames"], PATH: ["folder path", "folder paths"], FILE: ["file name", "file names"], TERM: ["name or term", "names & terms"], EMAIL: ["email", "emails"], PHONE: ["phone number", "phone numbers"], SECRET: ["credential", "credentials"], HOST: ["private host", "private hosts"], ID: ["ID number", "ID numbers"] };
+const KINDS = { PERSON: ["person name", "person names"], NAME: ["name", "names"], ORG: ["organisation", "organisations"], LOC: ["place", "places"], GROUP: ["group", "groups"], URL: ["link", "links"], HANDLE: ["handle", "handles"], ADDRESS: ["street address", "street addresses"], USER: ["username", "usernames"], PATH: ["folder path", "folder paths"], FILE: ["file name", "file names"], TERM: ["name or term", "names & terms"], EMAIL: ["email", "emails"], PHONE: ["phone number", "phone numbers"], SECRET: ["credential", "credentials"], HOST: ["private host", "private hosts"], ID: ["ID number", "ID numbers"] };
 const kindWord = (k, n = 2) => { const w = KINDS[k]; return w ? w[n === 1 ? 0 : 1] : k.toLowerCase(); };
-const PH = /\b(USER|PATH|FILE|TERM|EMAIL|PHONE|SECRET|HOST|ID)_\d+\b/g;
+const PH = /\b(PERSON|NAME|ORG|LOC|GROUP|URL|HANDLE|ADDRESS|USER|PATH|FILE|TERM|EMAIL|PHONE|SECRET|HOST|ID)_[a-hj-km-np-z2-9]{6}\b/gi;
 
 /** Split a text into plain and placeholder pieces: [{ text, kind? }]. A piece with a kind is a placeholder. */
 export function placeholderPieces(text) {

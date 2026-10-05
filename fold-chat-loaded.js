@@ -2,6 +2,9 @@
 //
 // Two different lists, and the footer must not confuse them:
 //   • servable — everything the bridge could run (`GET /api/tags`, read by fold-chat-client.js listModels);
+//   • in this tab — the page's OWN engine (fold-chat-webllm.js, WebGPU): a model resident in this very browser tab, which needs no
+//                bridge at all. The app hands that in as `page` ({ available, reason, entries, loading }); a first load shows its
+//                progress here, and a device with no WebGPU says so instead of failing silently;
 //   • loaded   — what is resident in memory this minute: the FLEET the bridge relays (phones, browser tabs —
 //                `GET <bridge>/api/ps`, which is `{"models":[]}` whenever no fleet worker is connected) plus this
 //                machine's Ollama (`GET <upstream>/api/ps`, `size_vram` says how much is on the GPU; the upstream is the
@@ -10,8 +13,8 @@
 // Pure and injectable: `fetchImpl` and the timers are parameters, nothing here touches the DOM, and a failing source
 // never throws — it is reported (`bridge: "down"`), because a footer that errors is worse than one that says "not reachable".
 //
-//   fetchLoaded({ base, upstream, fetchImpl, timeoutMs })  → { bridge: "up"|"down", entries:[…], servable, errors:[…] }
-//   describeLoaded(state, { max })                         → { kind: "loaded"|"idle"|"empty"|"down", dot, text, title }
+//   fetchLoaded({ base, upstream, fetchImpl, timeoutMs, page }) → { bridge: "up"|"down", entries:[…], servable, errors:[…], page }
+//   describeLoaded(state, { max })                         → { kind: "loaded"|"loading"|"idle"|"empty"|"down", dot, text, title }
 //   noModelWhy({ bridgeUp, models, selectedId })           → { code, text } — what to say instead of a bare "no model"
 //   createLoadedPoller({ … })                              → { refresh, stop } polls only while the tab is visible
 
@@ -23,6 +26,8 @@ const trimBase = (u) => String(u ?? "").replace(/\/+$/, "");
 
 /** Where does a resident model live? A heimdall browser tab serving WebLLM, a fleet worker, or this machine. */
 export function placeOf(entry, source) {
+  // This page's own engine: the model lives in THIS tab. (A heimdall browser tab that serves WebLLM to the fleet is the next line.)
+  if (source === "page" || entry?.kind === "webllm-page") return "this tab (WebLLM)";
   const h = entry?.heimdall || {};
   const hay = [entry?.name, entry?.model, entry?.details?.family, entry?.details?.format, h.provider, h.kind, entry?.kind, entry?.provider].map((x) => String(x ?? "")).join(" ");
   if (h.webllm || entry?.webllm || entry?.kind === "webllm" || /webllm|mlc-ai|\bmlc\b|-MLC\b/i.test(hay)) return "browser tab (WebLLM)";
@@ -61,10 +66,12 @@ async function getJson(url, fetchImpl, timeoutMs) {
 
 /** Ask the bridge (fleet + what it can serve) and this machine's Ollama (what is resident), in parallel, each with a
  *  short timeout. `bridge` is "up" when the bridge answered anything at all; a down Ollama is not a down bridge. */
-export async function fetchLoaded({ base, upstream = null, fetchImpl = (typeof fetch === "function" ? fetch : null), timeoutMs = 2500 } = {}) {
+export async function fetchLoaded({ base, upstream = null, fetchImpl = (typeof fetch === "function" ? fetch : null), timeoutMs = 2500, page = null } = {}) {
   const b = trimBase(base);
   const errors = [];
-  const none = { bridge: "down", entries: [], servable: null, errors: ["no fetch"] };
+  // The page's own resident models come first and need no network: they are listed even when the bridge never answers.
+  const inTab = (Array.isArray(page?.entries) ? page.entries : []).filter((e) => e && e.id).map((e) => ({ id: bare(e.id), place: placeOf(e, "page"), source: "page", size: 0, vram: 0, expires: null, ctx: Number(e.ctx) > 0 ? Number(e.ctx) : 0 }));
+  const none = { bridge: "down", entries: inTab, servable: null, errors: ["no fetch"], page };
   if (!fetchImpl || !b) return none;
   // The upstream the bridge reports (its own Ollama address), else the default. Asked first, cheaply, but never waited
   // on past the timeout: the default is a good answer on every machine measured.
@@ -77,21 +84,34 @@ export async function fetchLoaded({ base, upstream = null, fetchImpl = (typeof f
   const fleet = entriesOf(ps, "bridge"), mine = entriesOf(local, "ollama");
   // Merge: one row per model per place. The same model resident on this machine AND in the fleet is two real copies.
   const seen = new Set(), entries = [];
-  for (const e of [...mine, ...fleet]) { const k = e.id + "|" + e.place; if (!seen.has(k)) { seen.add(k); entries.push(e); } }
+  for (const e of [...inTab, ...mine, ...fleet]) { const k = e.id + "|" + e.place; if (!seen.has(k)) { seen.add(k); entries.push(e); } }
   const servable = tags ? (Array.isArray(tags.models) ? tags.models.length : 0) : null;
-  return { bridge: ps || tags ? "up" : "down", entries, servable, errors };
+  return { bridge: ps || tags ? "up" : "down", entries, servable, errors, page };
 }
 
 /** What the footer says. `max` entries are named, the rest are "+N". Pure. */
 export function describeLoaded(state, { max = 3 } = {}) {
   const st = state || { bridge: "down", entries: [] };
-  if (st.bridge === "down") return { kind: "down", dot: "○", text: "no model reachable \u2014 Sources only still works", title: "The heimdall bridge did not answer, so no model can be reached. Sources only needs no model. Start the bridge with `heimdall up` for written answers.\n" + (st.errors || []).join("\n") };
   const list = Array.isArray(st.entries) ? st.entries : [];
+  const pg = st.page || null;
+  // A first load in this tab: say what is happening and how far along (web-llm's own progress words), never a frozen footer.
+  if (pg?.loading) {
+    const pct = Number.isFinite(pg.loading.progress) ? Math.round(Math.min(1, Math.max(0, pg.loading.progress)) * 100) : null;
+    const what = pg.loading.phase === "download" ? "downloading" : "starting";
+    return { kind: "loading", dot: "\u25D0", text: `${what} ${bare(pg.loading.name || pg.loading.id)} \u00b7 ${pct == null ? "" : pct + "% \u00b7 "}in this tab (WebLLM)`, title: String(pg.loading.text || "loading the model in this tab") + "\nThe model is downloaded once to this browser's own cache, then runs on this device's GPU. Nothing leaves the tab." };
+  }
+  if (st.bridge === "down" && !list.length) {
+    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: "This tab can run a model itself (WebGPU) \u2014 no bridge needed. The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.\n" + (st.errors || []).join("\n") };
+    if (pg && pg.reason && pg.reason !== "no-engine") return { kind: "down", dot: "\u25CB", text: "no WebGPU here, and no bridge \u2014 Sources only still works", title: `This browser cannot run a model in the tab (${pg.reason}). Use a WebGPU browser, the Fold's extension, or start the Fold's own server (\`npm run serve\`) so its bridge can serve one. Sources only needs no model.\n` + (st.errors || []).join("\n") };
+    return { kind: "down", dot: "\u25CB", text: "no model reachable \u2014 Sources only still works", title: "The heimdall bridge did not answer, so no model can be reached. Sources only needs no model. Start the Fold's own server (`npm run serve`) for written answers.\n" + (st.errors || []).join("\n") };
+  }
   if (!list.length) {
+    // The tab can run a model itself: an empty bridge is not "no model" — the first ask loads one here (after asking to download).
+    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: `This tab can run a model itself (WebGPU). The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.${st.servable ? ` The bridge can also serve ${st.servable} model(s).` : ""}` };
     if (st.servable === 0) return { kind: "empty", dot: "○", text: "no chat model on the bridge \u2014 Sources only still works", title: "The bridge is reachable but lists no model it can serve. Sources only needs no model." };
     return { kind: "idle", dot: "○", text: "no model loaded — the first ask will load one", title: `Nothing is resident in memory right now${st.servable ? `; the bridge can serve ${st.servable} model(s)` : ""}.` };
   }
-  const label = (e) => bare(e.id) + (e.place === "this machine" ? "" : e.place === "fleet" ? " (fleet)" : " (tab)");
+  const label = (e) => bare(e.id) + (e.place === "this machine" ? "" : e.place === "fleet" ? " (fleet)" : e.place === "this tab (WebLLM)" ? " (this tab)" : " (tab)");
   const shown = list.slice(0, max).map(label), more = list.length - shown.length;
   const text = `${shown.join(" · ")}${more > 0 ? ` +${more}` : ""} loaded`;
   const title = list.map((e) => {
@@ -103,9 +123,14 @@ export function describeLoaded(state, { max = 3 } = {}) {
 }
 
 /** The reason there is no model to answer with, in words that tell the person what to do — never a bare "no model". */
-export function noModelWhy({ bridgeUp = true, models = [], selectedId = null, isChat = (m) => !/embed|bge-|e5-|gte-|minilm|nomic-embed|mxbai/i.test(String(m?.id || "")) } = {}) {
-  if (!bridgeUp) return { code: "bridge-down", text: "the bridge isn't reachable — start it with `heimdall up`" };
+export function noModelWhy({ bridgeUp = true, models = [], selectedId = null, page = null, isChat = (m) => !/embed|bge-|e5-|gte-|minilm|nomic-embed|mxbai/i.test(String(m?.id || "")) } = {}) {
   const list = Array.isArray(models) ? models : [];
+  // A model listed IN THIS TAB needs no bridge: the bridge being down is then not why there is "no model".
+  const inTab = list.some((m) => m?.kind === "webllm-page");
+  if (!bridgeUp && !inTab) {
+    if (page && page.available === false && page.reason && page.reason !== "no-engine") return { code: "no-webgpu", text: `this browser has no WebGPU (${page.reason}) and the bridge isn't reachable — use a WebGPU browser, the Fold's extension, or start the Fold's own server (\`npm run serve\`)` };
+    return { code: "bridge-down", text: "the bridge isn't reachable — start the Fold's own server (`npm run serve`)" };
+  }
   if (!list.length) return { code: "no-models", text: "the bridge is up but serves no model — pull one (`ollama pull gemma2:2b`) or connect a fleet worker" };
   if (!list.some(isChat)) return { code: "no-chat-model", text: "the bridge only serves embedding models — none can write an answer; pull a chat model (`ollama pull gemma2:2b`)" };
   if (selectedId && !list.some((m) => m.id === selectedId)) return { code: "selected-missing", text: `the selected model (${bare(selectedId)}) isn't loaded anywhere the bridge can reach — pick another from the list` };

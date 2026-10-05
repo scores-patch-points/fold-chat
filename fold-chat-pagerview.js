@@ -22,18 +22,15 @@ export function mountPager(pages, { label = "Sources", onChange = null } = {}) {
   root.tabIndex = 0;
   root.setAttribute("role", "group"); root.setAttribute("aria-roledescription", "carousel"); root.setAttribute("aria-label", label);
   const stage = el("div", "pager-stage");
-  // TWO control bars, above and below the page (cards are tall: the top one is in view without scrolling past the recipe).
-  // Both are clickable and kept in step by paint(). Only the BOTTOM one is in the tab order and read out; the top one's
-  // buttons are tabindex -1 and its text aria-hidden, so a keyboard or screen-reader user meets one set of controls.
-  const bars = ["top", "bottom"].map((where) => {
-    const quiet = where === "top";
+  // ONE control bar, ABOVE the page (cards are tall: it is in view without scrolling past the recipe).
+  const bars = ["top"].map((where) => {
     const bar = el("div", "pager-bar pager-bar-" + where);
     const prev = el("button", "pager-btn pager-prev", "\u2039 Prev"); prev.type = "button";
     const next = el("button", "pager-btn pager-next", "Next \u203a"); next.type = "button";
     const count = el("span", "pager-count");
     const dots = el("span", "pager-dots");
     prev.setAttribute("aria-label", "Previous source"); next.setAttribute("aria-label", "Next source");
-    if (!quiet) count.setAttribute("aria-live", "polite");
+    count.setAttribute("aria-live", "polite");
     const dotEls = list.map((p, i) => {
       const d = el("button", "pager-dot"); d.type = "button";
       d.title = p.label || (p.n ? p.n : `Source ${i + 1}`);
@@ -42,7 +39,6 @@ export function mountPager(pages, { label = "Sources", onChange = null } = {}) {
       d.addEventListener("click", () => go(st.go(i)));
       dots.append(d); return d;
     });
-    if (quiet) { for (const x of [prev, next, ...dotEls]) x.tabIndex = -1; bar.setAttribute("aria-hidden", "true"); }
     prev.addEventListener("click", () => go(st.prev()));
     next.addEventListener("click", () => go(st.next()));
     bar.append(prev, count, next, dots);
@@ -54,7 +50,7 @@ export function mountPager(pages, { label = "Sources", onChange = null } = {}) {
     s.dataset.key = p.key || ""; if (p.n) s.dataset.n = p.n;
     s.append(p.node); stage.append(s); return s;
   });
-  root.append(bars[0].bar, stage, bars[1].bar);
+  root.append(bars[0].bar, stage);
 
   function paint() {
     slides.forEach((s, i) => { const on = i === st.index; s.classList.toggle("is-on", on); s.setAttribute("aria-hidden", on ? "false" : "true"); if (on) s.removeAttribute("inert"); else s.setAttribute("inert", ""); });

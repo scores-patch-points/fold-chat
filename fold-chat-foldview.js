@@ -16,8 +16,10 @@
 // Words: the default text is plain language ("code writer", "test page", "online AI"); the technical names
 // (penelope, khora, janus, sandbox, sealed-external…) are on hover and in the "details" of each entry.
 
-import { artifactOf, foldedLines, authorship } from "./fold-chat-fold.js";
-import { eotFromFold, describeEvent, versionAtCursor, codeOfEvent } from "./fold-chat-eot.js";
+import { artifactOf, foldedLines, authorship, framesOf } from "./fold-chat-fold.js";
+import { diffLines } from "./fold-chat-workspace.js";
+import { sampleCalls, describeTrial } from "./fold-chat-trial.js";
+import { eotFromFold, describeEvent, codeOfEvent } from "./fold-chat-eot.js";
 import { FOLDVIEW_CSS, FOLDVIEW_STYLE_ID } from "./fold-chat-foldview.css.js";
 
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
@@ -65,7 +67,7 @@ export function tuckSteps(host, { open = true, label = "How it got here" } = {})
  * @param opts   { renderArtifact(host, {kind, lang, title, code}) — the app's own preview card (copy / collapse / iterate), optional,
  *                 tab: initial tab, live: bool }
  */
-export function mountFold(host, fold, { renderArtifact = null, tab = "live", live = false, onReset = null, reset = null } = {}) {
+export function mountFold(host, fold, { renderArtifact = null, tab = "live", live = false, onReset = null, reset = null, tryCall = null } = {}) {
   ensureStyle();
   const root = el("div", "fv" + (live ? " fv-live" : ""));
   const head = el("div", "fv-head");
@@ -75,17 +77,20 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   const body = el("div", "fv-body");
   head.append(title, chip, el("span", "fv-sp"), tabs);
   const scrub = el("div", "fv-scrub"); scrub.hidden = true;
-  const prev = el("button", "fv-step", "‹"); prev.type = "button"; prev.title = "one event back (← on the slider)";
-  const next = el("button", "fv-step", "›"); next.type = "button"; next.title = "one event forward (→ on the slider)";
-  const range = document.createElement("input"); range.type = "range"; range.min = "0"; range.className = "fv-range"; range.setAttribute("aria-label", "scrub through the EOT");
+  const prev = el("button", "fv-step", "‹"); prev.type = "button"; prev.title = "one change back (← on the slider)";
+  const next = el("button", "fv-step", "›"); next.type = "button"; next.title = "one change forward (→ on the slider)";
+  const range = document.createElement("input"); range.type = "range"; range.min = "0"; range.className = "fv-range"; range.setAttribute("aria-label", "scrub through the changes to the content");
+  const playBtn = el("button", "fv-play", "▶ Play"); playBtn.type = "button"; playBtn.title = "replay this fold change by change — the page, the code and the log follow";
+  const speedBtn = el("button", "fv-speed", "1×"); speedBtn.type = "button"; speedBtn.title = "playback speed";
+  const latestBtn = el("button", "fv-latest", "latest ⤓"); latestBtn.type = "button"; latestBtn.title = "back to the newest change, following the run"; latestBtn.hidden = true;
   const where = el("span", "fv-where");
   const resetBtn = el("button", "fv-reset", "Reset from here"); resetBtn.type = "button"; resetBtn.hidden = true;
   const marker = el("span", "fv-marker"); marker.hidden = true;
-  scrub.append(prev, range, next, where, resetBtn, marker);
+  scrub.append(playBtn, speedBtn, prev, range, next, latestBtn, where, resetBtn, marker);
   root.append(head, scrub, body);
   host.append(root);
 
-  let active = tab, cursor = null, resetMark = reset && reset.index != null ? { index: reset.index, round: reset.round ?? null } : null, stick = true, logFilter = "all", openEdits = new Set(), eotMode = "chain", showWho = false, openEvt = new Set(), showSources = false, openCode = null;
+  let active = tab, cursor = null, resetMark = reset && reset.index != null ? { index: reset.index, round: reset.round ?? null } : null, stick = true, logFilter = "all", openEdits = new Set(), eotMode = "chain", showWho = false, openEvt = new Set(), showSources = false, openCode = null, showChanges = true;
   const TABS = [["live", "Live"], ["actions", "Actions"], ["eot", "EOT"], ["folded", "Folded"]];
   const btn = {};
   for (const [k, label] of TABS) {
@@ -94,22 +99,70 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     btn[k] = b; tabs.append(b);
   }
 
-  // The EOT of the fold, rebuilt only when the fold has changed; trace[i] says which action and attempt events[i] came from.
-  let memo = { key: null, eot: null, trace: [] };
+  // The EOT and the FRAMES of the fold, rebuilt only when it has changed. A frame is a moment the CONTENT changed (fold-chat-fold.js
+  // framesOf) — the cursor, the slider and Play step through frames, never through the actions taken about the content.
+  // trace[i] says which action-log entry and attempt events[i] came from, so a frame can be placed in the log.
+  let memo = { key: null, eot: null, trace: [], frames: [] };
   function eotNow() {
-    const key = `${fold.log.length}:${fold.versions.length}:${fold.status}`;
-    if (memo.key !== key) { const trace = []; let eot; try { eot = eotFromFold(fold, { trace }); } catch { eot = { provenance: { events: [], sources: [], addressSpace: {} }, schema: "?", giver: "" }; } memo = { key, eot, trace }; }
+    const lastV = fold.versions[fold.versions.length - 1];
+    const key = `${fold.log.length}:${fold.versions.length}:${fold.status}:${lastV ? lastV.code.length : 0}`;
+    if (memo.key !== key) {
+      const trace = []; let eot, fr;
+      try { eot = eotFromFold(fold, { trace }); } catch { eot = { provenance: { events: [], sources: [], addressSpace: {} }, schema: "?", giver: "" }; }
+      try { fr = framesOf(fold); } catch { fr = [{ n: 0, kind: "start", label: "the ask", code: "", complete: false, round: null, versionN: null, added: 0, removed: 0 }]; }
+      memo = { key, eot, trace, frames: fr };
+    }
     return memo;
   }
-  const lastIndex = () => Math.max(0, eotNow().eot.provenance.events.length - 1);
-  const cursorAt = () => (cursor == null ? lastIndex() : Math.min(cursor, lastIndex()));
-  const scrubbed = () => cursor != null && cursor < lastIndex();
-  const seqAtCursor = () => { const t = eotNow().trace[cursorAt()]; return t ? t.seq : 0; };
-  /** The attempt the cursor is looking at: while following the run, the artifact; once scrubbed, the attempt that existed at that event. */
-  const versionOf = () => (scrubbed() ? versionAtCursor(fold, eotNow().trace, cursorAt()) : artifactOf(fold));
-  const lastEventOfRound = (round) => { const tr = eotNow().trace; let k = -1; tr.forEach((t, i) => { if (t.round === round) k = i; }); return k; };
+  const frames = () => eotNow().frames;
+  const lastFrame = () => Math.max(0, frames().length - 1);
+  const cursorAt = () => (cursor == null ? lastFrame() : Math.min(cursor, lastFrame()));
+  const scrubbed = () => cursor != null && cursor < lastFrame();
+  const frameVersion = (i) => { const f = frames()[i]; return f && f.versionN != null ? fold.versions.find((v) => v.n === f.versionN) || null : null; };
+  /** The EOT event a frame sits at: where in the log of actions the content had become this. A partial frame sits at its attempt's
+   *  first write; a complete one after its checks ran. */
+  function anchorOf(i) {
+    const P = eotNow(), f = P.frames[i];
+    if (!f || f.kind === "start") return 0;
+    const mine = []; P.trace.forEach((t, k) => { if (t.round === f.round) mine.push([k, t.stage]); });
+    const WROTE = ["arrange", "draw", "edit", "fold"], DONE = ["draw", "edit", "fold", "observe", "verify", "done"];
+    const hit = f.complete ? [...mine].reverse().find(([, st]) => DONE.includes(st)) : mine.find(([, st]) => WROTE.includes(st));
+    return hit ? hit[0] : i > 0 ? anchorOf(i - 1) : 0;
+  }
+  const seqAt = (i) => { const t = eotNow().trace[anchorOf(i)]; return t ? t.seq : 0; };
+  const seqAtCursor = () => seqAt(cursorAt());
+  /** The latest frame at or before an EOT event / an action-log entry — what clicking that row puts the cursor on. */
+  const frameOfEvent = (k) => { let r = 0; for (let i = 0; i <= lastFrame(); i++) if (anchorOf(i) <= k) r = i; return r; };
+  const frameOfSeq = (sq) => { let r = 0; for (let i = 0; i <= lastFrame(); i++) if (seqAt(i) <= sq) r = i; return r; };
+  const lastFrameOfVersion = (n) => { let r = 0; frames().forEach((f, i) => { if (f.versionN != null && f.versionN <= n) r = i; }); return r; };
+  /** The attempt Live runs: while following, the artifact; once scrubbed, the last COMPLETE attempt at or before the cursor. */
+  const versionOf = () => { if (!scrubbed()) return artifactOf(fold); for (let i = cursorAt(); i >= 0; i--) if (frames()[i].complete) return frameVersion(i); return null; };
   const roundName = (v) => (v.round === 0 ? "the starting point" : `attempt ${v.round}`);
-  function moveTo(i) { cursor = i >= lastIndex() ? null : Math.max(0, i); render(); }
+  const frameWords = (f) => !f ? "" : f.kind === "start" ? "the ask — nothing written yet" : f.kind === "first" ? "first draft" : f.kind === "unit" ? `first draft · ${f.label}` : f.kind === "revision" ? `attempt ${f.round} · +${f.added} −${f.removed}` : `attempt ${f.round} · ${f.label} · +${f.added} −${f.removed}`;
+  function moveTo(i, { fromPlay = false } = {}) { if (!fromPlay) stopPlay(); cursor = i >= lastFrame() ? null : Math.max(0, i); render(); }
+
+  // ── Play ── replay the fold from the cursor (or from the start if it is at the end): every view follows, one content change at a time.
+  let timer = null, speed = 1;
+  const SPEEDS = [1, 2, 4], delayMs = () => Math.round(1100 / speed);
+  const isPlaying = () => timer !== null;
+  function stopPlay() { if (timer !== null) { clearTimeout(timer); timer = null; } playBtn.textContent = "▶ Play"; playBtn.classList.remove("on"); }
+  function tick() {
+    if (!root.isConnected) { stopPlay(); return; }
+    const at = cursorAt();
+    if (at >= lastFrame()) { stopPlay(); moveTo(Infinity, { fromPlay: true }); return; }
+    moveTo(at + 1, { fromPlay: true });
+    if (cursor === null) { stopPlay(); return; }                       // reached the newest frame
+    timer = setTimeout(tick, delayMs());
+  }
+  function startPlay() {
+    if (lastFrame() < 1) return;
+    if (!scrubbed()) cursor = 0;                                       // at the newest frame: play it again from the beginning
+    playBtn.textContent = "❚❚ Pause"; playBtn.classList.add("on");
+    render();
+    timer = setTimeout(tick, delayMs());
+  }
+  playBtn.onclick = () => (isPlaying() ? stopPlay() : startPlay());
+  speedBtn.onclick = () => { speed = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length]; speedBtn.textContent = speed + "×"; if (isPlaying()) { clearTimeout(timer); timer = setTimeout(tick, delayMs()); } };
 
   function paintHead() {
     let [word, cls] = STATUS[fold.status] || [fold.status, "mut"];
@@ -129,51 +182,84 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
 
   // ── the cursor ──
   function paintScrub() {
-    const P = eotNow(), N = P.eot.provenance.events.length;
-    scrub.hidden = N < 3;
+    const P = eotNow(), F = P.frames, N = F.length;
+    scrub.hidden = N < 3;                                                // a start and one frame has nothing to scrub
     if (scrub.hidden) return;
-    range.max = String(N - 1); range.value = String(cursorAt());
-    const t = P.trace[cursorAt()], entry = t && t.seq ? fold.log.find((e) => e.seq === t.seq) : null;
-    const at = scrubbed();
-    where.textContent = `${String(cursorAt() + 1).padStart(2, "0")} / ${N} · ${entry ? entry.title : "the ask"}`;
-    where.title = at ? "the fold as of this event — drag, or use ← →" : "following the newest event";
+    const at = scrubbed(), i = cursorAt(), fr = F[i];
+    range.max = String(N - 1); range.value = String(i);
+    where.textContent = `${String(i).padStart(2, "0")} / ${N - 1} · ${frameWords(fr)}`;
+    where.title = at ? "the content as of this change — drag, or use ← →" : "following the newest change";
     scrub.classList.toggle("on", at);
-    prev.disabled = cursorAt() <= 0; next.disabled = !at;
-    const v = at ? versionAtCursor(fold, P.trace, cursorAt()) : null;
-    const canReset = !!onReset && at && !!v;
+    prev.disabled = i <= 0; next.disabled = !at; latestBtn.hidden = !at;
+    const v = at ? frameVersion(i) : null;
+    const canReset = !!onReset && at && !!v && fr.kind !== "start" && !!fr.code;
     resetBtn.hidden = !canReset;
-    if (canReset) resetBtn.title = `the next change starts from ${roundName(v)} — not the newest attempt`;
+    if (canReset) resetBtn.title = `the next change starts from this exact code (${frameWords(fr)}) — not the newest attempt`;
     marker.hidden = !resetMark;
     if (resetMark) {
       marker.textContent = "";
-      marker.append(`next change starts from ${resetMark.round === 0 ? "the earlier version" : "attempt " + resetMark.round} · `);
+      marker.append(`next change starts from ${resetMark.text || (resetMark.round === 0 ? "the earlier version" : "attempt " + resetMark.round)} · `);
       const undo = el("button", "fv-undo", "undo"); undo.type = "button";
       undo.onclick = () => { resetMark = null; onReset?.(null); render(); };
       marker.append(undo);
     }
   }
   range.oninput = () => moveTo(Number(range.value));
+  latestBtn.onclick = () => moveTo(Infinity);
   prev.onclick = () => moveTo(cursorAt() - 1);
   next.onclick = () => moveTo(cursorAt() + 1);
   resetBtn.onclick = () => {
-    const P = eotNow(), k = cursorAt(), v = versionAtCursor(fold, P.trace, k);
-    if (!v || !onReset) return;
-    resetMark = { index: k, round: v.round };
-    onReset({ index: k, eventId: P.eot.provenance.events[k]?.event_id || null, seq: P.trace[k]?.seq ?? 0, version: v, foldId: fold.id });
+    const P = eotNow(), i = cursorAt(), fr = P.frames[i], v = frameVersion(i);
+    if (!v || !onReset || !fr || fr.kind === "start") return;
+    const k = anchorOf(i);
+    resetMark = { index: i, round: fr.round, text: fr.complete ? roundName(v) : `${roundName(v)} (${fr.label})` };
+    onReset({ index: i, eventId: P.eot.provenance.events[k]?.event_id || null, seq: P.trace[k]?.seq ?? 0, version: { round: fr.round, kind: v.kind, code: fr.code, partial: !fr.complete }, foldId: fold.id });
     render();
   };
 
-  /** The attempt chips: click one to pin it, click the newest to follow the live run again. Shared by Artifact and Folded. */
+  /** The attempt chips: click one to jump to its last change; click the newest to follow the live run again. */
   function chipsRow(v) {
     const chips = el("div", "fv-chips");
     if (fold.versions.length < 2) return chips;   // one attempt needs no picker
     for (const x of fold.versions) {
       const b = el("button", "fv-vchip" + (v && x.n === v.n ? " on" : "") + (x.held ? " held" : ""), x.round === 0 ? "start" : `attempt ${x.round}`); b.type = "button";
       b.title = `${makerLabel(x.maker).text} · ${x.lines} lines${x.held ? " · this one works" : ""}`;
-      b.onclick = () => moveTo(x === fold.versions[fold.versions.length - 1] ? Infinity : lastEventOfRound(x.round));   // jumping to an attempt is moving the cursor to its last event
+      b.onclick = () => moveTo(x === fold.versions[fold.versions.length - 1] ? Infinity : lastFrameOfVersion(x.n));
       chips.append(b);
     }
     return chips;
+  }
+
+  /** For code that is not a page: what it DID when it was called — the sandbox's sample calls — and a box to call it yourself. */
+  function resultsPanel(v) {
+    const box = el("div", "fv-results");
+    const tried = (v.checks || []).find((c) => c.name === "tried it");
+    box.append(el("div", "fv-rh", tried ? "What it did when called" : "It has not been called yet"));
+    if (tried && tried.detail) {
+      for (const line of tried.detail.split("\n")) {
+        const m = /^(.*?) (→|threw) (.*)$/s.exec(line);
+        const row = el("div", "fv-trow" + (m && m[2] === "threw" ? " bad" : ""));
+        if (m) row.append(el("code", "fv-texpr", m[1]), el("span", "fv-tarrow", m[2] === "→" ? "→" : "threw"), el("code", "fv-tval", m[3])); else row.append(el("code", "fv-tval", line));
+        box.append(row);
+      }
+    } else if (!tried) box.append(el("div", "fv-cap", "Nothing found to call, or this attempt was not run yet."));
+    if (tryCall) {
+      const form = el("form", "fv-try");
+      const input = document.createElement("input"); input.type = "text"; input.className = "fv-tryin"; input.spellcheck = false;
+      input.placeholder = sampleCalls(v.code)[0] || "call it, e.g. myFunction(1, 2)"; input.setAttribute("aria-label", "call the code");
+      const go = el("button", "fv-filter", "Run"); go.type = "submit";
+      const out = el("div", "fv-tryout");
+      form.onsubmit = async (e) => {
+        e.preventDefault();
+        const expr = input.value.trim() || input.placeholder; if (!expr) return;
+        go.disabled = true; out.className = "fv-tryout"; out.textContent = "running…";
+        try { const r = await tryCall(v.code, expr); out.textContent = r ? describeTrial(r) : "no answer"; out.classList.toggle("bad", !!r && !r.ok); }
+        catch (err) { out.textContent = "could not run: " + (err?.message || err); out.classList.add("bad"); }
+        go.disabled = false;
+      };
+      form.append(input, go); box.append(form, out);
+    }
+    return box;
   }
 
   // ── Live ──
@@ -181,7 +267,8 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     body.textContent = "";
     if (!fold.versions.length) { body.append(el("div", "fv-empty", fold.status === "running" ? "Waiting for the first draft… the Actions tab shows what's happening." : "No draft was produced.")); return; }
     const v = versionOf();
-    if (!v) { body.append(el("div", "fv-empty", "Nothing had been written yet at this point.")); return; }
+    const cf = frames()[cursorAt()];
+    if (!v) { body.append(el("div", "fv-empty", cf && cf.kind !== "start" ? `Being written — ${frameWords(cf)}. The Folded tab shows the code exactly as it stood at this point.` : "Nothing had been written yet at this point.")); return; }
     const chips = chipsRow(v);
     const mk = makerLabel(v.maker);
     const stat = v.diffStat && v.round > 0 && fold.versions.indexOf(v) > 0 ? ` · +${v.diffStat.added} −${v.diffStat.removed} vs before` : "";
@@ -189,6 +276,8 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     chips.append(el("span", "fv-cap", `${mk.text}${stat} · ${verdict}`));
     chips.lastChild.title = mk.tip;
     body.append(chips);
+    if (scrubbed() && cf && !cf.complete) body.append(el("div", "fv-cap", `This is the last complete attempt. The content is mid-change (${frameWords(cf)}) — the Folded tab shows it exactly as it stood.`));
+    if (v.kind !== "html") body.append(resultsPanel(v));
     const holder = el("div", "fv-art");
     const art = { kind: v.kind === "html" ? "html" : "js", lang: v.kind === "html" ? "html" : "js", title: v.kind === "html" ? "Preview" : "Code", code: v.code };
     if (renderArtifact) renderArtifact(holder, art); else if (v.kind === "html") { const f = document.createElement("iframe"); f.sandbox = "allow-scripts"; f.srcdoc = v.code; holder.append(f); } else holder.append(el("pre", "fv-code", v.code));
@@ -214,7 +303,7 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
       if (e.round !== lastRound && e.round != null && e.round > 0) { body.append(el("div", "fv-round", `attempt ${e.round}`)); lastRound = e.round; }
       const at = scrubbed(), sq = seqAtCursor();
       const row = el("div", "fv-row " + (e.ok === true ? "ok" : e.ok === false ? "bad" : "mut") + (at && e.seq > sq ? " future" : "") + (at && e.seq === sq ? " cur" : ""));
-      row.onclick = (ev) => { if (ev.target.closest("button, summary, details")) return; const tr = eotNow().trace; let k = 0; tr.forEach((t, i) => { if (t.seq <= e.seq) k = i; }); moveTo(k); };
+      row.onclick = (ev) => { if (ev.target.closest("button, summary, details")) return; moveTo(frameOfSeq(e.seq)); };   // the latest content change at or before this action
       row.append(el("span", "fv-seq", String(e.seq).padStart(2, "0")), el("span", "fv-glyph", e.ok === true ? "✓" : e.ok === false ? "✗" : "·"));
       const main = el("div", "fv-main");
       const top = el("div", "fv-line");
@@ -287,8 +376,8 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     const list = el("div", "fv-evts");
     P.events.forEach((ev, i) => {
       const d = describeEvent(ev, srcs);
-      const at = scrubbed(), ci = cursorAt();
-      const row = el("div", "fv-ev " + (d.ok === true ? "ok" : d.ok === false ? "bad" : "mut") + (at && i > ci ? " future" : "") + (at && i === ci ? " cur" : "") + (resetMark && resetMark.index === i ? " mark" : ""));
+      const at = scrubbed(), ci = anchorOf(cursorAt());
+      const row = el("div", "fv-ev " + (d.ok === true ? "ok" : d.ok === false ? "bad" : "mut") + (at && i > ci ? " future" : "") + (at && i === ci ? " cur" : "") + (resetMark && anchorOf(resetMark.index) === i ? " mark" : ""));
       const top = el("div", "fv-evline");
       const idEl = el("span", "fv-id", d.short); idEl.title = "show this event's JSON";
       idEl.onclick = (e2) => { e2.stopPropagation(); openEvt.has(ev.event_id) ? openEvt.delete(ev.event_id) : openEvt.add(ev.event_id); render(); };
@@ -304,7 +393,7 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
       row.append(top, sub);
       const code = codeOfEvent(fold, ev, srcs);
       if (code) top.append(el("span", "fv-codetag", code.kind === "diff" ? `code · +${code.added} −${code.removed}` : code.kind === "range" ? `code · lines ${code.startLine}–${code.endLine}` : `code · ${code.lines} lines`));
-      row.onclick = () => { openCode = code && openCode !== i ? i : null; moveTo(i); };   // click an event: the cursor goes there and the code it stands for opens under it; its id shows the raw JSON
+      row.onclick = () => { openCode = code && openCode !== i ? i : null; moveTo(frameOfEvent(i)); };   // click an event: the cursor goes there and the code it stands for opens under it; its id shows the raw JSON
       if (code && openCode === i) row.append(codePanel(code));
       if (openEvt.has(ev.event_id)) { const pre = el("pre", "fv-code fv-raw"); pre.textContent = JSON.stringify(ev, null, 2); row.append(pre); }
       list.append(row);
@@ -316,37 +405,55 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   // ── Folded ──  the folded content itself: the source, in whatever language it is
   function paintFolded() {
     body.textContent = "";
-    const v = versionOf();
-    if (!v) { body.append(el("div", "fv-empty", fold.versions.length ? "Nothing had been written yet at this point." : "Nothing to fold yet.")); return; }
-    const lines = foldedLines(fold, v);
-    const who = authorship(lines);
-    const chips = chipsRow(v); chips.append(el("span", "fv-cap", `${v.kind === "html" ? "HTML" : v.kind === "js" ? "JavaScript" : v.kind} · ${v.lines} lines · folded up to ${roundName(v)}${scrubbed() ? " (the cursor is back in time — ‹ › or drag to move it)" : ""}`)); body.append(chips);
+    const i = cursorAt(), fr = frames()[i];
+    if (!fr || fr.kind === "start") { body.append(el("div", "fv-empty", fold.versions.length ? "Nothing had been written yet at this point." : "Nothing to fold yet.")); return; }
+    const v = frameVersion(i);
+    const nLines = fr.code.split("\n").length;
+    const chips = chipsRow(v);
+    chips.append(el("span", "fv-cap", `${v.kind === "html" ? "HTML" : v.kind === "js" ? "JavaScript" : v.kind} · ${nLines} lines · ${frameWords(fr)}${scrubbed() ? " (the cursor is back in time — ‹ › or drag to move it)" : ""}`));
+    body.append(chips);
     const bar = el("div", "fv-filters");
-    const tg = el("button", "fv-filter" + (showWho ? " on" : ""), "who wrote each line"); tg.type = "button"; tg.onclick = () => { showWho = !showWho; render(); };
+    const tc = el("button", "fv-filter" + (showChanges ? " on" : ""), "mark what changed"); tc.type = "button"; tc.title = "green = added in this change, red = removed by it"; tc.onclick = () => { showChanges = !showChanges; render(); };
+    const useWho = showWho && fr.complete;
+    const tg = el("button", "fv-filter" + (useWho ? " on" : ""), "who wrote each line"); tg.type = "button"; tg.title = fr.complete ? "" : "only for a finished attempt"; tg.onclick = () => { showWho = !showWho; render(); };
     const copy = el("button", "fv-filter", "copy the code"); copy.type = "button";
-    copy.onclick = async () => { try { await navigator.clipboard.writeText(lines.map((l) => l.text).join("\n")); copy.textContent = "copied"; setTimeout(() => (copy.textContent = "copy the code"), 1200); } catch {} };
-    bar.append(tg, copy); body.append(bar);
-    const COLORS = ["var(--fv-a)", "var(--fv-b)", "var(--fv-c)", "var(--fv-d)"];
-    const colorOf = new Map(who.map((a, i) => [a.maker, COLORS[i % 4]]));
-    if (showWho) {
+    copy.onclick = async () => { try { await navigator.clipboard.writeText(fr.code); copy.textContent = "copied"; setTimeout(() => (copy.textContent = "copy the code"), 1200); } catch {} };
+    bar.append(tc, tg, copy); body.append(bar);
+    if (useWho) {
+      const lines = foldedLines(fold, v), who = authorship(lines);
+      const COLORS = ["var(--fv-a)", "var(--fv-b)", "var(--fv-c)", "var(--fv-d)"];
+      const colorOf = new Map(who.map((a, k) => [a.maker, COLORS[k % 4]]));
       const share = el("div", "fv-share");
-      who.forEach((a, i) => { const x = el("i"); x.style.width = (a.share * 100).toFixed(1) + "%"; x.style.background = COLORS[i % 4]; x.title = `${a.maker}: ${a.lines} lines`; share.append(x); });
+      who.forEach((a, k) => { const x = el("i"); x.style.width = (a.share * 100).toFixed(1) + "%"; x.style.background = COLORS[k % 4]; x.title = `${a.maker}: ${a.lines} lines`; share.append(x); });
       body.append(share);
       const leg = el("div", "fv-legend");
-      who.forEach((a, i) => { const m = a.maker.startsWith("remote:") ? { text: "online AI", tip: a.maker } : makerLabel({ kind: a.maker }); const sp = el("span", "", `${m.text} wrote ${a.lines} line${a.lines === 1 ? "" : "s"} (${Math.round(a.share * 100)}%)`); sp.title = m.tip; const dot = el("i"); dot.style.background = COLORS[i % 4]; sp.prepend(dot); leg.append(sp); });
+      who.forEach((a, k) => { const m = a.maker.startsWith("remote:") ? { text: "online AI", tip: a.maker } : makerLabel({ kind: a.maker }); const sp = el("span", "", `${m.text} wrote ${a.lines} line${a.lines === 1 ? "" : "s"} (${Math.round(a.share * 100)}%)`); sp.title = m.tip; const dot = el("i"); dot.style.background = COLORS[k % 4]; sp.prepend(dot); leg.append(sp); });
       body.append(leg);
+      const pre = el("div", "fv-fold");
+      let prevKey = null;
+      for (const l of lines) {
+        const mk = l.maker?.kind === "remote" ? "remote:" + (l.maker.model || "") : l.maker?.kind || "?";
+        const key = mk + "|" + l.round + "|" + (l.unit || "");
+        if (l.unit && (prevKey === null || !prevKey.endsWith("|" + l.unit))) pre.append(el("div", "fv-unit", `unit · ${l.unit}`));
+        const row = el("div", "fv-fl"); row.style.setProperty("--m", colorOf.get(mk) || "var(--fv-a)");
+        row.append(el("span", "fv-n", String(l.n)));
+        const g = el("span", "fv-gut", key !== prevKey ? `attempt ${l.round}` : ""); g.title = makerLabel(l.maker).tip; row.append(g);
+        row.append(el("span", "fv-src", l.text || " "));
+        pre.append(row); prevKey = key;
+      }
+      body.append(pre);
+      return;
     }
-    const pre = el("div", "fv-fold" + (showWho ? "" : " fv-plain"));
-    let prevKey = null;
-    for (const l of lines) {
-      const mk = l.maker?.kind === "remote" ? "remote:" + (l.maker.model || "") : l.maker?.kind || "?";
-      const key = mk + "|" + l.round + "|" + (l.unit || "");
-      if (showWho && l.unit && (prevKey === null || !prevKey.endsWith("|" + l.unit))) pre.append(el("div", "fv-unit", `unit · ${l.unit}`));
-      const row = el("div", "fv-fl"); if (showWho) row.style.setProperty("--m", colorOf.get(mk) || "var(--fv-a)");
-      row.append(el("span", "fv-n", String(l.n)));
-      if (showWho) { const g = el("span", "fv-gut", key !== prevKey ? `attempt ${l.round}` : ""); g.title = makerLabel(l.maker).tip; row.append(g); }
-      row.append(el("span", "fv-src", l.text || " "));
-      pre.append(row); prevKey = key;
+    // The code exactly as it stood at this frame. What THIS change added is green, what it removed is shown in red where it was.
+    const before = i > 0 && frames()[i - 1].kind !== "start" ? frames()[i - 1].code : null;
+    const ops = showChanges ? diffLines(before, fr.code) : fr.code.split("\n").map((line) => ({ op: "eq", line }));
+    const pre = el("div", "fv-codelines fv-fold");
+    let n = 0;
+    for (const d of ops) {
+      if (d.op !== "del") n++;
+      const r = el("div", "fv-cl fv-cl-" + d.op);
+      r.append(el("span", "fv-n", d.op === "del" ? "" : String(n)), el("span", "fv-sign", d.op === "add" ? "+" : d.op === "del" ? "−" : " "), el("span", "fv-src", d.line || " "));
+      pre.append(r);
     }
     body.append(pre);
   }

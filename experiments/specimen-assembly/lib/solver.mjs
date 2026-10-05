@@ -244,10 +244,12 @@ export async function fillWithModel(program, store, base, env, { proposer, guard
   const solveNow = () => assemble(program, store.poolFor(program, base), env, { ledger, bound, learn, memo });
   let res = await solveNow();
   while (res.status !== "committed" && modelCalls < maxCalls) {
-    const request = guard(gapRequest(program, res.gap)); guardCalls++;
+    const g = await guard(gapRequest(program, res.gap)); guardCalls++;
+    const request = g && g.request ? g.request : g;   // a guard may return { request, unmask } (see lib/guard.mjs)
+    const unmask = g && g.unmask ? g.unmask : (x) => x;
     ledger.add("model-request", { request });
     modelCalls++;
-    const source = await proposer(request, modelCalls);
+    const source = unmask(await proposer(request, modelCalls));
     const spec = collect({ source, origin: "model-proposed", note: `proposal ${modelCalls}`, assurance: "unverified" });
     const slot = request.slot;
     ledger.add("model-candidate", { id: spec.id, sha256: spec.sha256, assurance: "unverified", note: "enters the possibility space with no assurance; parsing, constraints and execution decide" });

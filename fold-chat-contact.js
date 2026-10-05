@@ -9,16 +9,24 @@
 // An address found here is personal data of its owner: it is used on the person's own machine to fill a draft they
 // send themselves, and goes nowhere else.
 
+import { SUPPORT_ROUTES as DEF } from "./fold-chat-support-routes-def.js";
+
+// Every declared word list below (role mailboxes, service desks, free-mail providers, contact words…) is READ from the
+// definition of the kind "creator-support-route" (fold-chat-support-routes.json, sub-kinds email / form): one source of
+// truth, so the tip finder and the holograph query see the same rules. Only the compiling lives here.
+const R = DEF.emailRules;
+const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const alt = (list) => list.map(esc).join("|");
 const EMAIL = /[A-Z0-9][A-Z0-9._%+-]*@[A-Z0-9][A-Z0-9.-]*\.[A-Z]{2,}/gi;
 // Role mailboxes that are not for a person who wrote something (abuse desks, legal notices, bounce handlers…).
-const MACHINERY = /^(abuse|privacy|legal|dmca|copyright|security|postmaster|hostmaster|noreply|no-reply|donotreply|do-not-reply|unsubscribe|bounce|bounces|mailer-daemon|root|ssl|cert|spam|gdpr|dpo|compliance|billing|accounts?-?payable|sentry|wixpress|example|ads|advertising|webmaster|mediakit)$/i;
+const MACHINERY = new RegExp("^(" + alt(R.machinery) + ")$", "i");
 // SERVICE / OPS mailboxes (customer service, fulfilment, billing, subscriptions…): never where a thank-you goes.
 // Matched as whole tokens of the local part ("customer.service", "orders", "it") AND as pieces of compound names
 // ("alrcustserv", "customercare24", "helpdesk", "supportteam"). Declared, with its giver: the 2026-10-05 allrecipes
 // check, where the contact page's protected link was a customer-service desk on a fulfilment company's domain.
-const SERVICE_TOKEN = /^(custserv|customerservice|customercare|customersupport|care|support|help|helpdesk|service|services|subscription|subscriptions|subscribe|billing|orders?|sales|returns?|shipping|fulfil+ment|accounts?|unsubscribe|bounce|bounces|postmaster|mailer-daemon|mailerdaemon|hostmaster|noc|it|cs|csr)$/;
-const SERVICE_COMPOUND = /custserv|customerserv|customercare|customersupport|helpdesk|fulfil+ment|subscription|unsubscribe|mailerdaemon|postmaster|hostmaster|noreply|donotreply/;
-const SERVICE_PREFIX = /^(support|service|services|sales|orders?|billing|shipping|returns?|care|help|accounts?)(team|desk|dept|department|center|centre|inquiries|enquiries|us|info|\d+)$/;
+const SERVICE_TOKEN = new RegExp("^(" + alt(R.serviceTokens) + ")$");
+const SERVICE_COMPOUND = new RegExp(alt(R.serviceCompounds));
+const SERVICE_PREFIX = new RegExp("^(" + alt(R.servicePrefixHeads) + ")(" + alt(R.servicePrefixTails) + "|\\d+)$");
 export function isServiceMailbox(local) {
   const l = String(local || "").toLowerCase().replace(/[+].*$/, "");
   const joined = l.replace(/[._%-]+/g, "");
@@ -27,7 +35,7 @@ export function isServiceMailbox(local) {
 // An address is believed only on the page's OWN site, or at a well-known free-mail provider (small creators use Gmail).
 // A different company's domain (a fulfilment house, an ad network, a parent company) is dropped, whoever linked it.
 // Declared constant, short on purpose.
-const FREE_MAIL = /(^|\.)(gmail\.com|googlemail\.com|outlook\.com|hotmail\.[a-z.]+|live\.com|msn\.com|yahoo\.[a-z.]+|ymail\.com|icloud\.com|me\.com|mac\.com|proton\.me|protonmail\.com|pm\.me|fastmail\.(com|fm)|aol\.com|gmx\.[a-z.]+|mail\.com|zoho\.com|yandex\.(com|ru)|hey\.com)$/i;
+const FREE_MAIL = new RegExp("(^|\\.)(" + R.freeMail.map((d) => esc(d).replace(/\\\.\\\*$/, "\\.[a-z.]+")).join("|") + ")$", "i");
 /** Is this address's domain the page's own site, or a free-mail provider? (`siteUrl` is any page of the site.) */
 export function emailDomainOk(address, siteUrl) {
   const d = String(address || "").split("@")[1] || "";
@@ -36,7 +44,7 @@ export function emailDomainOk(address, siteUrl) {
   const base = hostBase(siteUrl);
   return !!base && hostBase("https://" + d) === base;
 }
-const NOT_A_PERSON_DOMAIN = /(^|\.)(sentry\.io|sentry-next\.wixpress\.com|wixpress\.com|example\.(com|org)|domain\.com|email\.com|yourdomain\.com|mysite\.com)$/i;
+const NOT_A_PERSON_DOMAIN = new RegExp("(^|\\.)(" + alt(R.notAPersonDomains) + ")$", "i");
 const ASSET_TAIL = /\.(png|jpe?g|gif|webp|svg|css|js|woff2?|ico)$/i;
 
 /** Cloudflare's 'email protected' link: the address is hex, XOR-ed with its first byte. Public by design. */
@@ -61,7 +69,10 @@ export function isUsableEmail(addr) {
 
 export const hostBase = (u) => { try { const h = new URL(u).hostname.replace(/^www\./, "").split("."); return h.length > 2 && h[h.length - 2].length <= 3 && h[h.length - 1].length === 2 ? h.slice(-3).join(".") : h.slice(-2).join("."); } catch { return ""; } };
 const textOf = (html) => String(html || "").replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<!--[\s\S]*?-->/g, " ").replace(/<[^>]+>/g, " ").replace(/&nbsp;|&#160;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ");
-const CONTACT_WORDS = /contact|kontakt|contacto|contato|impressum|about|über|acerca|à propos|sobre|联系|聯絡|关于|お問い合わせ|連絡|연락|문의|اتصل|تواصل|संपर्क|контакт/i;
+const CONTACT_WORDS = new RegExp(alt(R.contactWords), "i");
+const CONTACT_FIRST = new RegExp(alt(R.contactFirst), "i");
+// "^press$" = whole word, "career$" = ends at a word edge (declared in the definition)
+const ELSEWHERE = new RegExp(R.elsewhereWords.map((w) => (w.startsWith("^") ? "\\b" : "") + esc(w.replace(/^\^|\$$/g, "")) + (w.endsWith("$") ? "\\b" : "")).join("|"), "i");
 
 /** Simple human obfuscations a person reads as an address: "name [at] site [dot] com", "name (at) site.com". */
 function deobfuscated(text) {
@@ -81,7 +92,8 @@ function deobfuscated(text) {
  *   forms   [pageUrl] when this page carries a message form (a textarea in a form).
  */
 export function contactsFromHtml(raw, baseUrl = "") {
-  const html = String(raw || "");
+  // a commented-out address or link is NOT published (found on ruanyifeng.com, 2026-10-05: a mailto inside <!-- -->)
+  const html = String(raw || "").replace(/<!--[\s\S]*?-->/g, " ");
   const found = new Map();           // address -> best candidate
   // An address merely WRITTEN in a page's text is believed only when it is on the page's own site, or the page is
   // itself a contact/about page (it is then putting the address forward). A link or structured data is the page
@@ -110,7 +122,6 @@ export function contactsFromHtml(raw, baseUrl = "") {
   const text = textOf(html);
   // an address WRITTEN next to words that say it is for something else (ads, press, licensing, privacy, jobs) is not
   // the one to thank a creator at
-  const ELSEWHERE = /advertis|sponsor|\bpress\b|media kit|partnership|business (inquir|enquir)|brand|licens|copyright|privacy|careers?\b|jobs?\b|legal|takedown/i;
   let prevEnd = 0;
   for (const m of text.matchAll(EMAIL)) {
     const ctx = text.slice(Math.max(prevEnd, m.index - 80), m.index);     // the words just before it, back to the previous address
@@ -133,7 +144,7 @@ export function contactsFromHtml(raw, baseUrl = "") {
     const href = u.origin + u.pathname.replace(/\/+$/, "/") ; // drop query/fragment: a page, not a tracking link
     if (!pages.includes(href) && href !== (baseUrl || "").split(/[?#]/)[0]) pages.push(href);
   }
-  pages.sort((a, b) => (/contact|kontakt|contacto|contato|联系|聯絡|お問い合わせ|문의/i.test(b) ? 1 : 0) - (/contact|kontakt|contacto|contato|联系|聯絡|お問い合わせ|문의/i.test(a) ? 1 : 0));
+  pages.sort((a, b) => (CONTACT_FIRST.test(b) ? 1 : 0) - (CONTACT_FIRST.test(a) ? 1 : 0));
   // a message form: <form> containing a <textarea>
   const forms = [];
   for (const m of html.matchAll(/<form\b[\s\S]*?<\/form>/gi)) { if (/<textarea\b/i.test(m[0]) && !/search|comment|login|subscribe|newsletter/i.test(m[0].slice(0, 400))) { forms.push((baseUrl || "").split(/[?#]/)[0]); break; } }

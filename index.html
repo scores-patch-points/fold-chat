@@ -289,7 +289,7 @@
   .pager-dot-i { width: 8px; height: 8px; border-radius: 50%; background: var(--line2); transition: background .15s, transform .15s; }
   .pager-dot:hover .pager-dot-i { background: var(--dim); }
   .pager-dot.is-on .pager-dot-i { background: var(--ink); transform: scale(1.25); }
-  @media (max-width: 720px) { .pager-btn { min-height: 40px; min-width: 40px; } .pager-dot { width: 32px; height: 40px; } .pager-bar-bottom .pager-dots { flex: 1 1 100%; order: 3; } }
+  @media (max-width: 720px) { .pager-btn { min-height: 40px; min-width: 40px; } .pager-dot { width: 32px; height: 40px; } }
   @media (prefers-reduced-motion: reduce) { .pager-page, .pager-page.is-on, .pager-dot-i { transition: none; } }
   @media (max-width: 720px) { .snip-cols { grid-template-columns: minmax(0, 1fr); gap: 12px; } .snip-sp { display: none; } .snip-tip { min-height: 40px; } }
   .art-code { margin: 0; padding: 12px 14px; font: var(--fs-sm)/1.55 var(--mono); overflow-x: auto; white-space: pre; }
@@ -795,7 +795,7 @@
     <div class="field">
       <label for="setBridge">Heimdall bridge</label>
       <div class="row">
-        <input type="text" id="setBridge" class="grow" placeholder="http://localhost:8790" autocomplete="off" spellcheck="false">
+        <input type="text" id="setBridge" class="grow" placeholder="found automatically (this server's /heimdall)" autocomplete="off" spellcheck="false">
         <button type="button" class="btn" id="bridgeDetect">Detect</button>
       </div>
       <div class="hint" id="bridgeStatus" role="status">Looking for heimdall…</div>

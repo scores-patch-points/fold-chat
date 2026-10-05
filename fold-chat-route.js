@@ -62,7 +62,20 @@ const expand = (key) => (key === "papers" ? AFFINITY.papers.scopes : [key]);
  * Step 1 — route by the question's own words.
  * @returns { scopes: ["web", …], why: { scope: reason }, rest: [scopes not chosen] }
  */
-export function routeSources(question, { only = null } = {}) {
+/** Is this a plain factual ask — what / who / when / where / which / how many — in any language we carry? Declared
+ *  interrogatives per language (the question word is a property of the language, not a model's guess). Used ONLY to let
+ *  the encyclopedia answer when the open web is down; it widens nothing else. */
+const FACTUAL_LATIN = /(?:^|[¿¡\s])(?:what|who|whom|whose|when|where|which|how (?:many|much|tall|high|old|long|far|big)|qué|que|cuál|cuáles|cuándo|dónde|quién|quiénes|cuánto|cuántos|cuántas|quel|quelle|quels|quelles|quand|où|qui|quoi|combien|wie|was|wer|wann|wo|welche|welcher|welches|wieviel|wie viel|qual|quais|quem|quando|onde|quanto|quantos|chi|quale|quali|dove|quanto|quanti)(?=[\s?])/iu;
+const FACTUAL_CAPLESS = /什么|谁|哪|何时|什么时候|多少|几个|是不是|在哪|何|誰|いつ|どこ|どの|どれ|いくつ|что|кто|когда|где|какой|какая|какие|сколько|ما |ما$|من |متى|أين|كم |ماذا|كيف|क्या|कौन|कब|कहाँ|कितना|कितने|कैसे/iu;
+// a question mark settles it only in a script whose question words are not in the list above (any non-Latin letter)
+const NON_LATIN_Q = /[^\u0000-\u024f]/u;
+export function factualAsk(question) {
+  const q = String(question ?? "").trim();
+  if (!q || q.length > 240) return false;
+  return FACTUAL_LATIN.test(q.slice(0, 80)) || FACTUAL_CAPLESS.test(q) || (NON_LATIN_Q.test(q) && /[?？؟]/.test(q));
+}
+
+export function routeSources(question, { only = null, lang = "en" } = {}) {
   const q = String(question ?? "");
   const why = { web: "always — the open web is the one source that answers anything" };
   const picked = new Set(["web"]);
@@ -71,6 +84,9 @@ export function routeSources(question, { only = null } = {}) {
     for (const [re, r] of spec.cues) if (re.test(q)) { reason = r; break; }
     if (reason) for (const s of expand(key)) { picked.add(s); why[s] = reason; }
   }
+  // The cues above are English. A plain factual ask in another language reads the encyclopedia in ITS language
+  // (the caller names the edition it detected); an English ask keeps the cue rules exactly as they were.
+  if (lang !== "en" && !picked.has("wikipedia") && factualAsk(q)) { picked.add("wikipedia"); why.wikipedia = `a factual ask in another language (${lang}) — its own Wikipedia`; }
   let scopes = ALL.filter((s) => picked.has(s));
   if (only) scopes = scopes.filter((s) => only.includes(s));
   return { scopes, why, rest: ALL.filter((s) => !scopes.includes(s)) };

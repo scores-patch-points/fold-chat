@@ -1,10 +1,10 @@
 // fold-chat.js — The Fold's chat version, LibreChat's UX, Fold-native.
 //
 // Standalone surface (this repo is the source of truth; it is vendored into
-// the-fold). A browser page, no build: it speaks to the heimdall bridge
-// (localhost:8790), which routes the fleet, linked hosts, and the sealed
-// remote providers. Outside models are sealed-external — the chat never sends
-// raw workspace material, and the evidence drawer reports who did the work.
+// the-fold). A browser page, no build. The model runs IN THIS TAB (fold-chat-webllm.js, WebGPU) — no bridge needed to answer. The
+// Fold's own server mounts heimdall at /heimdall on this page's origin (server.mjs); it routes the fleet, linked hosts and the
+// sealed remote providers, and serves the doors (read, reason, weave, code). Outside models are sealed-external — the chat never
+// sends raw workspace material, and the evidence drawer reports who did the work. An in-tab model never leaves the tab.
 //
 // Affordances (LibreChat's, built for the fold): icon rail + chat sidebar,
 // model/endpoint switcher, Projects, Chats grouped by time, a centered
@@ -33,6 +33,7 @@ import { readFelt } from "./fold-chat-pathos.js";
 import { hintsFor } from "./fold-chat-hints.js";
 import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
 import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
+import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
 import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
 import { renderStrand } from "./fold-chat-strandview.js";
 import { ANSWER_MODES, normAnswerMode, resolveAnswerMode, answerModeOfTurn } from "./fold-chat-answer.js";
@@ -49,7 +50,7 @@ import * as topic from "./fold-chat-topic.js";
 import { PHOSPHOR, PHOSPHOR_VIEWBOX } from "./fold-chat-icons.js";
 import * as FOLD from "./vendor/the-fold/fold.js";
 import { runAgent } from "./fold-chat-agent.js";
-import { observeArtifact } from "./fold-chat-sandbox.js";
+import { observeArtifact, callMany } from "./fold-chat-sandbox.js";
 import { createFeed, replayFeed } from "./fold-chat-agentfeed.js";
 import { newTurnTrace, startEvents, lineEvent, beginStep, endStep, noteEvent, doneEvents, eventsForStep, summaryLine, storeEvents } from "./fold-chat-turnfeed.js";
 import { createFold, addVersion as addFoldVersion, addLog as addFoldLog, addEvent as addFoldEvent, snapshot as foldSnapshot, revive as foldRevive } from "./fold-chat-fold.js";
@@ -57,9 +58,9 @@ import { mountFold, tuckSteps } from "./fold-chat-foldview.js";
 import { createOutbound, describeSummary, formatBytes } from "./fold-chat-outbound.js";
 import { mountMonitor } from "./fold-chat-monitor.js";
 import { createTaint } from "./fold-chat-seal.js";
+import { createRedactor, DEFAULT_REDACTOR } from "./fold-chat-redact.js";
 import * as life from "./fold-chat-sessions.js";
 
-const DEFAULT_BRIDGE = "http://localhost:8790";
 const PRESETS = Object.freeze({
   plain: { label: "Plain", system: "You are a helpful assistant. Reply directly, briefly, and naturally, the way a person would. If the person just says hi or asks how you are, answer in kind and offer to help — do not ask them for files or material." },
   fold: { label: "Fold", system: "You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES: when asked about a person, report what the sources say, quoting and citing them — that is the work, and it is fine to do. The conversation itself is NEVER a source. Ground every factual claim in the material you were given (attachments, pasted documents, web passages); never ground in the dialogue, and never in your own memory. You may not ASSERT a personal fact you were not given — but you may report a sourced one and point to where it came from. Where the material does not cover something, say plainly what is missing instead of filling it in. Never claim a source you cannot show. When greeted — hi, hey, how are you — answer warmly and briefly." },
@@ -334,10 +335,10 @@ function menuAt(anchor, items) {
 }
 
 export function mount(root, opts = {}) {
-  // Where heimdall is. The stored override / opts.bridge is preferred; on boot
-  // the surface also probes the standard local port itself, so a fresh
-  // GitHub-Pages page finds a bridge the person never had to type in.
-  let bridge = opts.bridge || localStorage.getItem("fold-chat:bridge") || DEFAULT_BRIDGE;
+  // Where heimdall is. The stored override / opts.bridge is preferred (except an old stored standalone-bridge port, which never
+  // shadows the embedded heimdall serving this very page); on boot the surface probes the same-origin /heimdall first, then the
+  // legacy local port, so a fresh page finds a bridge the person never had to type in. A page with none still has its in-tab model.
+  let bridge = client.pickBridge(opts.bridge || localStorage.getItem("fold-chat:bridge"));
   let bridgeHello = null;
   const sessions = load("fold-chat:sessions", {});
   // Sessions stored before the channels were split carry the system-authored
@@ -364,8 +365,12 @@ export function mount(root, opts = {}) {
   // computed from this, not asserted.
   const taint = createTaint();
   const outbound = createOutbound({ storage: localStorage, taint, auditUrl: null });
+  // The local Python PII redactor (scripts/pii/server.py). "fold-chat:privacymode" = "open" is the person's opt-in to sending more of their
+  // own material; either way personal identifiers are replaced by per-turn ids first, and an unreachable redactor means nothing is sent.
+  const redactor = createRedactor({ base: (() => { try { return localStorage.getItem("fold-chat:piibase") || DEFAULT_REDACTOR; } catch { return DEFAULT_REDACTOR; } })() });
+  const privacyMode = () => { try { return localStorage.getItem("fold-chat:privacymode") === "open" ? "open" : "default"; } catch { return "default"; } };
   // "Tip the creator" reads the creator's OWN contact page, only on a click: audited like any page read, through the tab's page memory.
-  configureTip({ readText: (u) => web.readText(u, { memo: pageMemo, fetchImpl: outbound.auditedFetch("tip: the creator's own contact page"), direct: isExtension() }) });
+  configureTip({ humans: true, readText: (u, o = {}) => web.readText(u, { memo: pageMemo, fetchImpl: outbound.auditedFetch("tip: the creator's own page"), direct: isExtension() || !!o.direct }) });   // o.direct: humans.txt is a guessed URL, read through the direct door only, never a proxy
   let currentRun = null;
   const newRun = (kind) => (currentRun = kind + "_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5));
   // GARY'S DOOR: every model call this page makes (the turn, the restatement, a sealed code draw) is read by Gary before it is audited
@@ -375,7 +380,7 @@ export function mount(root, opts = {}) {
     before: (info) => {
       const m = models.find((x) => x.id === info.model);
       // A local model never leaves the machine; only an outside (sealed) one is an exit.
-      if (m && !m.sealed && m.location !== "external") return null;
+      if (client.isPageModel(info.model) || (m && !m.sealed && m.location !== "external")) return null;
       const h = outbound.sendModel({ auditId: info.auditId, model: info.model, host: m?.provider || null, messages: info.messages, segments: info.segments, worlds: info.worlds, symmetry: info.symmetry, gate: info.privacy === "sealed-external" || info.privacy === "explicit", purpose: info.purpose, run: info.run || currentRun, base: info.base || bridge, masking: info.masking || null });
       return (r) => h.done(r);
     },
@@ -495,9 +500,55 @@ export function mount(root, opts = {}) {
   // `modelsUp`: did the bridge answer the last model listing? It decides what "no model" has to say (noModelWhy).
   let modelsUp = true;
   const NO_MODEL = Object.freeze({ id: "", sealed: false, kind: "none", tier: "local", none: true });
-  async function refreshModels() {
-    try { models = await client.listModels({ base: bridge }); modelsUp = true; }
-    catch (e) { models = []; modelsUp = false; toast("heimdall bridge not answering — run heimdall up"); }
+  // ── THE MODEL IN THIS TAB (fold-chat-webllm.js) ──
+  // The page's own engine: WebGPU, a module Worker, weights cached by the browser. It needs no bridge, so its models are listed
+  // (and can answer) when the bridge is down or never answered. Importing the engine downloads nothing; only an approved first
+  // send does. The extension keeps the bridge (its pages cannot load the engine's CDN module), so it has no engine here.
+  const pageEngine = isExtension() ? null : (opts.pageEngine || createPageEngine({ storage: localStorage, onProgress: (p) => pagePulse(p) }));
+  let pageGpu = { available: false, reason: pageEngine ? "no-adapter" : "no-engine" };
+  let pageLoading = null;        // { id, name, progress, text, phase } while a first load is in flight
+  let pageSink = null;           // the turn in flight listens here (its live feed shows the load)
+  const tabName = (id) => { const c = MODEL_CHOICES.find((x) => x.id === canonicalModelId(id)); return c ? c.label.split(" \u2014 ")[0] : String(id); };
+  const tabTag = (id) => ollamaTagOf(canonicalModelId(id)) || String(id);
+  function pageState() {
+    const entries = pageEngine && pageEngine.isLoaded() ? [{ id: tabTag(pageEngine.loadedId()), ctx: client.PAGE_CONTEXT_TOKENS }] : [];
+    return { available: pageGpu.available, reason: pageGpu.reason, entries, loading: pageLoading };
+  }
+  function pagePulse(p) {
+    if (!p || p.phase === "ready") pageLoading = null;
+    else {
+      pageLoading = { ...(pageLoading || {}), progress: p.progress, text: p.text, phase: p.phase };
+      if (!pageLoading.id) pageEngine?.status().then((st) => { if (pageLoading && !pageLoading.id && st.loading[0]) { pageLoading.id = st.loading[0]; pageLoading.name = tabName(st.loading[0]); paintLoadedNow(); } }).catch(() => {});
+    }
+    try { pageSink?.(p); } catch {}
+    paintLoadedNow();
+  }
+  // A progress tick repaints the footer at once (no network); a settled state asks the poller for the full picture.
+  function paintLoadedNow() {
+    if (pageLoading) paintLoaded({ bridge: modelsUp ? "up" : "down", entries: [], servable: null, errors: [], page: pageState() });
+    else loadedPoller?.refresh();
+  }
+  // The ONE question before a multi-GB download: a toast with a button, never silent. No answer in a minute is a "no".
+  function askDownload({ id }) {
+    const c = MODEL_CHOICES.find((x) => x.id === id);
+    return new Promise((resolve) => {
+      let done = false; const fin = (v) => { if (!done) { done = true; resolve(v); } };
+      actionToast(`Download ${tabName(id)} (${c ? c.sizeLabel : "a large file"}) to run in this tab? It is saved in your browser; after that nothing leaves the tab.`, "Download", () => fin(true), { ms: 60000, onExpire: () => fin(false) });
+    });
+  }
+  client.setPageEngine(pageEngine, { confirmDownload: askDownload });
+  // Where a model runs, in the words a turn is labelled with. An in-tab model is "in this tab" — never "sealed-external".
+  const placeLabel = (mm) => mm?.sealed ? "sealed-external" : client.isPageModel(mm) ? "in this tab" : "local";
+  async function refreshModels({ pageOnly = false } = {}) {
+    // pageOnly: the boot's first paint — the in-tab models are listed before (and without waiting for) the bridge probes.
+    const all = await client.listAllModels({ base: bridge, bridge: !pageOnly });
+    if (pageOnly) {
+      if (!all.page.available || models.length) return;
+      models = all.models; pageGpu = all.page;
+    } else { models = all.models; modelsUp = all.bridgeUp; pageGpu = all.page; }
+    try { noteWindows(models.filter(client.isPageModel).map((m) => ({ id: m.id, ctx: m.contextWindow }))); } catch {}
+    // The bridge is optional now: only when NOTHING can answer (no bridge, no WebGPU) does the page say so.
+    if (!pageOnly && !all.bridgeUp && !all.page.available) toast(noModelWhy({ bridgeUp: false, models, page: pageGpu }).text);
     renderModels();
     paintHint();
     loadedPoller?.refresh();
@@ -506,14 +557,19 @@ export function mount(root, opts = {}) {
   // The one-line hint under the composer: no model reachable and the chip is on Facing page → say Sources only still works.
   function paintHint() {
     const h = document.getElementById("turnHint"); if (!h) return;
-    const why = noModelWhy({ bridgeUp: modelsUp, models });
-    const none = why.code === "bridge-down" || why.code === "no-models" || why.code === "no-chat-model";
-    const show = none && composerAnswer === "facing" && engagement !== "code";
+    const why = noModelWhy({ bridgeUp: modelsUp, models, page: pageState() });
+    const none = why.code === "bridge-down" || why.code === "no-models" || why.code === "no-chat-model" || why.code === "no-webgpu";
+    // An in-tab model that is picked but not on this device: say what the first send will cost BEFORE it asks. Picking downloads nothing.
+    const sel = selectedModel();
+    const toFetch = !none && sel && client.isPageModel(sel) && !sel.loaded && !sel.cached && !pageLoading;
+    const show = (none || toFetch) && composerAnswer === "facing" && engagement !== "code";
     h.hidden = !show;
-    if (show) document.getElementById("turnHintText").textContent = `No model reachable (${why.code === "bridge-down" ? "the bridge isn't running" : why.text}) \u2014 switch the chip to Sources only to get cited passages anyway.`;
+    if (show) document.getElementById("turnHintText").textContent = toFetch
+      ? `Download ${sel.sizeLabel} to start \u2014 the first message asks once, then ${sel.name} runs in this tab and nothing leaves it. Or switch the chip to Sources only (no model).`
+      : `No model reachable (${why.code === "bridge-down" ? "the bridge isn't running" : why.text}) \u2014 switch the chip to Sources only to get cited passages anyway.`;
   }
   { const hb = document.getElementById("turnHintBtn"); if (hb) hb.onclick = () => setAnswerMode("snips"); }
-  const noModelText = () => noModelWhy({ bridgeUp: modelsUp, models, selectedId: sessions[activeId]?.model || null }).text || "no model is available";
+  const noModelText = () => noModelWhy({ bridgeUp: modelsUp, models, selectedId: sessions[activeId]?.model || null, page: pageState() }).text || "no model is available";
   // THE FOOTER: which models are LOADED right now (the fleet via the bridge's /api/ps + this machine's Ollama), polled every
   // ~15 s only while the tab is visible and refreshed after each turn. It never blocks rendering: a failed read keeps the last words.
   const fLoaded = document.getElementById("fLoaded");
@@ -528,7 +584,7 @@ export function mount(root, opts = {}) {
   function startLoadedPoller() {
     if (loadedPoller || !fLoaded) return;
     loadedPoller = createLoadedPoller({
-      get: () => fetchLoaded({ base: client.bridgeBase(bridge), upstream: bridgeHello?.upstream || null }),
+      get: () => fetchLoaded({ base: client.bridgeBase(bridge), upstream: bridgeHello?.upstream || null, page: pageState() }),
       onState: paintLoaded,
       isVisible: () => document.visibilityState !== "hidden",
       onVisibilityChange: (cb) => { document.addEventListener("visibilitychange", cb); return () => document.removeEventListener("visibilitychange", cb); },
@@ -561,9 +617,14 @@ export function mount(root, opts = {}) {
       for (const m of list) {
         const row = el("div", "model" + (m.id === cur ? " on" : ""));
         const dot = el("span", "pdot"); dot.style.background = providerColor(m.provider);
-        row.append(dot, el("span", "name", m.id));
+        row.append(dot, el("span", "name", client.isPageModel(m) ? m.name : m.id));
         if (m.sealed) row.append(el("span", "seal", "sealed"));
-        else if (m.kind === "webllm" || m.kind === "fleet" || m.kind === "native") {
+        else if (client.isPageModel(m)) {
+          // The tab's own model: where it lives and what the first use costs. It never says "sealed" — nothing leaves the tab.
+          const kt = el("span", "kindtag", "in this tab" + (m.loaded ? " \u00b7 loaded" : m.cached ? " \u00b7 downloaded" : " \u00b7 " + m.sizeLabel));
+          kt.title = m.note || "runs in this browser tab (WebLLM)";
+          row.append(kt);
+        } else if (m.kind === "webllm" || m.kind === "fleet" || m.kind === "native") {
           // Where it is served from: a heimdall browser tab (WebLLM), a fleet worker, or a linked native host — not this machine's own Ollama.
           const kt = el("span", "kindtag", m.kind === "webllm" ? "browser tab" : m.kind === "native" ? "native host" : "fleet");
           kt.title = m.kind === "webllm" ? "served by a heimdall browser tab running WebLLM" : m.kind === "native" ? "served by a linked native host" : "served by a connected fleet worker";
@@ -1026,7 +1087,7 @@ export function mount(root, opts = {}) {
     head.append(
       el("span", "disc-caret", "▸"),
       el("span", "disc-title", "how this was answered"),
-      el("span", "disc-line", [feedDone ? feedDone.title : null, rec.effort ? "effort " + rec.effort : null, feedDone ? null : (meta?.model || null), meta?.sealed ? "sealed-external" : null].filter(Boolean).join(" \u00b7 ")),
+      el("span", "disc-line", [feedDone ? feedDone.title : null, rec.effort ? "effort " + rec.effort : null, feedDone ? null : (meta?.model || null), meta?.sealed ? "sealed-external" : client.isPageModel(meta?.model) ? "in this tab" : null].filter(Boolean).join(" \u00b7 ")),
     );
     const panel = el("div", "disc-panel");
     // The live feed this turn showed, collapsed into the line above and replayed here from the stored trace:
@@ -1075,7 +1136,7 @@ export function mount(root, opts = {}) {
     panel.append(copy);
 
     if (meta && meta.model) {
-      panel.append(el("div", "disc-foot", `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
+      panel.append(el("div", "disc-foot", client.isPageModel(meta.model) && !meta.sealed ? `${meta.model} · in this tab \u00b7 run by this page's own engine, nothing left the tab` : `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
     }
 
     head.onclick = () => { const open = box.classList.toggle("open"); head.setAttribute("aria-expanded", open ? "true" : "false"); };
@@ -1264,7 +1325,7 @@ export function mount(root, opts = {}) {
   // System notes about a turn (an identity claim the fold withdrew, a model
   // refusal it replaced, an agent that produced no code): each its OWN element,
   // labelled as the fold's — never part of what the model wrote.
-  const NOTICE_LABEL = { identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", thread: "from this chat", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
+  const NOTICE_LABEL = { "language-gap": "not checkable", identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", thread: "from this chat", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
   // A note whose turn wrote nothing (a failure, an empty stream, a stop) carries a retry: `onRetry` re-runs the ask.
   function renderNotices(body, notices, onRetry = null) {
     for (const n of notices || []) {
@@ -1323,7 +1384,7 @@ export function mount(root, opts = {}) {
       const hasFold = !!(foldSnap && (foldSnap.versions.length || foldSnap.log.length));
       if (hasFold) {
         const rs = s?.resumeFrom && s.resumeFrom.foldId === foldSnap.id ? { index: s.resumeFrom.index, round: s.resumeFrom.round } : null;
-        mountFold(body, foldSnap, { renderArtifact: quietArtifact, onReset: (r) => setResume(s, r), reset: rs });
+        mountFold(body, foldSnap, { renderArtifact: quietArtifact, tryCall: (code, expr) => callMany(code, [expr]).then((r) => r[0]), onReset: (r) => setResume(s, r), reset: rs });
       }
       if (traced) replayFeed(hasFold ? tuckSteps(body, { open: false }).inner : body, meta.grounding.events, { onAuditOpen: (id) => openAudit(id) });
       // A SOURCES-ONLY turn (authored by the sources) draws as one reading column of their own passages instead.
@@ -1776,12 +1837,12 @@ export function mount(root, opts = {}) {
     const ac = new AbortController();
     const flight = { ac, kind: "chat", label: "working…", startedAt: Date.now(), wrap: row.wrap, stage: "", stop: () => { ac.abort(); flight.stage = "stopping…"; if (isLive()) E.stage.textContent = "stopping…"; } };
     inflight.set(id, flight);
-    flight.stage = m.sealed ? "sealed-external · working…" : "working…";
+    flight.stage = m.sealed ? "sealed-external · working…" : client.isPageModel(m) ? "in this tab · working…" : "working…";
     if (isLive()) E.stage.textContent = flight.stage;
     refreshComposer(); renderChats();
     // The turn's exit, however it ends: drop its in-flight entry, unlock the
     // composer if this chat is open, and show the sidebar row at rest.
-    const release = () => { try { feed.dispose(); } catch {} inflight.delete(id); refreshComposer(); renderChats(); if (isLive()) { E.stage.textContent = ""; E.input.focus(); } refreshMeter(); loadedPoller?.refresh(); };
+    const release = () => { pageSink = null; if (pageLoading && !pageEngine?.isLoaded()) pageLoading = null; try { feed.dispose(); } catch {} inflight.delete(id); refreshComposer(); renderChats(); if (isLive()) { E.stage.textContent = ""; E.input.focus(); } refreshMeter(); loadedPoller?.refresh(); };
     // Stopped (the Stop button, Escape, or the chat being deleted): the person's
     // message stays, and a quiet note rides message.notices — never `content`.
     const stopped = () => {
@@ -1812,7 +1873,7 @@ export function mount(root, opts = {}) {
     // generation turn is never front-loaded with a web search (that is what
     // turned "write an essay" into "what topics?"), and a greeting is never
     // searched or checked.
-    const kind = classifyTurn(lastUserText(s), { hasMaterial: materialOf(s).length > 0 });
+    const kind = classifyTurn(question, { hasMaterial: materialOf(s).length > 0 });
     // The live narration: every step the fold takes is shown while it takes it,
     // so the person sees the pipeline (classify → search → read → write →
     // check) rather than a frozen spinner. The blinking cursor follows the live
@@ -1851,6 +1912,7 @@ export function mount(root, opts = {}) {
     if (wantWeb) {
       if (question) {
         say(`turn · ${kindWord} · searching the web…`);
+        if (follow.kind === "retry") feedPush(lineEvent(tt, "Picked your earlier question back up", { tone: "info", note: `nothing was written for \u201c${question.slice(0, 90)}\u201d, so I'm answering it now` }));
         // Every step the search takes arrives as an onStep event and becomes a row of the turn's live feed
         // (fold-chat-turnfeed.js eventsForStep): each source asked with its own clock and result count or failure
         // reason, each page read with "kept N of M chars", an honest "waiting on …" line when something is slow.
@@ -1868,7 +1930,7 @@ export function mount(root, opts = {}) {
           webResults = w.results || [];
           if (webPassages.length) {
             sourceBlock = sourcesPrompt(webPassages) + (webPassages.some((p) => p.recipe) ? "\n\n" + CARD_PROMPT : "");
-            say(`turn · ${kindWord} · read ${webPassages.length} source(s) · ${m.sealed ? "sealed-external" : "local"} · answering…`);
+            say(`turn · ${kindWord} · read ${webPassages.length} source(s) · ${placeLabel(m)} · answering…`);
           }
         } catch (e) {
           if (ac.signal.aborted) throw e;
@@ -1878,7 +1940,7 @@ export function mount(root, opts = {}) {
         }
       }
     } else {
-      say(kind === "generate" ? `turn · ${kindWord} · writing it now…` : `turn · ${kindWord} · ${m.sealed ? "sealed-external" : "local"} · writing the answer…`);
+      say(kind === "generate" ? `turn · ${kindWord} · writing it now…` : `turn · ${kindWord} · ${placeLabel(m)} · writing the answer…`);
     }
     // A generate turn replaces the persona with the writer, it does not append
     // to it — the reading persona and the write instruction are opposite
@@ -1976,9 +2038,20 @@ export function mount(root, opts = {}) {
       // A model call that is REFUSED (the bridge's safety gate answers 403) or FAILS never ends the turn with
       // nothing when the turn has read sources: the app falls back to the Sources-only strand (no model, so no
       // gate), says why in its own words, and offers a retry. The gate's words are quoted, never paraphrased.
-      const modelPlace = m.sealed ? "sealed-external" : "this machine";
+      const modelPlace = m.sealed ? "sealed-external" : client.isPageModel(m) ? "this tab" : "this machine";
       if (!skipModel) feedPush(beginStep(tt, "write", webPassages.length ? `Writing the answer from ${webPassages.length} source(s) \u00b7 ${m.id}` : `Writing the answer \u00b7 ${m.id}`, { verb: `Writing the answer (${m.id})`, slowAfter: 8000, slow: `waiting on ${m.id} (slow: a model on ${modelPlace} can take 10\u201320 s)` }));
       let firstToken = false;
+      // A first load of an in-tab model rides this turn's own feed: one step, with web-llm's own progress words (percent + text).
+      if (!skipModel && client.isPageModel(m)) {
+        let stepOpen = false, lastPct = -10;
+        pageSink = (p) => {
+          const pct = Math.round((Number(p?.progress) || 0) * 100);
+          if (!p || p.phase === "ready") { if (stepOpen) { stepOpen = false; feedPush(endStep(tt, "load", { title: `${m.name || m.id} is ready in this tab`, tone: "ok" })); } return; }
+          if (!stepOpen) { stepOpen = true; feedPush(beginStep(tt, "load", `Loading ${m.name || m.id} in this tab (WebLLM)`, { verb: "Loading the model in this tab", slowAfter: 60000, slow: "still loading \u2014 a first download takes a while, and it only happens once" })); }
+          if (pct >= lastPct + 10) { lastPct = pct; feedPush(noteEvent(tt, "load", `${pct}% \u00b7 ${String(p.text || "").slice(0, 90)}`)); }
+          say(`turn \u00b7 ${kindWord} \u00b7 loading the model in this tab \u00b7 ${pct}%\u2026`);
+        };
+      }
       if (!skipModel) try { out = await callModel(messages, {
         base: bridge, privacy: "sealed-external", audit: { run: runId },
         onToken: (t) => {
@@ -2017,6 +2090,8 @@ export function mount(root, opts = {}) {
       // never `content`: `content` is only what the model wrote.
       const notices = [];
       if (fellBack) notices.push(fellBack);
+      // The tab's engine could not load the chosen model and answered with its small fallback: said, never hidden.
+      if (out.fellBackFrom) notices.push({ kind: "fold", text: `${tabName(out.fellBackFrom)} would not load in this tab, so ${tabName(out.model)} answered instead (smaller; expect a plainer answer).` });
       // THE MODEL MAY NOT SHOW THE FOLD'S SCAFFOLDING, OR NAME A SOURCE THE PAGE DID NOT GIVE IT
       // (II.9). Source-block labels ([W1] …) are stripped from its text and the passages it pointed
       // at become real citation chips; the language is checked against the asker's; and every
@@ -2094,6 +2169,9 @@ export function mount(root, opts = {}) {
       // A strand is never SCORED: its words are the sources', not a claim of ours (turnRecord gets an empty answer).
       const record = recordable(kind) ? ground.turnRecord(strand ? "" : text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed, effort }) : null;
       if (record && webTrace) record.web = webTrace;
+      // Sentences the gate could not check because they are in another language than every source: a typed note, never a silent miss
+      // (the gate compares wording, wording cannot cross a language, and the fold does not translate or call the sentence wrong).
+      if (record && record.gaps && record.gaps.length) notices.push({ kind: "language-gap", text: ground.languageGapNote(record.gaps) });
       // What Gary, Terry Gross and the pathos archons did on this turn — rules, counts and the speech act, never the prompt's own words.
       { const decisions = garyDoor.drain();
         if (record) {
@@ -2238,7 +2316,7 @@ export function mount(root, opts = {}) {
       // concatenation); every other turn's content is the model's, and exists only because a source was read.
       const storedSnips = strand ? strand.snips.map(storeSnip) : null;
       if (strand) { const chk = verifySnips(storedSnips, webPassages); if (!chk.ok) console.error("[fold-chat] a stored snip is not in its page — a bug:", chk.bad.map((b) => b.text.slice(0, 60))); }
-      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, ...(strand ? { authored: "sources", snips: storedSnips } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
+      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, model: m.id, ...(strand ? { authored: "sources", snips: storedSnips } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
       s.sealed = !!m.sealed;
       s.updated = now();
       maybeName(s);
@@ -2328,7 +2406,7 @@ export function mount(root, opts = {}) {
       addFoldVersion(fold, { round: 0, maker: { kind: "restored" }, code: resume.code, kind: resume.kind });
       addFoldLog(fold, { round: 0, stage: "fold", by: "app", title: `started from ${resume.round === 0 ? "an earlier version" : "attempt " + resume.round} of the last run`, detail: "you reset to that point", tech: `resumed from ${resume.foldId} event ${resume.index}`, ok: true });
     }
-    const foldView = mountFold(body, fold, { live: true, renderArtifact: quietArtifact, onReset: (r) => setResume(s, r) });
+    const foldView = mountFold(body, fold, { live: true, renderArtifact: quietArtifact, tryCall: (code, expr) => callMany(code, [expr]).then((r) => r[0]), onReset: (r) => setResume(s, r) });
     const tuck = tuckSteps(body, { open: true });
     const feed = createFeed(tuck.inner, { live: true, onStop: () => flight.stop(), onRetry: () => rerunAs(id, task, "agent"), onAuditOpen: (auditId) => openAudit(auditId) });
     try {
@@ -2354,7 +2432,7 @@ export function mount(root, opts = {}) {
           const candidates = client.remoteCandidates(models);
           if (!candidates.length) throw new Error("no sealed remote model is available through heimdall");
           const t0 = Date.now();
-          const out = await client.remoteCode(prompt, { candidates, prior: o.prior, base: bridge, signal: o.signal, onTry: o.onTry, run: runId, taint, readNames: async (t) => ((await client.read(t, { base: bridge, source: "deid", signal: o.signal }))?.referents || []).flatMap((r) => r.surfaces || []) });
+          const out = await client.remoteCode(prompt, { candidates, prior: o.prior, base: bridge, signal: o.signal, onTry: o.onTry, run: runId, taint, mode: privacyMode(), redact: (t) => redactor.spans(t, { signal: o.signal }), readNames: async (t) => ((await client.read(t, { base: bridge, source: "deid", signal: o.signal }))?.referents || []).flatMap((r) => r.surfaces || []) });
           return { sessionId: null, text: out.text, ms: Date.now() - t0, lane: "sealed-remote", executed: false, model: out.model, audit: out.sent,
             activity: [...out.tried.map((t) => ({ tool: "remote", status: "failed", title: `${t.model}: ${t.error}` })), { tool: "remote", status: "done", title: out.model + " · sealed-external" }] };
         } : null,
@@ -2520,20 +2598,21 @@ export function mount(root, opts = {}) {
   function closeSettings() { E.settingsModal.hidden = true; }
   function saveSettings() {
     const next = E.setBridge.value.trim();
-    if (next) { try { localStorage.setItem("fold-chat:bridge", next); } catch (e) {} }
+    // The same-origin embedded heimdall is found, not stored: a stored copy would go stale on another port or host.
+    if (next && client.bridgeBase(next) !== client.sameOriginBridge()) { try { localStorage.setItem("fold-chat:bridge", next); } catch (e) {} }
     applyPreset(E.setPreset.value);
     try { if (E.setAgentLane) localStorage.setItem("fold-chat:agentlane", E.setAgentLane.value); if (E.setAgentRounds) localStorage.setItem("fold-chat:agentrounds", E.setAgentRounds.value); if (E.setAgentEscalate) localStorage.setItem("fold-chat:agentescalate", E.setAgentEscalate.checked ? "1" : "0"); } catch (e) {}
     closeSettings();
     toast("settings saved");
     // The bridge may have moved — re-list the models it serves.
-    if (next && next !== bridge) location.reload();
+    if (next && client.bridgeBase(next) !== client.bridgeBase(bridge)) location.reload();
   }
   // The bridge line under the field: found / not found, and the gate it reports.
   function updateBridgeStatus() {
     if (!E.bridgeStatus) return;
     if (bridgeHello) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b> — every model and the sealed-external gate route here.`;
     else if (bridge && models.length) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b>.`;
-    else E.bridgeStatus.innerHTML = `not found — run <b>heimdall up</b>, then Detect.`;
+    else E.bridgeStatus.innerHTML = `no bridge found — the model still runs in this tab. Start the Fold's own server (<b>npm run serve</b>: it carries heimdall at <b>/heimdall</b>), then Detect.`;
   }
   E.bridgeDetect.onclick = async () => {
     E.bridgeStatus.textContent = "looking for heimdall…";
@@ -2541,12 +2620,12 @@ export function mount(root, opts = {}) {
     if (found.ok) {
       bridge = found.base; bridgeHello = found.hello;
       E.setBridge.value = bridge;
-      try { localStorage.setItem("fold-chat:bridge", bridge); } catch (e) {}
+      if (bridge !== client.sameOriginBridge()) { try { localStorage.setItem("fold-chat:bridge", bridge); } catch (e) {} }
       await refreshModels();
       updateBridgeStatus();
       toast("heimdall found at " + bridge);
     } else {
-      bridgeHello = null; updateBridgeStatus(); toast("no heimdall on localhost:8790");
+      bridgeHello = null; updateBridgeStatus(); toast("no heimdall found (this server's /heimdall, then the legacy local bridge)");
     }
   };
   // Provider keys: posted to the localhost bridge, stored server-side (beside
@@ -2582,7 +2661,7 @@ export function mount(root, opts = {}) {
       }
       if (notLoaded) actions.unshift({ label: "Load now", run: loadKeysNow });
       showKeyStatus({ tone: notLoaded ? "warn" : "ok", headline: "", lines }, actions);
-    } catch { showKeyStatus({ tone: "warn", headline: "", lines: ["heimdall bridge not answering — start it (heimdall up) to store keys."] }); }
+    } catch { showKeyStatus({ tone: "warn", headline: "", lines: ["heimdall is not answering — start the Fold's own server (npm run serve) to store keys."] }); }
   }
   async function loadKeysNow() {
     try { await client.reloadProviderKeys({ base: bridge }); await refreshModels(); toast("heimdall reloaded its keys"); }
@@ -2991,12 +3070,12 @@ export function mount(root, opts = {}) {
   applyTheme(themePref());
   renderProjects();
   paintTurn();
-  // Auto-detect the bridge first (the override, then the standard local port),
-  // then list whatever it serves. A page served from GitHub Pages finds the
-  // person's own heimdall this way, with no URL to type.
+  // The tab's own models are listed FIRST, without waiting for any probe: the app boots and can answer with no bridge at all.
+  // Then auto-detect the bridge (a custom override, the same-origin embedded /heimdall, then the legacy local port) and list
+  // whatever it serves besides. A page served from GitHub Pages finds the person's own heimdall this way, with no URL to type.
+  refreshModels({ pageOnly: true }).catch(() => {});
   client.detectBridge({ override: opts.bridge || localStorage.getItem("fold-chat:bridge") || null }).then((found) => {
     if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
-    else toast("heimdall not found — run `heimdall up`");
     refreshModels().then(() => {
       // Husks first (never-used "New chat" rows older than ten minutes), then the
       // most recent chat. NO chats is the welcome state — a reload after deleting

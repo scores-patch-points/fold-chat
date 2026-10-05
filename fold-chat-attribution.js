@@ -39,7 +39,9 @@ const fold = (s) => String(s ?? "").normalize("NFKD").replace(/\p{M}+/gu, "").to
 const clean = (s) => fold(s).replace(/^the\s+/, "").replace(/[.,;:!?'’"“”]+$/g, "").trim();
 
 // ── scaffolding markers ────────────────────────────────────────────────────
-const MARK = String.raw`(?:[WS]\s?\d+|M\d*|(?:source|sources|src)\s*:?\s*[WS]?\s?\d+)`;
+// T1 / T2 are the labels of a thread-grounded reply's block (fold-chat-thread.js threadPrompt): measured, a small model that is told not to
+// write them writes them ("Here's the source: … [T2]"), and nothing stripped them.
+const MARK = String.raw`(?:[WS]\s?\d+|T[12]|M\d*|(?:source|sources|src)\s*:?\s*[WS]?\s?\d+)`;
 const MARK_LIST = String.raw`[\[【(]\s*${MARK}(?:\s*[,;/–-]\s*(?:[WS]\s?\d+|\d+))*\s*[\]】)]`;
 const LEAD_RE = new RegExp(String.raw`\s*\b(?:in|from|by|per|see|at|of|via|within)\s+(?:the\s+)?(?:source\s+)?(?:${MARK_LIST})`, "giu");
 const LONE_RE = new RegExp(String.raw`[ \t]*${MARK_LIST}`, "giu");

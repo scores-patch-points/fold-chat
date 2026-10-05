@@ -8,7 +8,13 @@
         "run",
         "serve"
       ],
-      "port": 3000
+      "port": 8814
+    },
+    {
+      "name": "assembly-demo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8815", "--bind", "127.0.0.1", "--directory", "experiments/specimen-assembly/out/show"],
+      "port": 8815
     }
   ]
 }

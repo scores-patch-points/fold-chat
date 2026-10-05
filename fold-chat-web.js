@@ -17,10 +17,12 @@ import { declaredBlocksFromHtml, looksBlocked } from "./fold-chat-strand.js";
 import { searchDirect } from "./fold-chat-engines.js";
 import { isExtension } from "./fold-chat-exit.js";
 import { contactsOfRaw } from "./fold-chat-tip.js";
-import { snippetsSufficient, snippetPassages, makeBackground, learnBackground, languageOf } from "./fold-chat-snippets.js";
+import { snippetsSufficient, snippetPassages, makeBackground, learnBackground, languageOf, functionWordsOf } from "./fold-chat-snippets.js";
+import { stripFrame } from "./fold-chat-frame.js";
 import SNIPPET_SEED from "./fold-chat-snippets-seed.js";
 import { entityFromTitle, mentions, fold } from "./fold-chat-mind.js";
-import { routeSources, probeSources, noteRateLimited, coolingDown, isRateLimitError } from "./fold-chat-route.js";
+import { routeSources, probeSources, noteRateLimited, coolingDown, isRateLimitError, factualAsk } from "./fold-chat-route.js";
+import { detectLang } from "./fold-chat-lang.js";
 
 export const SCOPES = Object.freeze([
   { id: "web", label: "Web · open search", ask: "Search the open web (DuckDuckGo/Brave via the relay)" },
@@ -178,7 +180,16 @@ async function directSearch(q, { fetchImpl = fetch } = {}) {
   return { results: out.results.slice(0, 20).map((x) => ({ title: x.title, url: x.url, snippet: x.snippet.slice(0, 300), source: host(x.url), meta: "", kind: "web" })), more: false, engine: out.engine === "brave" ? "Brave Search" : "DuckDuckGo" };
 }
 
-export async function search(scope, q, page = 0, { fetchImpl = fetch, direct = false } = {}) {
+/** The Wikipedia edition an ask should be searched in: the asker's own language when it is confidently detected and has
+ *  an edition we carry, else English. A Hindi, Arabic or Chinese ask searched on en.wikipedia reads English pages the
+ *  gate cannot check wording against (measured 2026-10-05, eval/results-cur.json). */
+const WIKI_EDITIONS = new Set(["en", "es", "fr", "de", "pt", "it", "nl", "ru", "uk", "zh", "ja", "ko", "ar", "he", "hi", "th", "el"]);
+export function wikiEdition(q) {
+  // A Latin-script ask needs real evidence (3+ function-word / mark hits): "write me a poem" is two Portuguese words and English.
+  try { const d = detectLang(q); return d.confident && WIKI_EDITIONS.has(d.lang) && (d.script !== "Latin" || d.hits >= 3) ? d.lang : "en"; } catch { return "en"; }
+}
+
+export async function search(scope, q, page = 0, { fetchImpl = fetch, direct = false, lang = "en" } = {}) {
   if (scope === "web") return direct ? directSearch(q, { fetchImpl }) : duckSearch(q, { fetchImpl, page });
   if (scope === "github") {
     const { r, j } = await getJson(fetchImpl, "https://api.github.com/search/repositories?per_page=20&page=" + (page + 1) + "&q=" + encodeURIComponent(q), "GitHub");
@@ -188,9 +199,27 @@ export async function search(scope, q, page = 0, { fetchImpl = fetch, direct = f
     return { results: (j.items || []).map((x) => ({ title: x.full_name, url: x.html_url, snippet: x.description || "", source: "GitHub", meta: ["★ " + k(x.stargazers_count), x.language, x.pushed_at ? "updated " + x.pushed_at.slice(0, 4) : ""].filter(Boolean).join(" · "), kind: "github" })), more: (page + 1) * 20 < Math.min(j.total_count || 0, 1000), engine: "GitHub" };
   }
   if (scope === "wikipedia") {
-    const { r, j } = await getJson(fetchImpl, "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=" + page * 20 + "&srsearch=" + encodeURIComponent(q), "Wikipedia");
-    if (!r.ok || !j) throw new Error("Wikipedia answered " + r.status + ".");
-    return { results: ((j.query && j.query.search) || []).map((x) => ({ title: x.title, url: "https://en.wikipedia.org/wiki/" + encodeURIComponent(x.title.replace(/ /g, "_")), snippet: stripTags(x.snippet), source: "Wikipedia", meta: x.wordcount ? x.wordcount.toLocaleString() + " words" : "", kind: "wikipedia" })), more: !!j.continue, engine: "Wikipedia" };
+    const wiki = async (ed, query = q) => {
+      const { r, j } = await getJson(fetchImpl, `https://${ed}.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=` + page * 20 + "&srsearch=" + encodeURIComponent(query), "Wikipedia");
+      if (!r.ok || !j) throw new Error("Wikipedia answered " + r.status + ".");
+      return { results: ((j.query && j.query.search) || []).map((x) => ({ title: x.title, url: `https://${ed}.wikipedia.org/wiki/` + encodeURIComponent(x.title.replace(/ /g, "_")), snippet: stripTags(x.snippet), source: "Wikipedia", meta: x.wordcount ? x.wordcount.toLocaleString() + " words" : "", kind: "wikipedia" })), more: !!j.continue, engine: ed === "en" ? "Wikipedia" : `Wikipedia (${ed})` };
+    };
+    const ed = WIKI_EDITIONS.has(lang) ? lang : "en";
+    // THE QUESTION FRAME (fold-chat-frame.js): Wikipedia's search matches titles on "Who is the …" (measured: "Who is the king of the UK?" ranks
+    // three films before Monarchy of the United Kingdom). The ask is searched as said AND with its frame shed; the two lists are interleaved,
+    // frame-shed first, so neither can push the other's best hit out of the top few. No function-word prior for the language, or no frame: one search.
+    const framed = stripFrame(q, functionWordsOf(ed));
+    const out = await wiki(ed);
+    if (framed && framed !== q) {
+      try {
+        const alt = await wiki(ed, framed);
+        const merged = [], seen = new Set();
+        for (let i = 0; i < Math.max(alt.results.length, out.results.length); i++) for (const list of [alt.results, out.results]) { const x = list[i]; if (x && !seen.has(x.url)) { seen.add(x.url); merged.push(x); } }
+        if (merged.length) return { ...out, results: merged, framed };
+      } catch { /* the framed search failing leaves the ask's own results exactly as before */ }
+    }
+    // a small edition with nothing on it falls back to English rather than leaving the ask with no encyclopedia at all
+    return !out.results.length && ed !== "en" ? wiki("en") : out;
   }
   if (scope === "openalex") {
     const { r, j } = await getJson(fetchImpl, "https://api.openalex.org/works?search=" + encodeURIComponent(q) + "&per-page=20&page=" + (page + 1), "OpenAlex");
@@ -333,7 +362,7 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
     let text = stripTags(raw);
     const recipe = /ld\+json/i.test(raw) ? recipeDataFromHtml(raw) : null;
     // how the page's own creator says to reach them (kept only when the page offered something; used only if the person clicks 'Tip the creator')
-    const contacts = /<(a|form|script)\b/i.test(raw) ? contactsOfRaw(raw, url) : null;
+    const contacts = /<(a|form|script|rss|feed|rdf:RDF)\b/i.test(raw) || /\/humans\.txt$/i.test(url) ? contactsOfRaw(raw, url) : null;   // a feed (route 2) and humans.txt (route 3) are read for the creator's name too
     // a HowTo / FAQPage / QAPage the page declares: carried so the Sources-only answer can quote it whole
     const declared = /ld\+json/i.test(raw) ? declaredBlocksFromHtml(raw) : [];
     { const rec = recipe ? recipeFromHtml(raw) : ""; if (rec) text = rec + "\n\n" + text; }
@@ -415,7 +444,9 @@ async function allSettledFirst(promises) {
  *  the ask has no names. Used by queriesFor (per-entity searches) and by the
  *  on-topic gate (which results to READ). */
 const PROPER_NOUN_RE = /(?<![\p{L}\p{N}])(\p{Lu}[\p{L}\p{N}.'-]*(?:\s+[\p{Lu}][\p{L}\p{N}.'-]*)*)/gu;
-const PROPER_STOP = new Set(["Compare", "Contrast", "The", "And", "What", "Which", "Tell", "How", "When", "Where", "Who", "Find", "Show", "Give", "Also", "Between", "From", "With", "About", "Was", "Were", "Is", "Are", "Does", "Did", "Do", "Can", "Could", "Should", "Would", "Will", "Has", "Have", "Had", "Why", "Whose", "Whom", "Explain", "Describe", "List", "Write", "Make", "Please", "Hey", "Hi", "Hello", "And", "But", "So"]);
+const PROPER_STOP = new Set(["Compare", "Contrast", "The", "And", "What", "Which", "Tell", "How", "When", "Where", "Who", "Find", "Show", "Give", "Also", "Between", "From", "With", "About", "Was", "Were", "Is", "Are", "Does", "Did", "Do", "Can", "Could", "Should", "Would", "Will", "Has", "Have", "Had", "Why", "Whose", "Whom", "Explain", "Describe", "List", "Write", "Make", "Please", "Hey", "Hi", "Hello", "And", "But", "So",
+  // interrogatives and openers of the other languages we answer in (a question word is never a name)
+  "Qué", "Cuál", "Cuáles", "Cómo", "Cuándo", "Dónde", "Quién", "Quiénes", "Cuánto", "Cuántos", "Quel", "Quelle", "Quels", "Quelles", "Comment", "Quand", "Où", "Qui", "Quoi", "Pourquoi", "Combien", "Wie", "Wer", "Wann", "Wo", "Warum", "Welche", "Welcher", "Welches", "Wieviel", "Qual", "Quais", "Quem", "Quando", "Onde", "Como", "Quanto", "Quantos", "Porque", "Chi", "Quale", "Quali", "Dove", "Perché", "Quanti", "Hoe", "Waar", "Wanneer", "Wat"]);
 function properNouns(q) {
   const src = String(q ?? "");
   const out = [];
@@ -538,6 +569,17 @@ export function applyGate(poolAll, entities, query, cfg = {}) {
 // a longer name for ANOTHER thing, is moved behind the candidates that fit, so it is read only if the others fail.
 const stemOf = (w) => { const f = fold(w); return f.length > 5 ? f.slice(0, 5) : f; };
 const wordsOf = (t) => (fold(t).match(/[\p{L}\p{N}]+/gu) || []);
+/** A title word shares a stem with the ask when the 5-char stems are equal OR one stem is a prefix of the other (both >= 4 chars):
+ *  measured 2026-10-05 — "Who is the king of the UK?" demoted Monarchy of the United Kingdom ("kingd" vs "king") and read three films
+ *  called "…Would Be King" instead, so the model answered from memory. Prefix sharing is language-neutral (no word list); a caseless
+ *  script has no 4-char stems and is untouched. */
+export function sharesStem(word, stems) {
+  const s = stemOf(word);
+  if (stems.has(s)) return true;
+  if (s.length < 4) return false;
+  for (const a of stems) if (a.length >= 4 && a !== s && (a.startsWith(s) || s.startsWith(a))) return true;
+  return false;
+}
 const TITLE_SEP = /\s+[|\u2014\u2013\u00b7:]\s+|\s-\s/;
 /** The words a result's own TITLE gives, the page name first: "Nashville, Tennessee - Wikipedia" → "Nashville, Tennessee". */
 export function pageNameOf(title) { const t = entityFromTitle(title); const first = String(t).split(TITLE_SEP)[0]; return (first || t).trim(); }
@@ -565,7 +607,7 @@ export function titleGate(pool, query, entities = entitiesOf(query)) {
     const name = pageNameOf(r.title);
     const tw = wordsOf(name);
     if (!tw.length) return null;
-    if (!tw.some((w) => askStems.has(stemOf(w)))) return "no-shared-word";
+    if (!tw.some((w) => sharesStem(w, askStems))) return "no-shared-word";
     if (hasOwn && !entities.some((e) => isOwnPage(r.title, e)) && entities.some((e) => mentions(name, e)) && !tw.some((w) => plainStems.has(stemOf(w)))) {
       const extra = tw.filter((w) => !askStems.has(stemOf(w)));
       if (extra.length) return "shares-only-the-name";
@@ -653,6 +695,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   const trace = [];
   const results = [];
   const queries = queriesFor(query);
+  const askEdition = wikiEdition(query);   // the asker's language edition of Wikipedia (English when unsure)
   // The OPEN-WEB scope searches the FULL natural query — DDG/Brave handle the
   // whole ask best ("Judy Liff Zachary Liff Nashville" surfaces people records;
   // a split "Judy" returns Wikipedia). The API scopes (Wikipedia, GitHub, …)
@@ -662,7 +705,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   const runScope = async (q, s, state = null) => {
     step({ phase: "searching", scope: s, q });
     try {
-      const out = await search(s, q, 0, { fetchImpl, direct });
+      const out = await search(s, q, 0, { fetchImpl, direct, lang: s === "wikipedia" ? askEdition : "en" });
       if (state && state.webClosed) return { ok: false, list: [] };   // answered after the budget: the turn has gone on
       trace.push({ scope: s, q, engine: out.engine, n: out.results.length, ok: true });
       step({ phase: "found", scope: s, q, engine: out.engine, n: out.results.length });
@@ -682,7 +725,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   // calls for run together; none waits behind another. (They used to run one after another:
   // a 17 s relay call held Wikipedia's 300 ms answer behind it.)
   const apiAll = scopes.filter((s) => s !== "web");
-  const base = route && apiAll.length ? routeSources(query, { only: scopes }) : null;
+  const base = route && apiAll.length ? routeSources(query, { only: scopes, lang: askEdition }) : null;
   const upfront = base ? apiAll.filter((s) => base.scopes.includes(s)) : apiAll;
   const runApi = (list) => Promise.all(queries.flatMap((q) => list.map((s) => {
     if (coolingDown(s)) { trace.push({ scope: s, q, ok: false, why: "cooling down after a rate limit" }); step({ phase: "failed", scope: s, q, why: "cooling down after a rate limit" }); return null; }
@@ -719,13 +762,17 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
     const probe = probeSources(web.list, base.scopes);
     // Web down (no results): do NOT widen to every source — that reads whatever Wikipedia has on
     // the question's stray words (measured: a pancake recipe ask read Okonomiyaki, Recipe and
-    // Shrove Tuesday). Keep only the sources the question's own cues justify.
+    // Shrove Tuesday). Keep only the sources the question's own cues justify, plus Wikipedia for
+    // a plain what/who/when/where ask (factualAsk), which is what it is good for.
     const webDown = scopes.includes("web") && !web.list.length;
-    const extra = webDown ? [] : probe.add.filter((x) => apiAll.includes(x) && !upfront.includes(x));
+    // Web down: the one encyclopedia that answers a plain what/who/when/where ask is still allowed (in the asker's language);
+    // nothing else is widened to.
+    const wikiAllowed = webDown && factualAsk(query) && apiAll.includes("wikipedia") && !upfront.includes("wikipedia");
+    const extra = webDown ? (wikiAllowed ? ["wikipedia"] : []) : probe.add.filter((x) => apiAll.includes(x) && !upfront.includes(x));
     if (extra.length) await runApi(extra);
     apiScopes = [...upfront, ...extra];
     const skipped = scopes.filter((x) => x !== "web" && !apiScopes.includes(x));
-    trace.push({ scope: "route", ok: true, engine: "source router", picked: ["web", ...apiScopes], skipped, why: { ...base.why, ...(webDown ? {} : probe.why) }, webDown });
+    trace.push({ scope: "route", ok: true, engine: "source router", picked: ["web", ...apiScopes], skipped, why: { ...base.why, ...(webDown ? (wikiAllowed ? { wikipedia: "web down: a plain factual ask may still read the encyclopedia" } : {}) : probe.why) }, webDown });
     step({ phase: "routed", picked: ["web", ...apiScopes], skipped, webDown });
   }
   for (const list of settled) results.push(...list);

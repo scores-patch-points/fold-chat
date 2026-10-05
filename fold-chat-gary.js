@@ -28,6 +28,7 @@ import { makeGary, garyDecision, SEVERITY, RULES } from "./vendor/khora/native/o
 import { makeKondo } from "./vendor/khora/native/organs/kondo.js";
 import { apparatusMentions, strikeAddresses } from "./vendor/khora/native/organs/firewall.js";
 import { buildTurnMessages, emptySummary } from "./vendor/the-fold/fold.js";
+import { SOURCES_NOTE } from "./fold-chat-channels.js";
 
 export { SEVERITY, RULES, garyDecision };
 
@@ -60,6 +61,31 @@ const lastTurnIsTheQuestion = (messages, question) => {
   // Gary strikes addresses in every turn, the person's included, so the comparison is against the struck question.
   return !!last && last.role === "user" && last.content === strikeAddresses(String(question));
 };
+
+// ── a line the prompt already carries is waste (Gary's nothing-twice, P232; Kondo counts it) ────────────────────────────────
+// A thread turn quotes the earlier ask and answer in its own block ([T1] / [T2], fold-chat-thread.js threadPrompt) AND the recent
+// exchange rides as real turns, so the same text is carried twice — measured with Kondo on a live-shaped thread turn: 144 of 206
+// estimated tokens, and for a long earlier answer the rest of a small window. `carryOnce` drops an earlier ask+answer PAIR from the
+// history when both are already inside the system block (whitespace-insensitive, the answer matched by its head because the block
+// clips it). Only a whole pair goes, so the turns still alternate; the question is never touched.
+const squash = (t) => String(t ?? "").replace(/\s+/g, " ").trim();
+export function carryOnce(history, block, { headChars = 200 } = {}) {
+  const list = Array.isArray(history) ? history : [];
+  if (!block || list.length < 2) return { history: list, dropped: 0 };
+  const hay = squash(block);
+  const inside = (m) => {
+    const body = squash(String(m?.content ?? "").startsWith(SOURCES_NOTE) ? String(m.content).slice(SOURCES_NOTE.length) : m?.content);
+    return body.length > 0 && hay.includes(body.slice(0, headChars));
+  };
+  const out = [];
+  let dropped = 0;
+  for (let i = 0; i < list.length; i++) {
+    const a = list[i], b = list[i + 1];
+    if (a?.role === "user" && b?.role === "assistant" && inside(a) && inside(b)) { dropped += 2; i++; continue; }
+    out.push(a);
+  }
+  return { history: out, dropped };
+}
 
 export function makeDoor({ windowOf: windowFor = windowOf } = {}) {
   const kondo = makeKondo({ windowOf: windowFor });
@@ -107,17 +133,19 @@ export function makeDoor({ windowOf: windowFor = windowOf } = {}) {
    */
   function composeTurn(parts, ctx = {}) {
     const { basePrompt = "", cues = [], summary = null, history = [], question = "", sourceBlock = null, recencyWindow, shrinkSource = null } = parts || {};
-    const { model = null, maxTokens = 0, material = undefined } = ctx;
+    const { model = null, maxTokens = 0, material = undefined, dedupe = false } = ctx;
     const facts = (cues || []).map((c) => (typeof c === "string" ? c : c?.text)).map((t) => String(t ?? "").trim()).filter(Boolean);
     const hasFold = !!summary && (!!summary.topic || (summary.records || []).length > 0);   // the two blocks buildTurnMessages projects
-    const state = { cues: facts.length > 0, fold: hasFold, rw: recencyWindow, src: sourceBlock, srcChars: 0 };
+    const state = { cues: facts.length > 0, fold: hasFold, rw: recencyWindow, src: sourceBlock };
+    // the earlier exchange is carried ONCE: when the system block quotes it, the turns that repeat it are left out (dedupe)
+    const once = dedupe ? carryOnce(history, sourceBlock) : { history, dropped: 0 };
     const build = () => buildTurnMessages({
       basePrompt: state.cues ? [basePrompt, facts.join(" ")].filter(Boolean).join("\n\n") : basePrompt,
       summary: state.fold ? summary : emptySummary(),
-      history, question, sourceBlock: state.src, recencyWindow: state.rw,
+      history: once.history, question, sourceBlock: state.src, recencyWindow: state.rw,
     });
     const read = () => hand(build(), { model, maxTokens, material, question, kind: "turn", record: false });
-    const withheld = [];
+    const withheld = once.dropped ? ["repeats"] : [];
     let r = read();
 
     // 1. A REFUSE: the fold (what the reply hears about the conversation, then the conversation's own running summary) is
@@ -128,7 +156,7 @@ export function makeDoor({ windowOf: windowFor = windowOf } = {}) {
     // 2. Over the window the model is loaded at (only when that window is KNOWN): shed, in this order, the oldest of the
     //    exchange, the cues, then the sources' own length — never the question, and never the middle of the prompt.
     const over = () => r.findings.some((f) => f.rule === "fits-the-window");
-    if (!r.refused.length && over() && history.length > 2 && state.rw !== 2) { state.rw = 2; withheld.push("history"); r = read(); }
+    if (!r.refused.length && over() && once.history.length > 2 && state.rw !== 2) { state.rw = 2; withheld.push("history"); r = read(); }
     if (!r.refused.length && over() && state.cues) { state.cues = false; if (!withheld.includes("cues")) withheld.push("cues"); r = read(); }
     if (!r.refused.length && over() && typeof shrinkSource === "function" && sourceBlock) {
       for (const maxChars of [2000, 1000, 500, 250]) {

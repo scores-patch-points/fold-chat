@@ -1,10 +1,16 @@
 // fold-chat-client.js — The Fold's chat surface, speaking to Heimdall.
 //
-// The Fold's chat version is a browser page, not a server app. Its models and
-// routing live on this machine: the heimdall bridge (localhost:8790) speaks
-// the OpenAI wire, holds the fleet (phones, linked native hosts) and the
-// configured remote/frontier providers, and ENFORCES the sealed-external gate
-// for outside models. This module is the chat's half of that wire:
+// The Fold's chat version is a browser page, not a server app. There is no
+// standalone bridge: the Fold's own server mounts heimdall in-process at
+// /heimdall on the SAME origin as this page (server.mjs), and that embedded
+// heimdall speaks the OpenAI wire, holds the fleet (phones, linked native
+// hosts) and the configured remote/frontier providers, and ENFORCES the
+// sealed-external gate for outside models. The model itself runs IN THE PAGE
+// (fold-chat-webllm.js, WebGPU): a `webllm:` model is served by the tab's own
+// engine, never over the wire, so nothing about it can leave the tab. The old
+// standalone bridge (localhost:8790) is only a LATER fallback, for a page that
+// is not served by the Fold's server (GitHub Pages). This module is the chat's
+// half of that wire:
 //
 //   listModels()     GET /api/tags   -> every model heimdall can serve, with
 //                     its heimdall metadata (frontier? privacy class?) — the
@@ -20,7 +26,25 @@
 //
 // Browser + node (tests use an injected fetch).
 
-export const DEFAULT_BRIDGE = "http://localhost:8790";
+import { PAGE_PREFIX, canonicalModelId, pageModels, PageEngineError } from "./fold-chat-webllm.js";
+
+/** The old standalone bridge's usual origins. Not the home of the bridge any more: they are tried AFTER the same-origin
+ *  embedded heimdall, so a GitHub-Pages page (or the extension) with a bridge running on this machine still finds it. */
+export const LEGACY_BRIDGES = Object.freeze(["http://localhost:8790", "http://127.0.0.1:8790"]);
+/** Where the Fold's own server mounts heimdall, relative to its origin (server.mjs PREFIX). */
+export const EMBEDDED_PATH = "/heimdall";
+
+/** The embedded heimdall of the server that served THIS page: `<origin>/heimdall`, or null when the page is not served over
+ *  http(s) (the extension's chrome-extension:// pages, a file:// open, node). Pure given `loc`. */
+export function sameOriginBridge(loc = globalThis.location) {
+  try {
+    if (!loc || (loc.protocol !== "http:" && loc.protocol !== "https:") || !loc.origin || loc.origin === "null") return null;
+    return loc.origin + EMBEDDED_PATH;
+  } catch { return null; }
+}
+
+/** The bridge a page starts from: the same-origin embedded heimdall when there is one, else the legacy local port. */
+export const DEFAULT_BRIDGE = sameOriginBridge() || LEGACY_BRIDGES[0];
 
 /** Combine abort signals (the caller's stop + a hard timeout). Portable: uses
  *  AbortSignal.any when present, else a small shim, so it works in every
@@ -35,27 +59,45 @@ function anySignal(signals) {
   return ctl.signal;
 }
 
-import { createDeid, namesIn } from "./fold-chat-deid.js";
-import { informalTerms } from "./fold-chat-informal.js";
+import { namesIn } from "./fold-chat-deid.js";
+import { deidentify } from "./fold-chat-redact.js";
 
-/** Where heimdall is looked for, in order. A caller's stored/override base is
- *  tried first, then the standard local port on both names. */
-export const BRIDGE_CANDIDATES = Object.freeze([
-  "http://localhost:8790",
-  "http://127.0.0.1:8790",
-]);
+/** The legacy fallbacks, in order (the standard local port on both names). The embedded same-origin heimdall is NOT in this
+ *  list because it depends on where the page was served: bridgeCandidates() puts it first. */
+export const BRIDGE_CANDIDATES = LEGACY_BRIDGES;
 
-/** The bridge a caller points at. Overridable (localStorage in the page,
- *  constructor arg in tests). */
-export function bridgeBase(override = null) {
-  return String(override || DEFAULT_BRIDGE).replace(/\/+$/, "");
+/** Where heimdall is looked for, in order: the same-origin embedded one first, then the legacy local bridge. */
+export function bridgeCandidates({ loc = globalThis.location } = {}) {
+  const own = sameOriginBridge(loc);
+  return own ? [own, ...LEGACY_BRIDGES] : [...LEGACY_BRIDGES];
 }
 
-/** Find the running heimdall bridge without the person typing it. Probes each
- *  candidate (the override first) with /bridge/hello, falling back to /api/tags
- *  for an older bridge. Returns { ok, base, hello } — never throws. */
-export async function detectBridge({ override = null, candidates = BRIDGE_CANDIDATES, fetchImpl = fetch, timeoutMs = 1500 } = {}) {
-  const list = [...new Set([...(override ? [override] : []), ...candidates].map(bridgeBase))];
+/** The bridge a caller points at. Overridable (localStorage in the page, constructor arg in tests). Only trailing slashes are
+ *  trimmed, so the `/heimdall` prefix the embedded bridge lives under is carried into every route and never doubled. */
+export function bridgeBase(override = null) {
+  return String(override || sameOriginBridge() || LEGACY_BRIDGES[0]).replace(/\/+$/, "");
+}
+
+/** The base a page should start from given what it stored. A stored override that is just the OLD default (the standalone
+ *  bridge's port, written by an earlier Detect) must not shadow the embedded heimdall now serving this very page; any other
+ *  override is the person's own choice and wins. */
+export function pickBridge(stored = null, { loc = globalThis.location } = {}) {
+  const own = sameOriginBridge(loc);
+  const s = stored ? bridgeBase(stored) : null;
+  if (!s) return own || LEGACY_BRIDGES[0];
+  if (own && LEGACY_BRIDGES.includes(s)) return own;
+  return s;
+}
+
+/** Find the running heimdall without the person typing it. Probes each candidate (a custom override first, then the same-origin
+ *  embedded heimdall, then the legacy local port) with /bridge/hello, then /api/tags (an older bridge), then the embedded
+ *  heimdall's own /status (it answers even while its floor is down). Returns { ok, base, hello } — never throws. */
+export async function detectBridge({ override = null, candidates = null, fetchImpl = fetch, timeoutMs = 1500, loc = globalThis.location } = {}) {
+  const pool = candidates || bridgeCandidates({ loc });
+  const own = sameOriginBridge(loc);
+  // A stored legacy default (see pickBridge) does not outrank the embedded heimdall; it just falls into the fallback order.
+  const custom = override && !(own && LEGACY_BRIDGES.includes(bridgeBase(override))) ? [override] : [];
+  const list = [...new Set([...custom, ...pool, ...(override ? [override] : [])].map((b) => bridgeBase(b)))];
   for (const base of list) {
     try {
       const r = await fetchImpl(base + "/bridge/hello", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
@@ -64,6 +106,10 @@ export async function detectBridge({ override = null, candidates = BRIDGE_CANDID
     try {
       const r = await fetchImpl(base + "/api/tags", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
       if (r.ok) return { ok: true, base, hello: null };
+    } catch {}
+    try {
+      const r = await fetchImpl(base + "/status", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
+      if (r.ok) { const j = await r.json().catch(() => null); if (j && /^HeimdallEmbed@/.test(String(j.schema || ""))) return { ok: true, base, hello: null, embedded: true }; }
     } catch {}
   }
   return { ok: false, base: null, hello: null };
@@ -125,9 +171,27 @@ export function isChatModel(m) { return !isCodeModel(m) && !isEmbedModel(m); }
  *  (local, then fleet), else any free one, else any unsealed, else the first.
  *  A code-specialist model is PREFERRED AGAINST — it is a poor prose mouth, and
  *  auto-pick serves ordinary chat first. The free and automatic choice —
- *  heimdall still routes whatever is picked. Pure and testable. */
+ *  heimdall still routes whatever is picked. Pure and testable.
+ *
+ *  IN-PAGE MODELS (kind "webllm-page", the tab's own engine) come first when they are READY and last when they are not:
+ *    1. an in-page model already loaded in this tab,
+ *    2. an in-page model already downloaded (cached),
+ *    3. a bridge model that is up (free ones first; a sealed one is never preferred to a free in-page default),
+ *    4. the default in-page model — selected but NOT downloaded (the first send asks once; nothing is fetched by picking),
+ *    5. whatever else exists (the old tail: a sealed or code-only model beats nothing). */
 export function autoPick(models) {
   const list = Array.isArray(models) ? models : [];
+  const page = list.filter(isPageModel);
+  if (!page.length) return pickFrom(list);
+  const rest = list.filter((m) => !isPageModel(m));
+  const chatPage = page.filter((m) => isChatModel(m) && !m.sealed);
+  const ready = chatPage.find((m) => m.loaded) || chatPage.find((m) => m.cached);
+  if (ready) return ready;
+  const up = pickFrom(rest.filter((m) => !m.sealed && isChatModel(m)));
+  if (up) return up;
+  return chatPage.find((m) => m.default) || chatPage[0] || pickFrom(rest) || page[0] || null;
+}
+function pickFrom(list) {
   const by = (pred) => list.find(pred);
   const free = (tier) => list.filter((m) => !m.sealed && (m.tier || tierOf(m)) === tier && isChatModel(m));
   return free("local")[0]
@@ -146,7 +210,7 @@ export function tierOf(m) {
   if (!m) return "local";
   if (m.sealed) return "frontier";
   const k = m.kind || String(m.provider || "");
-  if (k === "webllm" || k === "local") return "local";
+  if (k === "webllm" || k === "webllm-page" || k === "local") return "local";
   if (k === "fleet" || k === "native") return "fleet";
   return "remote";
 }
@@ -176,6 +240,117 @@ export async function listModels({ base = null, fetchImpl = fetch } = {}) {
   return out;
 }
 
+// ───────────────────────── the model IN THIS TAB ─────────────────────────
+//
+// The page's own engine (fold-chat-webllm.js createPageEngine, WebGPU) is registered once by the surface. Its models are listed
+// beside the bridge's, and chat() serves them from the tab: no request, no heimdall, no sealed gate — nothing leaves the tab.
+let pageEngine = null;
+let pageHooks = {};
+/** The window every in-tab model runs at: read off the pinned web-llm 0.2.85 prebuilt config (context_window_size is 4096 for each
+ *  model in MODEL_CHOICES, checked 2026-10-05), so Gary can shrink a prompt to fit instead of the engine rejecting it. */
+export const PAGE_CONTEXT_TOKENS = 4096;
+/** Register (or clear, with null) the page's engine. `confirmDownload({ id, name, sizeLabel, cached }) → Promise<boolean>` is
+ *  asked ONCE before a model that is not on this device is fetched; with no answer function (or a "no") nothing is downloaded. */
+export function setPageEngine(engine, { confirmDownload = null } = {}) {
+  pageEngine = engine && typeof engine.chatStream === "function" ? engine : null;
+  pageHooks = { confirmDownload: typeof confirmDownload === "function" ? confirmDownload : null };
+}
+export function getPageEngine() { return pageEngine; }
+/** A model the tab itself serves ('webllm:<id>' or a listed entry of kind 'webllm-page'). */
+export function isPageModel(m) {
+  if (m && typeof m === "object") return m.kind === "webllm-page" || String(m.id || "").startsWith(PAGE_PREFIX);
+  return String(m ?? "").startsWith(PAGE_PREFIX);
+}
+
+/** Every model this page can use: the tab's own (listed even when the bridge is down or never answered) plus whatever the
+ *  bridge serves. { models, bridgeUp, bridgeError, page: { available, reason, count } }. Never throws and never downloads:
+ *  listing a page model reads the browser's own cache hint, it does not load the library or the weights. */
+export async function listAllModels({ base = null, fetchImpl = fetch, engine = pageEngine, bridge = true } = {}) {
+  let bridgeModels = [], bridgeUp = true, bridgeError = null;
+  const bridgeP = bridge === false ? Promise.resolve() : listModels({ base, fetchImpl }).then((m) => { bridgeModels = m; }, (e) => { bridgeUp = false; bridgeError = e?.message || String(e); });
+  let inTab = [], reason = engine ? "no-adapter" : "no-engine";
+  const tabP = engine ? pageModels(engine).then((m) => { inTab = m; reason = m.reason; }, () => { inTab = []; }) : Promise.resolve();
+  await Promise.all([bridgeP, tabP]);
+  const tab = inTab.map((m) => ({ ...m, location: "tab", tier: "local", contextWindow: m.contextWindow ?? PAGE_CONTEXT_TOKENS }));
+  return { models: [...tab, ...bridgeModels], bridgeUp, bridgeError, page: { available: tab.length > 0, reason, count: tab.length } };
+}
+
+/** The words a person reads when a page model could not answer. status is a plain number the app's notices understand
+ *  (never 0 = "the bridge could not be reached", never 403 = "a gate said no"). */
+function pageError(e, model) {
+  if (e && e.name === "AbortError") return e;
+  const kind = e instanceof PageEngineError ? e.kind : "error";
+  const msg = String(e?.message || e);
+  const out = new Error(
+    kind === "no-gpu" ? `this browser has no WebGPU (${e.reason || "no-adapter"}), so ${model} cannot run in this tab \u2014 use a WebGPU browser, the Fold's extension, or a bridge instead`
+    : kind === "loader" ? `the in-tab model runtime could not be fetched (${msg}) \u2014 it needs the network once`
+    : msg);
+  out.status = kind === "no-gpu" ? 501 : kind === "loader" ? 502 : kind === "bad-request" ? 422 : 500;
+  out.kind = kind; out.place = "tab"; out.model = model;
+  if (e?.reason) out.reason = e.reason;
+  return out;
+}
+
+async function chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload }, finishAudit, auditId) {
+  const eng = pageEngine;
+  const fail = (e) => { const err = pageError(e, model); finishAudit({ ok: false, status: err.status, error: err.message }); return err; };
+  const abortErr = () => Object.assign(new Error("aborted"), { name: "AbortError" });
+  if (!eng) throw fail(new PageEngineError("no-gpu", "no in-page engine is registered in this page", { reason: "no-engine" }));
+  if (signal?.aborted) { finishAudit({ ok: false, error: "aborted" }); throw abortErr(); }
+  const canon = canonicalModelId(model);
+  let loaded = eng.isLoaded() && eng.loadedId() === canon;
+  if (!loaded) {
+    // NEVER a silent multi-GB download: a model that is not on this device is fetched only after a "yes".
+    let cached = false;
+    try { cached = await eng.cached(canon, { probe: true }); } catch { cached = false; }
+    if (!cached && allowDownload !== true) {
+      const ask = confirmDownload || pageHooks.confirmDownload;
+      let yes = false;
+      try {
+        const asking = ask ? Promise.resolve(ask({ id: canon, name: canon, cached: false })) : Promise.resolve(false);
+        // Stop releases the turn even while the question is still open.
+        yes = !!(await (signal ? Promise.race([asking, new Promise((_, rej) => signal.addEventListener?.("abort", () => rej(abortErr()), { once: true }))]) : asking));
+      } catch (e) { if (e && e.name === "AbortError") { finishAudit({ ok: false, error: "aborted" }); throw e; } yes = false; }
+      if (!yes) {
+        const err = new Error(`the in-tab model ${canon} is not downloaded and the download was not approved`);
+        err.status = 428; err.kind = "declined"; err.place = "tab"; err.model = model;
+        finishAudit({ ok: false, status: 428, error: err.message });
+        throw err;
+      }
+    }
+    // load() cannot be cancelled once it has begun (the weights keep caching for next time); Stop only releases THIS turn.
+    const loading = Promise.resolve().then(() => eng.load(canon));
+    loading.catch(() => {});
+    const released = new Promise((_, rej) => { signal?.addEventListener?.("abort", () => rej(abortErr()), { once: true }); });
+    try { await (signal ? Promise.race([loading, released]) : loading); } catch (e) { throw fail(e); }
+  }
+  // The hard total timeout covers the GENERATION only (a first load may legitimately take minutes on a slow link).
+  const timeoutCtl = new AbortController();
+  const timer = setTimeout(() => timeoutCtl.abort(new Error("chat timed out")), totalTimeoutMs);
+  const combined = signal ? anySignal([signal, timeoutCtl.signal]) : timeoutCtl.signal;
+  let text = "", tokens = 0;
+  try {
+    for await (const d of eng.chatStream(messages, { signal: combined, temperature, maxTokens })) {
+      text += d; tokens++;
+      onToken?.(d);
+    }
+  } catch (e) {
+    clearTimeout(timer);
+    throw fail(e);
+  }
+  clearTimeout(timer);
+  if (signal?.aborted) { finishAudit({ ok: false, error: "aborted" }); throw abortErr(); }
+  if (timeoutCtl.signal.aborted) {
+    const err = new Error("the turn timed out (" + Math.round(totalTimeoutMs / 1000) + "s)");
+    err.status = 504; err.kind = "timeout"; err.place = "tab";
+    finishAudit({ ok: false, error: err.message });
+    throw err;
+  }
+  finishAudit({ ok: true, status: 200 });
+  const used = eng.loadedId?.() || canon;
+  return { text, tokens, auditId, usage: { completion_tokens: tokens }, place: "tab", privacy: "in-tab", model: PAGE_PREFIX + used, fellBackFrom: used !== canon ? PAGE_PREFIX + canon : null };
+}
+
 /** One chat turn over the bridge. SSE streams tokens to onToken(text); the
  *  resolved value is { text, tokens } (tokens counted per delta). A sealed
  *  model is forced sealed-external unless the caller chose "explicit".
@@ -193,7 +368,8 @@ const newAuditId = () => "aud_" + Date.now().toString(36) + Math.random().toStri
 let promptDoor = null;
 export function setPromptDoor(fn) { promptDoor = typeof fn === "function" ? fn : null; }
 
-export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null } = {}) {
+export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null, allowDownload = false, confirmDownload = null } = {}) {
+  const inTab = isPageModel(model);
   const url = bridgeBase(base) + "/v1/chat/completions";
   if (promptDoor) {
     const handed = promptDoor(messages, { model, maxTokens, purpose: audit?.purpose || null });
@@ -203,6 +379,15 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
       throw err;
     }
     if (Array.isArray(handed?.messages)) messages = handed.messages;
+  }
+  // A model that lives IN THIS TAB: nothing is sent anywhere, so the sealed-external gate does not apply (and is never claimed).
+  // The prompt door above has already read the messages; the audit record says "in-tab", and the answer comes from the page's engine.
+  if (inTab) {
+    const auditId = audit?.id || newAuditId();
+    let done = null;
+    try { done = auditHook?.before({ auditId, model, messages, privacy: "in-tab", base: null, segments: audit?.segments || null, worlds: audit?.worlds || null, symmetry: audit?.symmetry || null, purpose: audit?.purpose || null, run: audit?.run || null, masking: audit?.masking || null }) || null; } catch { done = null; }
+    const finish = (r) => { try { done?.(r); } catch {} };
+    return chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload }, finish, auditId);
   }
   // Sealed by default for outside models: the Fold selects the privacy mode
   // and seals first. Raw spans never leave — only what the caller put in
@@ -616,19 +801,30 @@ const REMOTE_PREFERENCE = [/^openai-fast$/, /^GLM-[\d.]+-Flash$/i, /^pollination
 // What a remote model did the last time it was asked, kept for this page's life so the app stops asking the same dead door.
 // A 404 means the bridge does not actually serve it (it only LISTS it): skip for 30 minutes. A timeout or an empty answer is
 // worth another go soon: 5 minutes. The model that last answered goes first.
+// It is kept in localStorage too (best effort), so a reload does not forget which doors are dead.
+const HEALTH_KEY = "fold-chat:modelhealth";
 const modelHealth = new Map();   // id → { until, why }
-let lastGoodModel = null;
+let lastGoodModel = null, healthLoaded = false;
+const store = () => { try { return typeof localStorage !== "undefined" ? localStorage : null; } catch { return null; } };
+function loadHealth(now = Date.now()) {
+  if (healthLoaded) return; healthLoaded = true;
+  try { const j = JSON.parse(store()?.getItem(HEALTH_KEY) || "null"); if (j && typeof j === "object") { for (const [id, h] of Object.entries(j.dead || {})) if (h && h.until > now) modelHealth.set(id, h); if (typeof j.good === "string") lastGoodModel = j.good; } } catch { /* a corrupt note is no note */ }
+}
+function saveHealth() { try { store()?.setItem(HEALTH_KEY, JSON.stringify({ dead: Object.fromEntries(modelHealth), good: lastGoodModel })); } catch { /* storage may be unavailable */ } }
 export function noteModelHealth(model, outcome, { now = Date.now() } = {}) {
-  if (outcome === "ok") { lastGoodModel = model; modelHealth.delete(model); return; }
+  loadHealth(now);
+  if (outcome === "ok") { lastGoodModel = model; modelHealth.delete(model); saveHealth(); return; }
   const ms = outcome === "404" || outcome === "quota" ? 30 * 60_000 : 5 * 60_000;   // not served / out of daily quota: no point asking again soon
   modelHealth.set(model, { until: now + ms, why: outcome });
+  saveHealth();
 }
-export function resetModelHealth() { modelHealth.clear(); lastGoodModel = null; }
+export function resetModelHealth() { modelHealth.clear(); lastGoodModel = null; healthLoaded = true; try { store()?.removeItem(HEALTH_KEY); } catch { /* ignore */ } }
 export const outcomeOfError = (e) => { const m = String(e?.message || e); return /\b404\b/.test(m) ? "404" : /\b429\b|quota|rate.?limit/i.test(m) ? "quota" : /timed out|timeout/i.test(m) ? "timeout" : "error"; };
 
 /** The sealed remote models worth trying for a code draw, best first. Pure (the memory above is read, never written, here).
  *  `provider:model` and the bare `model` are one endpoint under two names — only one is kept. */
 export function remoteCandidates(models, { now = Date.now() } = {}) {
+  loadHealth(now);
   const sealed = (Array.isArray(models) ? models : []).filter((m) => m && m.sealed && !NOT_A_CODE_WRITER.test(String(m.id)));
   const ids = new Set(sealed.map((m) => String(m.id)));
   const bare = (id) => (id.includes(":") && !/^[^:]*\d/.test(id) ? id.slice(id.indexOf(":") + 1) : id);   // "pollinations:openai-fast" → "openai-fast"; "gemma4:31b" keeps its tag
@@ -653,37 +849,32 @@ const REMOTE_CODE_SYSTEM = "You are a careful senior engineer. Do exactly what t
  *  map stays here, and the reply is mapped back before it is returned. If a scan of
  *  the masked bytes still finds a private detail, nothing is sent. `mask:false`
  *  sends as written (graded "gate", raw) — only for a caller that means to.
+ *  `redact(texts) → spans[][]` is the local Python PII redactor (fold-chat-redact.js): it judges, is asked again about the
+ *  masked result, and when it is supplied but unreachable NOTHING is sent. `mode` is "default" or "open" (fold-chat-deid.js).
  *  `readNames(text) → [surface]` is the holograph's read of the request (khora referents, local):
  *  what the request NAMES is masked even when the Fold never saw it before. A read that fails or
- *  comes back empty (it does for one-liners) falls back to namesIn(), capitalised multi-word names. Lowercase, SMS-style and
- *  handle-style names are found by informalNames() (fold-chat-informal.js) — always, since the read needs a capital. */
-export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 40000, maxTokens = 4096, onTry = null, run = null, taint = null, mask = true, readNames = null, readTimeoutMs = 4000, fetchImpl = fetch } = {}) {
+ *  comes back empty (it does for one-liners) falls back to namesIn(), capitalised multi-word names. */
+export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 40000, maxTokens = 4096, onTry = null, run = null, taint = null, mask = true, mode = "default", redact = null, readNames = null, readTimeoutMs = 4000, fetchImpl = fetch } = {}) {
   const tried = [];
   // Every part of the request says where it came from — the audit grades the
   // request from this, and refuses what it cannot place.
   const parts = [{ role: "system", content: REMOTE_CODE_SYSTEM, provenance: "template" }];
   if (prior) parts.push({ role: "user", content: "Here is the previous attempt:\n```\n" + String(prior).slice(0, 24000) + "\n```", provenance: "generated" });
   parts.push({ role: "user", content: prompt, provenance: "ask" });
-  let deid = null;
+  let deid = null, viaRedactor = false;
   if (mask) {
+    // The khora's read (capitals only) and namesIn are extra nominators; the Python redactor is the judge, and is asked again about the masked result.
     const asked = parts.filter((p) => p.provenance !== "template").map((p) => p.content).join("\n\n");
     let named = [], viaRead = false;
     if (typeof readNames === "function") {
       try { named = await Promise.race([Promise.resolve(readNames(asked)), new Promise((_, rej) => setTimeout(() => rej(new Error("read deadline")), readTimeoutMs))]) || []; viaRead = named.length > 0; } catch { named = []; }
     }
-    // The read and namesIn both find a name by its capital. Informal typing has none, so the slot-and-priors finder always runs too.
-    named = [...new Set([...named, ...namesIn(asked)])].map((term) => ({ term, kind: "name" })).concat(informalTerms(asked).map((f) => ({ ...f, kind: "name" })));
-    deid = createDeid({ taint, extra: named });
-    deid.viaRead = viaRead;
+    named = [...new Set([...named, ...namesIn(asked)])].map((term) => ({ term, kind: "name" }));
     const own = parts.map((p, i) => i).filter((i) => parts[i].provenance !== "template");   // the Fold's own instructions are not the person's
-    const masked = deid.maskAll(own.map((i) => parts[i].content));
-    const left = masked.flatMap((m) => deid.residual(m));
-    if (left.length) {
-      const err = new Error("not sent: private details could not be taken out of the request (" + [...new Set(left.map((h) => h.kind))].join(", ") + ")");
-      err.status = 0; err.tried = []; err.sent = [];
-      throw err;
-    }
-    own.forEach((i, k) => { parts[i] = { ...parts[i], content: masked[k], provenance: "masked" }; });
+    const out = await deidentify(own.map((i) => parts[i].content), { taint, extra: named, mode, redact });
+    deid = out.deid; deid.viaRead = viaRead; viaRedactor = out.viaRedactor;
+    // "masked" is only claimed when the redactor judged it; without one the floor ran and the content keeps its honest provenance.
+    own.forEach((i, k) => { parts[i] = { ...parts[i], content: out.texts[k], provenance: viaRedactor ? "masked" : parts[i].provenance }; });
   }
   const messages = parts.map(({ role, content }) => ({ role, content }));
   const segments = parts.map((p) => ({ role: p.role, chars: p.content.length, provenance: p.provenance }));

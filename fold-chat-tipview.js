@@ -1,20 +1,31 @@
 // fold-chat-tipview.js — the ONE "Tip the creator" control, used by the recipe card, the Sources-only strand and the
-// facing page's source rows (fold-chat-tip.js is the logic; this is only the hand).
+// facing page's source rows (fold-chat-tip.js is the logic and the kind's definition is fold-chat-support-routes.json;
+// this is only the hand).
 //
-// A click looks for how the creator's OWN site says to reach them, then:
+// A click looks for how the creator's OWN site says to support or reach them, in this order, then:
+//   tip   -> opens the creator's own tip page (Ko-fi, Patreon, GitHub Sponsors, their own donate page…) in a NEW tab
+//            (noopener, noreferrer). One shared control: that page is the primary action; if the site also publishes an
+//            email, a quiet secondary "Or email them" link opens the draft ONLY when pressed (never both at once).
 //   email -> opens the person's own email app with a draft (a mailto: link; nothing is sent until they send it),
 //   form  -> copies the draft and opens the creator's own contact page in a new tab,
-//   none  -> says so, opens nothing.
-// Nothing happens without a click. Nothing is paid or sent by the Fold. textContent only; a page's words never become markup.
-import { findContact, tipDraft, TIP_SAY, isPlatformSite, looksLikeHandle } from "./fold-chat-tip.js";
+//   none  -> says plainly there is no way to tip them directly and offers THEIR OWN PAGES: their website and the social
+//            profiles the page publishes, each opening in a new tab only when pressed.
+// When a tip or email exists, the website and profiles are quiet secondary links below it.
+// The Fold pays nothing, sends nothing, takes nothing, prefills no amount, never visits a profile, never posts or follows.
+// Nothing happens without a click. textContent only; a page's words never become markup.
+import { findContact, tipDraft, TIP_SAY, TIP_LABELS, isPlatformSite, looksLikeHandle } from "./fold-chat-tip.js";
 import { readText as webReadText } from "./fold-chat-web.js";
 
-const deps = { readText: (u) => webReadText(u), pause: undefined };
+const deps = { readText: (u, o) => webReadText(u, o), pause: undefined, humans: false };
 /** The app wires its audited, memoised page reader here once (fold-chat.js); tests may pass their own. */
 export function configureTip(o = {}) { Object.assign(deps, o); }
 
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 const siteOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
+// a popup opened after a long search may be blocked by the browser (the click's permission lapses): then the visible link is the way
+const FRESH_MS = 3500;
+const safeUrl = (u) => { try { const x = new URL(String(u)); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
+const outLink = (cls, label, href, aria) => { const a = el("a", cls, label); a.href = href; a.target = "_blank"; a.rel = "noopener noreferrer"; if (aria) a.setAttribute("aria-label", aria); return a; };
 
 /**
  * @param src   { url, title, creator?, site?, contact? }   contact: what the page offered when read (see contactOfPassage)

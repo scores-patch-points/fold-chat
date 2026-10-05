@@ -138,7 +138,7 @@ export function createTaint() {
 export function gradeRequest(req, { taint = null } = {}) {
   const body = canonMessages(req.messages);
   // A value already swapped for a placeholder is not a secret: "password = SECRET_1" and "/Users/USER_1/" are what masking leaves behind.
-  const secretHits = scanSecrets(body.replace(/\b(?:USER|PATH|FILE|TERM|EMAIL|PHONE|SECRET|HOST|ID)_\d+_?/g, "§"));
+  const secretHits = scanSecrets(body.replace(/\b(?:PERSON|NAME|ORG|LOC|GROUP|URL|HANDLE|ADDRESS|USER|PATH|FILE|TERM|EMAIL|PHONE|SECRET|HOST|ID)_[a-hj-km-np-z2-9]{6}\b/gi, "§"));
   const taintHits = taint ? taint.scan(body) : [];
   const provenance = (req.segments || []).map((s) => s.provenance);
   const forbidden = provenance.filter((p) => NEVER_SENT.includes(p));

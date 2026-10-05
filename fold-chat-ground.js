@@ -19,16 +19,53 @@
 //   turnRecord          the holodeck's one-line record: addresses checked,
 //                       nothing unsupported (or how many are not in the material).
 //
+// HOW A SENTENCE IS GROUNDED (docs/GATE-FIX-PREREG.md, measured by eval/controls.mjs): the material is cut into sentences; a claim is
+// checked against a WINDOW (one sentence and one either side), chosen by how much of the claim's figures, names and content terms it
+// carries. Inside the window every figure must be present (same figure, or the same quantity in another declared unit to the claim's own
+// precision) and bound to the words it sits beside; a name that is not the page's subject must be present too; every content term must be
+// on the page at all. Source tags ([W1]), "According to the … article", site names and markdown are stripped first. Cross-language
+// sentences cannot overlap lexically: they are returned with the typed reason "cross-language", never grounded on a figure alone.
+//
 // It never judges whether an uncited claim is TRUE; it says what the material
 // backs and what it does not. The model proposes; the record decides.
+
+import { segments, SITE_NAMES } from "./fold-chat-mind.js";
+import { FUNCTION_WORDS } from "./fold-chat-function-words.js";
+import { detectLang } from "./fold-chat-lang.js";
 
 export const MIN_RUN = 2;
 // A run of shared tokens only warrants a claim if at least one token is
 // SUBSTANTIVE — a content word, not a function word. Without this, two common
 // words ("Washington, D.C.") anchor an unrelated "founded 1795".
-const STOP = new Set(["the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "is", "are", "was", "were", "be", "been", "by", "as", "at", "it", "its", "this", "that", "these", "those", "with", "from", "into", "his", "her", "their", "they", "them", "we", "you", "he", "she", "had", "has", "have", "not", "but", "also", "first", "one", "two", "new", "old", "then", "than", "when", "where", "which", "who", "will", "would", "could", "should", "said", "says", "any", "all", "some", "may", "more", "most", "other", "such", "only", "own", "same", "so", "no", "nor", "too", "very"]);
+const STOP_EN = ["the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "is", "are", "was", "were", "be", "been", "by", "as", "at", "it", "its", "this", "that", "these", "those", "with", "from", "into", "his", "her", "their", "they", "them", "we", "you", "he", "she", "had", "has", "have", "not", "but", "also", "first", "one", "two", "new", "old", "then", "than", "when", "where", "which", "who", "will", "would", "could", "should", "said", "says", "any", "all", "some", "may", "more", "most", "other", "such", "only", "own", "same", "so", "no", "nor", "too", "very"];
+// Hedges and frame verbs: words that wrap a claim without being the claim ("roughly 8,849 m", "is located in",
+// "is known as"). Declared, English; another language's hedges simply count as content (an honest limit).
+const HEDGE_EN = ["roughly", "officially", "formally", "widely", "commonly", "traditionally", "approximately", "approx", "nearly", "likely", "probably", "possibly", "perhaps", "apparently", "believed", "thought", "considered", "indicate", "indicates", "suggest", "suggests", "source", "sources", "article", "page", "almost", "circa", "estimated", "reportedly", "generally", "typically", "usually", "often", "really", "actually", "simply", "basically", "currently", "still", "just", "even", "ever", "about", "around", "located", "situated", "found", "known", "called", "named", "stands", "stand", "lies", "became", "become", "becomes", "made", "makes", "make", "using", "used", "uses", "being", "there", "their", "which", "while", "since", "many", "much", "well", "year", "years", "today", "currently", "overall", "namely", "indeed", "exactly"];
+// Function words of every language we carry a prior for (fold-chat-function-words.js, UD-derived), folded the same way
+// tokens are. The union is only ever used to say "this token carries no claim by itself".
+// Marks folded away so spelling variants meet: Latin accents (U+0300-036F), Arabic tatweel and tashkeel (U+0640, U+064B-065F,
+// U+0670), Hebrew niqqud (U+0591-05C7). Built from code points so the source stays readable.
+const cps = (ranges) => new RegExp("[" + ranges.map(([a, b]) => String.fromCharCode(a) + (b ? "-" + String.fromCharCode(b) : "")).join("") + "]", "g");
+const FOLD_MARKS = cps([[0x300, 0x36f], [0x640], [0x64b, 0x65f], [0x670], [0x591, 0x5c7]]);
+const PLAIN_ASCII = /^[\x00-\x7f]*$/;
+const foldWord = (t) => {
+  const s = String(t);
+  return PLAIN_ASCII.test(s) ? s.toLowerCase() : s.normalize("NFD").replace(FOLD_MARKS, "").normalize("NFC").toLowerCase();
+};
+const STOP = new Set([...STOP_EN, ...Object.values(FUNCTION_WORDS).flat().map(foldWord)]);
+const HEDGE = new Set(HEDGE_EN);
 const isFigure = (t) => /^\d/.test(t);
-const substantive = (t) => t.length >= 4 && !STOP.has(t);
+const IDEO = /^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+const ABJAD = /^[\p{Script=Arabic}\p{Script=Hebrew}\p{Script=Devanagari}\p{Script=Thai}]/u;
+// A content token: not a function word or hedge, and long enough to be a word in ITS script — an ideographic or Hangul
+// word is 2+ characters; Arabic/Hebrew/Devanagari/Thai words are 3+; everything else 4+ (the old rule, a Latin one).
+const contentToken = (t) => {
+  if (!t || isFigure(t) || STOP.has(t) || HEDGE.has(t)) return false;
+  if (IDEO.test(t)) return t.length >= 2;
+  if (ABJAD.test(t)) return t.length >= 3;
+  return t.length >= 4;
+};
+const substantive = (t) => (isFigure(t) ? t.length >= 4 : contentToken(t));
 // A shared run anchors a claim only when it carries real content: at least TWO
 // substantive tokens, at least one a word (not a bare figure). "in 2014",
 // "the first", "its first", "was the first" all fail (one substantive);
@@ -38,6 +75,7 @@ const substantiveRun = (toks) => {
   const subs = toks.filter(substantive);
   return subs.length >= 2 && subs.some((t) => !isFigure(t));
 };
+
 // A trailing token that only LOOKS like a sentence end: titles, a multi-dot
 // abbreviation (D.C., U.S., a.m.), or a lone initial (J. R. R. Tolkien).
 const ABBREV = /\b(?:mr|mrs|ms|dr|prof|sr|jr|st|vs|etc|no|fig|inc|ltd|co|gov|dept|approx|est|mt|ave|blvd|rd|gen|col|capt|lt|sgt|hon|rev|pres|vol|ed|pp?)\.$|(?:\b[A-Za-z]\.){2,}$|\b[A-Z]\.$/i;
@@ -45,10 +83,11 @@ const ABBREV = /\b(?:mr|mrs|ms|dr|prof|sr|jr|st|vs|etc|no|fig|inc|ltd|co|gov|dep
 /** Split an answer into sentences. A newline boundary is unconditional; only
  *  a ./!/? boundary can be an abbreviation in disguise. */
 export function splitSentences(text) {
-  const src = String(text ?? "");
+  // CJK full stops are followed by no space at all: a boundary is made after each one.
+  const src = String(text ?? "").replace(/([。！？]+['"”’)\]」』]*)(?=\S)/gu, "$1\n");
   const pieces = [];
   let start = 0;
-  const re = /(?<=[.!?])\s+|\n+/g;
+  const re = /(?<=[.!?।॥؟。！？])\s+|\n+/g;
   let m;
   while ((m = re.exec(src)) !== null) {
     const piece = src.slice(start, m.index);
@@ -92,10 +131,15 @@ export function excerpt(text, span, { max = 240 } = {}) {
   const from = Math.max(0, span.start - LOOK);
   const to = Math.min(s.length, span.end + LOOK);
   const beforeTxt = s.slice(from, span.start);
-  const bIdx = Math.max(beforeTxt.lastIndexOf("."), beforeTxt.lastIndexOf("!"), beforeTxt.lastIndexOf("?"), beforeTxt.lastIndexOf("\n"));
+  // a sentence ends at ./!/? FOLLOWED BY SPACE (never inside "8,848.86" or "3.14"), at a CJK/Devanagari/Arabic terminator, or at a newline
+  // (and never after a title or initial: "St.", "Dr.", "J.")
+  const endsHere = (abs) => !(s[abs] === "." && ABBREV.test(s.slice(Math.max(0, abs - 12), abs + 1)));
+  let bIdx = -1;
+  for (const m of beforeTxt.matchAll(/[.!?](?=\s|$)|[。！？।॥؟]|\n/gu)) if (endsHere(from + m.index)) bIdx = m.index;
   const start = bIdx >= 0 ? from + bIdx + 1 : from;
   const afterTxt = s.slice(span.end, to);
-  const aIdx = afterTxt.search(/[.!?\n]/);
+  let aIdx = -1;
+  for (const m of afterTxt.matchAll(/[.!?](?=\s|$)|[。！？।॥؟]|\n/gu)) if (endsHere(span.end + m.index)) { aIdx = m.index; break; }
   const end = aIdx >= 0 ? span.end + aIdx + 1 : to;
   let before = oneLine(s.slice(start, span.start));
   const mark = oneLine(s.slice(span.start, span.end));
@@ -114,15 +158,42 @@ export function excerpt(text, span, { max = 240 } = {}) {
 const wordTail = (t, n) => (t.length <= n ? t : (t.slice(t.length - n).replace(/^\S*\s+/, "") || ""));
 const wordHead = (t, n) => (t.length <= n ? t : (t.slice(0, n).replace(/\s+\S*$/, "") || ""));
 
+// ---- tokens ----------------------------------------------------------------
+// A token is a run of letters, marks and digits: \p{M} keeps Devanagari/Arabic vowel signs INSIDE their word, and a
+// run that holds ideographic or Thai text is cut into words by Intl.Segmenter (a CJK clause is not one token).
+// Diacritics are folded away (Latin accents, Arabic tashkeel, Hebrew niqqud); case is folded for every script that has it.
+const WORD_RUN = /[\p{L}\p{N}\p{M}]+/gu;
+const UNSPACED = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Thai}]/u;
+// Digits of other scripts become ASCII digits one for one (offsets are unchanged), so "१९४७" is a figure like "1947".
+const DIGIT_ZEROS = [0x660, 0x6f0, 0x966, 0x9e6, 0xa66, 0xae6, 0xb66, 0xbe6, 0xc66, 0xce6, 0xd66, 0xe50, 0xf20, 0xff10];
+const NON_ASCII_DIGIT = cps([[0x660, 0x669], [0x6f0, 0x6f9], [0x966, 0x96f], [0x9e6, 0x9ef], [0xa66, 0xa6f], [0xae6, 0xaef], [0xb66, 0xb6f], [0xbe6, 0xbef], [0xc66, 0xc6f], [0xce6, 0xcef], [0xd66, 0xd6f], [0xe50, 0xe59], [0xf20, 0xf29], [0xff10, 0xff19]]);
+const asciiDigits = (s) => !NON_ASCII_DIGIT.test(s) ? s : s.replace(/\p{Nd}/gu, (ch) => {
+  const cp = ch.codePointAt(0);
+  if (cp < 128) return ch;
+  for (const z of DIGIT_ZEROS) if (cp >= z && cp < z + 10) return String(cp - z);
+  return ch;
+});
+function wordsOfRun(run) {
+  if (typeof Intl !== "undefined" && Intl.Segmenter) {
+    const out = [];
+    for (const x of segments(run)) out.push({ text: x.text, start: x.start, end: x.end });
+    if (out.length) return out;
+  }
+  // No segmenter: an ideographic run falls back to one token per character (a lexical run can still be found).
+  return [...run].map((ch, k) => ({ text: ch, start: k, end: k + ch.length }));
+}
+
 /** Tokens with their character offsets in the source, so a shared run can be
  *  mapped back to a real byte range. */
 export function tokensWithOffsets(text) {
-  const src = String(text ?? "");
-  const folded = src.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const src = asciiDigits(String(text ?? ""));
   const out = [];
-  const re = /[\p{L}\p{N}]+/gu;
-  let m;
-  while ((m = re.exec(folded)) !== null) out.push({ t: m[0].toLowerCase(), start: m.index, end: m.index + m[0].length });
+  for (const m of src.matchAll(WORD_RUN)) {
+    const run = m[0];
+    if (UNSPACED.test(run)) {
+      for (const w of wordsOfRun(run)) out.push({ t: foldWord(w.text), start: m.index + w.start, end: m.index + w.end });
+    } else out.push({ t: foldWord(run), start: m.index, end: m.index + run.length });
+  }
   return out;
 }
 
@@ -145,28 +216,21 @@ export function overlap(a, b) {
   return best;
 }
 
-/** The best aligned run, with the material token index where it ends, so the
- *  shared phrase can be addressed. When two runs tie on length, the SUBSTANTIVE
- *  one wins — a run of stopwords ("its first leader") must never outrank a run
- *  that carries content ("john a macdonald"). Substantiveness is checked only
- *  when a run beats the current best (never per-cell): the inner loop is
- *  O(n·m) over whole articles and must not allocate. */
-function bestRun(sentenceTokens, matTokens) {
-  const a = sentenceTokens, b = matTokens;
-  let prev = new Uint16Array(b.length + 1);
+/** The best aligned run of `a` inside b[from, to), with the index (in b) where it ends. When two runs tie on length the
+ *  SUBSTANTIVE one wins — a run of stopwords ("its first leader") never outranks one that carries content. */
+function bestRun(a, b, from = 0, to = b.length) {
+  const n = to - from;
+  let prev = new Uint16Array(n + 1);
   let best = 0, endJ = -1, bestSub = 0, endSub = -1;
-  const subRun = (j, n) => {
+  const subRun = (j, len) => {
     let subs = 0, hasWord = false;
-    for (let k = j - n; k < j; k++) {
-      const t = b[k];
-      if (t.length >= 4 && !STOP.has(t)) { subs++; if (!isFigure(t)) hasWord = true; }
-    }
+    for (let k = j - len; k < j; k++) { const t = b[from + k]; if (substantive(t)) { subs++; if (!isFigure(t)) hasWord = true; } }
     return subs >= 2 && hasWord;
   };
   for (let i = 1; i <= a.length; i++) {
-    const row = new Uint16Array(b.length + 1);
-    for (let j = 1; j <= b.length; j++) {
-      if (a[i - 1] === b[j - 1]) {
+    const row = new Uint16Array(n + 1);
+    for (let j = 1; j <= n; j++) {
+      if (a[i - 1] === b[from + j - 1]) {
         const run = prev[j - 1] + 1;
         row[j] = run;
         if (run > best) { best = run; endJ = j; }
@@ -175,7 +239,7 @@ function bestRun(sentenceTokens, matTokens) {
     }
     prev = row;
   }
-  return bestSub >= MIN_RUN ? { score: bestSub, endJ: endSub } : { score: best, endJ };
+  return bestSub >= MIN_RUN ? { score: bestSub, endJ: from + endSub, sub: true } : { score: best, endJ: endJ < 0 ? -1 : from + endJ, sub: false };
 }
 
 const ALREADY_CITED = /\[[^\]\s]+#\d+-\d+\]/g;
@@ -186,21 +250,54 @@ export function stripSelfCitations(text) {
   return { text: out, removed };
 }
 
+// ---- what is NOT the claim: source tags, lead-ins, source names, markdown ----
+const TAG_RE = /\[\s*[WSM]?\d+\s*\]|\b[WS]\d+\b(?!\.\d)/g;
+const SOURCEY = /wikipedia|article|page|source|site|website|passage|text|document|encyclop\w*|entry|report|\bW\d+\b|\[\s*[WS]\d+\s*\]/i;
+const LEAD_IN = /^\s*(?:according to|per|as (?:stated|reported|noted|described|explained|written|shown) (?:by|in|on)|based on|from|drawing on|source:)\s+[^,:;]{0,90}[,:]\s*/iu;
+// "The sources indicate that …", "As the source puts it, …", "Based on the sources I have, …": the writer reporting that it read, not what it read.
+const SAYS = /^\s*(?:(?:the|these|those|my|your|this|that)\s+(?:[\p{L}'’-]+\s+){0,2})?(?:sources?|passages?|articles?|pages?|documents?|texts?|results?|excerpts?|materials?)(?:\s+(?:I|we)\s+(?:have|read|found))?\s+(?:indicates?|shows?|says?|states?|suggests?|mentions?|notes?|reports?|confirms?|explains?|describes?|tells?|supports?|puts? it)(?:\s+(?:us|you))?(?:\s+that)?\s*[,:]?\s*|^\s*as\s+(?:the|this|that|these)\s+(?:[\p{L}'’-]+\s+){0,2}(?:sources?|passages?|articles?|pages?|documents?|texts?|results?|excerpts?|materials?)\s+(?:puts? it|says?|states?|explains?|notes?|describes?)\s*[,:]?\s*|^\s*based on\s+(?:the\s+)?(?:[\p{L}'’-]+\s+){0,2}(?:sources?|passages?|articles?|pages?|documents?|texts?|results?|excerpts?|materials?)[^,:;]{0,40}[,:]\s*/iu;
+const TRAIL_SRC = /[,;]?\s*(?:according to|as (?:stated|reported|noted) (?:by|in)|per)\s+(?:the\s+)?(?:\[?[WS]\d+\]?|sources?|articles?|pages?)[^.!?]*(?=[.!?]?$)/iu;
+// what is left of a trailing "according to [W2]" once the tag is gone
+const TRAIL_EMPTY = /[,;]?\s*(?:according to|as (?:stated|reported|noted) (?:by|in)|per)\s*[.!?]*\s*$/iu;
+const TRAIL_SAYS = /[,;]?\s*(?:the|this|that|my)\s+(?:[\p{L}'’-]+\s+)?(?:sources?|reports?|articles?|pages?|passages?|texts?|documents?|studies|study|data|material)\s+(?:says?|states?|notes?|reports?|indicates?|shows?|suggests?|explains?|adds?)\W*$/iu;
+const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const SITE_LIST = [...SITE_NAMES].map((n) => n.toLowerCase());
+const SITE_RE = new RegExp(`(?<![\\p{L}\\p{N}])(?:${[...SITE_NAMES].sort((a, b) => b.length - a.length).map(escRe).join("|")})(?![\\p{L}\\p{N}])`, "giu");
+/** A claim without the packaging the writer wrapped it in: leaked [W1]/W2 tags, "According to the … article,", the names
+ *  of the sites it was read from, markdown emphasis. What is left is what the material must carry. */
+export function claimOf(text, extraSiteNames = []) {
+  // a list item's bold label ("* **Historical records:** …") names the item, it is not part of the claim
+  let s = String(text ?? "").replace(/^\s*[*\-•]\s*\*\*[^*\n]{1,60}:\*\*\s*/u, "").replace(/[*_`#>]+/g, " ").replace(TAG_RE, " ");
+  const lead = s.match(LEAD_IN);
+  if (lead && SOURCEY.test(lead[0])) s = s.slice(lead[0].length);
+  s = s.replace(SAYS, "").replace(TRAIL_SRC, "").replace(TRAIL_EMPTY, "").replace(TRAIL_SAYS, "").replace(/^[\s"'“”‘’>-]+|[\s"'“”‘’]+$/gu, "");
+  const low = s.toLowerCase();
+  if (SITE_LIST.some((n) => low.includes(n))) s = s.replace(SITE_RE, " ");
+  for (const n of extraSiteNames) s = s.replace(new RegExp(`(?<![\\p{L}\\p{N}])${escRe(n)}(?![\\p{L}\\p{N}])`, "giu"), " ");
+  return s.replace(/\s+/g, " ").trim();
+}
+// the second-level label of each source host ("britannica" from www.britannica.com) is a source name too
+const hostLabel = (source) => {
+  try { const h = new URL(String(source)).hostname.replace(/^www\./, "").split("."); const l = h.length > 1 ? h[h.length - 2] : h[0]; return l.length >= 5 && !/^wikipedia$/i.test(l) ? l : null; } catch { return null; }
+};
+
+// ---- names ----
 const NAME_RUN_RE = /(?<![\p{L}\p{N}_])(\p{Lu}[\p{L}\p{N}_.'-]*(?:\s+\p{Lu}[\p{L}\p{N}_.'-]*)+)(?<=[\p{L}\p{N}_])/gu;
 const ACRONYM_RE = /(?<![\p{L}\p{N}_])(\p{Lu}{2,})(?![\p{L}\p{N}_])/gu;
-// A single capitalized word that is not the first word of the sentence — a lone
-// proper noun (Washington, Ottawa, Canberra, Brasília). The sentence-initial
-// word is skipped (any capitalized opener is "The/In/At…"), so a mid-sentence
-// capital is a name the sentence commits to.
-const LONE_NAME_RE = /(?<![\p{L}\p{N}_.'-])(\p{Lu}[\p{L}\p{N}_'-]+)(?![\p{L}\p{N}_.'-])/gu;
-const COMMON_CAP = new Set(["The", "A", "An", "In", "On", "At", "Of", "For", "To", "And", "But", "Or", "It", "Its", "This", "That", "These", "Those", "When", "Where", "Which", "Who", "Why", "How", "As", "By", "From", "With", "His", "Her", "Their", "They", "We", "You", "He", "She", "If", "So", "Then", "There", "Here", "Today", "Tomorrow", "Yesterday", "It's", "There's", "However", "Meanwhile", "Also", "Both", "Each", "Every", "Some", "Most", "Many", "After", "Before", "During", "Between", "Under", "Over", "Now", "Once", "Yet", "Thus", "Hence", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
+// A single capitalized word — a lone proper noun (Washington, Ottawa, Canberra, Brasília). It may end the sentence
+// ("…is located in London.": the full stop is not part of the name, only a full stop before another letter is, as in "U.S.").
+const LONE_NAME_RE = /(?<![\p{L}\p{N}_.'-])(\p{Lu}[\p{L}\p{N}_'-]+)(?![\p{L}\p{N}_'-])(?!\.[\p{L}\p{N}])/gu;
+const COMMON_CAP = new Set(["The", "A", "An", "In", "On", "At", "Of", "For", "To", "And", "But", "Or", "It", "Its", "This", "That", "These", "Those", "When", "Where", "Which", "Who", "Why", "How", "As", "By", "From", "With", "His", "Her", "Their", "They", "We", "You", "He", "She", "If", "So", "Then", "There", "Here", "Today", "Tomorrow", "Yesterday", "It's", "There's", "However", "Meanwhile", "Also", "Both", "Each", "Every", "Some", "Most", "Many", "After", "Before", "During", "Between", "Under", "Over", "Now", "Once", "Yet", "Thus", "Hence", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
+  // sentence openers of the other languages we answer in: interrogatives and articles are not names
+  "Qué", "Cuál", "Cuáles", "Cómo", "Cuándo", "Dónde", "Quién", "Por", "El", "La", "Los", "Las", "Un", "Una", "Es", "Según", "Quel", "Quelle", "Quels", "Quelles", "Comment", "Quand", "Où", "Qui", "Quoi", "Pourquoi", "Le", "Les", "Une", "Des", "Du", "Selon", "Wie", "Was", "Wer", "Wann", "What", "Whose", "Whom", "Based", "Note", "Así", "Entonces", "Donc", "Dann", "Wo", "Warum", "Welche", "Welcher", "Welches", "Der", "Die", "Das", "Ein", "Eine", "Es", "Laut", "Qual", "Quais", "Quem", "Quando", "Onde", "Porque", "Como", "O", "Os", "As", "Um", "Uma", "Segundo", "Quale", "Dove", "Perché", "Il", "Lo", "Gli", "Wat", "Waar", "Wanneer", "Waarom", "Het", "Een"]);
 
 /** The names a sentence commits to: runs of >= 2 capitalized words, bare
  *  acronyms, and LONE proper nouns (a capitalized word that is not a common
  *  opener). This is what lets "founded in 1795" be checked against a passage
- *  lacking Washington/Ottawa — a lone subject capital IS a name. */
+ *  lacking Washington/Ottawa — a lone subject capital IS a name. Only scripts
+ *  with capital letters have these; Han, Kana, Arabic, Devanagari … carry no name veto (an honest gap). */
 export function namesIn(text) {
-  const s = String(text ?? "");
+  const s = claimOf(text);
   const names = new Set();
   const taken = []; // spans already consumed by a name-run or acronym
   for (const m of s.matchAll(NAME_RUN_RE)) { names.add(m[1]); taken.push([m.index, m.index + m[0].length]); }
@@ -216,63 +313,390 @@ export function namesIn(text) {
   return [...names];
 }
 
-function namesSupported(text, hayTokens) {
-  const hay = hayTokens instanceof Set ? hayTokens : tokenize(hayTokens || "");
-  return namesIn(text).every((n) => {
-    const parts = tokenize(n).filter((p) => p.length > 1);
-    // Whole-token membership, not substring: "macdonald" must BE a passage
-    // token, never merely inside another ("macdonalds").
-    return parts.length > 0 && parts.every((p) => hay.has(p));
-  });
-}
+// A name's tokens, without the articles that a capitalised run can swallow ("The Eiffel Tower").
+const nameParts = (n) => {
+  const all = tokenize(n).filter((p) => p.length > 1);
+  const core = all.filter((p) => !STOP.has(p));
+  return core;   // a "name" made only of function words ("What I", "The") is a sentence opener, not a name
+};
 
-/** Numbers the sentence commits to must appear in the material. A sentence
- *  saying "founded in 1795" cannot be grounded on a passage that never says
- *  1795 — sharing "Washington, D.C." is not support for the figure. */
-function numbersSupported(text, hayNumbers) {
-  return numbersIn(text).every((n) => hayNumbers.has(n));
-}
-
+// ---- figures and units ----
+// A SMALL DECLARED conversion table (dimension, factor to the base unit, spellings). Spellings are folded like tokens.
+const UNIT_TABLE = [
+  ["len", 1, ["m", "metre", "metres", "meter", "meters", "metro", "metros", "mètre", "mètres", "metr", "метр", "метра", "метров", "米", "公尺", "متر", "مترا", "أمتار", "امتار", "मीटर", "メートル", "미터"]],
+  ["len", 1000, ["km", "kilometre", "kilometres", "kilometer", "kilometers", "kilómetro", "kilómetros", "kilomètre", "kilomètres", "километр", "километра", "километров", "км", "公里", "千米", "كيلومتر", "किलोमीटर", "キロメートル", "キロ"]],
+  ["len", 0.01, ["cm", "centimetre", "centimetres", "centimeter", "centimeters", "厘米", "公分"]],
+  ["len", 0.3048, ["ft", "foot", "feet", "pie", "pies", "pied", "pieds", "pé", "pés", "fuß", "fuss", "фут", "футов", "英尺", "قدم", "फ़ीट", "फीट"]],
+  ["len", 1609.344, ["mi", "mile", "miles", "milla", "millas", "mille", "milles", "meile", "meilen", "миля", "миль", "英里", "ميل", "मील"]],
+  ["mass", 1, ["kg", "kilogram", "kilograms", "kilogramme", "kilogrammes", "kilo", "kilos", "公斤", "千克"]],
+  ["mass", 0.001, ["g", "gram", "grams", "gramme", "grammes"]],
+  ["mass", 0.45359237, ["lb", "lbs", "pound", "pounds", "libra", "libras", "livre", "livres", "磅"]],
+];
+const UNITS = new Map();
+for (const [dim, f, words] of UNIT_TABLE) for (const w of words) UNITS.set(foldWord(w), { dim, f, w: foldWord(w) });
+const UNIT_WORDS = [...UNITS.keys()].sort((a, b) => b.length - a.length);
 const NUMBER_RE = /\b\d[\d,]*(?:\.\d+)?%?(?:st|nd|rd|th|s)?\b/g;
 export function numbersIn(text) {
   const out = new Set();
-  for (const m of String(text ?? "").matchAll(NUMBER_RE)) out.add(m[0].replace(/,/g, "").toLowerCase());
+  for (const m of asciiDigits(String(text ?? "")).matchAll(NUMBER_RE)) out.add(m[0].replace(/,/g, "").toLowerCase());
   return [...out];
+}
+/** The figures of a text, with where they are and which unit (if any) they carry. */
+function figuresIn(text, base = 0) {
+  const src = asciiDigits(String(text ?? ""));
+  const out = [];
+  for (const m of src.matchAll(NUMBER_RE)) {
+    const norm = m[0].replace(/,/g, "").toLowerCase();
+    const end = m.index + m[0].length;
+    const rest = foldWord(src.slice(end, end + 16).replace(/^\s?/, ""));
+    let unit = null;
+    for (const w of UNIT_WORDS) {
+      if (!rest.startsWith(w)) continue;
+      const nx = rest.slice(w.length, w.length + 1);
+      if (UNSPACED.test(w) || !nx || !/[\p{L}\p{N}²³]/u.test(nx)) { unit = UNITS.get(w); break; }
+    }
+    const numeric = /^\d[\d.]*$/.test(norm);
+    const dec = numeric && norm.includes(".") ? norm.length - norm.indexOf(".") - 1 : 0;
+    out.push({ raw: m[0], norm, v: numeric ? parseFloat(norm) : NaN, dec, numeric, unit, start: base + m.index, end: base + end });
+  }
+  return out;
+}
+const nearFig = (v, c) => Math.abs(v - c.v) <= 0.5 * Math.pow(10, -c.dec) + 1e-9 * Math.abs(c.v);
+/** Does window figure w say what claim figure c says? The same figure; the same quantity in another declared unit
+ *  (330 m = 1,082.68 ft = 0.33 km), to the precision the CLAIM states; or the claim's rounding of a decimal (8,849 for 8,848.86). */
+function figureMatches(c, w) {
+  if (c.norm === w.norm) return true;
+  if (!c.numeric || !w.numeric) return false;
+  if (c.unit && w.unit) return c.unit.dim === w.unit.dim && nearFig(w.v * w.unit.f / c.unit.f, c);
+  if (w.dec > c.dec) return Number(w.v.toFixed(c.dec)) === c.v;
+  return false;
+}
+
+// ---- the material, indexed once per call ----
+const STEM_RE = /^[a-z]+$/;
+// The irregular English verbs a claim and its source commonly use in different forms ("fell" / "fall", "wrote" / "written").
+// A small declared table, not a stemmer for other languages (they match on the exact word, an honest limit).
+const IRREGULAR = Object.fromEntries(Object.entries({
+  fall: "fell fallen", rise: "rose risen", begin: "began begun", write: "wrote written", build: "built", become: "became", hold: "held",
+  take: "took taken", give: "gave given", lead: "led", win: "won", fly: "flew flown", see: "saw seen", go: "went gone", make: "made",
+  know: "knew known", find: "found", bear: "bore born borne", die: "died", lose: "lost", send: "sent", stand: "stood", sit: "sat",
+  speak: "spoke spoken", choose: "chose chosen", break: "broke broken", drive: "drove driven", ride: "rode ridden", teach: "taught",
+  buy: "bought", sell: "sold", pay: "paid", say: "said", tell: "told", think: "thought", bring: "brought", come: "came", run: "ran",
+  leave: "left", meet: "met", keep: "kept", grow: "grew grown", draw: "drew drawn", throw: "threw thrown", sing: "sang sung", swim: "swam swum",
+}).flatMap(([base, forms]) => forms.split(" ").map((f) => [f, base])));
+const stemOf = (t) => {
+  if (!STEM_RE.test(t)) return t;
+  if (IRREGULAR[t]) return IRREGULAR[t];
+  if (t.length < 5) return t;
+  const r = t.replace(/(?:ing|ed|es|ly|s|e)$/, "");
+  return r.length >= 4 ? r : t;
+};
+// The gate's own figure/unit/stem machinery, offered to fold-chat-assemble.js (the backward path) so it reads figures and units
+// EXACTLY as the gate does; nothing here changes what the gate does.
+export { figuresIn, figureMatches, stemOf };
+export const unitOfWord = (w) => UNITS.get(foldWord(String(w ?? ""))) || null;
+const SENT_END = /[.!?]+["')\]]*\s+|[。！？।॥؟]+["')\]]*\s*|\n+/gu;
+function sentenceStarts(text) {
+  const starts = [0];
+  for (const m of text.matchAll(SENT_END)) {
+    const end = m.index + m[0].length;
+    if (end >= text.length) break;
+    if (/^[.!?]/.test(m[0])) {
+      const from = starts[starts.length - 1];
+      if (ABBREV.test(text.slice(from, m.index + m[0].trimEnd().length).trimEnd())) continue;
+    }
+    starts.push(end);
+  }
+  return starts;
+}
+function indexMaterial(m) {
+  const text = String(m.text || "").slice(0, 20000);
+  const toks = tokensWithOffsets(text);
+  const plain = toks.map((x) => x.t);
+  const starts = sentenceStarts(text);
+  const nS = starts.length;
+  const sentOfOffset = (off) => { let lo = 0, hi = nS - 1; while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= off) lo = mid; else hi = mid - 1; } return lo; };
+  const sentOf = new Int32Array(toks.length), first = new Int32Array(nS).fill(-1), last = new Int32Array(nS).fill(-1);
+  const sets = Array.from({ length: nS }, () => new Set());
+  const all = new Set();
+  for (let i = 0; i < toks.length; i++) {
+    const si = sentOfOffset(toks[i].start);
+    sentOf[i] = si;
+    if (first[si] < 0) first[si] = i;
+    last[si] = i;
+    const t = plain[i], st = stemOf(t);
+    sets[si].add(t); sets[si].add(st); all.add(t); all.add(st);
+  }
+  const figs = figuresIn(text);
+  const figsBySent = Array.from({ length: nS }, () => []);
+  for (const f of figs) figsBySent[sentOfOffset(f.start)].push(f);
+  // capitalised in the middle of a sentence on this page = the page treats it as a name
+  const topic = new Set(tokenize(`${m.ref || ""} ${(() => { try { return decodeURIComponent(new URL(String(m.source)).pathname.split("/").pop() || "").replace(/[_-]/g, " "); } catch { return ""; } })()}`));
+  const tokAt = (off) => { let lo = 0, hi = toks.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (toks[mid].start < off) lo = mid + 1; else hi = mid; } return lo; };
+  return { ...m, text, toks, plain, starts, nS, sentOf, sentAt: sentOfOffset, first, last, sets, all, figs, figsBySent, topic, tokAt };
+}
+
+// ---- language gap (typed, never faked) ----
+const EN_FUNCTION = new Set(FUNCTION_WORDS.en.map(foldWord));
+function languageGap(claim, offered) {
+  try {
+    const a = detectLang(claim);
+    if (!a.confident) {
+      // A short Latin-script sentence the detector cannot name (la/de are French AND Spanish) is still not English when it
+      // holds six or more words and not one of them is an English function word, and the source is confidently English.
+      const toks = tokenize(claim);
+      if (a.script !== "Latin" || toks.length < 6 || toks.some((t) => EN_FUNCTION.has(t))) return null;
+      for (const m of offered) { const b = (m.lang ||= detectLang(String(m.text).slice(0, 1500))); if (b.confident && b.lang === "en") return { from: "unknown", to: "en" }; }
+      return null;
+    }
+    for (const m of offered) {
+      const b = (m.lang ||= detectLang(String(m.text).slice(0, 1500)));
+      if (!b.confident) continue;
+      if (a.script !== b.script || a.lang !== b.lang) return { from: a.lang, to: b.lang };
+    }
+  } catch { /* detection is advisory */ }
+  return null;
+}
+
+const BIND_NEIGHBOURS = 3, BIND_GRACE = 3, MIN_EVIDENCE = 2;
+const hasStem = (sets, t) => sets.some((s) => s.has(t));
+// Words that only REPORT a measurement beside the measurement ("stands 330 m high", "reaches a height of 330 m"): the
+// unit fixes the dimension, so which of these words is used (high / tall / height) is not the claim. They are not
+// content terms; instead the window must carry SOME word of the family in the figure's own clause ("5,000 m tall" is
+// not "base camps above 5,000 m"). Declared, English, and only ever applied next to a figure that carries a unit.
+const QUANT_WORDS = new Set(["reach", "reaches", "reached", "reaching", "measure", "measures", "measured", "measuring", "rise", "rises", "rose", "span", "spans", "extend", "extends", "weigh", "weighs", "cover", "covers", "high", "tall", "long", "wide", "deep", "thick", "heavy", "higher", "highest", "taller", "tallest", "longer", "longest", "wider", "widest", "deeper", "deepest", "thicker", "thickest", "heavier", "heaviest", "height", "length", "width", "depth", "weight", "altitude", "elevation", "distance", "size"]);
+const QUANT_LIST = [...QUANT_WORDS];
+// A clause ends at a comma, semicolon, colon, dash, or the end of a sentence (brackets are transparent: "330 m (1,083 ft) tall"); the comma or point INSIDE a figure ('8,848.86') is not one.
+const CLAUSE_BREAK = /[,;:—.!?\n]/;
+const SENTENCE_BREAK = /[.!?\n]/;
+const clauseBreak = (gap, before, after) => CLAUSE_BREAK.test(gap) && !(/^[,.]$/.test(gap) && /\d$/.test(before) && /^\d/.test(after));
+
+/** Analyse a claim sentence into what the material must carry. */
+function analyse(text, siteNames, midCaps) {
+  const clean = claimOf(text, siteNames);
+  const toks = tokensWithOffsets(clean);
+  const figsAll = figuresIn(clean);
+  // "Apollo 11", "Boeing 747": a short figure right after a capitalised word is part of the NAME, not a quantity.
+  const nameFigs = [], figs = [];
+  for (const f of figsAll) {
+    const pre = clean.slice(0, f.start).match(/(\p{Lu}[\p{L}'’-]+)\s+$/u);
+    if (pre && !COMMON_CAP.has(pre[1]) && /^\d{1,3}$/.test(f.norm) && !f.unit) nameFigs.push({ parts: [foldWord(pre[1]), f.norm], fig: f });
+    else figs.push(f);
+  }
+  const figIdx = new Set(figsAll.map((f) => f.norm));
+  // names: strict (window or topic) vs a sentence-opening lone word the page never capitalises (page-level, as it always was)
+  const sentenceStartWord = (clean.match(/^\s*(\p{Lu}[\p{L}\p{N}_'-]+)/u) || [])[1];
+  const names = [];
+  for (const n of namesIn(clean)) {
+    const parts = nameParts(n);
+    if (!parts.length) continue;
+    const opener = parts.length === 1 && sentenceStartWord && n === sentenceStartWord;
+    names.push({ n, parts, loose: !!(opener && midCaps && !midCaps.has(foldWord(n))) });
+  }
+  for (const nf of nameFigs) {
+    const k = names.findIndex((x) => x.parts[0] === nf.parts[0]);
+    if (k >= 0) names[k] = { n: names[k].n + " " + nf.fig.norm, parts: [...names[k].parts, nf.fig.norm], loose: false };
+    else names.push({ n: nf.parts.join(" "), parts: nf.parts, loose: false });
+  }
+  const nameTok = new Set(names.flatMap((x) => x.parts));
+  // content terms: not a figure, not part of a name, not a function word or hedge, not a word that only reports a measurement
+  const unitWords = new Set(figsAll.filter((f) => f.unit).map((f) => f.unit.w));
+  const quantish = new Set();
+  for (const f of figsAll) if (f.unit) {
+    const fi = toks.findIndex((t) => t.start >= f.start);
+    for (let j = Math.max(0, fi - 4); j < Math.min(toks.length, fi + 6); j++) if (QUANT_WORDS.has(toks[j].t) || QUANT_WORDS.has(stemOf(toks[j].t))) quantish.add(j);
+  }
+  const K = [], kIdx = new Map(), nIdx = new Map(); // token index -> stem, for content terms / for name parts
+  toks.forEach((tk, i) => {
+    if (nameTok.has(tk.t) && !STOP.has(tk.t)) nIdx.set(i, stemOf(tk.t));
+    if (!contentToken(tk.t) || nameTok.has(tk.t) || unitWords.has(tk.t) || figIdx.has(tk.t) || quantish.has(i)) return;
+    const st = stemOf(tk.t);
+    kIdx.set(i, st);
+    if (!K.includes(st)) K.push(st);
+  });
+  return { clean, toks, figs, names, K, kIdx, nIdx, quant: quantish.size > 0, plain: toks.map((x) => x.t) };
+}
+
+/** The claim's nearest content words beside a token range (within the same clause), as stems. */
+function neighboursOf(a, ci, cj, withNames, topic) {
+  const near = [];
+  const take = (j, from, to) => {
+    if (j < 0 || j >= a.toks.length) return false;
+    const between = j < ci ? a.clean.slice(a.toks[j].end, a.toks[from].start) : a.clean.slice(a.toks[to].end, a.toks[j].start);
+    if (CLAUSE_BREAK.test(between)) return false;
+    // the page's own subject (its title's words, capitalised or not) is usually written "it" / "the tower" beside the evidence, so it is never a neighbour to look for
+    const st = topic && topic.has(a.plain[j]) ? undefined : (a.kIdx.get(j) ?? (withNames ? a.nIdx.get(j) : undefined));
+    if (st && !near.includes(st)) near.push(st);
+    return true;
+  };
+  let left = true, right = true;
+  for (let d = 1; d < 10 && near.length < BIND_NEIGHBOURS && (left || right); d++) {
+    if (left) left = take(ci - d, ci, cj) || (ci - d >= 0 && false);
+    if (right && near.length < BIND_NEIGHBOURS) right = take(cj + d, ci, cj);
+  }
+  return near;
+}
+/** The window's tokens that stand in the same clause as page token p, plus BIND_GRACE either side. */
+function aroundToken(ix, p, lo, hi) {
+  const out = new Set();
+  const add = (j) => { if (ix.sentOf[j] < lo || ix.sentOf[j] > hi) return false; out.add(ix.plain[j]); out.add(stemOf(ix.plain[j])); return true; };
+  add(p);
+  for (const dir of [-1, 1]) {
+    let prev = p, grace = 0, inClause = true;
+    for (let j = p + dir; j >= 0 && j < ix.plain.length; j += dir) {
+      const [ta, tb] = dir < 0 ? [j, prev] : [prev, j];
+      const gap = ix.text.slice(ix.toks[ta].end, ix.toks[tb].start);
+      if (clauseBreak(gap, ix.plain[ta], ix.plain[tb])) { if (SENTENCE_BREAK.test(gap)) break; inClause = false; }   // a sentence end stops the walk outright; a comma or bracket only starts the grace
+      if (!inClause && ++grace > BIND_GRACE) break;
+      if (!add(j) || Math.abs(j - p) > 40) break;
+      prev = j;
+    }
+  }
+  return out;
+}
+
+/** Do the words of a name stand within a few tokens of each other, in order, inside the window? */
+function standsTogether(ix, lo, hi, parts) {
+  const first = parts[0], last = parts[parts.length - 1];
+  for (let k = lo; k <= hi; k++) {
+    for (let j = ix.first[k]; j >= 0 && j <= ix.last[k]; j++) {
+      if (ix.plain[j] !== first && stemOf(ix.plain[j]) !== first) continue;
+      for (let q = j + 1; q <= Math.min(ix.last[k], j + parts.length + 2); q++) if (ix.plain[q] === last || stemOf(ix.plain[q]) === last) return true;
+    }
+  }
+  return false;
+}
+
+/** Does this window carry the claim? Figures, names, content terms — all read in the SAME window (the sentence the span
+ *  sits in, and one sentence either side), never anywhere on the page. Returns { ok, why, detail, weight }. */
+function verify(a, ix, i) {
+  const lo = Math.max(0, i - 1), hi = Math.min(ix.nS - 1, i + 1);
+  const sets = []; const wf = [];
+  for (let k = lo; k <= hi; k++) { sets.push(ix.sets[k]); for (const f of ix.figsBySent[k]) wf.push(f); }
+  // 1. figures, each one placed in the window
+  const matched = new Map();
+  for (const c of a.figs) {
+    const hits = wf.filter((w) => figureMatches(c, w));
+    if (!hits.length) return { ok: false, why: "figure", detail: c.raw };
+    matched.set(c, hits);
+  }
+  // 1b. a figure belongs with the words it sits beside: at least half of the claim's nearest content words must sit in the
+  // figure's own clause in the window ("landed … July 16" is not "launched … July 16")
+  for (const c of a.figs) {
+    const ci = a.toks.findIndex((t) => t.start >= c.start);
+    if (ci < 0) continue;
+    let cj = ci; while (cj + 1 < a.toks.length && a.toks[cj + 1].start < c.end) cj++;
+    const near = neighboursOf(a, ci, cj, true, ix.topic);
+    if (!near.length) continue;
+    const need = Math.ceil(near.length / 2);
+    const ok = matched.get(c).some((w) => { const around = aroundToken(ix, ix.tokAt(w.start), lo, hi); return near.filter((t) => around.has(t)).length >= need; });
+    if (!ok) return { ok: false, why: "figure-binding", detail: c.raw };
+  }
+  // 1c. a measurement phrase ("stands … high") needs a word of that family where the figure is
+  if (a.quant && !a.figs.some((c) => matched.get(c).some((w) => { const around = aroundToken(ix, ix.tokAt(w.start), lo, hi); return QUANT_LIST.some((q) => around.has(q)); }))) return { ok: false, why: "figure-binding", detail: "measurement" };
+  // 2. names: in the window, or the page's own subject (its title); a multi-word name needs its surname in the window
+  let nameEvidence = 0;
+  for (const nm of a.names) {
+    if (nm.loose) { if (!nm.parts.every((p) => ix.all.has(p))) return { ok: false, why: "name", detail: nm.n }; continue; }
+    const inWin = nm.parts.map((p) => hasStem(sets, p));
+    const topic = nm.parts.every((p) => ix.topic.has(p));
+    const whole = inWin.every(Boolean);
+    const partial = nm.parts.length >= 2 && inWin[inWin.length - 1] && nm.parts.every((p) => ix.all.has(p));
+    if (!(whole || topic || partial)) return { ok: false, why: "name", detail: nm.n };
+    if (!(whole || partial)) continue;
+    // a multi-word name counts as evidence only where its words stand together ("Steve Jobs"), not scattered over a window
+    if (nm.parts.length >= 2 && !standsTogether(ix, lo, hi, nm.parts)) continue;
+    nameEvidence += nm.parts.filter((p, k) => inWin[k]).length >= 2 ? 2 : 1;
+    // 2b. a name that is NOT the page's subject is bound to the words it sits beside, in its own sentence ("Sydney … capital")
+    if (topic) continue;
+    const last = nm.parts[nm.parts.length - 1];
+    let ci = -1; for (let j = 0; j < a.plain.length; j++) if (a.plain[j] === last) { ci = j; break; }
+    if (ci < 0) continue;
+    // only a word the window HAS but not beside this name is a cross-wiring signal; a word the window lacks is the terms check's business
+    const near = neighboursOf(a, ci, ci, false, ix.topic).filter((t) => hasStem(sets, t));
+    if (!near.length) continue;
+    const need = 1;
+    const withName = []; for (let k = lo; k <= hi; k++) if (ix.sets[k].has(last)) withName.push(k);
+    if (withName.length && !withName.some((k) => near.filter((t) => ix.sets[k].has(t)).length >= need)) return { ok: false, why: "name-binding", detail: nm.n };
+  }
+  // 3. content terms: a term no source says at all is something the writer added; a claim whose terms mostly sit elsewhere is not this window's
+  const absent = a.K.filter((t) => !ix.all.has(t));
+  if (absent.length) return { ok: false, why: "terms", detail: absent.slice(0, 3).join(", ") };
+  const inWinK = a.K.filter((t) => hasStem(sets, t));
+  if (a.K.length >= 3 && inWinK.length / a.K.length < 0.34) return { ok: false, why: "terms-elsewhere", detail: a.K.filter((t) => !inWinK.includes(t)).slice(0, 3).join(", ") };
+  const evidence = a.figs.length + nameEvidence + inWinK.length;
+  if (evidence < MIN_EVIDENCE) return { ok: false, why: "thin", detail: "" };
+  return { ok: true, weight: evidence };
 }
 
 /** Attribute each sentence of an answer to the material it came from. `material`
  *  is [{ ref, label, text }] where `ref` is the display name and `label` the
- *  short source tag (S1, S2). Returns [{ text, ref, source, span, score }];
- *  `ref`/`span` are null when the sentence is not grounded. */
+ *  short source tag (S1, S2). Returns [{ text, ref, source, span, score, why }];
+ *  `ref`/`span` are null when the sentence is not grounded, and `why` says in a
+ *  typed word where the check failed. */
 export function attribute(answer, material = []) {
   if (!material.length) return [];
   // Bound the work: attribution is synchronous in the browser tab, so neither
   // the answer nor each passage may be unbounded. 20k chars of material per
-  // source is far more than any sentence needs to match against. Token arrays
-  // are built ONCE per passage and reused for every sentence (building them
-  // per sentence is the biggest GC churn on the multi-entity path).
-  const offered = material.map((m) => {
-    const text = String(m.text || "").slice(0, 20000);
-    const toks = tokensWithOffsets(text);
-    return { ...m, text, toks, toksPlain: toks.map((x) => x.t) };
-  });
+  // source is far more than any sentence needs to match against. Everything
+  // about a passage (tokens, sentences, figures) is built ONCE and reused for
+  // every sentence.
+  const offered = material.map(indexMaterial);
+  const siteNames = offered.map((m) => hostLabel(m.source)).filter(Boolean);
+  const midCaps = new Set();
+  for (const m of offered) for (const x of m.text.matchAll(/(?<=[\p{Ll}\d,;:)]\s)(\p{Lu}[\p{L}'’-]+)/gu)) midCaps.add(foldWord(x[1]));
   const sentences = splitSentences(answer).slice(0, 80);
   return sentences.map((text) => {
-    const st = tokenize(text);
-    let best = { score: 0, endJ: -1 }, hit = null;
+    const a = analyse(text, siteNames, midCaps);
+    const itemsN = a.figs.length + a.names.length + a.K.length;
+    const miss = (why, detail = "", score = 0) => {
+      const gap = languageGap(a.clean, offered);
+      return { text, ref: null, source: null, span: null, score, why: gap ? "cross-language" : why, detail, ...(gap ? { gap } : {}) };
+    };
+    if (!itemsN) return miss("no-content");
+    // candidate windows: every sentence of every passage, scored by how much of the claim its neighbourhood carries
+    const cands = [];
     for (const m of offered) {
-      const r = bestRun(st, m.toksPlain);
-      if (r.score > best.score) { best = r; hit = m; }
+      for (let i = 0; i < m.nS; i++) {
+        let score = 0, hit = 0;
+        for (let k = Math.max(0, i - 1); k <= Math.min(m.nS - 1, i + 1); k++) {
+          const own = k === i ? 1.5 : 1;
+          for (const f of a.figs) if (m.figsBySent[k].some((w) => figureMatches(f, w))) { score += 3 * own; hit++; }
+          for (const nm of a.names) { const h = nm.parts.filter((p) => m.sets[k].has(p)).length; if (h) { score += 2 * own * h / nm.parts.length; hit++; } }
+          for (const t of a.K) if (m.sets[k].has(t)) { score += own; hit++; }
+        }
+        if (hit) cands.push({ m, i, score });
+      }
     }
-    if (!hit || best.score < MIN_RUN) return { text, ref: null, source: null, span: null, score: best.score };
-    const runToks = hit.toks.slice(best.endJ - best.score, best.endJ).map((x) => x.t);
-    const hayNames = new Set(hit.toksPlain);
-    const hayNums = new Set(numbersIn(hit.text));
-    if (!substantiveRun(runToks) || !namesSupported(text, hayNames) || !numbersSupported(text, hayNums)) return { text, ref: null, source: null, span: null, score: best.score };
-    const endTok = hit.toks[best.endJ - 1];
-    const startTok = hit.toks[best.endJ - best.score];
+    if (!cands.length) return miss("no-overlap");
+    cands.sort((x, y) => y.score - x.score);
+    let firstFail = null, ok = null;
+    for (const c of cands.slice(0, 8)) {
+      const v = verify(a, c.m, c.i);
+      if (v.ok) { ok = { ...c, v }; break; }
+      if (!firstFail) firstFail = v;
+    }
+    if (!ok) return miss(firstFail.why, firstFail.detail, 0);
+    // the cited span: the best run of the claim inside the window's best sentence, else the evidence's own extent
+    const { m, i } = ok;
+    const lo = Math.max(0, i - 1), hi = Math.min(m.nS - 1, i + 1);
+    const carries = (k) => { let n = 0; for (const f of a.figs) if (m.figsBySent[k].some((w) => figureMatches(f, w))) n += 3; for (const nm of a.names) n += nm.parts.filter((p) => m.sets[k].has(p)).length; for (const t of a.K) if (m.sets[k].has(t)) n++; return n; };
+    let bestK = i; for (let k = lo; k <= hi; k++) if (carries(k) > carries(bestK)) bestK = k;
+    const from = m.first[bestK], to = m.last[bestK] + 1;
+    // the quote the reader is shown is the sentence the span sits in, so the span is searched in the sentence that carries the evidence only
+    const run = from >= 0 ? bestRun(a.plain, m.plain, from, to) : { score: 0, endJ: -1, sub: false };
+    let startTok, endTok;
+    if (run.sub && run.score >= MIN_RUN) { startTok = m.toks[run.endJ - run.score]; endTok = m.toks[run.endJ - 1]; }
+    else {
+      // no phrase in common: the span is where the matched figures and names sit in the sentence
+      const set = new Set([...a.figs.map((f) => f.norm), ...a.names.flatMap((x) => x.parts), ...a.K]);
+      let s0 = -1, e0 = -1;
+      for (let j = from; j < to && j >= 0; j++) if (set.has(m.plain[j]) || set.has(stemOf(m.plain[j]))) { if (s0 < 0) s0 = j; e0 = j; }
+      if (s0 < 0 || e0 - s0 > 40) { s0 = from; e0 = Math.min(to - 1, from + 11); }
+      startTok = m.toks[s0]; endTok = m.toks[e0];
+    }
     const span = { start: startTok.start, end: endTok.end };
-    return { text, ref: hit.ref, source: hit.source, span, address: `${hit.ref}#${span.start}-${span.end}`, score: best.score, sourceText: hit.text };
+    return { text, ref: m.ref, source: m.source, span, address: `${m.ref}#${span.start}-${span.end}`, score: run.sub ? run.score : ok.v.weight, sourceText: m.text, window: { from: m.starts[lo], to: hi + 1 < m.nS ? m.starts[hi + 1] : m.text.length } };
   });
 }
 
@@ -283,20 +707,38 @@ export function coverage(answer, material = []) {
   return { entries, grounded: grounded.length, total: entries.length, refs, ratio: entries.length ? grounded.length / entries.length : 0 };
 }
 
-/** The checkable claims the material does NOT support. */
+/** The checkable claims the material does NOT support. A figure counts as said when the material says it, or says the
+ *  same quantity in another declared unit / with more decimals (see figureMatches); source tags and the names of the
+ *  sites an answer cites are not claims. */
 export function unsupportedClaims(answer, material = []) {
-  const hayNumbers = new Set();
+  const hayFigs = [];
   const hayToks = new Set();
   for (const m of material) {
-    for (const n of numbersIn(m.text)) hayNumbers.add(n);
-    for (const t of tokenize(m.text)) hayToks.add(t);
+    const t = String(m?.text ?? "");
+    for (const f of figuresIn(t)) hayFigs.push(f);
+    for (const x of tokenize(t)) hayToks.add(x);
   }
-  const numbers = numbersIn(answer).filter((n) => !hayNumbers.has(n));
+  const exact = new Set(hayFigs.map((f) => f.norm));
+  const extra = hayFigs.filter((f) => f.numeric && (f.unit || f.dec > 0));
+  const numbers = [];
+  for (const c of figuresIn(claimOf(answer))) {
+    if (exact.has(c.norm) || extra.some((w) => figureMatches(c, w))) continue;
+    if (!numbers.includes(c.norm)) numbers.push(c.norm);
+  }
   const names = namesIn(answer).filter((name) => {
-    const parts = tokenize(name).filter((p) => p.length > 1);
+    const parts = nameParts(name);
     return parts.length > 0 && !parts.every((p) => hayToks.has(p));
   });
   return { numbers, names };
+}
+
+/** The typed note for sentences that are in another language than every source: the gate compares WORDING, and wording
+ *  cannot cross a language. It says so; it does not translate, and it does not call the sentence wrong. */
+export function languageGapNote(gaps) {
+  const list = Array.isArray(gaps) ? gaps : [];
+  if (!list.length) return "";
+  const pair = list[0].from && list[0].to ? ` (${list[0].from} against sources in ${list[0].to})` : "";
+  return `⟂ fold: ${list.length === 1 ? "1 sentence is" : list.length + " sentences are"} in a different language than the sources${pair}. The fold checks wording against the sources, so it cannot check ${list.length === 1 ? "it" : "them"} — that is a gap in the check, not a finding that ${list.length === 1 ? "it is" : "they are"} wrong.`;
 }
 
 /** The full per-turn RECORD, holodeck-shaped: what was addressed, what is not
@@ -314,11 +756,14 @@ export function turnRecord(answer, material = [], { turn = 1, question = "", mod
     sources.push({ address: e.address, ref: e.ref, span: e.span, text: e.text });
   }
   const ungrounded = cov.entries.filter((e) => !e.ref).map((e) => e.text);
+  // sentences the gate could not check because they are in another language than every source (a typed gap, never a silent miss)
+  const gaps = cov.entries.filter((e) => !e.ref && e.why === "cross-language").map((e) => ({ kind: "cross-language", text: e.text, from: e.gap?.from || null, to: e.gap?.to || null }));
   const bad = [...uns.numbers, ...uns.names];
   const bits = [
     nbOrd(cov.refs.length, "address", "addresses") + " checked",
     bad.length ? bad.length + " not in the material" : "nothing unsupported",
     cov.total - cov.grounded > 0 ? (cov.total - cov.grounded) + " sentence(s) ungrounded" : "every sentence grounded",
+    ...(gaps.length ? [gaps.length + " in another language than the sources (not checkable by wording)"] : []),
   ];
   const line = has
     ? `On record · turn ${turn} · ${bits.join(" · ")}`
@@ -330,7 +775,7 @@ export function turnRecord(answer, material = [], { turn = 1, question = "", mod
   // (the holodeck's lesson — a grounding report over nothing is noise, and a
   // greeting is not a claim). A materialless turn carries examined:false and
   // the surface renders no panel at all.
-  return { turn, hasMaterial: has, examined: has, coverage: cov, unsupported: uns, sources, ungrounded, facing, line };
+  return { turn, hasMaterial: has, examined: has, coverage: cov, unsupported: uns, sources, ungrounded, gaps, facing, line };
 }
 
 const nbOrd = (n, a, b) => n + " " + (n === 1 ? a : (b || a + "s"));

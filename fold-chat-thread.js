@@ -59,6 +59,24 @@ export function isMeta(question) {
   return !!q && q.length <= 60 && META_RE.test(q);
 }
 
+// A bare nudge — the person waiting on an answer, not asking anything new: "well?", "so?", "and?", "any luck?", "go on".
+// Measured 2026-10-05: a turn was stopped (nothing written), the person said "well?", and the app searched the literal word
+// "well?" — advertising copy and the article on water wells came back as the answer. A nudge has no topic of its own: it is
+// about the last ask (if that went unanswered) or the last answer (if there was one).
+const NUDGE_ALTS = [
+  "well", "so", "and", "and\\s+then", "then", "hmm+", "hm+", "eh", "anything", "any (?:luck|answer|news|progress|update)", "done yet", "ready yet", "still (?:there|working)", "you there", "are you (?:there|still there)",
+  "answer(?: me| please)?", "well\\s+then",
+];
+export const NUDGE_RE = new RegExp(`^\\s*(?:${NUDGE_ALTS.join("|")})\\s*[?!.,…]*\\s*$`, "iu");
+/** A bare waiting-on-you nudge ("well?", "so?", "any luck?", "go on")? */
+export function isNudge(question) {
+  const q = String(question ?? "").trim();
+  return !!q && q.length <= 30 && NUDGE_RE.test(q);
+}
+// The nudges that ask for MORE (go on / continue — also the Continue button's own "Continue.") are a nudge ONLY when an earlier ask
+// went unanswered; after an answer they stay with the old path, which writes new material.
+const MORE_NUDGE_RE = /^\s*(?:go on|carry on|keep going|continue|come on)\s*[?!.,…]*\s*$/iu;
+
 /** Does this short ask lean on the last topic and name nothing of its own? ("i want a chewier one") */
 export function isElliptical(question) {
   const q = String(question ?? "").trim();
@@ -80,12 +98,25 @@ export function threadOf(priorMessages) {
   let ai = -1;
   for (let i = msgs.length - 1; i >= 0; i--) { const m = msgs[i]; if (m?.role === "assistant" && asText(m) && m.mode !== "agent") { ai = i; break; } }
   let ask = null, askIndex = -1;
-  if (ai >= 0) for (let i = ai - 1; i >= 0; i--) { if (msgs[i]?.role === "user" && asText(msgs[i])) { ask = asText(msgs[i]); askIndex = i; break; } }
+  // the ask that produced the answer — skipping a bare nudge ("well?"): a nudge-retried answer answers the ask the nudge picked back up
+  if (ai >= 0) for (let i = ai - 1; i >= 0; i--) { if (msgs[i]?.role === "user" && asText(msgs[i]) && !isNudge(asText(msgs[i]))) { ask = asText(msgs[i]); askIndex = i; break; } }
   // the topic: the nearest earlier user ask that is neither a follow-up nor the synthetic "Continue."
   let topicAsk = null;
   for (let i = (ai >= 0 ? ai : msgs.length) - 1; i >= 0; i--) { const m = msgs[i]; if (m?.role === "user" && asText(m) && !isFollowLike(asText(m))) { topicAsk = asText(m); break; } }
   const turn = ai >= 0 ? msgs.slice(0, ai + 1).filter((m) => m?.role === "assistant").length : 0;
   return { has: ai >= 0, answer: ai >= 0 ? asText(msgs[ai]) : "", answerIndex: ai, ask, askIndex, topicAsk, turn };
+}
+
+/** The ask that was never answered: the person's last substantive ask when nothing was written after it (the turn was stopped,
+ *  failed, or drew an empty gap). Walks back over empty assistant turns and over nudges. null when the last turn was answered. */
+export function unansweredAsk(priorMessages) {
+  const msgs = Array.isArray(priorMessages) ? priorMessages : [];
+  for (let i = msgs.length - 1; i >= 0; i--) {
+    const m = msgs[i];
+    if (m?.role === "assistant") { if (m.mode === "agent" || asText(m)) return null; continue; }   // an answer was written (or the ask went to the other lane): nothing is owed HERE
+    if (m?.role === "user" && asText(m)) { if (isNudge(asText(m))) continue; return asText(m); }
+  }
+  return null;
 }
 
 /** The topic words of an earlier ask: "Show me a good chocolate chip cookie recipe" → "chocolate chip cookie recipe". */
@@ -131,6 +162,16 @@ export function followUp(question, priorMessages, { referents = null, hints = nu
  *    modelMay        the model may be asked (grounded in the thread) — ONLY mode "thread"
  *  THE FALSIFIER: a cold meta ask (nothing earlier to follow) is "cold-gap": no search, no model, an app-authored note. */
 export function turnPlan(question, priorMessages, opts = {}) {
+  // A bare nudge ("well?") never goes to the web as a word. If an earlier ask went unanswered, it IS that ask again (the person's
+  // words stay "well?"; `retry` is what is searched and asked); with an answer to follow it is about that answer; with neither it is cold.
+  const owed = unansweredAsk(priorMessages);
+  if (isNudge(question) || (owed && MORE_NUDGE_RE.test(String(question ?? "")))) {
+    const thread = threadOf(priorMessages);
+    const base = { said: String(question).trim(), query: String(question).trim(), kind: "standalone", thread, topic: "", carried: [] };
+    if (owed) return { ...base, kind: "retry", query: owed, retry: owed, mode: "web", search: owed, modelMay: false, reason: "nudge-retries-unanswered" };
+    if (thread.has) return { ...base, kind: "meta", mode: "thread", search: null, modelMay: true, reason: "nudge-with-thread" };
+    return { ...base, kind: "meta", mode: "cold-gap", search: null, modelMay: false, reason: "nudge-cold" };
+  }
   const f = followUp(question, priorMessages, opts);
   if (f.kind === "meta") {
     if (f.thread.has) return { ...f, mode: "thread", search: null, modelMay: true };

@@ -58,11 +58,19 @@ export const FOLDVIEW_CSS = `
 .fv-scrub.on { background: color-mix(in srgb, var(--fv-c) 9%, transparent); }
 .fv-step { font: inherit; width:22px; height:22px; border:1px solid var(--line, #e2e2e8); background: var(--bg, #fff); color: var(--ink, #16161a); border-radius:6px; cursor:pointer; line-height:1; padding:0; } .fv-step:disabled { opacity:.3; cursor:default; }
 .fv-range { flex: 1 1 90px; min-width:70px; max-width:260px; accent-color: var(--fv-b); cursor:pointer; }
+.fv-play { font: inherit; font-size:12px; font-weight:700; border:1px solid var(--fv-a); color: var(--fv-a); background: transparent; border-radius:999px; padding:1px 11px; cursor:pointer; white-space:nowrap; } .fv-play:hover, .fv-play.on { background: color-mix(in srgb, var(--fv-a) 14%, transparent); }
+.fv-speed, .fv-latest { font: inherit; font-size:11.5px; border:0; background:transparent; color: var(--mut, #6b6b78); cursor:pointer; padding:0 2px; }
 .fv-where { color: var(--mut, #6b6b78); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; flex: 1 1 120px; }
 .fv-reset { font: inherit; font-size:12px; font-weight:700; border:1px solid var(--fv-c); color: var(--fv-c); background: transparent; border-radius:999px; padding:1px 11px; cursor:pointer; white-space:nowrap; } .fv-reset:hover { background: color-mix(in srgb, var(--fv-c) 14%, transparent); }
 .fv-marker { color: var(--fv-c); font-weight:700; white-space:nowrap; } .fv-undo { font: inherit; border:0; background:transparent; color: var(--fv-b); text-decoration: underline dotted; cursor:pointer; padding:0; }
 .fv-row.future, .fv-ev.future { opacity:.38; } .fv-row.cur, .fv-ev.cur { background: color-mix(in srgb, var(--fv-b) 10%, transparent); box-shadow: inset 3px 0 0 var(--fv-b); } .fv-ev.mark { box-shadow: inset 3px 0 0 var(--fv-c); }
 .fv-row { cursor:pointer; }
+.fv-results { border:1px solid var(--line, #e2e2e8); border-radius:8px; padding:6px 10px; margin: 0 0 8px; }
+.fv-rh { font-weight:700; font-size:12px; color: var(--mut, #6b6b78); text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px; }
+.fv-trow { display:flex; flex-wrap:wrap; gap: 2px 8px; align-items:baseline; padding:2px 0; } .fv-trow.bad .fv-tval { color: var(--fv-bad); }
+.fv-texpr { font: inherit; } .fv-tarrow { color: var(--mut, #6b6b78); } .fv-tval { font: inherit; font-weight:700; overflow-wrap:anywhere; }
+.fv-try { display:flex; gap:6px; margin-top:8px; } .fv-tryin { flex:1; min-width:0; font: inherit; padding:3px 8px; border:1px solid var(--line, #e2e2e8); border-radius:8px; background: var(--bg, #fff); color: var(--ink, #16161a); }
+.fv-tryout { margin-top:6px; font-weight:700; overflow-wrap:anywhere; } .fv-tryout.bad { color: var(--fv-bad); }
 .fv-codetag { font-size:11px; font-weight:700; color: var(--fv-b); border:1px solid currentColor; border-radius:999px; padding:0 7px; }
 .fv-codebox { margin: 6px 0 4px 26px; border:1px solid var(--line, #e2e2e8); border-radius:8px; overflow:hidden; cursor:default; background: var(--bg, #fff); }
 .fv-codehead { display:flex; align-items:center; gap:10px; padding:4px 8px; background: var(--side2, #f1f1f4); border-bottom:1px solid var(--line, #e2e2e8); } .fv-codehead .fv-cap { flex:1; min-width:0; overflow-wrap:anywhere; }
