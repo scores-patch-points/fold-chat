@@ -154,6 +154,27 @@
   .body { min-width: 0; white-space: pre-wrap; word-break: break-word; }
   .msg.assistant .body { color: var(--ink); }
   .sealed-body { border-left: 2px solid var(--ok); padding-left: 10px; }
+  /* rendered markdown: the model's words become markup, never code */
+  .body .md { white-space: normal; line-height: 1.6; }
+  .md p { margin: .35em 0; }
+  .md h1, .md h2, .md h3, .md h4, .md h5, .md h6 { margin: .75em 0 .3em; line-height: 1.25; font-weight: 650; letter-spacing: -.01em; }
+  .md h1 { font-size: 1.45em; } .md h2 { font-size: 1.3em; } .md h3 { font-size: 1.16em; }
+  .md h4, .md h5, .md h6 { font-size: 1.05em; }
+  .md ul, .md ol { margin: .4em 0; padding-left: 1.5em; }
+  .md li { margin: .16em 0; }
+  .md li > ul, .md li > ol { margin: .2em 0; }
+  .md blockquote { margin: .55em 0; padding: .15em .9em; border-left: 3px solid var(--line2); color: var(--mut); }
+  .md code { font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--side2); border: 1px solid var(--line); border-radius: 5px; padding: 0 4px; }
+  .md pre.md-code { margin: .6em 0; background: var(--side2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 13px; overflow-x: auto; }
+  .md pre.md-code code { display: block; background: none; border: 0; padding: 0; }
+  .md a { color: var(--acc-deep); }
+  .md a:hover { text-decoration: underline; }
+  .md hr { border: 0; border-top: 1px solid var(--line2); margin: .85em 0; }
+  .md img { max-width: 100%; border-radius: 8px; }
+  .md .md-table { overflow-x: auto; }
+  .md table { border-collapse: collapse; margin: .5em 0; width: 100%; font-size: 13.5px; }
+  .md th, .md td { border: 1px solid var(--line2); padding: 5px 9px; text-align: left; }
+  .md th { background: var(--side2); }
   .live::after { content: "▍"; color: var(--acc); animation: blink 1s step-end infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
