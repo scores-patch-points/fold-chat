@@ -175,7 +175,7 @@ export function mount(root, opts = {}) {
     railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"), railSettings: $("railSettings"),
     side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), projNewProject: $("projNewProject"), chatNew: $("chatNew"),
     agentSlot: $("agentSlot"), engagementSlot: $("engagementSlot"), curModel: $("curModel"), webToggle: $("webToggle"),
-    topNew: $("topNew"), topFocus: $("topFocus"), sealBadge: $("sealBadge"),
+    topNew: $("topNew"), topFocus: $("topFocus"), groundToggle: $("groundToggle"), sealBadge: $("sealBadge"),
     welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"), main: document.querySelector("main.main"),
     composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
     footer: $("footer"), drawer: $("drawer"), toast: $("toast"), footEvidence: $("footEvidence"), ver: $("ver"),
@@ -264,7 +264,7 @@ export function mount(root, opts = {}) {
     if (E.curModel) E.curModel.textContent = m ? m.id : "";
     const sealed = !!s?.sealed;
     if (E.sealBadge) E.sealBadge.className = "sealbadge " + (sealed ? "seal-on" : "seal-off");
-    E.welcomeSub.textContent = sealed ? "sealed-external — verbatim spans withheld; the reading only" : "Contact: The Fold";
+    E.welcomeSub.textContent = sealed ? "sealed-external — verbatim spans withheld; the reading only" : "";
   }
 
   /* ---------------- projects ---------------- */
@@ -470,13 +470,13 @@ export function mount(root, opts = {}) {
     const msgs = s?.messages || [];
     setView(!msgs.length);
     for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, model: s?.model, cwd: msgs[i].cwd });
-    renderChats(); renderModels(); updateSeal();
+    renderChats(); renderModels(); updateSeal(); paintGrounding();
   }
   function newChat() {
     const id = sid();
     const m = models.find((x) => !x.sealed) || models[0] || null;
     const p = filterProject ? projects[filterProject] : null;
-    sessions[id] = { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
+    sessions[id] = { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], grounding: true, model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
     save("fold-chat:sessions", sessions);
     open(id);
     E.input.focus();
@@ -488,7 +488,7 @@ export function mount(root, opts = {}) {
     return {
       id: overrides.id, title: overrides.title, messages: overrides.messages,
       titleAuto: src.titleAuto !== false, named: !!src.named, icon: src.icon ?? null,
-      model: src.model, sealed: src.sealed, preset: src.preset,
+      model: src.model, sealed: src.sealed, preset: src.preset, grounding: src.grounding !== false,
       project: src.project ?? null, cwd: src.cwd ?? null,
       facts: src.facts ? { ...src.facts } : undefined,
       attachments: src.attachments ? src.attachments.map((a) => ({ ...a })) : undefined,
@@ -551,46 +551,11 @@ export function mount(root, opts = {}) {
     );
     const panel = el("div", "disc-panel");
 
-    // The facing page: the same turn as a book spread — SOURCES on the left
-    // (each cited passage numbered S#, its permanent address and the verbatim
-    // snip read from the real material), RESPONSE on the right with every
-    // sentence tagged [S#] to what it draws from or [M] for the mouth's own
-    // prose. The holodeck's construction, laid beside the disclosure.
-    if (rec.facing && rec.facing.has) {
-      const face = el("div", "facing");
-      const left = el("div", "face-sources");
-      left.append(el("div", "disc-label", "Sources"));
-      for (const s of rec.facing.sources) {
-        const card = el("div", "face-source");
-        card.append(el("span", "face-n", s.n));
-        card.append(el("code", "face-addr", s.address));
-        card.append(el("div", "face-snip", s.text));
-        left.append(card);
-      }
-      const right = el("div", "face-response");
-      right.append(el("div", "disc-label", "Response"));
-      for (const r of rec.facing.response) {
-        const row = el("div", "face-sent" + (r.grounded ? "" : " m"));
-        row.append(el("span", "face-tag" + (r.grounded ? "" : " m"), "[" + r.tag + "]"));
-        row.append(el("span", "face-text", r.text));
-        if (r.address) row.append(el("code", "face-ground", "grounded on " + r.address));
-        right.append(row);
-      }
-      face.append(left, right);
-      panel.append(face);
-    }
-
-    // Grounding — what was addressed, what is not in the material.
-    if (rec.sources && rec.sources.length) {
-      panel.append(el("div", "disc-label", "Addressed sources"));
-      const ul = el("div", "disc-sources");
-      for (const s of rec.sources) {
-        const row = el("div", "disc-source");
-        row.append(el("code", "disc-ref", s.address), el("span", "disc-text", s.text));
-        ul.append(row);
-      }
-      panel.append(ul);
-    }
+    // The facing page is the ANSWER now (renderFacingAnswer, below): a turn
+    // that carries material renders as the spread, so the disclosure keeps only
+    // the meta — what the material does not support, the ungrounded sentences,
+    // the web reads, and the route foot. A no-material turn has no sources to
+    // list, so there is nothing to re-render here.
 
     const bad = [...(rec.unsupported?.numbers || []), ...(rec.unsupported?.names || [])];
     if (bad.length) {
@@ -628,6 +593,66 @@ export function mount(root, opts = {}) {
     body.append(box);
   }
 
+  // THE FACING PAGE AS THE ANSWER — the spread a turn with material renders as.
+  // SOURCES on the left (each cited passage numbered S#, its permanent address,
+  // and the verbatim snip read from the real material), RESPONSE on the right
+  // (every sentence tagged [S#] to the passage it draws from, or [M] for the
+  // mouth's own prose). On desktop it is the two-page book spread; on mobile it
+  // becomes the tagged response and a [S#] chip opens the source's snip in a
+  // bottom sheet.
+  function renderFacingAnswer(body, rec, meta) {
+    const face = rec?.facing;
+    if (!face || !face.has) return;
+    const spread = el("div", "facing answer");
+    const left = el("div", "face-sources");
+    left.append(el("div", "disc-label", "Sources"));
+    for (const s of face.sources) {
+      const card = el("div", "face-source");
+      card.append(el("span", "face-n", s.n));
+      card.append(el("code", "face-addr", s.address));
+      card.append(el("div", "face-snip", s.text));
+      left.append(card);
+    }
+    const right = el("div", "face-response");
+    right.append(el("div", "disc-label", "Response"));
+    for (const r of face.response) {
+      const row = el("div", "face-sent" + (r.grounded ? "" : " m"));
+      const chip = el("span", "face-tag" + (r.grounded ? "" : " m"), "[" + r.tag + "]");
+      if (r.grounded) {
+        const src = face.sources.find((s) => s.n === r.tag);
+        chip.title = src ? `grounded on ${src.address} — tap to read` : "grounded";
+        chip.onclick = () => { if (src) faceSheet(src); };
+      } else {
+        chip.title = "the mouth's own prose — not grounded in the material";
+        chip.onclick = () => toast("the mouth's own prose — not grounded in the material");
+      }
+      row.append(chip, el("span", "face-text", r.text));
+      if (r.address) row.append(el("code", "face-ground", "grounded on " + r.address));
+      right.append(row);
+    }
+    spread.append(left, right);
+    body.append(spread);
+  }
+
+  // The bottom sheet a source chip opens: the address and the verbatim snip,
+  // read straight from the record — nothing re-summarized.
+  function faceSheet(src) {
+    const modal = el("div", "modal");
+    const sheet = el("div", "sheet");
+    const head = el("div", "sheet-head");
+    head.append(el("h2", "", src.n), el("div", "grow"));
+    const close = el("button", "sheet-close"); close.innerHTML = CLOSE_SVG;
+    head.append(close);
+    sheet.append(head);
+    if (src.address) sheet.append(el("div", "face-sheet-addr", src.address));
+    if (src.text) sheet.append(el("div", "face-sheet-snip", src.text));
+    const done = () => modal.remove();
+    close.onclick = done;
+    modal.onclick = (e) => { if (e.target === modal) done(); };
+    modal.append(sheet);
+    document.body.append(modal);
+  }
+
   function appendMsg(role, content, meta = {}) {
     const wrap = el("div", "msg " + role);
     const av = el("div", "av");
@@ -641,10 +666,19 @@ export function mount(root, opts = {}) {
     if (meta.sealed) body.classList.add("sealed-body");
     if (role === "assistant") {
       if (meta.cwd) body.append(el("span", "chip folderchip", "📁 " + meta.cwd));
+      // THE FACING PAGE IS THE ANSWER: a turn that carried material renders as
+      // the book spread (renderFacingAnswer) — the model's own prose block is
+      // skipped because the spread IS the response, sentence by sentence.
+      // Code/artifacts (fenced blocks) still render beside it. When the thread
+      // hides grounding, or no material was carried, the plain prose is the
+      // answer exactly as before.
+      const showDisclosure = transparency && sessions[activeId]?.grounding !== false;
+      const face = showDisclosure && meta.grounding?.facing?.has ? meta.grounding.facing : null;
       for (const b of artifactsOf(content)) {
-        if (b.kind === "prose") prose(body, b.text);
+        if (b.kind === "prose") { if (!face) prose(body, b.text); }
         else renderArtifact(body, b.artifact);
       }
+      if (face) renderFacingAnswer(body, meta.grounding, meta);
       if (meta.index != null) {
         const acts = el("div", "actions");
         const cont = el("button", "act", "continue"); cont.onclick = () => continueFrom(meta.index);
@@ -652,9 +686,9 @@ export function mount(root, opts = {}) {
         const disc = el("button", "act", "disclosure"); disc.onclick = () => { const d = body.querySelector(".disclosure"); if (d) d.hidden = !d.hidden; };
         acts.append(cont, fork, disc); body.append(acts);
       }
-      if (transparency && meta.grounding && meta.grounding.code) renderCodeDisclosure(body, meta.grounding, meta);
-      else if (transparency && meta.grounding && meta.grounding.generate) renderGenerateDisclosure(body, meta.grounding, meta);
-      else if (transparency && meta.grounding) renderDisclosure(body, meta.grounding, meta);
+      if (showDisclosure && meta.grounding && meta.grounding.code) renderCodeDisclosure(body, meta.grounding, meta);
+      else if (showDisclosure && meta.grounding && meta.grounding.generate) renderGenerateDisclosure(body, meta.grounding, meta);
+      else if (showDisclosure && meta.grounding) renderDisclosure(body, meta.grounding, meta);
     } else {
       body.textContent = content;
       if (meta.index != null) {
@@ -1305,6 +1339,20 @@ export function mount(root, opts = {}) {
   E.railEvidence.onclick = E.footEvidence.onclick = (e) => { e.preventDefault(); toggleDrawer(); };
   E.railTheme.onclick = () => { const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", cur); try { localStorage.setItem("fold-chat:theme", cur); } catch (e) {} };
   E.topFocus.onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {}); else document.exitFullscreen?.(); };
+  // Grounding disclosure — per THREAD. Each conversation decides whether its
+  // turns carry the grounding record. The toggle sits on the open thread and
+  // the setting lives on the session, so a fork/continue inherits it.
+  function threadGroundingOn() { return sessions[activeId]?.grounding !== false; }
+  function paintGrounding() { if (!E.groundToggle) return; E.groundToggle.hidden = !activeId; E.groundToggle.classList.toggle("on", threadGroundingOn()); }
+  function setGrounding(on) {
+    if (!activeId || !sessions[activeId]) return;
+    sessions[activeId].grounding = !!on;
+    sessions[activeId].updated = now();
+    save("fold-chat:sessions", sessions);
+    toast(on ? "grounding on — this thread shows its disclosure" : "grounding off — this thread hides its disclosure");
+    open(activeId);
+  }
+  if (E.groundToggle) E.groundToggle.onclick = () => setGrounding(!threadGroundingOn());
   // Web search on/off — a turn searches the keyless sources and grounds on them.
   function paintWeb() { if (E.webToggle) E.webToggle.classList.toggle("on", webOn); }
   if (E.webToggle) E.webToggle.onclick = () => {
@@ -1366,6 +1414,7 @@ export function mount(root, opts = {}) {
   try { const t = localStorage.getItem("fold-chat:theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
   renderProjects();
   paintWeb();
+  paintGrounding();
   // Auto-detect the bridge first (the override, then the standard local port),
   // then list whatever it serves. A page served from GitHub Pages finds the
   // person's own heimdall this way, with no URL to type.
