@@ -105,22 +105,23 @@ export function followUp(question, priorMessages, { referents = null, hints = nu
   const base = { said, query: said, kind: "standalone", thread, topic: "", carried: [], reason: "stands-alone" };
   if (!said) return base;
   if (isMeta(said)) return { ...base, kind: "meta", query: said, reason: thread.has ? "meta-with-thread" : "meta-cold" };
-  // 1. the pronoun path (resolveQuestion's own gate: a trigger form, no entity of its own, a record to carry from)
+  // 1. a VARIANT of the last topic ("a chewier one", "less sweet"): the person's own words + the topic they were on
+  const variant = () => {
+    if (!thread.topicAsk || !isElliptical(said)) return null;
+    const topic = topicOf(thread.topicAsk);
+    if (!topic) return null;
+    const own = contentWords(said).filter((w) => !topic.split(" ").includes(w));
+    return { ...base, kind: "elliptical", query: [...own, topic].join(" ").trim(), topic, reason: "elliptical-topic" };
+  };
+  if (COMPARATIVE_RE.test(said)) { const v = variant(); if (v) return v; }
+  // 2. the pronoun path (resolveQuestion's own gate: a trigger form, no entity of its own, a record to carry from)
   const r = resolveQuestion(said, referents, { hints });
   if (r.reason === "carried") {
     const q = searchQueries(r)[0] || said;
     return { ...base, kind: "carried", query: q, carried: r.carried.map((c) => c.surface), reason: "carried-referent" };
   }
-  // 2. the elliptical path: a short ask leaning on the last topic → search the topic with the ask's own words
-  if (thread.topicAsk && isElliptical(said)) {
-    const topic = topicOf(thread.topicAsk);
-    const own = contentWords(said);
-    if (topic) {
-      const own2 = own.filter((w) => !topic.split(" ").includes(w));
-      const query = [...own2, topic].join(" ").trim();
-      return { ...base, kind: "elliptical", query, topic, reason: "elliptical-topic" };
-    }
-  }
+  // 3. any other short ask that leans on the last topic ("another one", "what about a vegan one")
+  { const v = variant(); if (v) return v; }
   return base;
 }
 

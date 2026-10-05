@@ -17,15 +17,20 @@ export function takeSnapshot(repo, dest) {
   fs.mkdirSync(dest, { recursive: true });
   const files = [];
   for (const f of fs.readdirSync(repo)) {
-    if ((/^fold-chat.*\.js$/.test(f) || f === "index.html")) files.push(f);
+    // Everything the page can load from the repo root: scripts, html, css, json manifests, images (never tests / e2e / eval).
+    if (fs.statSync(path.join(repo, f)).isFile() && /\.(js|html|css|json|svg|png|webp|ico|woff2?)$/.test(f) && !/(\.test\.|e2e|package)/.test(f)) files.push(f);
   }
-  const vend = path.join(repo, "vendor/the-fold");
   const out = {};
   for (const f of files) { fs.copyFileSync(path.join(repo, f), path.join(dest, f)); }
-  if (fs.existsSync(vend)) {
-    fs.mkdirSync(path.join(dest, "vendor/the-fold"), { recursive: true });
-    for (const f of fs.readdirSync(vend)) fs.copyFileSync(path.join(vend, f), path.join(dest, "vendor/the-fold", f));
-  }
+  // vendor/ (except the big Phosphor SVG set: icons are generated into fold-chat-icons.js) and dist/ if present
+  const copyDir = (rel, skip = /phosphor/) => {
+    const src = path.join(repo, rel); if (!fs.existsSync(src)) return;
+    for (const e of fs.readdirSync(src, { withFileTypes: true })) {
+      const r = path.join(rel, e.name); if (skip.test(r)) continue;
+      if (e.isDirectory()) copyDir(r, skip); else { fs.mkdirSync(path.join(dest, rel), { recursive: true }); fs.copyFileSync(path.join(repo, r), path.join(dest, r)); }
+    }
+  };
+  copyDir("vendor");
   const walk = (d, rel = "") => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const r = path.join(rel, e.name); if (e.isDirectory()) walk(path.join(d, e.name), r); else out[r] = crypto.createHash("sha256").update(fs.readFileSync(path.join(d, e.name))).digest("hex").slice(0, 16); } };
   walk(dest);
   let head = null, dirty = null;

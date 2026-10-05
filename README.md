@@ -123,6 +123,26 @@ menu has no effort row in the Agent engagement (effort only shapes a grounded
 turn). There is no web-search switch: every turn except a greeting searches the
 web. The lock is the sealed-external state — every request carries it.
 
+## The model never speaks alone
+
+A turn with no sources produces **no model-written answer** — only an app-authored, typed gap built from the
+real search trace (`fold-chat-gaps.js`: what was searched, which engines failed and why, with a retry). A
+live-data ask (weather, a price, a score, today's news) with nothing reachable is the typed gap *live data —
+nothing reachable*. A blank or failed turn is never blank: a typed `empty` / `error` note with a retry.
+The kinds that search nothing (a greeting, arithmetic, your own text to translate, a programming how-to,
+personal writing) are answered by the app alone — a fixed line, a mechanical result card (`fold-chat-compute.js`),
+or "there are no sources for this kind of ask" — unless `ALONE_KINDS` (one constant, `fold-chat-gaps.js`) lists the kind.
+The model may not name a source the page did not give it, and never shows the source-block labels
+(`fold-chat-attribution.js`); the reply is checked against the asker's language (`fold-chat-lang.js`).
+
+**Two answer modes**, chosen per turn in the composer chip's *Answer* row (remembered as `fold-chat:answerMode`,
+stamped on the ask as `answerMode`, kept by a re-run unless the chip was moved):
+*Facing page* — the model writes from snipped sources; *Sources only* — **no model call at all**: the answer is
+the sources' own passages, verbatim, strung together in source order with the S# chip, credit and link
+(`fold-chat-strand.js`; a recipe / HowTo / FAQ / QA block the page declares, a Wikipedia lead, else the sentences
+that differ the ask). Every stored snip is checked to occur in the page text it came from; such a message is
+`authored: "sources"`, is never scored, and reaches later turns marked as the sources' words, not the model's.
+
 ## What an answer shows at rest
 
 Under an answer, at most two quiet lines: **`3 passages from 1 source · ✱ 3 of 6
@@ -142,6 +162,36 @@ node fold-e2e-falsify.mjs                     # drives the live page (see its he
 The e2e needs the live stack (this page on :8814, the heimdall bridge on :8790).
 It tries `import("playwright")` first and falls back to a scratch install at
 `/private/tmp/fold-e2e/node_modules/playwright`.
+
+## As a browser extension
+
+The same page, packaged as a Manifest V3 extension. A static page cannot read most of the web (CORS); an
+extension page with host permissions can, so web search and page reads go **straight from the person's own
+computer** — no relay, no public CORS proxy, no account, nothing of ours in the path and nothing to store.
+
+```
+node scripts/build-extension.mjs      # → dist/extension/   chrome://extensions → Developer mode → Load unpacked
+node --test                           # the gate, the manifest and the package are tested
+node fold-ext-e2e.mjs                 # loads the build in a real Chromium (needs network; FOLD_E2E_QUICK=1 for a short run)
+```
+
+- **What ships** is only what the entry points import (`scripts/build-extension.mjs`); the build fails on anything an
+  extension page's CSP refuses (inline script, `on*=` handlers, remote scripts, unresolved imports). The two inline
+  scripts that used to be in `index.html` are `fold-theme-boot.js` and `fold-boot.js`.
+- **Permissions** (`manifest.json`): `sidePanel`; fixed hosts for the five research sources, Brave, DuckDuckGo and the
+  loopback bridge. Reading *any other* site is an optional permission the person grants on the options page
+  (`fold-options.html`) and can revoke; it is off until they do. No `tabs`, `cookies`, `history`, content scripts or
+  `externally_connectable`.
+- **The exit gate** (`fold-chat-exit.js`, installed first by `fold-exit-install.js` on the page's global `fetch`):
+  https only; no IP literals, single-label or private names (`localhost`, `*.local`, `*.internal`, …); GET/HEAD only,
+  no body, no `Authorization`; **credentials always omitted** (a read never rides the person's logged-in sessions);
+  no `Referer`; the final URL after redirects is checked again. The loopback bridge and the extension's own files pass.
+  Said plainly: a public *name* that resolves to a private address, and a redirect hop before it is followed, cannot be
+  seen from a page — the name list is best-effort and a bad redirect is caught after one credential-less GET.
+- **Artifacts** run in `fold-sandbox.html`, a manifest `sandbox` page (opaque origin, no extension API, no access to the
+  chats in storage), reached through `sandboxDoc()` in `fold-chat-sandframe.js` — on the web that is still `srcdoc`.
+- **Not done:** Firefox/Safari (Chrome-family MV3 only), icons, store listing, moving chat storage from `localStorage`
+  to IndexedDB (the 5 MB cap), and the heimdall bridge on a non-loopback address (the gate refuses it).
 
 ## Roadmap (the LibreChat features, Fold-native)
 

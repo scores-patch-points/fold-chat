@@ -22,6 +22,15 @@ import { gradeRequest, verifyAgainst, withProvenance } from "./fold-chat-seal.js
 const hostOf = (url) => { try { const u = new URL(url, "http://local.invalid"); return { host: u.host, path: u.pathname, search: u.search }; } catch { return { host: null, path: null, search: "" }; } };
 const LOOPBACK = /^(localhost|127\.\d+\.\d+\.\d+|\[::1\])(:\d+)?$/;
 
+/** What the de-identifier masked in a request, as the ledger may keep it: how many, of which kinds, whether the holograph read helped.
+ *  Counts only. The originals live in the masker's closure and never reach here, so this can be stored and exported. */
+export function cleanMasking(m) {
+  if (!m || typeof m !== "object") return null;
+  const kinds = {};
+  for (const [k, v] of Object.entries(m.kinds || {})) if (/^[A-Z]{2,8}$/.test(k) && Number.isFinite(+v)) kinds[k] = Math.max(0, Math.floor(+v));
+  return { count: Math.max(0, Math.floor(+m.count || 0)), kinds, viaRead: !!m.viaRead };
+}
+
 /** Is this URL on this machine? A loopback call is not an exit. */
 export function isLocalUrl(url) { const { host } = hostOf(url); return !host || host === "local.invalid" || LOOPBACK.test(host); }
 
@@ -36,10 +45,10 @@ export function createOutbound({ storage = null, key = "fold-chat:outbound", max
   const api = {
     onChange(f) { listeners.add(f); return () => listeners.delete(f); },
     /** A model request through heimdall. Returns the handle to close when it answers. */
-    sendModel({ auditId, model, messages, segments = null, worlds = null, symmetry = null, gate = true, host = null, purpose = null, run = null, base = null }) {
+    sendModel({ auditId, model, messages, segments = null, worlds = null, symmetry = null, gate = true, host = null, purpose = null, run = null, base = null, masking = null }) {
       const segs = segments || messages.map((m) => ({ role: m.role, chars: String(m.content ?? "").length, provenance: m.role === "system" ? "template" : m.role === "assistant" ? "generated" : "ask" }));
       const grade = gradeRequest({ messages, segments: segs, worlds, symmetry, gate }, { taint });
-      const e = { n: ++seq, id: auditId, at: now(), kind: "model", via: "heimdall", model, host, purpose, run, base, worlds, symmetry: symmetry ? { passed: !!symmetry.passed, worst: symmetry.worst || null } : null, segments: segs, messages, bytes: new TextEncoder().encode(JSON.stringify(messages)).length, grade: { level: grade.level, sealed: grade.sealed, raw: grade.raw, leaks: grade.leaks, notes: grade.notes }, status: "sending", verification: null };
+      const e = { n: ++seq, id: auditId, at: now(), kind: "model", via: "heimdall", model, host, purpose, run, base, masking: cleanMasking(masking), worlds, symmetry: symmetry ? { passed: !!symmetry.passed, worst: symmetry.worst || null } : null, segments: segs, messages, bytes: new TextEncoder().encode(JSON.stringify(messages)).length, grade: { level: grade.level, sealed: grade.sealed, raw: grade.raw, leaks: grade.leaks, notes: grade.notes }, status: "sending", verification: null };
       entries.push(e); if (entries.length > max) entries.splice(0, entries.length - max);
       persist(); emit(e);
       return { entry: e, done: ({ ok = true, error = null, status = null } = {}) => { e.status = ok ? "answered" : "failed"; e.error = error ? String(error).slice(0, 200) : null; e.httpStatus = status; persist(); emit(e); return e; } };

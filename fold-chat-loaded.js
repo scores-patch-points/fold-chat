@@ -42,6 +42,8 @@ function entriesOf(json, source) {
       size: Number(m?.size) > 0 ? Number(m.size) : 0,
       vram: Number(m?.size_vram) > 0 ? Number(m.size_vram) : 0,
       expires: m?.expires_at || null,
+      // the window it is loaded at (Ollama's /api/ps `context_length`): Gary reads it at the door (fold-chat-gary.js noteWindows)
+      ctx: Number(m?.context_length) > 0 ? Number(m.context_length) : 0,
     });
   }
   return out;

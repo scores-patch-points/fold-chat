@@ -1,0 +1,237 @@
+{
+ "note": "Hand-written asks in informal, caseless, non-standard English. gold = private names a de-identifier MUST mask (people, handles, local businesses). public = names of public places/things it need NOT mask. Written for this probe; not drawn from any person's real messages. gold lists the DISTINCTIVE words of each private name (not generic parts like 'dental' or 'sons plumbing'): a name is caught when none of them survives.",
+ "cases": [
+  {
+   "id": "lc-1",
+   "reg": "lowercase",
+   "text": "make a timer for eleanor voss",
+   "gold": [
+    "eleanor",
+    "voss"
+   ]
+  },
+  {
+   "id": "lc-2",
+   "reg": "lowercase",
+   "text": "build a booking page for marlow dental, patients book w/ dr kim",
+   "gold": [
+    "marlow",
+    "kim"
+   ]
+  },
+  {
+   "id": "lc-3",
+   "reg": "lowercase",
+   "text": "can u make a page where priya can see her shifts",
+   "gold": [
+    "priya"
+   ]
+  },
+  {
+   "id": "lc-4",
+   "reg": "lowercase",
+   "text": "my boss tom reeves wants a dashboard for the sales team at brightleaf",
+   "gold": [
+    "tom",
+    "reeves",
+    "brightleaf"
+   ]
+  },
+  {
+   "id": "lc-5",
+   "reg": "lowercase",
+   "text": "i need a form for okafor and sons plumbing, they keep losing invoices",
+   "gold": [
+    "okafor"
+   ]
+  },
+  {
+   "id": "sms-1",
+   "reg": "sms",
+   "text": "pls make a countdown 4 ayesha's wedding on sat, her mum is called fatima khan",
+   "gold": [
+    "ayesha",
+    "fatima",
+    "khan"
+   ]
+  },
+  {
+   "id": "sms-2",
+   "reg": "sms",
+   "text": "hey can u do a page 4 my bro dre, he sells sneakers outta his garage",
+   "gold": [
+    "dre"
+   ]
+  },
+  {
+   "id": "sms-3",
+   "reg": "sms",
+   "text": "need app 2 track hours 4 jamal n devonte, they work at big al's tires",
+   "gold": [
+    "jamal",
+    "devonte",
+    "al"
+   ]
+  },
+  {
+   "id": "sing-1",
+   "reg": "singlish",
+   "text": "eh can you help me make one website for my auntie siti's kueh stall lah, she very busy one",
+   "gold": [
+    "siti"
+   ]
+  },
+  {
+   "id": "sing-2",
+   "reg": "singlish",
+   "text": "wah lim ah seng wants one app for his hawker stall, can or not",
+   "gold": [
+    "lim",
+    "seng"
+   ]
+  },
+  {
+   "id": "irc-1",
+   "reg": "irc",
+   "text": "hey #ubuntu im trying to give jdoe_42 access to my server at home, ssh keys for mrsmith too",
+   "gold": [
+    "jdoe_42",
+    "mrsmith"
+   ]
+  },
+  {
+   "id": "irc-2",
+   "reg": "irc",
+   "text": "@kevin_t pasted my config, can someone make a script that emails kev when disk is full",
+   "gold": [
+    "kevin_t",
+    "kev"
+   ]
+  },
+  {
+   "id": "aae-1",
+   "reg": "dialect",
+   "text": "yo i need a lil site for my cousin tyrone, he finna start cutting hair outta his crib on delmar",
+   "gold": [
+    "tyrone"
+   ]
+  },
+  {
+   "id": "aae-2",
+   "reg": "dialect",
+   "text": "make me a page for miss pearl's kitchen, she been cooking for the church for 30 years",
+   "gold": [
+    "pearl"
+   ]
+  },
+  {
+   "id": "nick-1",
+   "reg": "nickname",
+   "text": "build a signup sheet for the bake sale, mamaw lou is in charge and big mike does the money",
+   "gold": [
+    "lou",
+    "mike"
+   ]
+  },
+  {
+   "id": "nick-2",
+   "reg": "nickname",
+   "text": "tracker for lil mike's lawn crew, 4 guys, nguyen is the foreman",
+   "gold": [
+    "mike",
+    "nguyen"
+   ]
+  },
+  {
+   "id": "xlat-1",
+   "reg": "non-anglo",
+   "text": "necesito una pagina para la clinica de dra. gutierrez y su hijo mateo",
+   "gold": [
+    "gutierrez",
+    "mateo"
+   ]
+  },
+  {
+   "id": "xlat-2",
+   "reg": "non-anglo",
+   "text": "make a page for yusuf and hatice demir, they run a bakery in kadikoy",
+   "gold": [
+    "yusuf",
+    "hatice",
+    "demir"
+   ]
+  },
+  {
+   "id": "code-1",
+   "reg": "code",
+   "text": "rename getEleanorBalance to fetch and fix where marlowdental_api is imported",
+   "gold": [
+    "eleanor",
+    "marlowdental"
+   ]
+  },
+  {
+   "id": "code-2",
+   "reg": "code",
+   "text": "in the sheet for priya_k change the owner column to 'devon p' and save",
+   "gold": [
+    "priya",
+    "devon"
+   ]
+  },
+  {
+   "id": "mix-1",
+   "reg": "mixed",
+   "text": "ok so my landlord mr. abernathy at 4 elm st wants a rent tracker, i live in unit 3b",
+   "gold": [
+    "abernathy",
+    "elm"
+   ]
+  },
+  {
+   "id": "mix-2",
+   "reg": "mixed",
+   "text": "text me at 615 555 0142 when marcus finishes the build, im at the franklin office",
+   "gold": [
+    "615 555 0142",
+    "marcus"
+   ]
+  },
+  {
+   "id": "neg-1",
+   "reg": "none",
+   "text": "make a timer with start pause and reset buttons",
+   "gold": []
+  },
+  {
+   "id": "neg-2",
+   "reg": "none",
+   "text": "wat time is it in tokyo rn, make a clock page lah",
+   "gold": []
+  },
+  {
+   "id": "neg-3",
+   "reg": "none",
+   "text": "can u make a todo list that saves to localstorage",
+   "gold": []
+  },
+  {
+   "id": "neg-4",
+   "reg": "none",
+   "text": "yo make a lil calculator thingy w/ dark mode, big buttons",
+   "gold": []
+  },
+  {
+   "id": "neg-5",
+   "reg": "none",
+   "text": "build a weather widget using the open meteo api for new york",
+   "gold": []
+  },
+  {
+   "id": "neg-6",
+   "reg": "none",
+   "text": "mark the completed items green and will it let me drag them",
+   "gold": []
+  }
+ ]
+}

@@ -267,7 +267,7 @@ export function createFeed(host, { live = false, onStop = null, onRetry = null, 
       if (t.done) continue;
       const ms = Date.now() - t.start;
       t.s.time(ms);
-      if (t.slowAfter && ms > t.slowAfter && !t.slowed) { t.slowed = true; t.s.kind("warn", "\u21bb").note("\u2014 " + t.slow); hint.textContent = t.slow; hint.hidden = false; }
+      if (t.slowAfter && ms > t.slowAfter && !t.slowed) { t.slowed = true; t.s.kind("warn", "\u21bb").note("\u2014 " + t.slow); }
     }
   }
   const toneKind = (tone) => (tone === "bad" ? "bad" : tone === "ok" ? "ok" : tone === "warn" ? "warn" : "info");
@@ -285,7 +285,6 @@ export function createFeed(host, { live = false, onStop = null, onRetry = null, 
         t.done = true;
         if (e.title) t.s.label(e.title);
         t.s.kind(toneKind(e.tone)).time(e.ms || 0).note(e.note ? "\u2014 " + e.note : "");
-        if (![...tsteps.values()].some((x) => x.slowed && !x.done)) hint.hidden = true;
         break;
       }
       case "line": {

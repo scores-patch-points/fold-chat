@@ -1,0 +1,13 @@
+import * as H from "./lib.mjs";
+const page = await H.fetchPage("https://www.alattefood.com/banana-bread/");
+const s = await H.snip(page, "banana bread recipe");
+const lex = s.snips.find((x) => x.rung === "d");
+const vis = H.visibleText(page.html);
+const i = vis.indexOf(lex.text.slice(0, 40));
+console.log("lexical found raw in visibleText:", i, "| snippet head:", JSON.stringify(lex.text.slice(0, 90)));
+const norm = (x) => String(x).replace(/\s+/g, " ").trim().toLowerCase();
+const parts = lex.text.split(/(?<=[.!?])\s+/);
+for (const p of parts) console.log(vis.includes(p) ? "  in-vis" : "  NOT-in-vis", JSON.stringify(p.slice(0, 80)));
+const imp = s.snips.find((x) => x.rung === "c"); console.log("impression head:", JSON.stringify(imp.text.slice(0, 160)));
+const rc = s.snips.find((x) => x.rung === "a"); console.log("recipe head:", JSON.stringify(rc.text.slice(0, 120)));
+await H.close();

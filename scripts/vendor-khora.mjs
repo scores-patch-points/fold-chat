@@ -9,6 +9,10 @@
 //   node scripts/vendor-khora.mjs            copy the closure of ENTRIES into vendor/khora/
 //   node scripts/vendor-khora.mjs --check    verify vendor/khora is byte-identical to the pinned commit's files
 //   node scripts/vendor-khora.mjs --dry      print the closure and skips, copy nothing
+//   node scripts/vendor-khora.mjs --add      copy ONLY files not yet pinned (a new organ), leaving every
+//                                            pinned file byte-identical and the pin's commit untouched.
+//                                            Use it when the khora working tree is ahead of the pin and you
+//                                            want one more organ, not a refresh of all of them.
 //   --src /path/to/khora                     default: ../khora
 //
 // Rules (same as holodeck/tools/vendor-er7.mjs):
@@ -34,6 +38,7 @@ const SRC = path.resolve(arg("--src", path.join(ROOT, "..", "khora")));
 const DEST = path.join(ROOT, "vendor", "khora");
 const DRY = process.argv.includes("--dry");
 const CHECK = process.argv.includes("--check");
+const ADD = process.argv.includes("--add");
 const PIN = path.join(DEST, "VENDOR-KHORA.json");
 
 // What the chat runs. Add an organ here when the chat starts using it.
@@ -47,6 +52,17 @@ export const ENTRIES = [
   // imports a node: builtin (permanent addresses need node:crypto). Unported until guarded in the khora.
   "organs/run-dmca.js",
   "organs/corroboration.js",
+  // THE PROMPT DOOR (Gary, with Kondo and the firewall under him) — what the mouth is handed, in what order, and what
+  // never enters: fold-chat-gary.js. Pure, no imports of their own.
+  "organs/gary.js",
+  "organs/firewall.js",
+  "organs/kondo.js",
+  // THE CONVERSATION'S FLOW (Terry Gross, in earned-cast.js): the speech act of the turn and the facts a reply hears — fold-chat-flow.js.
+  "the-fold/earned-cast.js",
+  // THE PATHOS ARCHONS: the felt shape of a run of answers for a DECLARED experiencer (Abhinavagupta, with Murch's pacing,
+  // Panini's experiencer and the dynamics kernel), and the live turn's composition of it — fold-chat-pathos.js.
+  "organs/pathos.js",
+  "the-fold/pathos-turn.js",
   // the keyless memory (THE-HOLOGRAPH §3): sdrOf, Field.recall, nullBand — the shadow and echo tiers
   "the-fold/relative.js",
 ];
@@ -60,15 +76,17 @@ function resolveImport(fromRel, spec) {
   return base;
 }
 
-function closure() {
+// `stopAt`: files already pinned (the --add mode): they are leaves, never re-read from a khora tree that may be ahead.
+function closure(entries = ENTRIES, stopAt = null) {
   const native = path.join(SRC, "native");
   const seen = new Map(); // rel -> { via }
   const skips = [];
   const missing = [];
-  const queue = ENTRIES.map((e) => ({ rel: e, via: "(entry)" }));
+  const queue = entries.map((e) => ({ rel: e, via: "(entry)" }));
   while (queue.length) {
     const { rel, via } = queue.shift();
     if (seen.has(rel)) continue;
+    if (stopAt && stopAt[rel]) { seen.set(rel, { via, pinned: true }); continue; }
     const abs = path.join(native, rel);
     if (!fs.existsSync(abs)) { missing.push({ rel, via }); continue; }
     const text = fs.readFileSync(abs, "utf8");
@@ -92,7 +110,10 @@ function khoraCommit() {
   } catch { return { commit: null, dirtyNative: null }; }
 }
 
-const { files, skips, missing } = closure();
+const pinForAdd = ADD && fs.existsSync(PIN) ? JSON.parse(fs.readFileSync(PIN, "utf8")) : null;
+const { files, skips, missing } = pinForAdd
+  ? closure(ENTRIES.filter((e) => !(pinForAdd.entries || []).includes(e)), pinForAdd.files)
+  : closure();
 
 if (CHECK) {
   if (!fs.existsSync(PIN)) { console.error("no vendor/khora/VENDOR-KHORA.json — run without --check first"); process.exit(2); }
@@ -120,25 +141,32 @@ for (const s of skips) console.log(`  SKIP ${s.rel}  (${s.why}; reached via ${s.
 for (const m of missing) console.log(`  MISSING ${m.rel}  (imported by ${m.via})`);
 if (DRY) { console.log(files.map((f) => "  " + f).join("\n")); process.exit(0); }
 
-fs.rmSync(path.join(DEST, "native"), { recursive: true, force: true });
-const hashes = {};
+// --add: keep every pinned file exactly as it is; copy only what the pin does not hold yet.
+const pinned = pinForAdd;
+if (ADD && !pinned) { console.error("--add needs an existing pin (vendor/khora/VENDOR-KHORA.json)"); process.exit(2); }
+if (!ADD) fs.rmSync(path.join(DEST, "native"), { recursive: true, force: true });
+const hashes = pinned ? { ...pinned.files } : {};
+const added = [];
 for (const rel of files) {
   const from = path.join(SRC, "native", rel);
   const to = path.join(DEST, "native", rel);
+  if (pinned && pinned.files[rel] && fs.existsSync(to)) { hashes[rel] = pinned.files[rel]; continue; }
   fs.mkdirSync(path.dirname(to), { recursive: true });
   fs.copyFileSync(from, to);
   hashes[rel] = sha(fs.readFileSync(to));
+  added.push(rel);
 }
-const khora = khoraCommit();
+const khora = pinned ? pinned.khora : khoraCommit();
 fs.mkdirSync(DEST, { recursive: true });
 fs.writeFileSync(PIN, JSON.stringify({
   repo: "scores-patch-points/khora",
   khora,
   note: "FROZEN COPY of the static import closure of `entries`. Refresh with `node scripts/vendor-khora.mjs`; verify with --check. Never edit by hand.",
   entries: ENTRIES,
-  files: hashes,
-  skips,
-  missing,
+  files: Object.fromEntries(Object.entries(hashes).sort(([a], [b]) => (a < b ? -1 : 1))),
+  skips: pinned ? [...(pinned.skips || []), ...skips] : skips,
+  missing: pinned ? [...(pinned.missing || []), ...missing] : missing,
 }, null, 2) + "\n");
-console.log(`vendored ${files.length} files -> vendor/khora/  (khora ${String(khora.commit).slice(0, 8)}${khora.dirtyNative ? `, ${khora.dirtyNative} dirty native/ files in the khora working tree` : ""})`);
+if (ADD) console.log(`added ${added.length} new file(s), kept ${files.length - added.length} pinned file(s) untouched:\n  ` + added.join("\n  "));
+else console.log(`vendored ${files.length} files -> vendor/khora/  (khora ${String(khora.commit).slice(0, 8)}${khora.dirtyNative ? `, ${khora.dirtyNative} dirty native/ files in the khora working tree` : ""})`);
 if (skips.length || missing.length) console.log("NOTE: skips/missing are recorded in VENDOR-KHORA.json — the surface must treat those organs as unported.");

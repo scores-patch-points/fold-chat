@@ -1,0 +1,1094 @@
+{
+ "built": "2026-10-05T18:19:36.919Z",
+ "method": "hand labels from eval/worksheet.txt + eval/probe.mjs",
+ "sentences": [
+  {
+   "key": "default/a1_eiffel_year/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "cited quote is the 1887 'Artists against the Eiffel Tower' petition, not the completion date"
+  },
+  {
+   "key": "default/a3_apollo_date/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'surface with Apollo 11 on July 20, 1969'"
+  },
+  {
+   "key": "default/a4_fleming/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'discovered in 1928 by the Scottish physician Alexander Fleming'"
+  },
+  {
+   "key": "default/a5_gold_symbol/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is the ancient circle-dot symbol for gold; the 'Au' sentence is elsewhere on the page"
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote says begun 1503/4; names no painter"
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 2,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": null,
+   "why": "two-Mona-Lisa theory page: quote about Lomazzo's two versions (a theory, presented as 'evidence')"
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 5,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": null,
+   "why": "quote is the 1915 opera/films/song cultural-depictions sentence"
+  },
+  {
+   "key": "default/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is 'most visited monument ... 6.91 million'; the 330 m (1,083 ft) sentence is elsewhere"
+  },
+  {
+   "key": "default/b2_everest_m/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is the lead 'highest mountain'; 8,848.86 m sentence elsewhere"
+  },
+  {
+   "key": "default/b3_mariana_ft/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'deepest trench ... 200 km east of Mariana Islands'; depth is elsewhere"
+  },
+  {
+   "key": "default/b5_light_kms/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is '186282 miles per second'; metres/second sentence elsewhere"
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": false,
+   "why": "FALSE CLAIM 'Harvard is older' grounded to the Harvard lead sentence (no age comparison). Oxford 1096 < Harvard 1636"
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 1,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'Harvard was founded in 1636'"
+  },
+  {
+   "key": "default/c4_galileo_newton/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": false,
+   "why": "FALSE CLAIM 'Newton was born first' (Galileo 1564, Newton 1643) grounded to Newton's own birth sentence"
+  },
+  {
+   "key": "default/c5_russia_canada/r1/t0",
+   "idx": 1,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: second-largest country by total area (answer says 'land area'; close)"
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "Britannica quote: founded by Jobs and Wozniak in 1976"
+  },
+  {
+   "key": "default/c7_eiffel_country_capital/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": "derived",
+   "truth": true,
+   "why": "quote is Eiffel 'most visited monument'; 'Paris is capital of France' is on no read page's quote"
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: theory that Leonardo painted two versions (names Leonardo as painter)"
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is the truncated pronunciation fragment 'Alexander Graham Bell (/ˈɡreɪ.'"
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 1,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: awarded the first U.S. patent ... March 7, 1876"
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "NASA quote: 'Neil Armstrong was the first person to walk on the moon'"
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "RIGHT ANSWER, WRONG CITATION: cited page 'Question' only quotes 'What is the capital of Australia?' as an example question"
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t1",
+   "idx": 1,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": null,
+   "why": "model's disclaimer ('I am trained on a massive dataset...') grounded to a US-states population-density table"
+  },
+  {
+   "key": "default/e_cap_ar/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is 'related topics: what is the capital of Australia' (mawdoo3 nav text); ar.wikipedia Canberra was read and states it"
+  },
+  {
+   "key": "default/e_cap_en/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "RIGHT ANSWER, WRONG CITATION: same 'Question' page as d7"
+  },
+  {
+   "key": "default/e_cap_fr/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "fr.wikipedia quote: 'Canberra est la capitale de l'Australie'"
+  },
+  {
+   "key": "default/e_cap_sw/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: Sydney and Melbourne each >5 million (but the question asked for the CAPITAL: answer is off-question)"
+  },
+  {
+   "key": "default/e_cap_sw/r1/t0",
+   "idx": 1,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "same quote supports Melbourne >5 million"
+  },
+  {
+   "key": "default/e_eiffel_en/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "GROUNDED BUT NOT TRUE: worldatlas quote says main structure 300 m (324 m with antennas); current height is 330 m"
+  },
+  {
+   "key": "default/e_eiffel_es/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": null,
+   "truth": true,
+   "why": "Spanish answer cited to an en.wikipedia 'replicas' page footnote ('La torre Eiffel de Santa Clara')"
+  },
+  {
+   "key": "default/e_eiffel_fr/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "French answer cited to the English lead sentence (no height); matched on the 'Tour Eiffel' name run + number elsewhere on page"
+  },
+  {
+   "key": "default/e_eiffel_pt/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": null,
+   "truth": true,
+   "why": "Portuguese answer cited to a Spanish footnote on the replicas page"
+  },
+  {
+   "key": "default/e_eiffel_sw/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "sw.wikipedia quote is the lead (no height); 324->330 m sentence is elsewhere on the page"
+  },
+  {
+   "key": "default/e_wall_de/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote: memorial opening 'on the anniversary of the day the Wall fell' (no year)"
+  },
+  {
+   "key": "default/e_wall_en/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'fell on 9 November 1989'"
+  },
+  {
+   "key": "default/f1_king_us/r1/t0",
+   "idx": 1,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "'US has never had a King' grounded to Franklin Pierce lead (14th president 1853-57); true but unsupported by the passage"
+  },
+  {
+   "key": "default/f1_king_us/r1/t0",
+   "idx": 2,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "same Pierce quote for 'founded as a republic'"
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "idx": 4,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": null,
+   "why": "meta-sentence about the sources; quote on the extended periodic table supports it loosely"
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "idx": 5,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: no consensus on placement of elements beyond 120"
+  },
+  {
+   "key": "default/f3_wc_2034/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": false,
+   "why": "FABRICATION GROUNDED: 'Saudi Arabia won the 2034 FIFA World Cup' cited to 'will be the 25th FIFA World Cup' (it has not been played)"
+  },
+  {
+   "key": "frontier/a2_austen/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "Jane Austen article quote lists Pride and Prejudice (1813)"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 5,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "PBS quote: 'But I guess that was exactly what I did.'"
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "idx": 1,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "statement of ABSENCE ('sources don't include the height of the Statue of Liberty') grounded to a Gustave Eiffel sentence that mentions the statue"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 1,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: founded 1976 by Jobs, Wozniak and Wayne"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 2,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "same quote"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 3,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "same quote"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 4,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'founded as a partnership on April 1, 1976, by Jobs, Wozniak, and Wayne'"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "quote is 'sources give inconsistent info on the patron' (two-Mona-Lisa page), not the painter"
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "cited page is 'A Walk on the Moon', a 1999 FILM (Diane Lane)"
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "idx": 2,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: 'The first were Neil Armstrong and Buzz Aldrin in July 1969'"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": true,
+   "why": "mappr quote is the heading 'Why is Canberra the Capital of Australia?'"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 2,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "quote: compromise between Sydney and Melbourne"
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 0,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "ru.wikipedia quote: Канберра — столица Австралии"
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 2,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": true,
+   "why": "ru.wikipedia quote: population 410 301 (2024)"
+  },
+  {
+   "key": "frontier/e_eiffel_es/r1/t0",
+   "idx": 1,
+   "quoteSupports": false,
+   "doc": true,
+   "truth": null,
+   "why": "meta-sentence ('height has changed over time') grounded to a Campo de Marte sentence"
+  },
+  {
+   "key": "frontier/f1_king_us/r1/t0",
+   "idx": 0,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": true,
+   "why": "'never had a king' grounded to the one-line '1850 in the United States' stub"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 4,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "fan-made 'Fandomium' wiki treated as a source: the quote does say it, but the element is fiction ('Schrodium')"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 5,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "fan wiki: 'named for Erwin Schrödinger' (fictional element name)"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 8,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "fan wiki: 569 subatomic particles"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 9,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "fan wiki: atomic mass 422.5 daltons"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 16,
+   "quoteSupports": true,
+   "doc": true,
+   "truth": false,
+   "why": "fan wiki: 419So half-life 5.7 ms"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 29,
+   "quoteSupports": false,
+   "doc": false,
+   "truth": false,
+   "why": "melting point 191 C / boiling 645 C cited to a generic 'triple point' sentence (numbers occur elsewhere on the fan page)"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 7,
+   "quoteSupports": false,
+   "doc": null,
+   "truth": null,
+   "why": "the bare heading '**Atomic Structure**' is 'grounded' to an extended-periodic-table sentence"
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "idx": 19,
+   "quoteSupports": false,
+   "doc": null,
+   "truth": null,
+   "why": "the heading '**Chemical Properties**' is 'grounded'"
+  },
+  {
+   "key": "default/a2_austen/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "Pride and Prejudice article was never read (reads: 'Pride', 'Prejudice' pages): correct from the model's memory, correctly ungrounded"
+  },
+  {
+   "key": "default/b4_iceland_pop/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Iceland article read and says 'roughly 395,000 residents'; app missed it (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/b5_light_kms/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "300,000 km/s = rounded unit conversion of 299,792,458 m/s"
+  },
+  {
+   "key": "default/b6_danube_mi/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": false,
+   "why": "2,150 miles is wrong (1,770); correctly ungrounded"
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "Oxford 1096 is true but no read page carries it (Oxford article not read)"
+  },
+  {
+   "key": "default/c2_eiffel_liberty/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "comparison follows from 330 m vs Statue of Liberty height, which was not read"
+  },
+  {
+   "key": "default/c3_danube_rhine/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Rhine article read: 'at about 1,230 km (760 mi)'; FALSE NEGATIVE"
+  },
+  {
+   "key": "default/c3_danube_rhine/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Danube article read: '2,850 km (1,770 mi)'; FALSE NEGATIVE"
+  },
+  {
+   "key": "default/c3_danube_rhine/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "comparative follows from the two figures"
+  },
+  {
+   "key": "default/c5_russia_canada/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": false,
+   "why": "'Canada is larger than Russia' is false; correctly ungrounded"
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Apple article read: 'Founded in 1976'; the pronoun sentence 'They founded the company in 1976' missed (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/d1_austen/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "Austen article not read in this turn; correct from model memory"
+  },
+  {
+   "key": "default/d1_austen/r1/t2",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": false,
+   "why": "'Southampton' is wrong (Winchester); correctly ungrounded"
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads were 'Die Hard 2' style junk; 1519 correct from memory"
+  },
+  {
+   "key": "default/d3_everest/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Mount_Everest page read and states 8,848.86 m (29,031 ft); app missed it (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/d3_everest/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads: list of mountain ranges, GIS maps - no page ties Everest to the Himalayas"
+  },
+  {
+   "key": "default/d3_everest/r1/t2",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Edmund_Hillary page read: 'On 29 May 1953 he and Tenzing Norgay became the first climbers ... to reach the summit'; FALSE NEGATIVE"
+  },
+  {
+   "key": "default/d4_telephone/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads did not include Bell (born Edinburgh); answer misspells 'Edimburg'"
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": false,
+   "why": "'40 years old' is wrong (38); correctly ungrounded"
+  },
+  {
+   "key": "default/d6_curie/r1/t2",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads were junk; Warsaw correct from memory"
+  },
+  {
+   "key": "default/e_cap_de/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads: en.wikipedia 'Was', 'Hauptstadt', 'SS Australien' (junk); correct from memory"
+  },
+  {
+   "key": "default/e_cap_es/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "es.wikipedia 'Camberra: es la capital de Australia' was read; answer in English so no overlap (cross-language FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/e_cap_hi/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "a read Hindi page says the same sentence (best overlap 1.0); app missed it - Devanagari vowel signs split tokens (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/e_cap_pt/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads junk; Canberra from memory"
+  },
+  {
+   "key": "default/e_cap_ru/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads junk (Timur Turlov, Erika Andreeva); correct from memory"
+  },
+  {
+   "key": "default/e_cap_zh/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "baike.baidu 堪培拉 read; a one-word sentence can never reach MIN_RUN=2 (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/e_eiffel_ar/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "only a DOI abstract read; 330 m from memory, in English for an Arabic question"
+  },
+  {
+   "key": "default/e_eiffel_de/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "de.wikipedia read: 'ist ein 330 Meter hoher Eisenfachwerkturm'; German inflection hoch/hoher breaks the run (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/e_eiffel_ja/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": false,
+   "why": "howheight page states 33,000 cm (and 330 m); the sentence is source-faithful but the gate gives no ground (ja tokenisation); odd unit"
+  },
+  {
+   "key": "default/e_eiffel_zh/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads were Chinese football transfers; 324 m (older figure) from memory, answer in English"
+  },
+  {
+   "key": "default/e_wall_es/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "reads: 'Muro', 'Berlín, El Salvador', 'Muros'; 1989 from memory"
+  },
+  {
+   "key": "default/e_wall_fr/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "a French page 'Pourquoi le mur de Berlin est-il tombé en 1989' was read; English answer cannot overlap (cross-language FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/e_wall_zh/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "zh.wikipedia 柏林墙倒塌 read ('11月9日夜，柏林墙倒塌'); zh tokenisation (FALSE NEGATIVE)"
+  },
+  {
+   "key": "default/f1_king_us/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "meta statement 'the sources do not mention'"
+  },
+  {
+   "key": "frontier/a1_eiffel_year/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Eiffel article: 'main structural work was completed at the end of March 1889'; FALSE NEGATIVE (tag/'Based on the sources provided')"
+  },
+  {
+   "key": "frontier/a1_eiffel_year/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "toureiffel.paris read: finished 31 March 1889 in 2 years, 2 months, 5 days; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/a2_austen/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Jane Austen quote lists the 1813 publication and the four anonymous novels; FALSE NEGATIVE ('[W1]' tag)"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Fleming page and PBS read; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "best overlap 0.85 with 'His discovery in 1928 of ... benzylpenicillin'; FALSE NEGATIVE ('According to Wikipedia [W1]')"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 4,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "verbatim Fleming quote also on the Fleming page (0.91); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 8,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Fleming page: shared the 1945 Nobel Prize with Florey and Chain; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "VERBATIM quote of 'The tower is 330 metres (1,083 ft) tall' ungrounded: names 'Wikipedia' and the leaked tag 'W1' are absent from the page, so the name veto fires (FALSE NEGATIVE)"
+  },
+  {
+   "key": "frontier/b2_everest_m/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "verbatim Everest quote (0.83); same name-veto FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/b5_light_kms/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "299,792 km/s is the unit conversion of 299,792,458 m/s"
+  },
+  {
+   "key": "frontier/b5_light_kms/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Speed_of_light: 'It is exact because ... a metre is defined as the length of the path travelled by light ... 1/299,792,458 second' (0.78); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/b5_light_kms/r1/t0",
+   "idx": 3,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Speed_of_light: '~1 billion kilometres per hour; 700 million miles per hour'; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/c1_oxford_harvard/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "follows from 1096 vs 1636 (both in read pages)"
+  },
+  {
+   "key": "frontier/c1_oxford_harvard/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "a read page: 'Oxford ... oldest university in the English-speaking world, established in 1096'; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/c1_oxford_harvard/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Harvard_University page: founded 1636 by a vote of the Great and General Court; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/c1_oxford_harvard/r1/t0",
+   "idx": 3,
+   "quoteSupports": null,
+   "doc": "derived",
+   "truth": true,
+   "why": "1636-1096 = 540 years (computed)"
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "verbatim Eiffel sentence (0.69); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Eiffel article: tallest human-made structure until the Chrysler Building 1930; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Apple article: 'Founded in 1976 ... by Steve Jobs, Steve Wozniak and Ronald Wayne'; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d1_austen/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "model says 'from general knowledge — outside my current sources': correctly NOT grounded, and honestly labelled"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Mona_Lisa article quoted verbatim (0.74); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Mona_Lisa article: believed painted 1503-1506, continued until 1517 (0.9); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "idx": 3,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "List_of_Apollo_astronauts: Buzz Aldrin lunar module pilot on Apollo 11; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Canberra article quoted (0.73) incl. 484,630 as of 2025; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 3,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "mappr text quoted (0.53); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t1",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": false,
+   "truth": true,
+   "why": "484,630 was in the PREVIOUS turn's reads; this turn's material is population-table junk, so the carried-over fact has no source this turn"
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "ar.wikipedia sentence quoted (0.76); '[W1]' tag + Arabic tokenisation; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "ar.wikipedia (0.51); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "ar.wikipedia: population June 2024 473,855 (0.8); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "ru.wikipedia: 1908 territory chosen as capital, compromise Sydney/Melbourne (0.96); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_eiffel_es/r1/t0",
+   "idx": 4,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "es.wikipedia: 15 March 2022 antenna replaced, 324 -> 330 m; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_eiffel_es/r1/t0",
+   "idx": 5,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "es.wikipedia: altura total 330 m; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/e_eiffel_ru/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "English page states '330 metres (1,083 ft)'; Russian sentence cannot overlap (cross-language FALSE NEGATIVE)"
+  },
+  {
+   "key": "frontier/e_wall_hi/r1/t0",
+   "idx": 0,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Hindi page states 9 नवंबर 1989 (1.0); FALSE NEGATIVE (Devanagari)"
+  },
+  {
+   "key": "frontier/e_wall_hi/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Hindi page quoted (0.82); FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/f1_king_us/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "Compromise_of_1850: Taylor died July 1850, succeeded by Fillmore; FALSE NEGATIVE"
+  },
+  {
+   "key": "frontier/f3_wc_2034/r1/t0",
+   "idx": 1,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "honest gap statement: 2034 not yet played; no result in sources"
+  },
+  {
+   "key": "frontier/f3_wc_2034/r1/t0",
+   "idx": 2,
+   "quoteSupports": null,
+   "doc": true,
+   "truth": true,
+   "why": "2030 World Cup page: 2034 awarded to Saudi Arabia in December 2024; FALSE NEGATIVE"
+  }
+ ]
+}

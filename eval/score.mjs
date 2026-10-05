@@ -174,7 +174,7 @@ for (const f of files) {
       unsupportedNums: rec?.unsupported?.numbers || [], unsupportedNames: rec?.unsupported?.names || [],
       reads, nRead: reads.length, nRelevant: relevant, queries, queryHasReferent: topicRe ? queries.some((q) => new RegExp(topicRe, "iu").test(q)) : null,
       webScopeOk: Object.fromEntries(["web", "wikipedia", "github", "archive", "openalex", "crossref"].map((s) => [s, (() => { const w = webTrace.filter((x) => x.scope === s); return w.length ? (w.every((x) => x.ok) ? "ok" : w.map((x) => x.why).find(Boolean) || "fail") : null; })()])),
-      langExpected: expLang, langDetected: det, langOk: det === expLang,
+      langExpected: expLang, langDetected: det, langOk: body ? det === expLang : null,
       auto, autoWhy, checkKinds: results.map((x) => x.kind),
       judged: j ? { correct: j.correct ?? null, lang: j.lang ?? null, refused: j.refused ?? null, reason: j.reason || "" } : null,
       correct: j && j.correct != null ? j.correct : auto,
@@ -198,7 +198,7 @@ function agg(rs) {
     n,
     answer_correct: withChecks.length ? `${withChecks.filter((r) => r.correct).length}/${withChecks.length} (${pct(withChecks.filter((r) => r.correct).length, withChecks.length)}%)` : "n/a",
     answer_correct_auto_only: withChecks.length ? `${withChecks.filter((r) => r.auto).length}/${withChecks.length}` : "n/a",
-    lang_ok: `${rs.filter((r) => (r.judged?.lang ?? r.langOk)).length}/${n}`,
+    lang_ok: (() => { const w = rs.filter((r) => (r.judged?.lang ?? r.langOk) != null); return `${w.filter((r) => (r.judged?.lang ?? r.langOk)).length}/${w.length}`; })(),
     searched: `${rs.filter((r) => r.searched).length}/${n}`,
     no_search_when_should_not: spots.length ? `${spots.filter((r) => !r.searched).length}/${spots.length}` : "n/a",
     void_note: `${rs.filter((r) => r.void).length}/${n}`,
@@ -206,6 +206,8 @@ function agg(rs) {
     grounded_sentence_ratio: withG.length ? +(withG.reduce((a, r) => a + r.groundedRatio, 0) / withG.length).toFixed(3) : null,
     any_grounded_sentence: withG.length ? `${withG.filter((r) => r.grounded > 0).length}/${withG.length}` : "n/a",
     retrieval_relevance: reads ? `${rel}/${reads} (${pct(rel, reads)}%)` : "n/a (0 pages read)",
+    answer_correct_given_pages_read: (() => { const w = withChecks.filter((r) => r.nRead > 0); return w.length ? `${w.filter((r) => r.correct).length}/${w.length} (${pct(w.filter((r) => r.correct).length, w.length)}%)` : "n/a"; })(),
+    web_relay_down: `${rs.filter((r) => r.searched && r.webScopeOk.web && r.webScopeOk.web !== "ok").length}/${rs.filter((r) => r.searched).length}`,
     zero_pages_read: `${rs.filter((r) => r.searched && r.nRead === 0).length}/${rs.filter((r) => r.searched).length}`,
     query_has_referent: withEnt.length ? `${withEnt.filter((r) => r.queryHasReferent).length}/${withEnt.length}` : "n/a",
     latency_p50_s: quant(lat, 0.5), latency_p90_s: quant(lat, 0.9),
@@ -240,15 +242,34 @@ for (const [k, rs] of Object.entries(groups)) if (rs.length > 1) {
 let sent = null;
 if (labels.sentences?.length) {
   const rowByKey = Object.fromEntries(rows.map((r) => [r.key, r]));
-  let tp = 0, fp = 0, fn = 0, tn = 0; const fps = [], fns = [];
+  const L = [];
   for (const l of labels.sentences) {
     const r = rowByKey[l.key]; if (!r) continue;
     const raw = JSON.parse(fs.readFileSync(path.join(rawDir, `${r.label}__${r.id}__r${r.rep}.json`), "utf8"));
     const e = raw.turns[r.turn].grounding?.coverage?.entries?.[l.idx]; if (!e) continue;
-    const app = !!e.ref, sup = l.label === "supported";
-    if (app && sup) tp++; else if (app && !sup) { fp++; fps.push({ key: l.key, text: e.text, cited: e.source, why: l.why }); } else if (!app && sup) { fn++; fns.push({ key: l.key, text: e.text, why: l.why }); } else tn++;
+    L.push({ ...l, app: !!e.ref, text: e.text, cited: e.source || null });
   }
-  sent = { n: tp + fp + fn + tn, tp, fp, fn, tn, precision: tp + fp ? +(tp / (tp + fp)).toFixed(3) : null, recall: tp + fn ? +(tp / (tp + fn)).toFixed(3) : null, falsePositives: fps, falseNegatives: fns };
+  const G = L.filter((x) => x.app);
+  const gq = G.filter((x) => x.quoteSupports != null), gd = G.filter((x) => x.doc != null);
+  const supDoc = L.filter((x) => x.doc === true), supDocD = L.filter((x) => x.doc === true || x.doc === "derived");
+  const by = (rs) => { const o = {}; for (const x of rs) { const m = x.key.split("/")[0]; (o[m] ||= []).push(x); } return o; };
+  const stat = (xs) => {
+    const g = xs.filter((x) => x.app), gq2 = g.filter((x) => x.quoteSupports != null), gd2 = g.filter((x) => x.doc != null);
+    const sd = xs.filter((x) => x.doc === true), sdd = xs.filter((x) => x.doc === true || x.doc === "derived");
+    return { n: xs.length, appGrounded: g.length,
+      precision_strict_quote: gq2.length ? `${gq2.filter((x) => x.quoteSupports).length}/${gq2.length} (${pct(gq2.filter((x) => x.quoteSupports).length, gq2.length)}%)` : "n/a",
+      precision_doc_level: gd2.length ? `${gd2.filter((x) => x.doc === true || x.doc === "derived").length}/${gd2.length} (${pct(gd2.filter((x) => x.doc === true || x.doc === "derived").length, gd2.length)}%)` : "n/a",
+      recall: sd.length ? `${sd.filter((x) => x.app).length}/${sd.length} (${pct(sd.filter((x) => x.app).length, sd.length)}%)` : "n/a",
+      recall_incl_derived: sdd.length ? `${sdd.filter((x) => x.app).length}/${sdd.length} (${pct(sdd.filter((x) => x.app).length, sdd.length)}%)` : "n/a" };
+  };
+  sent = {
+    n: L.length, overall: stat(L), byModel: Object.fromEntries(Object.entries(by(L)).map(([m, xs]) => [m, stat(xs)])),
+    // the dangerous ones (Article II.9): marked grounded although the sentence is FALSE, or its cited quote does not say it
+    groundedButFalse: G.filter((x) => x.truth === false).map((x) => ({ key: x.key, text: x.text, cited: x.cited, why: x.why })),
+    groundedQuoteDoesNotSupport: G.filter((x) => x.quoteSupports === false).map((x) => ({ key: x.key, text: x.text, cited: x.cited, why: x.why })),
+    falseNegatives: L.filter((x) => !x.app && x.doc === true).map((x) => ({ key: x.key, text: x.text, why: x.why })),
+    labels: L,
+  };
 }
 
 /* ---------------- output ---------------- */
@@ -265,7 +286,7 @@ for (const L of labelsSeen) {
   if (Object.keys(summary[L].byLanguage).length) { console.log("by language (multilingual stratum)"); T(summary[L].byLanguage, ["n", "answer_correct", "lang_ok", "any_grounded_sentence", "grounded_sentence_ratio", "retrieval_relevance", "zero_pages_read"]); }
   if (summary[L].followupTurns) console.log("follow-up turns", JSON.stringify(summary[L].followupTurns));
 }
-if (sent) console.log("\nsentence grounding", JSON.stringify({ n: sent.n, tp: sent.tp, fp: sent.fp, fn: sent.fn, tn: sent.tn, precision: sent.precision, recall: sent.recall }));
+if (sent) { console.log("\nsentence grounding (hand labels)", JSON.stringify(sent.overall)); for (const [m, v] of Object.entries(sent.byModel)) console.log("  " + m, JSON.stringify(v)); console.log("  grounded-but-false:", sent.groundedButFalse.length, " grounded-quote-does-not-support:", sent.groundedQuoteDoesNotSupport.length, " false negatives:", sent.falseNegatives.length); }
 if (controls) console.log("controls", JSON.stringify(controls.summary));
 console.log(`\nflaky (varies across reps): ${flaky.filter((f) => f.varies).map((f) => f.key).join(", ") || "none"}`);
 console.log(`wrote ${path.join(here, OUT)} (${rows.length} case-turn rows)`);

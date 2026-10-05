@@ -1,0 +1,334 @@
+{
+ "confirmed": [
+  "rec1",
+  "rec2",
+  "rec3",
+  "rec4",
+  "rec5",
+  "rec6",
+  "rec7",
+  "rec8",
+  "how1",
+  "how2",
+  "how3",
+  "how4",
+  "how5",
+  "how6",
+  "how7",
+  "how8",
+  "how9",
+  "def1",
+  "def2",
+  "def3",
+  "def4",
+  "def5",
+  "def6",
+  "def7",
+  "def8",
+  "def9",
+  "sf1",
+  "sf2",
+  "sf3",
+  "sf4",
+  "sf5",
+  "sf6",
+  "sf8",
+  "sf9",
+  "num1",
+  "num2",
+  "num4",
+  "num5",
+  "num7",
+  "num8",
+  "num9",
+  "num10",
+  "num11"
+ ],
+ "edits": {
+  "rec1": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "two complete Recipe blocks (>=3 ingredients, >=2 steps), authors declared"
+  },
+  "rec2": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "complete Recipe block; page declares no author in its JSON-LD (site credited only); a QA snippet on gooey cookies rides along"
+  },
+  "rec3": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "two complete Recipe blocks; one carries no declared author"
+  },
+  "rec4": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "two complete Recipe blocks were held, but gap rule G3 (token coverage 0.6) refused: generic words 'make/from/scratch' are not in recipes — over-refusal"
+  },
+  "rec5": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "complete Recipe block, author declared"
+  },
+  "rec6": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "complete Recipe block (13 steps); no author declared"
+  },
+  "rec7": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "complete Recipe block, author declared"
+  },
+  "rec8": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "complete Recipe block; two items carry raw '&frac12;' (entity residue left by the app's cleaner)"
+  },
+  "how1": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "HowTo block from wikiHow with the full numbered procedure"
+  },
+  "how2": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "HowTo block from wikiHow, full procedure"
+  },
+  "how3": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1",
+    "1.c1"
+   ],
+   "why": "prose rung picked a necktie shop menu and a newsletter line; no procedure"
+  },
+  "how4": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "scattered sentences from two guides (intro, one step each), not the procedure; entity residue"
+  },
+  "how5": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1",
+    "2.c0"
+   ],
+   "why": "car-dealer nav menu and ad text; Consumer Reports page shows a paywall line"
+  },
+  "how6": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c0"
+   ],
+   "why": "reddit boilerplate plus one intro paragraph; no steps"
+  },
+  "how7": {
+   "sat": "failed",
+   "irrelevant": [
+    "2.c0"
+   ],
+   "why": "fragments of three guides; the wikiHow hit is a JS 'Client Challenge' page mistaken for text"
+  },
+  "how8": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "fragments of a vendor page and reddit comments, not a procedure"
+  },
+  "how9": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c0",
+    "1.c1",
+    "3.c0"
+   ],
+   "why": "blog lists, a forum question and a JS-challenge page; no steps"
+  },
+  "def1": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'"
+   ],
+   "why": "answer is the first lead; two further Wikipedia pages are tangential (COVID surge)"
+  },
+  "def2": {
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "lead of Mortgage loan answers; MBS and lender-bonus pages are tangential and the gold regex fires on MBS (false positive)"
+  },
+  "def3": {
+   "sat": "yes",
+   "irrelevant": [],
+   "why": "one IBM snippet defines blockchain (ledger); gold regex too strict (no 'distributed' in the snippet)"
+  },
+  "def4": {
+   "irrelevant": [
+    "0.c1'",
+    "1.c1"
+   ],
+   "why": "lead of GDP answers; inflation-adjustment sentence and a bea.gov tagline are not needed"
+  },
+  "def5": {
+   "irrelevant": [
+    "0.c1'",
+    "2.b0"
+   ],
+   "why": "lead answers (17 on); a page about the Claude LLM family rides along (haiku model name)"
+  },
+  "def6": {
+   "irrelevant": [],
+   "why": "dictionary.com and vocabulary.com both define it"
+  },
+  "def7": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0",
+    "2.c1'"
+   ],
+   "why": "lead answers; glossary and an author-bio page are tangential"
+  },
+  "def8": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "lead answers; inverse-ETF and BlackRock pages are tangential"
+  },
+  "def9": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "2.b0",
+    "3.b0",
+    "3.c1'"
+   ],
+   "why": "lead of ML answers; four tangential ML-term pages follow"
+  },
+  "sf1": {
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "Canberra lead answers; a Wikipedia page about 'Question' (matching the words) is wrong-sense"
+  },
+  "sf2": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "lead states 9 Nov 1989"
+  },
+  "sf3": {
+   "irrelevant": [
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "lead states 1969"
+  },
+  "sf4": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "lead names Leonardo"
+  },
+  "sf5": {
+   "irrelevant": [
+    "1.c1'",
+    "3.c0"
+   ],
+   "why": "lead names Cervantes; a bot-challenge page is a snip"
+  },
+  "sf6": {
+   "irrelevant": [
+    "1.c0"
+   ],
+   "why": "lead names Fleming; a pmc.ncbi 'Checking your browser' page is a snip"
+  },
+  "sf8": {
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "lead states Au"
+  },
+  "sf9": {
+   "irrelevant": [
+    "2.c1'"
+   ],
+   "why": "NASA and Wikipedia say Jupiter"
+  },
+  "num1": {
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "answer in Wikipedia and in an FAQ block from a travel site (the FAQPage and QAPage markup of the same Q/A both shown: redundant)"
+  },
+  "num2": {
+   "irrelevant": [
+    "0.c1'",
+    "2.b0",
+    "2.c1'",
+    "3.b0"
+   ],
+   "why": "feet figure in a FAQ block, metres in the lead; tangential Everest pages follow"
+  },
+  "num4": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "the lead states the population; settlement-history pages follow"
+  },
+  "num5": {
+   "irrelevant": [
+    "3.c1"
+   ],
+   "why": "NASA pages state 238,855 mi / 384,400 km"
+  },
+  "num7": {
+   "irrelevant": [
+    "0.c1'",
+    "2.c2"
+   ],
+   "why": "three figures that disagree (7,088 / 6,800 / 6,650 km) are shown side by side, not averaged; a travel-agency boilerplate snip rides along"
+  },
+  "num8": {
+   "irrelevant": [],
+   "why": "all three state 5,280 ft"
+  },
+  "num9": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.b0",
+    "1.c1'"
+   ],
+   "why": "wrong-sense Wikipedia pages (Statue, Liberty); the Statue of Liberty lead in the strand does not carry the height"
+  },
+  "num10": {
+   "sat": "needs-model",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "the 5/9 interval relation (inputs) is quoted; the result 37.8 is in no snip; a converter widget's menu was picked as a snip"
+  },
+  "num11": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "one recipe-measures snippet; the 3 tsp fact is not in it"
+  }
+ }
+}

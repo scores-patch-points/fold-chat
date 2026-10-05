@@ -1,0 +1,20 @@
+{"note":"Written AFTER the detector's rules were fixed, and run once, untuned. Same format as cases.json.",
+ "cases":[
+  {"id":"h-1","reg":"lowercase","text":"i want a site for my dentist dr. patel, shes in the same building as walgreens","gold":["patel"]},
+  {"id":"h-2","reg":"lowercase","text":"need a signup page for the youth league, coach darnell runs it and treasurer is linda okonkwo","gold":["darnell","linda","okonkwo"]},
+  {"id":"h-3","reg":"sms","text":"yo make me a menu page 4 abuela rosa's tamales, shes on 22 oak ave","gold":["rosa","oak"]},
+  {"id":"h-4","reg":"sms","text":"hey so my gf shaniqua wants a lil site 2 sell her candles, shop is called glow by niq","gold":["shaniqua","niq"]},
+  {"id":"h-5","reg":"singlish","text":"can help me make tracker for ah beng's car wash anot, he owes uncle raju money lor","gold":["beng","raju"]},
+  {"id":"h-6","reg":"irc","text":"anyone know how to give xXdarkwolfXx_99 sudo on my box? also chmod for bobbyt","gold":["darkwolf","bobbyt"]},
+  {"id":"h-7","reg":"dialect","text":"aint nobody finna fix my pops website, his name is rashad jenkins n he sells fish dinners","gold":["rashad","jenkins"]},
+  {"id":"h-8","reg":"nickname","text":"build a chore chart for the kids: bubba, tink, and little mo","gold":["bubba","tink","mo"]},
+  {"id":"h-9","reg":"non-anglo","text":"necesito un calendario para la tienda de doña carmen y su nieto ignacio","gold":["carmen","ignacio"]},
+  {"id":"h-10","reg":"non-anglo","text":"make a page for the wongs, mei lin and her husband, they own golden dragon on 5th","gold":["wong","mei","lin"]},
+  {"id":"h-11","reg":"mixed","text":"my sponsor greg b said call him at 615-555-0188 if i relapse, put that on the page","gold":["greg","615-555-0188"]},
+  {"id":"h-12","reg":"mixed","text":"school is lincoln elementary, teacher is ms alvarez, kid is dante","gold":["alvarez","dante"]},
+  {"id":"h-13","reg":"code","text":"the function calcTotalForTashaMiller should round, and the file tasha_orders.csv is in the repo","gold":["tasha","miller"]},
+  {"id":"neg-h1","reg":"none","text":"make a recipe page for banana bread w/ a servings slider and a print button","gold":[]},
+  {"id":"neg-h2","reg":"none","text":"i need a budget tracker, income on the left n expenses on the right, save to a csv","gold":[]},
+  {"id":"neg-h3","reg":"none","text":"build a quiz about the solar system with 10 questions and a score at the end","gold":[]},
+  {"id":"neg-h4","reg":"none","text":"yo can u help me with a landing page for a bike shop, wanna sell helmets and gloves","gold":[]}
+ ]}

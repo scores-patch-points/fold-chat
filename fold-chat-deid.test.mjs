@@ -120,3 +120,19 @@ test("a title and the name after it are masked, with or without the dot", () => 
 test("namesIn finds capitalised multi-word names and nothing lowercase", () => {
   assert.deepEqual(namesIn("make a timer for Eleanor Voss and mary jones, see Marlow Dental"), ["Eleanor Voss", "Marlow Dental"]);
 });
+
+test("an email is masked as ONE email, before any name inside it is matched on its own", () => {
+  const d = createDeid({ extra: ["kim", "clinic"] });
+  const m = d.mask("write to dr.kim@clinic.org about the clinic");
+  assert.match(m, /^write to EMAIL_1 about the TERM_\d+$/);
+  assert.equal(d.stats().kinds.EMAIL, 1);
+  assert.equal(d.unmask(m), "write to dr.kim@clinic.org about the clinic");
+});
+
+test("graded: what masking leaves behind (password = SECRET_1, /Users/USER_1/) is not a leak, and a real key still is", () => {
+  const ok = [{ role: "user", content: 'password = "SECRET_1" in /Users/USER_1/proj' }];
+  const g = gradeRequest({ messages: ok, segments: [{ provenance: "masked" }], gate: true });
+  assert.equal(g.level, "masked"); assert.equal(g.leaks.length, 0);
+  const bad = gradeRequest({ messages: [{ role: "user", content: "key sk-abcdefghijklmnopqrstuvwx" }], segments: [{ provenance: "masked" }], gate: true });
+  assert.equal(bad.level, "gate"); assert.equal(bad.leaks.length, 1);
+});

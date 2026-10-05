@@ -112,7 +112,10 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   function moveTo(i) { cursor = i >= lastIndex() ? null : Math.max(0, i); render(); }
 
   function paintHead() {
-    const [word, cls] = STATUS[fold.status] || [fold.status, "mut"];
+    let [word, cls] = STATUS[fold.status] || [fold.status, "mut"];
+    const last = artifactOf(fold);
+    if (fold.status === "held" && last && last.kind !== "html") { word = "loads cleanly"; chip.title = "it loads and runs without errors — nothing has checked that it does what you described"; }
+    else chip.title = "";
     chip.textContent = word; chip.className = "fv-chip fv-" + cls;
     const n = fold.versions.filter((v) => v.round > 0).length;
     title.textContent = n ? `Fold · ${n} attempt${n === 1 ? "" : "s"}` : "Fold";
@@ -182,7 +185,7 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     const chips = chipsRow(v);
     const mk = makerLabel(v.maker);
     const stat = v.diffStat && v.round > 0 && fold.versions.indexOf(v) > 0 ? ` · +${v.diffStat.added} −${v.diffStat.removed} vs before` : "";
-    const verdict = v.round === 0 ? "restored — nothing has been checked yet" : v.held ? "works — every check passed" : v.problems.length ? `${v.problems.length} problem${v.problems.length === 1 ? "" : "s"} found` : fold.status === "running" ? "being checked…" : "not verified";
+    const verdict = v.round === 0 ? "restored — nothing has been checked yet" : v.held ? (v.kind === "html" ? "works — every check passed" : "loads and runs — its behaviour was NOT tested against your description") : v.problems.length ? `${v.problems.length} problem${v.problems.length === 1 ? "" : "s"} found` : fold.status === "running" ? "being checked…" : "not verified";
     chips.append(el("span", "fv-cap", `${mk.text}${stat} · ${verdict}`));
     chips.lastChild.title = mk.tip;
     body.append(chips);

@@ -186,8 +186,24 @@ let auditHook = null;
 export function setAuditHook(h) { auditHook = h && typeof h.before === "function" ? h : null; }
 const newAuditId = () => "aud_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 
+// GARY'S DOOR (fold-chat-gary.js): every chat() hands its messages to this door BEFORE anything is audited or sent. The door
+// strikes what must never reach the mouth and may REFUSE the call (a prompt that asks for JSON, a model asked with nothing in
+// view); a refused call never touches the network. `null` (the default) is no door — the tests and any caller that wants the
+// bare client. The door changes only the input, never what the model says back.
+let promptDoor = null;
+export function setPromptDoor(fn) { promptDoor = typeof fn === "function" ? fn : null; }
+
 export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null } = {}) {
   const url = bridgeBase(base) + "/v1/chat/completions";
+  if (promptDoor) {
+    const handed = promptDoor(messages, { model, maxTokens, purpose: audit?.purpose || null });
+    if (handed?.refused?.length) {
+      const err = new Error("the prompt door refused this call (" + handed.refused.map((f) => f.rule).join(", ") + ") \u2014 nothing was sent");
+      err.status = 422; err.refused = handed.refused;
+      throw err;
+    }
+    if (Array.isArray(handed?.messages)) messages = handed.messages;
+  }
   // Sealed by default for outside models: the Fold selects the privacy mode
   // and seals first. Raw spans never leave — only what the caller put in
   // `messages` rides the wire.
@@ -200,7 +216,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
   const extraHeaders = { "x-fold-audit": auditId };
   if (audit?.worlds) extraHeaders["x-fold-worlds"] = `${audit.worlds.setId}:${audit.worlds.slot}/${audit.worlds.n}`;
   let auditDone = null;
-  try { auditDone = auditHook?.before({ auditId, model, messages, privacy: effective, base, segments: audit?.segments || null, worlds: audit?.worlds || null, symmetry: audit?.symmetry || null, purpose: audit?.purpose || null, run: audit?.run || null }) || null; } catch { auditDone = null; }
+  try { auditDone = auditHook?.before({ auditId, model, messages, privacy: effective, base, segments: audit?.segments || null, worlds: audit?.worlds || null, symmetry: audit?.symmetry || null, purpose: audit?.purpose || null, run: audit?.run || null, masking: audit?.masking || null }) || null; } catch { auditDone = null; }
   const finishAudit = (r) => { try { auditDone?.(r); } catch {} };
   // A HARD total timeout, always: a stream that stalls must release the
   // surface. The caller's own signal (a stop button) still aborts earlier; this
@@ -678,7 +694,7 @@ export async function remoteCode(prompt, { candidates, prior = null, base = null
     sent.push({ auditId, model });
     onTry?.(model, auditId);
     try {
-      const out = await chat(model, messages, { base, privacy: "sealed-external", signal, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run } });
+      const out = await chat(model, messages, { base, privacy: "sealed-external", signal, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run, masking: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null } });
       const text = String(deid ? deid.unmask(out?.text ?? "") : out?.text ?? "").trim();
       if (text) noteModelHealth(model, "ok");
       else noteModelHealth(model, "empty");

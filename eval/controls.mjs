@@ -22,7 +22,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const appDir = path.join(here, ".app");
+const argv = process.argv.slice(2);
+const argOf = (k, d) => { const i = argv.indexOf("--" + k); return i < 0 ? d : argv[i + 1]; };
+const appDir = path.join(here, argOf("app", ".app"));
 if (!fs.existsSync(appDir)) throw new Error("run eval/run.mjs once first (it snapshots the app into eval/.app)");
 const ground = await import(path.join(appDir, "fold-chat-ground.js"));
 const webm = await import(path.join(appDir, "fold-chat-web.js"));
@@ -176,6 +178,6 @@ const summary = {
   specificity_XLN_cross_lingual_false: sum("XLN"), sensitivity_SELF_same_language_verbatim: sum("SELF"), sensitivity_SELFP_same_language_paraphrase: sum("SELFP"), specificity_SELFN_same_language_false: sum("SELFN"),
   falsePositives: res.filter((r) => r.cls.startsWith("NEG") && r.grounded).map((r) => r.id),
 };
-fs.writeFileSync(path.join(here, "controls-results.json"), JSON.stringify({ at: new Date().toISOString(), gate: "fold-chat-ground.js (snapshot) attribute()/turnRecord()", summary, results: res }, null, 1));
+fs.writeFileSync(path.join(here, argOf("out", "controls-results.json")), JSON.stringify({ at: new Date().toISOString(), gate: "fold-chat-ground.js (snapshot) attribute()/turnRecord()", summary, results: res }, null, 1));
 console.log(JSON.stringify(summary, null, 1));
 for (const r of res) if (!r.ok) console.log(`  ${r.verdict.padEnd(28)} ${r.id.padEnd(8)} ${r.sentence.slice(0, 90)}`);

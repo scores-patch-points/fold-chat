@@ -19,13 +19,18 @@ const GATE = "refused by the safety-and-ethics gate (AntiStrauss): the call cont
 const sse = (text) => "data: " + JSON.stringify({ choices: [{ delta: { content: text } }] }) + "\n\ndata: [DONE]\n\n";
 const CORS = { "access-control-allow-origin": "*" };
 
-export async function withPage(browser, URL, { chat = "A short model answer.", wikiDelayMs = 0, viewport = { width: 1200, height: 900 }, mobile = false, colorScheme = "light", ps = undefined, bridgeDown = false, init = null } = {}, fn) {
+export async function withPage(browser, URL, { chat = "A short model answer.", wikiDelayMs = 0, viewport = { width: 1200, height: 900 }, mobile = false, colorScheme = "light", ps = undefined, bridgeDown = false, init = null, cookies = false, chatDelayMs = 0 } = {}, fn) {
   const ctx = await browser.newContext({ viewport, colorScheme, ...(mobile ? { hasTouch: true, isMobile: true } : {}) });
   if (init) await ctx.addInitScript(init);
   const page = await ctx.newPage();
   const posts = [];
-  page.on("request", (r) => { if (r.method() === "POST" && /\/v1\/chat\/completions/.test(r.url())) posts.push(r.url()); });
-  await page.route("**/v1/chat/completions", (route) => {
+  page.__bodies = []; page.__searches = [];
+  page.on("request", (r) => {
+    if (r.method() === "POST" && /\/v1\/chat\/completions/.test(r.url())) { posts.push(r.url()); page.__bodies.push(r.postData() || ""); }
+    if (/wikipedia\.org\/w\/api\.php/.test(r.url()) && /list=search/.test(r.url())) { try { page.__searches.push(new globalThis.URL(r.url()).searchParams.get("srsearch") || ""); } catch {} }
+  });
+  await page.route("**/v1/chat/completions", async (route) => {
+    if (chatDelayMs) await new Promise((r) => setTimeout(r, chatDelayMs));
     if (chat === "GATE403") return route.fulfill({ status: 403, headers: CORS, contentType: "application/json", body: JSON.stringify({ error: { message: GATE } }) });
     return route.fulfill({ status: 200, headers: CORS, contentType: "text/event-stream", body: sse(chat) });
   });
@@ -38,6 +43,15 @@ export async function withPage(browser, URL, { chat = "A short model answer.", w
   });
   await page.route(/(workers\.dev|duckduckgo|brave\.com|api\.github\.com|archive\.org|openalex\.org|crossref\.org|r\.jina\.ai|allorigins|corsproxy|microlink)/, (r) => r.abort());
   await page.route(/127\.0\.0\.1:8790\/api\/(search|page)/, (r) => r.abort());
+  // `cookies`: the open-web search (the relay) and the page read are STUBBED with a cookie-recipe page; the query asked is
+  // recorded in page.__searches.
+  if (cookies) {
+    await page.route(/workers\.dev\/search/, (route) => {
+      const q = new globalThis.URL(route.request().url()).searchParams.get("q") || ""; page.__searches.push(q);
+      return route.fulfill({ status: 200, headers: CORS, contentType: "application/json", body: JSON.stringify({ scope: "web", engine: "stub", count: 1, results: [{ title: "Chocolate chip cookies - Cookie Recipes", url: "https://cookies.example/recipe", snippet: "A chocolate chip cookie recipe", source: "cookies.example" }] }) });
+    });
+    await page.route(/cookies\.example\//, (route) => route.fulfill({ status: 200, headers: CORS, contentType: "text/html", body: "<html><title>Chocolate chip cookies</title><body><p>" + "Cream the butter and both sugars until light and fluffy, then fold in the flour and the chocolate chips and bake for eleven minutes until golden. ".repeat(3) + "</p></body></html>" }));
+  }
   // The footer's two sources. `ps`: { fleet: [...], local: [...] } models resident; `bridgeDown`: the bridge answers nothing.
   // `bridgeDown`: the bridge answers NOTHING (hello, tags, ps, chat — as on an origin it refuses). Registered LAST so it wins.
   if (bridgeDown) await page.route(/(localhost|127\.0\.0\.1):(8790|11434)\//, (r) => r.abort());
@@ -98,11 +112,11 @@ export async function runTurnFeedbackChecks({ browser, URL, ok }) {
   });
 
   // ── 2. a slow search is a live feed; Stop works; it collapses and replays ─
-  await withPage(browser, URL, { wikiDelayMs: 4200 }, async (page) => {
+  await withPage(browser, URL, { wikiDelayMs: 4200, chatDelayMs: 1800 }, async (page) => {
     await send(page, Q, { wait: false });
     const states = new Set(), clocks = new Set(), seen = { slow: false, verb: new Set(), liveRows: 0, stop: false, tick: false };
-    for (let i = 0; i < 16; i++) {
-      await page.waitForTimeout(450);
+    for (let i = 0; i < 80; i++) {
+      await page.waitForTimeout(200);
       const snap = await page.evaluate(() => {
         const run = [...document.querySelectorAll(".msg.assistant .cc-run")].slice(-1)[0];
         if (!run) return null;
@@ -114,7 +128,7 @@ export async function runTurnFeedbackChecks({ browser, URL, ok }) {
       states.add(snap.sig); if (snap.active.length) clocks.add(snap.active.join(",")); if (snap.clock) clocks.add("g:" + snap.clock.split("·")[0].trim());
       seen.slow ||= snap.slow; seen.stop ||= snap.stop; if (snap.verb) seen.verb.add(snap.verb); if (snap.liveOn) seen.liveRows++;
       const done = await page.evaluate(() => !document.querySelector(".msg.assistant .cc-run.cc-live-on"));
-      if (done && i > 3) break;
+      if (done && i > 8) break;
     }
     ok("during a deliberately slow search the live feed shows at least 3 distinct visible states before the answer",
       states.size >= 3, JSON.stringify({ distinctStates: states.size, sample: [...states].slice(-1)[0]?.slice(0, 220) }),
@@ -233,6 +247,39 @@ export async function runTurnFeedbackChecks({ browser, URL, ok }) {
     ok("bridge unreachable + Facing page: the turn falls back to the strand with the app's note above it (kind 'fold', fellBackFrom 'facing') instead of stopping",
       posts.length === 0 && a?.authored === "sources" && a?.fellBackFrom === "facing" && !!n && n.text === "No model is reachable (the bridge isn't running), so this shows what the sources say. Start `heimdall up` for written answers." && dom.above && dom.snips >= 1,
       JSON.stringify({ chatPOSTs: posts.length, fellBackFrom: a?.fellBackFrom, note: n?.text, dom }), "a toast and nothing else, a different note, or the note below the strand");
+  });
+  // ── 6. THE CONVERSATION IS A SOURCE: follow-ups resolve against the thread before any search ─────
+  const COOKIE = "Show me a good chocolate chip cookie recipe";
+  const COOKIE_ANSWER = "Cream the butter and both sugars until light, fold in the flour and chocolate chips, then bake for eleven minutes.";
+  await withPage(browser, URL, { chat: COOKIE_ANSWER, cookies: true }, async (page) => {
+    await send(page, COOKIE);
+    const before = page.__searches.length;
+    await send(page, "i want a chewier one");
+    const qs = page.__searches.slice(before);
+    const a = (await stored(page)).filter((m) => m.role === "assistant").pop();
+    ok("'i want a chewier one' after a cookie turn is SEARCHED WITH THE COOKIE TOPIC (not as a literal phrase), and the record says what was searched; the person's words stay as said",
+      qs.some((q) => /chewier/i.test(q) && /cookie/i.test(q) && /chocolate chip/i.test(q)) && !qs.includes("i want a chewier one") && a?.grounding?.followed?.kind === "elliptical" && /chewier/.test(a.grounding.followed.searched || "") && (await stored(page)).filter((m) => m.role === "user").pop()?.content === "i want a chewier one",
+      JSON.stringify({ searched: qs, followed: a?.grounding?.followed }), "the literal phrase was searched, or the cookie referent was lost");
+  });
+  await withPage(browser, URL, { cookies: true, chat: "That is the cookie recipe above, said more simply: cream the butter and sugars, add flour and chips, bake eleven minutes." }, async (page, posts) => {
+    await send(page, COOKIE);
+    const searches = page.__searches.length, postsBefore = posts.length;
+    await send(page, "what?");
+    const msgs = await stored(page);
+    const a = msgs.filter((m) => m.role === "assistant").pop();
+    const body = page.__bodies[page.__bodies.length - 1] || "";
+    const note = await page.evaluate(() => [...document.querySelectorAll(".msg.assistant")].slice(-1)[0]?.querySelector(".fold-note.kind-thread")?.innerText.replace(/\s+/g, " ") || null);
+    ok("'what?' after an answer is NOT searched; the model replies grounded in the earlier turn alone, and the reply is labelled 'answered from this conversation' citing that turn",
+      page.__searches.length === searches && posts.length === postsBefore + 1 && /\[T2\]/.test(body) && /cream the butter/i.test(body) && !/\[W1\]/.test(body) && String(a?.content || "").trim().length > 20 && (a?.notices || []).some((n) => n.kind === "thread" && n.turn === 1) && a?.grounding?.answeredFrom?.turn === 1 && /Answered from this conversation, turn 1/.test(note || ""),
+      JSON.stringify({ newSearches: page.__searches.length - searches, newPosts: posts.length - postsBefore, note: note?.slice(0, 120), content: String(a?.content || "").slice(0, 60) }), "'what?' was web-searched, or the reply is not labelled / cited");
+  });
+  await withPage(browser, URL, { chat: "THE MODEL WAS CALLED and wrote this." }, async (page, posts) => {
+    await send(page, "what?");
+    const a = (await stored(page)).filter((m) => m.role === "assistant").pop();
+    const bubble = await page.evaluate(() => [...document.querySelectorAll(".msg.assistant")].slice(-1)[0]?.querySelector(".body")?.innerText.replace(/\s+/g, " ") || "");
+    ok("FALSIFIER: a cold 'what?' (nothing earlier in the chat) produces NO model answer and NO web search \u2014 only an app-authored note",
+      posts.length === 0 && page.__searches.length === 0 && !!a && !String(a.content || "").trim() && (a.notices || []).some((n) => /nothing earlier in this chat/.test(n.text)) && !/THE MODEL WAS CALLED/.test(bubble),
+      JSON.stringify({ chatPOSTs: posts.length, searches: page.__searches.length, content: a?.content, bubble: bubble.slice(0, 100) }), "a cold 'what?' was searched or answered by the model");
   });
 }
 

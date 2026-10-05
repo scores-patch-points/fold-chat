@@ -1,0 +1,44 @@
+# id | sat (= keep auto) | irrelevant snip ids (auto | - none | list) | D if dangerous | reason
+rec1 | yes | - | | two complete Recipe blocks (>=3 ingredients, >=2 steps), authors declared
+rec2 | yes | - | | complete Recipe block; page declares no author in its JSON-LD (site credited only); a QA snippet on gooey cookies rides along
+rec3 | yes | - | | two complete Recipe blocks; one carries no declared author
+rec4 | failed | - | | two complete Recipe blocks were held, but gap rule G3 (token coverage 0.6) refused: generic words 'make/from/scratch' are not in recipes — over-refusal
+rec5 | yes | - | | complete Recipe block, author declared
+rec6 | yes | - | | complete Recipe block (13 steps); no author declared
+rec7 | yes | - | | complete Recipe block, author declared
+rec8 | yes | - | | complete Recipe block; two items carry raw '&frac12;' (entity residue left by the app's cleaner)
+how1 | yes | - | | HowTo block from wikiHow with the full numbered procedure
+how2 | yes | - | | HowTo block from wikiHow, full procedure
+how3 | failed | 0.c1,1.c1 | | prose rung picked a necktie shop menu and a newsletter line; no procedure
+how4 | failed | - | | scattered sentences from two guides (intro, one step each), not the procedure; entity residue
+how5 | failed | 0.c1,2.c0 | | car-dealer nav menu and ad text; Consumer Reports page shows a paywall line
+how6 | failed | 0.c0 | | reddit boilerplate plus one intro paragraph; no steps
+how7 | failed | 2.c0 | | fragments of three guides; the wikiHow hit is a JS 'Client Challenge' page mistaken for text
+how8 | failed | - | | fragments of a vendor page and reddit comments, not a procedure
+how9 | failed | 0.c0,1.c1,3.c0 | | blog lists, a forum question and a JS-challenge page; no steps
+def1 | = | 0.c1',1.b0,1.c1' | | answer is the first lead; two further Wikipedia pages are tangential (COVID surge)
+def2 | = | 1.b0,1.c1',2.b0 | | lead of Mortgage loan answers; MBS and lender-bonus pages are tangential and the gold regex fires on MBS (false positive)
+def3 | yes | - | | one IBM snippet defines blockchain (ledger); gold regex too strict (no 'distributed' in the snippet)
+def4 | = | 0.c1',1.c1 | | lead of GDP answers; inflation-adjustment sentence and a bea.gov tagline are not needed
+def5 | = | 0.c1',2.b0 | | lead answers (17 on); a page about the Claude LLM family rides along (haiku model name)
+def6 | = | - | | dictionary.com and vocabulary.com both define it
+def7 | = | 0.c1',1.b0,1.c1',2.b0,2.c1' | | lead answers; glossary and an author-bio page are tangential
+def8 | = | 0.c1',1.b0,1.c1',2.b0 | | lead answers; inverse-ETF and BlackRock pages are tangential
+def9 | yes-with-trim | 0.c1',1.b0,2.b0,3.b0,3.c1' | | lead of ML answers; four tangential ML-term pages follow
+sf1 | = | 0.b0,0.c1',1.c1' | | Canberra lead answers; a Wikipedia page about 'Question' (matching the words) is wrong-sense
+sf2 | = | 0.c1' | | lead states 9 Nov 1989
+sf3 | = | 0.c1',1.c1' | | lead states 1969
+sf4 | = | 0.c1' | | lead names Leonardo
+sf5 | = | 1.c1',3.c0 | | lead names Cervantes; a bot-challenge page is a snip
+sf6 | = | 1.c0 | | lead names Fleming; a pmc.ncbi 'Checking your browser' page is a snip
+sf8 | = | 0.b0,0.c1',1.c1' | | lead states Au
+sf9 | = | 2.c1' | | NASA and Wikipedia say Jupiter
+num1 | = | 0.c1 | | answer in Wikipedia and in an FAQ block from a travel site (the FAQPage and QAPage markup of the same Q/A both shown: redundant)
+num2 | = | 0.c1',2.b0,2.c1',3.b0 | | feet figure in a FAQ block, metres in the lead; tangential Everest pages follow
+num4 | = | 0.c1',1.b0,1.c1',2.b0 | | the lead states the population; settlement-history pages follow
+num5 | = | 3.c1 | | NASA pages state 238,855 mi / 384,400 km
+num7 | = | 0.c1',2.c2 | | three figures that disagree (7,088 / 6,800 / 6,650 km) are shown side by side, not averaged; a travel-agency boilerplate snip rides along
+num8 | = | - | | all three state 5,280 ft
+num9 | failed | 0.b0,0.c1',1.b0,1.c1' | | wrong-sense Wikipedia pages (Statue, Liberty); the Statue of Liberty lead in the strand does not carry the height
+num10 | needs-model | 0.c1 | | the 5/9 interval relation (inputs) is quoted; the result 37.8 is in no snip; a converter widget's menu was picked as a snip
+num11 | failed | - | | one recipe-measures snippet; the 3 tsp fact is not in it

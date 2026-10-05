@@ -48,6 +48,9 @@ const PATTERNS = [
   { prefix: "HOST", re: /\b[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?:local|internal|corp|lan|intranet)\b/gi },
 ];
 
+const SHAPES_FIRST = PATTERNS.filter((p) => p.prefix === "SECRET" || p.prefix === "EMAIL");
+const SHAPES_AFTER = PATTERNS.filter((p) => !SHAPES_FIRST.includes(p));
+
 /** Capitalised multi-word names in a text ("Eleanor Voss") — the floor for when the holograph's read finds nothing, as it does for one-line asks. */
 export function namesIn(text) {
   const out = new Set();
@@ -100,9 +103,9 @@ export function createDeid({ taint = null, extra = [] } = {}) {
     return text.replace(re, (m, off, all) => issue(prefixOf.get(m.toLowerCase()) || "TERM", m, all[off + m.length]));
   };
 
-  const maskPatterns = (text) => {
+  const maskPatterns = (text, list = PATTERNS) => {
     let out = text;
-    for (const { prefix, re, group } of PATTERNS) {
+    for (const { prefix, re, group } of list) {
       out = out.replace(re, (...a) => {
         const all = a[a.length - 1], off = a[a.length - 2], whole = a[0];
         const val = group == null ? whole : a[group];
@@ -119,7 +122,8 @@ export function createDeid({ taint = null, extra = [] } = {}) {
     maskAll(texts) {
       const list = texts.map((t) => String(t ?? ""));
       for (const t of list) for (const m of t.matchAll(PLACEHOLDER)) reserved.add(m[0]);
-      return list.map((t) => maskPatterns(maskTerms(t, termsIn(t))));
+      // Whole shapes first (an email, a key): "dr.kim@clinic.org" is ONE email, not two names around an @. Then the named terms, then the rest.
+      return list.map((t) => { const a = maskPatterns(t, SHAPES_FIRST); return maskPatterns(maskTerms(a, termsIn(a)), SHAPES_AFTER); });
     },
     mask(text) { return api.maskAll([text])[0]; },
     /** Put the originals back into a reply. A placeholder this request never issued is left exactly as written. */

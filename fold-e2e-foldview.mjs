@@ -142,5 +142,20 @@ check("RESET: 'Reset from here' hands the app exactly attempt 2's code; the card
 check("CURSOR: clicking the newest attempt follows the run again", out.followAgain, "");
 check("EOT: clicking an edit event opens the WHOLE file with every added/removed line marked", /vs attempt \d/.test(out.diffCap) && out.diffAdd > 0 && out.diffDel > 0 && out.diffAll >= out.diffAdd + out.diffDel && out.diffAll >= 8, `${out.diffCap} · +${out.diffAdd} −${out.diffDel} of ${out.diffAll} lines`);
 check("EOT: clicking again closes it; a unit's draw opens exactly its own lines; checks carry no code", out.closedAgain === 0 && (out.rangeText === undefined || (/function counter/.test(out.rangeText) && !/export function increment/.test(out.rangeText))) && out.checksHaveNoCode, `${out.rangeCap || "(no range event)"} · tags: ${out.codeTags.slice(0, 5).join(", ")}`);
+// A script that merely loads must not be called "it works": nothing tested its behaviour against the ask.
+const jsOnly = await (async () => {
+  const b2 = await chromium.launch(); const p2 = await (await b2.newContext({ viewport: { width: 640, height: 900 } })).newPage();
+  await p2.goto(URL + "README.md", { waitUntil: "domcontentloaded" });
+  const r = await p2.evaluate(async () => {
+    document.body.innerHTML = '<div id="host"></div>';
+    const F = await import("/fold-chat-fold.js?" + Date.now()); const V = await import("/fold-chat-foldview.js?" + Date.now());
+    const f = F.createFold({ task: "a slugify function" }); const hv = V.mountFold(document.getElementById("host"), f, { live: true });
+    F.addVersion(f, { round: 1, maker: { kind: "penelope" }, kind: "js", code: "function slugify(t) { return t; }" });
+    F.addEvent(f, { type: "done", ok: true, rounds: 1, passed: 2 }); hv.update();
+    return { chip: document.querySelector(".fv-chip").textContent, cap: document.querySelector(".fv-cap").textContent };
+  });
+  await b2.close(); return r;
+})();
+check("HONESTY: a script that only loads is 'loads cleanly', never 'it works', and says its behaviour was not tested", jsOnly.chip === "loads cleanly" && /NOT tested/.test(jsOnly.cap), JSON.stringify(jsOnly));
 console.log(`\n${ok.filter(Boolean).length}/${ok.length} stand · screenshots in ${SHOTS}`);
 process.exit(ok.every(Boolean) ? 0 : 1);

@@ -55,7 +55,7 @@ export function aloneTurn(kind) {
 /** The source block for a turn that DID read sources (one place, so the wording is tested). */
 export function sourcesPrompt(passages) {
   const list = Array.isArray(passages) ? passages : [];
-  return "The sources below were read for this turn. Every factual claim must come from them; write from them where they cover it, and where they do not say plainly what is missing. Never claim a source you cannot show, never name a website, publication or organisation that is not in them, and never fall back on your own memory. The labels [W1], [W2] … are for the fold's use only: do not write them, do not mention source numbers, and do not say \"according to the sources\" — just write the answer. The sources may be in another language; write your answer in the language the person wrote in.\n\n"
+  return "The sources below were read for this turn. Every factual claim must come from them; write from them where they cover it, and where they do not say plainly what is missing. If the sources do not answer what was asked (they are about something else, or are only an error or a verification page), say so in one plain sentence instead of answering from them. Never claim a source you cannot show, never name a website, publication or organisation that is not in them, and never fall back on your own memory. The labels [W1], [W2] … are for the fold's use only: do not write them, do not mention source numbers, and do not say \"according to the sources\" — just write the answer. The sources may be in another language; write your answer in the language the person wrote in.\n\n"
     + list.map((p, i) => `[W${i + 1}] ${p.ref}\n${String(p.text ?? "").slice(0, 4000)}`).join("\n\n");
 }
 

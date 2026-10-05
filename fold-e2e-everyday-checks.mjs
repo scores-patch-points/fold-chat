@@ -74,8 +74,12 @@ export async function runEverydayChecks({ browser, URL, ok }) {
       "an assistant message with empty content and no notice, or a bubble with no text / no retry → the blank bubble is back");
   });
   // ── E2. a failed turn is stored (not an ephemeral 'error:' string) and survives a reload ──
-  await withPage(browser, URL, { chat: "502" }, async (page) => {
+  // (With sources read, a failed model call now falls back to the Sources-only strand instead — fold-e2e-turn-feedback.mjs.
+  // A turn with NOTHING to fall back to still dies typed: a follow-up on the thread, answered by a model that then 502s.)
+  await withPage(browser, URL, { chat: "A short model answer." }, async (page) => {
     await send(page, Q);
+    await page.route("**/v1/chat/completions", (route) => route.fulfill({ status: 502, contentType: "application/json", body: JSON.stringify({ error: { message: "upstream exploded" } }) }));
+    await send(page, "what?");
     const a = (await stored(page)).filter((m) => m.role === "assistant").pop();
     await page.reload({ waitUntil: "networkidle" }); await page.waitForTimeout(600);
     const b = await lastBubble(page);

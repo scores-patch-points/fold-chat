@@ -72,7 +72,8 @@ const READ_HOST = /holodeck-proxy[^/]*\/raw|allorigins|codetabs|corsproxy|cors\.
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const browser = await chromium.launch({ headless: true });
+let browser = await chromium.launch({ headless: true });
+const relaunch = async () => { try { await browser.close(); } catch {} browser = await chromium.launch({ headless: true }); };
 
 async function sessionState(page) {
   return page.evaluate(() => {
@@ -84,8 +85,9 @@ async function sessionState(page) {
 }
 
 async function selectModel(page, model) {
-  await page.click("#railNew");
-  await page.click("#railSettings");
+  // The UI is being modernised: take whichever "new chat" / "settings" control exists, clicked via the DOM so a hidden rail does not matter.
+  await page.evaluate(() => { for (const id of ["railNew", "topNew", "chatNew"]) { const e = document.getElementById(id); if (e) { e.click(); return; } } });
+  await page.evaluate(() => { for (const id of ["railSettings"]) { const e = document.getElementById(id); if (e) { e.click(); return; } } });
   await page.waitForSelector("#models .model, #models .tier", { timeout: 20000 });
   const find = () => page.locator("#models .model", { has: page.locator(".name", { hasText: new RegExp("^" + esc(model) + "$") }) }).first();
   let row = find();
@@ -109,14 +111,23 @@ async function runTurn(page, text, netLog) {
   await page.fill("#input", text);
   await page.click("#send");
   let started = false, seenDone = 0;
+  const nUserBefore = (before.session?.messages || []).filter((m) => m.role === "user").length;
   const deadline = Date.now() + TURN_TIMEOUT;
   let st;
   while (Date.now() < deadline) {
     await sleep(600);
     st = await sessionState(page);
-    const nAsst = (st.session?.messages || []).filter((m) => m.role === "assistant").length;
-    if (st.disabled || nAsst > nBefore) started = true;
-    if (started && !st.disabled) { if (++seenDone >= 2) break; } else seenDone = 0;
+    const msgs0 = st.session?.messages || [];
+    const nAsst = msgs0.filter((m) => m.role === "assistant").length;
+    const nUser = msgs0.filter((m) => m.role === "user").length;
+    // "started": the composer locked (older builds), or our user message was persisted (builds that never lock the composer)
+    if (st.disabled || nAsst > nBefore || nUser > nUserBefore) started = true;
+    const live = await page.evaluate(() => !!document.querySelector(".live-stat, .live-sites, .body.live, .msg .live"));
+    if (started && !st.disabled && !live && nAsst > nBefore) { if (++seenDone >= 2) break; }
+    else if (started && !st.disabled && !live && nAsst === nBefore) {
+      // composer free, nothing live, no new answer: an error body (older builds do not persist it) - give it 3 polls then stop
+      if (++seenDone >= 4 && Date.now() - t0 > 8000) break;
+    } else seenDone = 0;
     if (!started && Date.now() - t0 > 20000) break; // the send never took
   }
   const secs = (Date.now() - t0) / 1000;
@@ -196,9 +207,10 @@ let done = 0;
 for (const [c, rep] of queue) {
   const f = path.join(rawDir, `${LABEL}__${c.id}__r${rep}.json`);
   if (fs.existsSync(f)) { done++; continue; }
-  let res = await runCase(c, rep, 1);
+  const safe = async (a) => { try { return await runCase(c, rep, a); } catch (e) { await relaunch(); return { id: c.id, stratum: c.stratum, lang: c.lang || null, rep, attempt: a, label: LABEL, turns: [], fatal: String(e.message || e).slice(0, 200) }; } };
+  let res = await safe(1);
   const dead = res.fatal || res.turns.some((t) => t.error && !t.answer);
-  if (dead) { console.log(`  retry ${c.id}: ${res.fatal || res.turns.find((t) => t.error)?.error?.slice(0, 80)}`); await sleep(5000); res = await runCase(c, rep, 2); res.retried = true; }
+  if (dead) { console.log(`  retry ${c.id}: ${res.fatal || res.turns.find((t) => t.error)?.error?.slice(0, 80)}`); await sleep(5000); res = await safe(2); res.retried = true; }
   fs.writeFileSync(f, JSON.stringify(res, null, 1));
   done++;
   const t = res.turns.map((x) => `${x.secs}s`).join("+");
