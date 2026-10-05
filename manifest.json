@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "The Fold",
+  "short_name": "The Fold",
+  "version": "0.1.0",
+  "description": "The Fold's chat in your browser. Web search and page reads go straight from this computer: no relay, no account, nothing collected.",
+  "minimum_chrome_version": "116",
+  "action": { "default_title": "Open The Fold" },
+  "background": { "service_worker": "fold-background.js", "type": "module" },
+  "side_panel": { "default_path": "index.html" },
+  "options_ui": { "page": "fold-options.html", "open_in_tab": true },
+  "permissions": ["sidePanel"],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://*.wikipedia.org/*",
+    "https://archive.org/*",
+    "https://api.openalex.org/*",
+    "https://api.crossref.org/*",
+    "https://search.brave.com/*",
+    "https://html.duckduckgo.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "optional_host_permissions": ["https://*/*"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; base-uri 'none'"
+  }
+}

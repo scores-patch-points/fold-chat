@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>The Fold · Settings</title>
+<style>
+  :root { --bg: #fff; --fg: #1d1f23; --muted: #5d6470; --line: #dfe2e7; --accent: #2f5fd0; --ok: #1f7a4d; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #17181b; --fg: #e8e9ec; --muted: #a0a6b1; --line: #2d3036; --accent: #7aa2ff; --ok: #5fcf9a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+  h1 { font-size: 1.35rem; margin: 0 0 .25rem; }
+  h2 { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 2rem 0 .5rem; }
+  p { margin: .5rem 0; }
+  .muted { color: var(--muted); }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; }
+  .row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+  .status { font-weight: 600; }
+  .status.on { color: var(--ok); }
+  button, a.btn { font: inherit; padding: .5rem .9rem; border-radius: 8px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; text-decoration: none; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .5; cursor: default; }
+  ul { margin: .4rem 0; padding-left: 1.2rem; }
+  code { font: 13px ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+<main>
+  <h1>The Fold</h1>
+  <p class="muted">Where your questions go, and what you control.</p>
+
+  <h2>Reading any website</h2>
+  <div class="card">
+    <p><span id="status" class="status">Checking…</span></p>
+    <p class="muted" id="explain">When this is on, The Fold can open the pages its searches find and read them for you. The page is fetched from this computer, using your own connection. It is never sent through a server of ours, and no cookies or logins are used, so it never acts as you on a site you are signed in to.</p>
+    <div class="row">
+      <button id="grant" class="primary" type="button" hidden>Allow reading websites</button>
+      <button id="revoke" type="button" hidden>Stop reading websites</button>
+      <a class="btn" id="open" href="index.html">Open The Fold</a>
+    </div>
+    <p class="muted" id="note" hidden></p>
+  </div>
+
+  <h2>Always allowed</h2>
+  <div class="card">
+    <p class="muted">These are what the extension can reach without the setting above. Search and the research sources only.</p>
+    <ul id="hosts"></ul>
+  </div>
+
+  <h2>What is kept</h2>
+  <div class="card">
+    <p>Nothing leaves this browser except the searches and page reads you ask for, and they go straight to the site. There is no account, no server of ours in the path, no analytics. Your chats are stored in this browser only; removing the extension removes them.</p>
+  </div>
+</main>
+<script src="fold-options.js"></script>
+</body>
+</html>
