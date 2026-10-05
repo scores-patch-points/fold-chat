@@ -79,13 +79,36 @@ test("FALSIFIER: an address only in an HTML comment, a script or a style is not 
   assert.deepEqual(contactsFromHtml(h, "https://site.test/contact").emails, []);
 });
 
-test("FALSIFIER: an address written in ordinary page text on ANOTHER domain is not offered (only a link, structured data, or a contact page puts it forward)", () => {
+test("FALSIFIER: an address written in ordinary page text on ANOTHER domain is not offered", () => {
   const post = page(`<p>Great recipe! Reach out to stranger@elsewhere.test for more.</p>`);
   assert.deepEqual(contactsFromHtml(post, "https://blog.test/recipe/banana").emails, []);
-  // but on the site's own contact page the same text is the page putting it forward
-  assert.equal(contactsFromHtml(post, "https://blog.test/contact/").emails[0].address, "stranger@elsewhere.test");
-  // and an own-domain written address on an ordinary page is the site's own
+  assert.deepEqual(contactsFromHtml(post, "https://blog.test/contact/").emails, [], "not even on a contact page: a different company's domain is dropped");
+  // an own-domain written address on an ordinary page is the site's own
   assert.equal(contactsFromHtml(page(`<p>Write to cook@blog.test</p>`), "https://www.blog.test/recipe").emails[0].address, "cook@blog.test");
+});
+
+test("FALSIFIER (allrecipes, 2026-10-05): a protected link to a customer-service desk on a fulfilment company's domain is dropped; the form/none fallback applies", () => {
+  const h = page(`<h1>Contact Us</h1><p>Questions about your subscription?</p><a href="/cdn-cgi/l/email-protection#${cf("alrcustserv@cdsfulfillment.com")}"><span class="__cf_email__" data-cfemail="${cf("alrcustserv@cdsfulfillment.com")}">[email&#160;protected]</span></a>`);
+  assert.deepEqual(contactsFromHtml(h, "https://www.allrecipes.com/about-us-6648102").emails, [], "two independent reasons: service mailbox and another company's domain");
+  assert.equal(pickContact(contactsFromHtml(h, "https://www.allrecipes.com/contact")).kind, "none");
+  const withForm = page(`<a href="mailto:alrcustserv@cdsfulfillment.com">x</a><form><textarea></textarea></form>`);
+  assert.equal(pickContact(contactsFromHtml(withForm, "https://www.allrecipes.com/contact")).kind, "form");
+});
+
+test("FALSIFIER: the domain rule holds for EVERY source (link, protected link, structured data, text) — own site or free mail only", () => {
+  const other = "someone@othercompany.test";
+  const h = page(`<a href="mailto:${other}">m</a><a href="/cdn-cgi/l/email-protection#${cf(other)}">p</a><p>${other}</p>`, `<script type="application/ld+json">{"@type":"Organization","email":"${other}"}</script>`);
+  assert.deepEqual(contactsFromHtml(h, "https://blog.test/contact/").emails, []);
+  for (const free of ["a@gmail.com", "a@outlook.com", "a@hotmail.co.uk", "a@yahoo.com", "a@icloud.com", "a@proton.me", "a@protonmail.com", "a@fastmail.com", "a@aol.com", "a@gmx.de"]) assert.equal(contactsFromHtml(page(`<a href="mailto:${free}">m</a>`), "https://blog.test/").emails.length, 1, free);
+  assert.equal(contactsFromHtml(page(`<a href="mailto:me@mail.blog.test">m</a>`), "https://www.blog.test/").emails.length, 1, "a subdomain of the site is the site");
+  assert.deepEqual(contactsFromHtml(page(`<a href="mailto:me@gmail.com.evil.test">m</a>`), "https://blog.test/").emails, [], "a lookalike of a free-mail name is not free mail");
+  assert.deepEqual(contactsFromHtml(page(`<a href="mailto:me@blog.test.evil.test">m</a>`), "https://blog.test/").emails, [], "nor of the site");
+  assert.deepEqual(contactsFromHtml(page(`<a href="mailto:me@gmail.com.evil.test">m</a>`), "").emails, [], "with no site only free mail can pass");
+});
+
+test("service and ops mailboxes are never offered: whole tokens and pieces of compound names", () => {
+  for (const l of ["custserv", "alrcustserv", "customerservice", "customer.service", "customer-care", "customercare24", "care", "support", "support+orders", "help", "helpdesk", "service", "services", "subscription", "subscriptions", "subscribe", "billing", "orders", "order", "sales", "returns", "shipping", "fulfillment", "fulfilment", "accounts", "unsubscribe", "bounce", "postmaster", "mailer-daemon", "hostmaster", "noc", "it", "supportteam", "salesteam", "orders2", "sally.support"]) assert.equal(isUsableEmail(l + "@site.test"), false, l);
+  for (const l of ["carey", "carol", "helen", "itzel", "sally", "maria.lopez", "hello", "info", "hi", "contact", "me", "recipes"]) assert.equal(isUsableEmail(l + "@site.test"), true, l);
 });
 
 test("FALSIFIER: addresses are never read out of URLs or query strings", () => {
@@ -105,4 +128,9 @@ test("hostBase: registrable domain, with two-part country suffixes", () => {
   assert.equal(hostBase("https://www.a.example.com/x"), "example.com");
   assert.equal(hostBase("https://shop.bbc.co.uk/"), "bbc.co.uk");
   assert.equal(hostBase("not a url"), "");
+});
+
+test("an address written beside words that say it is for ads, press, licensing or privacy is not the one to thank a creator at", () => {
+  const h = page(`<p>Advertising and sponsorship inquiries: biz@blog.test</p><p>For everything else, write to hello@blog.test</p>`);
+  assert.deepEqual(contactsFromHtml(h, "https://blog.test/contact/").emails.map((e) => e.address), ["hello@blog.test"]);
 });

@@ -256,7 +256,42 @@
   .snip-tip { background: var(--bg); border: 1px solid var(--line); color: var(--ink); border-radius: var(--r-md); font-size: var(--fs-sm); padding: 4px 10px; white-space: nowrap; flex: none; }
   .snip-tip:hover { background: var(--side2); }
   .snip-dev { font-size: var(--fs-xs); color: var(--mut); margin: 6px 0 0; }
-  @media (max-width: 720px) { .snip-cols { grid-template-columns: minmax(0, 1fr); gap: 12px; } .snip-sp { display: none; } .snip-tip { min-height: 32px; } }
+  /* TIP THE CREATOR (fold-chat-tipview.js): one control for the card, the strand and the facing page's source rows.
+     Nothing is paid or sent; it finds the creator's own contact and opens an email draft or their contact page. */
+  .tip { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; max-width: 100%; }
+  .tip-btn { font: inherit; cursor: pointer; }
+  .tip-quiet .tip-btn { background: none; border: 0; padding: 2px 4px; color: var(--ink2); font-size: var(--fs-xs); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line2); border-radius: var(--r-sm); }
+  .tip-quiet .tip-btn:hover { color: var(--ink); text-decoration-color: currentColor; }
+  .tip-btn[aria-busy="true"] { opacity: .6; cursor: progress; }
+  .tip-say { font-size: var(--fs-xs); color: var(--mut); overflow-wrap: anywhere; min-width: 0; flex: 1 1 14em; }
+  .tip-area { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex: 1 1 100%; min-width: 0; }
+  .tip-link { font-size: var(--fs-xs); color: var(--link); }
+  .tip-copy { width: 100%; box-sizing: border-box; font: var(--fs-sm)/1.5 var(--mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); padding: 8px; resize: vertical; }
+  .tip-btn:focus-visible, .tip-link:focus-visible, .tip-copy:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+  @media (max-width: 720px) { .tip-quiet .tip-btn { min-height: 40px; min-width: 40px; padding: 8px 10px; } .tip-link { display: inline-flex; align-items: center; min-height: 40px; } }
+  /* PAGER (fold-chat-pagerview.js): several snips, one page at a time. Every page sits in the same grid cell, so the box is
+     as tall as the tallest page and nothing jumps when the page turns. */
+  .pager { display: block; min-width: 0; border-radius: var(--r-md); }
+  .pager:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+  .pager-stage { display: grid; min-width: 0; touch-action: pan-y; }
+  .pager-page { grid-area: 1 / 1; min-width: 0; visibility: hidden; opacity: 0; transition: opacity .15s ease, visibility 0s linear .15s; }
+  .pager-page.is-on { visibility: visible; opacity: 1; transition: opacity .15s ease; }
+  .pager-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; margin: 8px 0 0; font-size: var(--fs-sm); color: var(--mut); }
+  .pager-btn { background: var(--bg); border: 1px solid var(--line); color: var(--ink); border-radius: var(--r-md); font: inherit; font-size: var(--fs-sm); padding: 4px 12px; min-height: 36px; cursor: pointer; }
+  .pager-btn:hover:not(:disabled) { background: var(--side2); }
+  .pager-btn:disabled { opacity: .4; cursor: default; }
+  .pager-btn:focus-visible, .pager-dot:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+  .pager-bar-top { margin: 0 0 8px; }
+  .pager-bar-top .pager-dots { flex: 0 1 auto; order: 0; }
+  .pager-count { min-width: 4.5em; text-align: center; font-variant-numeric: tabular-nums; }
+  .pager-dots { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 0; }
+  .pager-dot { background: none; border: 0; padding: 0; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .pager-dot-i { width: 8px; height: 8px; border-radius: 50%; background: var(--line2); transition: background .15s, transform .15s; }
+  .pager-dot:hover .pager-dot-i { background: var(--dim); }
+  .pager-dot.is-on .pager-dot-i { background: var(--ink); transform: scale(1.25); }
+  @media (max-width: 720px) { .pager-btn { min-height: 40px; min-width: 40px; } .pager-dot { width: 32px; height: 40px; } .pager-bar-bottom .pager-dots { flex: 1 1 100%; order: 3; } }
+  @media (prefers-reduced-motion: reduce) { .pager-page, .pager-page.is-on, .pager-dot-i { transition: none; } }
+  @media (max-width: 720px) { .snip-cols { grid-template-columns: minmax(0, 1fr); gap: 12px; } .snip-sp { display: none; } .snip-tip { min-height: 40px; } }
   .art-code { margin: 0; padding: 12px 14px; font: var(--fs-sm)/1.55 var(--mono); overflow-x: auto; white-space: pre; }
   .art-note { font-size: var(--fs-sm); color: var(--mut); padding: 4px 14px 12px; }
   /* message actions: out of sight until the message is hovered or focused; on a

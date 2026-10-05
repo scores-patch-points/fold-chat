@@ -1,7 +1,11 @@
 // fold-chat-snipview.js — draw the snips (see fold-chat-snip.js). DOM only; textContent only, so a page's own
 // words can never become markup. The card is the source's: its title links to the original, the creator is
-// credited, and the tip line says plainly that tipping is still being built.
+// credited, and the tip line says plainly that tipping is still being built. Several cards are shown one page at
+// a time (fold-chat-pagerview.js), never stacked.
 import { TIP, creditLine, metaLine } from "./fold-chat-snip.js";
+import { tipControl } from "./fold-chat-tipview.js";
+import { mountPager } from "./fold-chat-pagerview.js";
+import { pagesOf } from "./fold-chat-pager.js";
 
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
@@ -30,8 +34,7 @@ function card(s, toast) {
   if (s.truncated) c.append(el("div", "snip-cut", "This recipe is long; the card shows the first part. The rest is on the original page."));
   const foot = el("div", "snip-foot");
   const open = link(s.url, "Read the original ↗", "snip-open");
-  const tip = el("button", "snip-tip", "Tip the creator"); tip.type = "button";
-  tip.onclick = () => { if (typeof toast === "function") toast(TIP.clicked); };
+  const tip = tipControl({ url: s.url, title: s.title, creator: s.credit?.author || "", site: s.credit?.site || "", contact: s.contact }, { toast });
   const ask = el("span", "snip-ask", TIP.prompt);
   foot.append(open, el("span", "snip-sp"), ask, tip);
   c.append(foot, el("div", "snip-dev", TIP.status));
@@ -43,6 +46,8 @@ export function renderSnips(body, snips, { toast = null } = {}) {
   const list = (snips || []).filter((s) => s && s.kind === "recipe");
   if (!list.length) return;
   const wrap = el("section", "snips"); wrap.setAttribute("aria-label", "Recipes found");
-  for (const s of list) wrap.append(card(s, toast));
+  // one page per source: the same recipe page twice is one card
+  const pages = pagesOf(list).map((pg) => ({ key: pg.key, n: pg.n, url: pg.url, label: pg.snips[0].title || pg.snips[0].credit?.site || "Recipe", node: card(pg.snips[0], toast) }));
+  wrap.append(mountPager(pages, { label: "Recipes found" }));
   body.append(wrap);
 }

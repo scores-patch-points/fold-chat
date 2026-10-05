@@ -12,6 +12,30 @@
 const EMAIL = /[A-Z0-9][A-Z0-9._%+-]*@[A-Z0-9][A-Z0-9.-]*\.[A-Z]{2,}/gi;
 // Role mailboxes that are not for a person who wrote something (abuse desks, legal notices, bounce handlers…).
 const MACHINERY = /^(abuse|privacy|legal|dmca|copyright|security|postmaster|hostmaster|noreply|no-reply|donotreply|do-not-reply|unsubscribe|bounce|bounces|mailer-daemon|root|ssl|cert|spam|gdpr|dpo|compliance|billing|accounts?-?payable|sentry|wixpress|example|ads|advertising|webmaster|mediakit)$/i;
+// SERVICE / OPS mailboxes (customer service, fulfilment, billing, subscriptions…): never where a thank-you goes.
+// Matched as whole tokens of the local part ("customer.service", "orders", "it") AND as pieces of compound names
+// ("alrcustserv", "customercare24", "helpdesk", "supportteam"). Declared, with its giver: the 2026-10-05 allrecipes
+// check, where the contact page's protected link was a customer-service desk on a fulfilment company's domain.
+const SERVICE_TOKEN = /^(custserv|customerservice|customercare|customersupport|care|support|help|helpdesk|service|services|subscription|subscriptions|subscribe|billing|orders?|sales|returns?|shipping|fulfil+ment|accounts?|unsubscribe|bounce|bounces|postmaster|mailer-daemon|mailerdaemon|hostmaster|noc|it|cs|csr)$/;
+const SERVICE_COMPOUND = /custserv|customerserv|customercare|customersupport|helpdesk|fulfil+ment|subscription|unsubscribe|mailerdaemon|postmaster|hostmaster|noreply|donotreply/;
+const SERVICE_PREFIX = /^(support|service|services|sales|orders?|billing|shipping|returns?|care|help|accounts?)(team|desk|dept|department|center|centre|inquiries|enquiries|us|info|\d+)$/;
+export function isServiceMailbox(local) {
+  const l = String(local || "").toLowerCase().replace(/[+].*$/, "");
+  const joined = l.replace(/[._%-]+/g, "");
+  return l.split(/[._%-]+/).some((t) => SERVICE_TOKEN.test(t)) || SERVICE_COMPOUND.test(joined) || SERVICE_PREFIX.test(joined);
+}
+// An address is believed only on the page's OWN site, or at a well-known free-mail provider (small creators use Gmail).
+// A different company's domain (a fulfilment house, an ad network, a parent company) is dropped, whoever linked it.
+// Declared constant, short on purpose.
+const FREE_MAIL = /(^|\.)(gmail\.com|googlemail\.com|outlook\.com|hotmail\.[a-z.]+|live\.com|msn\.com|yahoo\.[a-z.]+|ymail\.com|icloud\.com|me\.com|mac\.com|proton\.me|protonmail\.com|pm\.me|fastmail\.(com|fm)|aol\.com|gmx\.[a-z.]+|mail\.com|zoho\.com|yandex\.(com|ru)|hey\.com)$/i;
+/** Is this address's domain the page's own site, or a free-mail provider? (`siteUrl` is any page of the site.) */
+export function emailDomainOk(address, siteUrl) {
+  const d = String(address || "").split("@")[1] || "";
+  if (!d) return false;
+  if (FREE_MAIL.test(d)) return true;
+  const base = hostBase(siteUrl);
+  return !!base && hostBase("https://" + d) === base;
+}
 const NOT_A_PERSON_DOMAIN = /(^|\.)(sentry\.io|sentry-next\.wixpress\.com|wixpress\.com|example\.(com|org)|domain\.com|email\.com|yourdomain\.com|mysite\.com)$/i;
 const ASSET_TAIL = /\.(png|jpe?g|gif|webp|svg|css|js|woff2?|ico)$/i;
 
@@ -30,7 +54,7 @@ export function isUsableEmail(addr) {
   if (!/^[a-z0-9][a-z0-9._%+-]*@[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/.test(a) || a.length > 120) return false;
   const [local, domain] = a.split("@");
   if (ASSET_TAIL.test(a) || /@\d+x\./.test(a)) return false;           // 'image@2x.png'
-  if (MACHINERY.test(local.replace(/[+].*$/, ""))) return false;
+  if (MACHINERY.test(local.replace(/[+].*$/, "")) || isServiceMailbox(local)) return false;
   if (NOT_A_PERSON_DOMAIN.test(domain)) return false;
   return true;
 }
@@ -67,6 +91,7 @@ export function contactsFromHtml(raw, baseUrl = "") {
     const a = String(addr || "").trim().replace(/^mailto:/i, "").replace(/[?#].*$/, "").toLowerCase();
     if (!isUsableEmail(a)) return;
     const own = hostBase(baseUrl) && a.split("@")[1] && (a.split("@")[1] === hostBase(baseUrl) || a.split("@")[1].endsWith("." + hostBase(baseUrl)));
+    if (!emailDomainOk(a, baseUrl)) return;                    // any source: own site or free-mail only
     if (rank >= 2 && !own && !onContactPage) return;
     const r = rank - (own ? 0.5 : 0);
     const prev = found.get(a);
@@ -83,7 +108,15 @@ export function contactsFromHtml(raw, baseUrl = "") {
   for (const m of html.matchAll(/\/cdn-cgi\/l\/email-protection#([0-9a-f]+)/gi)) add(decodeCfEmail(m[1]), "a protected email link on the page", 1);
   // 3) written in the visible text (only where the page is a contact/about page, or it is the sole address)
   const text = textOf(html);
-  for (const m of text.matchAll(EMAIL)) add(m[0], "written on the page", 2);
+  // an address WRITTEN next to words that say it is for something else (ads, press, licensing, privacy, jobs) is not
+  // the one to thank a creator at
+  const ELSEWHERE = /advertis|sponsor|\bpress\b|media kit|partnership|business (inquir|enquir)|brand|licens|copyright|privacy|careers?\b|jobs?\b|legal|takedown/i;
+  let prevEnd = 0;
+  for (const m of text.matchAll(EMAIL)) {
+    const ctx = text.slice(Math.max(prevEnd, m.index - 80), m.index);     // the words just before it, back to the previous address
+    prevEnd = m.index + m[0].length;
+    if (!ELSEWHERE.test(ctx)) add(m[0], "written on the page", 2);
+  }
   for (const a of deobfuscated(text)) add(a, "written on the page", 2);
   const emails = [...found.values()].sort((x, y) => x.rank - y.rank || x.address.length - y.address.length).slice(0, 4);
 

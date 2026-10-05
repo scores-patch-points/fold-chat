@@ -13,7 +13,7 @@
 //   4. The address is used only to fill the draft on this machine. It is never logged, never put in a request, the
 //      audit/outbound ledger or a trace; the card keeps it only on its own `contact`.
 //   5. The app never sends mail and never opens anything without a click.
-import { contactsFromHtml, isUsableEmail, hostBase } from "./fold-chat-contact.js";
+import { contactsFromHtml, isUsableEmail, hostBase, emailDomainOk } from "./fold-chat-contact.js";
 
 export const TIP_LIMITS = Object.freeze({ maxMailto: 1800, maxTitle: 100, maxPages: 2, pauseMs: 1200 });
 
@@ -27,7 +27,16 @@ export const TIP_SAY = Object.freeze({
   form: "No public email. Opened their contact page; your message is copied — paste it there.",
   formNoCopy: "No public email. Opened their contact page; copy your message below and paste it there.",
   none: "Couldn't find a public contact for this creator. The original page is linked above.",
+  siteContact: " This is the site's contact, not the individual's.",
 });
+
+// Marketplaces and user-contributed platforms: the credited name is a contributor, and the site's address is the
+// platform's, not theirs. Declared, short; the giver is the 2026-10-05 allrecipes check ("Hi ELIZABETHBH!").
+const PLATFORMS = /(^|\.)(allrecipes\.com|food\.com|cookpad\.com|instructables\.com|reddit\.com|youtube\.com|pinterest\.com|etsy\.com|amazon\.com|ebay\.com|wikihow\.com|quora\.com)$/i;
+/** Is the page on a platform whose contributors are credited by handle? */
+export const isPlatformSite = (url) => { try { return PLATFORMS.test(new URL(String(url)).hostname.replace(/^www\./, "")); } catch { return false; } };
+/** Is this credit a contributor's username (ALLCAPS handle, digits, no space) rather than a person's name? */
+export const looksLikeHandle = (c) => { const t = cleanText(c); return !!t && (!/\s/.test(t) || /[0-9_]/.test(t) || (t.length > 3 && t === t.toUpperCase() && /[A-Z]/.test(t))); };
 
 const ORG_WORD = /\b(team|staff|editors?|editorial|kitchen|bakery|co|inc|llc|ltd|gmbh|news|magazine|media|studio|studios|network|press|the|foods?|recipes?|blog|publishing|company|group|association)\b/i;
 const clip = (s, n) => { const t = String(s ?? "").replace(/\s+/g, " ").trim(); return t.length <= n ? t : t.slice(0, n - 1).trimEnd() + "…"; };
@@ -36,7 +45,7 @@ const cleanText = (s) => String(s ?? "").replace(/[\u0000-\u001f\u007f]+/g, " ")
 /** "Hi <first name>!" only for a person the PAGE named; an organisation, a site name or nothing gives a plain "Hi!". */
 export function firstNameOf(creator) {
   const c = cleanText(creator);
-  if (!c || c.length > 60 || ORG_WORD.test(c) || /[0-9@/:.]/.test(c) || /['\u2019]s\b/.test(c)) return "";   // a possessive is a brand ("Sally's Baking Addiction")
+  if (!c || looksLikeHandle(c) || c.length > 60 || ORG_WORD.test(c) || /[0-9@/:.]/.test(c) || /['\u2019]s\b/.test(c)) return "";   // a possessive is a brand ("Sally's Baking Addiction")
   const parts = c.split(" ");
   if (parts.length > 4) return "";
   const first = parts[0].replace(/[,;]+$/, "");
@@ -52,11 +61,11 @@ const plainAddress = (a) => { const t = String(a ?? "").trim(); return /^[A-Za-z
  * usable `to`. Percent-encoded; line breaks are %0D%0A (never raw); the whole URL is capped (titles are cut first,
  * then the link loses its query).
  */
-export function tipDraft({ to = "", creator = "", title = "", url = "" } = {}) {
+export function tipDraft({ to = "", creator = "", title = "", url = "" } = {}) {   // a creator credited on a marketplace/UGC platform is a contributor: plain "Hi!"
   const addr = to ? plainAddress(to) : "";
   if (to && !addr) throw new Error("not a usable address");
-  const name = firstNameOf(creator);
   const page = httpUrl(url);
+  const name = isPlatformSite(url) ? "" : firstNameOf(creator);
   const build = (t, link) => {
     const subject = t ? `A tip for "${t}"` : "A tip for your content";
     const lines = [`${name ? `Hi ${name}!` : "Hi!"} ${DRAFT_LINE}`, ""];
@@ -83,10 +92,12 @@ const viaWord = (where) => String(where || "").replace(/\bon the page\b/, "on th
 
 // An address is accepted only if it is usable AND came from a place the page puts forward (see contactsFromHtml).
 const PUBLISHED = /^(the page's structured data|a mailto link on|a protected email link on|written on)/;
-const accept = (e) => !!e && isUsableEmail(e.address) && PUBLISHED.test(String(e.where || ""));
+const acceptAt = (e, site) => !!e && isUsableEmail(e.address) && PUBLISHED.test(String(e.where || "")) && emailDomainOk(e.address, site);
 
 /** What a stored/passed `contact` or `contacts` says, as the raw found shape { emails, pages, forms }. */
 function asFound(source) {
+  const site = source && source.url;
+  const accept = (e) => acceptAt(e, site);
   const c = source && source.contacts;
   if (c && typeof c === "object") return { emails: (c.emails || []).filter(accept), pages: c.pages || [], forms: c.forms || [] };
   const k = source && source.contact;
@@ -109,7 +120,7 @@ export async function findContact(source, { readText, pause = (ms) => new Promis
   const emails = [], forms = []; let pages = [];
   const take = (f, contactPage) => {
     if (!f) return;
-    for (const e of f.emails || []) if (accept(e) && !emails.some((x) => x.address === e.address)) emails.push({ address: String(e.address).toLowerCase(), where: contactPage ? viaWord(e.where) : e.where, rank: e.rank ?? 1 });
+    for (const e of f.emails || []) if (acceptAt(e, url) && !emails.some((x) => x.address === e.address)) emails.push({ address: String(e.address).toLowerCase(), where: contactPage ? viaWord(e.where) : e.where, rank: e.rank ?? 1 });
     for (const u of f.forms || []) if (httpUrl(u) && sameSite(u, url) && !forms.includes(u)) forms.push(u);
     for (const u of f.pages || []) if (httpUrl(u) && sameSite(u, url) && !pages.includes(u) && u.split(/[?#]/)[0] !== url.split(/[?#]/)[0]) pages.push(u);
   };
@@ -149,7 +160,7 @@ export async function findContact(source, { readText, pause = (ms) => new Promis
 export function contactOfPassage(p) {
   const c = p && p.contacts;
   if (!c || typeof c !== "object") return null;
-  const e = (c.emails || []).find(accept);
+  const e = (c.emails || []).find((x) => acceptAt(x, p.url || p.source));
   const pages = (c.pages || []).filter((u) => httpUrl(u) && sameSite(u, p.url || p.source)).slice(0, 3);
   if (e) return { kind: "email", address: String(e.address).toLowerCase(), where: e.where, ...(pages.length ? { pages } : {}) };
   const f = (c.forms || [])[0];

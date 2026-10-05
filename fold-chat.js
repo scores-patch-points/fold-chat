@@ -23,7 +23,13 @@ const pageMemo = web.makeMemo();
 import { classifyTurn, GENERATE_NUDGE, checkable, recordable, skipsSearch, noClaimsLabel, KIND_PROMPT } from "./fold-chat-discourse.js";
 import { evaluate as computeEvaluate, answerKeeps } from "./fold-chat-compute.js";
 import { UNSOURCED_ANSWERS, unsourcedPlan, sourcesPrompt, liveAsk, unreachedGap, liveGap, emptyNotice, errorNotice, declinedFallbackNotice, noModelFallbackNotice, gapAnswerLine, modelSpeaksAlone, aloneTurn } from "./fold-chat-gaps.js";
-import { turnPlan, threadPrompt, threadNotice, coldFollowUpNotice } from "./fold-chat-thread.js";
+import { threadPrompt, threadNotice, coldFollowUpNotice } from "./fold-chat-thread.js";
+// GARY, TERRY GROSS AND THE PATHOS ARCHONS (vendored khora organs, by closure): the prompt door (what the mouth is handed, in what
+// order, question last, a refused fold withheld), the conversation's flow (follow-ups, push-backs and frame-asks are moves against
+// the thread), and the felt shape of the recent answers for a DECLARED experiencer.
+import { door as garyDoor, noteWindows } from "./fold-chat-gary.js";
+import { planTurn, cuesFor, actOf } from "./fold-chat-flow.js";
+import { readFelt } from "./fold-chat-pathos.js";
 import { hintsFor } from "./fold-chat-hints.js";
 import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
 import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
@@ -36,6 +42,9 @@ import { senseTerm, disambiguationOf, sensesLine } from "./fold-chat-senses.js";
 import { voidReport, voidText, voidLabel, normVoid, migrateSessions, modelHistory } from "./fold-chat-channels.js";
 import { recipeSnips, CARD_PROMPT } from "./fold-chat-snip.js";
 import { renderSnips } from "./fold-chat-snipview.js";
+import { configureTip, tipControl } from "./fold-chat-tipview.js";
+import { jumpToSnip } from "./fold-chat-pagerview.js";
+import { isExtension } from "./fold-chat-exit.js";
 import * as topic from "./fold-chat-topic.js";
 import { PHOSPHOR, PHOSPHOR_VIEWBOX } from "./fold-chat-icons.js";
 import * as FOLD from "./vendor/the-fold/fold.js";
@@ -46,6 +55,7 @@ import { newTurnTrace, startEvents, lineEvent, beginStep, endStep, noteEvent, do
 import { createFold, addVersion as addFoldVersion, addLog as addFoldLog, addEvent as addFoldEvent, snapshot as foldSnapshot, revive as foldRevive } from "./fold-chat-fold.js";
 import { mountFold, tuckSteps } from "./fold-chat-foldview.js";
 import { createOutbound, describeSummary, formatBytes } from "./fold-chat-outbound.js";
+import { mountMonitor } from "./fold-chat-monitor.js";
 import { createTaint } from "./fold-chat-seal.js";
 import * as life from "./fold-chat-sessions.js";
 
@@ -354,14 +364,19 @@ export function mount(root, opts = {}) {
   // computed from this, not asserted.
   const taint = createTaint();
   const outbound = createOutbound({ storage: localStorage, taint, auditUrl: null });
+  // "Tip the creator" reads the creator's OWN contact page, only on a click: audited like any page read, through the tab's page memory.
+  configureTip({ readText: (u) => web.readText(u, { memo: pageMemo, fetchImpl: outbound.auditedFetch("tip: the creator's own contact page"), direct: isExtension() }) });
   let currentRun = null;
   const newRun = (kind) => (currentRun = kind + "_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5));
+  // GARY'S DOOR: every model call this page makes (the turn, the restatement, a sealed code draw) is read by Gary before it is audited
+  // or sent; one he refuses never leaves.
+  client.setPromptDoor(garyDoor.guard);
   client.setAuditHook({
     before: (info) => {
       const m = models.find((x) => x.id === info.model);
       // A local model never leaves the machine; only an outside (sealed) one is an exit.
       if (m && !m.sealed && m.location !== "external") return null;
-      const h = outbound.sendModel({ auditId: info.auditId, model: info.model, host: m?.provider || null, messages: info.messages, segments: info.segments, worlds: info.worlds, symmetry: info.symmetry, gate: info.privacy === "sealed-external" || info.privacy === "explicit", purpose: info.purpose, run: info.run || currentRun, base: info.base || bridge });
+      const h = outbound.sendModel({ auditId: info.auditId, model: info.model, host: m?.provider || null, messages: info.messages, segments: info.segments, worlds: info.worlds, symmetry: info.symmetry, gate: info.privacy === "sealed-external" || info.privacy === "explicit", purpose: info.purpose, run: info.run || currentRun, base: info.base || bridge, masking: info.masking || null });
       return (r) => h.done(r);
     },
   });
@@ -452,7 +467,7 @@ export function mount(root, opts = {}) {
   // Stop the OPEN chat's running turn (the Stop button, and Escape in the composer).
   function stopOpenTurn() { const t = inflight.get(activeId); if (t) { t.stop(); return true; } return false; }
 
-  function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), 1600); }
+  function toast(msg) { E.toast.textContent = msg; E.toast.classList.add("show"); setTimeout(() => E.toast.classList.remove("show"), Math.min(9000, Math.max(1600, String(msg).length * 55))); }
   // A toast with one action (Undo). It lives ~8 s, is announced politely, and the
   // action is a real button (the plain toast ignores the pointer). One at a time:
   // a new one commits the previous. Returns { dismiss }.
@@ -503,6 +518,7 @@ export function mount(root, opts = {}) {
   // ~15 s only while the tab is visible and refreshed after each turn. It never blocks rendering: a failed read keeps the last words.
   const fLoaded = document.getElementById("fLoaded");
   function paintLoaded(st) {
+    try { noteWindows((st?.entries || []).filter((e) => e.ctx).map((e) => ({ id: e.id, ctx: e.ctx }))); } catch {}   // Gary reads the window each model is loaded at
     if (!fLoaded) return;
     const d = describeLoaded(st);
     fLoaded.dataset.kind = d.kind; fLoaded.title = d.title;
@@ -1122,6 +1138,8 @@ export function mount(root, opts = {}) {
       for (const c of rec.cited) {
         const chip = c.url && /^https?:\/\//i.test(c.url) ? Object.assign(el("a", "cite-chip", c.title || c.domain || c.n), { href: c.url, target: "_blank", rel: "noopener" }) : el("span", "cite-chip", c.title || c.n);
         if (c.domain) chip.title = c.domain;
+        // a chip whose source is shown as a page of a snip pager brings that page up (a modified click still opens the source)
+        if (c.url) chip.addEventListener("click", (ev) => { if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button) return; if (jumpToSnip(chip.closest(".msg") || document, c.url)) ev.preventDefault(); });
         row.append(chip);
       }
       respPage.append(row);
@@ -1151,6 +1169,7 @@ export function mount(root, opts = {}) {
           dh.append(el("span", "src-title", d.title));
           if (d.domain) dh.append(el("span", "src-dom", d.domain));
           if (d.url) { const a = el("a", "src-open", "open ↗"); a.href = d.url; a.target = "_blank"; a.rel = "noopener"; a.setAttribute("aria-label", "Open " + d.title + " in a new tab"); dh.append(a); }
+          if (d.url && !/(^|\.)wikipedia\.org$/i.test(d.domain || "")) dh.append(tipControl({ url: d.url, title: String(d.title || "").split(" \u2014 ").slice(1).join(" \u2014 ") || d.title, site: d.domain }, { toast, quiet: true }));
           doc.append(dh);
           d.passages.forEach((p, pi) => doc.append(passageRow(p, di === 0 && pi === 0)));
           list.append(doc);
@@ -1245,7 +1264,7 @@ export function mount(root, opts = {}) {
   // System notes about a turn (an identity claim the fold withdrew, a model
   // refusal it replaced, an agent that produced no code): each its OWN element,
   // labelled as the fold's — never part of what the model wrote.
-  const NOTICE_LABEL = { identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
+  const NOTICE_LABEL = { identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", thread: "from this chat", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
   // A note whose turn wrote nothing (a failure, an empty stream, a stop) carries a retry: `onRetry` re-runs the ask.
   function renderNotices(body, notices, onRetry = null) {
     for (const n of notices || []) {
@@ -1726,14 +1745,17 @@ export function mount(root, opts = {}) {
     // the session); buildTurnMessages projects it.
     if (!s.summary) s.summary = FOLD.emptySummary();
     const basePrompt = [PRESETS[s.preset]?.system, memory.systemContext({ readerName, facts: s.facts || {} })].filter(Boolean).join(" ");
-    const question = lastUserText(s);
+    const said = lastUserText(s);
     // THE CONVERSATION IS A SOURCE (fold-chat-thread.js): the ask is read against the turns BEFORE it, before anything is
     // searched. "what?" / "why?" / "shorter" are about the previous answer (no search; the model may reply from that turn
     // alone, or — with nothing earlier — nothing is written); "i want a chewier one" is searched WITH the earlier topic; a
     // pronoun follow-up carries the last answer's referent (resolveQuestion). The person's words are never rewritten.
     const askAt = s.messages.lastIndexOf(askMsg);
-    const lang0 = detectLang(question).lang;
-    const follow = turnPlan(question, askAt > 0 ? s.messages.slice(0, askAt) : [], { referents: s.referents || null, hints: hintsFor(lang0 === "unknown" ? "en" : lang0) });
+    const lang0 = detectLang(said).lang;
+    const follow = planTurn(said, askAt > 0 ? s.messages.slice(0, askAt) : [], { referents: s.referents || null, hints: hintsFor(lang0 === "unknown" ? "en" : lang0) });
+    // A bare nudge ("well?") after an unanswered ask IS that ask again: the turn is read, searched and written as the earlier question
+    // (follow.retry); the person's own "well?" stays what they said (the thread, the record's `said`).
+    const question = follow.retry || said;
     const searchQ = follow.search || question;                       // what is SEARCHED (and what picks the quoted sentences)
     const threadTurn = follow.mode === "thread" ? follow.thread : null;
     // The transcript the MODEL may see: each turn carries only what its author
@@ -1901,8 +1923,10 @@ export function mount(root, opts = {}) {
       feedPush(lineEvent(tt, "Followed the conversation", { tone: "ok", note: `no search \u2014 answering from your earlier turn ${threadTurn.turn}` }));
     } else if (follow.mode === "cold-gap") feedPush(lineEvent(tt, "Nothing earlier to follow", { tone: "info", note: "no search, and the model is not asked" }));
     const modelBarred = !!(plan || strand || aloneBarred);
+    let doorRefusal = null;   // set when Gary refuses the composed turn below: the model is then not asked (the turn falls back like any refused call)
     const callModel = (msgs, opts) => {
       if (modelBarred) throw new Error("the model is barred on this turn (it never speaks alone)");
+      if (doorRefusal) throw doorRefusal;
       return client.chat(m.id, msgs, opts);
     };
     // COMPUTE: the value comes from the evaluator, never the model (II.9); the model only phrases it.
@@ -1914,7 +1938,27 @@ export function mount(root, opts = {}) {
     // case sent whole: the bound is a budget, and what fits inside it is
     // carried verbatim, so a continuation like "well?" has the thread to read.
     const recencyWindow = conversationVerbatim(s) ? history.length : undefined;
-    const messages = FOLD.buildTurnMessages({ basePrompt: turnBase, summary: s.summary, history: history.slice(0, -1), question, sourceBlock, recencyWindow });
+    // GARY'S ORDER (fold-chat-gary.js composeTurn): one system message, the recent exchange, THE QUESTION LAST and verbatim. What the
+    // reply hears about the conversation rides as plain facts (Terry Gross's flow reading, fold-chat-flow.js; the pathos archons' felt
+    // shape of the recent answers, fold-chat-pathos.js) — only on a turn the model may write, and each fact is read by Gary first. A fold
+    // Gary REFUSES is withheld, not shipped; a prompt too big for the window the model is loaded at is shrunk, never cut in the middle.
+    let flowInfo = null, feltInfo = null;
+    let messages = [];
+    garyDoor.drain();   // this turn's decisions start empty (a stopped or failed earlier turn leaves none behind)
+    if (!modelBarred) {
+      const conversational = kind === "research" || kind === "chat" || kind === "advice" || !!threadTurn;
+      feltInfo = conversational ? readFelt(s.messages.slice(0, askAt), { convo: id, memo: s.pathos }) : null;
+      if (feltInfo && !feltInfo.gap) s.pathos = feltInfo.memo;
+      flowInfo = conversational ? cuesFor({ act: follow.act || actOf(question), felt: feltInfo?.felt || null, pathosCue: feltInfo?.cue || null, door: garyDoor }) : null;
+      const materialInView = modelSpeaksAlone(kind) ? undefined : webPassages.length + (threadTurn ? 1 : 0) + (computed && computed.ok ? 1 : 0) + materialOf(s).length;
+      const fromWeb = !!webPassages.length && !threadTurn && !(computed && computed.ok);
+      const composed = garyDoor.composeTurn({
+        basePrompt: turnBase, cues: flowInfo?.cues || [], summary: s.summary, history: history.slice(0, -1), question, sourceBlock, recencyWindow,
+        shrinkSource: fromWeb ? (maxChars) => sourcesPrompt(webPassages.map((p) => ({ ...p, text: String(p.text || "").slice(0, maxChars) }))) + (webPassages.some((p) => p.recipe) ? "\n\n" + CARD_PROMPT : "") : null,
+      }, { model: m.id, maxTokens: 1024, material: materialInView });
+      messages = composed.messages;
+      if (composed.refused.length) doorRefusal = Object.assign(new Error("the prompt was withheld before it reached the model (" + composed.refused.map((f) => f.rule).join(", ") + ") \u2014 nothing was sent"), { status: 422 });
+    }
     try {
       let skipModel = modelBarred, fellBack = null;
       let out = { text: "", tokens: 0 };
@@ -1960,7 +2004,7 @@ export function mount(root, opts = {}) {
         say(`turn \u00b7 ${kindWord} \u00b7 the model declined \u00b7 showing the sources instead (${strand.snips.length} passage(s), no model)\u2026`);
       }
       if (ac.signal.aborted) throw abortError();
-      if (!skipModel) feedPush(endStep(tt, "write", { title: `Wrote the answer \u00b7 ${m.id}`, tone: "ok", note: out.tokens ? `${out.tokens} tokens` : "" }));
+      if (!skipModel) feedPush(endStep(tt, "write", { title: `Wrote the answer \u00b7 ${m.id}`, tone: "ok", note: out.tokens ? `${out.tokens} token${out.tokens === 1 ? "" : "s"}` : "" }));
       if (isLive()) E.stage.textContent = "";
       body.classList.remove("live");
       // The fold's grounding: strip a self-citation the model invented, then
@@ -2050,6 +2094,13 @@ export function mount(root, opts = {}) {
       // A strand is never SCORED: its words are the sources', not a claim of ours (turnRecord gets an empty answer).
       const record = recordable(kind) ? ground.turnRecord(strand ? "" : text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed, effort }) : null;
       if (record && webTrace) record.web = webTrace;
+      // What Gary, Terry Gross and the pathos archons did on this turn — rules, counts and the speech act, never the prompt's own words.
+      { const decisions = garyDoor.drain();
+        if (record) {
+          if (decisions.length) record.gary = decisions;
+          if (flowInfo) record.flow = { act: flowInfo.act, move: follow.kind === "move" || undefined, cues: flowInfo.cues.map((c) => c.from), ...(flowInfo.dropped.length ? { dropped: flowInfo.dropped } : {}) };
+          if (feltInfo) record.pathos = { condition: feltInfo.condition, gap: feltInfo.gap || undefined, experiencer: feltInfo.experiencer?.who };
+        } }
       // A creative turn (a poem, a story, an essay asked for) has no claims to
       // check: it keeps its search and its sources, but nothing of it is scored
       // — no void, no ✱, nothing recorded as "not supported by the material".
@@ -2062,7 +2113,7 @@ export function mount(root, opts = {}) {
       }
       if (record) record.nSources = webPassages.length + materialOf(s).length + (threadTurn ? 1 : 0);
       if (record && threadTurn) record.answeredFrom = { turn: threadTurn.turn, askIndex: threadTurn.askIndex, answerIndex: threadTurn.answerIndex };
-      if (record && follow.kind !== "standalone") record.followed = { kind: follow.kind, said: question, searched: follow.search || null, carried: follow.carried || [], topic: follow.topic || null };
+      if (record && follow.kind !== "standalone") record.followed = { kind: follow.kind, said, searched: follow.search || null, carried: follow.carried || [], topic: follow.topic || null };
       if (record && strand) {
         record.authored = "sources"; record.answerMode = "snips";
         record.noClaims = "the sources' own words, unchanged \u2014 no model wrote this, so nothing is scored";
@@ -2180,7 +2231,7 @@ export function mount(root, opts = {}) {
         const un = (record.unsupported?.numbers?.length || 0) + (record.unsupported?.names?.length || 0);
         feedPush(lineEvent(tt, "Checked the answer against what was read", { tone: un ? "warn" : "ok", note: un ? `${un} figure(s) or name(s) not found in the sources` : "every figure and name appears in the sources" }));
       }
-      feedPush(doneEvents(tt, { ok: true, title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop) }) }));
+      feedPush(doneEvents(tt, { ok: !(plan || liveDrop), title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop) }) }));
       if (record) record.feed = storeEvents(turnEvents, { max: 60 });
       const idx = s.messages.length;
       // Stored by author: a Sources-only turn is `authored: "sources"` with its verbatim snips (content = their plain
@@ -2753,6 +2804,8 @@ export function mount(root, opts = {}) {
     renderChats();
   };
   E.railEvidence.onclick = (e) => { e.preventDefault(); drawerOpener = e.currentTarget; toggleDrawer(); };
+  // A live window on every external call and how it was anonymized (its own module: its own button, panel and styles).
+  mountMonitor({ outbound });
   E.topFocus.onclick = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.().catch(() => {}); else document.exitFullscreen?.(); };
   // (The per-thread "Process" toggle is gone: grounding is always on, and the
   // per-answer "how this was answered" line is collapsed by default. A thread

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { tipDraft, findContact, firstNameOf, contactOfPassage, contactsOfRaw, TIP_SAY, TIP_LIMITS, DRAFT_LINE } from "./fold-chat-tip.js";
+import { tipDraft, findContact, firstNameOf, contactOfPassage, contactsOfRaw, isPlatformSite, TIP_SAY, TIP_LIMITS, DRAFT_LINE } from "./fold-chat-tip.js";
 import { contactsFromHtml } from "./fold-chat-contact.js";
 import { sourcesPrompt } from "./fold-chat-gaps.js";
 
@@ -144,4 +144,45 @@ test("TIP_SAY: the exact words the surface uses", () => {
   assert.equal(TIP_SAY.email("a@b.test", "a mailto link on the page"), "Opened an email draft to a@b.test (found a mailto link on the page). Nothing is sent until you send it.");
   assert.equal(TIP_SAY.form, "No public email. Opened their contact page; your message is copied — paste it there.");
   assert.equal(TIP_SAY.none, "Couldn't find a public contact for this creator. The original page is linked above.");
+});
+
+test("readText carries what the page offers for reaching its creator (only when it offered something), and a page that offers nothing carries nothing", async () => {
+  const { readText } = await import("./fold-chat-web.js");
+  const page = (body) => `<!doctype html><html><head><title>T</title></head><body><main>${"A readable sentence about bread and butter and flour. ".repeat(4)}${body}</main></body></html>`;
+  const fx = (raw) => async () => ({ ok: true, status: 200, text: async () => raw, body: null });
+  const withLink = await readText("https://c.test/p", { fetchImpl: fx(page(`<a href="mailto:ana@c.test">mail</a>`)) });
+  assert.equal(withLink.ok, true);
+  assert.equal(withLink.contacts.emails[0].address, "ana@c.test");
+  const bare = await readText("https://d.test/p", { fetchImpl: fx(page(`<p>Nothing to see.</p>`)) });
+  assert.equal(bare.ok, true);
+  assert.equal("contacts" in bare, false);
+});
+
+test("FALSIFIER (allrecipes, 2026-10-05): findContact on a contact page whose only protected link is a customer-service desk on a fulfilment domain offers NOTHING (no email)", async () => {
+  const addr = "alrcustserv@cdsfulfillment.com";
+  const s = site({
+    "https://www.allrecipes.com/recipe/1/banana/": html(`<a href="/about-us-6648102">About Us</a><a href="/contact">Contact</a>`),
+    "https://www.allrecipes.com/contact/": html(`<a href="/cdn-cgi/l/email-protection#${cf(addr)}"><span data-cfemail="${cf(addr)}">[email protected]</span></a>`),
+    "https://www.allrecipes.com/about-us-6648102/": html(`<p>About</p>`),
+  });
+  const r = await findContact({ url: "https://www.allrecipes.com/recipe/1/banana/" }, s);
+  assert.equal(r.kind, "none");
+  assert.ok(!JSON.stringify(r).includes("@"));
+  // a stored contact is re-checked against the same rules
+  for (const contact of [{ kind: "email", address: addr, where: "a protected email link on their contact page" }, { kind: "email", address: "orders@allrecipes.com", where: "a mailto link on the page" }, { kind: "email", address: "someone@othercompany.test", where: "a mailto link on the page" }])
+    assert.equal((await findContact({ url: "https://www.allrecipes.com/recipe/1/", contact }, site({}))).kind, "none", contact.address);
+  assert.equal((await findContact({ url: "https://blog.test/p", contact: { kind: "email", address: "me@gmail.com", where: "a mailto link on the page" } }, site({}))).kind, "email", "free mail the page itself linked is allowed");
+  assert.equal(contactOfPassage({ url: "https://www.allrecipes.com/r", contacts: { emails: [{ address: addr, where: "a mailto link on the page" }], pages: [], forms: [] } }), null);
+});
+
+test("greeting: a name only for a person the page declared; a contributor username or a platform contributor gets a plain 'Hi!'", () => {
+  for (const handle of ["ELIZABETHBH", "elizabethbh", "Chef_Bob99", "BakerGirl2", "JOHNSMITH", "Cookie Monster 42"]) assert.equal(firstNameOf(handle), "", handle);
+  assert.equal(firstNameOf("Natasha Kravchuk"), "Natasha");
+  assert.ok(tipDraft({ to: "a@gmail.com", creator: "ELIZABETHBH", title: "Banana Bread", url: "https://www.allrecipes.com/r/" }).body.startsWith("Hi! I enjoyed"));
+  assert.ok(tipDraft({ to: "a@gmail.com", creator: "Elizabeth Brown", title: "Banana Bread", url: "https://www.allrecipes.com/r/" }).body.startsWith("Hi! I enjoyed"), "even a real-looking name: on a platform the contributor is not the site's contact");
+  assert.ok(tipDraft({ to: "a@gmail.com", creator: "Elizabeth Brown", title: "Banana Bread", url: "https://eb-kitchen.test/r/" }).body.startsWith("Hi Elizabeth! I enjoyed"));
+  assert.equal(isPlatformSite("https://www.allrecipes.com/recipe/1/"), true);
+  assert.equal(isPlatformSite("https://sallysbakingaddiction.com/x"), false);
+  assert.equal(isPlatformSite("https://someone.blogspot.com/x"), false, "a personal blog host is not a marketplace: the owner is the contact");
+  assert.match(TIP_SAY.siteContact, /site's contact, not the individual's/);
 });
