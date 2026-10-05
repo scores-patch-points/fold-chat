@@ -1,0 +1,21 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { nextId, resetIds } from "../src/ids.js";
+import { isoDay, addDays, daysBetween } from "../src/dates.js";
+import { createLogger } from "../src/logger.js";
+import { createUser, displayName, isEmail } from "../src/users.js";
+import { startSession, isExpired } from "../src/sessions.js";
+import { stockLevel, reserve } from "../src/inventory.js";
+import { searchItems } from "../src/search.js";
+import { track, countBy } from "../src/analytics.js";
+import { buildQuery, parseQuery } from "../src/http.js";
+
+test("ids", () => { resetIds(); assert.equal(nextId("u"), "u_1"); assert.equal(nextId(), "id_2"); });
+test("dates", () => { assert.equal(isoDay("2026-01-05T10:00:00Z"), "2026-01-05"); assert.equal(isoDay(addDays("2026-01-30T00:00:00Z", 3)), "2026-02-02"); assert.equal(daysBetween("2026-01-01", "2026-01-11"), 10); });
+test("logger", () => { const l = createLogger("warn"); l.log("info", "x"); l.log("error", "y"); assert.deepEqual(l.lines, ["[error] y"]); });
+test("users", () => { assert.equal(isEmail("a@b.co"), true); assert.equal(displayName(createUser("", "Bob@X.io")), "bob"); assert.throws(() => createUser("x", "bad")); });
+test("sessions", () => { const s = startSession({ email: "a@b.co" }, 0, 10); assert.equal(isExpired(s, 9), false); assert.equal(isExpired(s, 10), true); });
+test("inventory", () => { const inv = { a: 3 }; assert.equal(reserve(inv, "a", 2), true); assert.equal(reserve(inv, "a", 2), false); assert.equal(stockLevel(inv, "zz"), 0); });
+test("search", () => { const items = [{ name: "Red Pen", tags: ["office"] }, { name: "Lamp", tags: [] }]; assert.equal(searchItems(items, "pe").length, 1); assert.equal(searchItems(items, "").length, 0); });
+test("analytics", () => { const ev = []; track(ev, "a"); track(ev, "a"); track(ev, "b"); assert.deepEqual(countBy(ev, "name"), { a: 2, b: 1 }); });
+test("http", () => { assert.equal(buildQuery({ a: 1, b: "x y", c: null }), "a=1&b=x%20y"); assert.deepEqual(parseQuery("?a=1&b=x%20y"), { a: "1", b: "x y" }); });

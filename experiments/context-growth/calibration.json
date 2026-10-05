@@ -1,0 +1,17 @@
+{
+ "code": {
+  "chars": 6764,
+  "tokens": 2259,
+  "chars_per_token": 2.99
+ },
+ "tests": {
+  "chars": 6581,
+  "tokens": 2271,
+  "chars_per_token": 2.9
+ },
+ "prose": {
+  "chars": 6000,
+  "tokens": 1791,
+  "chars_per_token": 3.35
+ }
+}
