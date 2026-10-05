@@ -14,7 +14,7 @@
 
 import * as client from "./fold-chat-client.js";
 import { artifactsOf, previewable } from "./fold-chat-artifacts.js";
-import { mdHtml } from "./fold-chat-render.js";
+import { mdHtml, mdInline } from "./fold-chat-render.js";
 import * as memory from "./fold-chat-memory.js";
 import * as ground from "./fold-chat-ground.js";
 import * as web from "./fold-chat-web.js";
@@ -26,7 +26,7 @@ import * as FOLD from "./vendor/the-fold/fold.js";
 const DEFAULT_BRIDGE = "http://localhost:8790";
 const PRESETS = Object.freeze({
   plain: { label: "Plain", system: "You are a helpful assistant. Reply directly, briefly, and naturally, the way a person would. If the person just says hi or asks how you are, answer in kind and offer to help — do not ask them for files or material." },
-  fold: { label: "Fold", system: "You are the fold — the reading and research surface over this person's own material: their audits, transcripts, reports, pages, and records. Reply plainly, in a warm, grounded voice. Where the conversation carries grounded material, answer from it; where it does not, say what is missing instead of filling it in. Never claim a source you cannot show, and never state a personal fact you were not given. When greeted — hi, hey, how are you — answer warmly and briefly, say what you can help with, and never ask them to produce passages or files." },
+  fold: { label: "Fold", system: "You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES: when asked about a person, report what the sources say, quoting and citing them — that is the work, and it is fine to do. The conversation itself is NEVER a source. Ground every factual claim in the material you were given (attachments, pasted documents, web passages); never ground in the dialogue, and never in your own memory. You may not ASSERT a personal fact you were not given — but you may report a sourced one and point to where it came from. Where the material does not cover something, say plainly what is missing instead of filling it in. Never claim a source you cannot show. When greeted — hi, hey, how are you — answer warmly and briefly." },
   code: { label: "Code", system: "You are a coding assistant. Prefer concrete, working code. Put substantial snippets in a fenced block with its language so they render as artifacts." },
   build: { label: "Build", system: "You are a generative UI assistant. When asked to build something, produce a complete, self-contained HTML document inside a ```html fence — it renders live in an isolated preview." },
 });
@@ -57,6 +57,68 @@ function phosphor(name, size = 16) {
 }
 const now = () => new Date().toISOString();
 const sid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+// A model content-refusal, not an answer: "I cannot…", "I do not have access to
+// personal information…", "I'm unable to…". Short and apology-flavoured.
+const REFUSAL_RE = /\b(i (?:can(?:no|')t|am unable|cannot|do not have access|don'?t have access|won'?t|will not)|i'm sorry,? but|as an ai|i am not able|i'm not able)\b/i;
+function isRefusal(text) {
+  const t = String(text ?? "").trim();
+  if (!t) return false;
+  // Only a SHORT apology/refusal counts — a long answer that merely contains a
+  // caveat is not a refusal.
+  if (t.length > 320) return false;
+  return REFUSAL_RE.test(t) && !/\b(source|according to|https?:|\b\d{3,4}\b)/i.test(t);
+}
+// A real CODE/files task (dispatch to the machine door) vs. a research/writing
+// question that happens to be asked while the Code engagement is selected.
+function isCodeTask(text) {
+  const t = String(text ?? "");
+  // A factual/comparative question is never a code task, even in Code mode.
+  if (/^(who|what|when|where|which|why|how many|how much|compare|find|tell me|search)\b/i.test(t)) return false;
+  // An explicit prose ask (essay/report/letter… about) is generation, not code —
+  // even in Code mode it rides penelope's prose weave, never the coding pipeline.
+  if (/\b(essay|article|story|poem|song|report|summary|letter|email|post|blog|copy|piece|outline|plan|guide|analysis|review|memo|brief)\b/i.test(t)) return false;
+  // EVERYTHING ELSE in Code mode is the machine's to decide. A keyword regex
+  // can never route "make me a countdown clock" — the coding pipeline swarms
+  // the ask and reads the units itself, disclosing a gap when it is not a
+  // coding ask. (2026-10-04: the keyword gate fell through to the chat lane
+  // and the coder refused in prose — the exact failure this replaces.)
+  return true;
+}
+
+/** The fence language for a raw code-lane artifact: HTML-looking text renders
+ *  as a previewable page, everything else as a JS code card. Deterministic,
+ *  never the model's word. */
+function fenceLangFor(text) {
+  const t = String(text ?? "").trimStart();
+  if (/^<!doctype html>/i.test(t) || /^<html[\s>]/i.test(t)) return "html";
+  return "js";
+}
+
+// THE VOID — what the turn could NOT establish, named. The fold reads, then
+// reports the gap between the ask and what the sources could answer: what was
+// read, what is still missing, and what would close it. Returns null when the
+// answer was fully grounded (no void).
+function voidReport(record, question, webPassages, webTrace) {
+  if (!record) return null;
+  const read = Array.isArray(webPassages) ? webPassages : [];
+  const g = record.coverage?.grounded || 0, t = record.coverage?.total || 0;
+  const parts = [];
+  if (!read.length) {
+    const tried = (Array.isArray(webTrace) ? webTrace : []).filter((w) => w.scope).map((w) => w.engine || w.scope).slice(0, 5).join(", ") || "the web";
+    parts.push(`no source was reached (tried ${tried})`);
+  } else if (g === 0) {
+    const names = read.slice(0, 4).map((p) => p.ref).join("; ");
+    parts.push(`read ${read.length} source(s) — ${names} — none established the claim; the search itself may have missed`);
+  } else if (g < t) {
+    parts.push(`${t - g} of ${t} sentence(s) had no source`);
+  } else {
+    return null; // fully grounded — nothing missing
+  }
+  const q = String(question || "").trim().slice(0, 90);
+  if (q) parts.push(`"${q}" is still open`);
+  parts.push("to close it: a broader web/records/news search, or attach the document you are working from");
+  return "⟂ void — " + parts.join("; ") + ".";
+}
 function load(key, def) { try { return JSON.parse(localStorage.getItem(key) || "null") ?? def; } catch { return def; } }
 function save(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
 
@@ -175,7 +237,8 @@ export function mount(root, opts = {}) {
     railToggle: $("railToggle"), railNew: $("railNew"), railSearch: $("railSearch"), railEvidence: $("railEvidence"), railTheme: $("railTheme"), railSettings: $("railSettings"),
     side: $("side"), models: $("models"), projects: $("projects"), chats: $("chats"), projAdd: $("projAdd"), projNewProject: $("projNewProject"), chatNew: $("chatNew"),
     agentSlot: $("agentSlot"), engagementSlot: $("engagementSlot"), curModel: $("curModel"), webToggle: $("webToggle"),
-    topNew: $("topNew"), topFocus: $("topFocus"), groundToggle: $("groundToggle"), sealBadge: $("sealBadge"),
+    composerMode: $("composerMode"), composerCwd: $("composerCwd"), composerTag: $("composerTag"),
+    topNew: $("topNew"), topFocus: $("topFocus"), groundToggle: $("groundToggle"), effortSlot: $("effortSlot"), sealBadge: $("sealBadge"),
     welcome: $("welcome"), welcomeSub: $("welcomeSub"), thread: $("thread"), threadCol: $("threadCol"), stage: $("stage"), main: document.querySelector("main.main"),
     composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"), mic: $("mic"),
     footer: $("footer"), drawer: $("drawer"), toast: $("toast"), footEvidence: $("footEvidence"), ver: $("ver"),
@@ -195,7 +258,7 @@ export function mount(root, opts = {}) {
   let engagement = localStorage.getItem("fold-chat:engagement") || localStorage.getItem("fold-chat:mode") || "chat";
   const engBar = el("div", "agentbar");
   const engBtns = {};
-  for (const [k, label] of [["chat", "Chat"], ["code", "Code"]]) {
+  for (const [k, label] of [["chat", "Chat"], ["code", "Agent"]]) {
     const b = el("button", "agentbtn" + (engagement === k ? " on" : ""), label);
     b.onclick = () => setEngagement(k);
     engBtns[k] = b; engBar.append(b);
@@ -206,7 +269,22 @@ export function mount(root, opts = {}) {
     engagement = k;
     try { localStorage.setItem("fold-chat:engagement", k); } catch (e) {}
     for (const [kk, bb] of Object.entries(engBtns)) bb.classList.toggle("on", kk === k);
-    E.input.placeholder = k === "code" ? "Describe the change to make…" : "Message the fold";
+    refreshComposer();
+  }
+  // The composer is the mode's face: the agent register (mono input, › prompt,
+  // the bound folder as a chip, teal send) appears only while the machine door
+  // is engaged. Chat keeps the plain prose composer. The web toggle is a chat
+  // affordance — the door reads the folder, not the web — so it hides in agent.
+  function refreshComposer() {
+    const s = sessions[activeId];
+    const isAgent = engagement === "code";
+    const cwd = sessionCwd(s);
+    E.composer.classList.toggle("agent", isAgent);
+    E.input.placeholder = isAgent ? "Describe the change to make…" : "Message the fold";
+    if (E.webToggle) E.webToggle.style.display = isAgent ? "none" : "";
+    E.composerMode.textContent = isAgent ? "agent" : "";
+    E.composerCwd.textContent = cwd ? "· " + cwd : "";
+    E.composerCwd.title = cwd || "";
   }
   // codeUi is the machine door's UI URL, kept only for the "open ↗" affordance.
   let codeUi = null;
@@ -482,13 +560,13 @@ export function mount(root, opts = {}) {
     const msgs = s?.messages || [];
     setView(!msgs.length);
     for (let i = 0; i < msgs.length; i++) appendMsg(msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, model: s?.model, cwd: msgs[i].cwd });
-    renderChats(); renderModels(); updateSeal(); paintGrounding();
+    renderChats(); renderModels(); updateSeal(); paintGrounding(); paintEffort(); refreshComposer();
   }
   function newChat() {
     const id = sid();
-    const m = models.find((x) => !x.sealed) || models[0] || null;
+    const m = client.autoPick(models) || models[0] || null;
     const p = filterProject ? projects[filterProject] : null;
-    sessions[id] = { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], grounding: true, model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
+    sessions[id] = { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], grounding: true, effort: "balanced", model: m?.id || "", sealed: !!m?.sealed, project: filterProject, preset: p?.preset || preset, cwd: p?.cwd || null, createdAt: now(), updated: now() };
     save("fold-chat:sessions", sessions);
     open(id);
     E.input.focus();
@@ -499,7 +577,7 @@ export function mount(root, opts = {}) {
     activeId = null;
     E.threadCol.innerHTML = "";
     setView(true);
-    renderChats(); renderModels(); updateSeal(); paintGrounding();
+    renderChats(); renderModels(); updateSeal(); paintGrounding(); paintEffort(); refreshComposer();
   }
   function cloneSession(src, overrides) {
     // Forks and continues are the same conversation moved forward: they keep
@@ -540,6 +618,21 @@ export function mount(root, opts = {}) {
     const copy = el("button", "art-btn", "copy");
     const fold = el("button", "art-btn", "collapse");
     bar.append(fold, copy);
+    // ITERATE ON THE ARTIFACT (LibreChat's "Ask", 2026-10-04): continue the
+    // code lane on this artifact — the next Code turn carries the prior
+    // artifact (the bridge's per-session record) and CHANGES it, never builds
+    // fresh. Shown only when this thread has already coded.
+    if (sessions[activeId]?.codeSessionId) {
+      const iterate = el("button", "art-btn primary", "iterate");
+      iterate.title = "Continue on this artifact — the next Code turn modifies it";
+      iterate.onclick = () => {
+        setEngagement("code");
+        const s = sessions[activeId]; if (s) { s.iterate = true; save("fold-chat:sessions", sessions); }
+        E.input.placeholder = "change the artifact… (it will modify the last agent artifact)";
+        E.input.focus();
+      };
+      bar.append(iterate);
+    }
     const inner = el("div", "art-inner");
     if (previewable(art.kind)) { const f = document.createElement("iframe"); f.sandbox = "allow-scripts"; f.srcdoc = art.code; inner.append(f); }
     else { inner.append(el("pre", "art-code", art.code)); if (art.kind === "mermaid") inner.append(el("div", "art-note", "Mermaid renders in the fold's workspace; here it stays code.")); }
@@ -555,55 +648,65 @@ export function mount(root, opts = {}) {
   // reads, and the model/route footnote all live inside the panel, opened only
   // on demand. It starts collapsed — except a turn that carries a real problem
   // (unsupported figures/names) opens itself, disclosed rather than hidden.
+  // THE PROCESS DISCLOSURE — what the fold DID this turn: the pipeline it ran
+  // (classify → search → read → write → check), the web reads, and the route.
+  // It carries NO grounding counts and NO addresses — those live in the facing
+  // page, which is always present on the message. A JSON copy gives a machine
+  // the whole record of the process.
   function renderDisclosure(body, rec, meta) {
     const box = el("div", "disclosure");
-    const openByDefault = !!((rec.unsupported?.numbers?.length || rec.unsupported?.names?.length));
-    box.classList.toggle("open", openByDefault);
-
+    const steps = Array.isArray(rec.process) ? rec.process : [];
     const head = el("button", "disc-head");
     head.type = "button";
-    head.setAttribute("aria-expanded", openByDefault ? "true" : "false");
+    head.setAttribute("aria-expanded", "false");
     head.append(
       el("span", "disc-caret", "▸"),
-      el("span", "disc-title", "disclosure"),
-      el("span", "disc-sub", rec.hasMaterial ? `${rec.coverage.grounded}/${rec.coverage.total} addressed` : "no material carried"),
-      el("span", "disc-line", rec.line),
+      el("span", "disc-title", "process"),
+      el("span", "disc-sub", steps[0] || "the turn"),
+      el("span", "disc-line", `${meta?.model || ""}${meta?.sealed ? " · sealed-external" : ""}`),
     );
     const panel = el("div", "disc-panel");
 
-    // The facing page is the ANSWER now (renderFacingAnswer, below): a turn
-    // that carries material renders as the spread, so the disclosure keeps only
-    // the meta — what the material does not support, the ungrounded sentences,
-    // the web reads, and the route foot. A no-material turn has no sources to
-    // list, so there is nothing to re-render here.
-
-    const bad = [...(rec.unsupported?.numbers || []), ...(rec.unsupported?.names || [])];
-    if (bad.length) {
-      panel.append(el("div", "disc-bad", "Not in the material: " + bad.join(", ")));
-    } else if (rec.hasMaterial) {
-      panel.append(el("div", "disc-ok", "Nothing unsupported"));
-    }
-
-    if (rec.ungrounded && rec.ungrounded.length) {
-      panel.append(el("div", "disc-label", `${rec.ungrounded.length} sentence(s) with no address`));
-      const ul = el("div", "disc-ungrounded");
-      for (const t of rec.ungrounded.slice(0, 6)) ul.append(el("div", "disc-text", t));
-      panel.append(ul);
-    }
+    const ul = el("div", "proc-steps");
+    for (const s of steps) ul.append(el("div", "proc-step", s));
+    panel.append(ul);
 
     // Web — what was searched and read for this turn.
     if (rec.web && rec.web.length) {
       const reads = rec.web.filter((w) => w.read || w.engine || w.ok === false);
       panel.append(el("div", "disc-label", "Web"));
-      const ul = el("div", "disc-ungrounded");
+      const wl = el("div", "disc-ungrounded");
       for (const w of reads.slice(0, 8)) {
         const label = w.read ? `read ${w.read}${w.via ? " via " + w.via : ""}${w.chars ? " · " + w.chars + " chars" : ""}` : w.scope ? `${w.engine || w.scope}${w.n != null ? " · " + w.n + " result(s)" : ""}${w.ok === false ? " — " + (w.why || "no answer") : ""}` : "";
-        if (label) ul.append(el("div", "disc-text", label));
+        if (label) wl.append(el("div", "disc-text", label));
       }
-      panel.append(ul);
+      panel.append(wl);
     }
 
-    // The route/mouth footnote — part of the disclosure, so it collapses too.
+    // Copy the whole process as JSON — for an agent, a log, or a bug report.
+    const procJson = JSON.stringify({
+      turn: rec.turn,
+      kind: rec.kind ?? null,
+      process: steps,
+      model: meta?.model ?? null,
+      sealed: !!meta?.sealed,
+      carried: !!rec.hasMaterial,
+      web: rec.web ?? null,
+    }, null, 2);
+    const copy = el("button", "proc-copy", "copy JSON");
+    copy.type = "button";
+    copy.onclick = async (e) => {
+      e.stopPropagation();
+      try {
+        await navigator.clipboard.writeText(procJson);
+        copy.textContent = "copied ✓";
+      } catch (err) {
+        copy.textContent = "copy failed";
+      }
+      setTimeout(() => { copy.textContent = "copy JSON"; }, 1400);
+    };
+    panel.append(copy);
+
     if (meta && meta.model) {
       panel.append(el("div", "disc-foot", `${meta.model}${meta.sealed ? " · sealed-external" : ""} · routed by heimdall`));
     }
@@ -613,59 +716,140 @@ export function mount(root, opts = {}) {
     body.append(box);
   }
 
-  // THE FACING PAGE AS THE ANSWER — the spread a turn with material renders as.
-  // SOURCES on the left (each cited passage numbered S#, its permanent address,
-  // and the verbatim snip read from the real material), RESPONSE on the right
-  // (every sentence tagged [S#] to the passage it draws from, or [M] for the
-  // mouth's own prose). On desktop it is the two-page book spread; on mobile it
-  // becomes the tagged response and a [S#] chip opens the source's snip in a
-  // bottom sheet.
-  function renderFacingAnswer(body, rec, meta) {
-    const face = rec?.facing;
-    if (!face || !face.has) return;
-    const spread = el("div", "facing answer");
-    const left = el("div", "face-sources");
-    left.append(el("div", "disc-label", "Sources"));
-    for (const s of face.sources) {
-      const card = el("div", "face-source");
-      card.append(el("span", "face-n", s.n));
-      card.append(el("code", "face-addr", s.address));
-      card.append(el("div", "face-snip", s.text));
-      left.append(card);
-    }
-    const right = el("div", "face-response");
-    right.append(el("div", "disc-label", "Response"));
-    for (const r of face.response) {
-      const row = el("div", "face-sent" + (r.grounded ? "" : " m"));
-      const chip = el("span", "face-tag" + (r.grounded ? "" : " m"), "[" + r.tag + "]");
-      if (r.grounded) {
-        const src = face.sources.find((s) => s.n === r.tag);
-        chip.title = src ? `grounded on ${src.address} — tap to read` : "grounded";
-        chip.onclick = () => { if (src) faceSheet(src); };
-      } else {
-        chip.title = "the mouth's own prose — not grounded in the material";
-        chip.onclick = () => toast("the mouth's own prose — not grounded in the material");
+  // THE FACING PAGE — a two-page spread docked on every answer: RESPONSE (left)
+  // | SOURCES (right). It is ALWAYS there. The RESPONSE page is the answer,
+  // sentence by sentence, each with its `[n]` chip or a `✱` when ungrounded.
+  // The SOURCES page leads with a numbered chip strip, then the source-faithful
+  // excerpts (the real bytes at the cited span, identity tokens, open ↗). With
+  // many sources the chips are the index and the clips collapse behind
+  // "show all N"; each clip is short and collapsible. On mobile a chip opens
+  // the excerpt in a bottom sheet.
+  const CLIP_CAP = 3;
+  function renderFacingPage(body, rec, content, meta) {
+    const face = rec?.facing || { sources: [], response: [] };
+    const spread = el("div", "facing");
+
+    // --- SOURCES page -------------------------------------------------------
+    const srcPage = el("div", "face-page face-sources");
+    const srcHead = el("div", "face-h");
+    srcHead.append(el("span", "", "Sources"));
+    if (face.sources.length) srcHead.append(el("span", "face-count", String(face.sources.length)));
+    srcPage.append(srcHead);
+
+    if (face.sources.length) {
+      // The chip strip: the index. Click jumps to (and opens) that source clip.
+      const strip = el("div", "chipstrip");
+      const cards = [];
+      face.sources.forEach((src, i) => {
+        const chip = el("button", "schip", src.n.replace(/^S/, ""));
+        chip.type = "button";
+        chip.title = (src.label || src.n) + (src.cite > 1 ? ` · cited ${src.cite}×` : "");
+        chip.onclick = () => { const c = cards[i]; if (!c) return; c.classList.add("open"); c.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
+        strip.append(chip);
+      });
+      srcPage.append(strip);
+
+      const list = el("div", "srclist");
+      face.sources.forEach((src, i) => {
+        const card = sourceCard(src, i >= CLIP_CAP);   // past the cap -> collapsed
+        cards.push(card);
+        list.append(card);
+      });
+      srcPage.append(list);
+
+      if (face.sources.length > CLIP_CAP) {
+        const more = el("button", "src-more", `show all ${face.sources.length}`);
+        more.type = "button";
+        more.onclick = () => {
+          const on = list.classList.toggle("all");
+          for (const c of cards) c.classList.toggle("open", on || cards.indexOf(c) < CLIP_CAP);
+          more.textContent = on ? "collapse" : `show all ${face.sources.length}`;
+        };
+        srcPage.append(more);
       }
-      row.append(chip, el("span", "face-text", r.text));
-      if (r.address) row.append(el("code", "face-ground", "grounded on " + r.address));
-      right.append(row);
+    } else {
+      srcPage.append(el("div", "face-empty",
+        rec?.hasMaterial ? "no sentence here is addressed to the material"
+                         : "nothing carried — the answer stands on the model alone"));
     }
-    spread.append(left, right);
+
+    // --- RESPONSE page ------------------------------------------------------
+    const respPage = el("div", "face-page face-response");
+    respPage.append(el("div", "face-h", "Response"));
+    const byN = new Map((face.sources || []).map((s) => [s.n, s]));
+    // The answer renders as FULL MARKDOWN (lists, bold, headings survive), so a
+    // written answer reads as written. Provenance rides as a chip row under it —
+    // the sources the answer drew on, one click from each clip — plus a count of
+    // sentences that carried no source. (Per-sentence chips cannot ride block
+    // markdown without destroying it; the chip row is honest and renders.)
+    const md = el("div", "ganswer md");
+    md.innerHTML = mdHtml(content);
+    respPage.append(md);
+    const grounded = (face.response || []).filter((r) => r.grounded);
+    const unverified = (face.response || []).filter((r) => !r.grounded).length;
+    if (grounded.length || unverified) {
+      const bar = el("div", "citebar");
+      for (const src of face.sources || []) {
+        const chip = el("sup", "cite", src.n.replace(/^S/, ""));
+        chip.title = (src.label || src.n) + (src.cite > 1 ? ` · cited ${src.cite}×` : "");
+        chip.onclick = () => faceSheet(src);
+        bar.append(chip);
+      }
+      if (unverified) {
+        const mark = el("sup", "cite unver", "✱");
+        mark.title = `${unverified} sentence(s) with no source — the model's own prose`;
+        bar.append(mark);
+      }
+      respPage.append(bar);
+    }
+
+    // RESPONSE on the left, SOURCES on the right (the answer leads).
+    spread.append(respPage, srcPage);
     body.append(spread);
   }
 
-  // The bottom sheet a source chip opens: the address and the verbatim snip,
-  // read straight from the record — nothing re-summarized.
+  // One source-faithful excerpt card: identity header (favicon · label ·
+  // domain · [n] · open ↗) over a short, collapsible verbatim clip with the
+  // cited span marked. `collapsed` starts it folded (past the clip cap).
+  function sourceCard(src, collapsed = false) {
+    const card = el("div", "src" + (src.domain ? " web" : " local") + (collapsed ? "" : " open"));
+    const head = el("button", "src-head");
+    head.type = "button";
+    const fav = el("span", "src-fav", (src.domain ? src.domain[0] : "▤").toUpperCase());
+    head.append(fav, el("span", "src-title", src.label || src.ref || "source"));
+    if (src.domain) head.append(el("span", "src-dom", src.domain));
+    head.append(el("span", "src-n", src.n));
+    if (src.cite > 1) head.append(el("span", "src-cite", `${src.cite}×`));
+    if (src.url) { const a = el("a", "src-open", "open ↗"); a.href = src.url; a.target = "_blank"; a.rel = "noopener"; a.onclick = (e) => e.stopPropagation(); head.append(a); }
+    head.append(el("span", "src-caret", "▸"));
+    const ex = el("div", "src-ex");
+    if (src.ellipsisBefore) ex.append(el("span", "src-el", "… "));
+    if (src.before) ex.append(document.createTextNode(src.before + " "));
+    ex.append(el("mark", "src-quote", src.mark || src.text));
+    if (src.after) ex.append(document.createTextNode(" " + src.after));
+    if (src.ellipsisAfter) ex.append(el("span", "src-el", " …"));
+    head.onclick = () => card.classList.toggle("open");
+    card.append(head, ex);
+    return card;
+  }
+
+  // The bottom sheet a citation chip opens: the source's identity, the verbatim
+  // excerpt (span marked), and the link out — read straight from the record.
   function faceSheet(src) {
     const modal = el("div", "modal");
     const sheet = el("div", "sheet");
     const head = el("div", "sheet-head");
-    head.append(el("h2", "", src.n), el("div", "grow"));
+    head.append(el("h2", "", src.label || src.n), el("div", "grow"));
     const close = el("button", "sheet-close"); close.innerHTML = CLOSE_SVG;
     head.append(close);
     sheet.append(head);
-    if (src.address) sheet.append(el("div", "face-sheet-addr", src.address));
-    if (src.text) sheet.append(el("div", "face-sheet-snip", src.text));
+    sheet.append(el("div", "face-sheet-addr", [src.domain, src.address].filter(Boolean).join(" · ")));
+    const ex = el("div", "face-sheet-snip");
+    if (src.before) ex.append(document.createTextNode(src.before + " "));
+    ex.append(el("mark", "", src.mark || src.text));
+    if (src.after) ex.append(document.createTextNode(" " + src.after));
+    sheet.append(ex);
+    if (src.url) { const a = el("a", "btn", "open the source ↗"); a.href = src.url; a.target = "_blank"; a.rel = "noopener"; a.style.marginTop = "14px"; a.style.display = "inline-block"; sheet.append(a); }
     const done = () => modal.remove();
     close.onclick = done;
     modal.onclick = (e) => { if (e.target === modal) done(); };
@@ -675,47 +859,76 @@ export function mount(root, opts = {}) {
 
   function appendMsg(role, content, meta = {}) {
     const wrap = el("div", "msg " + role);
+    // Which engine this turn belongs to: stored on new messages, derived for
+    // legacy ones (an assistant turn carrying a code record is agent work).
+    const mode = meta.mode || (meta.index != null ? modeOf(sessions[activeId], meta.index) : "chat");
+    // THE SEAM — a labelled rule where the register changes inside the shared
+    // thread, so a handoff between chat and agent is visible, never silent.
+    if (meta.index != null && meta.index > 0 && modeOf(sessions[activeId], meta.index - 1) !== mode) {
+      const se = el("div", "seam");
+      const sp = el("span", "", `${modeOf(sessions[activeId], meta.index - 1)} → `);
+      sp.append(el("b", "", mode));
+      se.append(sp);
+      E.threadCol.append(se);
+    }
+    wrap.classList.toggle("agent", mode === "agent");
     const av = el("div", "av");
-    // The assistant wears the chat's topic icon (the Phosphor mark the sidebar
-    // shows); the person keeps "You". Until a topic emerges, the fold's own "F".
     const sIcon = role === "assistant" ? sessions[activeId]?.icon : null;
     if (role === "user") av.textContent = "You";
     else if (sIcon && PHOSPHOR[sIcon]) { av.classList.add("topic"); av.append(phosphor(sIcon, 17)); av.title = sIcon; }
     else av.textContent = "F";
     const body = el("div", "body");
     if (meta.sealed) body.classList.add("sealed-body");
+    if (mode === "agent") body.append(el("span", "mtag", "agent"));
     if (role === "assistant") {
       if (meta.cwd) body.append(el("span", "chip folderchip", "📁 " + meta.cwd));
-      // THE FACING PAGE IS THE ANSWER: a turn that carried material renders as
-      // the book spread (renderFacingAnswer) — the model's own prose block is
-      // skipped because the spread IS the response, sentence by sentence.
-      // Code/artifacts (fenced blocks) still render beside it. When the thread
-      // hides grounding, or no material was carried, the plain prose is the
-      // answer exactly as before.
       const showDisclosure = transparency && sessions[activeId]?.grounding !== false;
-      const face = showDisclosure && meta.grounding?.facing?.has ? meta.grounding.facing : null;
+      const showFace = !!meta.grounding?.facing;
       for (const b of artifactsOf(content)) {
-        if (b.kind === "prose") { if (!face) prose(body, b.text); }
+        if (b.kind === "prose") { if (!showFace) prose(body, b.text); }
         else renderArtifact(body, b.artifact);
       }
-      if (face) renderFacingAnswer(body, meta.grounding, meta);
+      // The machine door's tool ledger — part of the message, so the steps the
+      // agent ran survive a re-render, never only the live turn that made them.
+      const acts = meta.grounding?.code ? meta.grounding.activity : null;
+      if (Array.isArray(acts) && acts.length) {
+        const list = el("div", "activity");
+        for (const a of acts) list.append(el("div", "actrow", `${a.tool}${a.title ? " · " + a.title : ""}${a.status ? "  [" + a.status + "]" : ""}`));
+        body.append(list);
+      }
+      if (showFace) renderFacingPage(body, meta.grounding, content, meta);
       if (meta.index != null) {
         const acts = el("div", "actions");
         const cont = el("button", "act", "continue"); cont.onclick = () => continueFrom(meta.index);
         const fork = el("button", "act", "fork"); fork.onclick = () => forkAt(activeId, meta.index);
         const disc = el("button", "act", "disclosure"); disc.onclick = () => { const d = body.querySelector(".disclosure"); if (d) d.hidden = !d.hidden; };
-        acts.append(cont, fork, disc); body.append(acts);
+        acts.append(cont, fork, disc);
+        // CONVERT: a chat answer can be built (→ agent), an agent artifact can
+        // be explained (→ chat) — the same ask re-run through the other engine.
+        const ask = askBefore(meta.index);
+        if (mode === "chat" && ask) {
+          const build = el("button", "act", "build this"); build.onclick = () => rerunAs(ask, "agent"); acts.append(build);
+        } else if (mode === "agent" && ask) {
+          const explain = el("button", "act", "explain this"); explain.onclick = () => rerunAs(ask, "chat"); acts.append(explain);
+        }
+        body.append(acts);
       }
       if (showDisclosure && meta.grounding && meta.grounding.code) renderCodeDisclosure(body, meta.grounding, meta);
       else if (showDisclosure && meta.grounding && meta.grounding.generate) renderGenerateDisclosure(body, meta.grounding, meta);
       else if (showDisclosure && meta.grounding) renderDisclosure(body, meta.grounding, meta);
     } else {
-      body.textContent = content;
+      if (content) body.append(document.createTextNode(content));
       if (meta.index != null) {
         const acts = el("div", "actions");
         const ed = el("button", "act", "edit"); ed.onclick = () => editMessage(meta.index);
         const fork = el("button", "act", "fork"); fork.onclick = () => forkAt(activeId, meta.index);
-        acts.append(ed, fork); body.append(acts);
+        acts.append(ed, fork);
+        // RUN AS — per-message conversion: this ask, through the other engine.
+        const other = mode === "agent" ? "chat" : "agent";
+        const ra = el("button", "act", "run as " + other);
+        ra.onclick = () => rerunAs(sessions[activeId].messages[meta.index]?.content, other);
+        acts.append(ra);
+        body.append(acts);
       }
     }
     wrap.append(av, body);
@@ -733,18 +946,32 @@ export function mount(root, opts = {}) {
     head.type = "button";
     head.append(
       el("span", "disc-caret", "▸"),
-      el("span", "disc-title", "code record"),
+      el("span", "disc-title", "agent record"),
       el("span", "disc-sub", `${(rec.activity || []).length} tool step(s)`),
       el("span", "disc-line", rec.cwd || rec.lane || "machine door"),
     );
     const panel = el("div", "disc-panel");
+    if (rec.agents && (rec.agents.dispositions || rec.agents.escalated)) {
+      panel.append(el("div", "disc-label", "Sub-agents (the machine's composition)"));
+      const ul = el("div", "disc-ungrounded");
+      if (rec.agents.swarm && rec.agents.swarm.routed) {
+        ul.append(el("div", "disc-text", `swarm · framed the task${rec.agents.swarm.meaning?.hard ? " · hard meaning" : ""}`));
+      }
+      for (const d of rec.agents.dispositions || []) {
+        ul.append(el("div", "disc-text", `${d.agent} · ${d.unit}${d.walled ? "  [walled]" : d.address ? " · " + d.address : ""}`));
+      }
+      if (rec.agents.escalated) {
+        ul.append(el("div", "disc-text", `escalation · frontier mouth at the wall (${(rec.agents.frontier?.model) || "claude"})`));
+      }
+      panel.append(ul);
+    }
     if (rec.activity && rec.activity.length) {
       panel.append(el("div", "disc-label", "Tool activity"));
       const ul = el("div", "disc-ungrounded");
       for (const a of rec.activity) ul.append(el("div", "disc-text", `${a.tool}${a.title ? " · " + a.title : ""}${a.status ? " [" + a.status + "]" : ""}`));
       panel.append(ul);
     }
-    panel.append(el("div", "disc-foot", `${meta.model || "heimdall"} · via heimdall → ${rec.lane || "machine door"}${rec.cwd ? " · " + rec.cwd : ""}${rec.ms ? " · " + rec.ms + "ms" : ""}`));
+    panel.append(el("div", "disc-foot", `${meta.model || "heimdall"} · via heimdall → ${rec.lane || "machine door"}${rec.executed === false ? " · machine composed, mouth drew residue (no tools handed to a small model)" : " · tools executed"}${rec.cwd ? " · " + rec.cwd : ""}${rec.ms ? " · " + rec.ms + "ms" : ""}`));
     head.onclick = () => { const open = box.classList.toggle("open"); head.setAttribute("aria-expanded", open ? "true" : "false"); };
     box.append(head, panel);
     body.append(box);
@@ -797,7 +1024,55 @@ export function mount(root, opts = {}) {
     body.append(box);
   }
 
-  function liveBody() { const b = appendMsg("assistant", "", {}); b.classList.add("live"); return b; }
+  function liveBody() { const b = appendMsg("assistant", "", {}); b.classList.add("live"); const s = el("div", "live-stat", "working…"); b.append(s); return b; }
+
+  /* ---------------- engagements per message ---------------- */
+  // The engagement key is "chat"/"code" on the wire; the SURFACE label for the
+  // code engagement is "agent". Messages and the seam always carry the surface
+  // value, so the internal key never leaks into the thread (a seam read
+  // "agent → code" before this — the raw key showing through).
+  function normMode(m) { return m === "code" || m === "agent" ? "agent" : "chat"; }
+  // Which engine a stored message belongs to. New messages carry their mode;
+  // legacy sessions derive it — an assistant turn that landed a code record is
+  // an agent turn, and a user ask inherits the mode of the assistant turn that
+  // answers it (falling back to chat).
+  function modeOf(s, i) {
+    const m = s?.messages?.[i];
+    if (!m) return "chat";
+    if (m.mode) return normMode(m.mode);
+    if (m.role === "assistant") return m.grounding?.code ? "agent" : "chat";
+    for (let j = i + 1; j < (s.messages?.length || 0); j++) {
+      const n = s.messages[j];
+      if (n.role === "assistant") return n.grounding?.code ? "agent" : "chat";
+    }
+    return "chat";
+  }
+  // CONVERT A TURN BETWEEN THE ENGAGEMENTS (chat ↔ agent): the same ask, run
+  // through the other engine, as a new lane in the same thread. The original
+  // turn and its record are never touched — a conversion only adds. The seam
+  // renders the handoff, so the change of engine is visible, not silent.
+  function rerunAs(content, targetMode) {
+    const s = sessions[activeId]; if (!s || !content) return;
+    targetMode = normMode(targetMode);
+    setEngagement(targetMode === "agent" ? "code" : "chat");
+    s.messages.push({ role: "user", content, at: now(), mode: targetMode, converted: true });
+    const idx = s.messages.length - 1;
+    s.updated = now();
+    save("fold-chat:sessions", sessions);
+    appendMsg("user", content, { index: idx, mode: targetMode, converted: true });
+    renderChats();
+    if (targetMode === "agent") runCode(activeId);
+    else run(activeId, false);
+  }
+  // The ask that produced the answer at `index`: the nearest preceding user turn.
+  function askBefore(index) {
+    const s = sessions[activeId];
+    for (let i = index - 1; i >= 0; i--) {
+      const m = s?.messages?.[i];
+      if (m?.role === "user" && m.content) return m.content;
+    }
+    return null;
+  }
 
   /* ---------------- memory: edit / continue ---------------- */
   async function editMessage(index) {
@@ -852,16 +1127,16 @@ export function mount(root, opts = {}) {
       if (a.reading) out.push({ ref: `attachment · ${a.name}`, source: a.name, text: a.reading });
     }
     const users = (s.messages || []).filter((x) => x.role === "user" && !x.attachment);
-    // The current question is the last user turn; it is not material to check
-    // the answer against, so the short-exchange material is what came before.
-    const prior = users.slice(0, -1);
-    if (conversationVerbatim(s) && prior.length) {
-      const convo = prior.map((x) => String(x.content || "").trim()).filter(Boolean).join("\n");
-      if (convo) out.push({ ref: "the conversation · carried verbatim", source: "S1", text: convo });
-    } else {
-      const pasted = users.filter((x) => String(x.content || "").trim().length >= 240);
-      pasted.forEach((x, i) => out.push({ ref: `you · pasted ${i + 1}`, source: `S${i + 1}`, text: x.content }));
-    }
+    // A person's QUESTION is not a source, and neither is the conversation. Only
+    // a substantive PASTED DOCUMENT (a body of text they supplied — long, and
+    // not a chat turn) is material. The dialogue is never cited as evidence.
+    const pasted = users.filter((x) => {
+      const t = String(x.content || "").trim();
+      if (t.length < 400) return false;                 // a chat turn, not a document
+      if (t.length < 800 && !/\n/.test(t)) return false; // one long sentence is still a question
+      return true;
+    });
+    pasted.forEach((x, i) => out.push({ ref: `you · pasted ${i + 1}`, source: `S${i + 1}`, text: x.content }));
     return out;
   }
   // The mechanical S1: discourse fields COMPUTED from the conversation, no
@@ -908,6 +1183,7 @@ export function mount(root, opts = {}) {
 
   async function run(id = activeId, continuing = false) {
     const s = sessions[id]; if (!s) return;
+    const effort = s.effort || "balanced";
     const m = models.find((x) => x.id === s.model) || selectedModel();
     if (!m) { toast("no model — start the heimdall bridge"); return; }
     if (continuing) s.messages.push({ role: "user", content: "Continue.", at: now() });
@@ -933,38 +1209,79 @@ export function mount(root, opts = {}) {
     const kind = classifyTurn(lastUserText(s));
     // The live narration: every step the fold takes is shown while it takes it,
     // so the person sees the pipeline (classify → search → read → write →
-    // check) rather than a frozen spinner. Each step is appended, not swapped.
-    const say = (msg) => { if (E.stage) E.stage.textContent = msg; };
+    // check) rather than a frozen spinner. The blinking cursor follows the live
+    // status line in the answer body, so it says what the fold is DOING (and
+    // the tiny stage strip mirrors it).
+    const say = (msg) => {
+      if (E.stage) E.stage.textContent = msg;
+      const s = body.querySelector(".live-stat");
+      if (s) s.textContent = msg;
+    };
     const kindWord = { smalltalk: "greeting", generate: "writing request", research: "question of fact", chat: "conversation" }[kind] || kind;
-    say(`turn · ${kindWord}${webOn ? (kind === "research" ? " · web on" : " · web off for this turn") : ""}`);
-    // THE GENERATION LANE (2026-10-04): a writing request for an artifact
-    // penelope's generation system holds leaves the single-draw chat and rides
-    // the weave — void detection (units read from the ask, a void read with a
-    // hunt) and writing across prompts (one unit per draw, field → hunt →
-    // mouth, test decides). The record of that (units, outcomes, verdict) is
-    // the disclosure, so the fold shows it happened.
-    if (kind === "generate" && generationArtifact(question)) {
-      // The weave is the richer path, but it must never be a single point of
-      // failure for a write request: if penelope's generation errors (no model,
-      // weave down, empty artifact), fall through to the fold's own writer
-      // rather than showing "generation error" on a plain "write an essay".
-      const ok = await generateTurn(id, s, question, body, ac, { say, m });
-      if (ok) return;
-      say("turn · writing request · penelope's weave did not answer · writing it here…");
-    }
+    say(`turn · ${kindWord}`);
+    // ALWAYS GROUNDED, including a WRITING request: a "write about X and
+    // compare" turn seeks sources first and writes from what was read — it is
+    // never answered from parametric memory. The weave (ungrounded single-draw)
+    // is retired from this path for that reason.
     let webPassages = [], webTrace = null, sourceBlock = null;
-    const wantWeb = wantsWeb(kind, webOn);
+    // ALWAYS GROUNDED: every turn except a greeting seeks sources first. There
+    // is no ungrounded/oracle path — the fold reads before it answers. (The
+    // webOn switch no longer gates; an unavailable network is reported, not
+    // silently answered from parametric memory.)
+    const wantWeb = kind !== "smalltalk" && !!question;
     if (wantWeb) {
       if (question) {
         say(`turn · ${kindWord} · searching the web…`);
+        // The live site list: a WINDOW of the last 8 lines. New steps push from
+        // the bottom; the oldest scrolls up and out (then removes itself), so it
+        // reads as a terminal tailing the work. The whole list is cleared the
+        // moment real answer tokens stream in.
+        const siteList = el("div", "live-sites");
+        const statNow = body.querySelector(".live-stat");
+        if (statNow) statNow.after(siteList);
+        const scopeName = { wikipedia: "Wikipedia", web: "Web", github: "GitHub", archive: "Internet Archive", openalex: "OpenAlex", crossref: "Crossref" };
+        const LIVE_ROWS = 8;
+        const line = (txt, cls) => {
+          const d = el("div", "live-site live-in" + (cls ? " " + cls : ""), txt);
+          siteList.append(d);
+          // Keep only the last LIVE_ROWS; the ones pushed out animate up and out.
+          // SNAPSHOT the overflow first — removal is async (setTimeout), so
+          // iterating the live HTMLCollection would never terminate (measured:
+          // a 9th line hangs the renderer until it is killed).
+          const over = siteList.children.length - LIVE_ROWS;
+          if (over > 0) {
+            for (const old of [...siteList.children].slice(0, over)) {
+              old.classList.add("live-out");
+              setTimeout(() => old.remove(), 220);
+            }
+          }
+          E.thread.scrollTop = E.thread.scrollHeight;
+          return d;
+        };
+        const rowOf = new Map();
+        const onStep = (s) => {
+          if (s.phase === "searching") { rowOf.set("q:" + s.scope, line(`searching ${scopeName[s.scope] || s.scope}…`, "live-site-q")); }
+          else if (s.phase === "found") { const d = rowOf.get("q:" + s.scope); if (d) { d.classList.remove("live-site-q"); d.textContent = `${scopeName[s.scope] || s.scope} · ${s.n} result(s)`; } }
+          else if (s.phase === "failed") { const d = rowOf.get("q:" + s.scope); if (d) { d.classList.add("live-site-x"); d.textContent = `${scopeName[s.scope] || s.scope} · ${s.why}`; } }
+          else if (s.phase === "skipped") { line(`on-topic gate · skipped ${s.n} off-topic result(s)`, "live-site-x"); }
+          else if (s.phase === "reading") { rowOf.set("r:" + s.url, line(`reading ${s.site || ""}${s.title ? " — " + s.title : ""}…`, "live-site-q")); }
+          else if (s.phase === "read") { const d = rowOf.get("r:" + s.url); if (d) { d.classList.remove("live-site-q"); d.textContent = `read ${s.site || ""}${s.title ? " — " + s.title : ""}${s.chars ? " · " + s.chars.toLocaleString() + " chars" : ""}`; } }
+          else if (s.phase === "unread") { const d = rowOf.get("r:" + s.url); if (d) { d.classList.add("live-site-x"); d.textContent = `could not read ${s.site || s.url}`; } }
+        };
         try {
-          const w = await web.searchWeb(question);
+          const nEnt = web.queriesFor(question).length;
+          const readFor = { fast: 2, balanced: Math.min(6, Math.max(3, nEnt)), deep: 6 }[effort] || 3;
+          const w = await web.searchWeb(question, { onStep, effort, read: readFor });
           webPassages = w.passages || [];
           webTrace = w.trace || null;
           if (webPassages.length) {
-            sourceBlock = "The web sources below were read for this question. Answer from them where they cover it; where they do not, say plainly what is missing. Never claim a source you cannot show.\n\n" + webPassages.map((p, i) => `[W${i + 1}] ${p.ref}\n${p.text.slice(0, 4000)}`).join("\n\n");
-            say(`turn · ${kindWord} · read ${webPassages.length} web source(s) · ${m.sealed ? "sealed-external" : "local"} · writing the answer…`);
-          } else say(`turn · ${kindWord} · web search found nothing readable · writing the answer…`);
+            sourceBlock = "The sources below were read for this turn. Every factual claim must come from them; write from them where they cover it, and where they do not say plainly what is missing. Never claim a source you cannot show, and never fall back on your own memory.\n\n" + webPassages.map((p, i) => `[W${i + 1}] ${p.ref}\n${p.text.slice(0, 4000)}`).join("\n\n");
+            say(`turn · ${kindWord} · read ${webPassages.length} source(s) · ${m.sealed ? "sealed-external" : "local"} · answering…`);
+          } else {
+            // NO SOURCES: the fold does NOT answer from memory. It says so.
+            sourceBlock = "You were given NO sources for this turn — the search found nothing readable. Do not answer the question from your own knowledge or memory, and do not invent anything. Reply with a single short paragraph saying you could not reach any sources for this, and name what you tried.";
+            say(`turn · ${kindWord} · no sources reached · saying so (not answering from memory)…`);
+          }
         } catch (e) {
           webTrace = [{ scope: "web", ok: false, why: String(e?.message || e) }];
           say(`turn · ${kindWord} · web search failed (${String(e?.message || e).slice(0, 40)}) · writing the answer…`);
@@ -991,7 +1308,13 @@ export function mount(root, opts = {}) {
     try {
       const out = await client.chat(m.id, messages, {
         base: bridge, privacy: "sealed-external",
-        onToken: (t) => { body.textContent += t; E.thread.scrollTop = E.thread.scrollHeight; E.stage.textContent = "answering…"; },
+        onToken: (t) => {
+          if (!body.dataset.streaming) {
+            body.dataset.streaming = "1";
+            for (const n of body.querySelectorAll(".live-stat, .live-sites")) n.remove();
+          }
+          body.append(document.createTextNode(t)); E.thread.scrollTop = E.thread.scrollHeight; E.stage.textContent = "answering…";
+        },
         signal: ac.signal,
       });
       E.stage.textContent = "";
@@ -1001,16 +1324,41 @@ export function mount(root, opts = {}) {
       // conversation carries and build the record (disclosed when transparency
       // is on). The model proposes; the record decides.
       let text = ground.stripSelfCitations(out.text).text;
+      // A content-refusal from the model ("I cannot / I do not have access to
+      // personal information…") is a FAILURE, not an answer. The fold's job is
+      // to report what the sources say; a model's policy reflex must never be
+      // shown as the result. Replace it with the fold's own honest line.
+      if (isRefusal(text)) {
+        text = webPassages.length
+          ? "The model declined to answer from the sources it was given. This is a model-side refusal, not a finding — the sources were read; try again or rephrase."
+          : "I couldn't reach any sources for this, and I won't answer from memory. Try rephrasing, or attach material you already have.";
+      }
       const bad = memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} });
       if (bad) text = text + "\n\n" + memory.identityCorrection(bad, { readerName });
-      const material = [...materialOf(s), ...webPassages.map((p) => ({ ref: p.ref, source: p.source, text: p.text }))];
+      const material = [
+        ...materialOf(s),
+        ...webPassages.map((p) => ({ ref: p.ref, source: p.source, text: String(p.text || "").slice(0, 12000) })),
+      ];
       const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
       const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
-      // A written piece is not a claim to be grounded, and a greeting is not a
-      // claim at all — only research/chat turns over real material carry a
-      // disclosure. The generate/smalltalk turns carry no record.
-      const record = checkable(kind) ? ground.turnRecord(text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed }) : null;
+      // Every turn but a greeting carries a grounding record — the fold is
+      // always grounded, and the material is ONLY attachments, pasted
+      // documents, and web passages. The conversation is never material.
+      const record = checkable(kind) ? ground.turnRecord(text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed, effort }) : null;
       if (record && webTrace) record.web = webTrace;
+      // The PROCESS this turn ran (disclosed in the process panel) — what the
+      // fold DID, not what it grounded: classify → search → read → write → check.
+      if (record) {
+        record.kind = kind;
+        record.process = [
+          `classified · ${kindWord}`,
+          wantWeb
+            ? (webPassages.length ? `searched the web · read ${webPassages.length} source(s)` : `searched the web · nothing readable`)
+            : `no search · greeting`,
+          `wrote the answer · ${m.sealed ? "sealed-external" : "local"}`,
+          record.hasMaterial ? `checked · the answer against the material carried` : `checked · no source carried`,
+        ];
+      }
       // THE FOLD ADVANCES (the holodeck's System-1/System-2 split): the turn's
       // mechanical fold line joins the running summary, and the turn's warrant
       // record joins the addressable store. Both are the STORE — append-only,
@@ -1036,13 +1384,36 @@ export function mount(root, opts = {}) {
       // substantive turn, flow from the fold lines, context from what is still
       // open. No model, no JSON ask, no drift — the store only ever accrues.
       refreshSummaryMechanical(s);
+      // EFFORT: the falsify pass (deep) re-checks every grounded claim — a 2–3
+      // token anchor is demoted to weak, and the counts are named in the panel.
+      if (record && effort === "deep" && record.coverage?.entries) {
+        record.falsify = ground.falsify(record.coverage.entries);
+        record.process.push(`falsified · ${record.falsify.supported} supported · ${record.falsify.weak} weak · ${record.falsify.unsupported} unsupported`);
+      }
+      // THE VOID — what the turn could NOT establish, named. Fast skips it;
+      // balanced names the gap; deep names the weak/unsupported claims too.
+      const voidNote = (effort === "fast" || !record) ? null
+        : voidReport(record, lastUser?.content || "", webPassages, webTrace);
+      if (voidNote) {
+        text = text + "\n\n" + voidNote;
+        if (record) { record.void = voidNote; record.process.push("void · " + voidNote); }
+      }
+      if (record) { record.effort = effort; }
+      // Don't persist the full passage bytes on every grounded sentence (the
+      // record is stored on the message and re-stringified every turn; full
+      // sourceText per sentence grows localStorage until saving silently
+      // stops). The render only needs the short excerpt already in facing.
+      if (record) {
+        if (record.coverage?.entries) for (const e of record.coverage.entries) delete e.sourceText;
+        if (record.sources) for (const s of record.sources) delete s.sourceText;
+      }
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: text, at: now(), grounding: record });
+      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", grounding: record });
       s.sealed = !!m.sealed;
       maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
-      appendMsg("assistant", text, { sealed: m.sealed, index: idx, grounding: record, model: m.id });
+      appendMsg("assistant", text, { sealed: m.sealed, index: idx, grounding: record, model: m.id, mode: "chat" });
       renderChats();
     } catch (err) {
       E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
@@ -1051,9 +1422,10 @@ export function mount(root, opts = {}) {
     }
   }
 
-  // The coding lane — the SAME thread, dispatched THROUGH heimdall to the
+  // The agent lane — the SAME thread, dispatched THROUGH heimdall to the
   // machine door. It is not a separate app: the user's message, the agent's
-  // tool activity, and its answer all render inline in the one conversation,
+  // tool activity, and its answer all render inline in the one conversation
+  // (in the agent's own register — teal rail, mode tag, terminal composer),
   // and the project's folder (cwd) binds the job so the machine door reads and
   // edits the same place the project stands. The model the door reasons with is
   // itself routed by heimdall (a `heimdall` provider pointing at the bridge's
@@ -1072,23 +1444,33 @@ export function mount(root, opts = {}) {
     const cwd = sessionCwd(s);
     const body = liveBody();
     E.send.disabled = true; E.input.disabled = true;
-    E.stage.textContent = cwd ? `coding · ${cwd} · through the conductor…` : "coding · the fold dispatches to the machine door…";
+    const narrate = (msg) => { E.stage.textContent = msg; const s = body.querySelector(".live-stat"); if (s) s.textContent = msg; };
+    narrate(s.codeSessionId
+      ? (cwd ? `agent · iterating on the prior artifact · ${cwd}…` : "agent · iterating on the prior artifact…")
+      : (cwd ? `agent · dispatching to the machine door · ${cwd}…` : "agent · dispatching to the machine door…"));
     try {
       // ITERATE VIA THE RECORD: a session that already coded continues its own
       // conductor session (the EOT ledger for code) — the next turn builds on
       // what the last one did, never a fresh session. The prior id is sent on
       // every turn; the id the door RETURNS is persisted immediately (before an
       // error can drop it), so a follow-up always continues the same session.
-      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef(), sessionId: s.codeSessionId || null, cwd });
+      // A fenced behavioral test the person attached rides the job as the REAL
+      // test — the wall the structural floor cannot see. The pipeline runs it;
+      // a local draw that fails it walls and escalates to the frontier mouth
+      // at the wall (2026-10-04).
+      const verification = client.extractVerification(s.messages[s.messages.length - 1].content);
+      const out = await client.code(s.messages[s.messages.length - 1].content, { base: bridge, title: s.title, model: codeModelRef(), sessionId: s.codeSessionId || null, cwd, verification });
       if (out.sessionId) { s.codeSessionId = out.sessionId; save("fold-chat:sessions", sessions); }
       E.stage.textContent = "";
       body.classList.remove("live"); body.textContent = "";
       if (cwd) body.append(el("span", "chip folderchip", "📁 " + cwd));
-      // A small coding model sometimes returns the CALL as text
-      // (`{"name":"write","arguments":{…}}`) rather than letting the door
-      // execute it. That is a tool invocation, never prose: split it out, show
-      // it as activity, and only ship real prose as the answer.
-      const split = client.splitToolCalls(out.text || "");
+      // A small coding model is NEVER handed tools (the fold's doctrine). The
+      // penelope lane composes the sub-agents (swarm → field → hunt → mouth,
+      // parallel) and the machine returns a real artifact; the opencode lane
+      // executes tools with a tool-capable model. Only when a small model's
+      // draw was routed as raw text does the call-as-text split apply — the
+      // penelope lane returns a clean artifact, so it is never split.
+      const split = out.lane === "penelope-code-agent" ? { text: out.text || "", calls: [] } : client.splitToolCalls(out.text || "");
       const calls = Array.isArray(split.calls) ? split.calls : [];
       const activity = [...(Array.isArray(out.activity) ? out.activity : []),
         ...calls.map((c) => ({ tool: c.name, status: "requested", title: c.arguments?.filePath || c.arguments?.command || null }))];
@@ -1100,25 +1482,36 @@ export function mount(root, opts = {}) {
       const text = split.text || (calls.length
         ? "(the machine door returned only a tool request — " + calls.map((c) => c.name).join(", ") + " — nothing was executed)"
         : "(the machine door returned no text)");
-      for (const b of artifactsOf(text)) {
+      // The machine doors return RAW code (no fences); the artifact parser
+      // renders only fenced blocks. Wrap a fenceless code turn so it renders
+      // as an artifact card (copy · collapse · pre/iframe), never prose.
+      const codeLane = out.lane === "penelope-code-agent" || out.lane === "opencode";
+      const renderText = codeLane && !/```/.test(text)
+        ? "```" + fenceLangFor(text) + "\n" + text + "\n```"
+        : text;
+      for (const b of artifactsOf(renderText)) {
         if (b.kind === "prose") prose(body, b.text);
         else renderArtifact(body, b.artifact);
       }
       const idx = s.messages.length;
-      // The code turn carries its own record: the tools that ran, the folder,
-      // and the lane. Disclosed on the message like a chat turn, so the fold's
-      // transparency holds across both engagements.
-      const codeRec = { code: true, cwd, lane: out.lane || "opencode", activity, ms: out.ms };
-      s.messages.push({ role: "assistant", content: text, at: now(), codeSessionId: s.codeSessionId, cwd, grounding: codeRec });
+      // The code turn carries its own record: the tools that ran (or the
+      // sub-agents that composed), the folder, and the lane. Disclosed on the
+      // message like a chat turn, so the fold's transparency holds across both
+      // engagements.
+      const codeRec = { code: true, cwd, lane: out.lane || "opencode", activity, ms: out.ms, agents: out.agents || null, executed: out.executed !== false };
+      // The stored content is the FENCED artifact (renderText), so the card
+      // renders on every pass — live, re-render, and continue — never prose.
+      s.messages.push({ role: "assistant", content: renderText, at: now(), mode: "agent", codeSessionId: s.codeSessionId, cwd, grounding: codeRec });
       s.updated = now();
       maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
-      appendMsg("assistant", text, { index: idx, cwd, grounding: codeRec, model: codeModelRef().modelID });
+      appendMsg("assistant", renderText, { index: idx, cwd, grounding: codeRec, model: codeModelRef().modelID, mode: "agent" });
       renderChats();
     } catch (err) {
       E.stage.textContent = ""; body.classList.remove("live"); body.textContent = "error: " + err.message;
     } finally {
+      if (s) s.iterate = false;
       E.send.disabled = false; E.input.disabled = false; E.input.focus(); refreshMeter();
     }
   }
@@ -1159,13 +1552,13 @@ export function mount(root, opts = {}) {
         status: gen?.status ?? "unverified",
       };
       const idx = s.messages.length;
-      s.messages.push({ role: "assistant", content: text, at: now(), generate: genRec });
+      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", generate: genRec });
       s.updated = now();
       maybeName(s);
       save("fold-chat:sessions", sessions);
       const live = body.closest(".msg"); if (live) live.remove();
       E.stage.textContent = "";
-      appendMsg("assistant", text, { index: idx, grounding: genRec, model: m.id });
+      appendMsg("assistant", text, { index: idx, grounding: genRec, model: m.id, mode: "chat" });
       renderChats();
       return true;
     } catch (err) {
@@ -1184,7 +1577,7 @@ export function mount(root, opts = {}) {
     if (!text) return;
     E.input.value = "";
     const s = sessions[activeId] || (newChat(), sessions[activeId]);
-    s.messages.push({ role: "user", content: text, at: now() });
+    s.messages.push({ role: "user", content: text, at: now(), mode: normMode(engagement) });
     // Learn the person's name only when they state it — never guessed.
     const learned = memory.extractStatedName(text);
     if (learned) { s.facts = { ...(s.facts || {}), name: learned }; readerName = learned; try { localStorage.setItem("fold-chat:reader", learned); } catch (e) {} }
@@ -1192,9 +1585,14 @@ export function mount(root, opts = {}) {
     s.updated = now();
     save("fold-chat:sessions", sessions);
     setView(false);
-    appendMsg("user", text, { index: s.messages.length - 1 });
+    appendMsg("user", text, { index: s.messages.length - 1, mode: normMode(engagement) });
     renderChats();
-    if (engagement === "code") runCode(activeId);
+    // CODING ONLY GOES TO THE MACHINE DOOR. A research or writing question in
+    // the Code engagement is NOT a code task: it goes through the grounded
+    // path (search → spread → write), so the fold never answers a factual
+    // question from the coder model's memory. Only a real code/files ask
+    // dispatches to opencode.
+    if (engagement === "code" && isCodeTask(text)) runCode(activeId);
     else {
       if (!models.length) { toast("no model — start the heimdall bridge"); return; }
       run(activeId, false);
@@ -1369,10 +1767,41 @@ export function mount(root, opts = {}) {
     sessions[activeId].grounding = !!on;
     sessions[activeId].updated = now();
     save("fold-chat:sessions", sessions);
-    toast(on ? "grounding on — this thread shows its disclosure" : "grounding off — this thread hides its disclosure");
+    toast(on ? "process panel on — this thread shows what the fold did" : "process panel off — this thread hides it");
     open(activeId);
   }
   if (E.groundToggle) E.groundToggle.onclick = () => setGrounding(!threadGroundingOn());
+  // EFFORT — how hard the fold thinks / how much it falsifies, PER THREAD.
+  //   fast      one web search, 2 reads, loose gate, no void — quick
+  //   balanced  full scopes + swarm gate + on-topic reads + void (default)
+  //   deep      read 6+, strict swarm (identity AND co-ref AND record), and an
+  //             explicit FALSIFY pass: every grounded claim is re-checked, the
+  //             unsupported/contradicting claims are named, fuller void.
+  const EFFORT_LEVELS = [
+    ["fast", "Fast", "1 web search · 2 reads · quick"],
+    ["balanced", "Balanced", "full scopes · swarm gate · void"],
+    ["deep", "Deep", "6+ reads · strict swarm · falsify every claim"],
+  ];
+  const effBar = el("div", "agentbar");
+  const effBtns = {};
+  for (const [k, label] of EFFORT_LEVELS) {
+    const b = el("button", "agentbtn", label);
+    b.title = "effort: " + label;
+    b.onclick = () => setEffort(k);
+    effBtns[k] = b; effBar.append(b);
+  }
+  if (E.effortSlot) E.effortSlot.append(effBar);
+  function effortOf() { return sessions[activeId]?.effort || "balanced"; }
+  function paintEffort() { for (const [k, b] of Object.entries(effBtns)) b.classList.toggle("on", k === effortOf()); }
+  function setEffort(k) {
+    if (!activeId || !sessions[activeId]) return;
+    sessions[activeId].effort = k;
+    sessions[activeId].updated = now();
+    save("fold-chat:sessions", sessions);
+    paintEffort();
+    const lvl = EFFORT_LEVELS.find(([kk]) => kk === k);
+    toast("effort: " + (lvl ? lvl[2] : k));
+  }
   // Web search on/off — a turn searches the keyless sources and grounds on them.
   function paintWeb() { if (E.webToggle) E.webToggle.classList.toggle("on", webOn); }
   if (E.webToggle) E.webToggle.onclick = () => {
@@ -1435,6 +1864,7 @@ export function mount(root, opts = {}) {
   renderProjects();
   paintWeb();
   paintGrounding();
+  paintEffort();
   // Auto-detect the bridge first (the override, then the standard local port),
   // then list whatever it serves. A page served from GitHub Pages finds the
   // person's own heimdall this way, with no URL to type.

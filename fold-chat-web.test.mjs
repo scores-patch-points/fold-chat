@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { search, readText, searchWeb, SCOPES } from "./fold-chat-web.js";
+import { search, readText, searchWeb, SCOPES, queriesFor, onTopic } from "./fold-chat-web.js";
 
 const resp = (body, { ok = true, status = 200 } = {}) => ({
   ok, status, json: async () => body, text: async () => (typeof body === "string" ? body : JSON.stringify(body)),
@@ -16,6 +16,7 @@ function router(map) {
 test("every declared scope runs one search and keeps the holodeck result shape", async () => {
   assert.ok(SCOPES.length >= 4);
   const f = router([
+    [/holodeck-proxy\.prometheoid\.workers\.dev\/search/, resp({ scope: "web", engine: "DuckDuckGo", count: 2, results: [{ title: "Judy Liff", url: "https://whitepages.com/name/Judy-Liff", snippet: "Nashville TN", source: "whitepages.com" }, { title: "Zachary Liff", url: "https://elementix.com/investors/tn/zachary-liff", snippet: "Real Estate Investor", source: "elementix.com" }] })],
     [/api\.github\.com/, resp({ total_count: 3, items: [{ full_name: "a/b", html_url: "https://github.com/a/b", description: "x", stargazers_count: 4200, language: "JS", pushed_at: "2024-01-01" }] })],
     [/en\.wikipedia\.org/, resp({ query: { search: [{ title: "Fold", snippet: "<b>fold</b> here", wordcount: 900 }] }, continue: { sroffset: 20 } })],
     [/archive\.org/, resp({ response: { numFound: 5, docs: [{ identifier: "id1", title: ["A Book"], description: "desc", mediatype: "texts", year: "1900" }] } })],
@@ -86,4 +87,27 @@ test("searchWeb merges scopes, reads the top hits into passages, and traces ever
   assert.ok(out.passages[0].via, "passage names who fetched it");
   assert.ok(out.trace.some((t) => t.engine), "trace names the engines");
   assert.ok(out.trace.some((t) => t.read), "trace names the reads");
+});
+
+test("queriesFor splits a comparison into per-entity queries", () => {
+  const qs = queriesFor("Compare the founding dates and first leaders of Canberra, Brasília, Ottawa, and Washington, D.C.");
+  assert.ok(qs.includes("Canberra"), "Canberra is its own query");
+  assert.ok(qs.includes("Brasília") || qs.includes("Brasília,") || qs.some((q) => /Bras/.test(q)), "Brasília is its own query");
+  assert.ok(qs.some((q) => /Ottawa/.test(q)));
+  assert.ok(qs.some((q) => /Washington/.test(q)));
+  assert.ok(!qs.includes("Compare the founding dates and first leaders of Canberra, Brasília, Ottawa, and Washington, D.C."), "not the whole question");
+});
+
+test("effort levers: fast reads fewer sources, deep reads more and strict-gates", async () => {
+  const f = async (url) => {
+    if (/holodeck-proxy.*\/search/.test(url)) return resp({ scope: "web", engine: "DDG", count: 2, results: [{ title: "Judy Liff Zachary Liff", url: "https://whitepages.com/judy-liff", snippet: "Judy Liff Nashville", source: "whitepages.com" }, { title: "Wrong Judy film", url: "https://en.wikipedia.org/wiki/Judy_(film)", snippet: "a film", source: "en.wikipedia.org" }] });
+    if (/en\.wikipedia\.org/.test(url)) return resp({ query: { search: [{ title: "Judy", snippet: "s", wordcount: 1 }] } });
+    if (/whitepages\.com/.test(url)) return resp("<title>Judy Liff</title><p>" + "Judy Liff Nashville associate of Zachary Liff ".repeat(20) + "</p>");
+    if (/en\.wikipedia\.org\/wiki|whitepages/.test(url)) return resp("<title>T</title><p>" + "body ".repeat(50) + "</p>");
+    throw new Error("no route " + url);
+  };
+  const fast = await searchWeb("find the relationship between Judy and Zachary Liff from Nashville", { fetchImpl: f, effort: "fast" });
+  assert.ok(fast.passages.length >= 1, "fast still reads");
+  const deep = await searchWeb("find the relationship between Judy and Zachary Liff from Nashville", { fetchImpl: f, effort: "deep" });
+  assert.ok(deep.passages.every((p) => /whitepages/.test(p.ref)), "deep strict gate reads only the people record, skips the film");
 });

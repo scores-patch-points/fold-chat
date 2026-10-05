@@ -107,7 +107,7 @@ test("code goes THROUGH the bridge (never opencode directly)", async () => {
     if (url.endsWith("/api/code/status")) return { ok: true, status: 200, json: async () => ({ configured: true, url: "http://127.0.0.1:4096" }) };
     if (url.endsWith("/api/code")) {
       codeBody = JSON.parse(opts.body);
-      if (!firstCode) { firstCode = codeBody; assert.deepEqual(firstCode, { prompt: "fix the test", title: null, model: null, agent: null, sessionId: null, cwd: null }); }
+      if (!firstCode) { firstCode = codeBody; assert.deepEqual(firstCode, { prompt: "fix the test", title: null, model: null, agent: null, sessionId: null, cwd: null, verification: null }); }
       return { ok: true, status: 200, json: async () => ({ sessionId: "ses_1", text: "done", activity: [{ tool: "edit", status: "completed", title: "src/util.js" }], ms: 12, lane: "opencode" }) };
     }
     return { ok: false, status: 404, json: async () => ({}) };
@@ -223,4 +223,15 @@ test("splitToolCalls lifts a tool call out of the prose, keeps code fences whole
   const braces = splitToolCalls("plain prose with a {brace} in it");
   assert.equal(braces.calls.length, 0);
   assert.equal(braces.text, "plain prose with a {brace} in it");
+});
+
+test("extractVerification lifts a labeled fenced test off a code turn", async () => {
+  const { extractVerification } = await import("./fold-chat-client.js");
+  const labeled = extractVerification("write a median function\n\ntest:\n```js\nconst m=__m.median([3,1,2]); if(m!==2) throw new Error('x');\n```");
+  assert.ok(labeled, "labeled fenced test is extracted");
+  assert.match(labeled.test, /__m\.median/);
+  const none = extractVerification("write a median function");
+  assert.equal(none, null);
+  const post = extractVerification("write a function\n```js\nif(!ok) throw new Error('x');\n```\nverify");
+  assert.ok(post && /throw new Error/.test(post.test), "trailing verify label is extracted");
 });

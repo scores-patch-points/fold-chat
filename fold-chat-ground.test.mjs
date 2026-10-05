@@ -9,6 +9,15 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { splitSentences, tokenize, overlap, stripSelfCitations, namesIn, numbersIn, attribute, coverage, unsupportedClaims, turnRecord, facingPage, MIN_RUN } from "./fold-chat-ground.js";
 
+test("splitSentences does not cut on abbreviations or initials", () => {
+  const s = splitSentences("Washington, D.C. was founded in 1791. Its site was chosen by Congress.");
+  assert.equal(s.length, 2, "D.C. is not a sentence boundary");
+  assert.match(s[0], /D\.C\. was founded in 1791\.$/);
+  const initials = splitSentences("The plan was drawn by J. R. R. Tolkien in 1937. It sold well.");
+  assert.equal(initials.length, 2);
+  assert.match(initials[0], /Tolkien in 1937\.$/);
+});
+
 test("splitSentences splits on sentence punctuation and newlines, not abbreviations", () => {
   assert.deepEqual(splitSentences("One claim. Two claims!\nA third."), ["One claim.", "Two claims!", "A third."]);
   assert.deepEqual(splitSentences("See Dr. Smith now. Done."), ["See Dr. Smith now.", "Done."]);
@@ -28,9 +37,23 @@ test("stripSelfCitations neutralizes a bracket address the model invented", () =
 });
 
 test("namesIn reads a name whole across accents; a lone capital is not a name", () => {
-  assert.deepEqual(namesIn("Anna Pávlovna greeted Éloise"), ["Anna Pávlovna"]);
+  assert.deepEqual(namesIn("Anna Pávlovna greeted Éloise"), ["Anna Pávlovna", "Éloise"]);
   assert.ok(namesIn("the MNPD BOLO was issued").includes("MNPD BOLO"));
+  // A sentence-initial capital is an opener, not a name.
   assert.deepEqual(namesIn("Today is fine."), []);
+  // A LONE mid-sentence proper noun IS a name the sentence commits to — this is
+  // what lets "founded in 1795" be checked against a passage lacking Washington.
+  assert.deepEqual(namesIn("Washington was founded in 1795."), ["Washington"]);
+});
+
+test("a lone proper noun must appear in the material to warrant the claim", () => {
+  // The Snowden-disclosures failure: an Ottawa sentence riding a shared phrase.
+  const snowden = [{ ref: "Wikipedia — Snowden disclosures", source: "https://en.wikipedia.org/wiki/Snowden", text: "According to a secret NSA memo dated September 2010, the Italian embassy in Washington was targeted." }];
+  const out = attribute("Ottawa was the first capital of Canada.", snowden);
+  assert.equal(out[0].ref, null, "Ottawa is not in the Snowden passage — no grounding");
+  // A true support still grounds.
+  const real = [{ ref: "Wikipedia — Ottawa", source: "https://en.wikipedia.org/wiki/Ottawa", text: "Ottawa was founded in 1857 and became the capital of the Province of Canada." }];
+  assert.ok(attribute("Ottawa was founded in 1857.", real)[0].ref, "the real Ottawa passage still grounds");
 });
 
 test("attribute: a shared phrase is addressed; a lone shared word is not", () => {

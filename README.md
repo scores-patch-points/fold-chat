@@ -29,25 +29,33 @@ straight at the one process that already routes the whole Fold's models:
 
 ## One thread, one project, two engagements
 
-Chat and Code are **sibling engagements over a shared session**, not one app
+Chat and Agent are **sibling engagements over a shared session**, not one app
 embedded inside another (the Claude / Claude-Code shape). The topbar selector
 switches what a turn *does*; it never changes the thread, the store, or the
 project:
 
 - **Chat** answers from the routed models (`/v1/chat/completions`).
-- **Code** dispatches the same turn through the same bridge to the **machine
+- **Agent** dispatches the same turn through the same bridge to the **machine
   door** (`/api/code`) — the khora conductor, which reads the project, derives
   over it with janus, executes for real, and retains the trace with penelope.
-  Its tool activity and answer render inline in the one conversation.
+  Its tool activity and answer render inline in the one conversation, in the
+  agent's own register: a teal rail, a mode tag, a terminal composer, and a
+  labelled seam where the thread hands off between the two engagements.
+
+The two engagements convert freely: any chat answer can be **built** (the same
+ask re-run through the machine door) and any agent artifact can be **explained**
+(the same ask re-run through the grounded chat lane), and every message carries
+a per-message **run as** affordance. A conversion only adds a lane to the same
+thread — the original turn and its record are never overwritten.
 
 A **project** is the shared container: a name, an optional **folder** (the
-working directory a code turn is bound to), and a preset its sessions inherit.
-A chat turn and a code turn hang off the same project, so both start from the
+working directory an agent turn is bound to), and a preset its sessions inherit.
+A chat turn and an agent turn hang off the same project, so both start from the
 same place. Projects support create / settings / delete.
 
-Every code turn carries a **code record** (the same collapsed disclosure a chat
-turn carries): the folder, the lane, the tool steps, the time — so code is as
-inspectable as chat, and always says it ran through the bridge.
+Every agent turn carries an **agent record** (the same collapsed disclosure a
+chat turn carries): the folder, the lane, the tool steps, the time — so the
+agent is as inspectable as chat, and always says it ran through the bridge.
 
 Serve `index.html` from localhost (`python3 -m http.server 8814`) and run
 `heimdall up` — the page finds the bridge on `localhost:8790` and lists every
@@ -78,10 +86,11 @@ This is the part wired into heimdall's secure-outside-model work:
 ## Files
 
 - `index.html` — the page (no build step).
-- `fold-chat.js` — the app: sessions, projects (folder + preset), the chat/code
-  engagement selector, streaming chat, the code lane, sealed badge, evidence
-  drawer. localStorage holds sessions, projects, and the bridge override
-  (`fold-chat:bridge`); the engagement is `fold-chat:engagement`.
+- `fold-chat.js` — the app: sessions, projects (folder + preset), the chat/agent
+  engagement selector (the agent register, the seam, per-message conversion),
+  streaming chat, the agent lane, sealed badge, evidence drawer. localStorage
+  holds sessions, projects, and the bridge override (`fold-chat:bridge`); the
+  engagement is `fold-chat:engagement`.
 - `fold-chat-client.js` — the heimdall wire: `listModels`, `chat`, `code`
   (carries the project `cwd`), `read`, `meter`, `ledger`, `frontier`. Browser + node.
 - `fold-chat-topic.js` — what a chat becomes about: `titleOf` draws a name from

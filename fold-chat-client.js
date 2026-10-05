@@ -341,6 +341,23 @@ export function splitToolCalls(answer) {
   return { text: out.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n").trim(), calls, leftover: raw };
 }
 
+/** Extract a fenced behavioral test the person attached to a code turn, e.g.
+ *    test:
+ *    ```js
+ *    const before=[3,1,2]; const m=__m.median(before); ...
+ *    ```
+ *  Returns { test } or null. The fold sends it as `verification` so the
+ *  pipeline runs a REAL test (a local draw that fails it walls and escalates
+ *  to the frontier mouth at the wall). Pure and testable. */
+export function extractVerification(text) {
+  const t = String(text ?? "");
+  const labeled = t.match(/^\s*(?:test|verify)\s*:\s*\n\s*```[a-zA-Z0-9_-]*\s*\n([\s\S]*?)\n\s*```/im);
+  if (labeled) return { test: labeled[1].trim() };
+  const fenced = t.match(/```(?:js|javascript|mjs|ts)\n([\s\S]*?)\n```\s*\n?\s*(?:test|verify)\s*$/im);
+  if (fenced) return { test: fenced[1].trim() };
+  return null;
+}
+
 /** Whether a coding machine (opencode) is attached behind the bridge. */
 export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
   try { const r = await fetchImpl(bridgeBase(base) + "/api/code/status", { cache: "no-store" }); return r.ok ? r.json() : null; }
@@ -353,11 +370,11 @@ export async function codeStatus({ base = null, fetchImpl = fetch } = {}) {
  *  directly. `cwd` binds the job to the project's folder when given, so the
  *  door reads and edits the same place the project stands. Returns
  *  { sessionId, text, activity, ms, lane }. */
-export async function code(prompt, { base = null, title = null, model = null, agent = null, sessionId = null, cwd = null, signal = null, fetchImpl = fetch } = {}) {
+export async function code(prompt, { base = null, title = null, model = null, agent = null, sessionId = null, cwd = null, verification = null, signal = null, fetchImpl = fetch } = {}) {
   const r = await fetchImpl(bridgeBase(base) + "/api/code", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ prompt, title, model, agent, sessionId, cwd }),
+    body: JSON.stringify({ prompt, title, model, agent, sessionId, cwd, verification }),
     signal,
   });
   if (!r.ok) {

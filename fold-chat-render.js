@@ -106,6 +106,13 @@ function tableHtml(rows) {
   return h;
 }
 
+/** The inline pass alone — markdown (bold/italic/code/links) without block
+ *  wrapping. The facing page renders the answer sentence by sentence (each with
+ *  its citation chip), so its formatting must survive without gaining <p>. */
+export function mdInline(src) {
+  return inline(esc(String(src ?? "")));
+}
+
 /** Markdown → safe HTML. The one entry point the chat surface uses. */
 export function mdHtml(src) {
   const lines = String(src ?? "").replace(/\r\n?/g, "\n").split("\n");

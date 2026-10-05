@@ -57,11 +57,11 @@ test("the continuation rule is narrow — real questions stay research", () => {
   assert.equal(classifyTurn("well, who is the president?"), "research");
 });
 
-test("only research/chat turns may carry a grounding disclosure", () => {
+test("every turn but a greeting carries a grounding record (always grounded)", () => {
   assert.equal(checkable("research"), true);
   assert.equal(checkable("chat"), true);
-  assert.equal(checkable("generate"), false);
-  assert.equal(checkable("smalltalk"), false);
+  assert.equal(checkable("generate"), true, "a writing request grounds too — it writes from what it read");
+  assert.equal(checkable("smalltalk"), false, "a greeting is not a claim");
 });
 
 test("web search runs only for a research turn with web on", () => {
@@ -83,4 +83,19 @@ test("a prose artifact ask routes to penelope's generation; html/app keeps the f
   assert.equal(generationArtifact("draft a blog post"), "text");
   assert.equal(generationArtifact("create a landing page"), null, "penelope has no html adapter — the fold's own build keeps it");
   assert.equal(generationArtifact("hi"), null);
+});
+
+test("a demand for proof or a comparison is research, so it searches", () => {
+  // "prove it" after a claim, and a multi-entity comparison with no wh-word:
+  // both seek facts and must route to research (and thus web search when on).
+  assert.equal(classifyTurn("prove it"), "research");
+  assert.equal(classifyTurn("cite this"), "research");
+  assert.equal(classifyTurn("source?"), "research");
+  assert.equal(classifyTurn("Compare the founding dates and first leaders of Canberra, Brasília, Ottawa, and Washington, D.C."), "research");
+  assert.equal(wantsWeb(classifyTurn("prove it"), true), true, "a proof demand searches when web is on");
+  // A "write a comparison" is still a writing turn, never a lookup.
+  assert.equal(classifyTurn("write a comparison of the two reports"), "generate");
+  // A greeting is still smalltalk; a bare nudge is still chat.
+  assert.equal(classifyTurn("hi"), "smalltalk");
+  assert.equal(classifyTurn("well?"), "chat");
 });
