@@ -177,13 +177,28 @@ export async function listModels({ base = null, fetchImpl = fetch } = {}) {
  *  resolved value is { text, tokens } (tokens counted per delta). A sealed
  *  model is forced sealed-external unless the caller chose "explicit".
  *  Rejects with { status, message } on bridge/provider errors. */
-export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000 } = {}) {
+// A page-wide audit hook: every chat() reports what it is about to send and how it ended,
+// so the surface can record it BEFORE it leaves. The hook never alters the request.
+let auditHook = null;
+export function setAuditHook(h) { auditHook = h && typeof h.before === "function" ? h : null; }
+const newAuditId = () => "aud_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+
+export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null } = {}) {
   const url = bridgeBase(base) + "/v1/chat/completions";
   // Sealed by default for outside models: the Fold selects the privacy mode
   // and seals first. Raw spans never leave — only what the caller put in
   // `messages` rides the wire.
   const effective = privacy ?? "sealed-external";
   const body = chatBody(model, messages, { privacy: effective, temperature, maxTokens });
+  // The audit id rides in a header so heimdall's own ledger can be matched to this
+  // request; a world slot (when this request is one of a set) rides the same way —
+  // the slot only, never which world is real.
+  const auditId = audit?.id || newAuditId();
+  const extraHeaders = { "x-fold-audit": auditId };
+  if (audit?.worlds) extraHeaders["x-fold-worlds"] = `${audit.worlds.setId}:${audit.worlds.slot}/${audit.worlds.n}`;
+  let auditDone = null;
+  try { auditDone = auditHook?.before({ auditId, model, messages, privacy: effective, base, segments: audit?.segments || null, worlds: audit?.worlds || null, symmetry: audit?.symmetry || null, purpose: audit?.purpose || null, run: audit?.run || null }) || null; } catch { auditDone = null; }
+  const finishAudit = (r) => { try { auditDone?.(r); } catch {} };
   // A HARD total timeout, always: a stream that stalls must release the
   // surface. The caller's own signal (a stop button) still aborts earlier; this
   // is the floor so a hung turn can never leave the composer disabled forever.
@@ -194,21 +209,24 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
   try {
     res = await fetchImpl(url, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", ...extraHeaders },
       body: JSON.stringify(body),
       signal: combined,
     });
   } catch (e) {
     clearTimeout(timer);
+    finishAudit({ ok: false, error: e?.message || e });
     const timedOut = /timed out|abort/i.test(String(e?.message || e?.name || ""));
     const err = new Error(timedOut ? "the turn timed out (" + Math.round(totalTimeoutMs / 1000) + "s)" : "bridge unreachable: " + (e?.message || e));
     err.status = timedOut ? 504 : 0;
     throw err;
   }
   clearTimeout(timer);
+  if (!res.ok) finishAudit({ ok: false, status: res.status, error: "bridge answered " + res.status });
   if (res.status === 400) {
     let msg = "heimdall refused the request";
     try { msg = (await res.json())?.error?.message || msg; } catch {}
+    finishAudit({ ok: false, status: 400, error: msg });
     const err = new Error(msg);
     err.status = 400;
     throw err;
@@ -223,6 +241,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
   let buf = "";
   let text = "";
   let tokens = 0;
+  let usage = null;
   for (;;) {
     const { value, done } = await reader.read();
     if (done) break;
@@ -236,7 +255,8 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
       if (!payload || payload === "[DONE]") continue;
       let j;
       try { j = JSON.parse(payload); } catch { continue; }
-      if (j.error) { const err = new Error(j.error?.message || "bridge stream error"); err.status = 502; throw err; }
+      if (j.usage) usage = j.usage;
+      if (j.error) { const err = new Error(j.error?.message || "bridge stream error"); err.status = 502; finishAudit({ ok: false, error: err.message }); throw err; }
       const delta = j.choices?.[0]?.delta?.content;
       if (typeof delta === "string" && delta) {
         text += delta;
@@ -245,7 +265,8 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
       }
     }
   }
-  return { text, tokens };
+  finishAudit({ ok: true, status: res.status });
+  return { text, tokens, auditId, usage };
 }
 
 /** The savings meter: exact external tokens, lane counts, and the marked
@@ -422,4 +443,122 @@ export async function read(text, { base = null, source = null, sessionId = null,
     const err = new Error(msg); err.status = r.status; throw err;
   }
   return r.json();
+}
+/** Ask JANUS — the reasoner — whether a set of claims holds, THROUGH heimdall.
+ *  The spec is the khora's reasoning input (claims, universals with their
+ *  measured counterexamples, equations, orderings); the engine's own organs
+ *  decide, and the verdict comes back as { ok, errors, findings:[{kind,
+ *  severity, detail, at}] }. The reasoner never grades itself. */
+export async function reason(spec, { base = null, signal = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/reason", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(spec),
+    signal,
+  });
+  if (!r.ok) {
+    let msg = "janus's reasoning check did not answer";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Run the khora's OPEN coding loop THROUGH heimdall: several turns of list /
+ *  read / write / run inside a severed sandbox (in-memory files, a vm with no
+ *  disk and no egress). Returns { done, answer, rounds, files, notes }. */
+export async function agent(task, { base = null, model = null, maxTurns = null, sessionId = null, signal = null, fetchImpl = fetch } = {}) {
+  const r = await fetchImpl(bridgeBase(base) + "/api/agent", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ task, model, maxTurns, sessionId }),
+    signal,
+  });
+  if (!r.ok) {
+    let msg = "the khora's agent loop did not answer";
+    try { msg = (await r.json())?.error || msg; } catch {}
+    const err = new Error(msg); err.status = r.status; throw err;
+  }
+  return r.json();
+}
+
+/** Shape the khora agent's result like a machine-door answer, so the same loop
+ *  can observe it. The main file is the page (index.html), else any .html, else
+ *  the first script, else the largest file; the loop's notes become tool steps.
+ *  Pure and testable. */
+export function agentAnswerOf(result, { sessionId = null, ms = null } = {}) {
+  const files = result && typeof result.files === "object" && result.files ? result.files : {};
+  const names = Object.keys(files);
+  const pick = names.find((n) => /(^|\/)index\.html?$/i.test(n)) || names.find((n) => /\.html?$/i.test(n)) || names.find((n) => /\.(m?js|ts)$/i.test(n)) || [...names].sort((a, b) => String(files[b]).length - String(files[a]).length)[0] || null;
+  const notes = Array.isArray(result?.notes) ? result.notes : [];
+  const activity = notes.filter((n) => n && typeof n.move === "string" && /^agent_/.test(n.move)).map((n) => {
+    const tool = n.move.replace(/^agent_/, "");
+    const title = n.path || (n.move === "agent_list" ? `${(n.files || []).length} file(s)` : n.move === "agent_run" ? `${n.ok ? "ran clean" : "failed"} · ${n.outputChars ?? 0} chars of output` : n.move === "agent_done" ? `${n.answerChars ?? 0} chars` : null);
+    return { tool, status: /refused|miss/.test(tool) ? "refused" : n.move === "agent_run" && n.ok === false ? "failed" : "done", title: title ? (n.contentChars != null ? `${title} (${n.contentChars} chars)` : title) : null };
+  });
+  return {
+    sessionId, text: pick ? String(files[pick]) : String(result?.answer ?? ""), activity, ms,
+    lane: "khora-agent", executed: true, files, mainFile: pick,
+    agents: { done: !!result?.done, turns: Array.isArray(result?.rounds) ? result.rounds.length : 0, answer: result?.answer ?? "" },
+  };
+}
+
+// ───────────────────────── escalation to a sealed remote model ─────────────────────────
+//
+// When the local machine is busy, slow, or draws nothing, the agent does not sit
+// and wait: it goes to an OUTSIDE model — but only through heimdall's sealed
+// gate (heimdall_privacy:"sealed-external"). What rides the wire is the person's
+// own task text and the previous attempt's code; never a workspace file.
+
+// Models that list as frontier but are not text/code writers (audio, roleplay,
+// image), and duplicate provider-prefixed aliases that the bridge rejects.
+const NOT_A_CODE_WRITER = /voxtral|lunaris|whisper|tts|image|chroma|embed|roleplay|^llm7:/i;
+// The order the Fold prefers: measured fast and reachable first. The bridge's
+// /api/tags lists models that do not all answer, so the caller TRIES these in
+// order and keeps the first that does.
+const REMOTE_PREFERENCE = [/^openai-fast$/, /^GLM-[\d.]+-Flash$/i, /^pollinations:openai-fast$/, /claude.*haiku/i, /deepseek.*flash/i, /sonnet/i];
+
+/** The sealed remote models worth trying for a code draw, best first. Pure. */
+export function remoteCandidates(models) {
+  const sealed = (Array.isArray(models) ? models : []).filter((m) => m && m.sealed && !NOT_A_CODE_WRITER.test(String(m.id)));
+  const ranked = [];
+  for (const re of REMOTE_PREFERENCE) for (const m of sealed) if (re.test(String(m.id)) && !ranked.includes(m.id)) ranked.push(m.id);
+  for (const m of sealed) if (!ranked.includes(m.id)) ranked.push(m.id);
+  return ranked;
+}
+
+const REMOTE_CODE_SYSTEM = "You are a careful senior engineer. Do exactly what the task asks and return ONE complete, self-contained file — no explanation, no commentary. If the task is a web page, return a single HTML document with its CSS and JavaScript inline. Put the file in a single fenced code block.";
+
+/** One sealed remote draw for a code task. Tries `candidates` in order — each
+ *  with its own short deadline — and returns the first that answers:
+ *  { text, model, tried:[{model, error}] }. `prior` is the previous attempt's
+ *  code (a repair carries it, so the remote model fixes rather than restarts). */
+export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 60000, maxTokens = 4096, onTry = null, run = null, fetchImpl = fetch } = {}) {
+  const tried = [];
+  // Every part of the request says where it came from — the audit grades the
+  // request from this, and refuses what it cannot place.
+  const parts = [{ role: "system", content: REMOTE_CODE_SYSTEM, provenance: "template" }];
+  if (prior) parts.push({ role: "user", content: "Here is the previous attempt:\n```\n" + String(prior).slice(0, 24000) + "\n```", provenance: "generated" });
+  parts.push({ role: "user", content: prompt, provenance: "ask" });
+  const messages = parts.map(({ role, content }) => ({ role, content }));
+  const segments = parts.map((p) => ({ role: p.role, chars: p.content.length, provenance: p.provenance }));
+  const sent = [];
+  for (const model of candidates || []) {
+    if (signal?.aborted) throw Object.assign(new Error("aborted"), { name: "AbortError" });
+    const auditId = newAuditId();
+    sent.push({ auditId, model });
+    onTry?.(model, auditId);
+    try {
+      const out = await chat(model, messages, { base, privacy: "sealed-external", signal, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run } });
+      const text = String(out?.text ?? "").trim();
+      if (text) return { text, model, tried, sent, auditId };
+      tried.push({ model, error: "answered with nothing" });
+    } catch (e) {
+      if (signal?.aborted || e?.name === "AbortError") throw e;
+      tried.push({ model, error: String(e?.message || e).slice(0, 120) });
+    }
+  }
+  const err = new Error("no sealed remote model answered" + (tried.length ? " (" + tried.map((t) => `${t.model}: ${t.error}`).join("; ") + ")" : ""));
+  err.status = 502; err.tried = tried; err.sent = sent;
+  throw err;
 }

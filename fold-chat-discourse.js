@@ -15,11 +15,22 @@
 //               bare lookup, or anything with a "?"): search, read, answer
 //               from what was read.
 //   chat      — everything else: plain conversation.
+//   compute / transform / code / compose / advice — the EVERYDAY kinds added
+//               2026-10-05 (fold-chat-kinds.js has the shapes and the reasons):
+//               arithmetic and unit asks the fold computes itself, the person's
+//               own text to translate/summarise, programming how-tos, personal
+//               correspondence — none of these searches the web or draws a void —
+//               and open how-to advice (searched, but no void unless it commits
+//               to figures nothing read says).
 //
 // Pure: no DOM, no IO. Node-testable.
 
+import { evaluate } from "./fold-chat-compute.js";
+import { transformShape, codeShape, composeShape, adviceShape } from "./fold-chat-kinds.js";
+export { skipsSearch, noClaimsLabel, KIND_PROMPT } from "./fold-chat-kinds.js";
+
 export const SMALLTALK_RE = /^(hi|hey|hello|yo|sup|good\s?(morning|afternoon|evening)|how are you|how's it going|how is it going|thanks|thank you|bye|goodbye|good night|see you)\b/i;
-export const GENERATE_RE = /\b(write|compose|draft|create|generate|produce|make)\b[\s\S]{0,40}\b(essay|article|story|poem|song|report|summary|letter|email|post|blog|copy|piece|outline|plan|guide|list|page|html|app|website|comparison|analysis|review|memo|brief|about)\b/i;
+export const GENERATE_RE = /\b(write|compose|draft|create|generate|produce|make)\b[\s\S]{0,40}\b(essay|article|story|poem|song|report|summary|letter|email|post|blog|copy|piece|outline|plan|guide|list|page|html|app|website|comparison|analysis|review|memo|brief|about|note|message|speech|toast|card|caption|bio|paragraph|announcement|invitation|script|tweet|slogan|tagline|haiku|limerick|joke|riddle|dialogue|monologue|lyrics|sonnet|description)\b/i;
 export const RESEARCH_RE = /^(who|what|when|where|which|why|how many|how much|is|are|was|were|did|does|do|can|tell me about|what's|who's|current|latest|news)\b/i;
 // A demand for facts, proof, or a comparison — "compare X, Y, Z", "prove it",
 // "cite this", "source?", "verify …", "differences between …". These are
@@ -34,12 +45,21 @@ export const DEMAND_RE = /\b(compare|contrast|prove|cite|source|citation|evidenc
 // already in the window, so they are conversation, never a lookup.
 export const CONVERSATIONAL_RE = /^(well|so|ok|okay|hmm+|hm+|right|sure|yeah|yep|yup|yes|no|nope|nah|and|but|then|also|really|nice|cool|wow|lol|haha|heh|go on|continue|carry on|keep going|more|again|wait|eh|meh|alright|fine|indeed|exactly|got it|i see)\b[\s?!.,…]*$/i;
 
-export function classifyTurn(question) {
+/** `opts.hasMaterial`: the chat already carries an attachment or pasted document
+ *  (so "summarise this" has something to act on). */
+export function classifyTurn(question, opts = {}) {
   const q = String(question ?? "").trim();
   if (!q) return "smalltalk";
   if (q.length < 60 && SMALLTALK_RE.test(q)) return "smalltalk";
   if (q.length < 40 && CONVERSATIONAL_RE.test(q)) return "chat";
+  // The everyday kinds, most specific first. Each needs two independent signals
+  // (fold-chat-kinds.js) and answers "no" when unsure, so the turn is searched.
+  if (evaluate(q).ok) return "compute";
+  if (transformShape(q, { hasMaterial: !!opts.hasMaterial })) return "transform";
+  if (codeShape(q)) return "code";
+  if (composeShape(q)) return "compose";
   if (GENERATE_RE.test(q)) return "generate";
+  if (adviceShape(q)) return "advice";
   if (RESEARCH_RE.test(q)) return "research";
   if (DEMAND_RE.test(q)) return "research";
   // A comparison/list of several entities ("Canberra, Brasília, Ottawa, and
@@ -60,9 +80,19 @@ export function classifyTurn(question) {
 export const GENERATE_NUDGE = "You are a writer working ONLY from the sources provided in this context. The person asked you to WRITE or PRODUCE something. Write it now, in full, in this reply. Ground every fact in the sources you were given — never invent a date, name, figure, or event, and never write from memory. If the sources do not cover part of the piece, say plainly what is missing instead of filling it in. Do not ask them what topics to cover, do not ask for more detail, and do not offer to help later — deliver the complete piece. Never reply that you cannot write.";
 
 // Which turns carry a grounding record — every turn that makes a claim or a
-// written artifact, i.e. everything but a greeting. The fold is always grounded.
+// written artifact, i.e. everything but a greeting. The fold is always grounded
+// (it searches and reads first), so a record exists for these turns.
+export function recordable(kind) {
+  return kind === "research" || kind === "chat" || kind === "generate" || kind === "advice" || kind === "compute" || kind === "transform" || kind === "code" || kind === "compose";
+}
+
+// Which turns have CLAIMS to check. A poem, a story, an essay a person asked to
+// be written has no claim in it to score: no void is reported for it and no
+// sentence of it is marked unsourced (✱). The search that fed it is untouched —
+// only the checking stands down, and the process panel says so.
 export function checkable(kind) {
-  return kind === "research" || kind === "chat" || kind === "generate";
+  // advice is checkable but its void is conditional on figures (see fold-chat-channels voidReport)
+  return kind === "research" || kind === "chat" || kind === "advice";
 }
 
 export function wantsWeb(kind, webOn) {

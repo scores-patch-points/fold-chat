@@ -125,3 +125,20 @@ test("facingPage over no material has no sources, and every sentence is [M]", ()
   assert.equal(face.sources.length, 0);
   assert.ok(face.response.every((r) => r.tag === "M" && !r.grounded));
 });
+
+test("sourceDocs: passages of one document are listed under it, in first-seen order, each keeping its S# tag", async () => {
+  const { sourceDocs } = await import("./fold-chat-ground.js");
+  const wiki = { label: "Wikipedia — Nashville", url: "https://en.wikipedia.org/wiki/Nashville", domain: "en.wikipedia.org" };
+  const docs = sourceDocs([
+    { n: "S1", ...wiki, mark: "a" },
+    { n: "S2", label: "Other", url: "https://example.org/x", domain: "example.org", mark: "b" },
+    { n: "S3", ...wiki, mark: "c" },
+  ]);
+  assert.equal(docs.length, 2);
+  assert.deepEqual(docs[0].passages.map((p) => p.n), ["S1", "S3"]);
+  assert.equal(docs[0].title, "Wikipedia — Nashville");
+  assert.equal(docs[0].domain, "en.wikipedia.org");
+  assert.deepEqual(docs[1].passages.map((p) => p.n), ["S2"]);
+  assert.deepEqual(sourceDocs(null), []);
+  assert.deepEqual(sourceDocs([{ n: "S1", ref: "local file", mark: "x" }])[0].url, null, "a local source has no link");
+});

@@ -28,8 +28,10 @@
 /** The turn at which a provisional title is replaced by the topical one. */
 export const TURNS_TO_NAME = 4;
 
-/** The icon when nothing matches — a conversation. */
-export const FALLBACK_ICON = "chat-circle";
+/** The icon when nothing matches, and for a chat with nothing said yet — a
+ *  conversation in progress. It is a real vendored Phosphor mark, so an empty
+ *  chat wears an icon too. */
+export const FALLBACK_ICON = "chat-circle-dots";
 
 const STOP = new Set((
   "the a an and or but if then than that this these those there here " +
@@ -166,7 +168,7 @@ export function userTurns(messages) {
 export const ICON_TERMS = Object.freeze({
   "scales": ["law", "legal", "court", "justice", "lawsuit", "litigation", "statute", "ordinance", "code", "appeal", "judge", "ruling", "attorney", "lawyer", "counsel", "constitutional", "rights", "trial"],
   "gavel": ["court", "judge", "ruling", "hearing", "verdict", "trial", "sentencing", "bench", "justice", "legal", "prosecution", "defendant"],
-  "book-open": ["book", "reading", "chapter", "novel", "literature", "author", "manuscript", "poem", "poetry", "essay", "prose", "text", "read"],
+  "book-open": ["book", "reading", "chapter", "novel", "literature", "author", "manuscript", "essay", "prose", "text", "read", "textbook", "fiction"],
   "books": ["library", "books", "archive", "collection", "shelf", "bibliography", "catalog", "reference"],
   "newspaper": ["news", "newspaper", "press", "journalism", "reporter", "headline", "media", "article", "editorial", "coverage"],
   "file-text": ["report", "document", "memo", "brief", "filing", "record", "form", "contract", "agreement", "policy", "minutes", "transcript", "draft", "summary"],
@@ -181,7 +183,7 @@ export const ICON_TERMS = Object.freeze({
   "chart-pie": ["share", "allocation", "proportion", "distribution", "budget", "breakdown", "percent"],
   "database": ["database", "dataset", "table", "schema", "query", "records", "data", "storage"],
   "bank": ["bank", "finance", "government", "treasury", "loan", "institution", "mortgage", "credit"],
-  "code": ["code", "programming", "function", "script", "software", "api", "javascript", "python", "typescript", "compile", "refactor", "repository"],
+  "code": ["code", "programming", "function", "script", "software", "api", "javascript", "python", "typescript", "compile", "refactor", "repository", "string", "array", "syntax"],
   "terminal": ["terminal", "shell", "command", "cli", "console", "bash", "script", "commandline"],
   "bug": ["bug", "error", "defect", "crash", "issue", "debugging", "fix", "broken", "failure"],
   "cpu": ["hardware", "processor", "chip", "computer", "system", "machine", "server", "memory"],
@@ -254,6 +256,72 @@ export const ICON_TERMS = Object.freeze({
   "fork-knife": ["food", "restaurant", "cooking", "meal", "recipe", "dining", "cuisine", "menu"],
   "magnifying-glass": ["search", "research", "find", "investigate", "look", "examine", "explore", "discover"],
   "detective": ["investigation", "detective", "mystery", "case", "evidence", "police", "inquiry", "forensic", "suspect"],
+  "map-trifold": ["map", "maps", "atlas", "geography", "region", "territory", "route", "directions", "navigate", "navigation", "cartography", "neighborhoods", "history", "historic", "historical", "heritage", "nashville", "tennessee", "state capital"],
+  "castle-turret": ["castle", "medieval", "fortress", "kingdom", "knight", "middle ages", "palace", "feudal", "landmark", "landmarks", "monument", "monuments", "tower", "eiffel", "memorial", "statue", "museum", "architecture"],
+  "church": ["church", "religion", "religious", "faith", "worship", "cathedral", "bible", "christian", "prayer", "theology", "spiritual"],
+  "bridge": ["bridge", "bridges", "span", "viaduct", "overpass"],
+  "scroll": ["scroll", "papyrus", "parchment", "antiquity", "archaeology", "manuscripts", "classical", "greek", "roman", "rome", "ancient", "century", "founded", "civilization", "empire", "colonial", "civil war", "revolution"],
+  "hourglass": ["hourglass", "patience", "waiting", "eventually", "lifespan", "aging"],
+  "compass": ["compass", "direction", "explore", "exploration", "adventure", "bearing", "orienteering"],
+  "globe-hemisphere-west": ["america", "american", "continent", "hemisphere", "atlantic", "usa", "united states", "north america"],
+  "mountains": ["mountain", "mountains", "hiking", "hike", "trail", "summit", "peak", "climbing", "alps", "everest"],
+  "lighthouse": ["lighthouse", "coast", "coastal", "shore", "maritime", "harbor", "beacon"],
+  "feather": ["poem", "poems", "poetry", "poet", "verse", "stanza", "haiku", "sonnet", "rhyme", "limerick", "lyrical", "ode", "ballad"],
+  "notebook": ["notebook", "journal", "diary", "jot", "study guide", "notes", "outline", "class notes"],
+  "book-bookmark": ["bookmark", "reading list", "bestseller", "paperback", "library book", "storybook", "story", "stories", "fable", "tale"],
+  "quotes": ["quote", "quotes", "quotation", "citation", "saying", "proverb", "excerpt", "epigraph"],
+  "translate": ["translate", "translation", "language", "spanish", "french", "german", "japanese", "chinese", "grammar", "vocabulary", "linguistics", "bilingual"],
+  "terminal-window": ["linux", "unix", "ssh", "zsh", "npm", "docker", "install", "shell script", "devops"],
+  "brackets-curly": ["json", "yaml", "regex", "html", "css", "frontend", "web development", "react", "node"],
+  "git-branch": ["git", "branch", "commit", "merge", "pull request", "github", "version control", "rebase"],
+  "laptop": ["laptop", "computer", "windows", "macbook", "software", "app", "tech", "device", "install"],
+  "function": ["functions", "variables", "recursion", "algorithm", "lambda", "parameter", "return", "callback", "closure"],
+  "calculator": ["calculate", "calculation", "arithmetic", "sum", "multiply", "divide", "percent", "interest", "compute"],
+  "math-operations": ["math", "mathematics", "algebra", "equation", "geometry", "calculus", "theorem", "proof", "trigonometry", "integral", "derivative", "probability"],
+  "test-tube": ["chemistry", "reaction", "compound", "molecule", "acid", "titration", "solution", "periodic table", "element"],
+  "heartbeat": ["cardio", "cardiac", "cardiology", "heart rate", "blood pressure", "cholesterol", "heart attack", "ecg"],
+  "tooth": ["dentist", "dental", "teeth", "tooth", "cavity", "orthodontist", "braces", "gums"],
+  "virus": ["virus", "viral", "infection", "flu", "covid", "pandemic", "vaccine", "pathogen", "bacteria", "disease", "immune"],
+  "syringe": ["vaccine", "vaccination", "injection", "shot", "needle", "booster", "immunization", "blood test"],
+  "barbell": ["gym", "workout", "fitness", "exercise", "lifting", "strength", "training", "muscle", "weights", "bodybuilding"],
+  "piggy-bank": ["savings", "saving", "save", "retirement", "pension", "frugal", "emergency fund", "401k", "invest", "investing"],
+  "wallet": ["wallet", "spending", "expenses", "debit", "personal finance", "allowance", "afford"],
+  "coins": ["coins", "coin", "change", "currency", "penny", "numismatic", "crypto", "bitcoin", "token"],
+  "trend-up": ["stocks", "stock", "market", "invest", "returns", "bull", "rally", "earnings", "shares", "portfolio", "dividend"],
+  "guitar": ["guitar", "chords", "rock", "bass", "acoustic", "strumming", "fretboard", "blues", "country music"],
+  "piano-keys": ["piano", "keyboard", "keys", "sheet music", "scales", "classical music", "composer", "sonata", "orchestra", "symphony", "jazz"],
+  "vinyl-record": ["vinyl", "record", "records", "album", "albums", "discography", "turntable", "dj", "hip hop", "playlist"],
+  "microphone-stage": ["singer", "concert", "karaoke", "performance", "stage", "live music", "sing", "singing", "rapper", "stand-up", "comedy"],
+  "music-note": ["note", "melody", "tune", "chorus", "harmony", "rhythm", "songwriting", "lyrics"],
+  "tent": ["camping", "camp", "campsite", "tent", "backpacking", "outdoors", "wilderness", "campfire"],
+  "sailboat": ["sailing", "sail", "boat", "yacht", "cruise", "ocean", "sea", "marina", "kayak", "canoe"],
+  "bicycle": ["bike", "bicycle", "cycling", "biking", "cyclist", "pedal", "tour de france", "bike lane"],
+  "airplane-takeoff": ["itinerary", "layover", "boarding", "vacation", "getaway", "tickets", "visa", "passport", "destination", "tourist", "sightseeing"],
+  "coffee": ["coffee", "espresso", "latte", "cafe", "caffeine", "tea", "barista", "brew", "breakfast"],
+  "pizza": ["pizza", "pasta", "italian", "pepperoni", "slice", "dough", "takeout"],
+  "hamburger": ["burger", "fast food", "fries", "sandwich", "grill", "barbecue", "bbq", "hot dog"],
+  "carrot": ["vegetable", "vegetables", "vegan", "vegetarian", "garden", "gardening", "produce", "salad", "diet", "nutrition", "organic"],
+  "cooking-pot": ["soup", "stew", "boil", "simmer", "ingredients", "bake", "baking", "roast", "saute", "sauce", "kitchen", "chef", "cookbook"],
+  "cloud": ["cloud", "cloudy", "overcast", "cloud computing", "aws", "azure", "saas", "hosting", "cloud storage"],
+  "sun": ["sun", "sunny", "sunshine", "solar", "summer", "sunrise", "sunset", "uv", "sunburn", "heat wave", "solstice"],
+  "cloud-sun": ["weather", "forecast", "partly cloudy", "temperature", "meteorology", "outlook", "today's weather", "mild"],
+  "cloud-rain": ["rain", "rainy", "storm", "drizzle", "showers", "thunderstorm", "monsoon", "precipitation", "downpour"],
+  "snowflake": ["snow", "snowy", "winter", "blizzard", "ice", "frost", "freezing", "skiing", "snowfall", "cold"],
+  "thermometer": ["temperature", "fever", "degrees", "celsius", "fahrenheit", "thermostat", "hot", "heat"],
+  "umbrella": ["umbrella", "insurance", "coverage", "rainy day", "protection plan", "premium", "deductible"],
+  "wind": ["wind", "windy", "breeze", "gust", "hurricane", "tornado", "turbine", "air quality"],
+  "moon": ["moon", "lunar", "night", "sleep", "eclipse", "midnight", "bedtime", "insomnia", "dream", "dreams", "twilight"],
+  "paw-print": ["pet", "pets", "animal", "animals", "veterinary", "vet", "puppy", "kitten", "adopt", "shelter", "zoo"],
+  "cat": ["cat", "cats", "kitten", "feline", "meow", "litter"],
+  "dog": ["dog", "dogs", "puppy", "canine", "leash", "breed", "barking", "walkies"],
+  "fish": ["fish", "fishing", "aquarium", "salmon", "seafood", "angler", "trout", "tuna"],
+  "butterfly": ["butterfly", "butterflies", "insect", "insects", "pollinator", "moth", "caterpillar", "metamorphosis"],
+  "bird": ["bird", "birds", "birding", "owl", "eagle", "songbird", "migration", "robin", "sparrow", "ornithology"],
+  "horse": ["horse", "horses", "equestrian", "riding", "stable", "pony", "derby", "cowboy", "ranch"],
+  "flower": ["flower", "flowers", "bouquet", "blossom", "bloom", "garden", "petal", "rose", "tulip", "spring", "floral", "wedding"],
+  "football": ["football", "nfl", "quarterback", "touchdown", "super bowl", "rugby", "college football"],
+  "basketball": ["basketball", "nba", "dunk", "hoops", "court", "playoffs", "march madness"],
+  "trophy": ["trophy", "champion", "championship", "winner", "tournament", "award", "medal", "olympics", "league", "competition"],
 });
 
 /** Every icon's terms as one vocabulary, for the cosine projection. */

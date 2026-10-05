@@ -30,8 +30,8 @@ straight at the one process that already routes the whole Fold's models:
 ## One thread, one project, two engagements
 
 Chat and Agent are **sibling engagements over a shared session**, not one app
-embedded inside another (the Claude / Claude-Code shape). The topbar selector
-switches what a turn *does*; it never changes the thread, the store, or the
+embedded inside another (the Claude / Claude-Code shape). The **mode** row of the composer's
+"this turn" chip switches what a turn *does*; it never changes the thread, the store, or the
 project:
 
 - **Chat** answers from the routed models (`/v1/chat/completions`).
@@ -100,8 +100,48 @@ This is the part wired into heimdall's secure-outside-model work:
 - `fold-chat-icons.js` — a curated subset of Phosphor (MIT), GENERATED from the
   SVGs under `vendor/phosphor/regular` by `scripts/gen-phosphor-icons.mjs`, so
   the surface ships its icons locally and reaches no CDN.
+- `fold-chat-channels.js` — one message, separate channels: `content` is only what
+  the model wrote; the gap is `record.void` (structured — `voidReport`, drawn as its
+  own block, `voidText` only for the process panel); system notes ride
+  `message.notices`. Also the one-time migration of old sessions and `modelHistory`,
+  the only path from the transcript back to the model. Pure and node-testable.
 - `fold-chat-client.test.mjs` — fake-bridge tests (sealed gate, SSE streaming,
   code lane carries the folder, meter). Run: `node --test`.
+
+## The turn chip: mode and effort, per message
+
+One chip in the composer (a lock, then `Chat · Balanced` or `Agent`) says what the
+*next* message will be. Its menu has a **mode** row (Chat / Agent) and, in Chat, an
+**effort** row (Fast / Balanced / Deep). The effort value is read once, when the
+message is sent,
+and stamped on that turn (the ask's `effort`, the record's `effort`, and an
+`effort · …` step in the turn's process line) — moving the chip never changes a
+turn already sent, or one still running. The chip remembers its last value
+(`fold-chat:effort`). Edit / continue / run-as / build-this re-runs reuse the
+effort the original turn had, unless the chip was moved since the last send. The
+menu has no effort row in the Agent engagement (effort only shapes a grounded
+turn). There is no web-search switch: every turn except a greeting searches the
+web. The lock is the sealed-external state — every request carries it.
+
+## What an answer shows at rest
+
+Under an answer, at most two quiet lines: **`3 passages from 1 source · ✱ 3 of 6
+sentences have no source`** (opens to the documents read, their numbered passages,
+and the gap's detail) and **`how this was answered · effort deep · gemma2:2b`**
+(opens to the process steps). Message actions (copy, retry, ⋯) appear on hover or
+focus, and on touch for the last message (tap any message to reveal its own).
+
+## Develop and test
+
+```
+node --test                                   # unit tests, no install needed
+npm i && npx playwright install chromium      # once, for the live e2e
+node fold-e2e-falsify.mjs                     # drives the live page (see its header)
+```
+
+The e2e needs the live stack (this page on :8814, the heimdall bridge on :8790).
+It tries `import("playwright")` first and falls back to a scratch install at
+`/private/tmp/fold-e2e/node_modules/playwright`.
 
 ## Roadmap (the LibreChat features, Fold-native)
 

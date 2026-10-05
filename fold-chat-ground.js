@@ -408,3 +408,16 @@ export function foldLine(question, answer) {
   const clip = s.replace(/\s+/g, " ").trim().slice(0, 160);
   return clip ? (clip.length < s.length ? clip + "…" : clip) : "";
 }
+
+/** The sources of a facing page, grouped by DOCUMENT in first-seen order. One
+ *  document read once supplies several passages (S1, S2, S3 …); the surface lists
+ *  the document once with its passages under it. A passage keeps its own S# tag. */
+export function sourceDocs(sources) {
+  const m = new Map();
+  for (const src of Array.isArray(sources) ? sources : []) {
+    const key = src.url || src.source || src.label || src.ref || src.n;
+    if (!m.has(key)) m.set(key, { title: src.label || src.ref || "source", domain: src.domain || "", url: src.url || null, passages: [] });
+    m.get(key).passages.push(src);
+  }
+  return [...m.values()];
+}

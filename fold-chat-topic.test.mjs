@@ -102,3 +102,47 @@ test("salient terms rank the recurring subject above one-off words", () => {
   const terms = salientTerms(POLICE, 5).map((t) => t.term);
   assert.ok(terms.some((t) => /audit|police|department/.test(t)), terms.join(","));
 });
+
+test("an empty chat wears a neutral conversation mark, not nothing", () => {
+  assert.equal(FALLBACK_ICON, "chat-circle-dots");
+  assert.equal(iconOf([]), "chat-circle-dots");
+  assert.ok(new Set(PHOSPHOR_NAMES).has("chat-circle-dots"));
+});
+
+test("a single opening turn already earns a provisional, fitting icon", () => {
+  const one = (t) => iconOf(mk([["user", t]]));
+  assert.equal(one("write a short poem about autumn"), "feather");
+  assert.equal(one("how do I reverse a string in python"), "code");
+  assert.equal(one("how tall is the Eiffel Tower"), "castle-turret");
+});
+
+test("history and places land on a landmark or map mark", () => {
+  const icon = iconOf(mk([
+    ["user", "tell me about the history of Nashville"],
+    ["assistant", "Nashville was founded in 1779 on the Cumberland River; its historic landmarks include the Parthenon."],
+  ]));
+  assert.ok(["map-trifold", "castle-turret", "scroll"].includes(icon), icon);
+});
+
+test("common subjects each find their own mark", () => {
+  const one = (t) => iconOf(mk([["user", t]]));
+  const picks = {
+    "what is the weather forecast for tomorrow": "cloud-sun",
+    "give me a recipe for tomato soup": "fork-knife",
+    "how should I save for retirement": "piggy-bank",
+    "plan my vacation itinerary and passport": "airplane-takeoff",
+    "what is the best chord progression on guitar": "guitar",
+    "explain the algebra equation": "math-operations",
+    "my dog keeps barking at the leash": "dog",
+    "best workout to build muscle at the gym": "barbell",
+  };
+  for (const [text, want] of Object.entries(picks)) assert.equal(one(text), want, text);
+});
+
+test("every vendored lexicon icon is reachable, and new subjects add distinct marks", () => {
+  const known = new Set(PHOSPHOR_NAMES);
+  for (const name of ["feather", "castle-turret", "map-trifold", "cloud-sun", "piggy-bank", "guitar", "paw-print", "chat-circle-dots"]) {
+    assert.ok(known.has(name), name);
+  }
+  for (const name of ["feather", "castle-turret", "map-trifold", "cloud-sun", "piggy-bank", "guitar", "paw-print"]) assert.ok(ICON_TERMS[name], name);
+});

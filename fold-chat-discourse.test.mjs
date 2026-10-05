@@ -4,7 +4,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyTurn, checkable, wantsWeb, GENERATE_NUDGE, generationArtifact } from "./fold-chat-discourse.js";
+import { classifyTurn, checkable, recordable, wantsWeb, GENERATE_NUDGE, generationArtifact } from "./fold-chat-discourse.js";
 
 test("greetings classify as smalltalk", () => {
   for (const q of ["hi", "hey", "Hello", "good morning", "how are you", "thanks!", "bye"]) {
@@ -58,10 +58,19 @@ test("the continuation rule is narrow — real questions stay research", () => {
 });
 
 test("every turn but a greeting carries a grounding record (always grounded)", () => {
+  assert.equal(recordable("research"), true);
+  assert.equal(recordable("chat"), true);
+  assert.equal(recordable("generate"), true, "a writing request grounds too — it writes from what it read");
+  assert.equal(recordable("smalltalk"), false, "a greeting is not a claim");
+});
+
+test("only turns with CLAIMS are checked — a poem or essay has none (no void, no unsourced marks)", () => {
   assert.equal(checkable("research"), true);
   assert.equal(checkable("chat"), true);
-  assert.equal(checkable("generate"), true, "a writing request grounds too — it writes from what it read");
-  assert.equal(checkable("smalltalk"), false, "a greeting is not a claim");
+  assert.equal(checkable("generate"), false, "a writing request has no claim to score, however it was searched");
+  assert.equal(checkable("smalltalk"), false);
+  assert.equal(classifyTurn("write a short poem about autumn in Nashville"), "generate");
+  assert.equal(checkable(classifyTurn("write a short poem about autumn in Nashville")), false);
 });
 
 test("web search runs only for a research turn with web on", () => {

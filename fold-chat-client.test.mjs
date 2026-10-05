@@ -3,7 +3,7 @@
 // network.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus, detectBridge, setProviderKey, listProviderKeys } from "./fold-chat-client.js";
+import { remoteCandidates, remoteCode, listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus, detectBridge, setProviderKey, listProviderKeys } from "./fold-chat-client.js";
 
 /** A fake heimdall bridge over the OpenAI/extra routes. */
 function fakeBridge({ models = [], meterBody = null, chatChunks = null, chatStatus = 200, chatError = null } = {}) {
@@ -234,4 +234,57 @@ test("extractVerification lifts a labeled fenced test off a code turn", async ()
   assert.equal(none, null);
   const post = extractVerification("write a function\n```js\nif(!ok) throw new Error('x');\n```\nverify");
   assert.ok(post && /throw new Error/.test(post.test), "trailing verify label is extracted");
+});
+
+
+// ───────────────────────── sealed remote escalation ─────────────────────────
+
+const M = (id, sealed = true) => ({ id, sealed });
+
+test("remoteCandidates ranks the measured-fast sealed models first and drops what cannot write code", () => {
+  const ids = remoteCandidates([
+    M("gemma2:2b", false), M("Voxtral-Small-24B-2507"), M("llm7:openai-fast"), M("L3-8B-Lunaris-v1-Turbo"),
+    M("DeepSeek-V4.1-Flash"), M("GLM-5.3-Flash"), M("pollinations:openai-fast"), M("openai-fast"), M("Inkling"),
+  ]);
+  assert.deepEqual(ids.slice(0, 3), ["openai-fast", "GLM-5.3-Flash", "pollinations:openai-fast"]);
+  assert.ok(ids.includes("DeepSeek-V4.1-Flash") && ids.includes("Inkling"), "unranked frontier models stay as last resorts");
+  for (const bad of ["gemma2:2b", "Voxtral-Small-24B-2507", "llm7:openai-fast", "L3-8B-Lunaris-v1-Turbo"]) assert.ok(!ids.includes(bad), bad + " is never a code writer");
+  assert.deepEqual(remoteCandidates([]), []);
+  assert.deepEqual(remoteCandidates([M("local:x", false)]), [], "an unsealed model is never an escalation target");
+});
+
+/** A fake bridge whose chat answers per model: a string, or an Error to refuse. */
+function remoteBridge(byModel, seen = []) {
+  return async (url, opts) => {
+    const body = JSON.parse(opts.body);
+    seen.push(body);
+    const a = byModel[body.model];
+    if (a instanceof Error) return { ok: false, status: 502, json: async () => ({}) };
+    const data = "data: " + JSON.stringify({ choices: [{ delta: { content: a ?? "" } }] }) + "\n\ndata: [DONE]\n\n";
+    return { ok: true, status: 200, body: new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode(data)); c.close(); } }) };
+  };
+}
+
+test("remoteCode goes out SEALED, carries only the task and the prior code, and keeps the first model that answers", async () => {
+  const seen = [], tries = [];
+  const out = await remoteCode("make a timer", { candidates: ["dead-model", "openai-fast", "glm"], prior: "<b>old</b>", fetchImpl: remoteBridge({ "dead-model": new Error("x"), "openai-fast": "```html\n<p>new</p>\n```" }, seen), onTry: (m) => tries.push(m) });
+  assert.equal(out.model, "openai-fast");
+  assert.deepEqual(tries, ["dead-model", "openai-fast"], "stops at the first answer");
+  assert.equal(out.tried[0].model, "dead-model");
+  for (const b of seen) assert.equal(b.heimdall_privacy, "sealed-external", "every outside request is sealed");
+  const msgs = seen[1].messages.map((m) => m.content).join("\n");
+  assert.match(msgs, /previous attempt[\s\S]*<b>old<\/b>/);
+  assert.match(msgs, /make a timer/);
+});
+
+test("remoteCode: when no sealed model answers it says which were tried and why", async () => {
+  await assert.rejects(
+    remoteCode("t", { candidates: ["a", "b"], fetchImpl: remoteBridge({ a: new Error("x"), b: "" }) }),
+    (e) => e.status === 502 && /no sealed remote model answered/.test(e.message) && e.tried.length === 2,
+  );
+});
+
+test("remoteCode honors Stop between models", async () => {
+  const ac = new AbortController(); ac.abort();
+  await assert.rejects(remoteCode("t", { candidates: ["a"], signal: ac.signal, fetchImpl: remoteBridge({ a: "x" }) }), (e) => e.name === "AbortError");
 });
