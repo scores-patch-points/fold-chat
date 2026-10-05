@@ -332,3 +332,35 @@ Verdict by the standard written down first: **D1 and D4 fail, so v4's non-Englis
 2. A second sense (Sullivan): check the agreed term against a **fetched page** only for the one best card, not three — one
    confirming read instead of three.
 3. Commit `pos-cmn-hans`, a German and a Japanese UD prior in the khora, then re-run D1 unchanged.
+
+---
+
+### v4b — the same rule with the three missing priors (a second look, stated as one). Frozen BEFORE it was run
+
+The khora language session confirmed the gaps and offered the priors from their **working tree** (uncommitted, mid-experiment):
+`pos-cmn-hans` (UD_Chinese-GSDSimp), `pos-deu` (UD_German-GSD), `pos-jpn` (UD_Japanese-GSD, the UD one). Closed-class lists built with
+the same script and the same ≥ 50% / ≥ 5 tokens definition: zh-Hans 364 words, de 265, ja 150.
+
+**Honesty about what this is:** v4 itself is unchanged — same code, same parameters. Only the *lists* change, and they come from UD
+training data unrelated to these questions. But it runs on the **same 48 SERPs** whose v4 outcome I have already seen, so it is a
+second look, not a fresh test, and it **cannot be used to adopt anything on its own**. The lists are uncommitted in another session's
+tree, so **nothing from this run ships**; it tells us whether the committed priors are worth waiting for.
+
+- **E1** all six languages at k = 0 (zh uses the Simplified list): precision ≥ 90% **and** coverage ≥ 25% over the 36 answerable
+- **E2** same: at most 1 of the 12 controls fires
+- **E3** all six at k = 3 (three other same-language SERPs as background): precision ≥ 90%, coverage ≥ 25%, ≤ 1 of 12 controls
+
+### Outcome of v4b (run once; a second look at the same SERPs, lists from the khora working tree — nothing ships)
+
+| criterion | result | |
+|---|---|---|
+| **E1** six languages, k = 0: precision ≥ 90% and coverage ≥ 25% | precision **7/7**, coverage **7/36 = 19.4%** (es 2, fr 2, de 1, ja 0, ru 1, zh 1) | fail |
+| **E2** ≤ 1 of 12 controls | **0 / 12** | pass |
+| **E3** six languages, k = 3: precision ≥ 90%, coverage ≥ 25%, ≤ 1 of 12 controls | precision **15/15**, coverage **41.7%**, controls **2 / 12** (the same two: `frc1`→"romulus", `zhc2`→"传说") | fail |
+
+The new priors help where they apply — Simplified Chinese now fires 1/6 (was 0/6), German fires 1/6 and no longer merely abstains — and
+the rule stayed perfectly precise (22/22 firings across v4 and v4b right, 0/12 controls at k = 0). But at k = 0 it speaks about one
+time in five, and at k = 3 the same two no-answer questions still fire. **Better lists do not fix either problem**: coverage is
+limited by the strictness that keeps it safe, and the control failures are about topics that have *cards* but no *answer*. Further
+tuning against these 48 SERPs would be fitting to them. The archon route is exhausted for this decision rule; the open question is
+the shape of the decision, not its inputs.
