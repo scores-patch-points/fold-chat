@@ -35,7 +35,7 @@ export function selfAsk(question) {
   return SELF_PATTERNS.some((re) => re.test(q));
 }
 
-export const SELF_LINE = "I'm the fold, a reading and research tool. When you ask me something, I look it up, read what I find, and show you what the sources say, with where each part came from. I don't answer from memory. A small language model helps put things into words, but before you see a sentence I check it against the sources and drop whatever I can't trace. If I can't find an answer, I'll say that instead of guessing.";
+export const SELF_LINE = "I'm the fold, a reading and research tool. When you ask me something, I look it up, read what I find, and show you what the sources say, with where each part came from. I don't answer from memory. A small language model helps put things into words, but before you see a sentence I check it against the sources: a name or a figure no source gives, I leave out, and wording I can't trace to a source is marked as unsourced. If I can't find an answer, I'll say that instead of guessing.";
 
 export const NO_LOOKUP_LINE = "There's nothing in that for me to look up. Ask me about a person, place, event or fact, or give me something to read, and I'll show you what the sources say.";
 

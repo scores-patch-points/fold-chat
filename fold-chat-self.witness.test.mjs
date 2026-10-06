@@ -9,9 +9,12 @@ import { pivotText, verifyPivot } from "./fold-chat-pivot.js";
 // each claim: the words in SELF_LINE, and the thing that must be true for them to stand
 const CLAIMS = [
   { says: /don't answer from memory/i, witness: "the model is barred from speaking alone", holds: () => ALONE_KINDS.length === 0 && !modelSpeaksAlone("research") },
-  { says: /check it against the sources and drop/i, witness: "the Pivot withholds a sentence whose FIGURE no source gives (a HARD failure); see the todo below for unbacked wording", holds: () => {
+  { says: /a name or a figure no source gives, I leave out/i, witness: "the Pivot withholds a sentence whose FIGURE no source gives (a HARD failure, withheld in the default mode too)", holds: () => {
       const pv = pivotText({ draft: "The tower is in Paris. It attracts 7 million visitors a year.", ask: "where is the tower", material: [{ ref: "p", text: "The tower is in Paris, France." }], kind: "research", requireGrounding: true });
       return typeof verifyPivot === "function" && !/7 million/.test(String(pv?.text ?? "")); } },
+  { says: /wording I can't trace to a source is marked as unsourced/i, witness: "by default (SOFT_WHY, `strict` off) a sentence the pages don't back is SPOKEN and counted as unsourced, which the record draws as the ✱ mark", holds: () => {
+      const pv = pivotText({ draft: "The tower is in Paris. Many people consider it romantic.", ask: "where is the tower", material: [{ ref: "p", text: "The tower is in Paris, France." }], kind: "research", requireGrounding: true });
+      return /romantic/.test(String(pv?.text ?? "")) && pv.stats.unsourced === 1; } },
   { says: /I'll say that instead of guessing/i, witness: "the empty-sources path has an app-authored line (fold-chat-gaps.js)", holds: () => typeof modelSpeaksAlone === "function" },
 ];
 
@@ -30,10 +33,9 @@ test("the guard bites: if the model could speak alone, the 'from memory' claim w
 
 test("the fold's self-ask is recognised", () => { assert.equal(selfAsk("who are you?"), true); });
 
-// FOUND BY THIS TEST (2026-10-06): the line says the fold drops "whatever I can't trace", but by default (fold-chat-pivot.js SOFT_WHY, `strict` off) a
-// sentence whose only failure is that the pages don't back its WORDING is SPOKEN and marked ✱ unsourced, not dropped. A sentence with an untraceable
-// figure or name is withheld; a name-free one that merely isn't backed is shown with a mark. SELF_LINE is the author's to edit; until it is, this stays visible.
-test("SELF_LINE says it drops what it can't trace; by default unbacked wording is shown marked, not dropped", { todo: "SELF_LINE overclaims for SOFT_WHY sentences (spoken + ✱). Edit the line or turn strict on." }, () => {
-  const pv = pivotText({ draft: "The tower is in Paris. Many people consider it romantic.", ask: "where is the tower", material: [{ ref: "p", text: "The tower is in Paris, France." }], kind: "research", requireGrounding: true });
-  assert.ok(!/romantic/.test(String(pv?.text ?? "")), "an untraceable sentence is dropped");
+// FOUND BY THIS TEST (2026-10-06) and FIXED the same day: the line used to say the fold drops "whatever I can't trace", but by default a sentence whose
+// only failure is that the pages don't back its WORDING is spoken and marked unsourced. The line now says what the code does, and each half is witnessed above.
+test("SELF_LINE no longer claims it drops everything it can't trace", () => {
+  assert.ok(!/drop whatever I can't trace/i.test(SELF_LINE));
+  assert.match(SELF_LINE, /marked as unsourced/);
 });
