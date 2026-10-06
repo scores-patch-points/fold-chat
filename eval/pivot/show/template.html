@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Pivot — what is spoken</title>
+<style>
+:root{--bg:#faf9f5;--card:#fff;--ink:#1f1e1d;--mute:#6b6a67;--line:#e4e2da;--accent:#c96442;--ok:#2f7d55;--bad:#a8412f;--wash:#f3f1ea;--strike:#b5513a}
+@media (prefers-color-scheme:dark){:root{--bg:#1f1e1d;--card:#292826;--ink:#ece9e1;--mute:#a09d94;--line:#3a3835;--accent:#e08a66;--ok:#6fbf94;--bad:#e08a7a;--wash:#32302d;--strike:#e08a7a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 ui-sans-serif,system-ui,-apple-system,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 16px 80px}
+h1{font-size:22px;font-weight:500;margin:0 0 4px}.sub{color:var(--mute);font-size:14px;margin:0 0 20px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin:0 0 24px}
+.legend span b{font-weight:500}
+.turn{margin:0 0 36px}
+.ask{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:0 0 12px;max-width:85%;margin-left:auto}
+.tabs{display:flex;gap:6px;margin:0 0 8px;align-items:center;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:8px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+.tab[aria-pressed=true]{background:var(--card);color:var(--ink);border-color:var(--accent)}
+.meta{margin-left:auto;font-size:12px;color:var(--mute)}
+.bubble{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-family:ui-serif,Georgia,serif;font-size:16.5px;white-space:pre-wrap}
+.bubble.gap{font-family:ui-sans-serif,system-ui,sans-serif;color:var(--mute);font-style:italic}
+s.w{color:var(--strike);text-decoration-thickness:1.5px;opacity:.85}
+s.w + .why{display:inline-block;font:12px/1.2 ui-sans-serif,system-ui,sans-serif;background:var(--wash);color:var(--bad);border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin:0 4px;vertical-align:1px;text-decoration:none}
+.foot{font-size:12.5px;color:var(--mute);margin:8px 2px 0;display:flex;gap:12px;flex-wrap:wrap}
+.foot .src{color:var(--ok)}
+.empty{font-style:normal}
+</style></head>
+<body><main>
+<h1>The Pivot — what is spoken</h1>
+<p class="sub" id="sub"></p>
+<div class="legend"><span><b>Said</b> = the model's own words, as it wrote them</span><span><b>Spoken</b> = what the person sees, built only from the sentences that survived being read</span><span><s style="color:var(--strike)">struck</s> = withheld, with the reason beside it</span></div>
+<h2 style="font-size:16px;font-weight:500;margin:0 0 4px">Gate history after these 22 asks</h2>
+<p class="sub" style="margin-bottom:10px">A check that has never withheld anything is <b style="font-weight:500">unmeasured</b>, not passed (the fold's gate ledger). <b style="font-weight:500">pass</b> only means it has withheld something before.</p>
+<div id="gates" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px"></div>
+<div id="turns"></div>
+<script>
+const D=/*DATA*/null;
+document.getElementById('sub').textContent=`Real drafts from ${D.model}, read by fold-chat-pivot.js. Nothing below was edited by hand. ${D.cases.length} asks.`;
+const gb=document.getElementById('gates');
+for(const g of D.gates){const d=document.createElement('div');d.style.cssText='border:1px solid var(--line);border-radius:10px;padding:6px 12px;background:var(--card);font-size:13px';
+ const ok=g.verdict==='pass';d.innerHTML='<span style="font-weight:500">'+g.gate.replace(/_/g,' ')+'</span><br><span style="color:'+(ok?'var(--ok)':g.verdict==='fail'?'var(--bad)':'var(--mute)')+'">'+(ok?'pass · withheld '+g.rejected:g.verdict==='fail'?'fail':'unmeasured · never withheld anything')+'</span>';gb.append(d)}
+const root=document.getElementById('turns');
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+for(const c of D.cases){
+  const turn=el('section','turn');
+  turn.append(el('div','ask',c.ask));
+  const tabs=el('div','tabs');const b1=el('button','tab','Spoken');const b2=el('button','tab','Said (the model’s draft)');
+  b1.setAttribute('aria-pressed','true');b2.setAttribute('aria-pressed','false');
+  tabs.append(b1,b2,el('span','meta',c.gap?'nothing could be spoken':`${c.stats.kept} of ${c.stats.in} sentences spoken`));
+  const spoken=el('div','bubble'+(c.spoken?'':' gap'),c.spoken||'Nothing from the draft could be spoken, so nothing is shown. (A typed gap is drawn; the fold does not fill it.)');
+  const said=el('div','bubble');said.hidden=true;
+  for(const r of c.runs){ if(r.why){const s=el('s','w',r.t);said.append(s,el('span','why',r.why));} else said.append(document.createTextNode(r.t)); }
+  const show=(w)=>{spoken.hidden=w!==0;said.hidden=w!==1;b1.setAttribute('aria-pressed',w===0);b2.setAttribute('aria-pressed',w===1)};
+  b1.onclick=()=>show(0);b2.onclick=()=>show(1);
+  const foot=el('div','foot');
+  if(c.source){const a=el('span','src','Read: '+c.source.title+' (Wikipedia)');foot.append(a)}
+  foot.append(el('span','',c.standing||''));
+  if(c.edits.length)foot.append(el('span','','Tidied: '+c.edits.join(', ')));
+  turn.append(tabs,spoken,said,foot);root.append(turn);
+}
+</script></main></body></html>

@@ -19,6 +19,7 @@ import { runAnswerTurn, HANDOFF_WHY } from "./fold-chat-answerturn.js";
 import { functionWordsOf } from "./fold-chat-snippets.js";
 import { resolveTitlesWikipedia } from "./fold-chat-titles.js";
 import { wikiLead, referentPassages } from "./fold-chat-web.js";
+import { originateTurn, ORIGIN } from "./fold-chat-origin.js";
 
 /** Declared, not measured (Constitution II.11). Giver: the WIRE task of the answer-pipeline contract (2026-10-06). */
 export const WIRE = Object.freeze({
@@ -123,6 +124,16 @@ export async function runSlotTurn({ question, lang, webPassages, searchQ = null,
       now, deps,
     });
     if (turn && turn.aborted && box.timedOut() && !(signal && signal.aborted)) return { handoff: { kind: "too_slow", why: SLOW_WHY } };
+    // AN ENCYCLOPEDIA IS A POINTER, NEVER A CITATION (fold-chat-origin.js): a row found there is followed to the page its own reference
+    // names — read, checked to carry the claim, the path kept — before the card is drawn. Its own time box; past it, pointers.
+    if (endsTurn(turn)) {
+      const ob = boxed(signal, ORIGIN.turnBoxMs + 2000);
+      try {
+        const out = await originateTurn(turn, { passages: webPassages, fetchImpl: bound(fetchImpl, ob.signal), memo, signal: ob.signal, boxMs: ORIGIN.turnBoxMs });
+        if (signal && signal.aborted) return { aborted: true, answer: null, contest: [], gap: null, trace: [] };
+        return out;
+      } finally { ob.done(); }
+    }
     return turn;
   } catch (e) {
     // The pipeline reports its own failures as a handoff; anything that still escapes (a bad dep, a bug) is one too — a slot turn must

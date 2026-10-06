@@ -34,6 +34,7 @@
 // checked — that is the safe direction (we only ever REMOVE a named source).
 
 import { attribute, tokenize } from "./fold-chat-ground.js";
+import { isTertiary } from "./fold-chat-tertiary.js";
 
 const fold = (s) => String(s ?? "").normalize("NFKD").replace(/\p{M}+/gu, "").toLowerCase().replace(/\s+/g, " ").trim();
 const clean = (s) => fold(s).replace(/^the\s+/, "").replace(/[.,;:!?'’"“”]+$/g, "").trim();
@@ -65,6 +66,18 @@ export function stripScaffolding(text, sources = []) {
     if (!src || seen.has(n)) continue;
     seen.add(n);
     const ref = String(src.ref ?? "");
+    // a pointer (an encyclopedia page) is never the chip: the model's [W#] shows the original pages its references led to and were read, else the
+    // pages it only points at, each marked `pointer` (fold-chat-origin.js sets `origins` / `pointers` on the passage)
+    if (isTertiary(src.url || src.source)) {
+      const read = Array.isArray(src.origins) ? src.origins : [];
+      const list = read.length ? read.map((o) => ({ ...o, pointer: false })) : (Array.isArray(src.pointers) ? src.pointers : []).slice(0, 3).map((o) => ({ ...o, pointer: true }));
+      for (const o of list) {
+        if (!o || !/^https?:/i.test(String(o.url || ""))) continue;
+        let d = null; try { d = new URL(String(o.url)).hostname.replace(/^www\./, ""); } catch { /* not a url */ }
+        cited.push({ n: "W" + n, title: String(o.title || o.label || d || o.url), url: o.url, domain: d, ...(o.pointer ? { pointer: true } : {}) });
+      }
+      continue;
+    }
     const title = (ref.includes(" — ") ? ref.slice(ref.indexOf(" — ") + 3) : ref).trim();
     let domain = null;
     try { domain = new URL(String(src.url || src.source)).hostname.replace(/^www\./, ""); } catch { /* not a url */ }
@@ -94,6 +107,9 @@ export function sourceIdentities(sources = []) {
     const site = ref.includes(" — ") ? ref.slice(0, ref.indexOf(" — ")) : "";
     const title = ref.includes(" — ") ? ref.slice(ref.indexOf(" — ") + 3) : ref;
     const names = new Set();
+    // an encyclopedia is a pointer, never a source a model may name ("according to Wikipedia" is neutralised): its text still counts as
+    // material the claim may rest on, but it gives no name to attribute to (fold-chat-origin.js follows it to the pages it points at)
+    if (isTertiary(s.url || s.source)) return { i, names: [], material: { ref: s.ref, source: s.source || s.url, text: String(s.text ?? "") } };
     for (const piece of [site, title, ...String(title).split(/\s[-|–—·]\s|\s\|\s/)]) { const c = clean(piece); if (c.length >= 3) names.add(c); }
     for (const l of [...hostLabels(s.url), ...hostLabels(s.source)]) if (l.length >= 3) names.add(l);
     return { i, names: [...names], material: { ref: s.ref, source: s.source || s.url, text: String(s.text ?? "") } };

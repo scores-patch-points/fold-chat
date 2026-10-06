@@ -15,6 +15,8 @@ export const ANSWERCARD_CSS = `
 .answer-card .answer-quote mark { background: color-mix(in srgb, var(--ag, #0d7a70) 20%, transparent); color: inherit; font-weight: 600; border-radius: 3px; padding: 0 1px; }
 .answer-card .answer-cite { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: var(--fs-xs, 12px); color: var(--mut, #5f5f6b); min-width: 0; }
 .answer-card .answer-cite-title { overflow-wrap: anywhere; }
+.answer-card .answer-path, .answer-card .answer-pointers { flex-basis: 100%; overflow-wrap: anywhere; }
+.answer-card .answer-pointers a { margin-right: 8px; }
 .answer-card .answer-cite a { color: var(--ink2, #44444e); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line2, #cfcfd7); }
 .answer-card .answer-cite a:hover { color: var(--ink, #141416); text-decoration-color: currentColor; }
 .answer-card .answer-cite a:focus-visible, .answer-card .answer-trace > summary:focus-visible { outline: 2px solid var(--ag, #0d7a70); outline-offset: 2px; border-radius: 3px; }

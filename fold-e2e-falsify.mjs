@@ -264,8 +264,8 @@ await ask("When was the Office of the Keeper created? The Office of the Keeper w
     }
     return out;
   });
-  ok("a conversation at rest shows 12 or fewer visible controls (3 passages + a gap collapse to two lines; actions wait for hover)",
-    visible.length <= 12 && visible.includes("button.srcline") && visible.includes("button.disc-head"),
+  ok("a conversation at rest shows 12 or fewer visible controls (ONE explanation affordance per answer: the disc-head opens the facing page and the process together; the sources line is not shown; actions wait for hover)",
+    visible.length <= 12 && !visible.includes("button.srcline") && visible.includes("button.disc-head"),
     `${visible.length} controls: ${visible.join(" ")}`,
     "more than 12 controls are on screen at rest → the chrome has crept back");
   await ctx2.close();

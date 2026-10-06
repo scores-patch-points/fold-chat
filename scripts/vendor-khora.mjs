@@ -65,6 +65,19 @@ export const ENTRIES = [
   "the-fold/pathos-turn.js",
   // the keyless memory (THE-HOLOGRAPH §3): sdrOf, Field.recall, nullBand — the shadow and echo tiers
   "the-fold/relative.js",
+  // THE HOLOGRAPH'S READING SIDE (THE-HOLOGRAPH §6, §9): the address book projected from the constitutional reader's log, the three
+  // blocks (Atmosphere / Lens / Paradigm) with the shared cut and the address strike, and the carry recomputed at a cursor.
+  "the-fold/reading-log.js",
+  "the-fold/resolutions.js",
+  "the-fold/fold-at.js",
+  // THE FOLD AT AN ADDRESS (FoldRecord@1): the claim-store contract the chat, janus and penelope cross — fold-chat-record.js is its chat adapter.
+  "the-fold/fold-record.js",
+  // THE OTHER MIND (fold-chat-minds.js): who holds what, a reference resolved inside the holder that introduced it, the fold at any for-whom,
+  // a merge re-addressing what was said before it. (kernel/self.js is NOT vendored: under Node it imports canon-ground.mjs, which reads the canon off disk.) for-whom.js is pulled in by theory-of-mind.
+  "kernel/perspective.js",
+  "kernel/holder-scope.js",
+  "kernel/theory-of-mind.js",
+  "kernel/hindsight.js",
   // DOES A CITED SPAN STILL NAME ITS BYTES (span-drift.js): exact / shifted / moved / gone over `ref#start-end`, ambiguity said, never rewritten.
   // Pure; closes over record-log.js's resolveAddress. A pure function of its inputs, for the chat's citation check.
   "the-fold/span-drift.js",

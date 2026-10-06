@@ -1,0 +1,225 @@
+{
+ "model": "gemma2:2b",
+ "at": "2026-10-06T14:14:19.999Z",
+ "turns": [
+  {
+   "ask": "What is photosynthesis?",
+   "spoken": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the ... Chemical energy necessary to fuel their metabolism.",
+   "shown": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the ... Chemical energy necessary to fuel their metabolism.\n\n▸\n2 passages from 1 source\n▸\nhow this was answered\nAnswered in 14 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 2,
+     "kept": 2,
+     "dropped": 0
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0.58,
+      "mean": 16.5,
+      "blinks": 1,
+      "dense": 1,
+      "n": 2
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    },
+    "continued": 1
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Photosynthesis",
+    "en.wikipedia.org/wiki/Artificial_photosynthesis",
+    "en.wikipedia.org/wiki/Photosynthetic_efficiency",
+    "en.wikipedia.org/wiki/Photosynthesis_(disambiguation)",
+    "en.wikipedia.org/wiki/Anoxygenic_photosynthesis"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the",
+     "finish": "length"
+    },
+    {
+     "text": "... chemical energy necessary to fuel their metabolism. \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 2,
+   "authored": null
+  },
+  {
+   "ask": "Tell me about the Great Wall of China.",
+   "spoken": "",
+   "shown": "the model wrote no answer text — see the note below\nno sentence here is addressed to the material\nFOLD NOTE\nThe draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\n▸\nhow this was answered\nAnswered in 34 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 4,
+     "kept": 0,
+     "dropped": 4
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:terms",
+      "detail": "extensiv, system, ramp",
+      "text": "The Great Wall of China is an extensive fortification system of walls and ramps that stretches across northern China."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "network, fortification, singl",
+      "text": "It's actually a network of fortifications, not just one single wall, built and rebuilt over a long period of time for centuries."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Central Asia",
+      "text": "It was first constructed as a defense against invading nomads from Central Asia."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "evolv, time, different",
+      "text": "But it evolved over time, with different dynasties and rulers adding onto it to protect their borders and control trade routes."
+     }
+    ],
+    "gap": {
+     "kind": "nothing_survived",
+     "why": "every sentence of the draft was withheld"
+    },
+    "gates": {
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    },
+    "continued": 1
+   },
+   "notices": [
+    {
+     "kind": "fold",
+     "text": "The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Great_Wall_of_China",
+    "britannica.com/topic/Great-Wall-of-China",
+    "en.wikipedia.org/wiki/Great_Wall_Motor",
+    "en.wikipedia.org/wiki/The_Great_Wall_(2016_film)",
+    "en.wikipedia.org/wiki/History_of_the_Great_Wall_of_China"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "The Great Wall of China is an extensive fortification system of walls and ramps that stretches across northern China.  It's actually a network of fortifications, not just one single wall, built and rebuilt over",
+     "finish": "length"
+    },
+    {
+     "text": "a long period of time for centuries.  It was first constructed as a defense against invading nomads from Central Asia.  But it evolved over time, with different dynasties and rulers adding onto it to protect their borders and control trade routes. \n  \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 4,
+   "authored": null
+  },
+  {
+   "ask": "keep going",
+   "spoken": "",
+   "shown": "the model wrote no answer text — see the note below\nno sentence here is addressed to the material\nFOLD NOTE\nThe draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\n▸\nhow this was answered\nAnswered in 26 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 3,
+     "kept": 0,
+     "dropped": 3
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:terms",
+      "detail": "stretch, northern, build",
+      "text": "The Great Wall of China is a series of fortifications, stretching across northern China, that was built over centuries."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "testament, ambition, ingenuity",
+      "text": "It's a testament to human ambition and ingenuity, acting as a line of defense ..."
+     },
+     {
+      "why": "ungrounded:no-overlap",
+      "text": "against invaders."
+     }
+    ],
+    "gap": {
+     "kind": "nothing_survived",
+     "why": "every sentence of the draft was withheld"
+    },
+    "gates": {
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    },
+    "continued": 1
+   },
+   "notices": [
+    {
+     "kind": "fold",
+     "text": "The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Great_Wall_of_China",
+    "britannica.com/topic/Great-Wall-of-China",
+    "en.wikipedia.org/wiki/Great_Wall_Motor",
+    "en.wikipedia.org/wiki/The_Great_Wall_(2016_film)",
+    "en.wikipedia.org/wiki/History_of_the_Great_Wall_of_China"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "The Great Wall of China is a series of fortifications, stretching across northern China, that was built over centuries.  It's a testament to human ambition and ingenuity, acting as a line of defense",
+     "finish": "length"
+    },
+    {
+     "text": "... against invaders. \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 6,
+   "authored": null
+  }
+ ]
+}

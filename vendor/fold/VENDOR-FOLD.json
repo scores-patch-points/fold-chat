@@ -1,0 +1,10 @@
+{
+ "schema": "VendorFold@1",
+ "source": "../fold",
+ "commit": "a900f6e",
+ "note": "gate-history ledger (a900f6e) + gateVerdict; frozen copy",
+ "files": {
+  "server/gate-ledger.mjs": "44b26f2580afd7cea67a1b473d1934880dd98ea0a2d281c9c98407a559e1a0d4",
+  "server/reasoning-stages.mjs": "49825fb6f5037d08773a1ccf6344ff97f912e1a6828a3e1f5f4b04693e584ad1"
+ }
+}

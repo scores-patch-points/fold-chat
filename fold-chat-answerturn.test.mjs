@@ -80,7 +80,7 @@ test("A1 through the card: one answer line, the cite, the checks — a card mode
   const m = answerCardModel(turn);
   assert.equal(m.kind, "answer");
   assert.equal(m.headline.text, "Charles III is the king of the United Kingdom.");
-  assert.equal(m.cite.label, "Monarchy of the United Kingdom — Wikipedia");
+  assert.equal(m.cite.kind, "pointer", "the encyclopedia is a pointer, never the citation (fold-chat-origin.js)");
   assert.equal(m.quote.shownAsHeadline, false);
   assert.ok(m.checked.length);
   assert.ok(m.trace.length >= 5);
@@ -228,7 +228,7 @@ test("A7 spider legs → 'eight', built from the sentence's own words, with the 
   assert.equal(turn.slot, "quantity");
   const m = answerCardModel(turn);
   assert.equal(m.kind, "answer"); assert.equal(m.standing, "unmeasured");
-  assert.ok(m.cite && /Spider/.test(m.cite.label));
+  assert.ok(m.cite && m.cite.kind === "pointer" && /not cited/.test(m.cite.label));
   assert.ok(m.unmeasured.length, "the card says what it did not check");
   assertInvariant(turn.void);
 });

@@ -3,7 +3,7 @@
 // network.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { remoteCandidates, remoteCode, listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus, detectBridge, setProviderKey, listProviderKeys } from "./fold-chat-client.js";
+import { remoteCandidates, remoteCode, listModels, chat, meter, ledger, isSealed, tierOf, TIERS, code, codeStatus, detectBridge, setProviderKey, listProviderKeys, reloadProviderKeys } from "./fold-chat-client.js";
 
 /** A fake heimdall bridge over the OpenAI/extra routes. */
 function fakeBridge({ models = [], meterBody = null, chatChunks = null, chatStatus = 200, chatError = null } = {}) {
@@ -380,4 +380,51 @@ test("remoteCandidates: an alias of the same endpoint is tried once; dead models
   assert.equal(C.outcomeOfError(new Error("heimdall bridge answered 429: Daily token quota exceeded")), "quota");
   assert.equal(C.outcomeOfError(new Error("the turn timed out (60s)")), "timeout");
   C.resetModelHealth();
+});
+
+// ───────────── the embedded heimdall's key routes want its access cookie: a 401 links once and retries ─────────────
+const resp = (status, body = {}) => ({ ok: status >= 200 && status < 300, status, json: async () => body });
+function linkingFetch({ linkGivesCookie = true } = {}) {
+  const calls = []; let cookie = false;
+  const f = async (url, init = {}) => {
+    calls.push({ url: String(url), method: init.method || "GET", body: init.body || null, credentials: init.credentials || null });
+    if (/\/link\/$/.test(String(url))) { if (linkGivesCookie) cookie = true; return resp(200, {}); }
+    if (/\/api\/providers\/(keys|refresh)/.test(String(url))) return cookie ? resp(200, { ok: true, providers: [{ provider: "openrouter", masked: "sk-or…1234" }] }) : resp(401, { error: "this route needs the bridge's access token" });
+    return resp(404);
+  };
+  f.calls = calls; return f;
+}
+
+test("a 401 from the key route links ONCE (the bridge's own /link/ page) and retries; the key is never in the link request", async () => {
+  const f = linkingFetch();
+  const out = await setProviderKey("openrouter", "sk-or-SECRET-VALUE", { base: "/heimdall", fetchImpl: f });
+  assert.equal(out.ok, true);
+  assert.deepEqual(f.calls.map((c) => c.method + " " + c.url.replace(/^.*\/heimdall/, "")), ["POST /api/providers/keys", "GET /link/", "POST /api/providers/keys"]);
+  assert.equal(f.calls[1].credentials, "same-origin");
+  assert.equal(f.calls[1].body, null, "the link request carries nothing");
+  assert.ok(!f.calls[1].url.includes("SECRET"), "and the key is not in its URL");
+});
+
+test("a link that does not help is reported as 401 with linkTried, never retried forever and never as 'not answering'", async () => {
+  const f = linkingFetch({ linkGivesCookie: false });
+  await assert.rejects(() => setProviderKey("openrouter", "sk-or-x", { base: "/heimdall", fetchImpl: f }), (e) => e.status === 401 && e.linkTried === true);
+  assert.equal(f.calls.filter((c) => /\/link\/$/.test(c.url)).length, 1, "exactly one link attempt");
+  assert.equal(f.calls.filter((c) => c.method === "POST").length, 2, "exactly one retry");
+  await assert.rejects(() => listProviderKeys({ base: "/heimdall", fetchImpl: linkingFetch({ linkGivesCookie: false }) }), (e) => e.status === 401 && e.linkTried === true);
+});
+
+test("only a 401 triggers the link: a 403 or a 500 is reported as itself with no link call; a working route is called once", async () => {
+  for (const status of [403, 500]) {
+    const calls = []; const f = async (u) => { calls.push(String(u)); return resp(status, { error: "no" }); };
+    await assert.rejects(() => setProviderKey("openrouter", "k", { base: "/heimdall", fetchImpl: f }), (e) => e.status === status && !e.linkTried);
+    assert.equal(calls.length, 1);
+  }
+  const ok = []; await listProviderKeys({ base: "/heimdall", fetchImpl: async (u) => { ok.push(String(u)); return resp(200, { providers: [] }); } });
+  assert.equal(ok.length, 1);
+});
+
+test("reloadProviderKeys links the same way", async () => {
+  const f = linkingFetch();
+  await reloadProviderKeys({ base: "/heimdall", fetchImpl: f });
+  assert.deepEqual(f.calls.map((c) => c.method + " " + c.url.replace(/^.*\/heimdall/, "")), ["POST /api/providers/refresh", "GET /link/", "POST /api/providers/refresh"]);
 });

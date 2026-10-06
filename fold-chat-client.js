@@ -368,7 +368,7 @@ async function chatPage(model, messages, { onToken, signal, temperature, maxToke
   if (meta.finish === "abort") throw fail(new PageEngineError("generate-failed", "the in-tab model was replaced mid-answer, so the answer is incomplete"));
   finishAudit({ ok: true, status: 200 });
   const used = eng.loadedId?.() || canon;
-  return { text, tokens, auditId, usage: { completion_tokens: tokens }, place: "tab", privacy: "in-tab", model: PAGE_PREFIX + used, fellBackFrom: used !== canon ? PAGE_PREFIX + canon : null };
+  return { text, tokens, auditId, finish: meta.finish ?? null, usage: { completion_tokens: tokens }, place: "tab", privacy: "in-tab", model: PAGE_PREFIX + used, fellBackFrom: used !== canon ? PAGE_PREFIX + canon : null };
 }
 
 /** One chat turn over the bridge. SSE streams tokens to onToken(text); the
@@ -475,6 +475,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
   let text = "";
   let tokens = 0;
   let usage = null;
+  let finish = null;   // the stream's own finish_reason ("stop" | "length" | …): a reply cut at the token limit must not pass for a finished one
   for (;;) {
     const { value, done } = await reader.read();
     if (done) break;
@@ -489,6 +490,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
       let j;
       try { j = JSON.parse(payload); } catch { continue; }
       if (j.usage) usage = j.usage;
+      if (j.choices?.[0]?.finish_reason) finish = j.choices[0].finish_reason;
       if (j.error) { const err = new Error(j.error?.message || "bridge stream error"); err.status = 502; finishAudit({ ok: false, error: err.message }); throw err; }
       const delta = j.choices?.[0]?.delta?.content;
       if (typeof delta === "string" && delta) {
@@ -499,7 +501,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
     }
   }
   finishAudit({ ok: true, status: res.status });
-  return { text, tokens, auditId, usage };
+  return { text, tokens, auditId, usage, finish };
 }
 
 /** The savings meter: exact external tokens, lane counts, and the marked
@@ -568,9 +570,23 @@ export async function race(messages, { privacy = null, models = null, n = 3, mod
 
 /** Which providers already have a key set on the machine (names only). */
 export async function listProviderKeys({ base = null, fetchImpl = fetch } = {}) {
-  const r = await fetchImpl(bridgeBase(base) + "/api/providers/keys", { cache: "no-store" });
-  if (!r.ok) throw new Error("heimdall bridge answered " + r.status);
+  const r = await linked(fetchImpl, base, () => fetchImpl(bridgeBase(base) + "/api/providers/keys", { cache: "no-store" }));
+  if (!r.ok) { const err = new Error("heimdall bridge answered " + r.status); err.status = r.status; if (r.linkTried) err.linkTried = true; throw err; }
   return r.json();
+}
+
+/** The embedded heimdall's key routes (and /bridge/*) want the bridge's access cookie, which heimdall's OWN page (/heimdall/link/) sets
+ *  (HttpOnly, SameSite=Strict, Path=/heimdall). The page and the bridge share one origin, so the page may ask for it — but only when a
+ *  route has just said 401, never on load, and only ONCE per call: `linked` runs `call`, and on a 401 fetches the link page and runs `call`
+ *  again. The retry's response carries `linkTried`; a link that did not help is reported as a 401, never as "not answering". Nothing
+ *  here reads, stores or logs the token (HttpOnly: the page cannot see it), and the key is never in the link request. */
+async function linked(fetchImpl, base, call) {
+  let r = await call();
+  if (r.status !== 401) return r;
+  try { await fetchImpl(bridgeBase(base) + "/link/", { cache: "no-store", credentials: "same-origin" }); } catch { /* the retry will say what happened */ }
+  r = await call();
+  try { r.linkTried = true; } catch { /* a frozen Response: the status still says it */ }
+  return r;
 }
 
 /** Store a provider API key (anthropic, openai, …) SERVER-SIDE on this machine.
@@ -578,15 +594,15 @@ export async function listProviderKeys({ base = null, fetchImpl = fetch } = {}) 
  *  state, and never echoed back — the page keeps nothing. `remove:true` clears
  *  it. Returns { ok, provider, stored, configured, frontierModels }. */
 export async function setProviderKey(provider, key, { base = null, remove = false, fetchImpl = fetch } = {}) {
-  const r = await fetchImpl(bridgeBase(base) + "/api/providers/keys", {
+  const r = await linked(fetchImpl, base, () => fetchImpl(bridgeBase(base) + "/api/providers/keys", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(remove ? { provider, remove: true } : { provider, key }),
-  });
+  }));
   if (!r.ok) {
     let msg = "heimdall refused the key";
     try { msg = (await r.json())?.error || msg; } catch {}
-    const err = new Error(msg); err.status = r.status; throw err;
+    const err = new Error(msg); err.status = r.status; if (r.linkTried) err.linkTried = true; throw err;
   }
   return r.json();
 }
@@ -612,8 +628,8 @@ export async function testProviderKey(provider, { base = null, fetchImpl = fetch
 /** Ask a running heimdall to load the keys it already holds (key-free). Resolves
  *  { ok, models } or rejects with status 404 when that heimdall is too old to know how. */
 export async function reloadProviderKeys({ base = null, fetchImpl = fetch } = {}) {
-  const r = await fetchImpl(bridgeBase(base) + "/api/providers/refresh", { method: "POST" });
-  if (!r.ok) { const err = new Error("heimdall could not reload its keys"); err.status = r.status; throw err; }
+  const r = await linked(fetchImpl, base, () => fetchImpl(bridgeBase(base) + "/api/providers/refresh", { method: "POST" }));
+  if (!r.ok) { const err = new Error("heimdall could not reload its keys"); err.status = r.status; if (r.linkTried) err.linkTried = true; throw err; }
   return r.json();
 }
 

@@ -62,7 +62,7 @@ export function nextAfterDelete(sessions, { id, filterProject = null, search = "
 /** A fresh, empty session. */
 export function blankSession({ id, now, model = "", sealed = false, project = null, projectObj = null, preset = "fold" } = {}) {
   const cwd = projectObj?.cwd || null;
-  return { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], grounding: true, effort: "balanced", model, sealed: !!sealed, project: project || null, preset: projectObj?.preset || preset, cwd, cwdFromProject: !!cwd, createdAt: now, updated: now };
+  return { id, title: "New chat", titleAuto: true, named: false, icon: null, messages: [], grounding: true, effort: "balanced", model, sealed: !!sealed, project: project || null, preset: projectObj?.preset || preset, cwd, cwdFromProject: !!cwd, createdAt: now, updated: now, minds: { ops: [] } };
 }
 
 /** "New chat", without piling up empties. When the open chat is already empty it

@@ -299,7 +299,7 @@ export function activated(question, record) {
  * The carry is APPENDED to the question as 'about: A; B' for the search, and `resolved`
  * is that string — the surface shows `carried` to the person; it never rewrites `said`.
  */
-export function resolveQuestion(question, record, { hints = null } = {}) {
+export function resolveQuestion(question, record, { hints = null, rejected = null } = {}) {
   const said = String(question ?? "").trim();
   const script = scriptOf(said), segs = segments(said, script);
   const base = { said, resolved: said, carried: [], script, segments: segs.length };
@@ -311,12 +311,17 @@ export function resolveQuestion(question, record, { hints = null } = {}) {
   const triggers = new Set([...forms(hints?.carryTriggers), ...forms(hints?.personalPronouns)]);
   const hit = segs.some((x) => triggers.has(fold(x.text)));
   if (!hit) return { ...base, reason: "no-trigger" };
+  // a referent the person has refused to have carried into this thread (fold-chat-minds.js rejectedSurfaces) is never carried again
+  const refused = new Set((Array.isArray(rejected) ? rejected : []).map((x) => fold(x).trim()));
+  const allowed = (e) => !refused.has(fold(e.surface).trim());
   let pool = [...record.entities];
   const personal = new Set(forms(hints?.personalPronouns));
   if (segs.some((x) => personal.has(fold(x.text)))) {
     const people = pool.filter((e) => personLike(e.surface, hints));
+    // "her" after "not her": the person was refused, so the pool is the people left, not the things (no fall-back to a non-person)
     if (people.length) pool = people;
   }
+  pool = pool.filter(allowed);
   pool.sort((x, y) => y.weight - x.weight);
   const carried = pool.slice(0, DECLARED.carryMax).map((e) => ({ surface: e.surface, by: "activation:last-answer+pronoun" }));
   if (!carried.length) return { ...base, reason: "nothing-to-carry" };

@@ -1,0 +1,292 @@
+{
+ "model": "gemma2:2b",
+ "at": "2026-10-06T14:12:44.905Z",
+ "turns": [
+  {
+   "ask": "How tall is the Eiffel Tower?",
+   "spoken": "The Eiffel Tower is 330 meters (1,083 ft) tall.",
+   "shown": "The Eiffel Tower is 330 meters (1,083 ft) tall.\n\n▸\n1 passage from 1 source\n▸\nhow this was answered\nAnswered in 16 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 1,
+     "kept": 1,
+     "dropped": 0
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 9,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Eiffel_Tower",
+    "worldatlas.com/articles/how-tall-is-the-eiffel-tower.html",
+    "britannica.com/topic/Eiffel-Tower-Paris-France",
+    "eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/",
+    "geographyworlds.com/blog/eiffel-tower-paris-landmark-guide/"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "The Eiffel Tower is 330 meters (1,083 ft) tall. \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 2,
+   "authored": null
+  },
+  {
+   "ask": "Who was Marie Curie?",
+   "spoken": "Marie Curie was a Polish-born French physicist and chemist.",
+   "shown": "Marie Curie was a Polish-born French physicist and chemist.\n\n▸\n1 passage from 1 source\n▸\nhow this was answered\nAnswered in 35 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 8,
+     "kept": 1,
+     "dropped": 7
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:terms",
+      "detail": "pioneer",
+      "text": "She was a pioneer in the field of radioactivity, along with her husband Pierre Curie."
+     },
+     {
+      "why": "label",
+      "text": "Here are some key facts about her:"
+     },
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "1903",
+      "text": "She was the only person to win Nobel Prizes in two different scientific fields (Physics in 1903 and Chemistry in 1911)."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "element, periodic, tabl",
+      "text": "She and Pierre Curie discovered polonium and radium, two new elements in the periodic table."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "revolutioniz, understand, application",
+      "text": "Marie Curie's work revolutionized our understanding of radioactivity and its applications in medicine."
+     },
+     {
+      "why": "ungrounded:no-overlap",
+      "text": "She is considered one of the most prominent female scientists of all time."
+     },
+     {
+      "why": "ungrounded:no-overlap",
+      "text": "Her story is inspiring, and she's a role model for many!"
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 9,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "label": "pass",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Marie_Curie",
+    "en.wikipedia.org/wiki/Marie_Curie_(charity)",
+    "britannica.com/biography/Marie-Curie",
+    "nobelprize.org/prizes/physics/1903/marie-curie/biographical/",
+    "nobelprize.org/stories/women-who-changed-science/marie-curie/"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "Marie Curie was a Polish-born French physicist and chemist. She was a pioneer in the field of radioactivity, along with her husband Pierre Curie.  \n\nHere are some key facts about her:\n\n* **Nobel Prizes:** She was the only person to win Nobel Prizes in two different scientific fields (Physics in 1903 and Chemistry in 1911). \n* **Discoveries:**  She and Pierre Curie  discovered polonium and radium, two new elements in the periodic table. \n* **Legacy:** Marie Curie's work revolutionized our understanding of radioactivity and its applications in medicine. She is considered one of the most prominent female scientists of all time. \n\nHer story is inspiring, and she's a role model for many! \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 4,
+   "authored": null
+  },
+  {
+   "ask": "What is photosynthesis?",
+   "spoken": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the chemical energy necessary to fuel their metabolism.",
+   "shown": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the chemical energy necessary to fuel their metabolism.\n\n▸\n1 passage from 1 source\n▸\nhow this was answered\nAnswered in 21 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 1,
+     "kept": 1,
+     "dropped": 0
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 32,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "label": "pass",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "britannica.com/science/photosynthesis",
+    "en.wikipedia.org/wiki/Photosynthesis",
+    "education.nationalgeographic.org/resource/photosynthesis/",
+    "sciencenotes.org/photosynthesis-definition-formula-process-diagram/",
+    "ssec.si.edu/stemvisions-blog/what-photosynthesis"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "Photosynthesis is a system of biological processes by which photopigment-bearing autotrophic organisms, such as most plants, algae, and cyanobacteria, convert light energy—typically from sunlight—into the chemical energy necessary to fuel their metabolism. \n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 6,
+   "authored": null
+  },
+  {
+   "ask": "When was the Great Wall of China built?",
+   "spoken": "The Great Wall of China wasn't built all at once.\n\nIt was built in the Hubei and Henan provinces in eastern central China near the Yangtze River.",
+   "shown": "The Great Wall of China wasn't built all at once.\n\nIt was built in the Hubei and Henan provinces in eastern central China near the Yangtze River.\n\n▸\n2 passages from 1 source\n▸\nhow this was answered\nAnswered in 30 s · read 3 sources · gemma2:2b · effort balanced\ncopy\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 6,
+     "kept": 2,
+     "dropped": 4
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "2,300",
+      "text": "Its construction spanned over 2,300 years!"
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Historians",
+      "text": "Historians believe the first sections of the Great Wall were built in the Chu State, sometime between 680 BC and 656 BC."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "time, added, modifi",
+      "text": "Over time, different dynasties added to and modified the Wall for defense."
+     },
+     {
+      "why": "ungrounded:terms",
+      "detail": "adding, bulk",
+      "text": "The Ming Dynasty (1368-1644) is known for adding the bulk of the wall we see today."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.26,
+      "mean": 13.5,
+      "blinks": 0,
+      "dense": 1,
+      "n": 2
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "label": "pass",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Great_Wall_of_China",
+    "en.wikipedia.org/wiki/Great_Wall_Motor",
+    "chinahighlights.com/greatwall/fact/building-time.htm",
+    "chinahighlights.com/greatwall/fact/who-built.htm",
+    "travelchinaguide.com/china_great_wall/facts/when-built.htm"
+   ],
+   "read": 5,
+   "kind": "research",
+   "raws": [
+    {
+     "text": "The Great Wall of China wasn't built all at once.  Its construction spanned over 2,300 years! \n\nHistorians believe the first sections of the Great Wall were built in the **Chu State**, sometime between **680 BC and 656 BC**.  It was built in the **Hubei and Henan provinces** in eastern central China near the Yangtze River. \n\nOver time, different dynasties added to and modified the Wall for defense.  The Ming Dynasty (1368-1644) is known for adding the bulk of the wall we see today.  \n\n\n",
+     "finish": "stop"
+    }
+   ],
+   "nMessages": 8,
+   "authored": null
+  }
+ ]
+}

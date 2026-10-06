@@ -14,6 +14,12 @@ const WIKI = [{
   text: "Tokyo is the capital and most populous city of Japan. The population of the Tokyo metropolis was 14 million people in 2021. Tokyo hosted the Summer Olympics in 1964.",
 }];
 
+// a source that IS a source (an encyclopedia is a pointer, fold-chat-origin.js: it may never be named or shown as the citation)
+const STATS = [{
+  ref: "metro.example.org — Tokyo Statistics Office", url: "https://metro.example.org/tokyo", source: "https://metro.example.org/tokyo",
+  text: WIKI[0].text,
+}];
+
 // ── stripScaffolding ──────────────────────────────────────────────────────
 test("stripScaffolding: [W#] / [S#] / [M] / 'in [W1]' never reach the person", () => {
   const r = stripScaffolding("According to the information provided in [W1], the population of Tokyo in 2021 was 14 million [W2][S3]. Also see (W2) and [M].", WIKI.concat([{ ref: "A — B", url: "https://a.org/b" }]));
@@ -23,9 +29,19 @@ test("stripScaffolding: [W#] / [S#] / [M] / 'in [W1]' never reach the person", (
 });
 
 test("stripScaffolding: the passages the model pointed at come back as real citations (title, link, domain), once each", () => {
-  const r = stripScaffolding("It is large [W1]. It is old [W1, W2].", [{ ref: "Wikipedia — Tokyo", url: "https://en.wikipedia.org/wiki/Tokyo" }, { ref: "x — Edo", url: "https://x.org/edo" }]);
-  assert.deepEqual(r.cited.map((c) => [c.n, c.title, c.domain]), [["W1", "Tokyo", "en.wikipedia.org"], ["W2", "Edo", "x.org"]]);
-  assert.equal(r.cited[0].url, "https://en.wikipedia.org/wiki/Tokyo");
+  const r = stripScaffolding("It is large [W1]. It is old [W1, W2].", [{ ref: "metro — Tokyo", url: "https://metro.example.org/tokyo" }, { ref: "x — Edo", url: "https://x.org/edo" }]);
+  assert.deepEqual(r.cited.map((c) => [c.n, c.title, c.domain]), [["W1", "Tokyo", "metro.example.org"], ["W2", "Edo", "x.org"]]);
+  assert.equal(r.cited[0].url, "https://metro.example.org/tokyo");
+});
+
+test("stripScaffolding: a [W#] on an encyclopedia page is never a Wikipedia chip — it shows the originals that were read, else the pages it only points at", () => {
+  const read = stripScaffolding("It is large [W1].", [{ ref: "Wikipedia — Tokyo", url: "https://en.wikipedia.org/wiki/Tokyo", origins: [{ url: "https://metro.example.org/tokyo", title: "Tokyo Statistics Office", host: "metro.example.org" }] }]);
+  assert.deepEqual(read.cited.map((c) => [c.n, c.title, c.domain, !!c.pointer]), [["W1", "Tokyo Statistics Office", "metro.example.org", false]]);
+  const pointed = stripScaffolding("It is large [W1].", [{ ref: "Wikipedia — Tokyo", url: "https://en.wikipedia.org/wiki/Tokyo", pointers: [{ url: "https://a.example.org/x", label: "Census 2020" }, { url: "https://b.example.org/y", label: "Report" }] }]);
+  assert.deepEqual(pointed.cited.map((c) => [c.title, c.pointer]), [["Census 2020", true], ["Report", true]]);
+  const none = stripScaffolding("It is large [W1].", [{ ref: "Wikipedia — Tokyo", url: "https://en.wikipedia.org/wiki/Tokyo" }]);
+  assert.deepEqual(none.cited, [], "no origin and no pointer: nothing is cited, and certainly not the encyclopedia");
+  for (const r of [read, pointed, none]) assert.doesNotMatch(JSON.stringify(r.cited), /wikipedia/i);
 });
 
 test("stripScaffolding: a marker for a source that does not exist is removed but cited as nothing; plain text is untouched", () => {
@@ -51,9 +67,17 @@ test("a source that WAS read does not license a claim it does not make (the meas
 });
 
 test("a named attribution that the named source DOES support is kept", () => {
+  const r = checkAttributions("According to Tokyo Statistics Office, the population of the Tokyo metropolis was 14 million people in 2021.", { sources: STATS });
+  assert.equal(r.removed.length, 0); assert.deepEqual(r.kept, ["Tokyo Statistics Office"]);
+  assert.match(r.text, /^According to Tokyo Statistics Office,/);
+});
+
+test("FALSIFIER: 'according to Wikipedia' is neutralised even when a Wikipedia page was read and says it — an encyclopedia is a pointer, never a named source", () => {
   const r = checkAttributions("According to Wikipedia, the population of the Tokyo metropolis was 14 million people in 2021.", { sources: WIKI });
-  assert.equal(r.removed.length, 0); assert.deepEqual(r.kept, ["Wikipedia"]);
-  assert.match(r.text, /^According to Wikipedia,/);
+  assert.equal(r.removed.length, 1); assert.equal(r.removed[0].reason, "not-a-source");
+  assert.doesNotMatch(r.text, /wikipedia/i);
+  assert.match(r.text, /^The population of the Tokyo metropolis was 14 million people in 2021\./, "the claim stays, as the model's own");
+  assert.deepEqual(sourceIdentities(WIKI)[0].names, [], "no name is given to attribute to");
 });
 
 test("the shapes: 'X says', 'per X', 'as reported by X', mid-sentence and trailing 'according to X'", () => {
@@ -75,10 +99,11 @@ test("other languages: según / selon / laut / по данным / 根据", () =
 });
 
 test("a 'Source:' line keeps only the sources that were actually read", () => {
-  const r = checkAttributions("Tokyo is big.\nSources: Wikipedia, BBC, Reuters", { sources: WIKI });
-  assert.match(r.text, /Sources: Wikipedia$/m);
+  const r = checkAttributions("Tokyo is big.\nSources: Tokyo Statistics Office, BBC, Reuters", { sources: STATS });
+  assert.match(r.text, /Sources: Tokyo Statistics Office$/m);
   assert.deepEqual(r.removed.map((x) => x.name).sort(), ["BBC", "Reuters"]);
-  assert.equal(checkAttributions("Tokyo is big.\nSources: BBC", { sources: WIKI }).text.trim(), "Tokyo is big.");
+  assert.equal(checkAttributions("Tokyo is big.\nSources: BBC", { sources: STATS }).text.trim(), "Tokyo is big.");
+  assert.equal(checkAttributions("Tokyo is big.\nSources: Wikipedia", { sources: WIKI }).text.trim(), "Tokyo is big.", "a Sources: line never lists the encyclopedia");
 });
 
 test("generic references need something read; names the PERSON typed are theirs; pronouns and plural nouns are not sources", () => {

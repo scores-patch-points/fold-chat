@@ -65,7 +65,9 @@ test("model A1: one answer line with the filler as the bold range, the source se
   assert.equal(m.headline.text, "Charles III is the king of the United Kingdom.");
   assert.equal(m.headline.bold.length, 1);
   assert.equal(m.headline.text.slice(...m.headline.bold[0]), "Charles III");
-  assert.deepEqual(m.cite, { label: "Monarchy of the United Kingdom — Wikipedia", title: "Monarchy of the United Kingdom", site: "Wikipedia", url: "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom", host: "en.wikipedia.org" });
+  // an encyclopedia is never the citation (fold-chat-origin.js): this turn followed no reference, so it is a POINTER, naming no page as its source
+  assert.equal(m.cite.kind, "pointer"); assert.match(m.cite.label, /not cited/); assert.equal(m.cite.url, null);
+  assert.doesNotMatch(JSON.stringify(m.cite), /wikipedia/i);
   assert.equal(m.quote.text, TURNS.A1.answer.row.sentence);
   assert.equal(m.quote.shownAsHeadline, false);
   assert.ok(m.quote.emphasis.some(([a, b]) => m.quote.text.slice(a, b) === "Charles III"));
@@ -131,7 +133,7 @@ test("model A5: the refuting passage is the closest source; Elizabeth II is not 
   assert.equal(m.gap.kind, "refuted");
   assert.match(m.gap.closest.quote.text, /died on 8 September 2022/);
   assert.match(m.gap.closest.quote.text, /succeeded/);
-  assert.equal(m.gap.closest.cite.title, "Elizabeth II");
+  assert.equal(m.gap.closest.cite.kind, "pointer", "the refuting page is an encyclopedia: a pointer, not a citation");
   const card = draw(TURNS.A5);
   assert.equal(card.all("answer-text").length, 0);
   assert.match(allText(card.all("gap")[0]), /died on 8 September 2022/);
@@ -150,7 +152,7 @@ test("model contest: both rows, each with its own source, and the model carries 
   assert.equal(m.kind, "contest"); assert.equal(m.headline, null); assert.equal(m.gap, null);
   assert.deepEqual(m.contest.map((c) => c.label), ["Elizabeth II", "Charles III"]);
   assert.equal(m.contest[0].quote.text, TURNS.X1.contest[0].sentence);
-  assert.equal(m.contest[1].cite.label, "Monarchy of the United Kingdom — Wikipedia");
+  assert.equal(m.contest[1].cite.kind, "pointer");
   assert.equal(m.contest[0].cite.host, "example.org");
   assert.doesNotMatch(JSON.stringify(m), /correct|incorrect|\bwrong\b|\bright\b|\bmore likely\b|\bwinner\b/i);
 });
@@ -203,12 +205,8 @@ test("render A1: the binding class names, one line + one quote + the citation + 
   assert.equal(at[0].textContent, "Charles III is the king of the United Kingdom.");
   assert.deepEqual(at[0].tags("strong").map((s) => s.textContent), ["Charles III"], "the filler is bold (not conveyed by colour alone)");
   const cite = card.all("answer-cite"); assert.equal(cite.length, 1);
-  assert.match(cite[0].textContent, /Monarchy of the United Kingdom — Wikipedia/);
-  const a = cite[0].tags("a"); assert.equal(a.length, 1);
-  assert.equal(a[0].textContent, "open ↗");
-  assert.equal(a[0].getAttribute("target"), "_blank"); assert.equal(a[0].getAttribute("rel"), "noopener noreferrer");
-  assert.equal(a[0].getAttribute("href"), "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom");
-  assert.match(a[0].getAttribute("aria-label"), /^Open Monarchy of the United Kingdom — Wikipedia/, "the link has a name");
+  assert.match(cite[0].textContent, /not cited/); assert.doesNotMatch(cite[0].textContent, /open ↗/);
+  assert.equal(cite[0].tags("a").length, 0, "no link to the encyclopedia: it is not the source");
   const q = card.all("answer-quote"); assert.equal(q.length, 1, "never more than one quote visible by default");
   assert.equal(q[0].textContent, TURNS.A1.answer.row.sentence);
   assert.ok(q[0].tags("mark").some((m) => m.textContent === "Charles III"));
@@ -251,7 +249,7 @@ test("render: contest draws both rows side by side with their sources, and no an
   const c = card.all("answer-contest"); assert.equal(c.length, 1);
   const cols = card.all("contest-col"); assert.equal(cols.length, 2);
   assert.match(cols[0].textContent, /Elizabeth II/); assert.match(cols[0].textContent, /example\.org|older copy/);
-  assert.match(cols[1].textContent, /Charles III/); assert.match(cols[1].textContent, /Monarchy of the United Kingdom — Wikipedia/);
+  assert.match(cols[1].textContent, /Charles III/); assert.match(cols[1].textContent, /not cited/);
   assert.equal(cols[0].all("answer-quote")[0].textContent, TURNS.X1.contest[0].sentence);
   assert.equal(cols[1].all("answer-quote")[0].textContent, TURNS.X1.contest[1].sentence);
   assert.equal(card.all("answer-text").length, 0); assert.equal(card.all("answer-checked").length, 0);
@@ -267,7 +265,7 @@ test("render: a gap reuses the app's .gap block (.gap-h .gap-mark .gap-kind) and
   assert.equal(g.all("gap-sub")[0].textContent, "The closest sentence I found:");
   assert.equal(draw(TURNS.A5).all("gap-sub")[0].textContent, "What that source says:");
   assert.equal(g.all("answer-quote")[0].textContent, TURNS.A3.gap.closest.sentence);
-  assert.match(g.all("answer-cite")[0].textContent, /List of French monarchs — Wikipedia/);
+  assert.match(g.all("answer-cite")[0].textContent, /not cited/);
   const t = clone(TURNS.A2); const d = draw(t);
   assert.match(allText(d.all("gap")[0]), /tried: Who is the president of the UK\?, president of the UK/);
   assert.match(allText(d.all("gap")[0]), /to close it: name the country/);
@@ -351,7 +349,7 @@ test("cleanSpans / segmentsOf: broken spans are dropped, overlaps merged, a surr
   }
 });
 
-test("citeOf: Wikipedia hosts read as 'Wikipedia', another host is shown as it is, a non-http url is not kept", () => {
+test("citeOf (a bare source, no row): Wikipedia hosts read as 'Wikipedia', another host is shown as it is, a non-http url is not kept", () => {
   assert.equal(citeOf({ title: "Canberra", url: "https://de.wikipedia.org/wiki/Canberra", host: "de.wikipedia.org" }).label, "Canberra — Wikipedia");
   assert.equal(citeOf({ title: "T", url: "https://www.example.org/x", host: "www.example.org" }).label, "T — example.org");
   assert.equal(citeOf({ title: "T", url: "https://example.org/x" }).host, "example.org", "host from the url when not given");
@@ -382,4 +380,46 @@ test("css: namespaced under .answer-card, uses the app's theme variables (light 
   assert.doesNotMatch(ANSWERCARD_CSS, /(^|\})\s*\.gap\s*\{/, "the app's .gap is reused, not redefined");
   assert.doesNotMatch(ANSWERCARD_CSS, /background(-color)?:\s*#(fff|ffffff|000|000000)\b/i, "no hard-coded page colours");
   assert.match(ANSWERCARD_CSS, /minmax\(min\(100%, 240px\), 1fr\)/, "the contest columns stack on a phone");
+});
+
+
+// ---------- an encyclopedia is a pointer, never a citation (fold-chat-origin.js) ----------
+const withOrigin = (origin) => { const t = clone(TURNS.A1); t.answer.row.origin = origin; return t; };
+const ORIGIN_OK = {
+  status: "origin", found: { kind: "wikipedia", title: "Monarchy of the United Kingdom", url: "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom", edition: "en" },
+  refs: [{ n: 12, id: "12", url: "https://www.royal.uk/the-monarchy", label: "The Monarchy", host: "royal.uk" }],
+  path: [{ kind: "found-in", title: "Monarchy of the United Kingdom", url: "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom", edition: "en" }, { kind: "reference", n: 12, id: "12", url: "https://www.royal.uk/the-monarchy" }, { kind: "read", url: "https://www.royal.uk/the-monarchy", via: "direct", title: "The Monarchy", copy: false, supports: true }],
+  tried: [], origin: { url: "https://www.royal.uk/the-monarchy", title: "The Monarchy", host: "royal.uk", via: "direct", copy: false, sentence: "The current monarch is King Charles III, who came to the throne on 8 September 2022." },
+};
+
+test("origin: a row that reached an original page is CITED as that page, with the path there; the quote is the original's own sentence", () => {
+  const m = answerCardModel(withOrigin(ORIGIN_OK));
+  assert.equal(m.kind, "answer");
+  assert.equal(m.cite.url, "https://www.royal.uk/the-monarchy"); assert.equal(m.cite.host, "royal.uk");
+  assert.doesNotMatch(JSON.stringify(m.cite.label), /wikipedia/i, "the citation does not name the encyclopedia");
+  assert.deepEqual(m.cite.path.map((h) => h.text), ["Wikipedia “Monarchy of the United Kingdom”", "reference 12", "royal.uk"], "the path is kept: where it was found → the reference → the page");
+  assert.equal(m.quote.text, "The current monarch is King Charles III, who came to the throne on 8 September 2022.", "verbatim from the cited page, not the encyclopedia's sentence");
+  assert.ok(m.quote.emphasis.some(([a, b]) => m.quote.text.slice(a, b) === "Charles III"), "the filler is still marked where the original says it");
+  const card = draw(withOrigin(ORIGIN_OK));
+  const cite = card.all("answer-cite")[0];
+  assert.match(cite.textContent, /found via .*Wikipedia “Monarchy of the United Kingdom”.* → reference 12 → royal\.uk/);
+  assert.equal(cite.tags("a").filter((a) => a.getAttribute("href") === "https://www.royal.uk/the-monarchy").length >= 1, true);
+});
+
+test("origin FALSIFIER: an origin that cannot show its own sentence is not a citation — it is drawn as a pointer", () => {
+  const o = clone(ORIGIN_OK); o.origin.sentence = null;
+  const m = answerCardModel(withOrigin(o));
+  assert.equal(m.cite.kind, "pointer");
+  assert.equal(m.quote.text, TURNS.A1.answer.row.sentence, "no origin words to show, so the row's own words are still what is quoted");
+});
+
+test("pointer: an encyclopedia row whose references could not be read lists them as links to fetch, and names the encyclopedia only as where it was found", () => {
+  const o = { status: "unread", found: ORIGIN_OK.found, refs: [{ n: 4, id: "4", url: "https://www.example.org/a", label: "Report A", host: "example.org" }, { n: 5, id: "5", url: null, archived: "https://web.archive.org/web/2020/https://gone.example/b", label: "Report B", host: "" }], path: [], tried: [], origin: null };
+  const m = answerCardModel(withOrigin(o));
+  assert.equal(m.cite.kind, "pointer"); assert.equal(m.cite.url, null);
+  assert.match(m.cite.label, /Found in Wikipedia “Monarchy of the United Kingdom” — not cited: its references could not be read\. It points to 2 original sources\./);
+  assert.deepEqual(m.cite.pointers.map((p) => p.url), ["https://www.example.org/a", "https://web.archive.org/web/2020/https://gone.example/b"]);
+  const card = draw(withOrigin(o));
+  const hrefs = card.all("answer-cite")[0].tags("a").map((a) => a.getAttribute("href"));
+  assert.deepEqual(hrefs, ["https://www.example.org/a", "https://web.archive.org/web/2020/https://gone.example/b"], "each pointer is a link; the encyclopedia itself is not one");
 });

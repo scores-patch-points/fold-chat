@@ -25,6 +25,7 @@
 //
 // Pure: no DOM, no IO. Node-testable.
 
+import { selfAsk } from "./fold-chat-self.js";
 import { evaluate } from "./fold-chat-compute.js";
 import { transformShape, codeShape, composeShape, adviceShape } from "./fold-chat-kinds.js";
 export { skipsSearch, noClaimsLabel, KIND_PROMPT } from "./fold-chat-kinds.js";
@@ -50,6 +51,7 @@ export const CONVERSATIONAL_RE = /^(well|so|ok|okay|hmm+|hm+|right|sure|yeah|yep
 export function classifyTurn(question, opts = {}) {
   const q = String(question ?? "").trim();
   if (!q) return "smalltalk";
+  if (selfAsk(q)) return "self";   // addressed to the fold itself: answered by the app, never searched
   if (q.length < 60 && SMALLTALK_RE.test(q)) return "smalltalk";
   if (q.length < 40 && CONVERSATIONAL_RE.test(q)) return "chat";
   // The everyday kinds, most specific first. Each needs two independent signals

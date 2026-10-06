@@ -130,7 +130,7 @@ export function topicOf(askText) {
  *    thread threadOf(prior) — `thread.has` says whether there is an earlier answer to follow
  *    reason why (for the feed and the tests)
  *  `referents`: the chat's referent record (fold-chat-mind.js); `hints`: the language priors (fold-chat-hints.js). */
-export function followUp(question, priorMessages, { referents = null, hints = null } = {}) {
+export function followUp(question, priorMessages, { referents = null, hints = null, rejected = null } = {}) {
   const said = String(question ?? "").trim();
   const thread = threadOf(priorMessages);
   const base = { said, query: said, kind: "standalone", thread, topic: "", carried: [], reason: "stands-alone" };
@@ -146,7 +146,7 @@ export function followUp(question, priorMessages, { referents = null, hints = nu
   };
   if (COMPARATIVE_RE.test(said)) { const v = variant(); if (v) return v; }
   // 2. the pronoun path (resolveQuestion's own gate: a trigger form, no entity of its own, a record to carry from)
-  const r = resolveQuestion(said, referents, { hints });
+  const r = resolveQuestion(said, referents, { hints, rejected });
   if (r.reason === "carried") {
     const q = searchQueries(r)[0] || said;
     return { ...base, kind: "carried", query: q, carried: r.carried.map((c) => c.surface), reason: "carried-referent" };

@@ -42,12 +42,15 @@ export function unsourcedPlan(_policy = UNSOURCED_ANSWERS, { live = false } = {}
 export const ALONE_KINDS = Object.freeze([]);
 export const modelSpeaksAlone = (kind) => ALONE_KINDS.includes(kind);
 
+import { SELF_LINE, NO_LOOKUP_LINE } from "./fold-chat-self.js";
 export const SMALLTALK_LINE = "Ask me something and I'll show you what the sources say.";
 const KIND_WORDS = { generate: "creative writing", compose: "personal writing", code: "a programming question", transform: "a transformation of your own text", compute: "a calculation", advice: "advice" };
 
 /** The app-authored turn for a kind the model may not answer alone: { notice } and/or a computed card on the record. */
 export function aloneTurn(kind) {
   if (kind === "smalltalk") return { notice: { kind: "alone", text: SMALLTALK_LINE } };
+  if (kind === "self") return { notice: { kind: "alone", text: SELF_LINE } };          // the fold's own words about itself (fold-chat-self.js)
+  if (kind === "nolookup") return { notice: { kind: "alone", text: NO_LOOKUP_LINE } };   // the ask had nothing to look up, so nothing was searched
   if (kind === "compute") return { notice: null };            // the result card IS the answer (record.computed)
   return { notice: { kind: "no-sources", text: `There are no sources for this kind of ask (${KIND_WORDS[kind] || kind}), and the fold does not write without sources, so nothing was written. Ask it as a question and it will show what the sources say.` } };
 }

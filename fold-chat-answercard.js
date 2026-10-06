@@ -16,6 +16,7 @@
 //     slices offsets it was given (and checks them against the text before trusting them).
 //   * A gap is drawn, not said: the labels below are FIXED app-authored strings keyed by the gap's kind.
 import { ANSWERCARD_CSS, ANSWERCARD_STYLE_ID } from "./fold-chat-answercard.css.js";
+import { isTertiary, pathWords, pointerWords } from "./fold-chat-origin.js";
 
 // ---- the fixed words (DECLARED, not measured; giver: the user's brief "a gap is drawn, not said" + BUILD-3's task text for
 // the four it names; the three marked (*) are this module's author's plain-words wording, flagged for the user to reword) ----
@@ -105,10 +106,29 @@ export function citeOf(source) {
   return label ? { label, title, site, url, host } : null;
 }
 
+/** The citation a ROW is shown under. An encyclopedia is never cited (fold-chat-origin.js): a row found there is cited as the original page
+ *  its own reference led to — with the `path` there — or, when none could be read, as a POINTER (`kind: "pointer"`) listing the pages the
+ *  article points at, each a link, with the encyclopedia named only as where the lead was found. Any other source is cited as it is. */
+export function citeOfRow(row) {
+  const src = row && typeof row === "object" ? row.source : null;
+  const o = row && typeof row === "object" && row.origin && typeof row.origin === "object" ? row.origin : null;
+  if (o && o.status === "origin" && o.origin && isStr(o.origin.url) && isStr(o.origin.sentence)) {
+    const c = citeOf({ title: o.origin.title, url: o.origin.url, host: o.origin.host });
+    return c ? { ...c, path: pathWords(o) } : null;
+  }
+  if (src && isTertiary(src.url)) {
+    const pointers = asArr(o && o.refs).map((r) => ({ label: str(r.label) || str(r.host) || str(r.url || r.archived), url: safeUrl(r.url || r.archived), n: Number.isFinite(r.n) ? r.n : null })).filter((r) => r.url);
+    return { label: o ? pointerWords(o) : "Found in an encyclopedia \u2014 not cited: no original source was followed.", title: "", site: "", url: null, host: "", kind: "pointer", pointers: pointers.slice(0, 6), path: o ? pathWords(o) : [] };
+  }
+  return citeOf(src);
+}
+
 const usableRow = (r) => !!r && typeof r === "object" && isStr(r.sentence);
 
 /** A row's sentence as a quote: verbatim text + the spans to draw bold (the matched words and the filler, validated against the text). */
 function quoteOf(row) {
+  const o = row.origin;
+  if (o && o.status === "origin" && o.origin && isStr(o.origin.url) && isStr(o.origin.sentence)) row = { ...row, sentence: o.origin.sentence, emphasis: [], source: { ...row.source, lang: row.source && row.source.lang } };   // the cited page's OWN words, not the encyclopedia's
   const text = row.sentence;
   const f = fillerSpan(text, row.filler);
   return { text, emphasis: cleanSpans(text, [...asArr(row.emphasis), ...(f ? [f] : [])]), lang: safeLang(row.source?.lang) };
@@ -144,7 +164,7 @@ function gapModel(g, turn, fallbackRow) {
   const row = [g?.closest, asArr(g?.refuters)[0], fallbackRow].find(usableRow) || null;
   return {
     kind, known: Object.hasOwn(GAP_LABELS, kind), label,
-    closest: row ? { label: CLOSEST_LABEL[kind] || CLOSEST_DEFAULT, quote: quoteOf(row), cite: citeOf(row.source) } : null,
+    closest: row ? { label: CLOSEST_LABEL[kind] || CLOSEST_DEFAULT, quote: quoteOf(row), cite: citeOfRow(row) } : null,
     tried: asArr(g?.tried).map(textOfTried).filter(Boolean), closeBy: strs(g?.closeBy),
   };
 }
@@ -177,14 +197,14 @@ export function answerCardModel(turn) {
     const f = fillerSpan(text, a.filler || row.filler);
     const quote = quoteOf(row);
     return {
-      ...base, kind: "answer", standing: a.standing, headline: { text, bold: f ? [f] : [] }, cite: citeOf(row.source),
-      quote: { ...quote, shownAsHeadline: text === row.sentence },
+      ...base, kind: "answer", standing: a.standing, headline: { text, bold: f ? [f] : [] }, cite: citeOfRow(row),
+      quote: { ...quote, shownAsHeadline: text === quote.text },
       checked: strs(a.survived),
     };
   }
   // 3. rows that give different fillers for the same slot: side by side, nothing said about which is right
   if (rows.length >= 2) {
-    return { ...base, kind: "contest", contest: rows.map((r) => ({ label: str(r.filler?.text), quote: quoteOf(r), cite: citeOf(r.source) })) };
+    return { ...base, kind: "contest", contest: rows.map((r) => ({ label: str(r.filler?.text), quote: quoteOf(r), cite: citeOfRow(r) })) };
   }
   // 4. nothing usable: a gap, never an empty card (an answer that could not show its source was never witnessed)
   return { ...base, kind: "gap", gap: gapModel(null, t, rows.length === 1 ? rows[0] : null) };
@@ -227,6 +247,26 @@ function citeEl(doc, c) {
     a.setAttribute("href", c.url); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer");
     a.setAttribute("aria-label", "Open " + c.label + " in a new tab");
     d.append(" ", a);   // the space keeps the text readable when it is read out or copied (a flex row ignores it visually)
+  }
+  // the pages an encyclopedia only POINTS at (never cited, so never an "open" on the encyclopedia itself): each a link to fetch
+  if (c.kind === "pointer" && Array.isArray(c.pointers) && c.pointers.length) {
+    const ul = make(doc, "span", "answer-pointers");
+    c.pointers.forEach((p) => {
+      const a = make(doc, "a", "", (p.n ? `[${p.n}] ` : "") + p.label);
+      a.setAttribute("href", p.url); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer");
+      ul.append(a, " ");
+    });
+    d.append(" ", ul);
+  }
+  // the path the claim travelled to this page: where it was found → the reference → the page (a hop with an address is a link)
+  if (Array.isArray(c.path) && c.path.length > 1) {
+    const p = make(doc, "span", "answer-path");
+    p.append("found via ");
+    c.path.forEach((h, i) => {
+      if (i) p.append(" \u2192 ");
+      if (h.url) { const a = make(doc, "a", "", h.text); a.setAttribute("href", h.url); a.setAttribute("target", "_blank"); a.setAttribute("rel", "noopener noreferrer"); p.append(a); } else p.append(h.text);
+    });
+    d.append(" ", p);
   }
   return d;
 }

@@ -158,7 +158,7 @@ export function adviceShape(question) {
 // ── what each kind does ────────────────────────────────────────────────────
 /** Kinds that run NO web search. */
 export function skipsSearch(kind) {
-  return kind === "smalltalk" || kind === "compute" || kind === "transform" || kind === "code" || kind === "compose";
+  return kind === "smalltalk" || kind === "self" || kind === "compute" || kind === "transform" || kind === "code" || kind === "compose";
 }
 
 /** The label a no-claims turn wears where a gap would be ("nothing to check here"). */

@@ -1,0 +1,360 @@
+[
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 6,
+   "FALSIFIED": 1,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France.\",\"everInDom\":false,\"keeps\":false,\"pivot\":{\"in\":3,\"kept\":1,\"dropped\":2},\"why\":[\"ungrounded:name\",\"ungrounded:thin\"]}"
+   },
+   {
+    "id": "E2",
+    "conj": "markup and chat reflex are never shown; the sentence that is grounded is",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"label\",\"label\",\"ungrounded:thin\"]}"
+   },
+   {
+    "id": "E3",
+    "conj": "a figure nobody gave is never shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"number_not_given\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E5",
+    "conj": "a draft that is all reflex says nothing: empty content, a typed notice, nothing of it ever shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"\",\"everInDom\":false,\"gap\":\"nothing_survived\",\"notices\":[{\"kind\":\"fold\",\"text\":\"The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\"}]}"
+   },
+   {
+    "id": "E6",
+    "conj": "a draft in a language with no grammar is shown as written AND said not to have been read",
+    "verdict": "STANDS",
+    "evidence": "{\"pivot\":{\"schema\":\"Pivot@1\",\"skipped\":\"no_grammar_for_language\",\"read\":\"th\"},\"notices\":[{\"kind\":\"language\",\"text\":\"You wrote in English, but the reply came back in Thai even after the model was asked to restate it. The words below are the model's; the fold did not translate them.\"},{\"kind\":\"fold\",\"text\":\"The fold has no grammar for th, so this reply was not read before being shown — it is exactly what the model wrote.\"},{\"kind\":\"language-gap\",\"text\":\"⟂ fold: 1 sentence is in a different language than the sources (th against sources in en). The fold checks wording against the sources, so it cannot check it — that is a gap in the check, not a findin\"}],\"stored\":\"หอไอเฟลตั้งอยู่ในกรุงปารีสประเทศฝรั่งเศส สูงสามร้อยสามสิบเมต\"}"
+   },
+   {
+    "id": "E7",
+    "conj": "DISCRIMINATOR: with the switch off, E1's invented designer IS shown — E1 passes because of the Pivot",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It is 330 metres tall.\",\"everInDom\":true,\"pivot\":null}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 7,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"pivot\":{\"in\":3,\"kept\":2,\"dropped\":1},\"why\":[\"ungrounded:name\"]}"
+   },
+   {
+    "id": "E2",
+    "conj": "markup and chat reflex are never shown; the sentence that is grounded is",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The tower is 330 metres tall. It stands in Paris.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"label\",\"label\"]}"
+   },
+   {
+    "id": "E3",
+    "conj": "a figure nobody gave is never shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"number_not_given\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E5",
+    "conj": "a draft that is all reflex says nothing: empty content, a typed notice, nothing of it ever shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"\",\"everInDom\":false,\"gap\":\"nothing_survived\",\"notices\":[{\"kind\":\"fold\",\"text\":\"The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\"}]}"
+   },
+   {
+    "id": "E6",
+    "conj": "a draft in a language with no grammar is shown as written AND said not to have been read",
+    "verdict": "STANDS",
+    "evidence": "{\"pivot\":{\"schema\":\"Pivot@1\",\"skipped\":\"no_grammar_for_language\",\"read\":\"th\"},\"notices\":[{\"kind\":\"language\",\"text\":\"You wrote in English, but the reply came back in Thai even after the model was asked to restate it. The words below are the model's; the fold did not translate them.\"},{\"kind\":\"fold\",\"text\":\"The fold has no grammar for th, so this reply was not read before being shown — it is exactly what the model wrote.\"},{\"kind\":\"language-gap\",\"text\":\"⟂ fold: 1 sentence is in a different language than the sources (th against sources in en). The fold checks wording against the sources, so it cannot check it — that is a gap in the check, not a findin\"}],\"stored\":\"หอไอเฟลตั้งอยู่ในกรุงปารีสประเทศฝรั่งเศส สูงสามร้อยสามสิบเมต\"}"
+   },
+   {
+    "id": "E7",
+    "conj": "DISCRIMINATOR: with the switch off, E1's invented designer IS shown — E1 passes because of the Pivot",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It is 330 metres tall.\",\"everInDom\":true,\"pivot\":null}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 7,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"pivot\":{\"in\":3,\"kept\":2,\"dropped\":1},\"why\":[\"ungrounded:name\"]}"
+   },
+   {
+    "id": "E2",
+    "conj": "markup and chat reflex are never shown; the sentence that is grounded is",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The tower is 330 metres tall. It stands in Paris.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"label\",\"label\"]}"
+   },
+   {
+    "id": "E3",
+    "conj": "a figure nobody gave is never shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"number_not_given\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E5",
+    "conj": "a draft that is all reflex says nothing: empty content, a typed notice, nothing of it ever shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"\",\"everInDom\":false,\"gap\":\"nothing_survived\",\"notices\":[{\"kind\":\"fold\",\"text\":\"The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\"}]}"
+   },
+   {
+    "id": "E6",
+    "conj": "a draft in a language with no grammar is shown as written AND said not to have been read",
+    "verdict": "STANDS",
+    "evidence": "{\"pivot\":{\"schema\":\"Pivot@1\",\"skipped\":\"no_grammar_for_language\",\"read\":\"th\"},\"notices\":[{\"kind\":\"language\",\"text\":\"You wrote in English, but the reply came back in Thai even after the model was asked to restate it. The words below are the model's; the fold did not translate them.\"},{\"kind\":\"fold\",\"text\":\"The fold has no grammar for th, so this reply was not read before being shown — it is exactly what the model wrote.\"},{\"kind\":\"language-gap\",\"text\":\"⟂ fold: 1 sentence is in a different language than the sources (th against sources in en). The fold checks wording against the sources, so it cannot check it — that is a gap in the check, not a findin\"}],\"stored\":\"หอไอเฟลตั้งอยู่ในกรุงปารีสประเทศฝรั่งเศส สูงสามร้อยสามสิบเมต\"}"
+   },
+   {
+    "id": "E7",
+    "conj": "DISCRIMINATOR: with the switch off, E1's invented designer IS shown — E1 passes because of the Pivot",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It is 330 metres tall.\",\"everInDom\":true,\"pivot\":null}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 3,
+   "FALSIFIED": 1,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"pivot\":{\"in\":3,\"kept\":2,\"dropped\":1},\"why\":[\"ungrounded:name\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E8",
+    "conj": "a CLEAN draft proves nothing: every gate reads unmeasured, none pass",
+    "verdict": "STANDS",
+    "evidence": "{\"gates\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":9}"
+   },
+   {
+    "id": "E9",
+    "conj": "after a clean turn then a dirty one, ONLY the gates that rejected something read pass; the rest stay unmeasured",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"afterClean\":null,\"afterDirty\":{\"label\":\"unmeasured\",\"boilerplate\":\"pass\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"pass\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":9}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 1,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E9",
+    "conj": "after a clean turn then a dirty one, ONLY the gates that rejected something read pass; the rest stay unmeasured",
+    "verdict": "STANDS",
+    "evidence": "{\"afterClean\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"afterDirty\":{\"label\":\"unmeasured\",\"boilerplate\":\"pass\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"pass\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":18}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 1,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E9",
+    "conj": "after a clean turn then a dirty one, ONLY the gates that rejected something read pass; the rest stay unmeasured",
+    "verdict": "STANDS",
+    "evidence": "{\"afterClean\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"afterDirty\":{\"label\":\"unmeasured\",\"boilerplate\":\"pass\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"pass\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":18}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 9,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"pivot\":{\"in\":3,\"kept\":2,\"dropped\":1},\"why\":[\"ungrounded:name\"]}"
+   },
+   {
+    "id": "E2",
+    "conj": "markup and chat reflex are never shown; the sentence that is grounded is",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The tower is 330 metres tall. It stands in Paris.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"label\",\"label\"]}"
+   },
+   {
+    "id": "E3",
+    "conj": "a figure nobody gave is never shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"number_not_given\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E5",
+    "conj": "a draft that is all reflex says nothing: empty content, a typed notice, nothing of it ever shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"\",\"everInDom\":false,\"gap\":\"nothing_survived\",\"notices\":[{\"kind\":\"fold\",\"text\":\"The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown.\"}]}"
+   },
+   {
+    "id": "E6",
+    "conj": "a draft in a language with no grammar is shown as written AND said not to have been read",
+    "verdict": "STANDS",
+    "evidence": "{\"pivot\":{\"schema\":\"Pivot@1\",\"skipped\":\"no_grammar_for_language\",\"read\":\"th\"},\"notices\":[{\"kind\":\"language\",\"text\":\"You wrote in English, but the reply came back in Thai even after the model was asked to restate it. The words below are the model's; the fold did not translate them.\"},{\"kind\":\"fold\",\"text\":\"The fold has no grammar for th, so this reply was not read before being shown — it is exactly what the model wrote.\"},{\"kind\":\"language-gap\",\"text\":\"⟂ fold: 1 sentence is in a different language than the sources (th against sources in en). The fold checks wording against the sources, so it cannot check it — that is a gap in the check, not a findin\"}],\"stored\":\"หอไอเฟลตั้งอยู่ในกรุงปารีสประเทศฝรั่งเศส สูงสามร้อยสามสิบเมต\"}"
+   },
+   {
+    "id": "E7",
+    "conj": "DISCRIMINATOR: with the switch off, E1's invented designer IS shown — E1 passes because of the Pivot",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It is 330 metres tall.\",\"everInDom\":true,\"pivot\":null}"
+   },
+   {
+    "id": "E8",
+    "conj": "a CLEAN draft proves nothing: every gate reads unmeasured, none pass",
+    "verdict": "STANDS",
+    "evidence": "{\"gates\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":9}"
+   },
+   {
+    "id": "E9",
+    "conj": "after a clean turn then a dirty one, ONLY the gates that rejected something read pass; the rest stay unmeasured",
+    "verdict": "STANDS",
+    "evidence": "{\"afterClean\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"afterDirty\":{\"label\":\"unmeasured\",\"boilerplate\":\"pass\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"pass\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":18}"
+   }
+  ]
+ },
+ {
+  "head": "6ec2775",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 9,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "E1",
+    "conj": "an invented designer is never shown (not at the end, not at any moment) and never stored",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"pivot\":{\"in\":3,\"kept\":2,\"dropped\":1},\"why\":[\"ungrounded:name\"]}"
+   },
+   {
+    "id": "E2",
+    "conj": "markup and chat reflex are never shown; the sentence that is grounded is",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The tower is 330 metres tall. It stands in Paris.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"label\",\"label\"]}"
+   },
+   {
+    "id": "E3",
+    "conj": "a figure nobody gave is never shown",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is 330 metres tall.\",\"everInDom\":false,\"keeps\":true,\"why\":[\"number_not_given\"]}"
+   },
+   {
+    "id": "E4",
+    "conj": "CONTROL: a true, witnessed draft ships whole",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower in Paris, France.\",\"pivot\":{\"in\":1,\"kept\":1,\"dropped\":0},\"why\":[]}"
+   },
+   {
+    "id": "E5",
+    "conj": "(amended, PREREG Amendment 3) a draft that is all reflex is never shown; sources were read, so the person gets the sources' own words, authored by the sources",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed an\",\"everInDom\":false,\"gap\":\"nothing_survived\",\"authored\":\"sources\",\"notices\":[{\"kind\":\"fold\",\"text\":\"None of the model's sentences could be traced to what was read, so the sources' own words are shown instead.\"}]}"
+   },
+   {
+    "id": "E6",
+    "conj": "a draft in a language with no grammar is shown as written AND said not to have been read",
+    "verdict": "STANDS",
+    "evidence": "{\"pivot\":{\"schema\":\"Pivot@1\",\"skipped\":\"no_grammar_for_language\",\"read\":\"th\"},\"notices\":[{\"kind\":\"language\",\"text\":\"You wrote in English, but the reply came back in Thai even after the model was asked to restate it. The words below are the model's; the fold did not translate them.\"},{\"kind\":\"fold\",\"text\":\"The fold has no grammar for th, so this reply was not read before being shown — it is exactly what the model wrote.\"},{\"kind\":\"language-gap\",\"text\":\"⟂ fold: 1 sentence is in a different language than the sources (th against sources in en). The fold checks wording against the sources, so it cannot check it — that is a gap in the check, not a findin\"}],\"stored\":\"หอไอเฟลตั้งอยู่ในกรุงปารีสประเทศฝรั่งเศส สูงสามร้อยสามสิบเมต\"}"
+   },
+   {
+    "id": "E7",
+    "conj": "DISCRIMINATOR: with the switch off, E1's invented designer IS shown — E1 passes because of the Pivot",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It is 330 metres tall.\",\"everInDom\":true,\"pivot\":null}"
+   },
+   {
+    "id": "E8",
+    "conj": "a CLEAN draft proves nothing: every gate reads unmeasured, none pass",
+    "verdict": "STANDS",
+    "evidence": "{\"gates\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":9}"
+   },
+   {
+    "id": "E9",
+    "conj": "after a clean turn then a dirty one, ONLY the gates that rejected something read pass; the rest stay unmeasured",
+    "verdict": "STANDS",
+    "evidence": "{\"afterClean\":{\"label\":\"unmeasured\",\"boilerplate\":\"unmeasured\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"unmeasured\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"afterDirty\":{\"label\":\"unmeasured\",\"boilerplate\":\"pass\",\"third_person\":\"unmeasured\",\"attribution\":\"unmeasured\",\"number_not_given\":\"unmeasured\",\"ungrounded\":\"pass\",\"question\":\"unmeasured\",\"truncated\":\"unmeasured\",\"verify\":\"unmeasured\"},\"ledgerRecords\":18}"
+   }
+  ]
+ }
+]
