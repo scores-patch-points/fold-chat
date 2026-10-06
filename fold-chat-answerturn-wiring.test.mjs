@@ -17,7 +17,7 @@ import { newTurnTrace, lineEvent, storeEvents } from "./fold-chat-turnfeed.js";
 import { caseless } from "./fold-chat-frame.js";
 import { wikiLead, referentPassages } from "./fold-chat-web.js";
 import {
-  WIRE, SLOW_WHY, slotTurnWanted, passagesForTurn, slotDeps, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine,
+  WIRE, SLOW_WHY, slotTurnWanted, slotPipelineOn, SLOT_PIPELINE_KEY, passagesForTurn, slotDeps, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine,
 } from "./fold-chat-answerwire.js";
 
 const ROWS = JSON.parse(fs.readFileSync(new URL("./eval/falsify/fixtures/tierA/rows.json", import.meta.url), "utf8"));
@@ -33,6 +33,10 @@ const PAGES = {
   staleMonarchy: { title: "Monarchy of the United Kingdom", text: "The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Elizabeth II is the queen of the United Kingdom and the other Commonwealth realms, the reigning monarch since 6 February 1952. The monarch is a constitutional figurehead; executive power is exercised by the government led by the prime minister." },
   elizabethLead: { title: "Elizabeth II", text: "Elizabeth II (21 April 1926 – 8 September 2022) was Queen of the United Kingdom and the other Commonwealth realms from 6 February 1952 until her death in 2022. She was succeeded by her eldest son, Charles III. Her reign of 70 years and 214 days was the longest of any British monarch." },
   australia: { title: "Australia", text: "Australia, officially the Commonwealth of Australia, is a country comprising the mainland of the Australian continent, the island of Tasmania and numerous smaller islands. It is the sixth-largest country by total area and has a population of about twenty-seven million people, most of whom live near the coasts." },
+  pmUK: { title: "Prime Minister of the United Kingdom", text: "The prime minister of the United Kingdom is the head of government of the United Kingdom. The current prime minister is Andy Burnham, who has held the office since 20 July 2026. The prime minister is appointed by the monarch." },
+  monarchyFR: { title: "List of French monarchs", text: "Louis XVI was the last king of France before the fall of the monarchy during the French Revolution; he reigned from 1774 until 1792. The monarchy was abolished in September 1792 and France was proclaimed a republic. France has had no king since the final removal of the monarchy in 1848." },
+  spider: { title: "Spider", text: "Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk. They are the largest order of arachnids and rank seventh in total species diversity among all orders of organisms." },
+  ww2: { title: "World War II", text: "World War II, also known as the Second World War, was a global conflict between two coalitions, the Allies and the Axis powers. It lasted from 1 September 1939 to 2 September 1945. It involved the vast majority of the world's countries, including all of the great powers." },
   canberra: { title: "Canberra", text: "Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of government for the new nation, it is Australia's largest inland city. Canberra is located at the northern end of the Australian Capital Territory." },
   usPresident: { title: "President of the United States", text: "The president of the United States (POTUS) is the head of state and head of government of the United States. The power of the presidency has grown since the first president, George Washington, took office in 1789. The president is elected to a four-year term and may serve at most two terms." },
   frPresident: { title: "President of France", text: "The president of France, officially the President of the French Republic, is the head of state of France. The president is elected for a five-year term. The office of president was created by the Constitution of the Fifth Republic in 1958." },
@@ -42,6 +46,8 @@ const FILLERS = {
   "charles iii": { title: "Charles III", redirectedFrom: null, disambiguation: false },
   "elizabeth ii": { title: "Elizabeth II", redirectedFrom: null, disambiguation: false },
   "canberra": { title: "Canberra", redirectedFrom: null, disambiguation: false },
+  "andy burnham": { title: "Andy Burnham", redirectedFrom: null, disambiguation: false },
+  "louis xvi": { title: "Louis XVI", redirectedFrom: null, disambiguation: false },
 };
 const wiki = (t) => "https://en.wikipedia.org/wiki/" + encodeURIComponent(t.replace(/ /g, "_"));
 const json = (body, status = 200) => ({ ok: status < 400, status, json: async () => body, text: async () => JSON.stringify(body), body: null });
@@ -72,14 +78,14 @@ function fakeWorld({ titles, pages = [], world = [], hangLeads = false }) {
     if (/prop=pageprops/.test(u)) {
       const cands = decodeURIComponent((u.match(/titles=([^&]*)/) || [])[1] || "").split("|");
       log.titleAsks.push(cands);
-      const redirects = [], pgs = [];
+      const redirects = [], normalized = [], pgs = [];
       for (const c of cands) {
         const e = titles[caseless(c)] ?? FILLERS[caseless(c)] ?? null;
         if (!e) { pgs.push({ title: c, ns: 0, missing: "" }); continue; }
-        if (e.redirectedFrom) redirects.push({ from: c, to: e.title });
+        if (e.redirectedFrom) redirects.push({ from: c, to: e.title }); else if (c !== e.title) normalized.push({ from: c, to: e.title });   // the API folds a title's first letter itself
         pgs.push({ title: e.title, ns: 0, ...(e.disambiguation ? { pageprops: { disambiguation: "" } } : {}) });
       }
-      return json({ query: { redirects, pages: pgs } });
+      return json({ query: { normalized, redirects, pages: pgs } });
     }
     return json({});
   };
@@ -141,7 +147,7 @@ test("the strand branch of the invariant is unchanged (snips must equal content)
 
 // ── 2. the gate and the passages ───────────────────────────────────────────────────────────────────────────────────────────────
 test("slotTurnWanted: research/chat that searches the web, not live-data, either answer mode; nothing else", () => {
-  const yes = { kind: "research", wantWeb: true, liveHit: null, answerMode: "facing" };
+  const yes = { enabled: true, kind: "research", wantWeb: true, liveHit: null, answerMode: "facing" };
   assert.equal(slotTurnWanted(yes), true);
   assert.equal(slotTurnWanted({ ...yes, kind: "chat" }), true);
   assert.equal(slotTurnWanted({ ...yes, answerMode: "snips" }), true, "a slot ask ignores the mode");
@@ -196,6 +202,23 @@ test("A6 over the wire (control): a true witnessed slot ask ships", async () => 
   const { turn } = await turnFor("What is the capital of Australia?", "A6", { pages: [PAGES.canberra] });
   assert.ok(turn.answer, JSON.stringify(turn.gap));
   assert.match(turn.answer.text, /Canberra/);
+});
+
+test("A4 / A3 / A7 / A8 over the wire (the answers the contract names, the impressions the chat really hands over, no model)", async () => {
+  const a4 = (await turnFor("Who is the prime minister of the UK?", "A4", { pages: [PAGES.pmUK] })).turn;
+  assert.equal(a4.answer && a4.answer.text, "The current prime minister is Andy Burnham.");
+  assert.doesNotMatch(JSON.stringify(a4), /Sunak/);
+  const a3 = (await turnFor("Who is the king of France?", "A3", { pages: [PAGES.monarchyFR] })).turn;
+  assert.equal(a3.answer, null, "a past-tense sentence cannot witness a present holder");
+  assert.equal(a3.gap.kind, "no_present_holder");
+  assert.match(a3.gap.closest.sentence, /was the last king of France/);
+  const a7 = (await turnFor("How many legs does a spider have?", "A7", { pages: [PAGES.spider] })).turn;
+  assert.equal(a7.answer && a7.answer.text, "Spiders have eight legs.");
+  const a8 = (await turnFor("What year did World War 2 end?", "A8", { pages: [PAGES.ww2] })).turn;
+  const years = JSON.stringify(a8).match(/\b\d{4}\b/g) || [];
+  assert.ok(years.every((y) => PAGES.ww2.text.includes(y)), "no year the page never states: " + years);
+  assert.ok(a8.gap || a8.answer, "an answer or an honest closest sentence");
+  for (const t of [a4, a3, a7, a8]) { const m = storedMessage(t); assert.equal(contentAllowed(m), true); assert.equal(endsTurn(t), true); }
 });
 
 test("RELAY DOWN: with nothing read by the web search, the pages the frame's names lead to are read from the encyclopedia alone", async () => {
@@ -374,4 +397,26 @@ test("fold-chat.js is wired: the slot turn runs after the search and before the 
   assert.match(CHAT_SRC, /mountAnswerCard\(body, \{ answerTurn:/, "the card is mounted where assistant messages are drawn");
   assert.match(CHAT_SRC, /for \(const b of strandMode \|\| slotCard \? \[\] : artifactsOf\(content\)\)/, "the answer line is not drawn twice (prose and card)");
   assert.match(CHAT_SRC, /else if \(slotCard\) mountAnswerCard\(body, \{ answerTurn: slotCard \}\);\s*else if \(showFace\) renderFacingPage/, "the card sits before the facing page, which is still there");
+});
+
+test("THE SWITCH: the pipeline is OFF unless enabled — a turn that would qualify in every other way does not run it", () => {
+  const would = { kind: "research", wantWeb: true, liveHit: null, answerMode: "facing" };
+  assert.equal(slotTurnWanted(would), false, "default off");
+  assert.equal(slotTurnWanted({ ...would, enabled: false }), false);
+  assert.equal(slotTurnWanted({ ...would, enabled: "on" }), false, "only the boolean true counts");
+  assert.equal(slotTurnWanted({ ...would, enabled: true }), true);
+});
+
+test("slotPipelineOn reads localStorage 'fold-chat:answerPipeline' === 'on'; anything else, a missing store or a throwing store is off", () => {
+  const store = (v) => ({ getItem: (k) => (k === SLOT_PIPELINE_KEY ? v : null) });
+  assert.equal(SLOT_PIPELINE_KEY, "fold-chat:answerPipeline");
+  assert.equal(slotPipelineOn(store("on")), true);
+  for (const v of [null, "off", "1", "true", "ON", ""]) assert.equal(slotPipelineOn(store(v)), false, JSON.stringify(v));
+  assert.equal(slotPipelineOn(null), false);
+  assert.equal(slotPipelineOn({ getItem() { throw new Error("blocked"); } }), false);
+});
+
+test("WIRING: fold-chat.js passes the switch to slotTurnWanted (a call without it would be off for everyone, a hard-coded true would be on for everyone)", () => {
+  assert.match(CHAT_SRC, /slotTurnWanted\(\{[^}]*enabled: slotPipelineOn\(\)/);
+  assert.doesNotMatch(CHAT_SRC, /enabled: true/);
 });

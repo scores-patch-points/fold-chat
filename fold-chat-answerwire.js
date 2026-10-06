@@ -37,8 +37,18 @@ const asArr = (a) => (Array.isArray(a) ? a : []);
 /** May this turn try the slot pipeline? A research/chat turn that searches the web for the person's own words (follow.mode 'web'), that
  *  is not a live-data ask, in either answer mode (a slot ask ignores the mode: the model is not used). Whether the ask IS a slot ask is
  *  askFrame's call, made inside the pipeline; an ask that is not one hands off with nothing fetched. */
-export function slotTurnWanted({ kind, wantWeb, liveHit = null, answerMode = "facing" } = {}) {
-  return !!wantWeb && !liveHit && WIRE.kinds.includes(kind) && (answerMode === "facing" || answerMode === "snips");
+export function slotTurnWanted({ kind, wantWeb, liveHit = null, answerMode = "facing", enabled = false } = {}) {
+  return enabled === true && !!wantWeb && !liveHit && WIRE.kinds.includes(kind) && (answerMode === "facing" || answerMode === "snips");
+}
+
+/** THE SWITCH. OFF unless the person (or a test) turns it on: localStorage "fold-chat:answerPipeline" === "on".
+ *  Why off by default (2026-10-06): an adversarial verifier ran the pipeline on the REAL Monarchy-of-the-UK page and it returned a
+ *  "the sources disagree" contest between "the British national anthem" and "Legislative power" instead of Charles III; the old path
+ *  answered the same ask correctly. Its tests pass on hand-written pages; real pages are the unmet falsifier. It goes on by default
+ *  only after the real-page corpus (eval/falsify/fixtures/tierB) stands. Never throws (storage may be blocked). */
+export const SLOT_PIPELINE_KEY = "fold-chat:answerPipeline";
+export function slotPipelineOn(storage = (typeof localStorage !== "undefined" ? localStorage : null)) {
+  try { return storage?.getItem?.(SLOT_PIPELINE_KEY) === "on"; } catch { return false; }
 }
 
 const hostOf = (u) => { try { return new URL(String(u)).hostname.replace(/^www\./, ""); } catch { return ""; } };
@@ -85,6 +95,18 @@ function boxed(parent, ms) {
   return { signal: c.signal, timedOut: () => timedOut, done: () => { clearTimeout(t); if (parent) parent.removeEventListener("abort", onParent); } };
 }
 
+/** `fetchImpl` that also stops when `signal` fires: the time box and Stop cancel the requests in flight, not only the awaiting. */
+function bound(fetchImpl, signal) {
+  return (url, o = {}) => {
+    const own = o.signal;
+    if (!own) return fetchImpl(url, { ...o, signal });
+    const c = new AbortController();
+    const stop = () => c.abort();
+    for (const x of [own, signal]) { if (x.aborted) c.abort(); else x.addEventListener("abort", stop, { once: true }); }
+    return fetchImpl(url, { ...o, signal: c.signal }).finally(() => { own.removeEventListener("abort", stop); signal.removeEventListener("abort", stop); });
+  };
+}
+
 /** The slot pipeline for one turn: runAnswerTurn under the turn's signal and a declared time box.
  *  → { handoff: { kind, why } }   today's path runs (not a slot ask, no grammar for the language, names not matched, too slow, …)
  *  → AnswerTurn@1                 an answer, a contest or a typed gap: the turn ends here, no model call
@@ -93,7 +115,7 @@ export async function runSlotTurn({ question, lang, webPassages, searchQ = null,
   const code = lang && typeof lang === "object" ? lang.code : lang;
   const box = boxed(signal, timeBoxMs);
   try {
-    const deps = slotDeps({ fetchImpl, signal: box.signal, memo, lang: isStr(code) && code !== "unknown" ? code : "en", onStatus });
+    const deps = slotDeps({ fetchImpl: bound(fetchImpl, box.signal), signal: box.signal, memo, lang: isStr(code) && code !== "unknown" ? code : "en", onStatus });
     const turn = await runAnswerTurn({
       question,
       lang: isStr(code) && code !== "unknown" ? { code, by: "function words" } : undefined,

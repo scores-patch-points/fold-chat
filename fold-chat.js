@@ -35,7 +35,7 @@ import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
 import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
 import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
 import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
-import { slotTurnWanted, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine } from "./fold-chat-answerwire.js";
+import { slotTurnWanted, slotPipelineOn, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine } from "./fold-chat-answerwire.js";
 import { mountAnswerCard } from "./fold-chat-answercard.js";
 import { renderStrand } from "./fold-chat-strandview.js";
 import { ANSWER_MODES, normAnswerMode, resolveAnswerMode, answerModeOfTurn } from "./fold-chat-answer.js";
@@ -1976,7 +1976,7 @@ export function mount(root, opts = {}) {
     // here (a gap is drawn, never said). A { handoff } (not a slot ask, a language with no grammar, names that match no page, too slow) leaves
     // today's path exactly as it was, and the feed says why.
     let slotTurn = null;
-    if (slotTurnWanted({ kind, wantWeb, liveHit, answerMode })) {
+    if (slotTurnWanted({ kind, wantWeb, liveHit, answerMode, enabled: slotPipelineOn() })) {
       say(`turn \u00b7 ${kindWord} \u00b7 checking whether this has one fact for an answer\u2026`);
       const slotFetch = withSignal(outbound.auditedFetch("web search", runId), ac.signal);   // every outbound call of the slot turn is logged, and Stop cancels it
       const slotRes = await raceAbort(runSlotTurn({ question, lang: lang0, webPassages, searchQ, now: new Date(), fetchImpl: slotFetch, signal: ac.signal, memo: pageMemo, onStatus: (t) => say(`turn \u00b7 ${kindWord} \u00b7 ${t}`) }), ac.signal);
