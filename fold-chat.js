@@ -35,10 +35,12 @@ import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
 import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
 import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
 import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
+import { slotTurnWanted, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine } from "./fold-chat-answerwire.js";
+import { mountAnswerCard } from "./fold-chat-answercard.js";
 import { renderStrand } from "./fold-chat-strandview.js";
 import { ANSWER_MODES, normAnswerMode, resolveAnswerMode, answerModeOfTurn } from "./fold-chat-answer.js";
 import { stripScaffolding, checkAttributions, attributionNotice } from "./fold-chat-attribution.js";
-import { detectLang, sameLanguage, languageInstruction, restateMessages, languageNotice } from "./fold-chat-lang.js";
+import { detectLang, sameLanguage, languageInstruction, restateMessages, languageNotice, threadLanguage } from "./fold-chat-lang.js";
 import { senseTerm, disambiguationOf, sensesLine } from "./fold-chat-senses.js";
 import { voidReport, voidText, voidLabel, normVoid, migrateSessions, modelHistory } from "./fold-chat-channels.js";
 import { recipeSnips, CARD_PROMPT } from "./fold-chat-snip.js";
@@ -965,7 +967,7 @@ export function mount(root, opts = {}) {
     E.threadCol.innerHTML = "";
     const msgs = s?.messages || [];
     setView(!msgs.length);
-    for (let i = 0; i < msgs.length; i++) appendMsg(s, msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, notices: msgs[i].notices, void: msgs[i].void, model: s?.model, cwd: msgs[i].cwd, authored: msgs[i].authored, snips: msgs[i].snips });
+    for (let i = 0; i < msgs.length; i++) appendMsg(s, msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, notices: msgs[i].notices, void: msgs[i].void, model: s?.model, cwd: msgs[i].cwd, authored: msgs[i].authored, snips: msgs[i].snips, answerTurn: msgs[i].answerTurn });
     // A turn still running in this chat: hang its live row back on the thread
     // (the row is the run's own node, so what it streamed while we were away is
     // still in it) and re-point the stage line at it.
@@ -1389,7 +1391,10 @@ export function mount(root, opts = {}) {
       if (traced) replayFeed(hasFold ? tuckSteps(body, { open: false }).inner : body, meta.grounding.events, { onAuditOpen: (id) => openAudit(id) });
       // A SOURCES-ONLY turn (authored by the sources) draws as one reading column of their own passages instead.
       const strandMode = meta.authored === "sources" && Array.isArray(meta.snips) && meta.snips.length > 0;
-      for (const b of strandMode ? [] : artifactsOf(content)) {
+      // A SLOT ANSWER (message.answerTurn): one answer line, its source sentence and citation, what was checked, and the app's own "how I reasoned"
+      // — drawn by the answer card INSTEAD of the passage wall or prose (the card carries the answer line; drawing `content` too would say it twice).
+      const slotCard = meta.authored === "sources" && meta.answerTurn && typeof meta.answerTurn === "object" ? meta.answerTurn : null;
+      for (const b of strandMode || slotCard ? [] : artifactsOf(content)) {
         if (b.kind === "prose") { if (!showFace) prose(body, b.text); }
         else if (!(foldSnap && foldSnap.versions.length)) renderArtifact(body, b.artifact, s);
       }
@@ -1408,6 +1413,7 @@ export function mount(root, opts = {}) {
       const declined = strandMode ? noticeList.filter((n) => n && n.fellBackFrom && (n.kind === "declined" || n.kind === "fold")) : [];
       if (declined.length) renderNotices(body, declined, retryFn);
       if (strandMode) { const sn = sensesEl(meta.grounding); if (sn) body.append(sn); renderStrand(body, meta.snips, { toast }); }
+      else if (slotCard) mountAnswerCard(body, { answerTurn: slotCard });
       else if (showFace) renderFacingPage(body, meta.grounding, content, { ...meta, gap: gapV, noticed: noticeList.length > 0, appAuthored: noticeList.some((n) => n && (n.kind === "alone" || n.kind === "no-sources")), retry: retryFn, sessionId: s?.id });
       else if (gapV) body.append(renderGap(gapV, { retry: retryFn }));
       // Recipes the sources declared, shown in the creators' own words (never retyped by the model), credited.
@@ -1812,7 +1818,10 @@ export function mount(root, opts = {}) {
     // alone, or — with nothing earlier — nothing is written); "i want a chewier one" is searched WITH the earlier topic; a
     // pronoun follow-up carries the last answer's referent (resolveQuestion). The person's words are never rewritten.
     const askAt = s.messages.lastIndexOf(askMsg);
-    const lang0 = detectLang(said).lang;
+    // THE THREAD'S LANGUAGE (fold-chat-lang.js): the last confident language of the person's own earlier turns. An elliptical
+    // follow-up ("and him?", "chewier") has none of its own and inherits it; any text with evidence of its own can still flip it.
+    const threadLang = threadLanguage(askAt > 0 ? s.messages.slice(0, askAt) : []);
+    const lang0 = detectLang(said, { prior: threadLang }).lang;
     const follow = planTurn(said, askAt > 0 ? s.messages.slice(0, askAt) : [], { referents: s.referents || null, hints: hintsFor(lang0 === "unknown" ? "en" : lang0) });
     // A bare nudge ("well?") after an unanswered ask IS that ask again: the turn is read, searched and written as the earlier question
     // (follow.retry); the person's own "well?" stays what they said (the thread, the record's `said`).
@@ -1951,7 +1960,7 @@ export function mount(root, opts = {}) {
     const identityLine = memory.systemContext({ readerName, facts: s.facts || {} });
     // The asker's language rides every prompt (a transform is the exception: "translate X into
     // Spanish" is answered in Spanish whatever language the ask was written in).
-    const langLine = kind === "transform" ? null : languageInstruction(question);
+    const langLine = kind === "transform" ? null : languageInstruction(question, { prior: threadLang });
     const COMPUTE_BASE = "You are the voice of a calculator. The fold has ALREADY computed the answer exactly; your only job is to say it in a short, natural sentence.";
     const turnBase = kind === "generate" ? [GENERATE_NUDGE, identityLine, langLine].filter(Boolean).join("\n\n")
       : (kind === "transform" || kind === "code" || kind === "compose") ? [KIND_PROMPT[kind], identityLine, langLine].filter(Boolean).join("\n\n")
@@ -1961,18 +1970,35 @@ export function mount(root, opts = {}) {
     // asked; the fold draws the typed gap from the real search trace (fold-chat-gaps.js). A live-data ask is a
     // gap likewise. Everything below that could call the model goes through `callModel`, which is barred
     // (`modelBarred`) on a turn with no source, a Sources-only turn, and a kind the model may not answer alone.
+    // THE SLOT PIPELINE (docs/ANSWER-PIPELINE.md; fold-chat-answerturn.js via fold-chat-answerwire.js). A factual ask whose answer is ONE filler of a
+    // typed slot (who / when / how many / where / what is the capital…) is read, reasoned over — it searches for what would REFUTE the candidate —
+    // and realised MECHANICALLY: the model is not called at all, whatever the answer mode. An answer, a contest or a typed gap ends the turn
+    // here (a gap is drawn, never said). A { handoff } (not a slot ask, a language with no grammar, names that match no page, too slow) leaves
+    // today's path exactly as it was, and the feed says why.
+    let slotTurn = null;
+    if (slotTurnWanted({ kind, wantWeb, liveHit, answerMode })) {
+      say(`turn \u00b7 ${kindWord} \u00b7 checking whether this has one fact for an answer\u2026`);
+      const slotFetch = withSignal(outbound.auditedFetch("web search", runId), ac.signal);   // every outbound call of the slot turn is logged, and Stop cancels it
+      const slotRes = await raceAbort(runSlotTurn({ question, lang: lang0, webPassages, searchQ, now: new Date(), fetchImpl: slotFetch, signal: ac.signal, memo: pageMemo, onStatus: (t) => say(`turn \u00b7 ${kindWord} \u00b7 ${t}`) }), ac.signal);
+      if (slotRes.aborted || ac.signal.aborted) throw abortError();   // Stop: no card, no answer — the same stopped turn as any other
+      if (slotRes.handoff) feedPush(lineEvent(tt, "Handling this the usual way", { tone: "info", note: slotRes.handoff.why }));
+      else if (endsTurn(slotRes)) { slotTurn = slotRes; feedPush(traceFeed(tt, slotRes, lineEvent)); }   // the app's own first-person reasoning, one row per line
+    }
     let plan = null;
-    if (wantWeb && !webPassages.length) {
+    if (wantWeb && !webPassages.length && !slotTurn) {
       plan = unsourcedPlan(UNSOURCED_ANSWERS, { live: !!liveHit });
       say(`turn · ${kindWord} · no sources reached · drawing the gap (not answering from memory)…`);
       feedPush(lineEvent(tt, "No source could be read", { tone: "bad", note: "drawing the gap \u2014 I won't answer from memory" }));
     }
     // SOURCES ONLY (answer mode "snips"): no model at all — the answer is the passages the pages gave, verbatim,
     // chosen with no model (structured block first, else the sentences that differ the ask), strung together.
-    let strand = null, strandEmpty = false;
-    if (answerMode === "snips" && wantWeb && webPassages.length) {
+    let strand = null, strandEmpty = false, strandWhy = "";
+    // A slot turn is marked like a strand (no model, authored by the sources, never scored: its answer line is the source sentence's own words) but it
+    // carries no snips — the card (fold-chat-answercard.js) draws it. Every strand-guarded step below therefore stands down for it, as it should.
+    if (slotTurn) strand = { snips: [], dropped: [], slotTurn };
+    if (answerMode === "snips" && wantWeb && webPassages.length && !slotTurn) {
       strand = snipsOf(webPassages, searchQ);
-      if (!strand.snips.length) { strand = null; strandEmpty = true; plan = unsourcedPlan(UNSOURCED_ANSWERS, { live: false }); }
+      if (!strand.snips.length) { strandWhy = [...new Set((strand.gaps || []).map((g) => g.reason).filter(Boolean))].slice(0, 3).join("; "); strand = null; strandEmpty = true; plan = unsourcedPlan(UNSOURCED_ANSWERS, { live: false }); }   // the typed gaps say why (a wall, a gate, only menus and notices)
       else { say(`turn · ${kindWord} · sources only · stringing ${strand.snips.length} passage(s) together (no model)…`); feedPush(lineEvent(tt, "Strung the sources' passages together", { tone: "ok", note: `${strand.snips.length} passage(s), their own words \u2014 no model` })); }
     }
     // A kind that searches nothing (greeting, arithmetic, your own text, code, personal writing) has no source:
@@ -2027,7 +2053,7 @@ export function mount(root, opts = {}) {
       // NO MODEL REACHABLE, and this turn would call one: fall back to the sources-only strand when sources were read
       // (the same way a gate refusal does); otherwise there is nothing honest to show, and the turn says why.
       if (!skipModel && m.none) {
-        const why = noModelWhy({ bridgeUp: modelsUp, models, selectedId: s.model || null });
+        const why = noModelWhy({ bridgeUp: modelsUp, models, selectedId: s.model || null, page: pageState() });
         const fb = wantWeb && webPassages.length ? snipsOf(webPassages, searchQ) : null;
         if (!fb || !fb.snips.length) throw Object.assign(new Error("no model \u2014 " + (why.text || "none is available")), modelsUp ? {} : { status: 0 });
         fellBack = noModelFallbackNotice(why, { from: answerMode });
@@ -2085,7 +2111,7 @@ export function mount(root, opts = {}) {
       // conversation carries and build the record (disclosed when transparency
       // is on). The model proposes; the record decides.
       // A Sources-only turn's text IS the sources' words: it is never rewritten, scrubbed or scored.
-      let text = strand ? strandText(strand.snips) : ground.stripSelfCitations(out.text).text;
+      let text = slotTurn ? answerLine(slotTurn) : strand ? strandText(strand.snips) : ground.stripSelfCitations(out.text).text;
       // System notes about this turn ride their OWN channel (message.notices),
       // never `content`: `content` is only what the model wrote.
       const notices = [];
@@ -2101,7 +2127,7 @@ export function mount(root, opts = {}) {
       const cited = scaffold.cited;
       let langAudit = null;
       if (text.trim() && kind !== "transform" && !strand) {
-        const sl = sameLanguage(question, text);
+        const sl = sameLanguage(question, text, { prior: threadLang });
         langAudit = { question: sl.question.lang, reply: sl.reply ? sl.reply.lang : null, same: sl.same, restated: false };
         if (!sl.same) {
           // The reply is in another language than the question: ask the model to restate ITS OWN draft
@@ -2110,7 +2136,7 @@ export function mount(root, opts = {}) {
           try {
             const rs = await callModel(restateMessages(text, sl.question.name), { base: bridge, privacy: "sealed-external", audit: { run: runId }, signal: ac.signal, temperature: 0.2 });
             const fixed = stripScaffolding(String(rs.text || "").trim(), webPassages).text.trim();
-            if (fixed && sameLanguage(question, fixed).same) { text = fixed; langAudit.restated = true; }
+            if (fixed && sameLanguage(question, fixed, { prior: threadLang }).same) { text = fixed; langAudit.restated = true; }
             else notices.push(languageNotice(sl.question, sl.reply, { restated: true }));
           } catch (e) {
             if (ac.signal.aborted) throw e;
@@ -2193,11 +2219,12 @@ export function mount(root, opts = {}) {
       if (record && threadTurn) record.answeredFrom = { turn: threadTurn.turn, askIndex: threadTurn.askIndex, answerIndex: threadTurn.answerIndex };
       if (record && follow.kind !== "standalone") record.followed = { kind: follow.kind, said, searched: follow.search || null, carried: follow.carried || [], topic: follow.topic || null };
       if (record && strand) {
-        record.authored = "sources"; record.answerMode = "snips";
+        record.authored = "sources"; record.answerMode = slotTurn ? answerMode : "snips";
         record.noClaims = "the sources' own words, unchanged \u2014 no model wrote this, so nothing is scored";
         record.unsupported = { numbers: [], names: [] }; record.ungrounded = [];
-        record.line = `On record \u00b7 turn ${turn} \u00b7 sources only \u00b7 ${strand.snips.length} passage(s) quoted`;
+        record.line = slotTurn ? `On record \u00b7 turn ${turn} \u00b7 one fact asked for \u00b7 answered from the source's own sentence \u00b7 no model` : `On record \u00b7 turn ${turn} \u00b7 sources only \u00b7 ${strand.snips.length} passage(s) quoted`;
         record.snipsN = strand.snips.length;
+        if (slotTurn) record.answerTurn = answerRecordNote(slotTurn);
         if (fellBack) record.fellBackFrom = fellBack.fellBackFrom;
       } else if (record) {
         record.answerMode = "facing";
@@ -2220,7 +2247,7 @@ export function mount(root, opts = {}) {
           wantWeb
             ? (webPassages.length ? `searched the web · read ${webPassages.length} source(s)` : `searched the web · nothing readable`)
             : `no search · ${kind === "smalltalk" ? "greeting" : kind === "compute" ? "computed by the fold's evaluator" : kind === "transform" ? "your own text is the material" : kind === "code" ? "programming question" : "personal writing"}`,
-          skipModel ? `no model call \u00b7 ${strand ? "answer mode: Sources only \u2014 the answer is the sources' own passages" + (strand.dropped.length ? ` (${strand.dropped.length} candidate(s) failed verification and were dropped)` : "") : plan ? (plan.gap === "live" ? "a live-data ask with nothing reachable" : "no source was reached \u2014 the model never speaks alone") : "this kind of turn has no source, and the model never speaks alone"}` : `wrote the answer \u00b7 ${m.sealed ? "sealed-external" : "local"}`,
+          slotTurn ? answerProcessLine(slotTurn) : skipModel ? `no model call \u00b7 ${strand ? "answer mode: Sources only \u2014 the answer is the sources' own passages" + (strand.dropped.length ? ` (${strand.dropped.length} candidate(s) failed verification and were dropped)` : "") : plan ? (plan.gap === "live" ? "a live-data ask with nothing reachable" : "no source was reached \u2014 the model never speaks alone") : "this kind of turn has no source, and the model never speaks alone"}` : `wrote the answer \u00b7 ${m.sealed ? "sealed-external" : "local"}`,
           ...(follow.kind !== "standalone" ? [follow.mode === "thread" ? `followed the conversation \u00b7 no search \u00b7 answered from turn ${follow.thread.turn}` : follow.mode === "cold-gap" ? "a follow-up with nothing earlier to follow \u00b7 no search, no model" : `followed the conversation \u00b7 ${follow.kind} \u00b7 searched \u201c${String(follow.search || "").slice(0, 80)}\u201d`] : []),
           ...(computed && computed.ok ? [`computed · ${computed.text} (the fold's evaluator, not the model)`] : []),
           ...(scaffold.removed ? [`scaffolding · ${scaffold.removed} source label(s) removed from the model's text${cited.length ? ", " + cited.length + " shown as citations" : ""}`] : []),
@@ -2278,7 +2305,7 @@ export function mount(root, opts = {}) {
         delete record.creative; delete record.noClaims;      // a gap is not "no claims to check"
         gapReport = (plan && plan.gap === "live") || liveDrop ? liveGap(webTrace, question, { read: liveDrop ? readList : [], what: liveHit?.what || null })
           : unreachedGap(webTrace, question);
-        if (strandEmpty) gapReport.note = "Pages were read, but no passage of them could be quoted for this ask.";
+        if (strandEmpty) gapReport.note = "Pages were read, but no passage of them could be quoted for this ask" + (strandWhy ? " (" + strandWhy + ")." : ".");
       } else if (record && effort !== "fast" && !strand && text.trim() && !(record.snips && record.snips.length)) gapReport = voidReport(record, lastUser?.content || "", webPassages, webTrace);
       if (gapReport) {
         record.void = gapReport;
@@ -2309,25 +2336,26 @@ export function mount(root, opts = {}) {
         const un = (record.unsupported?.numbers?.length || 0) + (record.unsupported?.names?.length || 0);
         feedPush(lineEvent(tt, "Checked the answer against what was read", { tone: un ? "warn" : "ok", note: un ? `${un} figure(s) or name(s) not found in the sources` : "every figure and name appears in the sources" }));
       }
-      feedPush(doneEvents(tt, { ok: !(plan || liveDrop), title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop) }) }));
+      feedPush(doneEvents(tt, { ok: !(plan || liveDrop || (slotTurn && !slotTurn.answer)), title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: slotTurn ? slotTurn.sources.length : webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop || (slotTurn && !slotTurn.answer)) }) }));
       if (record) record.feed = storeEvents(turnEvents, { max: 60 });
       const idx = s.messages.length;
       // Stored by author: a Sources-only turn is `authored: "sources"` with its verbatim snips (content = their plain
       // concatenation); every other turn's content is the model's, and exists only because a source was read.
       const storedSnips = strand ? strand.snips.map(storeSnip) : null;
+      const slotStored = slotTurn ? storeAnswerTurn(slotTurn) : null;   // plain JSON: survives a reload and the session merge as message.answerTurn
       if (strand) { const chk = verifySnips(storedSnips, webPassages); if (!chk.ok) console.error("[fold-chat] a stored snip is not in its page — a bug:", chk.bad.map((b) => b.text.slice(0, 60))); }
-      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, model: m.id, ...(strand ? { authored: "sources", snips: storedSnips } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
+      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, model: m.id, ...(strand ? { authored: "sources", ...(slotTurn ? { answerTurn: slotStored } : { snips: storedSnips }) } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
       s.sealed = !!m.sealed;
       s.updated = now();
       maybeName(s);
       // The referent record the NEXT turn's "him"/"it" resolves against (fold-chat-mind.js): what this turn's sources and answer named.
-      try { s.referents = admitReferents(s.referents || emptyReferents(), { question, answer: strand ? "" : text, sources: webPassages.map((p) => ({ title: String(p.ref || "").includes(" \u2014 ") ? String(p.ref).slice(String(p.ref).indexOf(" \u2014 ") + 3) : String(p.ref || "") })) }); } catch (e) { /* the record is an aid, never a reason to lose a turn */ }
+      try { s.referents = admitReferents(s.referents || emptyReferents(), { question, answer: strand && !slotTurn ? "" : text, sources: webPassages.map((p) => ({ title: String(p.ref || "").includes(" \u2014 ") ? String(p.ref).slice(String(p.ref).indexOf(" \u2014 ") + 3) : String(p.ref || "") })) }); } catch (e) { /* the record is an aid, never a reason to lose a turn */ }
       // A reply that lands while another chat is open leaves a quiet mark on this
       // chat's row (cleared when it is opened) instead of drawing into that chat.
       if (!isLive()) s.unseen = true;
       save("fold-chat:sessions", sessions);
       row.wrap.remove();
-      if (isLive()) appendMsg(s, "assistant", text, { sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips });
+      if (isLive()) appendMsg(s, "assistant", text, { sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored });
     } catch (err) {
       // A stop is a stop; ANYTHING else that died is stored as a typed, retry-able note on its own
       // message (failTurn) — whether or not this chat is the open one.
@@ -2611,7 +2639,7 @@ export function mount(root, opts = {}) {
   function updateBridgeStatus() {
     if (!E.bridgeStatus) return;
     if (bridgeHello) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b> — every model and the sealed-external gate route here.`;
-    else if (bridge && models.length) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b>.`;
+    else if (bridge && modelsUp) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b>.`;
     else E.bridgeStatus.innerHTML = `no bridge found — the model still runs in this tab. Start the Fold's own server (<b>npm run serve</b>: it carries heimdall at <b>/heimdall</b>), then Detect.`;
   }
   E.bridgeDetect.onclick = async () => {

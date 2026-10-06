@@ -34,6 +34,11 @@ export const LEGACY_BRIDGES = Object.freeze(["http://localhost:8790", "http://12
 /** Where the Fold's own server mounts heimdall, relative to its origin (server.mjs PREFIX). */
 export const EMBEDDED_PATH = "/heimdall";
 
+/** Where the Fold's own server listens on this machine. A page with NO same-origin heimdall (the extension's chrome-extension://
+ *  pages, a file:// open) looks here BEFORE the legacy bridge ports. The server must also allowlist that page's origin
+ *  (HEIMDALL_ALLOWED_ORIGINS), or heimdall will refuse it: finding it here is not the same as being let in. */
+export const LOCAL_EMBEDDED = Object.freeze(["http://127.0.0.1:8814" + EMBEDDED_PATH, "http://localhost:8814" + EMBEDDED_PATH]);
+
 /** The embedded heimdall of the server that served THIS page: `<origin>/heimdall`, or null when the page is not served over
  *  http(s) (the extension's chrome-extension:// pages, a file:// open, node). Pure given `loc`. */
 export function sameOriginBridge(loc = globalThis.location) {
@@ -66,10 +71,11 @@ import { deidentify } from "./fold-chat-redact.js";
  *  list because it depends on where the page was served: bridgeCandidates() puts it first. */
 export const BRIDGE_CANDIDATES = LEGACY_BRIDGES;
 
-/** Where heimdall is looked for, in order: the same-origin embedded one first, then the legacy local bridge. */
+/** Where heimdall is looked for, in order: the same-origin embedded one first (or, with none, the Fold server's own local
+ *  port), then the legacy local bridge. */
 export function bridgeCandidates({ loc = globalThis.location } = {}) {
   const own = sameOriginBridge(loc);
-  return own ? [own, ...LEGACY_BRIDGES] : [...LEGACY_BRIDGES];
+  return own ? [own, ...LEGACY_BRIDGES] : [...LOCAL_EMBEDDED, ...LEGACY_BRIDGES];
 }
 
 /** The bridge a caller points at. Overridable (localStorage in the page, constructor arg in tests). Only trailing slashes are
@@ -282,7 +288,7 @@ function pageError(e, model) {
   const kind = e instanceof PageEngineError ? e.kind : "error";
   const msg = String(e?.message || e);
   const out = new Error(
-    kind === "no-gpu" ? `this browser has no WebGPU (${e.reason || "no-adapter"}), so ${model} cannot run in this tab \u2014 use a WebGPU browser, the Fold's extension, or a bridge instead`
+    kind === "no-gpu" ? `this browser has no WebGPU (${e.reason || "no-adapter"}), so ${model} cannot run in this tab \u2014 use a WebGPU browser or the Fold's own server (\`npm run serve\`)`
     : kind === "loader" ? `the in-tab model runtime could not be fetched (${msg}) \u2014 it needs the network once`
     : msg);
   out.status = kind === "no-gpu" ? 501 : kind === "loader" ? 502 : kind === "bad-request" ? 422 : 500;
@@ -297,8 +303,14 @@ async function chatPage(model, messages, { onToken, signal, temperature, maxToke
   const abortErr = () => Object.assign(new Error("aborted"), { name: "AbortError" });
   if (!eng) throw fail(new PageEngineError("no-gpu", "no in-page engine is registered in this page", { reason: "no-engine" }));
   if (signal?.aborted) { finishAudit({ ok: false, error: "aborted" }); throw abortErr(); }
+  // No WebGPU is decided FIRST, before anything that touches the network (the cache probe fetches the 6 MB library) or asks about a download.
+  let g = null;
+  try { g = await eng.gpu?.(); } catch { g = null; }
+  if (g && g.available === false) throw fail(new PageEngineError("no-gpu", `no WebGPU for an in-page model (${g.reason || "no-adapter"})`, { reason: g.reason || "no-adapter" }));
+  if (signal?.aborted) { finishAudit({ ok: false, error: "aborted" }); throw abortErr(); }
   const canon = canonicalModelId(model);
-  let loaded = eng.isLoaded() && eng.loadedId() === canon;
+  // A settled fallback (the engine fell back from this model earlier) answers for it: no re-ask, no reload.
+  let loaded = eng.isLoaded() && (eng.loadedId() === canon || !!eng.servesFor?.(canon));
   if (!loaded) {
     // NEVER a silent multi-GB download: a model that is not on this device is fetched only after a "yes".
     let cached = false;
@@ -329,8 +341,9 @@ async function chatPage(model, messages, { onToken, signal, temperature, maxToke
   const timer = setTimeout(() => timeoutCtl.abort(new Error("chat timed out")), totalTimeoutMs);
   const combined = signal ? anySignal([signal, timeoutCtl.signal]) : timeoutCtl.signal;
   let text = "", tokens = 0;
+  const meta = {};
   try {
-    for await (const d of eng.chatStream(messages, { signal: combined, temperature, maxTokens })) {
+    for await (const d of eng.chatStream(messages, { signal: combined, temperature, maxTokens, meta })) {
       text += d; tokens++;
       onToken?.(d);
     }
@@ -346,6 +359,10 @@ async function chatPage(model, messages, { onToken, signal, temperature, maxToke
     finishAudit({ ok: false, error: err.message });
     throw err;
   }
+  // The engine ended the stream with "abort" and neither the person's Stop nor the turn timeout asked for it: the model was
+  // replaced (or unloaded) under the answer. What we hold is a TRUNCATED answer; say so instead of shipping it as complete.
+  // (finish "length" is passed through as the bridge path does: the text so far is the answer.)
+  if (meta.finish === "abort") throw fail(new PageEngineError("generate-failed", "the in-tab model was replaced mid-answer, so the answer is incomplete"));
   finishAudit({ ok: true, status: 200 });
   const used = eng.loadedId?.() || canon;
   return { text, tokens, auditId, usage: { completion_tokens: tokens }, place: "tab", privacy: "in-tab", model: PAGE_PREFIX + used, fellBackFrom: used !== canon ? PAGE_PREFIX + canon : null };

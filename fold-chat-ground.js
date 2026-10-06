@@ -393,7 +393,7 @@ const stemOf = (t) => {
 };
 // The gate's own figure/unit/stem machinery, offered to fold-chat-assemble.js (the backward path) so it reads figures and units
 // EXACTLY as the gate does; nothing here changes what the gate does.
-export { figuresIn, figureMatches, stemOf };
+export { figuresIn, figureMatches, stemOf, COMMON_CAP };
 export const unitOfWord = (w) => UNITS.get(foldWord(String(w ?? ""))) || null;
 const SENT_END = /[.!?]+["')\]]*\s+|[。！？।॥؟]+["')\]]*\s*|\n+/gu;
 function sentenceStarts(text) {

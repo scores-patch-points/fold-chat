@@ -1,0 +1,64 @@
+{
+ "about": "Hand audit of EVERY snip the new ladder showed on the 82 reachable swarm sites, junk/clean by the two hand questions (dominated by chrome? opens with a chrome run?). Audit 1 was read on the output of the first complete version of the gate (wall check, content region, junk gate, lexicon CHROME as frozen plus the waiting-room wall phrases) BEFORE the prose-run rule, the STRONG phrase list, the fragment rule and the link-sentence rule existed. The final audit was read after them, on the same sites, so it is IN-SAMPLE for those four changes (the changes were chosen after reading audit 1). 'mixed' = content with a promo or credit line inside it, not leading and not dominating. The fresh check (eval/swarm/fresh-check.json) is the only out-of-sample part.",
+ "audit1": {
+  "sites": 82,
+  "junkSites": [
+   "apidocs#2|c (documentation baseline badge leads)",
+   "blog#1|c (byline + affiliate disclosure leads)",
+   "blog#4|c (hosting thanks + affiliate commission leads)",
+   "events#4|c (calendar widget help text)",
+   "health#3|d (non-endorsement disclaimer leads)",
+   "podcast#4|c (newsletter promo leads)",
+   "podcast#4|d (site search label leads)",
+   "sports#2|c (image disclaimer)",
+   "sports#3|c (widget footnote)"
+  ],
+  "junkSiteCount": 8,
+  "rate": 0.098
+ },
+ "final": {
+  "sites": 82,
+  "junkSites": [],
+  "junkSiteCount": 0,
+  "rate": 0.0,
+  "mixed": [
+   "changelog#1|c,d (survey promo as 2nd unit)",
+   "podcast#4|d (newsletter line inside the passage)",
+   "recipe#4|c (photo-credit line first)"
+  ],
+  "mixedSiteCount": 3,
+  "rateIfMixedCounted": 0.037,
+  "notJunkButNotContent": [
+   "blog#2|c,d (the post's own JSX code, shown as text)"
+  ]
+ },
+ "withTablesAndCode (not in the bars)": {
+  "junkByHand": [
+   "legal#2|t (a table of contents: 'Section / What can you find there?')"
+  ],
+  "judgeJunk": 4,
+  "judgeNote": "the frozen judge reads prose; rows and code are flagged by it (stopless runs)",
+  "helped": [
+   "readme#4|k (the install commands, rel 1->2)",
+   "nonenglish#3|t (population rows)"
+  ],
+  "noise": [
+   "sports#2|t",
+   "readme#1|k",
+   "changelog#3|k",
+   "legal#2|t"
+  ]
+ },
+ "fresh": {
+  "sites": 6,
+  "reachable": 4,
+  "walls": 2,
+  "junkSitesByHand": [
+   "allrecipes (c opens with the site's 'Test Kitchen staff' blurb)"
+  ],
+  "judgeFalsePositive": [
+   "wikipedia d (citation markers)"
+  ],
+  "note": "n=4 reachable: 1 junk site by hand = 25%; one fresh sample is too small to carry a rate"
+ }
+}

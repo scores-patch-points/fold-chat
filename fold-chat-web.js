@@ -18,7 +18,7 @@ import { searchDirect } from "./fold-chat-engines.js";
 import { isExtension } from "./fold-chat-exit.js";
 import { contactsOfRaw } from "./fold-chat-tip.js";
 import { snippetsSufficient, snippetPassages, makeBackground, learnBackground, languageOf, functionWordsOf } from "./fold-chat-snippets.js";
-import { stripFrame } from "./fold-chat-frame.js";
+import { stripFrame, caseless } from "./fold-chat-frame.js";
 import SNIPPET_SEED from "./fold-chat-snippets-seed.js";
 import { entityFromTitle, mentions, fold } from "./fold-chat-mind.js";
 import { routeSources, probeSources, noteRateLimited, coolingDown, isRateLimitError, factualAsk } from "./fold-chat-route.js";
@@ -888,4 +888,57 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
     }
   }
   return { results, passages, trace };
+}
+
+// ── the slot-ask pipeline's two reads (fold-chat-answerwire.js hands them to fold-chat-answerturn.js as deps) ─────────────────────────
+// Both go to the encyclopedia's own API and nothing else, so they work when the open-web relay is down. Neither runs for an ask that is
+// not a slot ask (the chat only asks for them once askFrame has read a frame), and neither rewrites a word of what a page says.
+
+/** THE LEAD OF THE PAGE A NAME LANDS ON — the search that NAMES the claim (the fold's own falsifier: "Charles III", not the ask).
+ *  Searches the encyclopedia for `query`, takes the hit whose title is the query (case/diacritic-folded; else the top hit), and returns the
+ *  introduction of that page: { title, extract, url } | null. A network failure rejects (the caller reports "could not check"). */
+export async function wikiLead(query, { fetchImpl = fetch, lang = "en" } = {}) {
+  const ed = WIKI_EDITIONS.has(lang) ? lang : "en";
+  const q = String(query ?? "").trim();
+  if (!q) return null;
+  const found = await search("wikipedia", q, 0, { fetchImpl, lang: ed });
+  const hits = (found.results || []).filter((r) => r && r.title && r.url);
+  if (!hits.length) return null;
+  const want = caseless(q);
+  const hit = hits.find((r) => caseless(r.title) === want) || hits[0];
+  const api = `https://${ed}.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=1&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=${encodeURIComponent(hit.title)}`;
+  const { r, j } = await getJson(fetchImpl, api, "Wikipedia");
+  if (!r.ok || !j) throw new Error("Wikipedia answered " + r.status + ".");
+  const pages = (j.query && j.query.pages) || {};
+  const pg = pages[Object.keys(pages)[0]];
+  const extract = pg && typeof pg.extract === "string" ? cleanText(pg.extract) : "";
+  if (!extract) return null;
+  return { title: String(pg.title || hit.title), extract, url: hit.url };
+}
+
+/** ONE WIDER READ for a slot ask: the pages the frame's own names lead to. The query is the frame's words only (its referents' titles and
+ *  its predicate words — no interrogative), searched once on the encyclopedia; the top hits are read, and so are the pages the referent
+ *  titles name (never more than `max` pages in all). → passages in the answer pipeline's shape:
+ *  [{ ref, title, url, host, lang, text, query }]. A page that cannot be read is simply absent; a failed SEARCH rejects. */
+export async function referentPassages(frame, { fetchImpl = fetch, memo = null, max = 4, lang = "en", maxChars = 12000 } = {}) {
+  const ed = WIKI_EDITIONS.has(lang) ? lang : "en";
+  const referents = Array.isArray(frame && frame.referents) ? frame.referents : [];
+  const predicate = Array.isArray(frame && frame.predicate) ? frame.predicate : [];
+  const words = [...referents.map((r) => r.title || r.surface), ...predicate.map((p) => p.surface)].map((w) => String(w ?? "").trim()).filter(Boolean);
+  const query = words.join(" ");
+  if (!query) return [];
+  const pageUrl = (t) => `https://${ed}.wikipedia.org/wiki/` + encodeURIComponent(String(t).replace(/ /g, "_"));
+  const picks = [], seen = new Set();
+  const add = (title, url) => { if (title && url && !seen.has(url) && picks.length < max) { seen.add(url); picks.push({ title: String(title), url }); } };
+  const found = await search("wikipedia", query, 0, { fetchImpl, lang: ed });
+  for (const r of found.results || []) add(r && r.title, r && r.url);
+  for (const r of referents) add(r.title, r.title ? pageUrl(r.title) : null);
+  const read = await Promise.all(picks.map(async (p) => {
+    try {
+      const rd = await readText(p.url, { fetchImpl, memo });
+      if (!rd || !rd.ok || !rd.text) return null;
+      return { ref: "Wikipedia \u2014 " + p.title, title: p.title, url: p.url, host: hostKey(p.url), lang: ed, text: rd.text.slice(0, maxChars), query };
+    } catch { return null; }
+  }));
+  return read.filter(Boolean);
 }

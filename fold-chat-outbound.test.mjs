@@ -163,7 +163,7 @@ test("remoteCode: by default each attempt is graded masked — not raw, not seal
   const ledger = createOutbound({ storage: store() });
   setAuditHook({ before: (i) => ledger.sendModel({ auditId: i.auditId, model: i.model, messages: i.messages, segments: i.segments, purpose: i.purpose }).done });
   try {
-    await remoteCode("a timer for dr.kim@clinic.org", { candidates: ["live"], prior: "<b>old</b>", fetchImpl: bridgeFetch([]) });
+    await remoteCode("a timer for dr.kim@clinic.org", { candidates: ["live"], prior: "<b>old</b>", redact: async (t) => t.map(() => []), fetchImpl: bridgeFetch([]) });
     const [e] = ledger.list();
     assert.deepEqual(e.segments.map((s) => s.provenance), ["template", "masked", "masked"]);
     assert.equal(e.grade.level, "masked"); assert.equal(e.grade.sealed, false); assert.equal(e.grade.raw, false); assert.equal(e.grade.leaks.length, 0);

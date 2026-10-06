@@ -1,0 +1,185 @@
+[
+ {
+  "host": "en.wikipedia.org",
+  "ask": "How tall is an okapi and what does it eat?",
+  "status": 200,
+  "htmlChars": 708445,
+  "wall": {
+   "blocked": false,
+   "kind": "",
+   "reason": ""
+  },
+  "shown": [
+   {
+    "rung": "c",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "The okapi ( / oʊ ˈ k ɑː p i / ; Okapia johnstoni ), also known as forest giraffe and zebra giraffe, is an artiodactyl mammal that is endemic to the northeast Democratic Republic of the Congo . … [ 19 ] However, J. D. Skinner argued that Canthumeryx gave rise t"
+   },
+   {
+    "rung": "d",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": true,
+    "text": "[ 13 ] Subsequently, zoologist Ray Lankester declared that the okapi represented an unknown genus of the Giraffidae , which he placed in its own genus, Okapia , and assigned the name Okapia johnstoni to the species. … In 1902, Swiss zoologist Charles Immanuel "
+   }
+  ],
+  "gap": null,
+  "withheld": []
+ },
+ {
+  "host": "docs.python.org",
+  "ask": "What does functools lru_cache do?",
+  "status": 200,
+  "htmlChars": 124016,
+  "wall": {
+   "blocked": false,
+   "kind": "",
+   "reason": ""
+  },
+  "shown": [
+   {
+    "rung": "b",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "Source code: Lib/functools.py The functools module is for higher-order functions: functions that act on or return other functions. In general, any callable object can be treated as a function for t..."
+   },
+   {
+    "rung": "c",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "The functools module is for higher-order functions: functions that act on or return other functions. … This allows the lru_cache decorator to be applied directly to a user function, leaving the maxsize at its default value of 128: … @lru_cache def count_vowels"
+   },
+   {
+    "rung": "d",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "The functools module is for higher-order functions: functions that act on or return other functions. … In general, any callable object can be treated as a function for the purposes of this module. … Returns the same as lru_cache(maxsize=None) , creating a thin"
+   }
+  ],
+  "gap": null,
+  "withheld": [
+   {
+    "rung": "c",
+    "reason": "leads-with-chrome"
+   }
+  ]
+ },
+ {
+  "host": "www.allrecipes.com",
+  "ask": "How long and at what temperature do I bake the cookies?",
+  "status": 200,
+  "htmlChars": 664102,
+  "wall": {
+   "blocked": false,
+   "kind": "",
+   "reason": ""
+  },
+  "shown": [
+   {
+    "rung": "a",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "Ingredients:\n- 1 cup butter, softened\n- 1 cup white sugar\n- 1 cup packed brown sugar\n- 2 eggs\n- 2 teaspoons vanilla extract\n- 1 teaspoon baking soda\n- 2 teaspoons hot water\n- 0.5 teaspoon salt\n- 3 cups all-purpose flour\n- 2 cups semisweet chocolate chips\n- 1 c"
+   },
+   {
+    "rung": "b",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "This classic chocolate chip cookie recipe makes deliciously buttery cookies with crisp edges, chewy middles, and gooey chocolate chips in every bite."
+   },
+   {
+    "rung": "c",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "The Allrecipes Test Kitchen staff is a team of culinary pros who make and vet recipes using only equipment you’d find in a home kitchen. … Baking soda, hot water, and salt: These pantry staples help the cookies bake properly and balance the sweetness. … How to"
+   },
+   {
+    "rung": "d",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "How to Store Chocolate Chip Cookies … Store the cooled chocolate chip cookies in an airtight container at room temperature for up to a week. … If you want to go the extra mile, throw a piece of white bread into the container — it’ll absorb the dry air and keep"
+   }
+  ],
+  "gap": null,
+  "withheld": []
+ },
+ {
+  "host": "stackoverflow.com",
+  "ask": "What does the yield keyword do in Python?",
+  "status": 403,
+  "htmlChars": 28800,
+  "wall": {
+   "blocked": true,
+   "kind": "http",
+   "reason": "the site refused to show this page to an automated reader (HTTP 403)"
+  },
+  "shown": [],
+  "gap": {
+   "gap": "blocked",
+   "reason": "the site refused to show this page to an automated reader (HTTP 403)"
+  },
+  "withheld": []
+ },
+ {
+  "host": "www.nhs.uk",
+  "ask": "What are the symptoms of a migraine?",
+  "status": 200,
+  "htmlChars": 181531,
+  "wall": {
+   "blocked": false,
+   "kind": "",
+   "reason": ""
+  },
+  "shown": [
+   {
+    "rung": "a",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "Migraines affect 10 million people in the UK. Identifying and avoiding the things that trigger migraines is an important part of managing them, says Dr Dawn Harper."
+   },
+   {
+    "rung": "c",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "Migraine is a condition that causes symptoms such as a severe headache, feeling sick and sensitivity to light. … Migraine attacks usually last between 4 hours and 3 days, with early symptoms (such as feeling very tired) starting hours or up to 2 days before th"
+   },
+   {
+    "rung": "d",
+    "verbatim": true,
+    "strict": true,
+    "judgeJunk": false,
+    "text": "Migraine is a condition that causes symptoms such as a severe headache, feeling sick and sensitivity to light. … There is treatment to help manage symptoms. … a throbbing headache – this can be severe, often on 1 side of the head and can be worse when you move"
+   }
+  ],
+  "gap": null,
+  "withheld": []
+ },
+ {
+  "host": "www.imdb.com",
+  "ask": "Who directed The Shawshank Redemption?",
+  "status": 202,
+  "htmlChars": 9515,
+  "wall": {
+   "blocked": true,
+   "kind": "wall-short",
+   "reason": "the page is a short block, gate or expiry notice, not the content asked for"
+  },
+  "shown": [],
+  "gap": {
+   "gap": "blocked",
+   "reason": "the page is a short block, gate or expiry notice, not the content asked for"
+  },
+  "withheld": []
+ }
+]

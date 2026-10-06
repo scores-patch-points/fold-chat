@@ -102,7 +102,7 @@ export function describeLoaded(state, { max = 3 } = {}) {
   }
   if (st.bridge === "down" && !list.length) {
     if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: "This tab can run a model itself (WebGPU) \u2014 no bridge needed. The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.\n" + (st.errors || []).join("\n") };
-    if (pg && pg.reason && pg.reason !== "no-engine") return { kind: "down", dot: "\u25CB", text: "no WebGPU here, and no bridge \u2014 Sources only still works", title: `This browser cannot run a model in the tab (${pg.reason}). Use a WebGPU browser, the Fold's extension, or start the Fold's own server (\`npm run serve\`) so its bridge can serve one. Sources only needs no model.\n` + (st.errors || []).join("\n") };
+    if (pg && pg.reason && pg.reason !== "no-engine") return { kind: "down", dot: "\u25CB", text: "no WebGPU here, and no bridge \u2014 Sources only still works", title: `This browser cannot run a model in the tab (${pg.reason}). Use a WebGPU browser or the Fold's own server (\`npm run serve\`) so its bridge can serve one. Sources only needs no model.\n` + (st.errors || []).join("\n") };
     return { kind: "down", dot: "\u25CB", text: "no model reachable \u2014 Sources only still works", title: "The heimdall bridge did not answer, so no model can be reached. Sources only needs no model. Start the Fold's own server (`npm run serve`) for written answers.\n" + (st.errors || []).join("\n") };
   }
   if (!list.length) {
@@ -128,7 +128,7 @@ export function noModelWhy({ bridgeUp = true, models = [], selectedId = null, pa
   // A model listed IN THIS TAB needs no bridge: the bridge being down is then not why there is "no model".
   const inTab = list.some((m) => m?.kind === "webllm-page");
   if (!bridgeUp && !inTab) {
-    if (page && page.available === false && page.reason && page.reason !== "no-engine") return { code: "no-webgpu", text: `this browser has no WebGPU (${page.reason}) and the bridge isn't reachable — use a WebGPU browser, the Fold's extension, or start the Fold's own server (\`npm run serve\`)` };
+    if (page && page.available === false && page.reason && page.reason !== "no-engine") return { code: "no-webgpu", text: `this browser has no WebGPU (${page.reason}) and the bridge isn't reachable — use a WebGPU browser or the Fold's own server (\`npm run serve\`)` };
     return { code: "bridge-down", text: "the bridge isn't reachable — start the Fold's own server (`npm run serve`)" };
   }
   if (!list.length) return { code: "no-models", text: "the bridge is up but serves no model — pull one (`ollama pull gemma2:2b`) or connect a fleet worker" };

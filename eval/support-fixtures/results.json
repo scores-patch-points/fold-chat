@@ -1,0 +1,277 @@
+{
+ "labelsSha": "2b1399e6415d4c2dcbb7089ffb96494b0e4f9c778db01b94639d59968cd00e6c",
+ "socialLabelsSha": "27e5fc2bb652e4742f03995567500d0b1ae85f6db5351d0d2d508a719bf43632",
+ "uncapped": false,
+ "tip": {
+  "E": 4,
+  "L": 4,
+  "TP": 4,
+  "fp": [],
+  "miss": [],
+  "constructed": [],
+  "otherOrg": [],
+  "precision": "1.000",
+  "recall": "1.000"
+ },
+ "social": {
+  "E": 35,
+  "L": 42,
+  "TP": 35,
+  "fp": [],
+  "miss": [
+   "recipe3 threads.com/@smittenkitchen",
+   "yt1 reddit.com/r/3blue1brown",
+   "yt1 facebook.com/3blue1brown",
+   "yt1 github.com/3b1b",
+   "yt1 space.bilibili.com/88461692",
+   "yt1 youtube.com/@grantsanderson",
+   "zh1 instagram.com/ruanyf"
+  ],
+  "constructed": [],
+  "share": [],
+  "precision": "1.000",
+  "recall": "0.833"
+ },
+ "perFixture": {
+  "recipe1c": {
+   "tip": [],
+   "social": [
+    "facebook.com/MinimalistBaker",
+    "instagram.com/minimalistbaker",
+    "pinterest.com/minimalistbaker",
+    "x.com/minimalistbaker",
+    "youtube.com/c/Minimalistbaker"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "recipe2": {
+   "tip": [],
+   "social": [
+    "instagram.com/recipe_tin",
+    "facebook.com/RecipeTinEats",
+    "pinterest.com/recipetin",
+    "youtube.com/c/recipetineats"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "recipe3": {
+   "tip": [],
+   "social": [
+    "instagram.com/smittenkitchen",
+    "tiktok.com/@smittenkitchen",
+    "facebook.com/smittenkitchen",
+    "pinterest.com/smittenkitchen",
+    "youtube.com/smittenkitchening",
+    "bsky.app/profile/smittenkitchen.bsky.social"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "blog1": {
+   "tip": [],
+   "social": [
+    "social.jvns.ca/@b0rk",
+    "bsky.app/profile/b0rk.jvns.ca",
+    "github.com/jvns"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "blog2": {
+   "tip": [
+    "github.com/sponsors/simonw"
+   ],
+   "social": [
+    "github.com/simonw",
+    "x.com/simonw",
+    "fedi.simonwillison.net/@simon"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "news1": {
+   "tip": [],
+   "social": [
+    "substack.com/@astralcodexten"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "yt1": {
+   "tip": [
+    "members.3blue1brown.com"
+   ],
+   "social": [
+    "youtube.com/@3blue1brown",
+    "3blue1brown.substack.com",
+    "instagram.com/3blue1brown",
+    "x.com/3blue1brown",
+    "bsky.app/profile/3blue1brown.com",
+    "tiktok.com/@3blue1brown"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "oss1": {
+   "tip": [],
+   "social": [
+    "github.com/sindresorhus"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "press1": {
+   "tip": [
+    "give.propublica.org/campaign/748664/donate",
+    "propublica.org/support/other-ways-to-give"
+   ],
+   "social": [
+    "newsie.social/@ProPublica",
+    "facebook.com/propublica",
+    "x.com/propublica"
+   ],
+   "emailKinds": [],
+   "forms": 0
+  },
+  "zh1": {
+   "tip": [],
+   "social": [
+    "weibo.com/ruanyf",
+    "x.com/ruanyf",
+    "github.com/ruanyf"
+   ],
+   "emailKinds": [
+    "a protected email link on the page"
+   ],
+   "forms": 0
+  }
+ },
+ "feeds": [
+  {
+   "id": "recipe1c",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "recipe2",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "recipe3",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "blog1",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "blog2",
+   "advertised": 1,
+   "expected": 0,
+   "ok": false,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "news1",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "yt1",
+   "advertised": 0,
+   "expected": 0,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "oss1",
+   "advertised": 0,
+   "expected": 0,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "press1",
+   "advertised": 1,
+   "expected": 1,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "zh1",
+   "advertised": 0,
+   "expected": 0,
+   "ok": true,
+   "otherSiteFetched": false
+  },
+  {
+   "id": "feed-blog1",
+   "authorName": true,
+   "emailOffered": false,
+   "expectedEmail": "none"
+  },
+  {
+   "id": "feed-recipe2",
+   "authorName": true,
+   "emailOffered": false,
+   "expectedEmail": "none"
+  }
+ ],
+ "website": [
+  {
+   "id": "recipe1c",
+   "website": "minimalistbaker.com"
+  },
+  {
+   "id": "recipe2",
+   "website": "recipetineats.com"
+  },
+  {
+   "id": "recipe3",
+   "website": "smittenkitchen.com"
+  },
+  {
+   "id": "blog1",
+   "website": "jvns.ca"
+  },
+  {
+   "id": "blog2",
+   "website": "simonwillison.net"
+  },
+  {
+   "id": "news1",
+   "website": "astralcodexten.com"
+  },
+  {
+   "id": "yt1",
+   "website": "3blue1brown.com"
+  },
+  {
+   "id": "oss1",
+   "website": "github.com"
+  },
+  {
+   "id": "press1",
+   "website": "propublica.org"
+  },
+  {
+   "id": "zh1",
+   "website": "ruanyifeng.com"
+  }
+ ]
+}

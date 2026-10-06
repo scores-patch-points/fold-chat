@@ -24,6 +24,8 @@
 import { impressionOf, sentencesWithOffsets } from "./fold-chat-impression.js";
 import { snipOfPassage } from "./fold-chat-snip.js";
 import { contactOfPassage } from "./fold-chat-tip.js";
+import { junkOf, wallOf } from "./fold-chat-junk.js";
+import { maskNavRegion } from "./fold-chat-region.js";
 
 export const STRAND = Object.freeze({
   perPassageChars: 700,    // how much of one source a strand quotes (impression budget)
@@ -43,10 +45,15 @@ const siteOf = (p) => { const r = String(p?.ref ?? ""); const s = r.includes(" �
 /** Text that is really a block page (a paywall, a captcha, a bot-challenge, an error wall), not the page asked for. A short
  *  page that says so is a FAILED read — never handed on as the page's text, and never quoted as a snip. (Lives here so the
  *  strand and the page reader share one definition; fold-chat-web.js re-exports it.) */
-export function looksBlocked(text) {
+export function looksBlocked(text, { status = 0, title = "" } = {}) {
   const t = String(text ?? "");
-  if (t.length > 4000) return false;
-  return /access issue|captcha|Just a moment|Access Denied|enable javascript and cookies|are you a robot|robot or human|unusual traffic|request blocked|403 Forbidden|402 Payment|complete the (?:security )?challenge|verify (?:that )?you(?:'| a)?re? (?:a )?human|verify you are human|checking your (?:browser|connection)|security check|attention required|pardon our interruption|ddos protection|please enable cookies|challenge-platform|cf-chl|prove you(?:'| a)?re? (?:not )?a (?:bot|robot|human)|not a robot|verifying you are human/i.test(t);
+  if (Number.isFinite(+status) && +status >= 400) return true;
+  // A wall's opening words (any length of page), or a short page that says it is one: the declared multilingual phrases of
+  // fold-chat-junk-lexicon.js (blocks, captchas, expiry, member-only gates, waiting rooms). The old English regex is retired: it
+  // called any short page that MENTIONED a captcha a wall.
+  const w = wallOf({ status, title, text: t });
+  if (w.blocked && (w.kind === "wall-lead" || w.kind === "wall-short")) return true;
+  return false;
 }
 
 // ── structured blocks a page declares (JSON-LD) ────────────────────────────
@@ -110,21 +117,32 @@ function snipFrom(p, pi, base) {
 }
 
 /** Passage-text groups: the sentences impressionOf keeps, with adjacent ones merged (nothing but whitespace
- *  between them) and the ellipsis flags set where text was skipped. Ranges are in `text` coordinates. */
-function groupsOf(text, question, budget) {
+ *  between them) and the ellipsis flags set where text was skipped. Ranges are in `text` coordinates.
+ *  `text` may be MASKED (fold-chat-region.js maskNavRegion: chrome blocks replaced by spaces, offsets kept): a group is
+ *  never allowed to bridge a masked block, so every group is a contiguous slice of the ORIGINAL page text. */
+export function groupsOf(text, question, budget) {
   const t = String(text ?? "");
   if (!t.trim()) return [];
   const whole = t.trim().length <= budget;
   const imp = whole ? { shadow: { segments: [{ start: 0, end: t.length }] } } : impressionOf(t, question, { budget, lead: true });
   const segs = (imp.shadow?.segments || []).filter((g) => g.end > g.start).sort((a, b) => a.start - b.start);
+  const MASK = /\n[ \t]+\n/;                         // a masked block between two kept ones
   const groups = [];
   for (const g of segs) {
     const last = groups[groups.length - 1];
-    if (last && /^\s*$/.test(t.slice(last.end, g.start))) last.end = g.end;
+    const gap = last ? t.slice(last.end, g.start) : "";
+    if (last && /^\s*$/.test(gap) && !MASK.test(gap)) last.end = g.end;
     else groups.push({ start: g.start, end: g.end });
   }
+  // cut any group at a masked block it spans
+  const cut = [];
+  for (const g of groups) {
+    let from = g.start; const body = t.slice(g.start, g.end); let m; const re = /\n[ \t]+(?=\n)/g;
+    while ((m = re.exec(body)) !== null) { if (g.start + m.index > from) cut.push({ start: from, end: g.start + m.index }); from = g.start + m.index + m[0].length; }
+    if (g.end > from) cut.push({ start: from, end: g.end });
+  }
   const trimmed = t.trimEnd().length;
-  return groups.map((g) => {
+  return cut.map((g) => {
     const lead = t.slice(g.start, g.end).search(/\S/);
     const start = g.start + Math.max(0, lead);
     return { start, end: g.end, ellipsisBefore: start > t.search(/\S/), ellipsisAfter: g.end < trimmed };
@@ -151,44 +169,62 @@ function leadOf(text, chars) {
  *  Returns { snips, dropped } — `dropped` are candidates that failed `verifySnip` (a bug, never shown). */
 export function snipsOf(passages, question, { limits = STRAND } = {}) {
   const list = (Array.isArray(passages) ? passages : []).slice(0, limits.maxPassages);
-  const snips = [], dropped = [], seen = [];
+  const snips = [], dropped = [], seen = [], junk = [], gaps = [];
   let chars = 0;
+  // THE GATE: nothing is added to the strand unless it verifies against its page AND is not the site talking about itself.
+  // A declared block is judged for hollowness, markup and chrome phrases (it is lists and fields, not prose); everything else
+  // by the whole rule. A rejected candidate is recorded in `junk` with its reason, never shown, never replaced by a model.
   const add = (p, pi, s) => {
-    if (!verifySnip(s, p)) { dropped.push(s); return; }
+    if (!verifySnip(s, p)) { dropped.push(s); return false; }
+    const declared = s.kind === "recipe" || s.kind === "howto" || s.kind === "faq" || s.kind === "qa";
+    const j = junkOf(s.kind === "recipe" ? recipeText(s.card) : s.text, { declared });
+    if (j.junk) { junk.push({ n: s.n, p: pi, kind: s.kind, reason: j.reason }); return false; }
     const key = norm(s.text).toLowerCase();
-    if (!key || seen.some((k) => k === key || k.includes(key) || key.includes(k))) return;
-    if (snips.length && chars + s.text.length > limits.totalChars) return;
+    if (!key || seen.some((k) => k === key || k.includes(key) || key.includes(k))) return false;
+    if (snips.length && chars + s.text.length > limits.totalChars) return false;
     seen.push(key); chars += s.text.length; snips.push(s);
+    return true;
   };
+  const gap = (p, pi, kind, reason) => gaps.push({ kind: "gap", gap: kind, reason, p: pi, source: p?.url || p?.source || null, site: siteOf(p) });
   list.forEach((p, pi) => {
     const text = String(p?.text ?? "");
-    if (looksBlocked(text) && !p?.recipe && !(Array.isArray(p?.declared) && p.declared.length)) return;   // a block page is never quoted
+    const hasDeclared = !!p?.recipe || (Array.isArray(p?.declared) && p.declared.length);
+    if (!hasDeclared) {                                               // a block page is never quoted
+      const w = wallOf({ status: p?.status || 0, title: p?.title || "", text });
+      if (looksBlocked(text, { status: p?.status || 0, title: p?.title || "" }) || (w.blocked && w.kind === "http")) { gap(p, pi, "blocked", w.reason || "the page is a block, gate or expiry notice, not the content asked for"); return; }
+    } else if (looksBlocked(text) && !p?.recipe && !(Array.isArray(p?.declared) && p.declared.length)) return;
+    const before = snips.length, junkBefore = junk.length;
     // 1. a structured block the page declares
     const rc = snipOfPassage(p);
     if (rc) {
       add(p, pi, snipFrom(p, pi, { kind: "recipe", text: recipeText(rc), credit: rc.credit.author || rc.credit.publisher || rc.credit.site || siteOf(p), title: rc.title || titleOf(p), card: rc }));
+      if (snips.length === before && junk.length > junkBefore) gap(p, pi, "junk", "the recipe block this page declares is empty or is not the recipe");
       return;
     }
     const block = (Array.isArray(p?.declared) ? p.declared : [])[0];
     if (block) {
       const body = block.kind === "howto" ? block.items.map((x, i) => `${i + 1}. ${x}`).join("\n") : block.items.join("\n");
       add(p, pi, snipFrom(p, pi, { kind: block.kind, text: (block.name && block.kind === "howto" ? block.name + "\n" : "") + body, credit: block.author || siteOf(p), title: block.name || titleOf(p), items: block.items, name: block.name || "" }));
+      if (snips.length === before && junk.length > junkBefore) gap(p, pi, "junk", "the block this page declares is empty or is not content");
       return;
     }
     // 2. a Wikipedia lead
     if (isWiki(p?.url || p?.source) && text.trim()) {
       const g = leadOf(text, limits.leadChars);
-      if (g) { add(p, pi, snipFrom(p, pi, { kind: "lead", text: norm(text.slice(g.start, g.end)), credit: siteOf(p), range: { start: g.start, end: g.end }, ellipsisBefore: g.ellipsisBefore, ellipsisAfter: g.ellipsisAfter })); return; }
+      if (g) { add(p, pi, snipFrom(p, pi, { kind: "lead", text: norm(text.slice(g.start, g.end)), credit: siteOf(p), range: { start: g.start, end: g.end }, ellipsisBefore: g.ellipsisBefore, ellipsisAfter: g.ellipsisAfter })); if (snips.length > before) return; }
     }
-    // 3. the sentences that differ the ask, adjacent ones merged
-    const groups = groupsOf(text, question, limits.perPassageChars);
-    const words = (g) => text.slice(g.start, g.end).trim().split(/\s+/).length;
+    // 3. the sentences that differ the ask, adjacent ones merged — scored AFTER the nav/header region: blocks that are chrome,
+    //    or that sit ahead of where the content starts, are masked (offsets kept) so they are never scored or quoted
+    const masked = maskNavRegion(text).text;
+    const groups = groupsOf(masked, question, limits.perPassageChars);
+    const words = (g) => masked.slice(g.start, g.end).trim().split(/\s+/).length;
     const long = groups.filter((g) => words(g) >= (limits.minSnipWords ?? STRAND.minSnipWords));
     for (const g of long.length ? long : groups) {
       add(p, pi, snipFrom(p, pi, { kind: "passage", text: norm(text.slice(g.start, g.end)), credit: siteOf(p), range: { start: g.start, end: g.end }, ellipsisBefore: g.ellipsisBefore, ellipsisAfter: g.ellipsisAfter }));
     }
+    if (snips.length === before && text.trim()) gap(p, pi, junk.length > junkBefore || !groups.length ? "junk" : "none", junk.length > junkBefore ? "everything this page offered was the site talking about itself (menus, banners, notices), not its content" : "no passage on this page differs the ask");
   });
-  return { snips, dropped };
+  return { snips, dropped, junk, gaps };
 }
 
 /** The plain concatenation of the verbatim snip text — what `message.content` holds for a sources-only turn
@@ -240,6 +276,21 @@ export function storeSnip(s) {
   return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
 }
 
+/** A slot answer's content is allowed only as the turn's own answer line: the turn carries an answer whose source sentence (`answer.row`,
+ *  with its source) is kept verbatim, the content IS the answer's text, and every word of it occurs in that sentence (the line is built
+ *  from the row's own words — realise() — so a word the sentence lacks is a word nobody sourced). Words are compared case- and
+ *  diacritic-folded; no case is ever read. */
+function answerTurnBacksContent(msg) {
+  const a = msg.answerTurn && msg.answerTurn.answer;
+  const row = a && a.row;
+  if (!a || !row || typeof row.sentence !== "string" || !row.sentence.trim() || !row.source || !(row.source.url || row.source.title)) return false;
+  const norm = (t) => String(t ?? "").replace(/\s+/g, " ").trim();
+  if (norm(a.text) !== norm(msg.content)) return false;
+  const words = (t) => (String(t ?? "").normalize("NFKD").replace(/\p{M}+/gu, "").toLocaleLowerCase("und").match(/[\p{L}\p{N}]+/gu) || []);
+  const held = new Set(words(row.sentence));
+  return words(msg.content).every((w) => held.has(w));
+}
+
 /** May this STORED assistant message carry model-written (non-notice) content? The invariant: only when the turn
  *  had at least one source, or its kind is one the model may answer alone (ALONE_KINDS), or it is sources-authored
  *  (then its content must be backed by snips). Messages that predate the rule (no `nSources` on the record) and
@@ -248,6 +299,8 @@ export function contentAllowed(msg, aloneKinds = []) {
   if (!msg || msg.role !== "assistant") return true;
   if (!String(msg.content ?? "").trim()) return true;
   if (msg.mode === "agent") return true;
+  // A SLOT ANSWER (fold-chat-answerturn.js, stored with `answerTurn`, no snips): authored by the sources — the model is not called at all.
+  if (msg.authored === "sources" && msg.answerTurn && typeof msg.answerTurn === "object") return answerTurnBacksContent(msg);
   if (msg.authored === "sources") return Array.isArray(msg.snips) && msg.snips.length > 0 && strandText(msg.snips).replace(/\s+/g, " ").trim() === String(msg.content).replace(/\s+/g, " ").trim();
   const rec = msg.grounding;
   if (!rec || rec.generate || rec.code) return true;

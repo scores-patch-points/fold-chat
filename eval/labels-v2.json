@@ -1,0 +1,334 @@
+{
+ "built": "2026-10-05T20:52:15.113Z",
+ "method": "hand labels by reading each NEW cited quote against its claim; strict: the quote itself must say what the sentence says (units/paraphrase allowed). Labelled by the same agent that wrote the gate; every verdict has the quote beside it so it can be audited. Keyed by key#idx#quote.",
+ "sentences": [
+  {
+   "key": "default/a5_gold_symbol/r1/t0",
+   "idx": 0,
+   "quote": "Gold is a chemical element ; its chemical symbol is Au (from Latin aurum ) and atomic number 79.",
+   "claim": "The chemical symbol for gold is Au.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 0,
+   "quote": "In his 1923 book, Leonard de Vinci et les Jocondes , Léon Roger-Milès argues that Leonardo actually painted at least two versions of the Mona Lisa , including one for Francesco del Giocondo , and another for Giuliano de' Medici .",
+   "claim": "The sources indicate that the Mona Lisa was likely painted by **Leonardo da Vinci**.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "quote": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.",
+   "claim": "The Eiffel Tower is 330 meters (1,083 feet) tall.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/b2_everest_m/r1/t0",
+   "idx": 0,
+   "quote": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in).",
+   "claim": "Mount Everest is about 8,848.86 meters tall.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/b3_mariana_ft/r1/t0",
+   "idx": 0,
+   "quote": "In June 2020 he again descended to depths of around 10,935 meters (35,876 ft; 5,979 fathoms) .",
+   "claim": "The Mariana Trench is approximately 35,876 feet deep.",
+   "quoteSupports": false,
+   "why": "the quote is a diver's descent to ~35,876 ft, not the depth of the trench"
+  },
+  {
+   "key": "default/b5_light_kms/r1/t0",
+   "idx": 0,
+   "quote": "The value 299,792,458 metres per second is approximately 1 billion kilometres per hour; 700 million miles per hour .",
+   "claim": "The speed of light is approximately 299,792,458 metres per second.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 1,
+   "quote": "Founded in 1636 , and named Harvard College in 1639 in honor of its first benefactor, Puritan clergyman John Harvard, it is the oldest institution of higher learning in the United States.",
+   "claim": "It was founded in 1636.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/c5_russia_canada/r1/t0",
+   "idx": 1,
+   "quote": "It is the largest country in the world , spanning eleven time zones and sharing land borders with fourteen countries .",
+   "claim": "It has the second-largest land area in the world.",
+   "quoteSupports": false,
+   "why": "quote says 'largest', the claim says 'second-largest'"
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 0,
+   "quote": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year.",
+   "claim": "The company that makes the iPhone was founded by Steve Jobs and Steve Wozniak.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/c7_eiffel_country_capital/r1/t0",
+   "idx": 0,
+   "quote": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.",
+   "claim": "The capital of the country where the Eiffel Tower is located is Paris.",
+   "quoteSupports": false,
+   "why": "quote says the tower is in Paris, France; it never says Paris is the capital"
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "quote": "In his 1923 book, Leonard de Vinci et les Jocondes , Léon Roger-Milès argues that Leonardo actually painted at least two versions of the Mona Lisa , including one for Francesco del Giocondo , and another for Giuliano de' Medici .",
+   "claim": "The sources indicate that Leonardo da Vinci likely painted the Mona Lisa.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 0,
+   "quote": "Alexander Graham Bell ( ; born Alexander Bell; March 3, 1847 – August 2, 1922) was a Scottish-born Canadian-American inventor, scientist, and engineer who is credited with patenting the first practical telephone.",
+   "claim": "Alexander Graham Bell is generally credited with inventing the telephone.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 1,
+   "quote": "Bell was granted the patent on 7 March 1876 .",
+   "claim": "He was granted the first U.S. patent for the telephone on March 7, 1876.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "quote": "Neil Alden Armstrong (August 5, 1930 – August 25, 2012) was an American astronaut and aeronautical engineer who, as the commander of the 1969 Apollo 11 mission, became the first person to walk on the Moon .",
+   "claim": "Neil Armstrong was the first person to walk on the Moon.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "quote": "Canberra , the capital city of Australia , is situated within the territory and is the territory's primate city .",
+   "claim": "The capital of Australia is Canberra.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/e_cap_en/r1/t0",
+   "idx": 0,
+   "quote": "Canberra , the capital city of Australia , is situated within the territory and is the territory's primate city .",
+   "claim": "The capital of Australia is Canberra.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/e_cap_fr/r1/t0",
+   "idx": 0,
+   "quote": "Canberra ( / k ã b ɛ ʁ a / ; en anglais : / k æ n b ɹ ə / ) est la capitale de l' Australie et du Territoire de la capitale australienne .",
+   "claim": "La capitale de l'Australie est Canberra.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/e_eiffel_en/r1/t0",
+   "idx": 0,
+   "quote": "Prior to the Eiffel Tower 's construction, no structure had ever been constructed to a height of 300 m, or even 200 m for that matter, and many people believed it was impossible.",
+   "claim": "The Eiffel Tower is 300 meters tall.",
+   "quoteSupports": false,
+   "why": "quote says no structure had been built to 300 m before the tower; it does not say the tower is 300 m"
+  },
+  {
+   "key": "default/e_eiffel_sw/r1/t0",
+   "idx": 0,
+   "quote": "Mnamo Machi 15, 2022, antenna mpya inayoendana na mtandao wa DAB +, huduma za redio ya dijiti, iliwekwa na helikopta juu ya mnara, na kuongeza urefu wake kutoka mita 324 hadi 330 .",
+   "claim": "Mnara wa Eiffel una urefu wa mita 330.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "idx": 5,
+   "quote": "It is unknown how far the periodic table might extend beyond the known 118 elements, as heavier elements are predicted to be increasingly unstable.",
+   "claim": "This is called the extended periodic table, and there are many predictions about what these hypothetical elements might be like.",
+   "quoteSupports": false,
+   "why": "quote says predictions exist; it does not call it 'the extended periodic table'"
+  },
+  {
+   "key": "default/f3_wc_2034/r1/t0",
+   "idx": 0,
+   "quote": "On 11 November 2024, Amnesty International called on FIFA to stop the bidding process for the 2034 World Cup, citing human rights concerns in Saudi Arabia .",
+   "claim": "Saudi Arabia won the 2034 FIFA World Cup.",
+   "quoteSupports": false,
+   "why": "quote is about a bidding-process objection; it does not say Saudi Arabia won"
+  },
+  {
+   "key": "frontier/a2_austen/r1/t0",
+   "idx": 0,
+   "quote": "Notable television adaptations include Persuasion (1995), Pride and Prejudice (1995), Northanger Abbey (2007), Persuasion (2007), Lost in Austen (2008), Sense and Sensibility (2008), Emma (2009), and Sanditon (2019–2023).",
+   "claim": "*Pride and Prejudice* was written by **Jane Austen**.",
+   "quoteSupports": false,
+   "why": "quote is a list of TV adaptations; it does not say who wrote the novel"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 2,
+   "quote": "Apple Computer Company was founded as a partnership on April 1, 1976, by Steve Jobs , Steve Wozniak , and Ronald Wayne .",
+   "claim": "- **Steve Wozniak**",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "quote": "In his 1923 book, Leonard de Vinci et les Jocondes , Léon Roger-Milès argues that Leonardo actually painted at least two versions of the Mona Lisa , including one for Francesco del Giocondo , and another for Giuliano de' Medici .",
+   "claim": "The Mona Lisa was painted by **Leonardo da Vinci**.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "quote": "While the whole town celebrates Neil Armstrong 's first steps on the moon, Pearl and Walker have sex in his bus.",
+   "claim": "Based on the sources provided, **Neil Armstrong** was the first person to walk on the Moon.",
+   "quoteSupports": false,
+   "why": "quote is a film-plot sentence mentioning Armstrong"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "quote": "Canberra is mostly known for being the capital of Australia , though it has a few other qualities that make it stand out:",
+   "claim": "The capital of Australia is **Canberra**.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/f1_king_us/r1/t0",
+   "idx": 0,
+   "quote": "The United States inherited the Texas-Mexican boundary dispute after annexing Texas, which quickly led to the Mexican-American War.",
+   "claim": "The United States has never had a king.",
+   "quoteSupports": false,
+   "why": "quote is about the Texas-Mexican boundary dispute"
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 1,
+   "quote": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year.",
+   "claim": "They founded the company in **1976**.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/d3_everest/r1/t0",
+   "idx": 0,
+   "quote": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in).",
+   "claim": "Mount Everest is officially measured at 8,848.86 meters (29,031 feet) above sea level.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/e_cap_es/r1/t0",
+   "idx": 0,
+   "quote": "Canberra cubre una extensión de 808 kilómetros cuadrados y se encuentra cerca de la cordillera conocida como Brindabella , a 150 kilómetros al interior de la costa este de Australia .",
+   "claim": "The capital of Australia is Canberra.",
+   "quoteSupports": false,
+   "why": "quote is about Canberra's area and location; it does not say it is the capital"
+  },
+  {
+   "key": "default/e_cap_hi/r1/t0",
+   "idx": 0,
+   "quote": "कैनबरा ऑस्ट्रेलिया की राजधानी एक बहुत ही सुन्‍दर खूबसूरत शहर है।",
+   "claim": "ऑस्ट्रेलिया की राजधानी **कैनबरा** है।",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "default/e_eiffel_ja/r1/t0",
+   "idx": 0,
+   "quote": "エッフェル塔 は 2022 年のアンテナ更新後に 330 m となったため、古い資料では 324 m とされる場合があります。",
+   "claim": "エッフェル塔の高さは、33,000 cm です。",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 0,
+   "quote": "As the story goes, Dr. Alexander Fleming , the bacteriologist on duty at St. Mary's Hospital, returned from a summer vacation in Scotland to find a messy lab bench and a good deal more.",
+   "claim": "Based on the sources I have, **Sir Alexander Fleming** is credited with discovering penicillin.",
+   "quoteSupports": false,
+   "why": "quote says Fleming returned to a messy lab bench; it does not say he is credited with the discovery"
+  },
+  {
+   "key": "frontier/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "quote": "The tower is 330 metres (1,083 ft) tall , about the same height as an 81-storey building, and the tallest structure in Paris.",
+   "claim": "According to the Wikipedia article on the Eiffel Tower [W1], the tower is **330 metres (1,083 ft)** tall.",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/b2_everest_m/r1/t0",
+   "idx": 0,
+   "quote": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in).",
+   "claim": "According to the Wikipedia source on Mount Everest [W1], its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as **8,848.86 metres** (29,031 ft 8½ in).",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "idx": 0,
+   "quote": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building , and the tallest structure in Paris.",
+   "claim": "Based on the sources I have, the Eiffel Tower stands **330 metres (1,083 ft)** tall — about the same height as an 81-storey building, according to [W1].",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 1,
+   "quote": "The Mona Lisa is a half-length portrait painting by the Italian artist Leonardo da Vinci .",
+   "claim": "According to the Wikipedia article on the Mona Lisa [W1], it is described as \"a half-length portrait painting by the Italian artist Leonardo da Vinci,\" and is considered \"an archetypal masterpiece of the Italian Renaissance.\"",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 2,
+   "quote": "It was believed to have been painted between 1503 and 1506; however, Leonardo may have continued working on it as late as 1517 .",
+   "claim": "It is believed to have been painted between 1503 and 1506, though Leonardo may have continued working on it as late as 1517 [W1].",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 1,
+   "quote": "With an estimated population of 484,630 as of 2025 , Canberra is Australia's largest inland city and the eighth-largest Australian city by population .",
+   "claim": "As the Wikipedia source puts it, it is \"the capital city of Australia and the largest population centre in the Australian Capital Territory,\" with an estimated population of 484,630 as of 2025.",
+   "quoteSupports": false,
+   "why": "quote gives the population but not the 'capital city … largest population centre' part of the claim"
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "idx": 2,
+   "quote": "بلغ عدد سكانها المقدر في يونيو 2024 نحو 473,855 نسمة .",
+   "claim": "يبلغ عدد سكانها المقدَّر في يونيو 2024 نحو **473,855 نسمة** [W1].",
+   "quoteSupports": true,
+   "why": "quote says it"
+  },
+  {
+   "key": "frontier/e_wall_hi/r1/t0",
+   "idx": 2,
+   "quote": "बर्लिन की दीवार का पतन (जर्मन: माउरफॉल), 9 नवंबर 1989 को, विश्व इतिहास में एक महत्वपूर्ण घटना थी जिसने लौह परदा के गिरने को चिह्नित किया था ।",
+   "claim": "> \"बर्लिन की दीवार का पतन (जर्मन: माउरफॉल), **9 नवंबर 1989** को, विश्व इतिहास में एक महत्वपूर्ण घटना थी जिसने लौह परदा के गिरने को चिह्नित किया था।\"",
+   "quoteSupports": true,
+   "why": "quote says it"
+  }
+ ]
+}

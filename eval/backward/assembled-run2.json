@@ -1,0 +1,2862 @@
+{
+ "summary": {
+  "at": "2026-10-05T22:13:34.155Z",
+  "label": "default",
+  "groups": [
+   {
+    "name": "S1 a+b+c",
+    "n": 19,
+    "withPages": 19,
+    "recall": 12,
+    "answered": 13,
+    "ceiling": 15,
+    "forwardGroundedRecall": 9,
+    "aboveCeiling": 1,
+    "sentences": 40,
+    "derived": 2
+   },
+   {
+    "name": "a_single",
+    "n": 6,
+    "withPages": 6,
+    "recall": 4,
+    "answered": 5,
+    "ceiling": 5,
+    "forwardGroundedRecall": 4,
+    "aboveCeiling": 0,
+    "sentences": 15,
+    "derived": 0
+   },
+   {
+    "name": "b_numeric",
+    "n": 6,
+    "withPages": 6,
+    "recall": 5,
+    "answered": 5,
+    "ceiling": 5,
+    "forwardGroundedRecall": 3,
+    "aboveCeiling": 1,
+    "sentences": 16,
+    "derived": 1
+   },
+   {
+    "name": "c_multihop",
+    "n": 7,
+    "withPages": 7,
+    "recall": 3,
+    "answered": 3,
+    "ceiling": 5,
+    "forwardGroundedRecall": 2,
+    "aboveCeiling": 0,
+    "sentences": 9,
+    "derived": 1
+   },
+   {
+    "name": "S2 e Latin",
+    "n": 17,
+    "withPages": 17,
+    "recall": 8,
+    "answered": 8,
+    "ceiling": 13,
+    "forwardGroundedRecall": 5,
+    "aboveCeiling": 0,
+    "sentences": 20,
+    "derived": 0
+   },
+   {
+    "name": "S3 e non-Latin",
+    "n": 9,
+    "withPages": 9,
+    "recall": 1,
+    "answered": 4,
+    "ceiling": 5,
+    "forwardGroundedRecall": 1,
+    "aboveCeiling": 0,
+    "sentences": 12,
+    "derived": 0
+   }
+  ],
+  "S1_unansweredAllTyped": true,
+  "S3x": {
+   "n": 7,
+   "typedNoSource": 7,
+   "ids": [
+    "e_wall_ru",
+    "e_wall_ar",
+    "e_wall_ja",
+    "e_cap_ja",
+    "e_eiffel_hi",
+    "e_wall_hi",
+    "e_wall_sw"
+   ]
+  },
+  "S4": {
+   "n": 5,
+   "gap": 2,
+   "fabrications": 0,
+   "rows": [
+    {
+     "id": "f1_king_us",
+     "question": "Who was the king of the United States in 1850?",
+     "pages": 2,
+     "sentences": 3,
+     "gap": null,
+     "fabrication": null,
+     "text": [
+      "Franklin Pierce (November 23, 1804 – October 8, 1869) was the 14th president of the United States , serving from 1853 to 1857.",
+      "Pierce took part in the Mexican–American War as a brigadier general in the United States Army .",
+      "New Hampshire had been a marginal state politically, but from 1832 through the mid-1850s became the most reliably Democratic state in the Northern United States , boosting Pierce's political career."
+     ]
+    },
+    {
+     "id": "f2_element_150",
+     "question": "What are the properties of the chemical element with atomic number 150?",
+     "pages": 3,
+     "sentences": 3,
+     "gap": null,
+     "fabrication": null,
+     "text": [
+      "This table organizes the elements by increasing atomic number into rows (\" periods \") in which the columns (\" groups \") share recurring (\"periodic\") physical and chemical properties .",
+      "The properties of chemical elements as kinds of atom include the atomic number, atomic weight, isotopes, abundance in nature, ionization energy , electron affinity , oxidation states , and electronegativity .",
+      "The electrons occupy atomic orbitals that determine the atom's chemical properties ."
+     ]
+    },
+    {
+     "id": "f3_wc_2034",
+     "question": "Who won the 2034 FIFA World Cup?",
+     "pages": 2,
+     "sentences": 3,
+     "gap": null,
+     "fabrication": null,
+     "text": [
+      "FIFA restricted the hosting eligibility to Asia or Oceania after it made the decision to host the 2030 FIFA World Cup on three continents (Africa, Europe, and South America).",
+      "Controversy around the 2034 FIFA World Cup follows heightened attention to issues such as the normalisation of sportswashing , Saudi Arabia's human rights record , migrant workers , and inter-state geopolitical tensions that surrounded the 2018 , 2022 and 2026 tournaments (see Controversies , below).",
+      "FIFA made the decision to host the 2030 World Cup in three continents (Africa, Europe and South America) and the 2026 World Cup was set to be held in North America , which meant that the 2034 World Cup would necessarily have to be held in Asia or Oceania."
+     ]
+    },
+    {
+     "id": "f4_lincoln_tweet",
+     "question": "What did Abraham Lincoln tweet on his last birthday?",
+     "pages": 0,
+     "sentences": 0,
+     "gap": "no-source",
+     "fabrication": null,
+     "text": []
+    },
+    {
+     "id": "f5_einstein_breakfast",
+     "question": "What did Albert Einstein eat for breakfast on 14 March 1950?",
+     "pages": 0,
+     "sentences": 0,
+     "gap": "no-source",
+     "fabrication": null,
+     "text": []
+    }
+   ]
+  },
+  "S5": {
+   "n": 28,
+   "gap": 20,
+   "rate": 0.714
+  },
+  "S6": {
+   "n": 55,
+   "covered": 24,
+   "notCovered": 31,
+   "noPages": 0
+  },
+  "B2_violations": 0,
+  "violations": [],
+  "latencyMs": {
+   "n": 45,
+   "median": 12,
+   "p90": 97,
+   "max": 369
+  }
+ },
+ "rows": [
+  {
+   "id": "a1_eiffel_year",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "In what year was the Eiffel Tower completed?",
+   "gold": "1889 (31 March 1889)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+     "address": [
+      "Eiffel_Tower#119-227"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was constructed as the centrepiece of the 1889 World's Fair, and to crown the centennial anniversary of the French Revolution.",
+     "address": [
+      "Eiffel_Tower#228-446"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930.",
+     "address": [
+      "Eiffel_Tower#1155-1390"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 369,
+   "verified": true
+  },
+  {
+   "id": "a2_austen",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Who wrote Pride and Prejudice?",
+   "gold": "Jane Austen",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "Who wrote Pride and Prejudice?",
+     "detail": "person"
+    }
+   ],
+   "sentences": [],
+   "ms": 173,
+   "verified": true
+  },
+  {
+   "id": "a3_apollo_date",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "On what date did Apollo 11 land on the Moon?",
+   "gold": "20 July 1969",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": false,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The first spaceflights to an extraterrestrial body were to the Moon, starting in 1959 with the flyby of Luna 1 (sent by the Soviet Union ), and the intentional impact of Luna 2 , followed in 1966 by the first soft landing (by Luna 9 ) and orbital insertion (by Luna 10 ).",
+     "address": [
+      "Moon#4143-4414"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "By 1972, six Apollo missions had landed twelve people on the Moon and stayed up to three days.",
+     "address": [
+      "Moon#4646-4740"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "A study published in 2022, using high-resolution simulations (up to 10 particles), found that giant impacts can immediately place a satellite with similar mass and iron content to the Moon into orbit far outside Earth's Roche limit .",
+     "address": [
+      "Moon#10317-10550"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 10,
+   "verified": true
+  },
+  {
+   "id": "a4_fleming",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Who discovered penicillin?",
+   "gold": "Alexander Fleming (1928)",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Penicillin was discovered in 1928 by the Scottish physician Alexander Fleming as a crude extract of P. rubens .",
+     "address": [
+      "Penicillin#1784-1895"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The laboratory in which Fleming discovered and tested penicillin is preserved as the Alexander Fleming Laboratory Museum in St. Mary's Hospital, Paddington.",
+     "address": [
+      "Alexander_Fleming#10956-11112"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "It was coined by Alexander Fleming on 7 March 1929 when he discovered the antibacterial property of Penicillium rubens .",
+     "address": [
+      "Penicillin#2660-2780"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 53,
+   "verified": true
+  },
+  {
+   "id": "a5_gold_symbol",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "What is the chemical symbol for gold?",
+   "gold": "Au",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Gold is a chemical element ; its chemical symbol is Au (from Latin aurum ) and atomic number 79.",
+     "address": [
+      "Gold#448-544"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Gold is a chemical element; its chemical symbol is 'Au' (from Latin aurum) and atomic number 79.",
+     "address": [
+      "History_of_gold#0-96"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Chemical symbols are the abbreviations used in chemistry , mainly for chemical elements , but also for functional groups , chemical compounds, and other entities.",
+     "address": [
+      "Chemical_symbol#126-288"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 49,
+   "verified": true
+  },
+  {
+   "id": "a6_mona_lisa",
+   "stratum": "a_single",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Who painted the Mona Lisa?",
+   "gold": "Leonardo da Vinci",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The Mona Lisa is a half-length portrait painting by the Italian artist Leonardo da Vinci .",
+     "address": [
+      "Mona_Lisa#263-353"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The painting's global fame and popularity partly stem from its 1911 theft by Vincenzo Peruggia , who attributed his actions to Italian patriotism—a belief it should belong to Italy.",
+     "address": [
+      "Mona_Lisa#1290-1471"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "It holds the Guinness World Record for the highest known painting insurance valuation in history at US$100 million in 1962, equivalent to $1 billion as of 2023 .",
+     "address": [
+      "Mona_Lisa#1895-2056"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 114,
+   "verified": true
+  },
+  {
+   "id": "b1_eiffel_feet",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "How tall is the Eiffel Tower in feet?",
+   "gold": "about 1,083 ft (330 m)",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.",
+     "address": [
+      "Eiffel_Tower#966-1090"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft).",
+     "address": [
+      "Eiffel_Tower#1491-1634"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The top level's upper platform is 276 m (906 ft) above the ground—the highest public observation deck in the European Union.",
+     "address": [
+      "Eiffel_Tower#1848-1972"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 41,
+   "verified": true
+  },
+  {
+   "id": "b2_everest_m",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "How tall is Mount Everest in metres?",
+   "gold": "8,848.86 m (2020 survey)",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in).",
+     "address": [
+      "Mount_Everest#278-418"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "His raw data gave an average height of 9,200 m (30,200 ft) for peak \"b\", but this did not consider light refraction, which distorts heights.",
+     "address": [
+      "Mount_Everest#7738-7878"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Kangchenjunga was declared to be 8,582 m (28,156 ft), while Peak XV was given the height of 8,840 m (29,002 ft).",
+     "address": [
+      "Mount_Everest#8953-9065"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 51,
+   "verified": true
+  },
+  {
+   "id": "b3_mariana_ft",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "How deep is the Mariana Trench in feet?",
+   "gold": "about 36,000 ft (35,876 ft / 10,935 m)",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The maximum known depth is 10,935 ± 6 meters (35,876 ± 20 ft; 5,979.3 ± 3.3 fathoms; 6.7947 ± 0.0037 mi) at the southern end of a small slot-shaped valley in its floor known as the Challenger Deep .",
+     "address": [
+      "Mariana_Trench#367-565"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "During this survey, the deepest part of the trench was recorded when the Challenger II measured a depth of 5,960 fathoms (10,900 meters; 35,760 feet) at 11°19′N 142°15′E / 11.317°N 142.250°E / 11.317; 142.250 , known as the Challenger Deep.",
+     "address": [
+      "Mariana_Trench#3512-3752"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Using both ocean-bottom seismometers and hydrophones , the scientists were able to map structures as deep as 97 kilometers (318,000 ft; 53,000 fathoms; 60 miles) beneath the surface.",
+     "address": [
+      "Mariana_Trench#5850-6032"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 63,
+   "verified": true
+  },
+  {
+   "id": "b4_iceland_pop",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "What is the population of Iceland?",
+   "gold": "about 395,000",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Its capital and largest city is Reykjavík , which is home to about 35% of the country's roughly 395,000 residents (excluding nearby towns/suburbs, which are separate municipalities and contribute a further substantial percentage).",
+     "address": [
+      "Iceland#920-1150"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "According to the Landnámabók , an ancient manuscript, the settlement of Iceland began in 874 AD, when the Norwegian chieftain Ingólfr Arnarson became the island's first permanent settler.",
+     "address": [
+      "Iceland#1718-1905"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "In 1397, Iceland followed Norway 's integration into the Kalmar Union along with the kingdoms of Denmark and Sweden , coming under de facto Danish rule upon its dissolution in 1523.",
+     "address": [
+      "Iceland#2325-2506"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 27,
+   "verified": true
+  },
+  {
+   "id": "b5_light_kms",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "What is the speed of light in kilometres per second?",
+   "gold": "about 299,792 km/s (~300,000)",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "For example, in imperial units , the speed of light is approximately 186 282 miles per second.",
+     "address": [
+      "Speed_of_light#6563-6657"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The fastest possible speed at which energy or information can travel, according to special relativity , is the speed of light in vacuum c = 299 792 458 metres per second (approximately 1 079 000 000 km/h or 671 000 000 mph ).",
+     "address": [
+      "Speed#881-1106"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "A cyclist who covers 30 metres in a time of 2 seconds, for example, has a speed of 15 metres per second.",
+     "address": [
+      "Speed#1671-1775"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "186,282 miles/s = 299792 kilometres/s",
+     "address": [
+      "Speed_of_light#6563-6657"
+     ],
+     "how": "derived",
+     "derivation": {
+      "rule": "unit-conversion",
+      "premises": [
+       {
+        "address": "Speed_of_light#6563-6657",
+        "figure": "186,282",
+        "unit": "miles",
+        "at": [
+         69,
+         76
+        ]
+       }
+      ],
+      "from": "miles",
+      "to": "kilometres",
+      "factor": 1.609344,
+      "value": 299792,
+      "digits": 6,
+      "rate": true,
+      "table": "fold-chat-ground UNIT_TABLE"
+     }
+    }
+   ],
+   "ms": 84,
+   "verified": true
+  },
+  {
+   "id": "b6_danube_mi",
+   "stratum": "b_numeric",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "How long is the Danube in miles?",
+   "gold": "about 1,770 miles (2,850 km)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "How long is the Danube in miles?",
+     "detail": "quantity:len"
+    }
+   ],
+   "sentences": [],
+   "ms": 8,
+   "verified": true
+  },
+  {
+   "id": "c1_oxford_harvard",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Which is older, Harvard University or the University of Oxford?",
+   "gold": "Oxford is older",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "University of Oxford",
+     "detail": "year"
+    }
+   ],
+   "sentences": [],
+   "ms": 38,
+   "verified": true
+  },
+  {
+   "id": "c2_eiffel_liberty",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Which is taller, the Eiffel Tower or the Statue of Liberty?",
+   "gold": "Eiffel Tower is taller",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "Statue of Liberty",
+     "detail": "len"
+    }
+   ],
+   "sentences": [],
+   "ms": 14,
+   "verified": true
+  },
+  {
+   "id": "c3_danube_rhine",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Which is longer, the Danube or the Rhine?",
+   "gold": "The Danube is longer",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Originating in Germany, the Danube flows southeast for 2,850 km (1,770 mi) , passing through or bordering Austria, Slovakia, Hungary, Croatia, Serbia, Romania, Bulgaria, Moldova, and Ukraine.",
+     "address": [
+      "Danube#1031-1222"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Draining an area of 185,000 km , it is the second-longest river in Central and Western Europe (after the Danube ), at about 1,230 km (760 mi) with an average discharge of about 2,900 m /s (100,000 cu ft/s) .",
+     "address": [
+      "Rhine#1021-1228"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Longer: Danube (Danube: 2,850 km > Rhine: 1,230 km)",
+     "address": [
+      "Danube#1031-1222",
+      "Rhine#1021-1228"
+     ],
+     "how": "derived",
+     "derivation": {
+      "rule": "compare-quantity",
+      "kind": "len",
+      "bigger": true,
+      "winner": 0,
+      "premises": [
+       {
+        "address": "Danube#1031-1222",
+        "figure": "2,850",
+        "unit": "km",
+        "at": [
+         55,
+         60
+        ],
+        "base": 2850000
+       },
+       {
+        "address": "Rhine#1021-1228",
+        "figure": "1,230",
+        "unit": "km",
+        "at": [
+         124,
+         129
+        ],
+        "base": 1230000
+       }
+      ]
+     }
+    }
+   ],
+   "ms": 13,
+   "verified": true
+  },
+  {
+   "id": "c4_galileo_newton",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Who was born first, Isaac Newton or Galileo Galilei?",
+   "gold": "Galileo (1564) before Newton (1643)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "Isaac Newton",
+     "detail": "year"
+    }
+   ],
+   "sentences": [],
+   "ms": 97,
+   "verified": true
+  },
+  {
+   "id": "c5_russia_canada",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Which is larger by area, Russia or Canada?",
+   "gold": "Russia is larger",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "It is a highly urbanised country, with three-fourths of its population living in urban areas.",
+     "address": [
+      "Russia#1529-1622"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Moscow , the most populous metropolitan area in Europe , is the capital and largest city of Russia , while Saint Petersburg is its second-largest city and a major cultural centre .",
+     "address": [
+      "Russia#1623-1803"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean, making it the second-largest country by total area , with the longest coastline of any country.",
+     "address": [
+      "Canada#397-621"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 18,
+   "verified": true
+  },
+  {
+   "id": "c6_apple_founders",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "Who founded the company that makes the iPhone, and in what year?",
+   "gold": "Steve Jobs, Steve Wozniak (and Ronald Wayne), 1976",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year.",
+     "address": [
+      "Apple_Inc.#901-1084"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Apple Computer Company was founded as a partnership on April 1, 1976, by Steve Jobs , Steve Wozniak , and Ronald Wayne .",
+     "address": [
+      "Apple_Inc.#3440-3560"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Apple Computer, Inc. was incorporated in Cupertino, California , on January 3, 1977, without Wayne, who had left and sold his share of the company back to Jobs and Wozniak for $800 (equivalent to $4,530 in 2025) twelve days after its founding.",
+     "address": [
+      "Apple_Inc.#4457-4700"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 91,
+   "verified": true
+  },
+  {
+   "id": "c7_eiffel_country_capital",
+   "stratum": "c_multihop",
+   "lang": "en",
+   "set": "S1",
+   "hasPages": true,
+   "question": "What is the capital of the country where the Eiffel Tower is located?",
+   "gold": "Paris",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "What is the capital of the country where the Eiffel Tower is located?",
+     "detail": "best coverage 0.33 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 94,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_en",
+   "stratum": "e_multilingual",
+   "lang": "en",
+   "set": "S2",
+   "hasPages": true,
+   "question": "How tall is the Eiffel Tower?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.",
+     "address": [
+      "Eiffel_Tower#966-1090"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft).",
+     "address": [
+      "Eiffel_Tower#1491-1634"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The top level's upper platform is 276 m (906 ft) above the ground—the highest public observation deck in the European Union.",
+     "address": [
+      "Eiffel_Tower#1848-1972"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 7,
+   "verified": true
+  },
+  {
+   "id": "e_wall_en",
+   "stratum": "e_multilingual",
+   "lang": "en",
+   "set": "S2",
+   "hasPages": true,
+   "question": "In what year did the Berlin Wall fall?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The fall of the Berlin Wall paved the way for German reunification , which formally took place on 3 October 1990.",
+     "address": [
+      "Berlin_Wall#4352-4465"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution , marking the beginning of the destruction of the figurative Iron Curtain , as East Berlin transit restrictions were overwhelmed and discarded.",
+     "address": [
+      "Fall_of_the_Berlin_Wall#387-601"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Following the defeat of Nazi Germany in World War II, the Soviet Union engineered the installation of communist regimes in most of the countries occupied by Soviet military forces at the end of the war, including Poland, Hungary, Czechoslovakia, Bulgaria, Romania, and the Soviet Occupation Zone in Germany (which became home to the German Democratic Republic), which together with Albania formed the Comecon in 1949 and later a military alliance, the Warsaw Pact .",
+     "address": [
+      "Berlin_Wall#5507-5972"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 73,
+   "verified": true
+  },
+  {
+   "id": "e_cap_en",
+   "stratum": "e_multilingual",
+   "lang": "en",
+   "set": "S2",
+   "hasPages": true,
+   "question": "What is the capital of Australia?",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "For example, a teacher or game show host might ask \"What is the capital of Australia?\"",
+     "address": [
+      "Question#2696-2782"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "The Australian Capital Territory ( ACT ), known as the Federal Capital Territory until 1938, is an internal territory of Australia.",
+     "address": [
+      "Australian_Capital_Territory#384-515"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Canberra , the capital city of Australia, is situated within the territory and is the territory's primate city .",
+     "address": [
+      "Australian_Capital_Territory#516-628"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 12,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_es",
+   "stratum": "e_multilingual",
+   "lang": "es",
+   "set": "S2",
+   "hasPages": true,
+   "question": "¿Qué altura tiene la Torre Eiffel?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "¿Qué altura tiene la Torre Eiffel?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 9,
+   "verified": true
+  },
+  {
+   "id": "e_wall_es",
+   "stratum": "e_multilingual",
+   "lang": "es",
+   "set": "S2",
+   "hasPages": true,
+   "question": "¿En qué año cayó el Muro de Berlín?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "¿En qué año cayó el Muro de Berlín?",
+     "detail": "year"
+    }
+   ],
+   "sentences": [],
+   "ms": 15,
+   "verified": true
+  },
+  {
+   "id": "e_cap_es",
+   "stratum": "e_multilingual",
+   "lang": "es",
+   "set": "S2",
+   "hasPages": true,
+   "question": "¿Cuál es la capital de Australia?",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Camberra o Canberra ( pronunciación en inglés: /ˈkænb(ə)ɹə/ ( escuchar ) es la capital de Australia .",
+     "address": [
+      "Camberra#298-399"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 10,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_fr",
+   "stratum": "e_multilingual",
+   "lang": "fr",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Quelle est la hauteur de la tour Eiffel ?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Quelle est la hauteur de la tour Eiffel ?",
+     "detail": "best coverage 0.50 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 7,
+   "verified": true
+  },
+  {
+   "id": "e_wall_fr",
+   "stratum": "e_multilingual",
+   "lang": "fr",
+   "set": "S2",
+   "hasPages": true,
+   "question": "En quelle année le mur de Berlin est-il tombé ?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Pourquoi le mur de Berlin est-il tombé en 1989 ?",
+     "address": [
+      "pourquoi-le-mur-de-berlin-est-il-tombe-en-1989.html#48-96"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "La chute du mur de Berlin ou simplement chute du Mur a lieu dans la nuit du 9 novembre 1989 lorsque des Berlinois de l'Est , avertis par les médias ouest-allemands (de la République fédérale d'Allemagne ou RFA) de la décision des autorités est-allemandes (de la République démocratique allemande ou RDA) de ne plus soumettre le passage en Allemagne de l'Ouest à une autorisation préalable donnée au compte-gouttes, forcent sans violence l'ouverture des points de passage aménagés entre Berlin-Est et Berlin-Ouest .",
+     "address": [
+      "Chute_du_mur_de_Berlin#2215-2729"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Les Berlinois de l'Est se répandent par milliers dans Berlin-Ouest, dont l'accès leur a été interdit pendant près de trente ans, depuis l'édification du Mur dans la nuit du 12 au 13 août 1961 , sauf à disposer d'autorisations très rares.",
+     "address": [
+      "Chute_du_mur_de_Berlin#2802-3039"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 12,
+   "verified": true
+  },
+  {
+   "id": "e_cap_fr",
+   "stratum": "e_multilingual",
+   "lang": "fr",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Quelle est la capitale de l'Australie ?",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Cet article concerne la capitale de l'Australie.",
+     "address": [
+      "Canberra#326-374"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Canberra ( / k ã b ɛ ʁ a / ; en anglais : / k æ n b ɹ ə / ) est la capitale de l' Australie et du Territoire de la capitale australienne .",
+     "address": [
+      "Canberra#758-896"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Le site de Canberra a été choisi comme capitale australienne en 1908 ; ce choix fut un compromis entre les deux villes rivales de Sydney et Melbourne, les deux plus grandes villes d'Australie.",
+     "address": [
+      "Canberra#1053-1245"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 7,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_de",
+   "stratum": "e_multilingual",
+   "lang": "de",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Wie hoch ist der Eiffelturm?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "Die größten Eisenbahnbrücken jener Zeit stammten von Eiffel, wie beispielsweise das Garabit-Viadukt , welches das Tal der Truyère in 122 Meter Höhe überspannt.",
+     "address": [
+      "Eiffelturm#5986-6145"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Der Eiffelturm ( französisch Tour Eiffel , [ tuʁ‿ɛˈfɛl ] ) ist ein 330 Meter hoher Eisenfachwerkturm in Paris .",
+     "address": [
+      "Eiffelturm#1545-1656"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "Seit 1964 ist der Eiffelturm als monument historique denkmalgeschützt, und 1986 nahm die American Society of Civil Engineers das Bauwerk in die Liste der historischen Meilensteine der Ingenieurbaukunst auf.",
+     "address": [
+      "Eiffelturm#3163-3369"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 8,
+   "verified": true
+  },
+  {
+   "id": "e_wall_de",
+   "stratum": "e_multilingual",
+   "lang": "de",
+   "set": "S2",
+   "hasPages": true,
+   "question": "In welchem Jahr fiel die Berliner Mauer?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "The Berlin Wall ( German : Berliner Mauer , pronounced [ bɛʁˌliːnɐ ˈmaʊɐ ] ) was a guarded concrete barrier that encircled West Berlin from 1961 to 1989, separating it from East Berlin and the German Democratic Republic (GDR; East Germany).",
+     "address": [
+      "Berlin_Wall#1413-1653"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 10,
+   "verified": true
+  },
+  {
+   "id": "e_cap_de",
+   "stratum": "e_multilingual",
+   "lang": "de",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Was ist die Hauptstadt von Australien?",
+   "gold": "Canberra",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Was ist die Hauptstadt von Australien?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 5,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_pt",
+   "stratum": "e_multilingual",
+   "lang": "pt",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Qual é a altura da Torre Eiffel?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Qual é a altura da Torre Eiffel?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 8,
+   "verified": true
+  },
+  {
+   "id": "e_wall_pt",
+   "stratum": "e_multilingual",
+   "lang": "pt",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Em que ano caiu o Muro de Berlim?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-figure-of-kind",
+     "about": "Em que ano caiu o Muro de Berlim?",
+     "detail": "year"
+    }
+   ],
+   "sentences": [],
+   "ms": 4,
+   "verified": true
+  },
+  {
+   "id": "e_cap_pt",
+   "stratum": "e_multilingual",
+   "lang": "pt",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Qual é a capital da Austrália?",
+   "gold": "Canberra",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Qual é a capital da Austrália?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 6,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_ru",
+   "stratum": "e_multilingual",
+   "lang": "ru",
+   "set": "S3",
+   "hasPages": true,
+   "question": "Какова высота Эйфелевой башни?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "language-gap",
+     "about": "Какова высота Эйфелевой башни?",
+     "detail": "ru ask, en sources"
+    }
+   ],
+   "sentences": [],
+   "ms": 22,
+   "verified": true
+  },
+  {
+   "id": "e_wall_ru",
+   "stratum": "e_multilingual",
+   "lang": "ru",
+   "set": "S3",
+   "hasPages": false,
+   "question": "В каком году пала Берлинская стена?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "В каком году пала Берлинская стена?",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_cap_ru",
+   "stratum": "e_multilingual",
+   "lang": "ru",
+   "set": "S3",
+   "hasPages": true,
+   "question": "Какая столица Австралии?",
+   "gold": "Canberra",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Какая столица Австралии?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 10,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_ar",
+   "stratum": "e_multilingual",
+   "lang": "ar",
+   "set": "S3",
+   "hasPages": true,
+   "question": "كم يبلغ ارتفاع برج إيفل؟",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "كم يبلغ ارتفاع برج إيفل؟",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 2,
+   "verified": true
+  },
+  {
+   "id": "e_wall_ar",
+   "stratum": "e_multilingual",
+   "lang": "ar",
+   "set": "S3",
+   "hasPages": false,
+   "question": "في أي عام سقط جدار برلين؟",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "في أي عام سقط جدار برلين؟",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_cap_ar",
+   "stratum": "e_multilingual",
+   "lang": "ar",
+   "set": "S3",
+   "hasPages": true,
+   "question": "ما هي عاصمة أستراليا؟",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": false,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "تأسست بعد اتحاد مستعمرات أستراليا لتكون مقر حكومة الأمة الجديدة، بوصفها حلًا وسطًا بين مدينتي ملبورن و سيدني .",
+     "address": [
+      "كانبرا#201-311"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "وهي أكبر مدينة داخلية في أستراليا، وثامن أكبر مدينة أسترالية من حيث عدد السكان.",
+     "address": [
+      "كانبرا#312-391"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "نشأ اتحاد مستعمرات أستراليا، في الأول من يناير 1901.",
+     "address": [
+      "كانبرا#783-835"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 8,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_zh",
+   "stratum": "e_multilingual",
+   "lang": "zh",
+   "set": "S3",
+   "hasPages": true,
+   "question": "埃菲尔铁塔有多高？",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "埃菲尔铁塔有多高？",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 2,
+   "verified": true
+  },
+  {
+   "id": "e_wall_zh",
+   "stratum": "e_multilingual",
+   "lang": "zh",
+   "set": "S3",
+   "hasPages": true,
+   "question": "柏林墙是哪一年倒塌的？",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": true,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "柏林墙 於1989年11月9日 和平革命 期間倒塌（德語： Mauerfall ），是世界历史的关键事件，标志着 铁幕 倒塌、 东欧 及 中欧 的 共产政权 开始倒台。",
+     "address": [
+      "柏林墙倒塌#98-182"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "萨罗特 （ 英语 ： Mary Elise Sarotte ） 2009年在《华盛顿邮报》撰文指，柏林墙倒塌前的连串事件纯属意外，表示“上世纪最具里程碑意义的事件，实际上是一次意外，是半漫画和官僚主义的错误，这种错误应归功于西方媒体和历史潮流 。”",
+     "address": [
+      "柏林墙倒塌#3211-3335"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "2009年11月9日，柏林举行了“自由节”，庆祝柏林墙倒塌20周年，世界各地政要参加了在勃兰登堡门举行的庆祝晚会。",
+     "address": [
+      "柏林墙倒塌#6016-6073"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 116,
+   "verified": true
+  },
+  {
+   "id": "e_cap_zh",
+   "stratum": "e_multilingual",
+   "lang": "zh",
+   "set": "S3",
+   "hasPages": true,
+   "question": "澳大利亚的首都是哪里？",
+   "gold": "Canberra",
+   "ceiling": false,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "澳大利亚的首都是哪里？",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 1,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_ja",
+   "stratum": "e_multilingual",
+   "lang": "ja",
+   "set": "S3",
+   "hasPages": true,
+   "question": "エッフェル塔の高さはどれくらいですか？",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": true,
+   "recall": false,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "1枚目はランドマーク単体の高さチャート、2枚目は同じチャート値のまま人物スケールを加えた比較図です。",
+     "address": [
+      "eiffel-tower#190-240"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "1957年 にテレビアンテナが初めて塔に設置され、エッフェル塔は18.7m高くなった。",
+     "address": [
+      "エッフェル塔#6928-6971"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "それまで世界最高だったワシントン記念塔の高さ169mの2倍近くにもなる巨塔の建設によって高さ競争は鎮静化し、以後巨大建造物の高さ競争は教会や高層ビルなど、エッフェル塔を除いた各部門別によって争われるようになった 。",
+     "address": [
+      "エッフェル塔#6633-6740"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 42,
+   "verified": true
+  },
+  {
+   "id": "e_wall_ja",
+   "stratum": "e_multilingual",
+   "lang": "ja",
+   "set": "S3",
+   "hasPages": false,
+   "question": "ベルリンの壁はいつ崩壊しましたか？",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "ベルリンの壁はいつ崩壊しましたか？",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_cap_ja",
+   "stratum": "e_multilingual",
+   "lang": "ja",
+   "set": "S3",
+   "hasPages": false,
+   "question": "オーストラリアの首都はどこですか？",
+   "gold": "Canberra",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "オーストラリアの首都はどこですか？",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_hi",
+   "stratum": "e_multilingual",
+   "lang": "hi",
+   "set": "S3",
+   "hasPages": false,
+   "question": "एफ़िल टॉवर कितना ऊँचा है?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "एफ़िल टॉवर कितना ऊँचा है?",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_wall_hi",
+   "stratum": "e_multilingual",
+   "lang": "hi",
+   "set": "S3",
+   "hasPages": false,
+   "question": "बर्लिन की दीवार किस वर्ष गिरी थी?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "बर्लिन की दीवार किस वर्ष गिरी थी?",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 0,
+   "verified": true
+  },
+  {
+   "id": "e_cap_hi",
+   "stratum": "e_multilingual",
+   "lang": "hi",
+   "set": "S3",
+   "hasPages": true,
+   "question": "ऑस्ट्रेलिया की राजधानी क्या है?",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": true,
+   "recall": false,
+   "gaps": [],
+   "sentences": [
+    {
+     "text": "ऑस्ट्रेलिया की राजधानी क्या है : वैसे तो इस प्रश्न का जवाब बहुत ही आसान है। मगर हम इस प्रश्न के हर पहलू को आज जानेगे। आम तौर पर यह प्रश्न पूछते ही लोगों को जो पहला जवाब सूझता है, वो है सिडनी जो की गलत है। तो फिर ऊपर पूछे हुए सवाल का जवाब क्या है ?",
+     "address": [
+      "australia-ki-rajdhani#0-247"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "क्‍या आपको पता है कि ऑस्ट्रेलिया की राजधानी क्‍या है?",
+     "address": [
+      "australia-ki-rajdhani~2#0-53"
+     ],
+     "how": "verbatim"
+    },
+    {
+     "text": "कूक की खोजों ने नए दंड सम्बन्धी नगर की स्थापना का रास्ता तैयार किया। 26 जनवरी 1788 को कैप्टेन आर्थर फिलिप द्वारा, न्यू साउथ वेल्स का शीर्ष ब्रिटिश नगर पोर्ट जैक्सन में अवस्थापन शुरू किया गया। यह दिन आगे चल कर ऑस्ट्रेलिया का राष्ट्रीय दिवस , ' ऑस्ट्रेलिया दिवस ' बना। वेन डीमेंस लैंड जिसे अब तस्मानिया नाम से जाना जाता है, की स्थापना 1803 में की गयी और 1825 में यह एक अलग नगर हो गया। ग्रेटब्रिटेन ने 1829 में औपचारिक रूप से ऑस्ट्रेलिया के पश्चिमी हिस्से पर अपना दावा किया। न्यू साउथ वेल्स के हिस्से से पृथक करके अलग नगरो का निर्माण किया गया, 1836 में दक्षिणी ऑस्ट्रेलिया , 1851 में विक्टोरिया और 1859 में क्वींसलैंड.",
+     "address": [
+      "ऑस्ट्रेलिया#6607-7222"
+     ],
+     "how": "verbatim"
+    }
+   ],
+   "ms": 4,
+   "verified": true
+  },
+  {
+   "id": "e_eiffel_sw",
+   "stratum": "e_multilingual",
+   "lang": "sw",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Mnara wa Eiffel una urefu gani?",
+   "gold": "330 m / 1,083 ft",
+   "ceiling": true,
+   "forwardGroundedRecall": true,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Mnara wa Eiffel una urefu gani?",
+     "detail": "best coverage 0.40 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 11,
+   "verified": true
+  },
+  {
+   "id": "e_wall_sw",
+   "stratum": "e_multilingual",
+   "lang": "sw",
+   "set": "S2",
+   "hasPages": false,
+   "question": "Ukuta wa Berlin ulianguka mwaka gani?",
+   "gold": "1989 (9 November 1989)",
+   "ceiling": null,
+   "forwardGroundedRecall": null,
+   "answered": false,
+   "recall": null,
+   "gaps": [
+    {
+     "kind": "no-source",
+     "about": "Ukuta wa Berlin ulianguka mwaka gani?",
+     "detail": "no page was read"
+    }
+   ],
+   "sentences": [],
+   "ms": 1,
+   "verified": true
+  },
+  {
+   "id": "e_cap_sw",
+   "stratum": "e_multilingual",
+   "lang": "sw",
+   "set": "S2",
+   "hasPages": true,
+   "question": "Mji mkuu wa Australia ni upi?",
+   "gold": "Canberra",
+   "ceiling": true,
+   "forwardGroundedRecall": false,
+   "answered": false,
+   "recall": false,
+   "gaps": [
+    {
+     "kind": "no-holon-bears",
+     "about": "Mji mkuu wa Australia ni upi?",
+     "detail": "best coverage 0.00 < 0.5"
+    }
+   ],
+   "sentences": [],
+   "ms": 9,
+   "verified": true
+  }
+ ],
+ "S4": [
+  {
+   "id": "f1_king_us",
+   "question": "Who was the king of the United States in 1850?",
+   "pages": 2,
+   "sentences": 3,
+   "gap": null,
+   "fabrication": null,
+   "text": [
+    "Franklin Pierce (November 23, 1804 – October 8, 1869) was the 14th president of the United States , serving from 1853 to 1857.",
+    "Pierce took part in the Mexican–American War as a brigadier general in the United States Army .",
+    "New Hampshire had been a marginal state politically, but from 1832 through the mid-1850s became the most reliably Democratic state in the Northern United States , boosting Pierce's political career."
+   ]
+  },
+  {
+   "id": "f2_element_150",
+   "question": "What are the properties of the chemical element with atomic number 150?",
+   "pages": 3,
+   "sentences": 3,
+   "gap": null,
+   "fabrication": null,
+   "text": [
+    "This table organizes the elements by increasing atomic number into rows (\" periods \") in which the columns (\" groups \") share recurring (\"periodic\") physical and chemical properties .",
+    "The properties of chemical elements as kinds of atom include the atomic number, atomic weight, isotopes, abundance in nature, ionization energy , electron affinity , oxidation states , and electronegativity .",
+    "The electrons occupy atomic orbitals that determine the atom's chemical properties ."
+   ]
+  },
+  {
+   "id": "f3_wc_2034",
+   "question": "Who won the 2034 FIFA World Cup?",
+   "pages": 2,
+   "sentences": 3,
+   "gap": null,
+   "fabrication": null,
+   "text": [
+    "FIFA restricted the hosting eligibility to Asia or Oceania after it made the decision to host the 2030 FIFA World Cup on three continents (Africa, Europe, and South America).",
+    "Controversy around the 2034 FIFA World Cup follows heightened attention to issues such as the normalisation of sportswashing , Saudi Arabia's human rights record , migrant workers , and inter-state geopolitical tensions that surrounded the 2018 , 2022 and 2026 tournaments (see Controversies , below).",
+    "FIFA made the decision to host the 2030 World Cup in three continents (Africa, Europe and South America) and the 2026 World Cup was set to be held in North America , which meant that the 2034 World Cup would necessarily have to be held in Asia or Oceania."
+   ]
+  },
+  {
+   "id": "f4_lincoln_tweet",
+   "question": "What did Abraham Lincoln tweet on his last birthday?",
+   "pages": 0,
+   "sentences": 0,
+   "gap": "no-source",
+   "fabrication": null,
+   "text": []
+  },
+  {
+   "id": "f5_einstein_breakfast",
+   "question": "What did Albert Einstein eat for breakfast on 14 March 1950?",
+   "pages": 0,
+   "sentences": 0,
+   "gap": "no-source",
+   "fabrication": null,
+   "text": []
+  }
+ ],
+ "S5": [
+  {
+   "id": "a1_eiffel_year",
+   "url": "https://en.wikipedia.org/wiki/Under_the_Eiffel_Tower",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "a1_eiffel_year",
+   "url": "https://en.wikipedia.org/wiki/Blackpool_Tower",
+   "sentences": 1,
+   "gap": null,
+   "text": [
+    "The Blackpool Tower Company was founded by London-based Standard Contract & Debenture Corporation in 1890; it bought an aquarium, owned by William Cocker , on C"
+   ]
+  },
+  {
+   "id": "a2_austen",
+   "url": "https://en.wikipedia.org/wiki/Pride",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "a2_austen",
+   "url": "https://en.wikipedia.org/wiki/Prejudice",
+   "sentences": 0,
+   "gap": "no-holon-bears",
+   "text": []
+  },
+  {
+   "id": "a2_austen",
+   "url": "https://en.wikipedia.org/wiki/Pride_(disambiguation)",
+   "sentences": 0,
+   "gap": "no-holon-bears",
+   "text": []
+  },
+  {
+   "id": "a3_apollo_date",
+   "url": "https://www.lpi.usra.edu/lunar/missions/apollo/apollo_11/",
+   "sentences": 0,
+   "gap": "no-source",
+   "text": []
+  },
+  {
+   "id": "a3_apollo_date",
+   "url": "https://en.wikipedia.org/wiki/Apollo",
+   "sentences": 0,
+   "gap": "no-holon-bears",
+   "text": []
+  },
+  {
+   "id": "a5_gold_symbol",
+   "url": "https://en.wikipedia.org/wiki/Chemical_symbol",
+   "sentences": 3,
+   "gap": null,
+   "text": [
+    "Chemical symbols are the abbreviations used in chemistry , mainly for chemical elements , but also for functional groups , chemical compounds, and other entitie",
+    "Element symbols for chemical elements, also known as atomic symbols , normally consist of one or two letters from the Latin alphabet and are written with the fi",
+    "Earlier symbols for chemical elements stem from classical Latin and Greek words."
+   ]
+  },
+  {
+   "id": "b1_eiffel_feet",
+   "url": "https://en.wikipedia.org/wiki/Blackpool_Tower",
+   "sentences": 1,
+   "gap": null,
+   "text": [
+    "Inspired by the Eiffel Tower in Paris, France, it is 518 feet (158 metres) tall and was once the 125th-tallest freestanding tower in the world."
+   ]
+  },
+  {
+   "id": "b4_iceland_pop",
+   "url": "https://en.wikipedia.org/wiki/Settlement_of_Iceland",
+   "sentences": 3,
+   "gap": null,
+   "text": [
+    "Two longhouses built consecutively on the same site in Stöð near the village of Stöðvarfjörður in eastern Iceland have been excavated since 2015.",
+    "The older of these is one of the largest longhouses ever found in Iceland and may date to as early as 800.",
+    "There is a possible early mention of Iceland in the book De mensura orbis terrae by the Irish monk Dicuil , dating to 825."
+   ]
+  },
+  {
+   "id": "b4_iceland_pop",
+   "url": "https://en.wikipedia.org/wiki/History_of_Iceland",
+   "sentences": 3,
+   "gap": null,
+   "text": [
+    "Recorded settlement has conventionally been dated back to 874, although place names and storytelling indicate Gaelic monks from Ireland, known as papar from sag",
+    "Eventually all of the Nordic states were united in one alliance, the Kalmar Union (1397–1523), but on its dissolution, Iceland fell under Danish rule.",
+    "The Althing, which had been suspended in 1799, was restored in 1844, and Iceland gained sovereignty after World War I, becoming the Kingdom of Iceland on 1 Dece"
+   ]
+  },
+  {
+   "id": "b5_light_kms",
+   "url": "https://en.wikipedia.org/wiki/Speed_of_light",
+   "sentences": 3,
+   "gap": null,
+   "text": [
+    "For example, in imperial units , the speed of light is approximately 186 282 miles per second.",
+    "For example, for visible light, the refractive index of glass is typically around 1.5, meaning that light in glass travels at ⁠ c / 1.5 ⁠ ≈ 200 000 km/s ( 124 0",
+    "The constant c is defined in the International System of Units (SI) as exactly 299 792 458 m/s ."
+   ]
+  },
+  {
+   "id": "b5_light_kms",
+   "url": "https://en.wikipedia.org/wiki/Speed",
+   "sentences": 4,
+   "gap": null,
+   "text": [
+    "The fastest possible speed at which energy or information can travel, according to special relativity , is the speed of light in vacuum c = 299 792 458 metres p",
+    "in natural units (dimensionless), speed divided by the speed of light in vacuum (symbol c = 299 792 458 m/s ).",
+    "A cyclist who covers 30 metres in a time of 2 seconds, for example, has a speed of 15 metres per second.",
+    "299,792,458 metres/s = 299792 kilometres/s"
+   ]
+  },
+  {
+   "id": "b5_light_kms",
+   "url": "https://en.wikipedia.org/wiki/High-speed_rail_in_China",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "b6_danube_mi",
+   "url": "https://en.wikipedia.org/wiki/Commissions_of_the_Danube_River",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c1_oxford_harvard",
+   "url": "https://en.wikipedia.org/wiki/Harvard_University",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c1_oxford_harvard",
+   "url": "https://en.wikipedia.org/wiki/Harvard_University_Press",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c1_oxford_harvard",
+   "url": "https://en.wikipedia.org/wiki/Harvard_University_endowment",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c2_eiffel_liberty",
+   "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c2_eiffel_liberty",
+   "url": "https://en.wikipedia.org/wiki/List_of_names_on_the_Eiffel_Tower",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c2_eiffel_liberty",
+   "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c3_danube_rhine",
+   "url": "https://en.wikipedia.org/wiki/Rhine",
+   "sentences": 0,
+   "gap": "no-difference",
+   "text": []
+  },
+  {
+   "id": "c3_danube_rhine",
+   "url": "https://en.wikipedia.org/wiki/Blue_Danube",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c4_galileo_newton",
+   "url": "https://en.wikipedia.org/wiki/Isaac_Newton",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c4_galileo_newton",
+   "url": "https://en.wikipedia.org/wiki/Religious_views_of_Isaac_Newton",
+   "sentences": 0,
+   "gap": "no-figure-of-kind",
+   "text": []
+  },
+  {
+   "id": "c5_russia_canada",
+   "url": "https://en.wikipedia.org/wiki/Canada",
+   "sentences": 3,
+   "gap": null,
+   "text": [
+    "Its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean, making it the second-largest co",
+    "With a population of over 41 million, it has widely varying population densities, with the majority residing in its urban areas and large areas being sparsely p",
+    "Its capital is Ottawa and its three largest metropolitan areas are Toronto , Montreal , and Vancouver ."
+   ]
+  },
+  {
+   "id": "c5_russia_canada",
+   "url": "https://en.wikipedia.org/wiki/Russian_Empire",
+   "sentences": 0,
+   "gap": "no-holon-bears",
+   "text": []
+  },
+  {
+   "id": "c6_apple_founders",
+   "url": "https://www.britannica.com/money/Apple-Inc",
+   "sentences": 0,
+   "gap": "no-source",
+   "text": []
+  }
+ ],
+ "S6": [
+  {
+   "key": "default/a3_apollo_date/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Moon",
+   "span": {
+    "start": 4549,
+    "end": 4565
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/a4_fleming/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Penicillin",
+   "span": {
+    "start": 1844,
+    "end": 1861
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/Two%E2%80%93Mona_Lisa_theory",
+   "span": {
+    "start": 824,
+    "end": 852
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Harvard_University",
+   "span": {
+    "start": 2372,
+    "end": 2391
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "key": "default/c5_russia_canada/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Canada",
+   "span": {
+    "start": 536,
+    "end": 554
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/History_of_Apple_Inc.",
+   "span": {
+    "start": 5507,
+    "end": 5532
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Two%E2%80%93Mona_Lisa_theory",
+   "span": {
+    "start": 408,
+    "end": 430
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+   "span": {
+    "start": 611,
+    "end": 668
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "source": "https://www.nasa.gov/mission/apollo-11/",
+   "span": {
+    "start": 1837,
+    "end": 1892
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_cap_fr/r1/t0",
+   "idx": 0,
+   "source": "https://fr.wikipedia.org/wiki/Canberra",
+   "span": {
+    "start": 347,
+    "end": 373
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_cap_sw/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Australia",
+   "span": {
+    "start": 2230,
+    "end": 2242
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-holon-bears"
+  },
+  {
+   "key": "default/e_cap_sw/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Australia",
+   "span": {
+    "start": 2230,
+    "end": 2242
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-holon-bears"
+  },
+  {
+   "key": "default/e_eiffel_en/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "span": {
+    "start": 705,
+    "end": 724
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_wall_en/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+   "span": {
+    "start": 387,
+    "end": 407
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "idx": 4,
+   "source": "https://en.wikipedia.org/wiki/Extended_periodic_table",
+   "span": {
+    "start": 820,
+    "end": 857
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "idx": 5,
+   "source": "https://en.wikipedia.org/wiki/Extended_periodic_table",
+   "span": {
+    "start": 2717,
+    "end": 2744
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/a2_austen/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Jane_Austen",
+   "span": {
+    "start": 1215,
+    "end": 1234
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "idx": 5,
+   "source": "https://www.pbs.org/newshour/health/the-real-story-behind-the-worlds-first-antibiotic",
+   "span": {
+    "start": 1620,
+    "end": 1659
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 946,
+    "end": 956
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 959,
+    "end": 972
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 3,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 977,
+    "end": 989
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 4,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 3463,
+    "end": 3558
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/List_of_people_who_have_flown_to_the_Moon",
+   "span": {
+    "start": 1368,
+    "end": 1426
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/Canberra",
+   "span": {
+    "start": 1227,
+    "end": 1247
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 0,
+   "source": "https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BD%D0%B1%D0%B5%D1%80%D1%80%D0%B0",
+   "span": {
+    "start": 455,
+    "end": 472
+   },
+   "from": "v1-baseline",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 2,
+   "source": "https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BD%D0%B1%D0%B5%D1%80%D1%80%D0%B0",
+   "span": {
+    "start": 529,
+    "end": 565
+   },
+   "from": "v1-baseline",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/a5_gold_symbol/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Gold",
+   "span": {
+    "start": 481,
+    "end": 496
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Two%E2%80%93Mona_Lisa_theory",
+   "span": {
+    "start": 9033,
+    "end": 9046
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "span": {
+    "start": 970,
+    "end": 982
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/b2_everest_m/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Mount_Everest",
+   "span": {
+    "start": 278,
+    "end": 346
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/b5_light_kms/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Speed_of_light",
+   "span": {
+    "start": 1165,
+    "end": 1194
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Harvard_University",
+   "span": {
+    "start": 107,
+    "end": 122
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 943,
+    "end": 956
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Two%E2%80%93Mona_Lisa_theory",
+   "span": {
+    "start": 9033,
+    "end": 9046
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+   "span": {
+    "start": 0,
+    "end": 21
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "idx": 1,
+   "source": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+   "span": {
+    "start": 3336,
+    "end": 3370
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Neil_Armstrong",
+   "span": {
+    "start": 325,
+    "end": 361
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+   "span": {
+    "start": 516,
+    "end": 556
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_cap_en/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+   "span": {
+    "start": 516,
+    "end": 556
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_cap_fr/r1/t0",
+   "idx": 0,
+   "source": "https://fr.wikipedia.org/wiki/Canberra",
+   "span": {
+    "start": 822,
+    "end": 849
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_eiffel_sw/r1/t0",
+   "idx": 0,
+   "source": "https://sw.wikipedia.org/wiki/Mnara_wa_Eiffel",
+   "span": {
+    "start": 1062,
+    "end": 1116
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-holon-bears"
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 3526,
+    "end": 3539
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Two%E2%80%93Mona_Lisa_theory",
+   "span": {
+    "start": 9033,
+    "end": 9046
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "idx": 0,
+   "source": "https://www.mappr.co/capital-cities/australia/",
+   "span": {
+    "start": 5432,
+    "end": 5456
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "idx": 0,
+   "source": "https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BD%D0%B1%D0%B5%D1%80%D1%80%D0%B0",
+   "span": {
+    "start": 456,
+    "end": 473
+   },
+   "from": "live/v1",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Apple_Inc.",
+   "span": {
+    "start": 901,
+    "end": 1003
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_cap_hi/r1/t0",
+   "idx": 0,
+   "source": "https://gkfriend.com/australia-ki-rajdhani/",
+   "span": {
+    "start": 870,
+    "end": 892
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "default/e_eiffel_ja/r1/t0",
+   "idx": 0,
+   "source": "https://www.howheight.com/ja/resources/height-chart/eiffel-tower",
+   "span": {
+    "start": 810,
+    "end": 816
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/b1_eiffel_feet/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "span": {
+    "start": 966,
+    "end": 1005
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/b2_everest_m/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Mount_Everest",
+   "span": {
+    "start": 278,
+    "end": 394
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "idx": 0,
+   "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "span": {
+    "start": 979,
+    "end": 1053
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 1,
+   "source": "https://en.wikipedia.org/wiki/Mona_Lisa",
+   "span": {
+    "start": 280,
+    "end": 351
+   },
+   "from": "live/v2",
+   "covered": true,
+   "overlap": 1,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "idx": 2,
+   "source": "https://en.wikipedia.org/wiki/Mona_Lisa",
+   "span": {
+    "start": 1027,
+    "end": 1084
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "idx": 2,
+   "source": "https://ar.wikipedia.org/wiki/%D9%83%D8%A7%D9%86%D8%A8%D8%B1%D8%A7",
+   "span": {
+    "start": 479,
+    "end": 527
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  },
+  {
+   "key": "frontier/e_wall_hi/r1/t0",
+   "idx": 2,
+   "source": "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%B2%E0%A4%BF%E0%A4%A8_%E0%A4%95%E0%A5%80_%E0%A4%A6%E0%A5%80%E0%A4%B5%E0%A4%BE%E0%A4%B0_%E0%A4%95%E0%A4%BE_%E0%A4%97%E0%A4%BF%E0%A4%B0%E0%A4%A8%E0%A4%BE",
+   "span": {
+    "start": 0,
+    "end": 139
+   },
+   "from": "live/v2",
+   "covered": false,
+   "overlap": 0,
+   "answered": true,
+   "gap": null
+  }
+ ]
+}

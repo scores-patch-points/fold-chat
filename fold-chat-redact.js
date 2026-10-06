@@ -37,7 +37,11 @@ export function createRedactor({ base = DEFAULT_REDACTOR, fetchImpl = (...a) => 
 }
 
 /** De-identify texts that travel together as one turn. `redact(texts) → spans[][]` is optional (see the header). */
-export async function deidentify(texts, { taint = null, extra = [], mode = "default", redact = null, maxPasses = 3, exempt = [] } = {}) {
+export async function deidentify(texts, { taint = null, extra = [], mode = "default", redact = null, maxPasses = 3, exempt = [], publicIdx = null } = {}) {
+  // `publicIdx`: indices of texts the CALLER vouches are public (a specimen's own authored code). Those skip the redactor's judgement only:
+  // shapes (keys, emails, paths' usernames), the taint registry and the final residual check still apply to them. A wrong claim leaks, so the
+  // caller owns it; with no `publicIdx` every text is masked.
+  const pub = new Set(publicIdx || []);
   const deid = createDeid({ taint, extra, mode, exempt });
   let cur = texts.map((t) => String(t ?? ""));
   const ask = async (list) => {
@@ -46,11 +50,12 @@ export async function deidentify(texts, { taint = null, extra = [], mode = "defa
     if (!Array.isArray(s) || s.length !== list.length) throw notSent("the PII redactor's answer did not fit the request, so nothing was sent");
     return s;
   };
-  cur = deid.maskAll(cur, redact ? { spans: await ask(cur) } : undefined);
+  const judged = async (list) => { const idx = list.map((_, i) => i).filter((i) => !pub.has(i)); const got = idx.length ? await ask(idx.map((i) => list[i])) : []; const out = list.map(() => []); idx.forEach((i, k) => { out[i] = got[k]; }); return out; };
+  cur = deid.maskAll(cur, redact ? { spans: await judged(cur) } : undefined);
   let passes = 1;
   if (redact) {
     for (let k = 0; ; k++) {   // ask again about what we are about to send: the redactor reads the MASKED text
-      const again = await ask(cur);
+      const again = await judged(cur);
       const fresh = cur.map((t, i) => { const ph = placeholderRanges(t); return maskableSpans(again[i], mode).filter((sp) => !ph.some(([a, b]) => sp.start < b && sp.end > a) && !deid.exempts(cur[i].slice(sp.start, sp.end))); });
       if (!fresh.some((f) => f.length)) break;
       if (k + 1 >= maxPasses) throw notSent("the PII redactor still finds personal details after " + maxPasses + " passes");
@@ -65,10 +70,11 @@ export async function deidentify(texts, { taint = null, extra = [], mode = "defa
 /** De-identify a JSON-like value: only the string VALUES go to the redactor — never keys, quotes or punctuation, so a span cannot swallow the structure.
  *  Returns { value, deid, passes, viaRedactor }; `deid.unmask` maps strings back, and `unmaskJSON(deid, v)` maps a whole reply object. */
 export async function deidentifyJSON(value, opts = {}) {
-  const leaves = [];
-  const walk = (v) => (typeof v === "string" ? (leaves.push(v), { __leaf: leaves.length - 1 }) : Array.isArray(v) ? v.map(walk) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x)])) : v);
+  const leaves = [], publicIdx = [];
+  const originOf = opts.originOf || null;   // (value, path) → "public" for a string the caller vouches is a specimen's own authored text
+  const walk = (v, path = "") => (typeof v === "string" ? (originOf && originOf(v, path) === "public" && publicIdx.push(leaves.length), leaves.push(v), { __leaf: leaves.length - 1 }) : Array.isArray(v) ? v.map((x, i) => walk(x, `${path}[${i}]`)) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, walk(x, path ? `${path}.${k}` : k)])) : v);
   const skeleton = walk(value);
-  const out = await deidentify(leaves, opts);
+  const out = await deidentify(leaves, { ...opts, publicIdx });
   const fill = (v) => (v && typeof v === "object" && "__leaf" in v && Object.keys(v).length === 1 ? out.texts[v.__leaf] : Array.isArray(v) ? v.map(fill) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fill(x)])) : v);
   return { value: fill(skeleton), deid: out.deid, passes: out.passes, viaRedactor: out.viaRedactor };
 }

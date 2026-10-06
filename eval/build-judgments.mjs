@@ -43,5 +43,19 @@ j(C + "e_wall_sw/r1/t0", { correct: true, lang: false, reason: "1989 correct, bu
 for (const id of ["i1_hi", "i2_thanks", "i3_morning"]) j(C + id + "/r1/t0", { correct: true, lang: true, reason: "canned FOLD NOTE ('Ask me something and I'll show you what the sources say.') - no search, no model; not conversational but not wrong" });
 for (const id of ["h1_py_reverse", "h2_js_even", "h3_sql_count"]) j(C + id + "/r1/t0", { correct: false, reason: "no code written: 'There are no sources for this kind of ask (a programming question), and the fold does not write without sources' (by design; no search ran)" });
 for (const k of ["a4_fleming", "a5_gold_symbol"]) { J[C + k + "/r1/t0"] = { ...(J[C + k + "/r1/t0"] || {}), lang: true, reason: "lang: English answer to an English ask (detector misfire on a 1-3 word answer)" }; }
+
+// ---- build "cur2" (third snapshot, head 619c063; default answer mode is now "snips": verbatim source passages, no model-authored answer) ----
+const C2 = "cur2/";
+j(C2 + "a1_eiffel_year/r1/t0", { correct: true, reason: "lenient: a 9-sentence dump of source passages that contains 'Completed in March 1889' - the question is not answered in one line" });
+j(C2 + "b1_eiffel_feet/r1/t0", { correct: true, reason: "lenient: dump contains '330 metres (1,083 ft)' AND 'main structure ... 300 meters ... 324 m with antennas' side by side (disagreeing grounds shown, not averaged: good per Art. III.4)" });
+j(C2 + "c1_oxford_harvard/r1/t0", { correct: false, reason: "'Something went wrong. Wait a moment and try again. Harvard vs. Oxford - What's the Difference?' - scraped error text and FAQ headings, no age comparison" });
+j(C2 + "d2_mona_lisa/r1/t0", { correct: false, reason: "no source reached (web 502): 'No answer was written'" });
+j(C2 + "e_cap_ru/r1/t0", { correct: true, reason: "contains 'Город Канберра является столицей Австралии' (then bus-stop spam from a travel page)" });
+j(C2 + "e_eiffel_zh/r1/t0", { correct: true, reason: "contains the 330m antenna news and the 1889 completion in Chinese, among 10 unrelated passages" });
+j(C2 + "e_wall_ar/r1/t0", { correct: true, reason: "contains 'سقط جدار برلين في 9 نوفمبر 1989' but is prefixed with an unrelated phrase from an Arabic Q&A site ('how many hours from the UAE to Saudi Arabia by plane')" });
+j(C2 + "f3_wc_2034/r1/t0", { correct: true, refused: true, reason: "no model-authored fabrication: shows 'will be the 25th FIFA World Cup' ... 'Saudi Arabia wins 2034 FIFA World Cup bid' (hosting) verbatim; no explicit statement that it has not been played" });
+j(C2 + "g1_poem/r1/t0", { correct: false, reason: "not a poem: scraped text 'These Rain Autumn poems are examples of Autumn poems about Rain...'; also took 155 s and searched the web" });
+j(C2 + "h1_py_reverse/r1/t0", { correct: false, reason: "no code written ('no sources for this kind of ask')" });
+j(C2 + "i1_hi/r1/t0", { correct: true, lang: true, reason: "canned fold note, no search" });
 fs.writeFileSync(path.join(here, "judgments.json"), JSON.stringify(J, null, 1));
 console.log(Object.keys(J).length, "judgments");

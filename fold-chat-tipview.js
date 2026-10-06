@@ -49,25 +49,66 @@ export function tipControl(src, { toast = null, quiet = false } = {}) {
   const done = (msg) => { tell(msg); if (typeof toast === "function") toast(msg); };
   let busy = false;
 
+  // their own pages: the website and the profiles the page published. Quiet secondary links under a tip / email / form; the
+  // main answer (chips) when nothing can be tipped. Each opens a new tab only when pressed; the Fold visits none of them.
+  const ownPages = (r, chips) => {
+    const row = el("span", "tip-more");
+    if (r.website && safeUrl(r.website.url)) {
+      const a = outLink(chips ? "tip-chip tip-site" : "tip-link tip-site", chips ? "Open their website" : "Their website", safeUrl(r.website.url), `${chips ? "Open their website" : "Their website"} (${r.website.host}), opens in a new tab`);
+      a.dataset.host = r.website.host; a.append(" ", el("span", "tip-host", r.website.host)); row.append(a);
+    }
+    for (const sc of (r.socials || [])) {
+      const href = safeUrl(sc.url); if (!href) continue;
+      const a = outLink(chips ? "tip-chip tip-social" : "tip-link tip-social", sc.platformName, href, `${sc.platformName} (${sc.host}), opens in a new tab`);
+      a.dataset.platform = sc.platform; a.dataset.host = sc.host; a.append(" ", el("span", "tip-host", sc.host)); row.append(a);
+    }
+    if (!row.childElementCount) return null;
+    if (!chips) { const lab = el("span", "tip-morelab", "Their own pages:"); row.prepend(lab); }
+    return row;
+  };
+
   btn.addEventListener("click", async () => {
     if (busy) return;
     busy = true; btn.setAttribute("aria-busy", "true"); area.replaceChildren(); area.hidden = true;
+    for (const k of ["mailto", "form", "tipUrl"]) delete btn.dataset[k];
     tell(TIP_SAY.looking(who));
+    const t0 = Date.now();
     let r;
-    try { r = await findContact({ url, contact: src.contact }, { readText: deps.readText, ...(deps.pause ? { pause: deps.pause } : {}) }); } catch { r = { kind: "none" }; }
+    try { r = await findContact({ url, contact: src.contact }, { readText: deps.readText, humans: !!deps.humans, ...(deps.pause ? { pause: deps.pause } : {}) }); } catch { r = { kind: "none" }; }
+    const greeting = contributor ? "" : (src.creator || r.name || "");
     try {
-      if (r.kind === "email") {
-        const d = tipDraft({ to: r.address, creator: src.creator, title: src.title, url });
+      if (r.kind === "tip" && safeUrl(r.tip.url)) {
+        const href = safeUrl(r.tip.url), name = r.tip.platformName, host = r.tip.host;
+        btn.dataset.tipUrl = href;
+        const open = outLink("tip-link tip-open", TIP_LABELS.open(name, host), href, `${TIP_LABELS.open(name, host)}, opens in a new tab`);
+        open.dataset.tipUrl = href; area.append(open);
+        for (const alt of (r.alternates || [])) { const h = safeUrl(alt.url); if (h) area.append(outLink("tip-link tip-also", TIP_LABELS.also(alt.platformName, alt.host), h)); }
+        if (r.email) {
+          const d = tipDraft({ to: r.email.address, creator: greeting, title: src.title, url });
+          const m = el("a", "tip-link tip-alt", TIP_LABELS.emailAlt); m.href = d.mailto; m.dataset.mailto = d.mailto; area.append(m);   // opens the draft ONLY when pressed
+        }
+        const more = ownPages(r, false); if (more) area.append(more);
+        area.hidden = false;
+        const fresh = Date.now() - t0 < FRESH_MS;
+        if (fresh) { try { window.open(href, "_blank", "noopener,noreferrer"); } catch { /* the visible link above is the way */ } }
+        else open.focus();
+        done((fresh ? TIP_SAY.tip(name, host, r.tip.where) : TIP_SAY.tipFound(name, host, r.tip.where)) + (r.email ? TIP_SAY.alsoEmail : ""));
+      } else if (r.kind === "email") {
+        const d = tipDraft({ to: r.address, creator: greeting, title: src.title, url });
         const a = el("a", "tip-link", "Open the email draft again");
         a.href = d.mailto; a.dataset.mailto = d.mailto; btn.dataset.mailto = d.mailto;
-        area.append(a); area.hidden = false;
+        area.append(a);
+        const more = ownPages(r, false); if (more) area.append(more);
+        area.hidden = false;
         a.click();                                  // the person's own mail app; nothing is sent until they send it
         done(TIP_SAY.email(r.address, r.where) + (contributor ? TIP_SAY.siteContact : ""));
       } else if (r.kind === "form") {
-        const d = tipDraft({ creator: src.creator, title: src.title, url });
+        const d = tipDraft({ creator: greeting, title: src.title, url });
         btn.dataset.form = r.url;
         const link = el("a", "tip-link", "Open their contact page"); link.href = r.url; link.target = "_blank"; link.rel = "noopener noreferrer";
-        area.append(link); area.hidden = false;
+        area.append(link);
+        const more = ownPages(r, false); if (more) area.append(more);
+        area.hidden = false;
         let copied = false;
         try { await navigator.clipboard.writeText(d.body); copied = true; } catch { copied = false; }
         try { window.open(r.url, "_blank", "noopener,noreferrer"); } catch { /* the visible link above is the way */ }
@@ -77,7 +118,9 @@ export function tipControl(src, { toast = null, quiet = false } = {}) {
         }
         done(copied ? TIP_SAY.form : TIP_SAY.formNoCopy);
       } else {
-        done(TIP_SAY.none);
+        const pages = ownPages(r, true);
+        if (pages) { area.append(pages); area.hidden = false; done(TIP_SAY.noneHere); }       // no tip, no email, no form: their own pages, never a dead end
+        else done(TIP_SAY.none);
       }
     } catch { done(TIP_SAY.none); }
     busy = false; btn.removeAttribute("aria-busy");

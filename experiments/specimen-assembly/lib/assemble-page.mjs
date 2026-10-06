@@ -45,7 +45,7 @@ export async function assemblePage(pool, oracle, ledger, { onState } = {}) {
     const final = await oracle.check(sub.html);
     const attribution = await attribute(sub.html, oracle);
     const byHolon = {};
-    for (const a of attribution) for (const b of a.breaks) { const h = holonOfObligation(b) || "(syntax)"; (byHolon[h] ||= []).push({ kind: a.kind, label: a.label, start: a.start, end: a.end, leaf: !attribution.some((x) => x.parent === a.id), obligations: a.breaks }); }
+    for (const a of attribution) for (const b of a.breaks) { const h = holonOfObligation(b) || "(syntax)"; (byHolon[h] ||= []).push({ kind: a.kind, label: a.label, start: a.start, end: a.end, leaf: !attribution.some((x) => x.parent === a.order), obligations: a.breaks }); }
     ledger.add("assembled", { from: chosen.name, bytesIn: chosen.bytes, bytesOut: sub.html.length, generatedBytes: 0, finalObligations: Object.fromEntries(Object.entries(final).map(([k, v]) => [k, v.pass])) });
     return { status: "assembled", rows, chosen: { name: chosen.name, path: chosen.path, bytes: chosen.bytes }, sub, final, attribution, byHolon };
   }

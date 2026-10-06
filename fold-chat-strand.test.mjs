@@ -4,7 +4,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import { snipsOf, strandText, verifySnip, verifySnips, declaredBlocksFromHtml, creditText, storeSnip, contentAllowed, STRAND } from "./fold-chat-strand.js";
+import { snipsOf, strandText, verifySnip, verifySnips, declaredBlocksFromHtml, creditText, storeSnip, contentAllowed, looksBlocked, STRAND } from "./fold-chat-strand.js";
 import { impressionOf } from "./fold-chat-impression.js";
 import { modelHistory, modelText } from "./fold-chat-channels.js";
 
@@ -105,7 +105,7 @@ test("the strand is bounded (total chars, sources quoted) and never empty when a
   const { snips } = snipsOf(many, "Eiffel tower height");
   assert.ok(new Set(snips.map((s) => s.p)).size <= STRAND.maxPassages);
   assert.ok(strandText(snips).length <= STRAND.totalChars + 700);
-  assert.deepEqual(snipsOf([], "q"), { snips: [], dropped: [] });
+  assert.deepEqual(snipsOf([], "q"), { snips: [], dropped: [], junk: [], gaps: [] });
   assert.deepEqual(snipsOf([{ ref: "x — y", url: "https://x.org", text: "   " }], "q").snips, []);
 });
 
@@ -177,4 +177,60 @@ test("a Wikipedia lead never stops on an abbreviation: 'sent to study at St.' is
   assert.equal(snips[0].text, "Freddie Mercury was a British singer.");
   const whole = snipsOf([{ ref: "Wikipedia — F", url: "https://en.wikipedia.org/wiki/F", text: t }], "who", { limits: { ...STRAND, leadChars: 140 } }).snips[0].text;
   assert.ok(whole.endsWith("Panchgani."), whole);
+});
+
+// ── the junk gate, the wall check and the nav-aware scoring (docs/SNIP-JUNK-PREREG.md) ─────────────────────────────────────
+const CONTENT1 = "The okapi is an artiodactyl mammal that is endemic to the northeast of the Democratic Republic of the Congo in Central Africa, and it is related to the giraffe.";
+const CONTENT2 = "Both sexes have a dark chestnut coat with white stripes on the legs, and the males carry short skin-covered horns that are called ossicones in the literature.";
+const CHROMEBLOCK = "Home Destinations Trending Europe Asia The Americas Australia Africa The Middle East The Caribbean Our Favorite Places Iceland Italy Japan London Portugal";
+
+test("FALSIFIER (B1): chrome ahead of the content is never quoted — the strand starts at the content, and no snip is a menu or a banner", () => {
+  const text = [CHROMEBLOCK, "We use cookies to improve your experience. Accept all cookies. Cookie settings. Privacy policy.", "Sign in or create an account to continue reading.", CONTENT1, CONTENT2].join("\n\n");
+  const { snips, junk } = snipsOf([{ ref: "x.org — Okapi", url: "https://x.org/okapi", text }], "okapi horns stripes");
+  assert.ok(snips.length >= 1);
+  for (const s of snips) { assert.ok(!/cookies|Sign in|Destinations/.test(s.text), "no chrome in a snip: " + s.text.slice(0, 60)); assert.ok(text.replace(/\s+/g, " ").includes(s.text)); }
+  assert.ok(snips.some((s) => s.text.includes("okapi")));
+  assert.ok(Array.isArray(junk));
+});
+
+test("FALSIFIER (B1): a page that is ALL chrome yields no snip and a typed 'junk' gap — never the chrome, never a model's words", () => {
+  const text = [CHROMEBLOCK, "Home Shop Blog About Contact Careers Press Help Terms Privacy", "All rights reserved. Privacy policy. Terms of use. Cookie settings."].join("\n\n");
+  const r = snipsOf([{ ref: "x.org — Home", url: "https://x.org/", text }], "okapi");
+  assert.deepEqual(r.snips, []);
+  assert.equal(r.gaps.length, 1); assert.equal(r.gaps[0].kind, "gap"); assert.ok(["junk", "blocked"].includes(r.gaps[0].gap));
+  assert.equal(r.gaps[0].p, 0); assert.ok(r.gaps[0].reason.length > 10);
+});
+
+test("FALSIFIER (B5): wall pages yield NO snip and a typed 'blocked' gap with the reason — by status, by phrase, in any listed language", () => {
+  const walls = [
+    { ref: "a.org — Denied", url: "https://a.org/x", text: "Access Denied. You don't have permission to access this page on this server." },
+    { ref: "b.org — Job", url: "https://b.org/x", text: "This job is no longer available. Browse similar jobs." },
+    { ref: "c.org — Queue", url: "https://c.org/x", text: "You are in line. Your estimated wait time is 5 minutes. Thank you." },
+    { ref: "d.org — Zugriff", url: "https://d.org/x", text: "Zugriff verweigert. Bestätigen Sie, dass Sie ein Mensch sind, um fortzufahren." },
+    { ref: "e.org — Page", url: "https://e.org/x", status: 403, text: CONTENT1 + " " + CONTENT2 },
+  ];
+  const r = snipsOf(walls, "okapi");
+  assert.deepEqual(r.snips, []);
+  assert.equal(r.gaps.length, walls.length);
+  assert.ok(r.gaps.every((g) => g.gap === "blocked" && g.reason.length > 10 && g.source));
+});
+
+test("FALSIFIER (B6): a real article that merely mentions a captcha or an expired link is quoted, not walled", () => {
+  const text = "Most signup forms use a captcha, which slows people down. " + CONTENT1 + " " + CONTENT2 + " Links to old posts may have expired, but the archive is still online and searchable by date.";
+  const r = snipsOf([{ ref: "x.org — Forms", url: "https://x.org/forms", text }], "okapi captcha");
+  assert.ok(r.snips.length >= 1); assert.deepEqual(r.gaps, []);
+});
+
+test("looksBlocked now reads status and the declared multilingual wall phrases, and still reads the old English patterns", () => {
+  assert.equal(looksBlocked("whatever", { status: 403 }), true);
+  assert.equal(looksBlocked("whatever", { status: 200 }), false);
+  assert.equal(looksBlocked("Acceso denegado. Verifica que eres humano."), true);
+  assert.equal(looksBlocked("Just a moment... Enable JavaScript and cookies to continue"), true);
+  assert.equal(looksBlocked(CONTENT1.repeat(50)), false, "a long page is not a wall");
+});
+
+test("a declared block that is hollow (labels with no values) is not shown; a typed 'junk' gap says so", () => {
+  const p = { ref: "x.org — Events", url: "https://x.org/e", text: "Whatever the page text is.", declared: [{ kind: "faq", name: "FAQ", author: "", items: ["Q? — "] }] };
+  const r = snipsOf([p], "events");
+  assert.ok(r.snips.every((s) => s.text.length > 6));
 });

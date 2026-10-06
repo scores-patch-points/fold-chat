@@ -85,3 +85,4 @@ __pycache__/
 /eval/snips/asks.json
 /experiments/*/out/
 /experiments/*/vendor/
+!/experiments/specimen-assembly/vendor/

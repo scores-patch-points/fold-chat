@@ -71,7 +71,9 @@ for (const ask of asks) {
   row.held = goldCheck(ask, S1); row.shownGold = r.gap ? { answered: false, gapped: true } : row.held;
   row.held.span = shortSpan(ask, S1);
   // per-rung coverage (each rung's strand on its own) and S1 rung attribution
-  row.byRung = {}; for (const k of ["a", "b", "c", "cNoLead", "d"]) { const sn = r.strands[k] || []; row.byRung[k] = { n: sn.length, chars: sn.reduce((a, s) => a + s.chars, 0), answered: goldCheck(ask, sn).answered }; }
+  row.byRung = {}; for (const k of ["a", "aStruct", "aDesc", "b", "c", "cNoLead", "d"]) {
+    const sn = k === "aStruct" ? (r.strands.a || []).filter((s) => /^a\.(recipe|howto|faq|qa|product|event)$/.test(s.rung)) : k === "aDesc" ? (r.strands.a || []).filter((s) => /^a\.(article|meta)$/.test(s.rung)) : (r.strands[k] || []);
+    row.byRung[k] = { n: sn.length, chars: sn.reduce((a, s) => a + s.chars, 0), answered: goldCheck(ask, sn).answered }; }
   row.s1Rungs = [...new Set(S1.map((s) => s.rung))]; row.goldRungs = [...new Set(S1.filter((s) => snipHasGold(ask, s)).map((s) => s.rung))];
   // coverage by the number of sources read (top-k)
   if (ask.gold.expect === "answer") {
@@ -138,6 +140,11 @@ const controls = {};
 { // 3. volatile gate confusion
   const live = have.filter((x) => x.class === "live-trap" || /^new[89]$/.test(x.id)); const rest = have.filter((x) => !(x.class === "live-trap" || /^new[89]$/.test(x.id)));
   controls.volatileGate = { liveN: live.length, liveCaught: live.filter((x) => x.volatileCue).length, restN: rest.length, restFlagged: rest.filter((x) => x.volatileCue).length, flaggedIds: rest.filter((x) => x.volatileCue).map((x) => x.id), missedIds: live.filter((x) => !x.volatileCue).map((x) => x.id) };
+}
+{ // 4. follow-ups asked WITHOUT resolveQuestion (the raw words), against the resolved runs
+  const fu = asks.filter((a) => a.class === "follow-up"); const rows2 = [];
+  for (const a of fu) { const f = path.join(OUT, a.id + "__raw.json"); if (!fs.existsSync(f)) continue; const raw = JSON.parse(fs.readFileSync(f, "utf8")); const res = load(a.id); rows2.push({ id: a.id, resolvedHeld: goldCheck(a, res.strands.S1).answered, resolvedGap: res.gap && res.gap.kind, rawHeld: goldCheck(a, raw.strands.S1).answered, rawGap: raw.gap && raw.gap.kind, rawQuery: raw.query, carried: res.resolution && res.resolution.reason }); }
+  controls.followUp = rows2;
 }
 fs.writeFileSync(path.join(here, "judged.json"), JSON.stringify({ at: new Date().toISOString(), controls, rows }, null, 1));
 console.log(`judged ${have.length}/${asks.length} asks`);

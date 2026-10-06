@@ -5,7 +5,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   UNSOURCED_ANSWERS, unsourcedPlan, ALONE_KINDS, modelSpeaksAlone, aloneTurn, SMALLTALK_LINE, sourcesPrompt,
-  searchAttempts, searchSummary, unreachedGap, liveGap, liveAsk, emptyNotice, errorNotice, gapAnswerLine,
+  searchAttempts, searchSummary, unreachedGap, liveGap, liveAsk, emptyNotice, errorNotice, gapAnswerLine, noModelFallbackNotice,
 } from "./fold-chat-gaps.js";
 
 const TRACE = [
@@ -114,6 +114,27 @@ test("errorNotice: the bridge's own words, typed, with a retry — timeout, rate
   for (const [err, re] of cases) { const n = errorNotice(err); assert.equal(n.kind, "error"); assert.equal(n.retry, true); assert.match(n.text, re); assert.match(n.text, /Nothing was written/); }
   assert.match(errorNotice("error: x").text, /x/);
   assert.doesNotThrow(() => errorNotice(undefined));
+});
+
+test("errorNotice: an in-tab failure is worded as an in-tab failure, never as an unreachable bridge", () => {
+  const cdn = errorNotice(Object.assign(new Error("Failed to fetch dynamically imported module"), { place: "tab" }));
+  assert.doesNotMatch(cdn.text, /bridge/i);
+  assert.match(cdn.text, /in-tab model/i); assert.match(cdn.text, /Nothing was written/);
+  for (const kind of ["no-gpu", "loader", "load-failed", "generate-failed", "declined"]) {
+    const n = errorNotice(Object.assign(new Error("load failed: NetworkError"), { kind }));
+    assert.doesNotMatch(n.text, /bridge/i, kind); assert.match(n.text, /in-tab model/i, kind); assert.equal(n.retry, true);
+  }
+  // a real bridge failure still says bridge; an in-tab timeout keeps the timeout words
+  assert.match(errorNotice(Object.assign(new Error("Failed to fetch"), { status: 0 })).text, /bridge could not be reached/);
+  assert.match(errorNotice(Object.assign(new Error("timed out (180s)"), { status: 504, place: "tab", kind: "timeout" })).text, /timed out before the model finished/);
+});
+
+test("noModelFallbackNotice: no standalone bridge to start; says the Fold's own server or the in-tab model", () => {
+  const n = noModelFallbackNotice({ code: "bridge-down", text: "x" });
+  assert.doesNotMatch(n.text, /heimdall up/);
+  assert.match(n.text, /npm run serve/); assert.match(n.text, /in-tab model/i);
+  assert.equal(n.kind, "fold"); assert.equal(n.why, "bridge-down");
+  assert.match(noModelFallbackNotice({ code: "no-models", text: "serves no model" }).text, /serves no model/);
 });
 
 test("sourcesPrompt: labels are the fold's, never the model's; the model may not name a source not in the block", () => {

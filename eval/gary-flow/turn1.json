@@ -1,0 +1,56 @@
+{
+ "c1:0": {
+  "text": "Here's a recipe for chewy chocolate chip cookies:\n\n**Sally's Baking Addiction**\n\n* 2 and 1/4 cups (281g) all-purpose flour (spooned & leveled)\n* 1 teaspoon baking soda\n* 1 and 1/2 teaspoons cornstarch*\n* 1/2 teaspoon salt\n* 3/4 cup (170g/12 Tbsp) unsalted butter, melted & cooled for 5 minutes\n* 3/4 cup (150g) packed light or dark brown sugar\n* 1/2 cup (100g) granulated sugar\n* 1 large egg + 1 egg yolk, at room temperature\n* 2 teaspoons pure vanilla extract\n* 1 and 1/4 cups (225g) semi-sweet chocolate chips or chocolate chunks\n\n**Instructions:**\n\n1. In a large bowl, whisk the flour, baking soda, cornstarch, and salt together. Set aside.\n2. In a medium bowl, whisk the melted butter, brown sugar, and granulated sugar together until no lumps remain. Whisk in the egg and egg yolk until combined, then whisk in the vanilla extract. The mixture will be thin. Pour into dry ingredients and mix together with a large spoon or spatula. The dough will be very soft, thick, and shiny. Fold in the chocolate chips. The chocolate chips may not stick to the dough because of the melted butter, but do your best to combine them.\n3. Cover the dough tightly and refrigerate for at least 2 hours or up to 3 days. I highly recommend chilling the cookie dough overnight to prevent overspreading.\n4. Preheat the oven to 325°F (163°C). Line large baking sheets with parchment paper or silicone baking mats. If the dough has chilled for longer than 2 hours, let it sit at room temperature for about 1"
+ },
+ "c1:1": {
+  "text": "For a chewier cookie, try this recipe from Sally's Baking Addiction:\n\n**Sally's Baking Addiction**\n\n* 2 and 1/4 cups (281g) all-purpose flour (spooned & leveled)\n* 1 teaspoon baking soda\n* 1 and 1/2 teaspoons cornstarch*\n* 1/2 teaspoon salt\n* 3/4 cup (170g/12 Tbsp) unsalted butter, melted & cooled for 5 minutes\n* 3/4 cup (150g) packed light or dark brown sugar\n* 1/2 cup (100g) granulated sugar\n* 1 large egg + 1 egg yolk, at room temperature\n* 2 teaspoons pure vanilla extract\n* 1 and 1/4 cups (225g) semi-sweet chocolate chips or chocolate chunks\n\n**Instructions:**\n\n1. In a large bowl, whisk the flour, baking soda, cornstarch, and salt together. Set aside.\n2. In a medium bowl, whisk the melted butter, brown sugar, and granulated sugar together until no lumps remain. Whisk in the egg and egg yolk until combined, then whisk in the vanilla extract. The mixture will be thin. Pour into dry ingredients and mix together with a large spoon or spatula. The dough will be very soft, thick, and shiny. Fold in the chocolate chips. The chocolate chips may not stick to the dough because of the melted butter, but do your best to combine them.\n3. Cover the dough tightly and refrigerate for at least 2 hours or up to 3 days. I highly recommend chilling the cookie dough overnight to prevent overspreading.\n4. Preheat the oven to 325°F (163°C). Line large baking sheets with parchment paper or silicone baking mats. If the dough has chilled for longer than 2 hours, let it sit at room"
+ },
+ "c6:0": {
+  "text": "Here's a breakdown of the differences between viruses and bacteria:\n\n**Viruses**\n\n* **Tiny and simple:** Viruses are much smaller than bacteria. They're essentially packets of genetic material (DNA or RNA) wrapped in a protein coat.\n* **Need a host:** Viruses can't survive on their own. They need to invade a living cell (like a human cell) to reproduce. \n* **Hijack cells:**  They use the cell's machinery to make copies of themselves. This can cause the cell to malfunction or even die.\n* **Examples:** The common cold, influenza, HIV, and COVID-19 are caused by viruses.\n\n**Bacteria**\n\n* **Living organisms:** Bacteria are single-celled organisms that can live and reproduce on their own.\n* **Independent:** They can thrive in various environments, from soil to water to inside our bodies.\n* **Self-sufficient:** Bacteria have their own cellular machinery to make energy, grow, and reproduce.\n* **Examples:**  E. coli, Salmonella, and Streptococcus are examples of bacteria.\n\n\n**In short:**\n\n* **Viruses:** Tiny, need a host to reproduce, hijack cells.\n* **Bacteria:** Living, independent, self-sufficient. \n\n\nLet me know if you'd like more details on any specific aspect! \n"
+ },
+ "c6:1": {
+  "text": "There's no simple answer to which is \"worse\" between viruses and bacteria.  It really depends on the specific situation and the individual's health. \n\nHere's why:\n\n* **Viruses:**  They can cause a wide range of illnesses, some mild (like the common cold) and some severe (like COVID-19).  The severity of a viral infection depends on the specific virus, the individual's immune system, and other factors.\n* **Bacteria:**  Some bacteria are harmless, even beneficial (like the bacteria in our gut).  Others can cause serious infections, like pneumonia or food poisoning.  The severity of a bacterial infection depends on the type of bacteria, the location of the infection, and the individual's health.\n\n**It's important to remember:**\n\n* **Both viruses and bacteria can cause illness.**  \n* **Severity is not always clear-cut.**  What's \"worse\" depends on the specific situation and the individual's health. \n* **Medical professionals are best equipped to assess and treat infections.**  \n\n\nLet me know if you have any other questions! \n"
+ },
+ "c7:0": {
+  "text": "La capital de Francia es París. \n"
+ },
+ "c7:1": {
+  "text": "La capital de Italia es Roma. \n"
+ },
+ "c9:0": {
+  "text": ""
+ },
+ "c9:1": {
+  "text": "In Python, you can reverse a string using slicing.  Here's how:\n\n```python\nstring = \"hello\"\nreversed_string = string[::-1]\nprint(reversed_string) \n```\n\nThis will output: \"olleh\" \n\n\nLet me know if you'd like to explore how to reverse a string in JavaScript! \n"
+ },
+ "c2:0": {
+  "text": ""
+ },
+ "c2:1": {
+  "text": "Pride and Prejudice was written by English author Jane Austen. It was published in 1813. \n"
+ },
+ "c3:0": {
+  "text": "It's great you want to learn guitar!  There are lots of ways to do it.  Do you want to learn chords, strumming, or maybe some songs? \n"
+ },
+ "c3:1": {
+  "text": "That's a great question!  There's no single \"right\" way to start, but here's a general approach:\n\n**1. Get a Guitar:**  \n   * **Acoustic:**  Good for beginners, no amplification needed.\n   * **Electric:**  Requires an amplifier, offers more versatility.\n   * **Consider your budget:**  Acoustic guitars are generally more affordable.\n\n**2. Find a Good Teacher (Optional but Recommended):**\n   * **Private lessons:**  Personalized instruction, feedback, and progress tracking.\n   * **Online courses:**  Structured learning, often with video lessons and exercises.\n   * **Group classes:**  Social learning, more affordable, but less individual attention.\n\n**3. Learn the Basics:**\n   * **Tuning:**  Essential for playing in tune.\n   * **Holding the guitar:**  Proper posture is key for comfort and technique.\n   * **Basic chords:**  Start with easy chords like G, C, D, Em, and Am.\n   * **Strumming patterns:**  Learn basic strumming rhythms.\n   * **Finger exercises:**  Improve dexterity and finger strength.\n\n**4. Start Playing Songs:**\n   * **Simple songs:**  Choose songs with easy chords and strumming patterns.\n   * **Learn by ear:**  Listen to songs and try to play along.\n   * **Use online resources:**  Websites and apps offer song tutorials.\n\n**5. Practice Regularly:**\n   * **Consistency is key:**  Even 15-30 minutes a day is better than long sessions once a week.\n   * **Set realistic goals:**  Don't get discouraged if you don't see results immediately.\n   * **Have fun:**  Learning guitar should be enjoyable! \n\n\n\nLet me know if you have any other questions! \n"
+ },
+ "c4:0": {
+  "text": "Compound interest is when you earn interest on the money you’ve saved and on the interest you earn along the way. \n\nHere's an example to help explain:\n\n* **Starting with $1,000:** You put $1,000 into an account that earns 5% interest per year.\n* **Year 1:** You earn $50 in interest ($1,000 x 0.05). Your balance is now $1,050.\n* **Year 2:** You earn $52.50 in interest ($1,050 x 0.05). Your balance is now $1,102.50. \n\nIncreasing the compounding frequency, finding a higher interest rate, and adding to your principal amount are ways to help your savings grow even faster. You can also crunch numbers using different interest rates, periods of time, and compounding frequencies at the Securities and Exchange Commission’s website Investor.gov. \n"
+ },
+ "c4:1": {
+  "text": "Okay, let's say you invest $1,000 in a savings account that earns 5% interest compounded annually. \n\nHere's how it would work:\n\n* **Year 1:** You earn $50 in interest ($1,000 x 0.05). Your balance is now $1,050.\n* **Year 2:** You earn $52.50 in interest ($1,050 x 0.05). Your balance is now $1,102.50. \n* **Year 3:** You earn $54.37 in interest ($1,102.50 x 0.05). Your balance is now $1,156.87. \n\nYou can see how the interest earned each year is added to your principal, and then the next year's interest is calculated on the new, larger principal. This is the magic of compound interest! \n\n\nLet me know if you'd like to see how this works with a different interest rate or a longer time frame. \n"
+ },
+ "c5:0": {
+  "text": "The capital of Australia is Canberra. \n"
+ },
+ "c5:1": {
+  "text": "Sydney is a major city in Australia, but it's not the capital.  The capital is Canberra. \n"
+ },
+ "c8:0": {
+  "text": ""
+ },
+ "c8:1": {
+  "text": "东京的人口大约是13.9万人。 \n大阪的人口大约是275万人。 \n"
+ }
+}

@@ -6,15 +6,16 @@
 // introduce which sources were found and how they differ, and that is all (Constitution II.9 — the mouth may
 // phrase, never originate; and the creator's work is cited, not laundered into the model's voice).
 //
-// TIPPING is a feature in development. The Fold pays and sends nothing. The "Tip the creator" control finds how the
-// creator's own site says to reach them and opens the person's own email app with a draft (fold-chat-tip.js); the
-// person reads and sends it themselves. The card says so plainly.
+// TIPPING is a feature in development. The Fold pays, sends and takes nothing. The "Tip the creator" control finds how the
+// creator's own site says to support or reach them (fold-chat-tip.js, defined in fold-chat-support-routes.json): a tip page
+// the person opens and pays on themselves (a direct tip page can really receive money; the Fold is not in that exchange),
+// else an email draft the person sends, else the creator's own website and profiles. The card says so plainly.
 import { contactOfPassage } from "./fold-chat-tip.js";
 
 /** What the tip prompt says. One string, so the wording is the same wherever it appears and a test can pin it. */
 export const TIP = Object.freeze({
   prompt: "Like this recipe? Tip its creator.",
-  status: "Tipping is a feature in development. The button opens an email draft to the creator; nothing is paid or sent by the Fold.",
+  status: "Tipping is a feature in development. The button finds how the creator's own site says to support them: their tip page, which you open and pay on yourself, else an email draft you send yourself, else their own website and profiles. The Fold sends nothing and takes nothing.",
 });
 
 // Declared, not measured (Constitution II.11): enough for any real recipe, small enough that a stored turn never

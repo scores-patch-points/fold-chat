@@ -95,6 +95,13 @@ test("noModelWhy: the bridge, the list, the embedders, and the selected model ea
   assert.equal(noModelWhy({ bridgeUp: true, models: [{ id: "gemma2:2b" }], selectedId: "gemma2:2b" }).code, "ok");
 });
 
+test("noModelWhy: no-webgpu advice names a WebGPU browser or the Fold's own server, never the extension", () => {
+  const w = noModelWhy({ bridgeUp: false, models: [], page: { available: false, reason: "no-webgpu" } });
+  assert.equal(w.code, "no-webgpu");
+  assert.doesNotMatch(w.text, /extension/i);
+  assert.match(w.text, /WebGPU browser/); assert.match(w.text, /npm run serve/);
+});
+
 test("poller: ticks only while visible, pauses on hidden, refreshes on return, refresh() after a turn, never stacks", async () => {
   let visible = true, vis = null, calls = 0, ticks = null, cleared = 0;
   const states = [];

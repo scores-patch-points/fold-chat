@@ -71,7 +71,7 @@ const tokensOf = (s) => fold(s).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 const flagCache = new Map();
 const frameFlags = (cls, id) => {
   const key = cls + "\u0000" + id; let f = flagCache.get(key);
-  if (!f) { const toks = [...tokensOf(cls), ...tokensOf(id)]; const starts = (list) => toks.some((t) => list.some((c) => t.startsWith(c))); f = { comment: starts(DEF.zones.comment), chrome: toks.some((t) => DEF.zones.chromeTokens.includes(t)), share: starts(DEF.zones.share), embed: starts(DEF.zones.embed) }; if (flagCache.size < 5000) flagCache.set(key, f); }
+  if (!f) { const toks = [...tokensOf(cls), ...tokensOf(id)], raw = fold(cls + " " + id); const starts = (list) => list.some((c) => (c.includes("-") ? raw.includes(c) : toks.some((t) => t.startsWith(c)))); f = { comment: starts(DEF.zones.comment), chrome: toks.some((t) => DEF.zones.chromeTokens.includes(t)), share: starts(DEF.zones.share), embed: starts(DEF.zones.embed) }; if (flagCache.size < 5000) flagCache.set(key, f); }
   return f;
 };
 const VOID = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
@@ -200,11 +200,13 @@ export function judgeLink(href, cx) {
   }
   const pathWords = (() => { const segs = u.pathname.split("/").filter(Boolean); const t = fold(PATH_TOKENS(u)).split(" ").filter(Boolean); return segs.length <= 2 && t.length <= 5 ? t.join(" ") : ""; })();   // an article slug is a topic, not a button
   const labelWords = fold(label).split(" ").length <= 8 ? label : "";                                              // a headline is not a button either
+  const ownWords = fold((fold(label).split(" ").length <= 4 ? label : "") + " " + pathWords);                      // an own-site button is shorter still: 4 words
   const words = fold(labelWords + " " + pathWords);
   if (hasNewsTip(words) || hasNewsTip(fold(PATH_TOKENS(u)))) return { ok: false, reason: "news-tip" };
   if (hasHelpdesk(words) || hasHelpdesk(fold(label)) || /^support\./.test(host)) return { ok: false, reason: "helpdesk-support" };
   if (cx.zone === "comment" || [...(cx.rel || [])].some((r) => DEF.zones.relRefuse.includes(r))) return { ok: false, reason: "comment-section" };
-  const strong = hasStrong(words), weak = hasWeak(words), named = strong || hasName(words);
+  let strong = hasStrong(words), weak = hasWeak(words), named = strong || hasName(words);
+  if (!plat) { strong = hasStrong(ownWords); named = strong || hasName(ownWords); }
   const declared = !!(cx.structured || (cx.rel && [...cx.rel].some((r) => DEF.zones.relPayment.includes(r) || r === "me")));
   const signal = []; if (cx.structured) signal.push("structured"); if (cx.rel && cx.rel.size) signal.push("rel"); if (strong) signal.push("words"); if (cx.zone === "chrome") signal.push("chrome");
   if (plat) {

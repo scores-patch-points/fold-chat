@@ -2,29 +2,36 @@
 
 A browser chat surface for The Fold. It runs like the fold does — a static
 page, no build step, deployable to GitHub Pages — and it is the chat the
-Fold has always implied: **models are organs behind Heimdall, the chat is the
-mouth, and nothing raw leaves the trust domain.**
+Fold has always implied: **models are organs, the chat is the mouth, and
+nothing raw leaves the trust domain.** The model runs *in the tab*
+(WebLLM on WebGPU); Heimdall is embedded in the same server as the page.
 
 ## What this is
 
 LibreChat-style chat (artifacts, memory, search, agents) is the long game. But
 LibreChat itself is a Next.js server that needs MongoDB + Redis — it cannot run
 as a static GitHub Pages site. So this repo is the Fold-native chat surface
-that speaks the **same OpenAI-compatible wire LibreChat speaks**, pointed
-straight at the one process that already routes the whole Fold's models:
+that speaks the **same OpenAI-compatible wire LibreChat speaks**. There is **no
+standalone bridge**: the Fold's own server carries heimdall in-process, and the
+model itself runs in the page.
 
 ```
-  fold-chat (browser, static)
-        │  GET /api/tags            → every model heimdall can serve
-        │  POST /v1/chat/completions (SSE, heimdall_privacy:"sealed-external")
-        │  POST /api/code             (the code lane — same bridge, same project)
+  fold-chat (the browser tab)
+        │  the model: WebLLM on WebGPU, in a Worker — weights cached by the browser,
+        │  every token produced on this device. Nothing leaves the tab.
+        │
+        │  same origin (the doors, and any model heimdall serves besides):
+        │    GET /heimdall/api/tags            → every model heimdall can serve
+        │    POST /heimdall/v1/chat/completions (SSE, heimdall_privacy:"sealed-external")
+        │    POST /heimdall/api/code · /api/read · /api/reason · /api/weave
         ▼
-  heimdall bridge  (localhost:8790)
+  node server.mjs  (http://127.0.0.1:8814) — ONE process
+        │  static app  +  heimdall embedded at /heimdall (heimdall/docs/EMBED.md)
         │  fleet · linked native hosts · remote providers
         │  sealed-external gate + dispatch ledger + savings meter
         │  the machine door: khora read → janus derive → execute → penelope retain
         ▼
-  local organs (WebLLM, Ollama, phones)  ·  outside models (sealed projection only)
+  local organs (Ollama, phones)  ·  outside models (sealed projection only)
 ```
 
 ## One thread, one project, two engagements
@@ -57,13 +64,32 @@ Every agent turn carries an **agent record** (the same collapsed disclosure a
 chat turn carries): the folder, the lane, the tool steps, the time — so the
 agent is as inspectable as chat, and always says it ran through the bridge.
 
-Serve `index.html` from localhost (`python3 -m http.server 8814`) and run
-`heimdall up` — the page finds the bridge on `localhost:8790` and lists every
-model heimdall can serve. For code, run the conductor door
-(`khora/native/conductor/server.mjs`) and start heimdall with
-`HEIMDALL_OPENCODE=http://127.0.0.1:4098`. The GitHub Pages deployment is the
-same page; full model access needs the local bridge, exactly like the fold's own
-local serving.
+**Run it: `npm run serve`** — one process, `node server.mjs`, on
+`http://127.0.0.1:8814` (`FOLD_PORT` / `FOLD_HOST` override). It serves the static
+app and mounts heimdall in-process at `/heimdall`; the page finds it on its own
+origin, so there is nothing to start first and nothing to configure. The sibling
+`../heimdall` checkout supplies the embedded mount (`FOLD_HEIMDALL_SRC` points
+elsewhere); without it the app still serves and `/heimdall` answers 503.
+
+- **The model runs in the tab.** The first time you use an in-tab model the page
+  tells you the download (`~1.9 GB` for the default Gemma 2 2B), asks once, shows
+  progress (percent + text, in the footer and the turn's own feed), and caches it
+  in the browser; after that it loads from the cache. Picking a model downloads
+  nothing — only an approved first send does. Models are the WebLLM builds listed in
+  `fold-chat-webllm.js` (the f32 build on a GPU without `shader-f16`).
+  A device with no WebGPU is told so, plainly, and pointed at a WebGPU browser or the Fold's own server.
+- **With no bridge** the app still boots, lists the in-tab models, and answers from
+  them; the sealed outside models, the fleet and the code lane (`/api/code`) need
+  the embedded heimdall (the server). For code, run the conductor door
+  (`khora/native/conductor/server.mjs`) and start the server with
+  `HEIMDALL_OPENCODE=http://127.0.0.1:4098`.
+- **The old standalone bridge on `:8790` is no longer needed.** It is only a *later*
+  fallback the page still tries (after the same-origin `/heimdall`), so a copy of the
+  page somewhere else — and the extension — can still find one on this machine.
+- **GitHub Pages** is the same page with in-tab WebLLM only: no server, so no
+  `/heimdall`, no sealed models, no fleet; the model still runs on the visitor's GPU.
+- An in-tab turn is labelled **in this tab**, never *sealed-external*: nothing is
+  sent anywhere, so there is no gate to claim.
 
 ## Secure chat with outside models
 
@@ -91,8 +117,18 @@ This is the part wired into heimdall's secure-outside-model work:
   streaming chat, the agent lane, sealed badge, evidence drawer. localStorage
   holds sessions, projects, and the bridge override (`fold-chat:bridge`); the
   engagement is `fold-chat:engagement`.
+- `server.mjs` — the Fold's own server: static files (no dotfiles, no `node_modules`,
+  no traversal, `no-store`) + heimdall mounted at `/heimdall`. `node --test server.test.mjs`.
+- `fold-chat-webllm.js` (+ `fold-webllm-worker.js`) — the model in the page: WebGPU
+  status, the model table, `createPageEngine` (lazy CDN load, Worker, abort, f32/f16),
+  `pageModels`. Nothing downloads on import.
 - `fold-chat-client.js` — the heimdall wire: `listModels`, `chat`, `code`
   (carries the project `cwd`), `read`, `meter`, `ledger`, `frontier`. Browser + node.
+  `bridgeCandidates` / `detectBridge` look at the same-origin `/heimdall` first;
+  `listAllModels` merges the tab's models in even with the bridge down; `autoPick`
+  prefers a loaded in-tab model, then a downloaded one, then a bridge model that is up,
+  then the default in-tab model (selected, never auto-downloaded); `chat` serves a
+  `webllm:` model from the page's engine with the bridge's own stream/abort/error contract.
 - `fold-chat-topic.js` — what a chat becomes about: `titleOf` draws a name from
   the salient terms of the whole exchange (the surface swaps it in at the fourth
   turn), and `iconOf` picks the Phosphor icon most similar to it by cosine over
@@ -107,6 +143,9 @@ This is the part wired into heimdall's secure-outside-model work:
   the only path from the transcript back to the model. Pure and node-testable.
 - `fold-chat-client.test.mjs` — fake-bridge tests (sealed gate, SSE streaming,
   code lane carries the folder, meter). Run: `node --test`.
+- `fold-chat-pageengine.test.mjs` — the bridge-less Fold: same-origin first, in-tab
+  models listed with the bridge down, the pick order, chat dispatch to a fake engine
+  (abort, never-silent download), and a check that no app file names the old port.
 
 ## The turn chip: mode and effort, per message
 
@@ -159,7 +198,9 @@ npm i && npx playwright install chromium      # once, for the live e2e
 node fold-e2e-falsify.mjs                     # drives the live page (see its header)
 ```
 
-The e2e needs the live stack (this page on :8814, the heimdall bridge on :8790).
+The e2e scripts predate the single-server build and still point at a standalone bridge on
+`:8790`; for now they need the live stack (this page on :8814 via `npm run serve`, plus a bridge
+on :8790). The unit tests need neither.
 It tries `import("playwright")` first and falls back to a scratch install at
 `/private/tmp/fold-e2e/node_modules/playwright`.
 
@@ -190,6 +231,9 @@ node fold-ext-e2e.mjs                 # loads the build in a real Chromium (need
   seen from a page — the name list is best-effort and a bad redirect is caught after one credential-less GET.
 - **Artifacts** run in `fold-sandbox.html`, a manifest `sandbox` page (opaque origin, no extension API, no access to the
   chats in storage), reached through `sandboxDoc()` in `fold-chat-sandframe.js` — on the web that is still `srcdoc`.
+- **The model in the extension** comes from a bridge, not the tab: an extension page's CSP (`script-src 'self'`) cannot load
+  WebLLM from its CDN, so the extension page never starts the in-tab engine (`fold-chat.js` checks `isExtension()`) and keeps the
+  loopback bridge for its models.
 - **Not done:** Firefox/Safari (Chrome-family MV3 only), icons, store listing, moving chat storage from `localStorage`
   to IndexedDB (the 5 MB cap), and the heimdall bridge on a non-loopback address (the gate refuses it).
 

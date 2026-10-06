@@ -79,7 +79,7 @@ export async function runTipChecks({ browser, URL, ok }) {
     ok("a. the toast says where the address was found and that nothing is sent",
       t === `Opened an email draft to ${SALLY} (found a mailto link on the page). Nothing is sent until you send it.`, t, "toast wording");
     ok("a. a card already holding the contact loads NO page (nothing leaves this machine on the click) and the status line stays honest",
-      !requests.some((r) => /sally\.test/.test(r.url)) && /feature in development/i.test(await page.textContent(".snip-dev")) && /nothing is paid or sent/i.test(await page.textContent(".snip-dev")),
+      !requests.some((r) => /sally\.test/.test(r.url)) && /feature in development/i.test(await page.textContent(".snip-dev")) && /sends nothing and takes nothing/i.test(await page.textContent(".snip-dev")) && /tip page/i.test(await page.textContent(".snip-dev")),
       requests.filter((r) => /\.test/.test(r.url)).map((r) => r.url).join(" "), "a request went out");
     await shot(page, "tip-a-card-light");
     // e. the address leaks nowhere else
@@ -157,21 +157,109 @@ export async function runTipChecks({ browser, URL, ok }) {
     await ctx.close();
   }
 
-  // ── d. nothing found: the honest toast, no tab, no navigation, no draft ─────────────────────────────────────────
+  // ── d. nothing to tip: say so plainly and offer THEIR OWN pages (website; profiles only if published) ─────────────
   {
     const card = recipe("https://nothing.test/soup/", { title: "Soup", credit: { author: "", publisher: "", site: "nothing.test" } });
     const { ctx, page } = await open(browser, URL, cardTurn([card]));
     let opened = 0; ctx.on("page", () => opened++);
     const before = page.url();
     await page.click(".snip .tip-btn");
-    await page.waitForFunction(() => /find a public contact/.test(document.getElementById("toast")?.textContent || ""), undefined, { timeout: 15000 }).catch(() => {});
+    await page.waitForFunction(() => /No way to tip them directly/.test(document.getElementById("toast")?.textContent || ""), undefined, { timeout: 15000 }).catch(() => {});
     await page.waitForTimeout(500);
     const t = await toastText(page);
-    ok("d. nothing published: the honest toast; no new tab, no navigation, no mailto (an address only in an HTML comment is not offered)",
-      t === "Couldn't find a public contact for this creator. The original page is linked above." && opened === 0 && page.url() === before && !(await page.getAttribute(".snip .tip-btn", "data-mailto")) && !(await page.$(".snip .tip-link")),
+    const site = await page.$eval(".snip .tip-site", (a) => ({ href: a.href, target: a.target, rel: a.rel, text: a.textContent })).catch(() => null);
+    ok("d. nothing to tip: the plain 'No way to tip them directly' status; NOTHING opens by itself (no tab, no navigation, no mailto); an address only in an HTML comment is not offered",
+      t === "No way to tip them directly. Their own pages:" && opened === 0 && page.url() === before && !(await page.getAttribute(".snip .tip-btn", "data-mailto")),
       JSON.stringify({ t, opened }), "wrong outcome");
+    ok("d. the creator's own website is offered as 'Open their website' (their own origin, new tab, noopener noreferrer, host shown) and no profile buttons are invented",
+      !!site && site.href === "https://nothing.test/" && site.target === "_blank" && /noopener/.test(site.rel) && /noreferrer/.test(site.rel) && /Open their website/.test(site.text) && /nothing\.test/.test(site.text) && (await page.$$(".snip .tip-social")).length === 0,
+      JSON.stringify(site), "website chip wrong");
     ok("d. the control is never a dead button: it can be tried again", (await page.$eval(".snip .tip-btn", (b) => !b.disabled && b.getAttribute("aria-busy") !== "true")), "disabled", "the button stayed busy");
     await shot(page, "tip-d-none-light");
+    await ctx.close();
+  }
+
+  // ── d2. website + profiles in a NEW tab, only on a press; share bars, comments and embeds are not profiles ────────
+  {
+    const url = "https://plain.test/soup/";
+    const routes = { [url]: html("Soup", `<footer><a href="https://www.instagram.com/plain"><svg></svg></a><a rel="me" href="https://hachyderm.io/@plain">Mastodon</a></footer><div class="sharedaddy"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fplain.test%2Fsoup%2F">Share on Facebook</a><a href="https://twitter.com/intent/tweet?text=Soup">Tweet</a></div><ol class="comment-list"><li><a href="https://www.instagram.com/spammer">me</a></li></ol><blockquote class="twitter-tweet"><a href="https://twitter.com/stranger">x</a></blockquote>`), "https://plain.test/": html("Home", ""), "https://www.instagram.com/plain": html("Insta", ""), "https://hachyderm.io/@plain": html("Masto", "") };
+    const card = recipe(url, { title: "Soup", credit: { author: "", publisher: "", site: "plain.test" } });
+    const { ctx, page } = await open(browser, URL, cardTurn([card]), { routes });
+    let opened = 0; ctx.on("page", () => opened++);
+    await page.click(".snip .tip-btn");
+    await page.waitForSelector(".snip .tip-social", { timeout: 20000 }).catch(() => {});
+    const chips = await page.$$eval(".snip .tip-chip", (a) => a.map((x) => ({ t: x.textContent.replace(/\s+/g, " ").trim(), href: x.href, platform: x.dataset.platform || "site", target: x.target, rel: x.rel })));
+    ok("d2. the page's own profiles are offered (Instagram, and Mastodon via rel=me) — the share bar, the comment-section profile and the embedded tweet are NOT",
+      chips.filter((c) => c.platform !== "site").map((c) => c.href).sort().join(" ") === "https://hachyderm.io/@plain https://www.instagram.com/plain" && !chips.some((c) => /sharer|intent|spammer|stranger/.test(c.href)), JSON.stringify(chips), "wrong buttons");
+    ok("d2. nothing opened before a press; every button is a new-tab link with noopener noreferrer, and shows its host", opened === 0 && chips.every((c) => c.target === "_blank" && /noopener/.test(c.rel) && /noreferrer/.test(c.rel) && /\.(com|test|io)/.test(c.t)), JSON.stringify({ opened, chips }), "auto-opened or unsafe link");
+    const np = new Promise((res) => ctx.once("page", (p) => res(p)));
+    await page.click(".snip .tip-site");
+    const tab = await Promise.race([np, new Promise((r) => setTimeout(() => r(null), 10000))]);
+    ok("d2. pressing 'Open their website' opens their own site in a NEW tab, and the Fold's page stays", !!tab && tab.url() === "https://plain.test/", tab ? tab.url() : "no tab", "website did not open");
+    if (tab) await tab.close();
+    const np2 = new Promise((res) => ctx.once("page", (p) => res(p)));
+    await page.focus('.snip .tip-social[data-platform="instagram"]'); await page.keyboard.press("Enter");
+    const tab2 = await Promise.race([np2, new Promise((r) => setTimeout(() => r(null), 10000))]);
+    ok("d2. a profile button works from the keyboard (Enter) and opens that profile in a new tab (the Fold never visited it)", !!tab2 && tab2.url() === "https://www.instagram.com/plain", tab2 ? tab2.url() : "no tab", "profile did not open");
+    if (tab2) await tab2.close();
+    await shot(page, "tip-d2-ownpages-light");
+    await ctx.close();
+  }
+
+  // ── e2. a direct tip link: the creator's OWN tip page opens in a new tab on the click; an email is a quiet secondary ─────
+  {
+    const kofi = { kind: "tip", url: "https://ko-fi.com/sally", platform: "kofi", platformName: "Ko-fi", host: "ko-fi.com", where: "on the page", own: false, evidence: ["platform-host", "chrome", "words"], via: "page" };
+    const routes = { "https://ko-fi.com/sally": html("Ko-fi Sally", "") };
+    const card = recipe("https://sally.test/banana-bread/", { contact: { kind: "tip", tip: kofi, email: { address: SALLY, where: "a mailto link on the page" } } });
+    const { ctx, page, requests, errors } = await open(browser, URL, cardTurn([card]), { routes });
+    const np = new Promise((res) => ctx.once("page", (p) => res(p)));
+    let mailNav = 0; page.on("framenavigated", (f) => { if (/^mailto:/.test(f.url())) mailNav++; });
+    const before = page.url();
+    await page.click(".snip .tip-btn");
+    const tab = await Promise.race([np, new Promise((r) => setTimeout(() => r(null), 10000))]);
+    await page.waitForFunction(() => /Opened the creator/.test(document.getElementById("toast")?.textContent || ""), undefined, { timeout: 8000 }).catch(() => {});
+    const t = await toastText(page);
+    ok("e2. a tip link outcome opens the creator's OWN tip page (their Ko-fi) in a NEW tab on the click, and the Fold stays where it was",
+      !!tab && tab.url() === "https://ko-fi.com/sally" && page.url() === before, tab ? tab.url() : "no tab", "tip page did not open");
+    ok("e2. the new tab has no opener (noopener) and the toast says whose page, which host, where it was found, and that the Fold sends and takes nothing",
+      (tab ? (await tab.evaluate(() => window.opener === null).catch(() => true)) : false) && t.startsWith("Opened the creator's Ko-fi page (ko-fi.com), found on the page. The Fold sends nothing and takes nothing; you tip on their page."), t, "opener or wording");
+    const info = await page.evaluate(() => { const o = document.querySelector(".snip .tip-open"), a = document.querySelector(".snip .tip-alt"); return { open: o && { href: o.href, target: o.target, rel: o.rel, text: o.textContent }, alt: a && { href: a.href, mailto: a.dataset.mailto, text: a.textContent }, btnMailto: document.querySelector(".snip .tip-btn").dataset.mailto || "" }; });
+    ok("e2. with both a tip page and an email: the tip page is the primary link ('Open Ko-fi (ko-fi.com)'), 'Or email them' is a quiet secondary holding the draft, and the email was NOT opened by the click",
+      info.open && info.open.href === "https://ko-fi.com/sally" && info.open.target === "_blank" && /noopener/.test(info.open.rel) && /Open Ko-fi \(ko-fi\.com\)/.test(info.open.text) && info.alt && info.alt.text === "Or email them" && info.alt.href.startsWith("mailto:") && !info.btnMailto && mailNav === 0,
+      JSON.stringify(info), "primary/secondary wrong");
+    const d = decode(info.alt.mailto);
+    ok("e2. the secondary draft is the exact existing draft (address, subject, body)", d.to === SALLY && d.subject === 'A tip for "Banana Bread"' && d.body.replace(/\r\n/g, "\n") === EXPECT_BODY, JSON.stringify({ to: d.to, subject: d.subject }), "draft wrong");
+    ok("e2. nothing left this machine on the click except the tab the person asked for (no request to the creator's site, no payment endpoint, nothing carries the address), and no page error",
+      !requests.some((r) => /sally\.test/.test(r.url)) && !requests.some((r) => r.url.includes(SALLY) || r.body.includes(SALLY)) && errors.length === 0, requests.map((r) => r.url).filter((u) => /\.test/.test(u)).join(" "), "a request went out");
+    await shot(page, "tip-e2-tip-light");
+    if (tab) await tab.close();
+    await ctx.close();
+  }
+  {   // keyboard + phone + dark for the tip outcome
+    const kofi = { kind: "tip", url: "https://ko-fi.com/sally", platform: "kofi", platformName: "Ko-fi", host: "ko-fi.com", where: "on the page", own: false, evidence: ["platform-host"], via: "page" };
+    const card = recipe("https://sally.test/banana-bread/", { contact: { kind: "tip", tip: kofi, email: { address: SALLY, where: "a mailto link on the page" } } });
+    const { ctx, page } = await open(browser, URL, cardTurn([card]), { viewport: { width: 375, height: 800 }, mobile: true, colorScheme: "dark", routes: { "https://ko-fi.com/sally": html("Ko-fi", "") } });
+    const np = new Promise((res) => ctx.once("page", (p) => res(p)));
+    await page.focus(".snip .tip-btn"); await page.keyboard.press("Enter");
+    const tab = await Promise.race([np, new Promise((r) => setTimeout(() => r(null), 10000))]);
+    await page.waitForSelector(".snip .tip-open", { timeout: 8000 }).catch(() => {});
+    const g = await page.evaluate(() => ({ open: document.querySelector(".snip .tip-open").getBoundingClientRect().height, alt: document.querySelector(".snip .tip-alt").getBoundingClientRect().height, overflow: document.documentElement.scrollWidth - innerWidth }));
+    ok("a phone (375 px, dark): Enter on the control opens the tip page in a new tab; the primary and secondary links are at least 40 px tall and the page does not scroll sideways", !!tab && g.open >= 40 && g.alt >= 40 && g.overflow <= 0, JSON.stringify(g), "keyboard or touch size");
+    await shot(page, "tip-e2-tip-375-dark");
+    if (tab) await tab.close();
+    await ctx.close();
+  }
+  {   // a tip link found on the creator's own contact page (route 1), never by constructing a URL
+    const routes = { "https://tipsite.test/soup/": html("Soup", `<nav><a href="/about/">About</a></nav>`), "https://tipsite.test/about/": html("About", `<footer><a href="https://www.patreon.com/tipsite">Support me</a></footer>`), "https://www.patreon.com/tipsite": html("Patreon", "") };
+    const card = recipe("https://tipsite.test/soup/", { title: "Soup", credit: { author: "", publisher: "", site: "tipsite.test" } });
+    const { ctx, page, requests } = await open(browser, URL, cardTurn([card]), { routes });
+    const np = new Promise((res) => ctx.once("page", (p) => res(p)));
+    await page.click(".snip .tip-btn");
+    const tab = await Promise.race([np, new Promise((r) => setTimeout(() => r(null), 20000))]);
+    await page.waitForFunction(() => /Opened the creator/.test(document.getElementById("toast")?.textContent || ""), undefined, { timeout: 8000 }).catch(() => {});
+    ok("a tip link on the creator's own about page is followed from the page's own link, opened in a new tab, and the toast says it was found on their contact page",
+      !!tab && tab.url() === "https://www.patreon.com/tipsite" && /found on their contact page/.test(await toastText(page)) && requests.filter((r) => /tipsite\.test/.test(r.url)).every((r) => /^https:\/\/tipsite\.test\/(soup|about)\//.test(r.url)), tab ? tab.url() : "no tab", "route 1 on the about page");
+    if (tab) await tab.close();
     await ctx.close();
   }
 
@@ -201,10 +289,10 @@ export async function runTipChecks({ browser, URL, ok }) {
   }
 
   // ── the three outcomes in light, dark and a 375 px phone (screenshots only; the checks above are the verdicts) ─────────
-  for (const [tag, card] of [["email", recipe("https://sally.test/banana-bread/", { contact: { kind: "email", address: SALLY, where: "a mailto link on the page" } })], ["form", recipe("https://forms.test/pancakes/", { title: "Fluffy Pancakes", credit: { author: "Natasha Kravchuk", publisher: "", site: "forms.test" } })], ["none", recipe("https://nothing.test/soup/", { title: "Soup", credit: { author: "", publisher: "", site: "nothing.test" } })]]) {
+  for (const [tag, card] of [["email", recipe("https://sally.test/banana-bread/", { contact: { kind: "email", address: SALLY, where: "a mailto link on the page" } })], ["form", recipe("https://forms.test/pancakes/", { title: "Fluffy Pancakes", credit: { author: "Natasha Kravchuk", publisher: "", site: "forms.test" } })], ["none", recipe("https://nothing.test/soup/", { title: "Soup", credit: { author: "", publisher: "", site: "nothing.test" } })], ["pages", recipe("https://sally.test/banana-bread/", { contact: { kind: "social", socials: [{ platform: "instagram", platformName: "Instagram", host: "www.instagram.com", url: "https://www.instagram.com/sally", evidence: ["chrome"] }, { platform: "youtube", platformName: "YouTube", host: "www.youtube.com", url: "https://www.youtube.com/@sally", evidence: ["chrome"] }, { platform: "tiktok", platformName: "TikTok", host: "www.tiktok.com", url: "https://www.tiktok.com/@sally", evidence: ["chrome"] }] } })], ["tip", recipe("https://sally.test/banana-bread/", { contact: { kind: "tip", tip: { kind: "tip", url: "https://ko-fi.com/sally", platform: "kofi", platformName: "Ko-fi", host: "ko-fi.com", where: "on the page", own: false, evidence: ["platform-host"], via: "page" }, email: { address: SALLY, where: "a mailto link on the page" }, socials: [{ platform: "instagram", platformName: "Instagram", host: "www.instagram.com", url: "https://www.instagram.com/sally", evidence: ["chrome"] }] } })]]) {
     for (const [look, o] of [["light", { colorScheme: "light" }], ["dark", { colorScheme: "dark" }], ["375", { viewport: { width: 375, height: 760 }, mobile: true, colorScheme: "light" }]]) {
       const { ctx, page } = await open(browser, URL, cardTurn([card]), o);
-      await page.click(".snip .tip-btn"); await page.waitForTimeout(tag === "form" ? 1500 : 900);
+      await page.click(".snip .tip-btn"); await page.waitForTimeout(tag === "form" ? 1500 : tag === "none" ? 4000 : 900);
       await page.locator(".snip").scrollIntoViewIfNeeded().catch(() => {});
       await shot(page, `outcome-${tag}-${look}`);
       await ctx.close();
@@ -215,24 +303,24 @@ export async function runTipChecks({ browser, URL, ok }) {
   const three = [passage("S1", "https://a.test/one", "First source says that the loaf bakes for about an hour at moderate heat."), passage("S2", "https://b.test/two", "Second source says it needs about fifty minutes, and gives a much longer account of the method that runs over several lines so this page is the tallest of the three pages in the pager, which is what sets the box height for all of them. ".repeat(3)), passage("S2", "https://b.test/two", "More from the second source, a separate passage of the same page.", { p: 1 }), passage("S3", "https://c.test/three", "Third source agrees with the first.")];
   {
     const { ctx, page, errors } = await open(browser, URL, strandTurn(three));
-    const st = () => page.evaluate(() => { const p = document.querySelector(".strand .pager"); return { count: p.querySelector(".pager-bar-bottom .pager-count").textContent, topCount: p.querySelector(".pager-bar-top .pager-count").textContent, topPrev: p.querySelector(".pager-bar-top .pager-prev").disabled, topNext: p.querySelector(".pager-bar-top .pager-next").disabled, topOn: [...p.querySelectorAll(".pager-bar-top .pager-dot")].findIndex((d) => d.classList.contains("is-on")), idx: p.dataset.index, n: p.dataset.n, prev: p.querySelector(".pager-bar-bottom .pager-prev").disabled, next: p.querySelector(".pager-bar-bottom .pager-next").disabled, dots: p.querySelectorAll(".pager-bar-bottom .pager-dot").length, pages: p.querySelectorAll(".pager-page").length, visible: [...p.querySelectorAll(".pager-page")].filter((x) => getComputedStyle(x).visibility === "visible").length, h: Math.round(p.querySelector(".pager-stage").getBoundingClientRect().height) }; });
+    const st = () => page.evaluate(() => { const p = document.querySelector(".strand .pager"); return { count: p.querySelector(".pager-bar-top .pager-count").textContent, topCount: p.querySelector(".pager-bar-top .pager-count").textContent, topPrev: p.querySelector(".pager-bar-top .pager-prev").disabled, topNext: p.querySelector(".pager-bar-top .pager-next").disabled, topOn: [...p.querySelectorAll(".pager-bar-top .pager-dot")].findIndex((d) => d.classList.contains("is-on")), idx: p.dataset.index, n: p.dataset.n, prev: p.querySelector(".pager-bar-top .pager-prev").disabled, next: p.querySelector(".pager-bar-top .pager-next").disabled, dots: p.querySelectorAll(".pager-bar-top .pager-dot").length, pages: p.querySelectorAll(".pager-page").length, visible: [...p.querySelectorAll(".pager-page")].filter((x) => getComputedStyle(x).visibility === "visible").length, h: Math.round(p.querySelector(".pager-stage").getBoundingClientRect().height) }; });
     const s0 = await st();
     ok("a turn with several snips shows ONE page with '1 of 3' and three dots; Prev is disabled at the start (S2 given twice is still one page)",
       s0.count === "1 of 3" && s0.pages === 3 && s0.dots === 3 && s0.visible === 1 && s0.prev === true && s0.next === false && s0.n === "S1", JSON.stringify(s0), "pager state wrong");
-    await page.click(".strand .pager-bar-bottom .pager-next");
+    await page.click(".strand .pager-bar-top .pager-next");
     const s1 = await st();
     const txt1 = await page.$eval(".strand .pager-page.is-on", (x) => x.innerText);
     ok("Next shows the second source with BOTH its passages on one page, and the counter says '2 of 3'",
       s1.count === "2 of 3" && s1.n === "S2" && /fifty minutes/.test(txt1) && /More from the second source/.test(txt1) && (txt1.match(/S2/g) || []).length === 1, JSON.stringify({ s1, txt: txt1.slice(0, 60) }), "page 2 wrong");
     ok("the box height does not change between pages (no jump)", s1.h === s0.h, `${s0.h} vs ${s1.h}`, "height jumped");
-    await page.click(".strand .pager-bar-bottom .pager-next");
+    await page.click(".strand .pager-bar-top .pager-next");
     const s2 = await st();
     ok("at the last page Next is disabled and does not wrap", s2.count === "3 of 3" && s2.next === true && s2.prev === false && s2.h === s0.h, JSON.stringify(s2), "wraps or enabled");
-    await page.click(".strand .pager-bar-bottom .pager-prev"); await page.click(".strand .pager-bar-bottom .pager-prev");
+    await page.click(".strand .pager-bar-top .pager-prev"); await page.click(".strand .pager-bar-top .pager-prev");
     ok("Prev goes back to the first page", (await st()).count === "1 of 3", "", "prev failed");
     {   // the TOP bar: present, in step, clickable, out of the tab order, in view without scrolling past the card
-      const top = await page.evaluate(() => { const p = document.querySelector(".strand .pager"); const tb = p.querySelector(".pager-bar-top"), st = p.querySelector(".pager-stage"); return { above: !!(tb.compareDocumentPosition(st) & Node.DOCUMENT_POSITION_FOLLOWING), tab: [...tb.querySelectorAll("button")].every((b) => b.tabIndex === -1), btab: [...p.querySelectorAll(".pager-bar-bottom button")].every((b) => b.tabIndex === 0 || b.tabIndex === -1 ? b.tabIndex === 0 : true), aboveCard: tb.getBoundingClientRect().bottom <= st.getBoundingClientRect().top + 1 }; });
-      ok("a second control bar sits ABOVE the page; its buttons are out of the tab order (one set of controls for keyboard users)", top.above && top.aboveCard && top.tab, JSON.stringify(top), "no top bar");
+      const top = await page.evaluate(() => { const p = document.querySelector(".strand .pager"); const tb = p.querySelector(".pager-bar-top"), st = p.querySelector(".pager-stage"); return { above: !!(tb.compareDocumentPosition(st) & Node.DOCUMENT_POSITION_FOLLOWING), tab: [...tb.querySelectorAll("button")].every((b) => b.tabIndex === 0), btab: [...p.querySelectorAll(".pager-bar-top button")].every((b) => b.tabIndex === 0 || b.tabIndex === -1 ? b.tabIndex === 0 : true), noBottom: !p.querySelector(".pager-bar-bottom"), aboveCard: tb.getBoundingClientRect().bottom <= st.getBoundingClientRect().top + 1 }; });
+      ok("the ONE control bar sits ABOVE the page and its buttons are in the tab order; there is no bar below", top.above && top.aboveCard && top.tab && top.noBottom, JSON.stringify(top), "no top bar");
       const s1 = await st(); await page.click(".strand .pager-bar-top .pager-next"); const t1 = await st();
       ok("the TOP Next works and the top and bottom bars show the same counter, dot and disabled states",
         s1.count === "1 of 3" && t1.count === "2 of 3" && t1.topCount === "2 of 3" && t1.topOn === 1 && t1.topPrev === false && t1.topNext === false && t1.n === "S2", JSON.stringify(t1), "bars out of step");
@@ -251,8 +339,8 @@ export async function runTipChecks({ browser, URL, ok }) {
     await page.keyboard.press("ArrowLeft");
     const k3s = await st(); const k3 = k3s.count;
     ok("Left/Right keys move when the pager has focus, stop at the ends, and the top bar follows", k1 === "2 of 3" && k2 === "3 of 3" && k3 === "2 of 3" && k3s.topCount === "2 of 3", [k1, k2, k3, k3s.topCount].join(" "), "keys");
-    await page.click(".strand .pager-bar-bottom .pager-dot >> nth=0");
-    ok("a dot goes straight to its page, and the dots carry the S# ids as tooltips", (await st()).count === "1 of 3" && (await page.$$eval(".strand .pager-bar-bottom .pager-dot", (d) => d.map((x) => x.title))).join("|").startsWith("S1"), "", "dots");
+    await page.click(".strand .pager-bar-top .pager-dot >> nth=0");
+    ok("a dot goes straight to its page, and the dots carry the S# ids as tooltips", (await st()).count === "1 of 3" && (await page.$$eval(".strand .pager-bar-top .pager-dot", (d) => d.map((x) => x.title))).join("|").startsWith("S1"), "", "dots");
     // swipe (touch pointer events)
     await page.evaluate(() => { const stage = document.querySelector(".strand .pager-stage"); const r = stage.getBoundingClientRect(); const fire = (type, x) => stage.dispatchEvent(new PointerEvent(type, { bubbles: true, pointerType: "touch", clientX: x, clientY: r.top + 40 })); fire("pointerdown", r.left + r.width - 20); fire("pointerup", r.left + 20); });
     const sw1 = (await st()).count;
@@ -279,7 +367,7 @@ export async function runTipChecks({ browser, URL, ok }) {
     await page.locator(".strand .pager-bar-top").scrollIntoViewIfNeeded();
     ok("at 375 px (dark) the TOP bar fits the width with 40 px targets and is visible without scrolling past the card", tb.fit && tb.minH >= 40, JSON.stringify(tb), "top bar clipped or small");
     await page.click(".strand .pager-bar-top .pager-next");
-    ok("at 375 px the top bar is tappable and the bottom bar follows", (await page.$eval(".strand .pager-bar-bottom .pager-count", (c) => c.textContent)) === "2 of 3", "", "no sync on phone");
+    ok("at 375 px the top bar is tappable and the bottom bar follows", (await page.$eval(".strand .pager-bar-top .pager-count", (c) => c.textContent)) === "2 of 3", "", "no sync on phone");
     await shot(page, "pager-strand-375-dark");
     await ctx.close();
   }

@@ -1,0 +1,253 @@
+{
+ "at": "2026-10-05T20:27:49.640Z",
+ "transport": "node fetch -> Cloudflare relay /search",
+ "n": 30,
+ "ok": 11,
+ "byStatus": {
+  "200": 11,
+  "502": 19
+ },
+ "medianMs": 2047,
+ "out": [
+  {
+   "q": "how many ounces in a cup",
+   "status": 502,
+   "n": 0,
+   "ms": 17029,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "who invented the telephone",
+   "status": 502,
+   "n": 0,
+   "ms": 15589,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the tallest building in the world",
+   "status": 502,
+   "n": 0,
+   "ms": 15620,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to boil an egg",
+   "status": 502,
+   "n": 0,
+   "ms": 1903,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what causes thunder",
+   "status": 200,
+   "n": 8,
+   "ms": 872,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "symptoms of the flu",
+   "status": 502,
+   "n": 0,
+   "ms": 1478,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how does compound interest work",
+   "status": 200,
+   "n": 10,
+   "ms": 786,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the population of Canada",
+   "status": 502,
+   "n": 0,
+   "ms": 15791,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "who was Galileo",
+   "status": 502,
+   "n": 0,
+   "ms": 16131,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to remove a wine stain",
+   "status": 200,
+   "n": 10,
+   "ms": 1021,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the boiling point of water at altitude",
+   "status": 502,
+   "n": 0,
+   "ms": 2285,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "capital of Brazil",
+   "status": 502,
+   "n": 0,
+   "ms": 15597,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to start a vegetable garden",
+   "status": 502,
+   "n": 0,
+   "ms": 2825,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is a sonnet",
+   "status": 200,
+   "n": 10,
+   "ms": 740,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how long to roast a turkey",
+   "status": 502,
+   "n": 0,
+   "ms": 12591,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "who painted the Starry Night",
+   "status": 200,
+   "n": 20,
+   "ms": 2317,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the square root of 144",
+   "status": 502,
+   "n": 0,
+   "ms": 1608,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to change a light switch",
+   "status": 200,
+   "n": 10,
+   "ms": 989,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what does DNS stand for",
+   "status": 200,
+   "n": 10,
+   "ms": 2112,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how many days in a leap year",
+   "status": 200,
+   "n": 10,
+   "ms": 1673,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the largest ocean",
+   "status": 200,
+   "n": 20,
+   "ms": 2587,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to write a cover letter",
+   "status": 200,
+   "n": 10,
+   "ms": 1582,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is photosynthesis equation",
+   "status": 502,
+   "n": 0,
+   "ms": 1836,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "who wrote Hamlet",
+   "status": 502,
+   "n": 0,
+   "ms": 2047,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to calm a crying baby",
+   "status": 502,
+   "n": 0,
+   "ms": 1574,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is the speed of sound",
+   "status": 502,
+   "n": 0,
+   "ms": 1596,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how to convert miles to kilometers",
+   "status": 502,
+   "n": 0,
+   "ms": 2199,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "what is a black hole",
+   "status": 502,
+   "n": 0,
+   "ms": 1744,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "how do I tie a bowline",
+   "status": 502,
+   "n": 0,
+   "ms": 2074,
+   "cached": false,
+   "err": null
+  },
+  {
+   "q": "when was the printing press invented",
+   "status": 200,
+   "n": 20,
+   "ms": 1409,
+   "cached": false,
+   "err": null
+  }
+ ]
+}

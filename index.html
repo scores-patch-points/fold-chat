@@ -267,8 +267,15 @@
   .tip-area { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex: 1 1 100%; min-width: 0; }
   .tip-link { font-size: var(--fs-xs); color: var(--link); }
   .tip-copy { width: 100%; box-sizing: border-box; font: var(--fs-sm)/1.5 var(--mono); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); padding: 8px; resize: vertical; }
+  .tip-open { font-size: var(--fs-sm); font-weight: 600; }
+  .tip-more { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-width: 0; max-width: 100%; }
+  .tip-morelab { font-size: var(--fs-xs); color: var(--mut); }
+  .tip-host { font-size: var(--fs-xs); color: var(--mut); overflow-wrap: anywhere; }
+  .tip-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 10px; font-size: var(--fs-sm); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md); text-decoration: none; max-width: 100%; }
+  .tip-chip:hover { background: var(--side2); }
+  .tip-chip:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
   .tip-btn:focus-visible, .tip-link:focus-visible, .tip-copy:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-  @media (max-width: 720px) { .tip-quiet .tip-btn { min-height: 40px; min-width: 40px; padding: 8px 10px; } .tip-link { display: inline-flex; align-items: center; min-height: 40px; } }
+  @media (max-width: 720px) { .tip-quiet .tip-btn { min-height: 40px; min-width: 40px; padding: 8px 10px; } .tip-link { display: inline-flex; align-items: center; min-height: 40px; } .tip-chip { min-height: 44px; padding: 8px 12px; } }
   /* PAGER (fold-chat-pagerview.js): several snips, one page at a time. Every page sits in the same grid cell, so the box is
      as tall as the tallest page and nothing jumps when the page turns. */
   .pager { display: block; min-width: 0; border-radius: var(--r-md); }

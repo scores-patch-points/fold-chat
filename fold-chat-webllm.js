@@ -20,6 +20,13 @@
 // DEFAULT/FALLBACK, the f16/f32 rule and the Ollama tag mapping. The test compares the tables with the sibling checkout when
 // it is on disk, so a drift fails loudly instead of silently picking a different model.
 //
+// FAILURE HONESTY (2026-10-05 review). A chosen model that will not load falls back to the small FALLBACK_MODEL ONLY when that one
+// is already on this device (a fallback is never a silent ~900 MB download); otherwise the typed load-failed error goes to the app,
+// which asks. A settled fallback is remembered for the session (no reload of the failed model every turn). A load waits at most drainMs (1.5 s)
+// for a running generation before it drops the engine: that does NOT protect a long answer — the switch cuts it, and the generation then
+// ends with finish "abort" so the caller says so (a typed 'replaced mid-answer' error) instead of shipping a truncated answer. A worker that cannot start (error event) or goes silent (no-progress watchdog) rejects,
+// clears the load queue and is retried once on the main thread.
+//
 // WOULD PROVE IT WRONG: a GPU-less device that is offered an in-page model; a chat that throws instead of returning a typed
 // not-loaded error; a second load() that downloads twice; an abort that leaves the stream (or the engine) hanging; a failed
 // load that wedges the engine so the next load() cannot start; a model picked on a no-shader-f16 adapter that is not the f32
@@ -130,8 +137,13 @@ function defaultMakeWorker() {
  *   gpu          a gpuStatus() result, or an async () => result. Default: measured from navigator.
  *   storage      { getItem, setItem } — remembers which models this page has downloaded (a HINT; cached() can probe the truth).
  *   onProgress   ({ progress 0..1, text, phase }) during load().
+ *   drainMs      how long a load waits for a running generation, and how long an abort waits for the engine to unwind.
+ *   watchdogMs   a load that has reported NO progress at all for this long is rejected (the worker is terminated): a dead worker or a blocked runtime.
+ *   downloadWatchdogMs   once the first progress tick has arrived (the weights are being fetched) the bound is this longer one, reset on every tick.
+ *                web-llm ticks once per COMPLETED SHARD (shards run up to ~200 MB), not per byte, so a flat 90 s would kill a slow but healthy download.
+ *                DECLARED, not measured: 15 min; giver: the author, from web-llm 0.2.85's shard sizes and a 2 Mbit/s floor.
  */
-export function createPageEngine({ loader = null, makeWorker, onProgress = null, storage = null, gpu = null, nav = undefined, sleep = defaultSleep, drainMs = 1500 } = {}) {
+export function createPageEngine({ loader = null, makeWorker, onProgress = null, storage = null, gpu = null, nav = undefined, sleep = defaultSleep, drainMs = 1500, watchdogMs = 90000, downloadWatchdogMs = 900000 } = {}) {
   const loadModule = loader || (() => import(/* @vite-ignore */ WEBLLM_ESM_URL));
   const mkWorker = makeWorker === undefined ? defaultMakeWorker : makeWorker;
 
@@ -146,6 +158,7 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
   const pending = new Map(); // canonical id -> shared load promise
   let tail = Promise.resolve(); // loads run one at a time, in order
   let chatTail = Promise.resolve(); // one generation at a time on one engine
+  let busy = 0; // generations queued or running (a load waits for them, bounded, before it drops the engine)
 
   const report = (p) => { try { onProgress?.(p); } catch { /* a progress listener must not break a load */ } };
   const hint = () => {
@@ -177,29 +190,79 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
   async function dropEngine() {
     const old = engine;
     const w = worker;
-    engine = null; worker = null; loadedCanon = null; runnable = null;
+    engine = null; worker = null; loadedCanon = null; runnable = null; fellBackFrom = null;
     try { old?.interruptGenerate?.(); } catch { /* nothing running */ }
     try { await old?.unload?.(); } catch { /* freeing is best effort */ }
     try { w?.terminate?.(); } catch { /* already gone */ }
   }
 
+  // Subscribe to a worker event without disturbing web-llm's own onmessage; returns the unsubscribe.
+  const listen = (target, type, fn) => {
+    if (typeof target?.addEventListener === "function") { target.addEventListener(type, fn); return () => target.removeEventListener?.(type, fn); }
+    const k = "on" + type; const prev = target[k]; target[k] = fn;
+    return () => { if (target[k] === fn) target[k] = prev; };
+  };
+
+  // One creation attempt, raced against the worker's own failure events and a no-progress watchdog. Resolves { eng, w };
+  // rejects with the engine's error, or a PageEngineError carrying workerStart:true when the worker never got going.
+  function attempt(mod, build, appConfig, useWorker) {
+    let w = null;
+    if (useWorker) { try { w = mkWorker ? mkWorker() : null; } catch { w = null; } }
+    return new Promise((resolve, reject) => {
+      let settled = false;
+      let timer = null;
+      let progressed = false;
+      const detach = [];
+      const settle = (fn, v) => {
+        if (settled) return false;
+        settled = true; clearTimeout(timer);
+        for (const d of detach) { try { d(); } catch { /* already detached */ } }
+        fn(v);
+        return true;
+      };
+      const stopWorker = () => { try { w?.terminate?.(); } catch { /* nothing to stop */ } };
+      const fail = (err) => { if (settle(reject, err)) stopWorker(); };
+      const arm = () => {
+        clearTimeout(timer);
+        const bound = progressed ? downloadWatchdogMs : watchdogMs;   // before the first tick: a dead worker; after it: a (possibly slow) download
+        timer = setTimeout(() => fail(new PageEngineError("load-failed", `the in-tab model made no progress for ${Math.max(1, Math.round(bound / 1000))}s and was stopped`, { watchdog: true, workerStart: !!w && !progressed })), bound);
+      };
+      const cfg = { initProgressCallback: (r) => {
+        if (settled) return;
+        progressed = true; arm();
+        report({ progress: clamp01(r?.progress), text: String(r?.text ?? ""), phase: phaseOf(r?.text) });
+      } };
+      if (appConfig) cfg.appConfig = appConfig;
+      if (w) {
+        const onBad = (what) => (ev) => fail(new PageEngineError("loader", `the in-tab model worker could not start (${what}): ${ev?.message || ev?.error?.message || "no detail"}`, { workerStart: true }));
+        try { detach.push(listen(w, "error", onBad("error"))); detach.push(listen(w, "messageerror", onBad("messageerror"))); } catch { /* a worker we cannot listen to is watched by the watchdog */ }
+      }
+      arm();
+      let created;
+      try { created = Promise.resolve(w ? mod.CreateWebWorkerMLCEngine(w, build, cfg) : mod.CreateMLCEngine(build, cfg)); } catch (e) { created = Promise.reject(e); }
+      created.then(
+        (eng) => { if (!settle(resolve, { eng, w })) { try { Promise.resolve(eng?.unload?.()).catch(() => {}); } catch { /* a late engine is freed, best effort */ } } },
+        (e) => { if (settle(reject, e)) stopWorker(); },
+      );
+    });
+  }
+
   async function create(mod, canon, g) {
     const build = g.f16 ? canon : f32Variant(canon);
-    const cfg = { initProgressCallback: (r) => report({ progress: clamp01(r?.progress), text: String(r?.text ?? ""), phase: phaseOf(r?.text) }) };
+    let appConfig = null;
     if (mod.prebuiltAppConfig?.model_list) {
       const known = new Set(MODEL_CHOICES.flatMap((m) => [m.id, f32Variant(m.id)]));
       const list = mod.prebuiltAppConfig.model_list.filter((m) => known.has(m.model_id));
-      if (list.some((m) => m.model_id === build)) cfg.appConfig = { ...mod.prebuiltAppConfig, model_list: list };
+      if (list.some((m) => m.model_id === build)) appConfig = { ...mod.prebuiltAppConfig, model_list: list };
     }
-    let w = null;
-    try { w = mkWorker ? mkWorker() : null; } catch { w = null; }
-    try {
-      const eng = w ? await mod.CreateWebWorkerMLCEngine(w, build, cfg) : await mod.CreateMLCEngine(build, cfg);
-      engine = eng; worker = w; loadedCanon = canon; runnable = build;
-    } catch (e) {
-      try { w?.terminate?.(); } catch { /* nothing to stop */ }
-      throw e;
+    let r;
+    try { r = await attempt(mod, build, appConfig, true); } catch (e) {
+      if (!(e && e.workerStart)) throw e;
+      // The worker never started (or went silent before its first word): try ONCE on the main thread.
+      report({ progress: 0, text: "the model worker could not start; loading on the main thread", phase: "init" });
+      r = await attempt(mod, build, appConfig, false);
     }
+    engine = r.eng; worker = r.w; loadedCanon = canon; runnable = build;
   }
 
   async function doLoad(canon) {
@@ -211,12 +274,28 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
       throw new PageEngineError("loader", `could not load web-llm: ${e?.message || e}`, { cause: e });
     }
     if (engine && loadedCanon === canon) return result(canon, null);
-    if (engine) await dropEngine(); // a second model frees the first
+    if (engine && fellBackFrom === canon) return result(loadedCanon, fellBackFrom); // a settled fallback: no re-ask, no reload
+    if (engine) {
+      // A second model frees the first — but not under a running generation: wait for it (bounded), then drop.
+      if (busy > 0) await Promise.race([chatTail, sleep(drainMs)]);
+      await dropEngine();
+    }
     try {
       await create(mod, canon, g);
       fellBackFrom = null;
     } catch (first) {
       if (canon === FALLBACK_MODEL) { lastError = first; throw new PageEngineError("load-failed", `${canon} would not load: ${first?.message || first}`, { modelId: canon, cause: first }); }
+      // The fallback is used only when it is ALREADY on this device: never a silent ~900 MB download behind a failed load.
+      // AUTHORITATIVE only: web-llm's own hasModelInCache. A localStorage hint can outlive an evicted cache and would turn this into a silent download.
+      let have = false;
+      try {
+        const gg = await getGpu();
+        have = typeof mod.hasModelInCache === "function" && !!(await mod.hasModelInCache(gg.f16 ? FALLBACK_MODEL : f32Variant(FALLBACK_MODEL), mod.prebuiltAppConfig));
+      } catch { have = false; }
+      if (!have) {
+        lastError = first;
+        throw new PageEngineError("load-failed", `${canon} would not load (${first?.message || first}); the small fallback model is not downloaded on this device, so nothing was fetched without asking`, { modelId: canon, cause: first, fallbackModel: FALLBACK_MODEL, fallbackAvailable: false });
+      }
       report({ progress: 0, text: `${canon} would not load; trying ${FALLBACK_MODEL}`, phase: "fallback" });
       try {
         await create(mod, FALLBACK_MODEL, g);
@@ -238,6 +317,7 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
     const canon = canonicalModelId(modelId || DEFAULT_MODEL);
     if (pending.has(canon)) return pending.get(canon);
     if (engine && loadedCanon === canon && pending.size === 0) return Promise.resolve(result(canon, fellBackFrom));
+    if (engine && fellBackFrom === canon && pending.size === 0) return Promise.resolve(result(loadedCanon, fellBackFrom));
     const p = tail.catch(() => {}).then(() => doLoad(canon));
     pending.set(canon, p);
     tail = p;
@@ -253,7 +333,8 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
     const prior = chatTail;
     let release;
     chatTail = new Promise((r) => { release = r; });
-    await prior;
+    busy++;
+    try { await prior; } catch { /* the queue never rejects */ }
     let eng = engine;
     let finish = "stop";
     let tokens = 0;
@@ -314,12 +395,14 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
       if (!natural && !aborted && it) { try { eng?.interruptGenerate?.(); } catch { /* done */ } }
       meta.finish = finish === "abort" || aborted ? "abort" : finish;
       meta.tokens = usageTokens ?? tokens;
+      busy--;
       release();
     }
   }
 
+  /** opts.meta (optional object) receives { finish, tokens } when the stream ends: "abort" means it was cut short. */
   function chatStream(messages, opts = {}) {
-    return stream(messages, opts, {});
+    return stream(messages, opts, opts.meta && typeof opts.meta === "object" ? opts.meta : {});
   }
 
   async function chat(messages, opts = {}) {
@@ -367,7 +450,10 @@ export function createPageEngine({ loader = null, makeWorker, onProgress = null,
     };
   }
 
-  return { models, load, isLoaded: () => engine != null, loadedId: () => loadedCanon, chatStream, chat, unload, cached, status, gpu: getGpu };
+  // The id of the model that answers for `modelId` right now: itself when loaded, the settled fallback when that is what it fell back to.
+  const servesFor = (modelId) => { const c = canonicalModelId(modelId); return engine != null && (loadedCanon === c || fellBackFrom === c); };
+
+  return { models, load, isLoaded: () => engine != null, loadedId: () => loadedCanon, servesFor, chatStream, chat, unload, cached, status, gpu: getGpu };
 }
 
 /**

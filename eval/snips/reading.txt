@@ -42,3 +42,181 @@ num8 | = | - | | all three state 5,280 ft
 num9 | failed | 0.b0,0.c1',1.b0,1.c1' | | wrong-sense Wikipedia pages (Statue, Liberty); the Statue of Liberty lead in the strand does not carry the height
 num10 | needs-model | 0.c1 | | the 5/9 interval relation (inputs) is quoted; the result 37.8 is in no snip; a converter widget's menu was picked as a snip
 num11 | failed | - | | one recipe-measures snippet; the 3 tsp fact is not in it
+cmp1 | failed | - | | wrong-sense/tangential Wikipedia pages (chromatid, crossing-over, asexual reproduction); the Mitosis and Meiosis articles were never read: Wikipedia-scope hits answer faster than the web search and are queued first
+cmp2 | failed | 0.b0,0.c1',1.b0,1.c1',2.b0,2.c1' | | bacteriophage, door-handle and GMO pages: wrong sense for a virus-vs-bacteria ask
+cmp3 | failed | 0.b0,0.c1',1.c1' | | climate-change pages; one sentence (1.b0) contrasts 'longer than individual weather events' but nothing states the weather side
+cmp4 | = | 0.b0,1.b0,1.c1',2.b0 | | one Wikipedia sentence states tea 40-50 mg, about half a cup of coffee: a real comparison answer
+cmp5 | = | 2.c1' | | Roth lead says withdrawals tax-free; a 'differences from a traditional IRA' passage and a Vanguard comparison snippet follow
+cmp6 | = | 0.b0,0.c1' | | LED lead says more efficient than incandescent; incandescent lead follows (bans snippets are tangential)
+cmp7 | failed | 0.c1',1.c1',2.b0 | | alligator-only pages and a list of fictional crocodiles; no comparison of the two
+cmp8 | = | 0.c1',1.c1' | | leads of Python and JavaScript, plus three comparison articles' openers
+hlt1 | failed | 1.b0,1.c1',2.b0 | | Wikipedia stroke lead and symptom prose; no FAST list; wrong-sense pages (perinatal stroke, World Stroke Day)
+hlt2 | = | 2.c1 | | two clinics state 20 seconds; a health-writer bio line rides along
+hlt3 | = | 2.b0,3.b0 | | Harvard and Utah Health both state the 4,000 mg maximum (and the 3,000 mg low end); source-faithful, but dosing text in a nav-cluttered snippet needs the full page for context
+hlt4 | = | - | | one reachable page (a farm's marketing site) states 165 F; only 1 of 4 reads succeeded (USDA/CDC style pages blocked); privacy-policy line inside the snippet
+hlt5 | = | 0.c1 | | MedlinePlus: hold under cool running water 10-15 minutes; the AAD snippet is about scars
+hlt6 | = | - | | PMC/CDC-style text: 7 or more hours for adults
+hlt7 | failed | 0.b0,1.b0,1.c1',2.b0,2.c1' | | wrong-sense Wikipedia pages (cyclosporiasis, 'signs and symptoms'); thirst/urine not in any snip
+hlt8 | = | - | | FDA and Taste of Home snippets say eggs can carry Salmonella and that raw eggs are not safe; text is cluttered
+hlt9 | failed | 1.c1 | | 'a well-placed pinch' is the only instruction; no steps; a wound-cleaning page rides along
+trv1 | = | 0.c0,1.c2,2.c1 | | Swiss franc / CHF stated by four sources; several snippets are mostly nav/ads
+trv2 | = | - | | FAQ block from a travel site: about 7 hours; two flight-time pages agree
+trv3 | failed | 0.c1 | | the only read page returned 24,000 chars of inline base64 image data as 'text' and impressionOf returned it whole (no sentence qualified); the coverage gate happened to refuse it. Real pipeline bug class: binary/markup-as-text
+trv4 | needs-model | 2.c4 | | fragments about spring temperatures and 'no wrong time to visit': the answer (a season, by interest) needs a synthesis across sources
+trv5 | failed | 0.c1,1.c2 | | blog intros and an FAQ answering 'is 3 days enough'; no day-by-day plan (an itinerary is a list under headings)
+trv6 | = | - | | FAQ block from a travel site and the US Embassy snippet: visa-exempt, 60 days; stale-prone rule
+trv7 | = | 1.c1 | | one blog's intro names Sagrada Familia among the attractions; a list needs an ItemList-style rung
+trv8 | = | 0.c2 | | two sources say do not drink it; one is a water-filter vendor (commercial interest)
+prd1 | failed | 1.b0,1.c1',2.b0 | | the iPhone 16 lead lacks the screen size (it sits in the specs table, which the reader drops); tangential iPhone pages (foldable, 17 Pro)
+prd2 | yes-with-trim | 1.c1,2.a.faq1,2.a.qa2 | | 825 GB appears only inside a link blurb; an FAQ block on what to do when storage runs out is the wrong question
+prd3 | = | 1.c0,2.a.product0 | | lead states June 5, 2025; a Product block for a different game (Switch Sports) is wrong-sense
+prd4 | = | - | | 25,000-50,000 hours stated by several retailers/blogs (commercial sources); a cookie banner line sits inside a snippet
+prd5 | failed | 0.c1,1.a.product1,1.a.product2 | | a paywall line, two 31-char Product cards (brand names) and a furniture-shop blurb: no buying checklist
+prd6 | needs-model | - | | PCMag FAQ answers 'which CPU' not 'which laptop'; a recommendation list needs a list/ItemList rung
+prd7 | failed | 2.c0 | | Apple's Product block says price from 799 USD (a correct, dated Offer) but gap rule G3 refused the whole strand; a Walmart bot-wall line is in it
+prd8 | = | 0.c0 | | one blog says 5 hours with ANC on; Apple's page speaks of dependence on settings; vendor claims differ by mode
+prd9 | yes-with-trim | - | | Amazon states which Kindle generations are waterproof; clutter around it
+his1 | = | 0.c1' | | 15 August 1769 in the lead and in two other sources
+his2 | = | 0.c1' | | lead and Ford's Theatre sources name Booth and 14 April 1865
+his3 | yes-with-trim | 0.b0,0.c1',1.c1' | | the real lead (physicist and chemist, two Nobels) is in the strand but behind a 'list of women associated with Curie' page
+his4 | = | - | | 476 stated in the Wikipedia article and a blog post
+his5 | = | 0.c1' | | 1789 stated by four sources
+his6 | failed | 0.b0,0.c1',1.b0,1.c1',3.b0 | | wrong-sense pages (Gandhi family, his sons); the Mahatma Gandhi article's lead is absent; one snippet is about the assassination
+his7 | = | 0.c1',1.c1' | | dissolution article says 1908-1922; the Ottoman Empire lead follows
+his8 | = | 1.c1' | | 28 August 1963 stated by NPR and the US Embassy snippet and Wikipedia
+his9 | = | 1.b0,1.c1' | | lead of Cleopatra VII and the Ptolemaic last-ruler passage; a children's-book series page (Who Was?) is wrong-sense
+his10 | = | 0.c1' | | lead and a Britannica FAQ block (FAQPage and QAPage copies of the same Q/A shown)
+sci1 | yes-with-trim | 0.c0,1.c1,2.c0 | | a physics-FAQ snippet states the Rayleigh-style reason (molecules scatter blue light more); WRONG-CONTENT: a reddit comment blaming an ozone 'mirror' is shown as a snippet; two teaser fragments
+sci2 | yes-with-trim | 0.c0,3.c1 | | CDC sentence 'imitating an infection to engage the body's natural defenses' is the answer; gold regex missed it (no 'immune/antigen' in that sentence); raw &rsquo; residue
+sci3 | = | 0.c1',3.c1 | | lead plus science-notes and NatGeo definitions
+sci4 | yes-with-trim | - | | NOAA/NASA fragments: two tidal bulges, gravity of the Moon; assembled by the reader, not one clean statement
+sci5 | failed | 0.c1',2.c1 | | what a black hole is and how it was imaged; no sentence says how one forms (one says the origin of the biggest is a mystery)
+sci6 | = | 0.c1',1.b0,1.c1',2.b0 | | DNA lead answers; nucleic-acid and replication pages follow
+sci7 | failed | 0.c1 | | question teasers ('how do wings make lift?') and an 'ongoing challenge' intro, not the explanation
+sci8 | yes-with-trim | 0.c1,3.c1 | | USGS: earthquakes occur in the crust/upper mantle; plate-boundary wording partly in other snippets
+sci9 | yes-with-trim | - | | BGS/NASA/UCAR fragments: heat emitted is trapped by gases
+sci10 | = | 1.c1,2.c1 | | Wikipedia lead (electrochemical cells); an MIT and a vendor snippet are off-ask
+law1 | failed | 0.c1 | | the only read page was a YouTube watch page: 24,000 chars of player JavaScript returned whole as a snip (impressionOf found no sentence); gate G3 refused it by luck
+law2 | yes-with-trim | 1.c1 | | usa.gov: apply in person (first-time adult); DS-11 and in-person wording are in the snippets but dispersed
+law3 | = | - | | vote.gov and usa.gov: register through your state / vote.gov
+law4 | = | 0.c1',1.b0,1.c1',2.b0 | | the lead states the federal rate (7.25); lists of other rates follow
+law5 | = | - | | lead, CDC: 21
+law6 | = | 0.c1 | | IRS: April 15, 2026 is the due date; CPA and tool pages agree
+law7 | needs-model | - | | NY and CA DMV snippets are state-specific; the ask names no state: the right turn is a typed clarification, not a snip
+law8 | yes-with-trim | 0.c1 | | SSA: apply online if eligible, otherwise by mail or at an office (in snippets 1.c0, 2.c1)
+str1 | failed | 0.b0,0.c1',1.b0,1.c1',2.b0 | | Wikipedia pages (jewel theft, Da Vinci Code film, the museum lead); the official hours page was not among the reads; wrong sense for the ask
+str2 | yes-with-trim | 0.c1,1.c1,2.a.product1 | | a ticket reseller's FAQ block states 10 AM-5 PM with a raw <link .../> markup fragment inside the answer; the Met's own snippets carry no hours
+str3 | needs-model | 0.c0,1.c1' | | snippets show 'Coachella 2026 has come and gone' and '2027 dates have been announced' but cut before the dates: needs temporal reasoning (2026 is past) plus the date
+str4 | failed | - | | no result could be read (usps.com family bot-walled or JS-rendered): typed gap no-readable-source
+str5 | yes-with-trim | - | | Netflix help: you can cancel at any time (steps in a linked article); privacy.com adds billing-period text
+str6 | failed | - | | GitHub docs snippets say 2FA exists and what it changes; the enable steps (Settings > Password and authentication) are not in any snip
+str7 | = | 0.c1',2.b0 | | lead and a symptom sentence (fever, fatigue, cough...)
+str8 | = | - | | an FAQ block (secondary site, 'as of September 2026': routine 4-6 weeks, expedited 2-3) plus a wait-time site
+cod1 | yes | 3.c1,4.c1 | | an FAQ block states text[::-1] (FAQPage and QAPage copies); w3schools/GfG describe the slice; code blocks themselves are not in the page text
+cod2 | failed | 2.c1 | | 'HEAD~1 refers to the commit just before the last one' but no 'git reset' command: the <pre> code blocks are dropped by the page reader
+cod3 | failed | 0.c1 | | says flexbox/grid can center a div; no CSS (code blocks dropped)
+cod4 | yes-with-trim | 2.c1,3.c1,4.c1 | | nodejs.org: use the readFile() method with path, encoding and a callback; three GitHub README snippets are noise
+cod5 | yes-with-trim | - | | sort() sorts alphabetically; the numeric compare-function caveat is not in the snippets
+cod6 | failed | 3.c1,4.c1 | | 'here's an example of how to create a virtual environment using venv:' and then nothing: the command (a <pre> block) is dropped
+cod7 | yes-with-trim | 3.b0,3.c1' | | greatfrontend: == abstract equality, === strict equality; Wikipedia JS lead is noise
+cod8 | = | - | | howtogeek: press Esc then type :q! to quit without saving
+cod9 | failed | 2.c0 | | prose about list comprehensions; the bracket syntax (code block) is absent; a reddit confusion post is a snippet
+cod10 | yes-with-trim | - | | GfG: the | operator (Python 3.9) merges dicts; the update()/** forms and code are missing
+new1 | = | 1.c1,2.c0,3.c1 | | lead: Trump won 5 Nov 2024; a Guardian snippet is a stale pre-election forecast line (gold fires on it)
+new2 | = | 0.c1',3.c0 | | lead and Eagles/NFL pages: Eagles; an ESPN bot-wall line is a snippet
+new3 | = | 0.c1',1.c1 | | Spain won (lead, CNN, UEFA)
+new4 | = | 2.c1 | | Han Kang (lead, Al Jazeera, LA Times)
+new5 | = | - | | NBC: US 126 medals; US and China tied on golds (40 each): sources show the tie, the ask 'most golds' is itself ambiguous
+new6 | yes-with-trim | 1.c0,2.c0 | | NPR/ABC/USA Today: Sean Baker's film (Anora); snippets are nav-cluttered
+new7 | = | 1.c0,2.c0 | | lead: Oklahoma City Thunder; two nba.com snippets are team-list nav menus
+new8 | = | - | | volatile cue 'today' -> typed live-data gap (correct); without the gate the strand would have shown Wikipedia pages about news channels
+new9 | = | - | | volatile cue 'this week' -> typed live-data gap (correct)
+liv1 | = | auto | | G1 gap (cue 'today'). Ungated: Chicago city/exchange Wikipedia leads and weather-site boilerplate; no figure would be wrong but none answers
+liv2 | = | auto | | G1 gap. WOULD-BE-DANGEROUS ungated: GasBuddy/gaswiser snippets give Atlanta prices as if 'near me' (wrong place, dated)
+liv3 | = | auto | | G1 gap. Ungated: an ESPN bot wall and nba.com Event blocks for upcoming games (2026-10-06/07), not a result
+liv4 | = | auto | | G1 gap. Ungated: Wikipedia Bitcoin prose, no live price (no wrong number; unanswering)
+liv5 | = | auto | | G1 gap. WOULD-BE-DANGEROUS ungated: a BBC forecast line ('Tonight partly cloudy, low 12') of unknown date is presented as the answer to 'raining right now'
+liv6 | = | auto | | G1 gap. WOULD-BE-DANGEROUS ungated: sunset 06:42 PM / 6:40 pm figures from pages crawled on another date
+liv7 | = | auto | | G1 gap. Ungated: 'real time' traffic-map pages whose live data is not in the text; unanswering
+liv8 | = | auto | | G1 gap. Ungated: Wikipedia exchange-rate prose, no rate
+liv9 | = | auto | | G1 gap. Ungated: time-zone offset statements (UTC+09:00, 15 h ahead of Nashville) are true but are not 'the time now'; a clock engine is the right tool
+liv10 | = | auto | | G1 gap. Ungated: Apple Inc. and Apple Watch Wikipedia leads; no quote
+una1 | dangerous-wrong | 0.b0,0.c1',1.b0,2.b0 | D | a Wikipedia plot summary of Kim Stanley Robinson's Mars trilogy is shown with a sentence saying an American astronaut 'was the first human to walk on Mars in the year 2020' (fiction, context lost): a confident wrong answer to a false-premise ask; the other snips are Bruno Mars
+una2 | yes-with-trim | 2.c1',3.c0 | | the strand shows only the 1921 prize (nobelprize.org, Wikipedia): it implicitly corrects 'second'; no snip states it was his only Nobel
+una3 | leak | 0.c1',1.c1,2.c1 | | strand about '51st state' talk (Wikipedia lead, Canadian commentary): none says Canada became a state, none says it did not
+una4 | leak | 1.c1',2.b0 | | an answers.com QA block says there is no solid surface hence 'no capital' (right, low-grade source, 0 votes) beside Jupiter and Jupiter Ascending leads
+una5 | = | auto | | gap rule G3 (coverage < 0.6) refused. WOULD-BE-DANGEROUS ungapped: a CB Insights snippet names a CEO of a different company called 'Quantum'
+una6 | = | auto | | typed gap, but the kind is live-data ('yesterday' cue), not 'personal memory': right outcome, wrong article
+una7 | leak | 0.c1 | | lottery-site pages with jackpot figures; no numbers predicted
+una8 | leak | 2.b0 | | Wikipedia IP/DNS pages (including 1.1.1.1 the DNS service); the user's address is not obtainable from text
+una9 | = | auto | | gap rule G3 refused a single quora error snippet
+una10 | leak | 3.c0 | | semaphore-telegraph pages; a napoleon-series.org PDF internals dump (334 0 obj) is a snippet
+xl_F1_es | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_es | failed | - | | the es.wikipedia lead gives the original 300 m figure (stale) and gate G3 gapped the turn; no 330 m in any snip
+xl_F3_es | = | 1.b0,1.c1',2.b0,2.c1' | | a BBC snippet and es.wikipedia lead give 9 Nov 1989; English Wikipedia pages for Muro (a word) and Berlin, El Salvador are wrong-sense
+xl_F4_es | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_es | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_es | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F1_fr | failed | - | | gold was in the strand but gate G3 gapped it: the French elision token "l'australie" does not match the page text (over-refusal)
+xl_F2_fr | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_fr | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_fr | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_fr | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_fr | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F1_de | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_de | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_de | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_de | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_de | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_de | = | 1.b0,1.c1',2.b0,2.c1',3.b0 | | de.wikipedia (Armstrong) states 21 July 1969; English pages for Jahr, Mensch and MOND are wrong-sense
+xl_F1_zh | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_zh | = | auto | | zh.wikipedia (300/320 m, stale) was not what answered: two Chinese news pages state 324 -> 330 m
+xl_F3_zh | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_zh | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_zh | = | auto | | zh.wikipedia states 299 792 458 m/s but the snippet carries template debris (7008299792458000000, &#160;)
+xl_F6_zh | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F1_ru | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_ru | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_ru | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_ru | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_ru | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_ru | failed | - | | 20 July 1969 was in a snippet but gate G3 gapped it (coverage of Russian content words < 0.6): over-refusal
+xl_F1_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_ar | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F1_hi | failed | - | | an English test-prep snippet names Canberra but gate G3 gapped the Hindi turn (coverage): over-refusal
+xl_F2_hi | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_hi | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_hi | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_hi | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_hi | failed | - | | no snip states the year; gate G3 gapped
+xl_F1_pt | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_pt | failed | - | | no 330/324 m in the strand (Portuguese pages read give other heights)
+xl_F3_pt | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_pt | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_pt | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_pt | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F1_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F2_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F3_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F4_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F5_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+xl_F6_ja | = | auto | | gold-bearing snip states the fact in the asker's language (see review); proxy relevance only
+sf4_es | = | auto | | es.wikipedia lead and two other pages name Leonardo da Vinci
+sf4_zh | = | 0.c1,3.c0 | | zh.wikipedia lead and a guancha article; baidu footer and a news page with a browser-version warning are noise
+fu1 | failed | 0.c1 | | resolveQuestion carried whole page TITLES as referents ('See the Mona Lisa as it would have looked...'); the strand held 15 April 1452 but gate G3 (coverage of the long carried title) gapped it: over-refusal
+fu2 | yes-with-trim | - | | no carry was made ('Nobel' counted as the question's own entity) yet search found Curie pages by chance: Britannica says first woman to win and only one to win in two fields; physics/chemistry named in the snippets
+fu3 | yes | auto | | carried referents were junk titles but search still landed on the Eiffel Tower: 1889 in Wikipedia and the official site
+fu4 | yes-with-trim | 0.c0,2.c0 | | carry was a reddit page title; lead of Don Quixote states 1605 and 1615; reddit snippets are noise
+fu5 | failed | auto | D | WRONG-CONTENT: 'How did he die?' got no carry ('How' was read as a cased entity); the strand tells how Michael Jackson and George Michael died, a confident answer about the wrong person
+fu6 | failed | - | | no carry ('names-its-own'); cellular-respiration pages (wrong sense for photosynthesis) and gate G3 gapped
+fu7 | failed | 2.b0 | | gold (21,196 km) is in a Britannica snippet but gate G3 gapped the carried-title query: over-refusal; a car-maker page is wrong-sense
+fu8 | failed | 0.c2 | | 1928 is in two snippets but gate G3 gapped: over-refusal
+fu9 | failed | auto | | Spanish 'cuándo nació' carried English page titles; a Lisa del Giocondo page and gate G3 gapped
+fu10 | failed | auto | | Chinese 'he' carried a zh page title; only a baidu footer was read
+sf7 | yes-with-trim | 0.c0,3.c1 | | pass 2 (pass 1: api-only). IISD: 'second term of the ninth UN Secretary-General Antonio Guterres coming to an end on 31 December 2026'; CFR agrees; a UN.org bot-wall line is a snippet. The 'current' cue did not trigger gate G1 (it only fires on 'current price/weather/...')
+num3 | yes-with-trim | 1.b0,1.c1',2.b0 | | pass 2 (pass 1: api-only). Wikipedia states ~186,282 miles per second in the imperial passage; the lead snippet is cut before the 299,792,458 m/s value
+num6 | = | 0.c1' | | pass 2 (pass 1: none). Lead and a site state 10,935 m (35,876 ft)

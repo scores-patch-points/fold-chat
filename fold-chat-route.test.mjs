@@ -188,3 +188,108 @@ test("speed: when nothing else answered, a slow web search is WAITED for, not ab
 test("speed: the proxy and reader gateways have a budget far under the old 8 s", () => {
   assert.ok(GATEWAY_BUDGET_MS <= 4000);
 });
+
+// ---- eval fixes (docs/GATE-FIX-PREREG.md): the Wikipedia edition follows the asker's language; a web outage still
+// lets the encyclopedia answer a plain factual ask; question words of other languages are not entities ----
+import { factualAsk } from "./fold-chat-route.js";
+import { wikiEdition, search, entitiesOf } from "./fold-chat-web.js";
+
+test("wikiEdition: the asker's own language picks the edition; weak evidence stays English", () => {
+  assert.equal(wikiEdition("ऑस्ट्रेलिया की राजधानी क्या है?"), "hi");
+  assert.equal(wikiEdition("ما هي عاصمة أستراليا؟"), "ar");
+  assert.equal(wikiEdition("澳大利亚的首都是哪里？"), "zh");
+  assert.equal(wikiEdition("Какая столица Австралии?"), "ru");
+  assert.equal(wikiEdition("¿Qué altura tiene la Torre Eiffel?"), "es");
+  assert.equal(wikiEdition("Quelle est la hauteur de la tour Eiffel ?"), "fr");
+  assert.equal(wikiEdition("Wie hoch ist der Eiffelturm?"), "de");
+  // falsifiers: English asks, and an English ask that happens to hold two Portuguese function words, never leave English
+  assert.equal(wikiEdition("What is the capital of Australia?"), "en");
+  assert.equal(wikiEdition("write me a poem about autumn"), "en");
+  assert.equal(wikiEdition("Eiffel Tower height"), "en");
+  assert.equal(wikiEdition(""), "en");
+});
+
+test("search('wikipedia'): the requested edition is the host; an empty small edition falls back to English; default is English", async () => {
+  const seen = [];
+  const f = async (url) => {
+    seen.push(url);
+    const hit = /\/\/hi\.wikipedia/.test(url) ? [] : [{ title: "Canberra", snippet: "s", wordcount: 5 }];
+    return resp({ query: { search: hit } });
+  };
+  const en = await search("wikipedia", "Canberra", 0, { fetchImpl: f });
+  assert.match(en.results[0].url, /^https:\/\/en\.wikipedia\.org\/wiki\//);
+  assert.equal(en.engine, "Wikipedia");
+  const de = await search("wikipedia", "Canberra", 0, { fetchImpl: f, lang: "de" });
+  assert.match(de.results[0].url, /^https:\/\/de\.wikipedia\.org\/wiki\//);
+  assert.equal(de.engine, "Wikipedia (de)");
+  seen.length = 0;
+  const hi = await search("wikipedia", "कैनबरा", 0, { fetchImpl: f, lang: "hi" });
+  assert.ok(seen[0].includes("//hi.wikipedia.org/") && seen[1].includes("//en.wikipedia.org/"), "hi first, then English because hi had nothing");
+  assert.match(hi.results[0].url, /^https:\/\/en\.wikipedia\.org\//);
+  // a made-up edition is not a host
+  seen.length = 0;
+  await search("wikipedia", "x", 0, { fetchImpl: f, lang: "evil.example/?" });
+  assert.ok(seen[0].includes("//en.wikipedia.org/"));
+});
+
+function netLang(log, { web = [] } = {}) {
+  return async (url) => {
+    log.push(url);
+    if (/holodeck-proxy.*\/search/.test(url)) return resp({ engine: "DDG", results: web });
+    const m = url.match(/\/\/([a-z-]+)\.wikipedia\.org\/w\/api/);
+    if (m) return resp({ query: { search: [{ title: "Torre Eiffel", snippet: "s", wordcount: 10 }] } });
+    if (/api\.github\.com/.test(url)) return resp({ total_count: 0, items: [] });
+    if (/archive\.org\/advancedsearch/.test(url)) return resp({ response: { numFound: 0, docs: [] } });
+    if (/openalex/.test(url)) return resp({ meta: { count: 0 }, results: [] });
+    if (/crossref/.test(url)) return resp({ message: { "total-results": 0, items: [] } });
+    return resp("<title>T</title><p>" + "torre eiffel altura metros ".repeat(20) + "</p>");
+  };
+}
+
+test("searchWeb: a non-English ask that routes to Wikipedia searches the asker's edition, not en.wikipedia", async () => {
+  const log = [];
+  await searchWeb("Cuál es la historia de la Torre Eiffel", { fetchImpl: netLang(log, { web: [{ title: "x", url: "https://x.org/a", snippet: "", source: "x" }] }) });
+  const wiki = log.filter((u) => /wikipedia\.org\/w\/api/.test(u));
+  assert.ok(wiki.length >= 1);
+  assert.ok(wiki.every((u) => u.includes("//es.wikipedia.org/")), "Spanish ask, Spanish edition: " + wiki.join(" "));
+});
+
+test("searchWeb: web down + a plain factual ask in ANY language still reads the encyclopedia (in the asker's language)", async () => {
+  for (const [q, ed] of [["¿Qué altura tiene la Torre Eiffel?", "es"], ["Quelle est la hauteur de la tour Eiffel ?", "fr"], ["What is the height of the Eiffel Tower?", "en"], ["ऑस्ट्रेलिया की राजधानी क्या है?", "hi"]]) {
+    const log = [];
+    const out = await searchWeb(q, { fetchImpl: netLang(log, { web: [] }) });
+    const route = out.trace.find((t) => t.scope === "route");
+    assert.equal(route.webDown, true);
+    assert.deepEqual(route.picked, ["web", "wikipedia"], q);
+    assert.ok(log.some((u) => u.includes(`//${ed}.wikipedia.org/w/api`)), `${q} -> ${ed}`);
+    assert.equal(log.filter((u) => /api\.github|openalex|crossref|archive\.org\/advanced/.test(u)).length, 0, "nothing else is widened to");
+  }
+});
+
+test("searchWeb: web down + a NON-factual ask (recipe, code, creative) is still not widened", async () => {
+  for (const q of ["whats a good pancake recipe?", "write me a poem about autumn", "write a short story about a fox"]) {
+    const log = [];
+    const out = await searchWeb(q, { fetchImpl: netLang(log, { web: [] }) });
+    assert.equal(log.filter((u) => /wikipedia\.org\/w\/api|api\.github|openalex|crossref/.test(u)).length, 0, q);
+    assert.equal(out.trace.find((t) => t.scope === "route").webDown, true);
+  }
+});
+
+test("factualAsk: question words of the languages we carry; commands are not factual asks", () => {
+  for (const q of ["What is the capital of Australia?", "Who built it", "When was the wall built", "How many people live in Iceland", "¿Cuándo cayó el Muro de Berlín?", "Où est la tour Eiffel ?", "Wann wurde der Eiffelturm gebaut?", "Quem inventou o telefone?", "Quanto è alta la Torre Eiffel?", "谁建造了埃菲尔铁塔", "Кто построил Эйфелеву башню", "من بنى برج إيفل", "ताजमहल कहाँ है"]) assert.equal(factualAsk(q), true, q);
+  for (const q of ["write me a poem about autumn", "fix this python bug", "make a pancake recipe", "hello", "", "tell me a joke"]) assert.equal(factualAsk(q), false, q);
+});
+
+test("entitiesOf: question words of es / fr / de / pt / it are not entities, and a run that starts with one sheds it", () => {
+  assert.deepEqual(entitiesOf("¿Qué altura tiene la Torre Eiffel?"), ["Torre Eiffel"]);
+  assert.deepEqual(entitiesOf("Quelle est la hauteur de la tour Eiffel ?"), ["Eiffel"]);
+  assert.deepEqual(entitiesOf("Wie hoch ist der Eiffelturm?"), ["Eiffelturm"]);
+  assert.deepEqual(entitiesOf("Qual é a capital da Austrália?"), ["Austrália"]);
+  assert.deepEqual(entitiesOf("¿Qué Torre Eiffel es más alta?"), ["Torre Eiffel"]);
+  assert.deepEqual(entitiesOf("Quelle Tour Eiffel est la plus haute ?"), ["Tour Eiffel"]);
+  assert.deepEqual(entitiesOf("Wann Berliner Mauer fiel"), ["Berliner Mauer"]);
+  assert.deepEqual(entitiesOf("Qual Torre Eiffel"), ["Torre Eiffel"]);
+  for (const w of ["Qué", "Quelle", "Wie", "Was", "Qual", "Wer", "Cuál", "Quem"]) assert.ok(!entitiesOf(`${w} Eiffel`).includes(`${w} Eiffel`), `${w} is shed from the front of a name`);
+  // falsifier: a real name that merely CONTAINS such a letter-run stays whole
+  assert.deepEqual(entitiesOf("Tell me about Wiesbaden and Quebec"), ["Wiesbaden", "Quebec"]);
+});

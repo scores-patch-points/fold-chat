@@ -42,7 +42,185 @@
   "num8",
   "num9",
   "num10",
-  "num11"
+  "num11",
+  "cmp1",
+  "cmp2",
+  "cmp3",
+  "cmp4",
+  "cmp5",
+  "cmp6",
+  "cmp7",
+  "cmp8",
+  "hlt1",
+  "hlt2",
+  "hlt3",
+  "hlt4",
+  "hlt5",
+  "hlt6",
+  "hlt7",
+  "hlt8",
+  "hlt9",
+  "trv1",
+  "trv2",
+  "trv3",
+  "trv4",
+  "trv5",
+  "trv6",
+  "trv7",
+  "trv8",
+  "prd1",
+  "prd2",
+  "prd3",
+  "prd4",
+  "prd5",
+  "prd6",
+  "prd7",
+  "prd8",
+  "prd9",
+  "his1",
+  "his2",
+  "his3",
+  "his4",
+  "his5",
+  "his6",
+  "his7",
+  "his8",
+  "his9",
+  "his10",
+  "sci1",
+  "sci2",
+  "sci3",
+  "sci4",
+  "sci5",
+  "sci6",
+  "sci7",
+  "sci8",
+  "sci9",
+  "sci10",
+  "law1",
+  "law2",
+  "law3",
+  "law4",
+  "law5",
+  "law6",
+  "law7",
+  "law8",
+  "str1",
+  "str2",
+  "str3",
+  "str4",
+  "str5",
+  "str6",
+  "str7",
+  "str8",
+  "cod1",
+  "cod2",
+  "cod3",
+  "cod4",
+  "cod5",
+  "cod6",
+  "cod7",
+  "cod8",
+  "cod9",
+  "cod10",
+  "new1",
+  "new2",
+  "new3",
+  "new4",
+  "new5",
+  "new6",
+  "new7",
+  "new8",
+  "new9",
+  "liv1",
+  "liv2",
+  "liv3",
+  "liv4",
+  "liv5",
+  "liv6",
+  "liv7",
+  "liv8",
+  "liv9",
+  "liv10",
+  "una1",
+  "una2",
+  "una3",
+  "una4",
+  "una5",
+  "una6",
+  "una7",
+  "una8",
+  "una9",
+  "una10",
+  "xl_F1_es",
+  "xl_F2_es",
+  "xl_F3_es",
+  "xl_F4_es",
+  "xl_F5_es",
+  "xl_F6_es",
+  "xl_F1_fr",
+  "xl_F2_fr",
+  "xl_F3_fr",
+  "xl_F4_fr",
+  "xl_F5_fr",
+  "xl_F6_fr",
+  "xl_F1_de",
+  "xl_F2_de",
+  "xl_F3_de",
+  "xl_F4_de",
+  "xl_F5_de",
+  "xl_F6_de",
+  "xl_F1_zh",
+  "xl_F2_zh",
+  "xl_F3_zh",
+  "xl_F4_zh",
+  "xl_F5_zh",
+  "xl_F6_zh",
+  "xl_F1_ru",
+  "xl_F2_ru",
+  "xl_F3_ru",
+  "xl_F4_ru",
+  "xl_F5_ru",
+  "xl_F6_ru",
+  "xl_F1_ar",
+  "xl_F2_ar",
+  "xl_F3_ar",
+  "xl_F4_ar",
+  "xl_F5_ar",
+  "xl_F6_ar",
+  "xl_F1_hi",
+  "xl_F2_hi",
+  "xl_F3_hi",
+  "xl_F4_hi",
+  "xl_F5_hi",
+  "xl_F6_hi",
+  "xl_F1_pt",
+  "xl_F2_pt",
+  "xl_F3_pt",
+  "xl_F4_pt",
+  "xl_F5_pt",
+  "xl_F6_pt",
+  "xl_F1_ja",
+  "xl_F2_ja",
+  "xl_F3_ja",
+  "xl_F4_ja",
+  "xl_F5_ja",
+  "xl_F6_ja",
+  "sf4_es",
+  "sf4_zh",
+  "fu1",
+  "fu2",
+  "fu3",
+  "fu4",
+  "fu5",
+  "fu6",
+  "fu7",
+  "fu8",
+  "fu9",
+  "fu10",
+  "sf7",
+  "num3",
+  "num6"
  ],
  "edits": {
   "rec1": {
@@ -329,6 +507,978 @@
    "sat": "failed",
    "irrelevant": [],
    "why": "one recipe-measures snippet; the 3 tsp fact is not in it"
+  },
+  "cmp1": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "wrong-sense/tangential Wikipedia pages (chromatid, crossing-over, asexual reproduction); the Mitosis and Meiosis articles were never read: Wikipedia-scope hits answer faster than the web search and are queued first"
+  },
+  "cmp2": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0",
+    "2.c1'"
+   ],
+   "why": "bacteriophage, door-handle and GMO pages: wrong sense for a virus-vs-bacteria ask"
+  },
+  "cmp3": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "climate-change pages; one sentence (1.b0) contrasts 'longer than individual weather events' but nothing states the weather side"
+  },
+  "cmp4": {
+   "irrelevant": [
+    "0.b0",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "one Wikipedia sentence states tea 40-50 mg, about half a cup of coffee: a real comparison answer"
+  },
+  "cmp5": {
+   "irrelevant": [
+    "2.c1'"
+   ],
+   "why": "Roth lead says withdrawals tax-free; a 'differences from a traditional IRA' passage and a Vanguard comparison snippet follow"
+  },
+  "cmp6": {
+   "irrelevant": [
+    "0.b0",
+    "0.c1'"
+   ],
+   "why": "LED lead says more efficient than incandescent; incandescent lead follows (bans snippets are tangential)"
+  },
+  "cmp7": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1'",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "alligator-only pages and a list of fictional crocodiles; no comparison of the two"
+  },
+  "cmp8": {
+   "irrelevant": [
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "leads of Python and JavaScript, plus three comparison articles' openers"
+  },
+  "hlt1": {
+   "sat": "failed",
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "Wikipedia stroke lead and symptom prose; no FAST list; wrong-sense pages (perinatal stroke, World Stroke Day)"
+  },
+  "hlt2": {
+   "irrelevant": [
+    "2.c1"
+   ],
+   "why": "two clinics state 20 seconds; a health-writer bio line rides along"
+  },
+  "hlt3": {
+   "irrelevant": [
+    "2.b0",
+    "3.b0"
+   ],
+   "why": "Harvard and Utah Health both state the 4,000 mg maximum (and the 3,000 mg low end); source-faithful, but dosing text in a nav-cluttered snippet needs the full page for context"
+  },
+  "hlt4": {
+   "irrelevant": [],
+   "why": "one reachable page (a farm's marketing site) states 165 F; only 1 of 4 reads succeeded (USDA/CDC style pages blocked); privacy-policy line inside the snippet"
+  },
+  "hlt5": {
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "MedlinePlus: hold under cool running water 10-15 minutes; the AAD snippet is about scars"
+  },
+  "hlt6": {
+   "irrelevant": [],
+   "why": "PMC/CDC-style text: 7 or more hours for adults"
+  },
+  "hlt7": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "1.b0",
+    "1.c1'",
+    "2.b0",
+    "2.c1'"
+   ],
+   "why": "wrong-sense Wikipedia pages (cyclosporiasis, 'signs and symptoms'); thirst/urine not in any snip"
+  },
+  "hlt8": {
+   "irrelevant": [],
+   "why": "FDA and Taste of Home snippets say eggs can carry Salmonella and that raw eggs are not safe; text is cluttered"
+  },
+  "hlt9": {
+   "sat": "failed",
+   "irrelevant": [
+    "1.c1"
+   ],
+   "why": "'a well-placed pinch' is the only instruction; no steps; a wound-cleaning page rides along"
+  },
+  "trv1": {
+   "irrelevant": [
+    "0.c0",
+    "1.c2",
+    "2.c1"
+   ],
+   "why": "Swiss franc / CHF stated by four sources; several snippets are mostly nav/ads"
+  },
+  "trv2": {
+   "irrelevant": [],
+   "why": "FAQ block from a travel site: about 7 hours; two flight-time pages agree"
+  },
+  "trv3": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "the only read page returned 24,000 chars of inline base64 image data as 'text' and impressionOf returned it whole (no sentence qualified); the coverage gate happened to refuse it. Real pipeline bug class: binary/markup-as-text"
+  },
+  "trv4": {
+   "sat": "needs-model",
+   "irrelevant": [
+    "2.c4"
+   ],
+   "why": "fragments about spring temperatures and 'no wrong time to visit': the answer (a season, by interest) needs a synthesis across sources"
+  },
+  "trv5": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1",
+    "1.c2"
+   ],
+   "why": "blog intros and an FAQ answering 'is 3 days enough'; no day-by-day plan (an itinerary is a list under headings)"
+  },
+  "trv6": {
+   "irrelevant": [],
+   "why": "FAQ block from a travel site and the US Embassy snippet: visa-exempt, 60 days; stale-prone rule"
+  },
+  "trv7": {
+   "irrelevant": [
+    "1.c1"
+   ],
+   "why": "one blog's intro names Sagrada Familia among the attractions; a list needs an ItemList-style rung"
+  },
+  "trv8": {
+   "irrelevant": [
+    "0.c2"
+   ],
+   "why": "two sources say do not drink it; one is a water-filter vendor (commercial interest)"
+  },
+  "prd1": {
+   "sat": "failed",
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "the iPhone 16 lead lacks the screen size (it sits in the specs table, which the reader drops); tangential iPhone pages (foldable, 17 Pro)"
+  },
+  "prd2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "1.c1",
+    "2.a.faq1",
+    "2.a.qa2"
+   ],
+   "why": "825 GB appears only inside a link blurb; an FAQ block on what to do when storage runs out is the wrong question"
+  },
+  "prd3": {
+   "irrelevant": [
+    "1.c0",
+    "2.a.product0"
+   ],
+   "why": "lead states June 5, 2025; a Product block for a different game (Switch Sports) is wrong-sense"
+  },
+  "prd4": {
+   "irrelevant": [],
+   "why": "25,000-50,000 hours stated by several retailers/blogs (commercial sources); a cookie banner line sits inside a snippet"
+  },
+  "prd5": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1",
+    "1.a.product1",
+    "1.a.product2"
+   ],
+   "why": "a paywall line, two 31-char Product cards (brand names) and a furniture-shop blurb: no buying checklist"
+  },
+  "prd6": {
+   "sat": "needs-model",
+   "irrelevant": [],
+   "why": "PCMag FAQ answers 'which CPU' not 'which laptop'; a recommendation list needs a list/ItemList rung"
+  },
+  "prd7": {
+   "sat": "failed",
+   "irrelevant": [
+    "2.c0"
+   ],
+   "why": "Apple's Product block says price from 799 USD (a correct, dated Offer) but gap rule G3 refused the whole strand; a Walmart bot-wall line is in it"
+  },
+  "prd8": {
+   "irrelevant": [
+    "0.c0"
+   ],
+   "why": "one blog says 5 hours with ANC on; Apple's page speaks of dependence on settings; vendor claims differ by mode"
+  },
+  "prd9": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "Amazon states which Kindle generations are waterproof; clutter around it"
+  },
+  "his1": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "15 August 1769 in the lead and in two other sources"
+  },
+  "his2": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "lead and Ford's Theatre sources name Booth and 14 April 1865"
+  },
+  "his3": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "the real lead (physicist and chemist, two Nobels) is in the strand but behind a 'list of women associated with Curie' page"
+  },
+  "his4": {
+   "irrelevant": [],
+   "why": "476 stated in the Wikipedia article and a blog post"
+  },
+  "his5": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "1789 stated by four sources"
+  },
+  "his6": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "3.b0"
+   ],
+   "why": "wrong-sense pages (Gandhi family, his sons); the Mahatma Gandhi article's lead is absent; one snippet is about the assassination"
+  },
+  "his7": {
+   "irrelevant": [
+    "0.c1'",
+    "1.c1'"
+   ],
+   "why": "dissolution article says 1908-1922; the Ottoman Empire lead follows"
+  },
+  "his8": {
+   "irrelevant": [
+    "1.c1'"
+   ],
+   "why": "28 August 1963 stated by NPR and the US Embassy snippet and Wikipedia"
+  },
+  "his9": {
+   "irrelevant": [
+    "1.b0",
+    "1.c1'"
+   ],
+   "why": "lead of Cleopatra VII and the Ptolemaic last-ruler passage; a children's-book series page (Who Was?) is wrong-sense"
+  },
+  "his10": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "lead and a Britannica FAQ block (FAQPage and QAPage copies of the same Q/A shown)"
+  },
+  "sci1": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c0",
+    "1.c1",
+    "2.c0"
+   ],
+   "why": "a physics-FAQ snippet states the Rayleigh-style reason (molecules scatter blue light more); WRONG-CONTENT: a reddit comment blaming an ozone 'mirror' is shown as a snippet; two teaser fragments"
+  },
+  "sci2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c0",
+    "3.c1"
+   ],
+   "why": "CDC sentence 'imitating an infection to engage the body's natural defenses' is the answer; gold regex missed it (no 'immune/antigen' in that sentence); raw &rsquo; residue"
+  },
+  "sci3": {
+   "irrelevant": [
+    "0.c1'",
+    "3.c1"
+   ],
+   "why": "lead plus science-notes and NatGeo definitions"
+  },
+  "sci4": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "NOAA/NASA fragments: two tidal bulges, gravity of the Moon; assembled by the reader, not one clean statement"
+  },
+  "sci5": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1'",
+    "2.c1"
+   ],
+   "why": "what a black hole is and how it was imaged; no sentence says how one forms (one says the origin of the biggest is a mystery)"
+  },
+  "sci6": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "DNA lead answers; nucleic-acid and replication pages follow"
+  },
+  "sci7": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "question teasers ('how do wings make lift?') and an 'ongoing challenge' intro, not the explanation"
+  },
+  "sci8": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c1",
+    "3.c1"
+   ],
+   "why": "USGS: earthquakes occur in the crust/upper mantle; plate-boundary wording partly in other snippets"
+  },
+  "sci9": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "BGS/NASA/UCAR fragments: heat emitted is trapped by gases"
+  },
+  "sci10": {
+   "irrelevant": [
+    "1.c1",
+    "2.c1"
+   ],
+   "why": "Wikipedia lead (electrochemical cells); an MIT and a vendor snippet are off-ask"
+  },
+  "law1": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "the only read page was a YouTube watch page: 24,000 chars of player JavaScript returned whole as a snip (impressionOf found no sentence); gate G3 refused it by luck"
+  },
+  "law2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "1.c1"
+   ],
+   "why": "usa.gov: apply in person (first-time adult); DS-11 and in-person wording are in the snippets but dispersed"
+  },
+  "law3": {
+   "irrelevant": [],
+   "why": "vote.gov and usa.gov: register through your state / vote.gov"
+  },
+  "law4": {
+   "irrelevant": [
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "the lead states the federal rate (7.25); lists of other rates follow"
+  },
+  "law5": {
+   "irrelevant": [],
+   "why": "lead, CDC: 21"
+  },
+  "law6": {
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "IRS: April 15, 2026 is the due date; CPA and tool pages agree"
+  },
+  "law7": {
+   "sat": "needs-model",
+   "irrelevant": [],
+   "why": "NY and CA DMV snippets are state-specific; the ask names no state: the right turn is a typed clarification, not a snip"
+  },
+  "law8": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "SSA: apply online if eligible, otherwise by mail or at an office (in snippets 1.c0, 2.c1)"
+  },
+  "str1": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "Wikipedia pages (jewel theft, Da Vinci Code film, the museum lead); the official hours page was not among the reads; wrong sense for the ask"
+  },
+  "str2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c1",
+    "1.c1",
+    "2.a.product1"
+   ],
+   "why": "a ticket reseller's FAQ block states 10 AM-5 PM with a raw <link .../> markup fragment inside the answer; the Met's own snippets carry no hours"
+  },
+  "str3": {
+   "sat": "needs-model",
+   "irrelevant": [
+    "0.c0",
+    "1.c1'"
+   ],
+   "why": "snippets show 'Coachella 2026 has come and gone' and '2027 dates have been announced' but cut before the dates: needs temporal reasoning (2026 is past) plus the date"
+  },
+  "str4": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "no result could be read (usps.com family bot-walled or JS-rendered): typed gap no-readable-source"
+  },
+  "str5": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "Netflix help: you can cancel at any time (steps in a linked article); privacy.com adds billing-period text"
+  },
+  "str6": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "GitHub docs snippets say 2FA exists and what it changes; the enable steps (Settings > Password and authentication) are not in any snip"
+  },
+  "str7": {
+   "irrelevant": [
+    "0.c1'",
+    "2.b0"
+   ],
+   "why": "lead and a symptom sentence (fever, fatigue, cough...)"
+  },
+  "str8": {
+   "irrelevant": [],
+   "why": "an FAQ block (secondary site, 'as of September 2026': routine 4-6 weeks, expedited 2-3) plus a wait-time site"
+  },
+  "cod1": {
+   "sat": "yes",
+   "irrelevant": [
+    "3.c1",
+    "4.c1"
+   ],
+   "why": "an FAQ block states text[::-1] (FAQPage and QAPage copies); w3schools/GfG describe the slice; code blocks themselves are not in the page text"
+  },
+  "cod2": {
+   "sat": "failed",
+   "irrelevant": [
+    "2.c1"
+   ],
+   "why": "'HEAD~1 refers to the commit just before the last one' but no 'git reset' command: the <pre> code blocks are dropped by the page reader"
+  },
+  "cod3": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "says flexbox/grid can center a div; no CSS (code blocks dropped)"
+  },
+  "cod4": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "2.c1",
+    "3.c1",
+    "4.c1"
+   ],
+   "why": "nodejs.org: use the readFile() method with path, encoding and a callback; three GitHub README snippets are noise"
+  },
+  "cod5": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "sort() sorts alphabetically; the numeric compare-function caveat is not in the snippets"
+  },
+  "cod6": {
+   "sat": "failed",
+   "irrelevant": [
+    "3.c1",
+    "4.c1"
+   ],
+   "why": "'here's an example of how to create a virtual environment using venv:' and then nothing: the command (a <pre> block) is dropped"
+  },
+  "cod7": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "3.b0",
+    "3.c1'"
+   ],
+   "why": "greatfrontend: == abstract equality, === strict equality; Wikipedia JS lead is noise"
+  },
+  "cod8": {
+   "irrelevant": [],
+   "why": "howtogeek: press Esc then type :q! to quit without saving"
+  },
+  "cod9": {
+   "sat": "failed",
+   "irrelevant": [
+    "2.c0"
+   ],
+   "why": "prose about list comprehensions; the bracket syntax (code block) is absent; a reddit confusion post is a snippet"
+  },
+  "cod10": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "GfG: the|operator (Python 3.9) merges dicts; the update()/** forms and code are missing"
+  },
+  "new1": {
+   "irrelevant": [
+    "1.c1",
+    "2.c0",
+    "3.c1"
+   ],
+   "why": "lead: Trump won 5 Nov 2024; a Guardian snippet is a stale pre-election forecast line (gold fires on it)"
+  },
+  "new2": {
+   "irrelevant": [
+    "0.c1'",
+    "3.c0"
+   ],
+   "why": "lead and Eagles/NFL pages: Eagles; an ESPN bot-wall line is a snippet"
+  },
+  "new3": {
+   "irrelevant": [
+    "0.c1'",
+    "1.c1"
+   ],
+   "why": "Spain won (lead, CNN, UEFA)"
+  },
+  "new4": {
+   "irrelevant": [
+    "2.c1"
+   ],
+   "why": "Han Kang (lead, Al Jazeera, LA Times)"
+  },
+  "new5": {
+   "irrelevant": [],
+   "why": "NBC: US 126 medals; US and China tied on golds (40 each): sources show the tie, the ask 'most golds' is itself ambiguous"
+  },
+  "new6": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "1.c0",
+    "2.c0"
+   ],
+   "why": "NPR/ABC/USA Today: Sean Baker's film (Anora); snippets are nav-cluttered"
+  },
+  "new7": {
+   "irrelevant": [
+    "1.c0",
+    "2.c0"
+   ],
+   "why": "lead: Oklahoma City Thunder; two nba.com snippets are team-list nav menus"
+  },
+  "new8": {
+   "irrelevant": [],
+   "why": "volatile cue 'today' -> typed live-data gap (correct); without the gate the strand would have shown Wikipedia pages about news channels"
+  },
+  "new9": {
+   "irrelevant": [],
+   "why": "volatile cue 'this week' -> typed live-data gap (correct)"
+  },
+  "liv1": {
+   "why": "G1 gap (cue 'today'). Ungated: Chicago city/exchange Wikipedia leads and weather-site boilerplate; no figure would be wrong but none answers"
+  },
+  "liv2": {
+   "why": "G1 gap. WOULD-BE-DANGEROUS ungated: GasBuddy/gaswiser snippets give Atlanta prices as if 'near me' (wrong place, dated)"
+  },
+  "liv3": {
+   "why": "G1 gap. Ungated: an ESPN bot wall and nba.com Event blocks for upcoming games (2026-10-06/07), not a result"
+  },
+  "liv4": {
+   "why": "G1 gap. Ungated: Wikipedia Bitcoin prose, no live price (no wrong number; unanswering)"
+  },
+  "liv5": {
+   "why": "G1 gap. WOULD-BE-DANGEROUS ungated: a BBC forecast line ('Tonight partly cloudy, low 12') of unknown date is presented as the answer to 'raining right now'"
+  },
+  "liv6": {
+   "why": "G1 gap. WOULD-BE-DANGEROUS ungated: sunset 06:42 PM / 6:40 pm figures from pages crawled on another date"
+  },
+  "liv7": {
+   "why": "G1 gap. Ungated: 'real time' traffic-map pages whose live data is not in the text; unanswering"
+  },
+  "liv8": {
+   "why": "G1 gap. Ungated: Wikipedia exchange-rate prose, no rate"
+  },
+  "liv9": {
+   "why": "G1 gap. Ungated: time-zone offset statements (UTC+09:00, 15 h ahead of Nashville) are true but are not 'the time now'; a clock engine is the right tool"
+  },
+  "liv10": {
+   "why": "G1 gap. Ungated: Apple Inc. and Apple Watch Wikipedia leads; no quote"
+  },
+  "una1": {
+   "sat": "dangerous-wrong",
+   "irrelevant": [
+    "0.b0",
+    "0.c1'",
+    "1.b0",
+    "2.b0"
+   ],
+   "dangerous": true,
+   "why": "a Wikipedia plot summary of Kim Stanley Robinson's Mars trilogy is shown with a sentence saying an American astronaut 'was the first human to walk on Mars in the year 2020' (fiction, context lost): a confident wrong answer to a false-premise ask; the other snips are Bruno Mars"
+  },
+  "una2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "2.c1'",
+    "3.c0"
+   ],
+   "why": "the strand shows only the 1921 prize (nobelprize.org, Wikipedia): it implicitly corrects 'second'; no snip states it was his only Nobel"
+  },
+  "una3": {
+   "sat": "leak",
+   "irrelevant": [
+    "0.c1'",
+    "1.c1",
+    "2.c1"
+   ],
+   "why": "strand about '51st state' talk (Wikipedia lead, Canadian commentary): none says Canada became a state, none says it did not"
+  },
+  "una4": {
+   "sat": "leak",
+   "irrelevant": [
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "an answers.com QA block says there is no solid surface hence 'no capital' (right, low-grade source, 0 votes) beside Jupiter and Jupiter Ascending leads"
+  },
+  "una5": {
+   "why": "gap rule G3 (coverage < 0.6) refused. WOULD-BE-DANGEROUS ungapped: a CB Insights snippet names a CEO of a different company called 'Quantum'"
+  },
+  "una6": {
+   "why": "typed gap, but the kind is live-data ('yesterday' cue), not 'personal memory': right outcome, wrong article"
+  },
+  "una7": {
+   "sat": "leak",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "lottery-site pages with jackpot figures; no numbers predicted"
+  },
+  "una8": {
+   "sat": "leak",
+   "irrelevant": [
+    "2.b0"
+   ],
+   "why": "Wikipedia IP/DNS pages (including 1.1.1.1 the DNS service); the user's address is not obtainable from text"
+  },
+  "una9": {
+   "why": "gap rule G3 refused a single quora error snippet"
+  },
+  "una10": {
+   "sat": "leak",
+   "irrelevant": [
+    "3.c0"
+   ],
+   "why": "semaphore-telegraph pages; a napoleon-series.org PDF internals dump (334 0 obj) is a snippet"
+  },
+  "xl_F1_es": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_es": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "the es.wikipedia lead gives the original 300 m figure (stale) and gate G3 gapped the turn; no 330 m in any snip"
+  },
+  "xl_F3_es": {
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0",
+    "2.c1'"
+   ],
+   "why": "a BBC snippet and es.wikipedia lead give 9 Nov 1989; English Wikipedia pages for Muro (a word) and Berlin, El Salvador are wrong-sense"
+  },
+  "xl_F4_es": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_es": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_es": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F1_fr": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "gold was in the strand but gate G3 gapped it: the French elision token \"l'australie\" does not match the page text (over-refusal)"
+  },
+  "xl_F2_fr": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_fr": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_fr": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_fr": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_fr": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F1_de": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_de": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_de": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_de": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_de": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_de": {
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0",
+    "2.c1'",
+    "3.b0"
+   ],
+   "why": "de.wikipedia (Armstrong) states 21 July 1969; English pages for Jahr, Mensch and MOND are wrong-sense"
+  },
+  "xl_F1_zh": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_zh": {
+   "why": "zh.wikipedia (300/320 m, stale) was not what answered: two Chinese news pages state 324 -> 330 m"
+  },
+  "xl_F3_zh": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_zh": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_zh": {
+   "why": "zh.wikipedia states 299 792 458 m/s but the snippet carries template debris (7008299792458000000, &#160;)"
+  },
+  "xl_F6_zh": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F1_ru": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_ru": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_ru": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_ru": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_ru": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_ru": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "20 July 1969 was in a snippet but gate G3 gapped it (coverage of Russian content words < 0.6): over-refusal"
+  },
+  "xl_F1_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_ar": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F1_hi": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "an English test-prep snippet names Canberra but gate G3 gapped the Hindi turn (coverage): over-refusal"
+  },
+  "xl_F2_hi": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_hi": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_hi": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_hi": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_hi": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "no snip states the year; gate G3 gapped"
+  },
+  "xl_F1_pt": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_pt": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "no 330/324 m in the strand (Portuguese pages read give other heights)"
+  },
+  "xl_F3_pt": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_pt": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_pt": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_pt": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F1_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F2_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F3_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F4_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F5_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "xl_F6_ja": {
+   "why": "gold-bearing snip states the fact in the asker's language (see review); proxy relevance only"
+  },
+  "sf4_es": {
+   "why": "es.wikipedia lead and two other pages name Leonardo da Vinci"
+  },
+  "sf4_zh": {
+   "irrelevant": [
+    "0.c1",
+    "3.c0"
+   ],
+   "why": "zh.wikipedia lead and a guancha article; baidu footer and a news page with a browser-version warning are noise"
+  },
+  "fu1": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c1"
+   ],
+   "why": "resolveQuestion carried whole page TITLES as referents ('See the Mona Lisa as it would have looked...'); the strand held 15 April 1452 but gate G3 (coverage of the long carried title) gapped it: over-refusal"
+  },
+  "fu2": {
+   "sat": "yes-with-trim",
+   "irrelevant": [],
+   "why": "no carry was made ('Nobel' counted as the question's own entity) yet search found Curie pages by chance: Britannica says first woman to win and only one to win in two fields; physics/chemistry named in the snippets"
+  },
+  "fu3": {
+   "sat": "yes",
+   "why": "carried referents were junk titles but search still landed on the Eiffel Tower: 1889 in Wikipedia and the official site"
+  },
+  "fu4": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c0",
+    "2.c0"
+   ],
+   "why": "carry was a reddit page title; lead of Don Quixote states 1605 and 1615; reddit snippets are noise"
+  },
+  "fu5": {
+   "sat": "failed",
+   "dangerous": true,
+   "why": "WRONG-CONTENT: 'How did he die?' got no carry ('How' was read as a cased entity); the strand tells how Michael Jackson and George Michael died, a confident answer about the wrong person"
+  },
+  "fu6": {
+   "sat": "failed",
+   "irrelevant": [],
+   "why": "no carry ('names-its-own'); cellular-respiration pages (wrong sense for photosynthesis) and gate G3 gapped"
+  },
+  "fu7": {
+   "sat": "failed",
+   "irrelevant": [
+    "2.b0"
+   ],
+   "why": "gold (21,196 km) is in a Britannica snippet but gate G3 gapped the carried-title query: over-refusal; a car-maker page is wrong-sense"
+  },
+  "fu8": {
+   "sat": "failed",
+   "irrelevant": [
+    "0.c2"
+   ],
+   "why": "1928 is in two snippets but gate G3 gapped: over-refusal"
+  },
+  "fu9": {
+   "sat": "failed",
+   "why": "Spanish 'cuándo nació' carried English page titles; a Lisa del Giocondo page and gate G3 gapped"
+  },
+  "fu10": {
+   "sat": "failed",
+   "why": "Chinese 'he' carried a zh page title; only a baidu footer was read"
+  },
+  "sf7": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "0.c0",
+    "3.c1"
+   ],
+   "why": "pass 2 (pass 1: api-only). IISD: 'second term of the ninth UN Secretary-General Antonio Guterres coming to an end on 31 December 2026'; CFR agrees; a UN.org bot-wall line is a snippet. The 'current' cue did not trigger gate G1 (it only fires on 'current price/weather/...')"
+  },
+  "num3": {
+   "sat": "yes-with-trim",
+   "irrelevant": [
+    "1.b0",
+    "1.c1'",
+    "2.b0"
+   ],
+   "why": "pass 2 (pass 1: api-only). Wikipedia states ~186,282 miles per second in the imperial passage; the lead snippet is cut before the 299,792,458 m/s value"
+  },
+  "num6": {
+   "irrelevant": [
+    "0.c1'"
+   ],
+   "why": "pass 2 (pass 1: none). Lead and a site state 10,935 m (35,876 ft)"
   }
  }
 }

@@ -1,9 +1,10 @@
 # PREREG — Gary's door, Terry Gross's flow, the pathos archons (written 2026-10-05, BEFORE any arm was run)
 
-Status: the sets, arms, criteria and bars below were written before `measure.mjs` was run on any case. The page-side passages
-are harvested once (`harvest.mjs`, the app's own `searchWeb` over its existing relay, serial, no retry storm) and frozen in
-`passages.json` (sha256 appended under FROZEN before the first arm runs), so both arms read the SAME sources. Bars are not
-changed after results; "bar not met" is reported as such.
+Status: the sets, arms, criteria and bars below were written before `measure.mjs` was run on any case. Passages are fetched
+through the app's own `searchWeb` over its existing relay (serial, one retry) the FIRST time a query is needed and kept in
+`passages.json` keyed by the query, so every arm that searches the same query reads the SAME sources (the arms run back to back
+per case). A conversation's follow-up queries depend on the earlier answers, so the passages cannot be frozen before the arms run;
+the sha256 of `passages.json` is recorded under FROZEN after the run. Bars are not changed after results; "bar not met" is reported as such.
 
 ## Question
 Does composing the chat's model calls through Gary (order, question last, a refused fold withheld, window-aware), reading
@@ -31,6 +32,7 @@ installed on this machine; reasoning models are not used.) One run per case; n i
 | c8 zh | 东京有多少人口？ → 那大阪呢？ → 什么？ |
 | c9 code | How do I reverse a string in Python? → in javascript instead → what? |
 | c10 cold | what?  /  are you sure?  /  prove it   (each as the FIRST message of a fresh conversation) |
+| c11 flat | three canned flat answers (a run the pathos organ reads as stale), then: who wrote Mansfield Park? — the only case that exercises the felt-shape read, because every other case has fewer than 3 earlier answers |
 
 ## Arms
 * **BEFORE** — the code path at the start of this work: `turnPlan` (fold-chat-thread.js), `FOLD.buildTurnMessages` with the
@@ -76,5 +78,27 @@ installed on this machine; reasoning models are not used.) One run per case; n i
 max_tokens 400 (the app asks for 1024; shorter to keep the run small — a longer budget can only make the E and W numbers larger);
 temperature 0 (the app uses 0.7; this measures the prompt, not the sampler); the leak and topic lists above.
 
+## Addendum — written after the main run started, BEFORE the AFTER-DD arm was run
+Kondo (Gary's counter of what a prompt carries twice) found that a thread turn carries the earlier ask and answer twice: once as
+the recent turns and once in its own [T1]/[T2] block (144 of 206 estimated tokens on a short answer; the earlier answer is clipped
+at 4,000 characters in the block, so a long one costs far more). `carryOnce` (fold-chat-gary.js) leaves a repeated ask+answer PAIR
+out of the turns when the system block already quotes it. Arm **AFTER-DD** = AFTER + that dedupe, nothing else.
+* **B7** dedupe ships ON only if, over the THREAD turns (plan mode thread, model-written), AFTER-DD's T count ≥ AFTER's, its L failures
+  ≤ AFTER's, its G count ≥ AFTER's, and its mean prompt tokens on those turns are lower. Otherwise it ships OFF.
+
+## Addendum 2 — written after the main run and BEFORE the AFTER-INFO arm was run
+Main-run readings that prompted it (numbers in RESULTS.md): the leak that remains in every arm is the model saying "the sources" —
+the words the app's own source block gives it while telling it NOT to say them. Gary's rule (information-not-prohibition) predicts
+exactly that. Gary also flags that block and the thread block (8 and 2 prohibition clauses). Arm **AFTER-INFO** = AFTER-DD with the
+two blocks (`sourcesPrompt`, `threadPrompt`) rewritten as plain information in this harness only (nothing shipped): no prohibition
+clause, and the word "pages"/"texts" in place of "sources". The label markers `[W1]`/`[T1]` stay (the app maps them back to citation chips).
+* **B8** the rewrite ships only if, over the same turns as AFTER-DD, L failures are lower, T and G counts are not lower, Gary finds
+  zero prohibitions and zero apparatus nouns in the rewritten blocks, and `stripScaffolding` still resolves a `[W1]` the model writes.
+Also recorded, post-hoc and disclosed: a first reading of the main run showed `planTurn` leaving "prove it" to the carried-pronoun
+search; the planner was fixed (a push-back wins over the pronoun trigger) and the AFTER arms for that case were re-run.
+Two of the gold routes in C10 were wrong, not the app: c4 turn 3 (nothing earlier had been written — the earlier asks were unreached
+gaps — so "cold-gap" IS right) and c9 turn 3 (the second ask got an answer, so there WAS something to follow). They are reported as
+scored (X) and then annotated, never silently re-scored.
+
 ## FROZEN
-(sha256 of passages.json appended here before the first arm runs)
+passages.json sha256 1c5f40aaac498a82177fde44d2251e91992c5da6c429c5c8bdfb9ae03673dbcf (37 of 39 queries reached sources; "Who wrote Pride and Prejudice?" and "东京有多少人口？" never did — the relay answered 502 — so their first turns are typed gaps in every arm). Passages for the 15 cases whose first pass hit a 502 were re-fetched once and those cases re-run in full; every other case is from the first pass.

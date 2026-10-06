@@ -99,3 +99,21 @@ test("omnilingual: an unspaced script is segmented by the script, not by spaces"
   const e = impressionOf(zh, "埃菲尔铁塔使用了多少铆钉", { budget: 400 });
   assert.match(e.text, /铆钉/);
 });
+
+test("FALSIFIER: sentencesWithOffsets does not lose the words before a decimal point, and does not cut at abbreviations or initials", () => {
+  // the old pattern dropped everything before '4.97' and emitted '97 percent.' as a sentence
+  const t = "The rate was 4.97 percent last year. Dr. Smith said (see Fig. 5b) that it rose. J. K. Rowling wrote it. The price is $3.50 today!";
+  const s = sentencesWithOffsets(t);
+  assert.deepEqual(s.map((x) => x.text), ["The rate was 4.97 percent last year.", "Dr. Smith said (see Fig. 5b) that it rose.", "J. K. Rowling wrote it.", "The price is $3.50 today!"]);
+  for (const x of s) assert.equal(t.slice(x.start, x.end), x.text, "ranges slice back exactly");
+  assert.deepEqual(sentencesWithOffsets("价格是4.97元。下一句！").map((x) => x.text), ["价格是4.97元。", "下一句！"], "CJK stops end a sentence anywhere; a decimal inside does not");
+  assert.deepEqual(sentencesWithOffsets("no stop at all here\nsecond line").map((x) => x.text), ["no stop at all here", "second line"]);
+  assert.deepEqual(sentencesWithOffsets("").map((x) => x.text), []);
+});
+
+test("an impression keeps a sentence that holds a decimal whole (the answer '4.97' is not cut off from its words)", () => {
+  const filler = Array.from({ length: 60 }, (_, i) => `Filler sentence number ${i} talks about queues and ticket prices at length here.`).join(" ");
+  const page = "Opening sentence about the whole subject of the page. " + filler + " The measured boiling rate was 4.97 litres per minute at sea level. " + filler;
+  const { text } = impressionOf(page, "boiling rate litres per minute", { budget: 400 });
+  assert.match(text, /The measured boiling rate was 4\.97 litres per minute at sea level\./);
+});

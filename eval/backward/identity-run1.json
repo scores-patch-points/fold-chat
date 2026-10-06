@@ -1,0 +1,370 @@
+{
+ "at": "2026-10-05T21:50:03.649Z",
+ "summary": {
+  "same_decided_same": "5/6",
+  "different_decided_same": "0/12",
+  "different_decided_different_or_undecidable": "12/12",
+  "hard_decided_same": "0/3",
+  "crossLanguage_undecidable": "2/2",
+  "B11": true
+ },
+ "rows": [
+  {
+   "class": "same",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower is 1,083 feet tall.",
+   "verdict": "same",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ]
+  },
+  {
+   "class": "same",
+   "a": "The tower is 330 m tall.",
+   "b": "The tower stands 0.33 km high.",
+   "verdict": "same",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ]
+  },
+  {
+   "class": "same",
+   "a": "It was completed in 1889.",
+   "b": "The tower was completed in 1889.",
+   "verdict": "same",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ]
+  },
+  {
+   "class": "same",
+   "a": "Gustave Eiffel's company built the tower.",
+   "b": "The tower was built by the company of Gustave Eiffel.",
+   "verdict": "different",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "holon:Tower#259-313",
+    "name:gustav_eiffel's",
+    "term:build",
+    "term:company"
+   ],
+   "atomsB": [
+    "holon:Tower#259-313",
+    "name:gustav_eiffel",
+    "term:build",
+    "term:company"
+   ]
+  },
+  {
+   "class": "same",
+   "a": "The base measures 125 metres on each side.",
+   "b": "Each side of the base is 410 feet.",
+   "verdict": "same",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:len:125@155",
+    "holon:Tower#125-188",
+    "term:base",
+    "term:side"
+   ],
+   "atomsB": [
+    "fig:len:125@155",
+    "holon:Tower#125-188",
+    "term:base",
+    "term:side"
+   ]
+  },
+  {
+   "class": "same",
+   "a": "The iron weighs 7,300 tonnes.",
+   "b": "The tower's iron weighs 7,300 tonnes.",
+   "verdict": "same",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:n:7300@395",
+    "holon:Tower#379-408",
+    "term:iron",
+    "term:tonn"
+   ],
+   "atomsB": [
+    "fig:n:7300@395",
+    "holon:Tower#379-408",
+    "term:iron",
+    "term:tonn",
+    "term:tower's"
+   ]
+  },
+  {
+   "class": "different",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower is 300 metres tall.",
+   "verdict": "undecidable",
+   "why": "figure",
+   "detail": "300",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower was completed in 1889.",
+   "b": "Construction of the tower began in 1887.",
+   "verdict": "different",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": [
+    "fig:n:1887@224",
+    "holon:Tower#189-258",
+    "name:construction",
+    "term:begin"
+   ]
+  },
+  {
+   "class": "different",
+   "a": "The base measures 125 metres on each side.",
+   "b": "The tower is 330 metres tall.",
+   "verdict": "different",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:len:125@155",
+    "holon:Tower#125-188",
+    "term:base",
+    "term:side"
+   ],
+   "atomsB": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ]
+  },
+  {
+   "class": "different",
+   "a": "Gustave Eiffel designed the tower.",
+   "b": "Maurice Koechlin designed the tower.",
+   "verdict": "different",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "holon:Tower#259-313",
+    "name:gustav_eiffel",
+    "term:design"
+   ],
+   "atomsB": [
+    "holon:Tower#314-378",
+    "name:mauric_koechlin",
+    "term:design"
+   ]
+  },
+  {
+   "class": "different",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower is 1,083 metres tall.",
+   "verdict": "undecidable",
+   "why": "figure-unit",
+   "detail": "1,083 metres",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower was completed in 1889.",
+   "b": "The tower was completed in 1989.",
+   "verdict": "undecidable",
+   "why": "figure",
+   "detail": "1989",
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower has two restaurants.",
+   "b": "The tower has three restaurants.",
+   "verdict": "undecidable",
+   "why": "terms",
+   "detail": "thre",
+   "atomsA": [
+    "holon:Tower#409-439",
+    "term:restaurant"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The iron weighs 7,300 tonnes.",
+   "b": "The iron weighs 7,300 kilograms.",
+   "verdict": "undecidable",
+   "why": "figure-unit",
+   "detail": "7,300 kilograms",
+   "atomsA": [
+    "fig:n:7300@395",
+    "holon:Tower#379-408",
+    "term:iron",
+    "term:tonn"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower is the tallest structure in Paris.",
+   "b": "The tower is the tallest structure in London.",
+   "verdict": "undecidable",
+   "why": "name",
+   "detail": "London",
+   "atomsA": [
+    "holon:Tower#0-124",
+    "name:pari",
+    "term:structur",
+    "term:tallest"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower weighs 330 tonnes.",
+   "verdict": "undecidable",
+   "why": "figure-binding",
+   "detail": "330",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower is 330 feet tall.",
+   "verdict": "undecidable",
+   "why": "figure-unit",
+   "detail": "330 feet",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "different",
+   "a": "The tower was completed in 1889.",
+   "b": "The tower was completed in 1887.",
+   "verdict": "different",
+   "why": null,
+   "detail": null,
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": [
+    "fig:n:1887@224",
+    "holon:Tower#189-258",
+    "term:complet"
+   ]
+  },
+  {
+   "class": "hard",
+   "a": "The tower is 330 metres tall.",
+   "b": "The tower is not 330 metres tall.",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "detail": "negation",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "hard",
+   "a": "The tower is taller than the Statue of Liberty.",
+   "b": "The Statue of Liberty is taller than the tower.",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "detail": "comparison",
+   "atomsA": [],
+   "atomsB": []
+  },
+  {
+   "class": "hard",
+   "a": "The tower was completed in 1889.",
+   "b": "The tower was never completed in 1889.",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "detail": "negation",
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "crossLanguage",
+   "a": "The tower is 330 metres tall.",
+   "b": "La torre mide 330 metros de altura.",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "detail": "330",
+   "atomsA": [
+    "fig:len:330@13",
+    "holon:Tower#0-124"
+   ],
+   "atomsB": []
+  },
+  {
+   "class": "crossLanguage",
+   "a": "The tower was completed in 1889.",
+   "b": "Die Fertigstellung des Turms erfolgte 1889.",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "detail": "1889",
+   "atomsA": [
+    "fig:n:1889@253",
+    "holon:Tower#189-258",
+    "term:complet"
+   ],
+   "atomsB": []
+  }
+ ]
+}

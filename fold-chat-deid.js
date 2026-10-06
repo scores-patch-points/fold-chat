@@ -75,6 +75,10 @@ export function maskableSpans(spans, mode = "default", minScore = 0.35) {
 /** Would this one span be masked in this mode (judged alone)? */
 export function spanIsMasked(span, mode = "default", minScore = 0.35) { return maskableSpans([span], mode, minScore).length > 0; }
 
+/** A call-shaped code fragment, as a whole span: identifier(args)… where every argument is a number or a short token with a digit or a single letter
+ *  (set(k2,138) set(k5,322)). A name inside the call (greet(priya)) is NOT this shape, so it is still masked. Pass in `exempt`; opt-in. */
+export const CODE_CALLS = /(?:[A-Za-z_][\w.]*\((?:\s*(?:\d+|[A-Za-z]\d*|[A-Za-z]{1,2}\d+)\s*(?:,\s*(?:\d+|[A-Za-z]\d*|[A-Za-z]{1,2}\d+)\s*)*)?\)?\s*)+/;
+
 /** Capitalised multi-word names in a text ("Eleanor Voss") — a floor for when no redactor is reachable. */
 export function namesIn(text) {
   const out = new Set();

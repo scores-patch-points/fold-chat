@@ -74,7 +74,7 @@ await crit("T3", async (c) => {
 });
 
 await crit("T4", async (c) => {
-  const leaf = A.attribution.filter((a) => !A.attribution.some((x) => x.parent === a.id));
+  const leaf = A.attribution.filter((a) => !A.attribution.some((x) => x.parent === a.order));
   const held = leaf.filter((a) => a.breaks.length > 0);
   const share = held.length / leaf.length;
   ok(c, "at least 90% of surviving leaf atoms hold up an obligation", share >= 0.9, `${held.length}/${leaf.length} (${(share * 100).toFixed(0)}%)`);

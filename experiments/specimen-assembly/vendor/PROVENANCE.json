@@ -1,0 +1,1 @@
+{"name":"acorn","version":"8.15.0","license":"MIT","copiedFrom":"eochatX/node_modules/acorn/dist/acorn.mjs","sha256":"b4c8c70200e72bae33cf1085e0ecb1e792c1b6924ed50cab817caf14f51bb249","why":"the only mechanical JS parser available offline; copied unmodified so this experiment needs no install"}

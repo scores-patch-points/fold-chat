@@ -1,0 +1,139 @@
+{
+ "how": [
+  {
+   "id": "how1",
+   "blocks": 8,
+   "goldInBlocks": true,
+   "s1Final": "yes",
+   "s1Held": true
+  },
+  {
+   "id": "how2",
+   "blocks": 18,
+   "goldInBlocks": true,
+   "s1Final": "yes",
+   "s1Held": true
+  },
+  {
+   "id": "how3",
+   "blocks": 0,
+   "goldInBlocks": false,
+   "s1Final": "failed",
+   "s1Held": false
+  },
+  {
+   "id": "how4",
+   "blocks": 0,
+   "goldInBlocks": false,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "how5",
+   "blocks": 1,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": false
+  },
+  {
+   "id": "how6",
+   "blocks": 0,
+   "goldInBlocks": false,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "how7",
+   "blocks": 6,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "how8",
+   "blocks": 3,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": false
+  },
+  {
+   "id": "how9",
+   "blocks": 1,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": false
+  }
+ ],
+ "code": [
+  {
+   "id": "cod1",
+   "blocks": 49,
+   "goldInBlocks": true,
+   "s1Final": "yes",
+   "s1Held": true
+  },
+  {
+   "id": "cod2",
+   "blocks": 16,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "cod3",
+   "blocks": 31,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "cod4",
+   "blocks": 15,
+   "goldInBlocks": true,
+   "s1Final": "yes-with-trim",
+   "s1Held": true
+  },
+  {
+   "id": "cod5",
+   "blocks": 46,
+   "goldInBlocks": true,
+   "s1Final": "yes-with-trim",
+   "s1Held": true
+  },
+  {
+   "id": "cod6",
+   "blocks": 21,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": true
+  },
+  {
+   "id": "cod7",
+   "blocks": 10,
+   "goldInBlocks": false,
+   "s1Final": "yes-with-trim",
+   "s1Held": true
+  },
+  {
+   "id": "cod8",
+   "blocks": 4,
+   "goldInBlocks": false,
+   "s1Final": "yes-with-trim",
+   "s1Held": true
+  },
+  {
+   "id": "cod9",
+   "blocks": 44,
+   "goldInBlocks": true,
+   "s1Final": "failed",
+   "s1Held": false
+  },
+  {
+   "id": "cod10",
+   "blocks": 20,
+   "goldInBlocks": true,
+   "s1Final": "yes-with-trim",
+   "s1Held": true
+  }
+ ]
+}

@@ -66,9 +66,10 @@ test("the masking record keeps counts only: no values can ride along", () => {
 });
 
 test("placeholders are found and split out exactly; look-alikes are left alone", () => {
-  const p = placeholderPieces("hi USER_1, see PATH_12/FILE_3 and EMAIL_2. not USERS_1 or SECRET_x");
-  assert.deepEqual(p.filter((x) => x.kind).map((x) => x.text), ["USER_1", "PATH_12", "FILE_3", "EMAIL_2"]);
-  assert.equal(p.map((x) => x.text).join(""), "hi USER_1, see PATH_12/FILE_3 and EMAIL_2. not USERS_1 or SECRET_x", "nothing lost or reordered");
+  const text = "hi USER_k3f9ax, see PATH_m2n4pq/FILE_abcd23 and EMAIL_zz9xyz. not USERS_k3f9ax or SECRET_x or NAME_k3f9a";
+  const p = placeholderPieces(text);
+  assert.deepEqual(p.filter((x) => x.kind).map((x) => x.text), ["USER_k3f9ax", "PATH_m2n4pq", "FILE_abcd23", "EMAIL_zz9xyz"]);
+  assert.equal(p.map((x) => x.text).join(""), text, "nothing lost or reordered");
 });
 
 test("summary and rows survive an empty ledger and a failed call", () => {
@@ -87,7 +88,7 @@ test("end to end: the real remoteCode path puts the masker's own counts on the l
   setAuditHook({ before: (i) => ledger.sendModel({ auditId: i.auditId, model: i.model, messages: i.messages, segments: i.segments, purpose: i.purpose, masking: i.masking }).done });
   const fetchImpl = async () => new Response(JSON.stringify({ message: { content: "done for USER_1" }, choices: [{ message: { content: "done for USER_1" } }] }), { status: 200, headers: { "content-type": "application/json" } });
   try {
-    await remoteCode("write a timer for dr.kim@clinic.org", { candidates: ["live"], fetchImpl }).catch(() => {});
+    await remoteCode("write a timer for dr.kim@clinic.org", { candidates: ["live"], redact: async (t) => t.map(() => []), fetchImpl }).catch(() => {});
     const [e] = ledger.list();
     assert.ok(e, "the call was recorded");
     assert.ok(e.masking && e.masking.count >= 1, "the entry says how many details were taken out");

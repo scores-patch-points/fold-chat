@@ -1,5 +1,6 @@
 // probe-guard.mjs — send real request shapes through the de-identifier + local PII redactor and show what it changed.
 import { makeGuard, diffMasked } from "./lib/guard.mjs";
+import { CODE_CALLS } from "../../fold-chat-deid.js";
 import { cache, SLOTS as CS } from "./lib/cache.mjs";
 import { makeEnv } from "./lib/lifecycle.mjs";
 import { CACHE_POOL } from "./lib/pool.mjs";
@@ -8,7 +9,7 @@ const env = makeEnv([], CS);
 const g = await assemble(cache, CACHE_POOL(), env, {});
 const req = gapRequest(cache, g.gap);
 import { OBLIGATIONS } from "./lib/cache.mjs";
-const variants = { "none": [], "code token [a-z]\\d+ (whole span)": [/^[a-z]\d+$/i], "k-token + ES": [/^[a-z]\d+$/i, "ES"], "call-fragment + ES": [/^[a-z]+\([a-z]\d+,\s*\d+\)?$/i, "ES"] };
+const variants = { "none": [], "code token [a-z]\\d+ (whole span)": [/^[a-z]\d+$/i], "k-token + ES": [/^[a-z]\d+$/i, "ES"], "CODE_CALLS + ES": [CODE_CALLS, "ES"], "call-fragment + ES": [/^[a-z]+\([a-z]\d+,\s*\d+\)?$/i, "ES"] };
 for (const [name, exempt] of Object.entries(variants)) {
 const guard = makeGuard({ vocabulary: [...OBLIGATIONS, "cache", "makeCache", "limit"], exempt });
 console.log("--", name);

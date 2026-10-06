@@ -1,0 +1,114 @@
+[
+ {
+  "id": "recipe1",
+  "url": "https://cookieandkate.com/",
+  "at": "2026-10-05T21:10:12.703Z",
+  "status": 403,
+  "finalUrl": "https://cookieandkate.com/?__cf_chl_rt_tk=wqS6ksrRPhopj_bbK6kBdn3yaVTUMEICwHhnZryM9GM-1791234612-1.0.1.1-s2gOmBU5LsAfR3mJ5oIv90QREUSyw0ZyLhB5vkad95M",
+  "bytes": 6175
+ },
+ {
+  "id": "recipe2",
+  "url": "https://www.recipetineats.com/",
+  "at": "2026-10-05T21:10:14.726Z",
+  "status": 200,
+  "finalUrl": "https://www.recipetineats.com/",
+  "bytes": 553190
+ },
+ {
+  "id": "recipe3",
+  "url": "https://smittenkitchen.com/",
+  "at": "2026-10-05T21:10:17.144Z",
+  "status": 200,
+  "finalUrl": "https://smittenkitchen.com/",
+  "bytes": 296158
+ },
+ {
+  "id": "blog1",
+  "url": "https://jvns.ca/",
+  "at": "2026-10-05T21:10:19.608Z",
+  "status": 200,
+  "finalUrl": "https://jvns.ca/",
+  "bytes": 147082
+ },
+ {
+  "id": "blog2",
+  "url": "https://simonwillison.net/",
+  "at": "2026-10-05T21:10:21.788Z",
+  "status": 200,
+  "finalUrl": "https://simonwillison.net/",
+  "bytes": 90591
+ },
+ {
+  "id": "news1",
+  "url": "https://www.astralcodexten.com/",
+  "at": "2026-10-05T21:10:26.026Z",
+  "status": 200,
+  "finalUrl": "https://www.astralcodexten.com/",
+  "bytes": 354273
+ },
+ {
+  "id": "yt1",
+  "url": "https://www.3blue1brown.com/",
+  "at": "2026-10-05T21:10:29.251Z",
+  "status": 200,
+  "finalUrl": "https://www.3blue1brown.com/",
+  "bytes": 73131
+ },
+ {
+  "id": "oss1",
+  "url": "https://github.com/sindresorhus/got",
+  "at": "2026-10-05T21:10:31.536Z",
+  "status": 200,
+  "finalUrl": "https://github.com/sindresorhus/got",
+  "bytes": 423695
+ },
+ {
+  "id": "press1",
+  "url": "https://www.propublica.org/",
+  "at": "2026-10-05T21:10:35.285Z",
+  "status": 200,
+  "finalUrl": "https://www.propublica.org/",
+  "bytes": 369588
+ },
+ {
+  "id": "zh1",
+  "url": "https://www.ruanyifeng.com/blog/",
+  "at": "2026-10-05T21:10:38.535Z",
+  "status": 200,
+  "finalUrl": "https://www.ruanyifeng.com/blog/index.html",
+  "bytes": 19084
+ },
+ {
+  "id": "recipe1b",
+  "url": "https://www.budgetbytes.com/",
+  "at": "2026-10-05T21:11:53.192Z",
+  "status": 403,
+  "finalUrl": "https://www.budgetbytes.com/?__cf_chl_rt_tk=AvsNwbjJLl7ob4qHkIU_mJc45re3VE3Qmcpx.CRL3xY-1791234713-1.0.1.1-duW520sffO6a5NrBJ8YQouKu_WfS.r4gOzJzWEglyMU",
+  "bytes": 6199
+ },
+ {
+  "id": "recipe1c",
+  "url": "https://minimalistbaker.com/",
+  "at": "2026-10-05T21:12:06.752Z",
+  "status": 200,
+  "finalUrl": "https://minimalistbaker.com/",
+  "bytes": 431890
+ },
+ {
+  "id": "feed-blog1",
+  "url": "https://jvns.ca/atom.xml",
+  "at": "2026-10-05T21:12:22.482Z",
+  "status": 200,
+  "finalUrl": "https://jvns.ca/atom.xml",
+  "bytes": 244307
+ },
+ {
+  "id": "feed-recipe2",
+  "url": "https://www.recipetineats.com/feed/",
+  "at": "2026-10-05T21:12:24.242Z",
+  "status": 200,
+  "finalUrl": "https://www.recipetineats.com/feed/",
+  "bytes": 277756
+ }
+]

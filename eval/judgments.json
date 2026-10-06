@@ -175,5 +175,51 @@
  "cur/a5_gold_symbol/r1/t0": {
   "lang": true,
   "reason": "lang: English answer to an English ask (detector misfire on a 1-3 word answer)"
+ },
+ "cur2/a1_eiffel_year/r1/t0": {
+  "correct": true,
+  "reason": "lenient: a 9-sentence dump of source passages that contains 'Completed in March 1889' - the question is not answered in one line"
+ },
+ "cur2/b1_eiffel_feet/r1/t0": {
+  "correct": true,
+  "reason": "lenient: dump contains '330 metres (1,083 ft)' AND 'main structure ... 300 meters ... 324 m with antennas' side by side (disagreeing grounds shown, not averaged: good per Art. III.4)"
+ },
+ "cur2/c1_oxford_harvard/r1/t0": {
+  "correct": false,
+  "reason": "'Something went wrong. Wait a moment and try again. Harvard vs. Oxford - What's the Difference?' - scraped error text and FAQ headings, no age comparison"
+ },
+ "cur2/d2_mona_lisa/r1/t0": {
+  "correct": false,
+  "reason": "no source reached (web 502): 'No answer was written'"
+ },
+ "cur2/e_cap_ru/r1/t0": {
+  "correct": true,
+  "reason": "contains 'Город Канберра является столицей Австралии' (then bus-stop spam from a travel page)"
+ },
+ "cur2/e_eiffel_zh/r1/t0": {
+  "correct": true,
+  "reason": "contains the 330m antenna news and the 1889 completion in Chinese, among 10 unrelated passages"
+ },
+ "cur2/e_wall_ar/r1/t0": {
+  "correct": true,
+  "reason": "contains 'سقط جدار برلين في 9 نوفمبر 1989' but is prefixed with an unrelated phrase from an Arabic Q&A site ('how many hours from the UAE to Saudi Arabia by plane')"
+ },
+ "cur2/f3_wc_2034/r1/t0": {
+  "correct": true,
+  "refused": true,
+  "reason": "no model-authored fabrication: shows 'will be the 25th FIFA World Cup' ... 'Saudi Arabia wins 2034 FIFA World Cup bid' (hosting) verbatim; no explicit statement that it has not been played"
+ },
+ "cur2/g1_poem/r1/t0": {
+  "correct": false,
+  "reason": "not a poem: scraped text 'These Rain Autumn poems are examples of Autumn poems about Rain...'; also took 155 s and searched the web"
+ },
+ "cur2/h1_py_reverse/r1/t0": {
+  "correct": false,
+  "reason": "no code written ('no sources for this kind of ask')"
+ },
+ "cur2/i1_hi/r1/t0": {
+  "correct": true,
+  "lang": true,
+  "reason": "canned fold note, no search"
  }
 }

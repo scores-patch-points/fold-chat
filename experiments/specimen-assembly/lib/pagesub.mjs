@@ -124,7 +124,7 @@ export async function subtract(source, oracle, { ledger, onState = () => {}, max
     const cand = new Set([...removed, ...deadIds]);
     const h2 = cut(source, atoms, cand).html;
     if (!scriptsParse(h2) && (await allHold(h2)).pass) {
-      deadIds.forEach((id) => { removed.add(id); const a = atoms[id]; ledger.add("cut", { round: "css", atom: a.id, atomKind: "css", label: a.label, rule: "prune-dead-css", precondition: "no element in the page matches this selector" }); });
+      deadIds.forEach((id) => { removed.add(id); const a = atoms.find((x) => x.id === id); ledger.add("cut", { round: "css", atom: a.id, atomKind: "css", label: a.label, rule: "prune-dead-css", precondition: "no element in the page matches this selector" }); });
       html = h2; states.push({ step: states.length, html, bytes: html.length, note: `pruned ${deadIds.length} CSS rule(s) matching nothing` });
     }
   }
@@ -139,15 +139,14 @@ export async function subtract(source, oracle, { ledger, onState = () => {}, max
 
 // which obligations does each surviving atom hold up? (delete it alone; read what breaks)
 export async function attribute(html, oracle) {
-  const atoms = collectAtoms(html).filter((a) => a.kind !== "css");
+  const all = collectAtoms(html);   // `cut` indexes parents by position in the full list, so never filter before cutting
   const out = [];
-  for (const a of atoms) {
-    const { html: h } = cut(html, atoms, [a.id]);
-    if (a.parent !== null && atoms[a.parent]) { /* nested: still tested alone, its parent stays */ }
+  for (const a of all.filter((x) => x.kind !== "css")) {
+    const { html: h } = cut(html, all, [a.id]);
     const bad = scriptsParse(h);
-    if (bad) { out.push({ id: a.id, kind: a.kind, label: a.label, start: a.start, end: a.end, parent: a.parent, breaks: ["(syntax)"], parse: bad }); continue; }
+    if (bad) { out.push({ id: a.id, order: a.order, kind: a.kind, label: a.label, start: a.start, end: a.end, parent: a.parent, breaks: ["(syntax)"], parse: bad }); continue; }
     const r = await oracle.check(h);
-    out.push({ id: a.id, kind: a.kind, label: a.label, start: a.start, end: a.end, parent: a.parent, breaks: Object.entries(r).filter(([, v]) => !v.pass).map(([k]) => k) });
+    out.push({ id: a.id, order: a.order, kind: a.kind, label: a.label, start: a.start, end: a.end, parent: a.parent, breaks: Object.entries(r).filter(([, v]) => !v.pass).map(([k]) => k) });
   }
   return out;
 }

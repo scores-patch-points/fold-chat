@@ -40,6 +40,7 @@
 
 import { Field, sdrOf, packSdr, bytesToBase64, ECHO_BITS } from "./vendor/khora/native/the-fold/relative.js";
 import { segments, fold } from "./fold-chat-mind.js";
+import { endsWithAbbreviation } from "./fold-chat-junk.js";
 
 // Declared, not measured (Constitution II.11 — a number with its giver):
 export const DECLARED = Object.freeze({
@@ -63,20 +64,42 @@ export function fingerprint(text) {
   return h.toString(16).padStart(8, "0");
 }
 
-/** Sentences with their offsets in the original text. ASCII . ! ? end a sentence
- *  only before whitespace (so "3.5" and "D.C." stay whole); 。！？ end one anywhere. */
+/** Sentences with their offsets in the original text. ASCII . ! ? end a sentence only before whitespace (so "3.5", "4.97" and
+ *  "D.C." stay whole — the old pattern LOST the words before any decimal point); a "." that ends a known abbreviation or a lone
+ *  initial ("Fig.", "Dr.", "J.") does not end one; 。！？ end one anywhere; a line break always does. Ranges slice back exactly. */
 export function sentencesWithOffsets(text) {
   const src = String(text ?? "");
-  const out = [];
-  const re = /[^\n.!?。！？]+(?:(?:[.!?]+["')\]”’]*(?=\s|$))|[。！？]+["')\]”’」』]*|(?=\n)|$)|[.!?。！？]+/g;
-  let m;
-  while ((m = re.exec(src)) !== null) {
-    const raw = m[0];
-    const lead = raw.length - raw.trimStart().length;
-    const t = raw.trim();
-    if (t) out.push({ text: t, start: m.index + lead, end: m.index + lead + t.length });
-    if (re.lastIndex === m.index) re.lastIndex++;
+  const n = src.length, out = [];
+  let start = 0, i = 0;
+  const push = (a, b) => {
+    let s = a, e = b;
+    while (s < e && /\s/.test(src[s])) s++;
+    while (e > s && /\s/.test(src[e - 1])) e--;
+    if (e > s) out.push({ text: src.slice(s, e), start: s, end: e });
+  };
+  while (i < n) {
+    const ch = src[i];
+    if (ch === "\n") { push(start, i); start = ++i; continue; }
+    if (ch === "。" || ch === "！" || ch === "？") {
+      let j = i + 1;
+      while (j < n && /[。！？]/.test(src[j])) j++;
+      while (j < n && /["')\]”’」』]/.test(src[j])) j++;
+      push(start, j); start = i = j; continue;
+    }
+    if (ch === "." || ch === "!" || ch === "?") {
+      let j = i + 1;
+      while (j < n && /[.!?]/.test(src[j])) j++;
+      let k = j;
+      while (k < n && /["')\]”’]/.test(src[k])) k++;
+      if (k >= n || /\s/.test(src[k])) {
+        const lone = ch === "." && j === i + 1;
+        if (!(lone && endsWithAbbreviation(src.slice(start, j)))) { push(start, k); start = i = k; continue; }
+      }
+      i = j; continue;
+    }
+    i++;
   }
+  push(start, n);
   return out;
 }
 

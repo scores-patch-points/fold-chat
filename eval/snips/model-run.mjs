@@ -29,6 +29,16 @@ async function sessionState(page) {
 }
 async function runOne(a) {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  // The bridge answers CORS only for its own allow-listed origins (:8814). This harness serves on its own port, so the bridge's replies get the
+  // page's origin added in the browser's network layer (Playwright route); the bridge itself, and the app, are untouched.
+  const pageOrigin = new URL(base).origin;
+  await ctx.route(/^http:\/\/(localhost|127\.0\.0\.1):8790\//, async (route) => {
+    const req = route.request();
+    const cors = { "access-control-allow-origin": pageOrigin, "access-control-allow-headers": "*", "access-control-allow-methods": "GET,POST,OPTIONS", "access-control-allow-private-network": "true" };
+    if (req.method() === "OPTIONS") return route.fulfill({ status: 204, headers: cors });
+    try { const resp = await route.fetch({ timeout: 300000, headers: { ...req.headers(), origin: "http://127.0.0.1:8814", referer: "http://127.0.0.1:8814/" } }); await route.fulfill({ response: resp, headers: { ...resp.headers(), ...cors } }); }
+    catch (e) { await route.abort(); }
+  });
   const page = await ctx.newPage(); const errors = [], net = [];
   page.on("pageerror", (e) => errors.push(String(e.message).slice(0, 200)));
   page.on("response", (r) => { const u = r.url(); if (/holodeck-proxy|wikipedia\.org|:8790|allorigins|codetabs|corsproxy/.test(u)) net.push({ s: r.status(), u: u.slice(0, 140) }); });
@@ -37,13 +47,13 @@ async function runOne(a) {
     await page.goto(base, { waitUntil: "networkidle", timeout: 60000 });
     await page.waitForSelector("#input", { timeout: 20000 });
     const t0 = Date.now(); await page.fill("#input", a.text); await page.click("#send");
-    let started = false, seen = 0; const deadline = Date.now() + TURN_TIMEOUT; let st;
+    // the app does not disable its input while a turn runs, and it stores an EMPTY assistant message at the start: a turn is finished when an assistant message
+    // carries a grounding record (a typed void included) or text, and has stayed so for 2 polls
+    let seen = 0; const deadline = Date.now() + TURN_TIMEOUT; let st;
     while (Date.now() < deadline) {
-      await sleep(600); st = await sessionState(page);
-      const nA = (st.session?.messages || []).filter((m) => m.role === "assistant").length;
-      if (st.disabled || nA > 0) started = true;
-      if (started && !st.disabled) { if (++seen >= 2) break; } else seen = 0;
-      if (!started && Date.now() - t0 > 20000) break;
+      await sleep(900); st = await sessionState(page);
+      const last = (st.session?.messages || []).filter((m) => m.role === "assistant").pop();
+      if (last && (last.grounding || (last.content && String(last.content).trim()))) { if (++seen >= 2) break; } else seen = 0;
     }
     out.secs = (Date.now() - t0) / 1000; st = await sessionState(page);
     const last = (st.session?.messages || []).filter((m) => m.role === "assistant").pop() || null;
@@ -56,9 +66,18 @@ async function runOne(a) {
 for (const a of todo) {
   const f = path.join(OUTD, a.id + ".json");
   if (fs.existsSync(f)) continue;
-  const o = await runOne(a);
+  // the app searches only through the relay in a browser (~37% single-attempt success, relay-probe.json): when its turn ends in a typed void because no
+  // source was reached, the same ask is asked again (15 s later), up to 3 attempts; every attempt is kept and the first-attempt result is reported separately.
+  const attempts = []; let o;
+  for (let k = 1; k <= 3; k++) {
+    o = await runOne(a); attempts.push({ k, secs: o.secs, answerChars: (o.answer || "").length, voidKind: o.grounding && o.grounding.void ? o.grounding.void.kind : null, hasMaterial: o.grounding ? o.grounding.hasMaterial : null });
+    const unreached = !o.fatal && o.grounding && o.grounding.void && o.grounding.void.kind === "unreached";
+    if (!unreached) break;
+    await sleep(15000);
+  }
+  o.attempts = attempts; o.firstAttempt = attempts[0];
   fs.writeFileSync(f, JSON.stringify(o));
-  console.log(a.id, o.fatal || `${o.secs.toFixed(0)}s model=${o.model} chars=${(o.answer || "").length}`);
+  console.log(a.id, "attempts=" + attempts.length, o.fatal || `${o.secs.toFixed(0)}s model=${o.model} chars=${(o.answer || "").length}`);
   await sleep(+arg("delay", 3000));
 }
 await browser.close(); srv.kill(); console.log("done");

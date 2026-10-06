@@ -119,10 +119,10 @@ test("the fallback strand is the sources' own words, cited and verified, with no
 import { noModelFallbackNotice } from "./fold-chat-gaps.js";
 import { noModelWhy } from "./fold-chat-loaded.js";
 
-test("no bridge: the app's own note says the bridge isn't running, is kind 'fold', and offers a retry", () => {
+test("no bridge: the app's own note says no bridge answered and the tab has no model, is kind 'fold', and offers a retry", () => {
   const n = noModelFallbackNotice(noModelWhy({ bridgeUp: false }));
   assert.equal(n.kind, "fold"); assert.equal(n.retry, true); assert.equal(n.fellBackFrom, "facing");
-  assert.equal(n.text, "No model is reachable (the bridge isn't running), so this shows what the sources say. Start `heimdall up` for written answers.");
+  assert.equal(n.text, "No model is reachable (no bridge answered and this tab has none loaded), so this shows what the sources say. Run `npm run serve` (the Fold's own server) or use the in-tab model for written answers.");
 });
 
 test("a bridge that is up but serves nothing says that instead of blaming the bridge", () => {

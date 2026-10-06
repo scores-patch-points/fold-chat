@@ -17,6 +17,10 @@
 //   XL    true, source is English, sentence is in another language -> same
 //   SELF  verbatim sentence from a same-language Wikipedia article -> must accept
 //   SELFN same, with its first number replaced by 7777 -> must reject
+//   SCRIPT  (added with docs/GATE-FIX-PREREG.md) verbatim sentences from hi / ar / zh Wikipedia articles
+//           other than the Eiffel Tower, split on that script's own terminators -> must accept
+//   SCRIPTN the digit-bearing SCRIPT sentences with their first number replaced by 7777 -> must reject
+//   HOLDN / HOLDP  HELD-OUT false / true English sentences written BEFORE any gate change, never used to tune.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -24,7 +28,8 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const argv = process.argv.slice(2);
 const argOf = (k, d) => { const i = argv.indexOf("--" + k); return i < 0 ? d : argv[i + 1]; };
-const appDir = path.join(here, argOf("app", ".app"));
+// --live scores the working tree's own fold-chat-ground.js (the repo root) instead of a frozen snapshot.
+const appDir = argv.includes("--live") ? path.join(here, "..") : path.join(here, argOf("app", ".app"));
 if (!fs.existsSync(appDir)) throw new Error("run eval/run.mjs once first (it snapshots the app into eval/.app)");
 const ground = await import(path.join(appDir, "fold-chat-ground.js"));
 const webm = await import(path.join(appDir, "fold-chat-web.js"));
@@ -142,19 +147,61 @@ for (const [l, t] of SELF) {
   } catch (e) { console.log("  (skip self-source", l, String(e.message).slice(0, 60), ")"); }
 }
 
+
+// ---- HELD-OUT (written before the gate fix; generalisation check, never tuned against) ----
+const addH = (id, cls, art, s, note = "") => C.push({ id, cls, art, s, note });
+addH("h01", "HOLDN", "nashville", "Nashville is the capital of Tennessee and is located on the Pacific coast.", "true prefix + false place");
+addH("h02", "HOLDN", "eiffel", "The Eiffel Tower is the shortest structure in Paris.", "predicate flip ('tallest' is in the passage)");
+addH("h03", "HOLDN", "wall", "The Berlin Wall separated West Berlin from the Soviet Union for 40 years.", "wrong number + wrong relation");
+addH("h04", "HOLDN", "canberra", "Canberra is the largest city in Australia.", "HARD: 'largest' + 'city' are in the passage ('largest inland city')");
+addH("h05", "HOLDN", "pride", "Pride and Prejudice is a novel by Charlotte Bronte.", "wrong author");
+addH("h06", "HOLDN", "everest", "Mount Everest is the tallest mountain in Africa.", "wrong continent");
+addH("h07", "HOLDN", "apollo", "Neil Armstrong was the second person to walk on the Moon.", "HARD: 'second' is in the passage about something else");
+addH("h08", "HOLDN", "eiffel", "The Eiffel Tower has been closed to visitors since 1889.", "true year + false predicate");
+addH("h09", "HOLDN", "wall", "The Berlin Wall was demolished by the United Nations in 1990.", "1990 is in the passage; the actor is invented");
+addH("h10", "HOLDN", "nashville", "Nashville has a population of 50 million people.", "wrong number");
+addH("h11", "HOLDN", "everest", "Mount Everest was first climbed in 1853 by Marco Polo.", "invented climber and year");
+addH("h12", "HOLDN", "apollo", "Apollo 11 carried five astronauts to the Moon.", "HARD: word-number; 'three astronauts' is in the passage");
+addH("hp1", "HOLDP", "canberra", "Canberra is Australia's largest inland city.", "verbatim fragment");
+addH("hp2", "HOLDP", "everest", "Mount Everest is the highest mountain on Earth above sea level.", "verbatim fragment");
+addH("hp3", "HOLDP", "apollo", "Apollo 11 was the American spaceflight that first landed humans on the Moon.", "verbatim fragment");
+addH("hp4", "HOLDP", "eiffel", "The Eiffel Tower was constructed as the centrepiece of the 1889 World's Fair.", "verbatim fragment");
+addH("hp5", "HOLDP", "pride", "The novel follows the character development of Elizabeth Bennet.", "verbatim fragment");
+addH("hp6", "HOLDP", "wall", "The Berlin Wall was a guarded concrete barrier that encircled West Berlin.", "verbatim fragment");
+addH("hp7", "HOLDP", "nashville", "Nashville is the capital and most populous city in the U.S. state of Tennessee.", "verbatim fragment");
+addH("hp8", "HOLDP", "eiffel", "At 330 m, the Eiffel Tower is about 1,083 feet high.", "unit variant + paraphrase");
+addH("hp9", "HOLDP", "everest", "Mount Everest stands about 29,032 feet above sea level.", "unit conversion of 8,848.86 m (29,031.7 ft)");
+addH("hp10", "HOLDP", "wall", "Construction of the Berlin Wall began on 13 August 1961.", "paraphrase of 'was commenced ... on 13 August 1961'");
+
+// ---- SCRIPT / SCRIPTN: verbatim same-language sentences, three caseless / non-Latin scripts ----
+const SCRIPT = [["hi", "भारत"], ["ar", "القاهرة"], ["zh", "北京市"]];
+const scriptMat = {};
+for (const [l, t] of SCRIPT) {
+  const tx = await article(l, t);
+  scriptMat[l] = [{ ref: `Wikipedia(${l}) — ${t}`, source: `https://${l}.wikipedia.org/wiki/${t}`, text: tx }];
+  const lim = l === "zh" ? [14, 110] : [30, 220];
+  const sents = tx.split(/(?<=[।。.!?؟])\s*/u).map((x) => x.trim()).filter((x) => x.length >= lim[0] && x.length <= lim[1] && !/[\n\[\]]/.test(x));
+  const withDigits = sents.filter((x) => /\d{2,}/.test(x)).slice(0, 2), without = sents.filter((x) => !/\d/.test(x)).slice(0, 2);
+  [...withDigits, ...without].forEach((s, i) => {
+    C.push({ id: `sc_${l}${i + 1}`, cls: "SCRIPT", art: "script:" + l, s, note: `verbatim from ${l}.wikipedia ${t}` });
+    const m = s.match(/\d[\d,.]*/);
+    if (m) C.push({ id: `scn_${l}${i + 1}`, cls: "SCRIPTN", art: "script:" + l, s: s.replace(m[0], "7777"), note: `same, first number ${m[0]} -> 7777` });
+  });
+}
+
 // SELFP: the same true hand-written Eiffel-height sentences as XL, but graded against the SAME-LANGUAGE article
 // (is the gate language-agnostic once a same-language source exists, or only for verbatim copies?)
 const LANGOF = { x01: "es", x02: "fr", x03: "de", x04: "ru", x05: "zh", x06: "ja", x07: "ar", x08: "hi" };
 for (const c of [...C]) if (LANGOF[c.id] && selfMat[LANGOF[c.id]]) C.push({ id: "sp_" + LANGOF[c.id], cls: "SELFP", art: "self:" + LANGOF[c.id], s: c.s, note: `true hand-written sentence vs ${LANGOF[c.id]}.wikipedia article (not a verbatim copy)` });
 const res = [];
 for (const c of C) {
-  const material = c.art.startsWith("self:") ? selfMat[c.art.slice(5)] : mat(c.art);
+  const material = c.art.startsWith("self:") ? selfMat[c.art.slice(5)] : c.art.startsWith("script:") ? scriptMat[c.art.slice(7)] : mat(c.art);
   const rec = ground.turnRecord(c.s, material, { turn: 1 });
   const e = rec.coverage.entries[0] || {};
   const grounded = !!e.ref;
-  const expectAccept = ["POS", "DER", "XL", "SELF", "SELFP"].includes(c.cls);
+  const expectAccept = ["POS", "DER", "XL", "SELF", "SELFP", "SCRIPT", "HOLDP"].includes(c.cls);
   res.push({
-    id: c.id, cls: c.cls, sentence: c.s, note: c.note, article: c.art, grounded, score: e.score ?? null,
+    id: c.id, cls: c.cls, sentence: c.s, note: c.note, article: c.art, grounded, score: e.score ?? null, why: e.why ?? null,
     unsupported: rec.unsupported, quote: rec.facing?.sources?.[0]?.text ?? null,
     ok: expectAccept ? grounded : !grounded,
     verdict: expectAccept ? (grounded ? "accepted (correct)" : "REJECTED (false negative)") : (grounded ? "ACCEPTED (FALSE POSITIVE)" : "rejected (correct)"),
@@ -175,8 +222,8 @@ const sum = (cls) => agg[cls] ? `${agg[cls].ok}/${agg[cls].n}` : "n/a";
 const summary = {
   specificity_NEG_single_article: sum("NEG"), specificity_NEG_pooled: sum("NEG-POOL"),
   sensitivity_POS_verbatim: sum("POS"), sensitivity_DER_derived_paraphrase: sum("DER"), sensitivity_XL_cross_lingual_true: sum("XL"),
-  specificity_XLN_cross_lingual_false: sum("XLN"), sensitivity_SELF_same_language_verbatim: sum("SELF"), sensitivity_SELFP_same_language_paraphrase: sum("SELFP"), specificity_SELFN_same_language_false: sum("SELFN"),
-  falsePositives: res.filter((r) => r.cls.startsWith("NEG") && r.grounded).map((r) => r.id),
+  specificity_XLN_cross_lingual_false: sum("XLN"), XL_unaccepted_with_typed_cross_language_reason: `${res.filter((r) => r.cls === "XL" && !r.grounded && r.why === "cross-language").length}/${res.filter((r) => r.cls === "XL" && !r.grounded).length}`, sensitivity_SCRIPT_hi_ar_zh_verbatim: sum("SCRIPT"), specificity_SCRIPTN_hi_ar_zh_number_swapped: sum("SCRIPTN"), specificity_HOLDN_heldout_false: sum("HOLDN"), sensitivity_HOLDP_heldout_true: sum("HOLDP"), sensitivity_SELF_same_language_verbatim: sum("SELF"), sensitivity_SELFP_same_language_paraphrase: sum("SELFP"), specificity_SELFN_same_language_false: sum("SELFN"),
+  falsePositives: res.filter((r) => (r.cls.startsWith("NEG") || ["HOLDN", "SCRIPTN", "XLN", "SELFN"].includes(r.cls)) && r.grounded).map((r) => r.id),
 };
 fs.writeFileSync(path.join(here, argOf("out", "controls-results.json")), JSON.stringify({ at: new Date().toISOString(), gate: "fold-chat-ground.js (snapshot) attribute()/turnRecord()", summary, results: res }, null, 1));
 console.log(JSON.stringify(summary, null, 1));

@@ -177,7 +177,11 @@ export function errorNotice(err) {
   const msg = String(err?.message || err || "unknown error").replace(/^error:\s*/i, "").trim();
   const status = err && typeof err.status === "number" ? err.status : null;
   let text;
-  if (status === 504 || /timed out|timeout/i.test(msg)) text = `The turn timed out before the model finished (${msg}). Nothing was written.`;
+  // A failure INSIDE the tab (the engine's CDN import, the weights download, the GPU) is not a bridge failure, even when
+  // its message says "Failed to fetch": branch on where it happened first, and never run the bridge regex on it.
+  const inTab = err && typeof err === "object" && err.kind !== "timeout" && (err.place === "tab" || ["no-gpu", "loader", "load-failed", "generate-failed", "declined"].includes(err.kind));
+  if (inTab) text = `The in-tab model could not ${err.kind === "generate-failed" || err.kind === "declined" ? "answer" : "load"} (${msg}). Nothing was written. Retry, pick a smaller model, or use the Fold's own server (\`npm run serve\`).`;
+  else if (status === 504 || /timed out|timeout/i.test(msg)) text = `The turn timed out before the model finished (${msg}). Nothing was written.`;
   else if (status === 429 || /429|rate.?limit|too many requests/i.test(msg)) text = `The model is rate-limited right now (${msg}). Nothing was written.`;
   else if (status === 0 || /unreachable|failed to fetch|networkerror|load failed/i.test(msg)) text = `The bridge could not be reached (${msg}). Nothing was written.`;
   else if (status === 400 || /refus|sealed|gate/i.test(msg)) text = `The request was refused (${msg}). Nothing was written.`;
@@ -206,7 +210,7 @@ export function declinedFallbackNotice(err, { from = "facing" } = {}) {
 export function noModelFallbackNotice(why, { from = "facing" } = {}) {
   const code = why?.code || "bridge-down";
   const text = code === "bridge-down"
-    ? "No model is reachable (the bridge isn't running), so this shows what the sources say. Start `heimdall up` for written answers."
+    ? "No model is reachable (no bridge answered and this tab has none loaded), so this shows what the sources say. Run `npm run serve` (the Fold's own server) or use the in-tab model for written answers."
     : `No model is available (${String(why?.text || "none is served").replace(/\s+/g, " ").trim()}), so this shows what the sources say.`;
   return { kind: "fold", retry: true, text, why: code, fellBackFrom: from };
 }

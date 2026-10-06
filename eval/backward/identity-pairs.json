@@ -1,0 +1,37 @@
+{
+  "note": "Frozen with docs/BACKWARDS-GROUNDING-PREREG.md before fold-chat-assemble.js existed. `ground` is a hand-written 7-sentence passage in the style of an encyclopedia article (not copied from any cache file). A pair is decided RELATIVE TO A GROUND: two sentences are one claim iff folding the ground on either selects the same set of ground atoms (identity by consequence). `same` pairs must be decided same; `different` pairs must NEVER be decided same; `hard` pairs are different claims the lexical gate cannot read (negation, role order): 'different' or 'undecidable' passes, 'same' fails; `crossLanguage` pairs are not decidable lexically: 'undecidable' passes, 'same' or 'different' fails (a verdict would be a guess).",
+  "ground": [
+    { "ref": "Tower", "text": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. Construction of the tower began in 1887 and it was completed in 1889. Gustave Eiffel's company designed and built the tower. The lattice was first sketched by the engineer Maurice Koechlin. The iron weighs 7,300 tonnes. The tower has two restaurants." }
+  ],
+  "same": [
+    ["The tower is 330 metres tall.", "The tower is 1,083 feet tall."],
+    ["The tower is 330 m tall.", "The tower stands 0.33 km high."],
+    ["It was completed in 1889.", "The tower was completed in 1889."],
+    ["Gustave Eiffel's company built the tower.", "The tower was built by the company of Gustave Eiffel."],
+    ["The base measures 125 metres on each side.", "Each side of the base is 410 feet."],
+    ["The iron weighs 7,300 tonnes.", "The tower's iron weighs 7,300 tonnes."]
+  ],
+  "different": [
+    ["The tower is 330 metres tall.", "The tower is 300 metres tall."],
+    ["The tower was completed in 1889.", "Construction of the tower began in 1887."],
+    ["The base measures 125 metres on each side.", "The tower is 330 metres tall."],
+    ["Gustave Eiffel designed the tower.", "Maurice Koechlin designed the tower."],
+    ["The tower is 330 metres tall.", "The tower is 1,083 metres tall."],
+    ["The tower was completed in 1889.", "The tower was completed in 1989."],
+    ["The tower has two restaurants.", "The tower has three restaurants."],
+    ["The iron weighs 7,300 tonnes.", "The iron weighs 7,300 kilograms."],
+    ["The tower is the tallest structure in Paris.", "The tower is the tallest structure in London."],
+    ["The tower is 330 metres tall.", "The tower weighs 330 tonnes."],
+    ["The tower is 330 metres tall.", "The tower is 330 feet tall."],
+    ["The tower was completed in 1889.", "The tower was completed in 1887."]
+  ],
+  "hard": [
+    ["The tower is 330 metres tall.", "The tower is not 330 metres tall."],
+    ["The tower is taller than the Statue of Liberty.", "The Statue of Liberty is taller than the tower."],
+    ["The tower was completed in 1889.", "The tower was never completed in 1889."]
+  ],
+  "crossLanguage": [
+    ["The tower is 330 metres tall.", "La torre mide 330 metros de altura."],
+    ["The tower was completed in 1889.", "Die Fertigstellung des Turms erfolgte 1889."]
+  ]
+}

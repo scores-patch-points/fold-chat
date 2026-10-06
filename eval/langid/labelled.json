@@ -1,0 +1,6841 @@
+[
+ {
+  "text": "show me a cookie recipe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0001"
+ },
+ {
+  "text": "show me a recipe for chocolate chip cookies",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0002"
+ },
+ {
+  "text": "what is the capital of australia",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0003"
+ },
+ {
+  "text": "what's the weather like in seattle today",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0004"
+ },
+ {
+  "text": "how do i reverse a string in python",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0005"
+ },
+ {
+  "text": "who won the world cup in 2018",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0006"
+ },
+ {
+  "text": "tell me about mercury",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0007"
+ },
+ {
+  "text": "give me tips to fall asleep faster",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0008"
+ },
+ {
+  "text": "wat is the tallest mountain on earth lol",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0009"
+ },
+ {
+  "text": "i want to learn guitar",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0010"
+ },
+ {
+  "text": "where should i start",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0011"
+ },
+ {
+  "text": "is it safe to eat eggs after the expiration date",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0012"
+ },
+ {
+  "text": "how many calories are in an avocado",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0013"
+ },
+ {
+  "text": "explain the difference between a virus and a bacterium",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0014"
+ },
+ {
+  "text": "compare iphone and android for a first time user",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0015"
+ },
+ {
+  "text": "write a thank you note to my neighbor",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0016"
+ },
+ {
+  "text": "can you help me fix my resume",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0017"
+ },
+ {
+  "text": "how tall is the eiffel tower",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0018"
+ },
+ {
+  "text": "in what year did the berlin wall fall",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0019"
+ },
+ {
+  "text": "who wrote pride and prejudice",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0020"
+ },
+ {
+  "text": "what else did she write",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0021"
+ },
+ {
+  "text": "when was it published",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0022"
+ },
+ {
+  "text": "translate where is the train station into spanish",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0023"
+ },
+ {
+  "text": "give me a 3 day itinerary for lisbon",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0024"
+ },
+ {
+  "text": "how does compound interest work",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0025"
+ },
+ {
+  "text": "i have a job interview tomorrow any advice",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0026"
+ },
+ {
+  "text": "how do i make sourdough starter from scratch",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0027"
+ },
+ {
+  "text": "what time does the pharmacy close",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0028"
+ },
+ {
+  "text": "can i bring my dog on the train",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0029"
+ },
+ {
+  "text": "find me a good book about stoicism",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0030"
+ },
+ {
+  "text": "why is my sourdough so dense",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0031"
+ },
+ {
+  "text": "recommend some podcasts about history",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0032"
+ },
+ {
+  "text": "how to tie a tie",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0033"
+ },
+ {
+  "text": "what are the symptoms of the flu",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0034"
+ },
+ {
+  "text": "how far is the moon from earth",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0035"
+ },
+ {
+  "text": "best way to learn spanish fast",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0036"
+ },
+ {
+  "text": "play something relaxing",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0037"
+ },
+ {
+  "text": "make it shorter",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0038"
+ },
+ {
+  "text": "and who is his wife",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0039"
+ },
+ {
+  "text": "how much does a tesla cost",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0040"
+ },
+ {
+  "text": "do you know any good pasta recipes",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0041"
+ },
+ {
+  "text": "i need a cheap flight to london",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0042"
+ },
+ {
+  "text": "show me pictures of golden retriever puppies",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0043"
+ },
+ {
+  "text": "what is the meaning of life",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0044"
+ },
+ {
+  "text": "should i buy a laptop or a tablet",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0045"
+ },
+ {
+  "text": "where can i watch the new batman movie",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0046"
+ },
+ {
+  "text": "how do i get rid of fruit flies",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0047"
+ },
+ {
+  "text": "what does gdp stand for",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0048"
+ },
+ {
+  "text": "tell me a joke",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0049"
+ },
+ {
+  "text": "whats a good name for a cat",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0050"
+ },
+ {
+  "text": "how old is the universe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0051"
+ },
+ {
+  "text": "is coffee bad for you",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0052"
+ },
+ {
+  "text": "give me a workout plan for beginners",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0053"
+ },
+ {
+  "text": "show me how to change a tire",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0054"
+ },
+ {
+  "text": "list the planets in order",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0055"
+ },
+ {
+  "text": "what happened in 1066",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0056"
+ },
+ {
+  "text": "i cant sleep help",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0057"
+ },
+ {
+  "text": "how do i center a div",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0058"
+ },
+ {
+  "text": "let me see the menu",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0059"
+ },
+ {
+  "text": "can u show me a banana bread recipe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0060"
+ },
+ {
+  "text": "who is the president of france",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0061"
+ },
+ {
+  "text": "show me the cheapest hotels in rome",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0062"
+ },
+ {
+  "text": "how do vaccines work",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0063"
+ },
+ {
+  "text": "help me write a cover letter",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0064"
+ },
+ {
+  "text": "which one is better",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0065"
+ },
+ {
+  "text": "thanks that helps",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0066"
+ },
+ {
+  "text": "wanna know how to bake bread",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0067"
+ },
+ {
+  "text": "what is the population of tokyo",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0068"
+ },
+ {
+  "text": "where is the nearest hospital",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0069"
+ },
+ {
+  "text": "why is the sky blue",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0070"
+ },
+ {
+  "text": "how many ounces in a cup",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0071"
+ },
+ {
+  "text": "show me a map of nashville",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0072"
+ },
+ {
+  "text": "give me a recipe for pad thai",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0073"
+ },
+ {
+  "text": "what should i cook tonight",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0074"
+ },
+ {
+  "text": "im looking for a gift for my mom",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0075"
+ },
+ {
+  "text": "do you have any advice for a first date",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0076"
+ },
+ {
+  "text": "what is the speed of light",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0077"
+ },
+ {
+  "text": "please show me the chocolate cake recipe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0078"
+ },
+ {
+  "text": "looking for a plumber in nashville",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0079"
+ },
+ {
+  "text": "where to buy cheap guitars",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0080"
+ },
+ {
+  "text": "How do I cook rice?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0081"
+ },
+ {
+  "text": "Who painted the Mona Lisa?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0082"
+ },
+ {
+  "text": "wat is teh capitol of austrailia",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0083"
+ },
+ {
+  "text": "hw do i make pancakes",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0084"
+ },
+ {
+  "text": "shwo me a recipie for cookies",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0085"
+ },
+ {
+  "text": "recomend me a good moive",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0086"
+ },
+ {
+  "text": "what about the other one",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0087"
+ },
+ {
+  "text": "find me a recipe for pasta carbonara",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0088"
+ },
+ {
+  "text": "give me the recipe for a classic carbonara",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0089"
+ },
+ {
+  "text": "how do you say good morning in german",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0090"
+ },
+ {
+  "text": "what does the word saudade mean",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0091"
+ },
+ {
+  "text": "who was the first person on the moon",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0092"
+ },
+ {
+  "text": "tell me everything you know about the roman empire",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0093"
+ },
+ {
+  "text": "i would like a recipe with no eggs",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0094"
+ },
+ {
+  "text": "can you show me a good lasagna recipe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0095"
+ },
+ {
+  "text": "what is the best way to cook salmon",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0096"
+ },
+ {
+  "text": "me and my friends want to visit japan in spring",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0097"
+ },
+ {
+  "text": "how can i show a progress bar in react",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0098"
+ },
+ {
+  "text": "do you have a recipe for a gluten free cake",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0099"
+ },
+ {
+  "text": "show me a quick dinner idea",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0100"
+ },
+ {
+  "text": "i want a chewier cookie recipe",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "val",
+  "id": "a0101"
+ },
+ {
+  "text": "what's a good recipe for banana bread?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0102"
+ },
+ {
+  "text": "show me something for dinner",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "asks",
+  "split": "held",
+  "id": "a0103"
+ },
+ {
+  "text": "cookie recipe",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0104"
+ },
+ {
+  "text": "iphone 15 price",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0105"
+ },
+ {
+  "text": "wifi password",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0106"
+ },
+ {
+  "text": "pasta carbonara",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0107"
+ },
+ {
+  "text": "best pizza near me",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0108"
+ },
+ {
+  "text": "weather tomorrow",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0109"
+ },
+ {
+  "text": "cheap flights london",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0110"
+ },
+ {
+  "text": "python reverse string",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0111"
+ },
+ {
+  "text": "nashville weather",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0112"
+ },
+ {
+  "text": "tom hanks movies",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0113"
+ },
+ {
+  "text": "taylor swift tour dates",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0114"
+ },
+ {
+  "text": "bitcoin price",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0115"
+ },
+ {
+  "text": "banana bread recipe",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0116"
+ },
+ {
+  "text": "nearest pharmacy open now",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0117"
+ },
+ {
+  "text": "chocolate chip cookies",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0118"
+ },
+ {
+  "text": "laptop deals",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0119"
+ },
+ {
+  "text": "used cars nashville",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0120"
+ },
+ {
+  "text": "vegan lasagna recipe",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0121"
+ },
+ {
+  "text": "dog friendly hotels",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0122"
+ },
+ {
+  "text": "beginner guitar chords",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0123"
+ },
+ {
+  "text": "sourdough recipe",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0124"
+ },
+ {
+  "text": "ps5 restock",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0125"
+ },
+ {
+  "text": "cookie recipe easy",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0126"
+ },
+ {
+  "text": "show me cookies",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0127"
+ },
+ {
+  "text": "more crispy please",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0128"
+ },
+ {
+  "text": "and him",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0129"
+ },
+ {
+  "text": "tell me more",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0130"
+ },
+ {
+  "text": "thanks",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0131"
+ },
+ {
+  "text": "ok thanks",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0132"
+ },
+ {
+  "text": "that works",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0133"
+ },
+ {
+  "text": "sounds good",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0134"
+ },
+ {
+  "text": "best cafe in paris",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0135"
+ },
+ {
+  "text": "sushi near me",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0136"
+ },
+ {
+  "text": "recipe please",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0137"
+ },
+ {
+  "text": "chewier please",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0138"
+ },
+ {
+  "text": "more",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0139"
+ },
+ {
+  "text": "cookie recipe please",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "held",
+  "id": "a0140"
+ },
+ {
+  "text": "show me",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0141"
+ },
+ {
+  "text": "pizza dough recipe",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0142"
+ },
+ {
+  "text": "how much",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "en-keyword",
+  "src": "asks",
+  "split": "val",
+  "id": "a0143"
+ },
+ {
+  "text": "paris",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0144"
+ },
+ {
+  "text": "tom hanks",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0145"
+ },
+ {
+  "text": "ok",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0146"
+ },
+ {
+  "text": "lol",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0147"
+ },
+ {
+  "text": "iphone 15",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0148"
+ },
+ {
+  "text": "nashville tn",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0149"
+ },
+ {
+  "text": "taylor swift",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0150"
+ },
+ {
+  "text": "123456",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0151"
+ },
+ {
+  "text": "hmm",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0152"
+ },
+ {
+  "text": "a",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0153"
+ },
+ {
+  "text": "elon musk",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0154"
+ },
+ {
+  "text": "bmw x5",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0155"
+ },
+ {
+  "text": "cnn",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0156"
+ },
+ {
+  "text": "netflix",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0157"
+ },
+ {
+  "text": "2+2",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0158"
+ },
+ {
+  "text": "pdf",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0159"
+ },
+ {
+  "text": "https://example.com/page",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0160"
+ },
+ {
+  "text": "john smith",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0161"
+ },
+ {
+  "text": "lebron james",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0162"
+ },
+ {
+  "text": "new york",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0163"
+ },
+ {
+  "text": "ryanair",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0164"
+ },
+ {
+  "text": "mcdonalds",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0165"
+ },
+ {
+  "text": "sushi",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0166"
+ },
+ {
+  "text": "taxi",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0167"
+ },
+ {
+  "text": "wifi",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0168"
+ },
+ {
+  "text": "angela merkel",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0169"
+ },
+ {
+  "text": "pedro pascal",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0170"
+ },
+ {
+  "text": "leonardo dicaprio",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0171"
+ },
+ {
+  "text": "lionel messi",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0172"
+ },
+ {
+  "text": "serena williams",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0173"
+ },
+ {
+  "text": "tokyo",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0174"
+ },
+ {
+  "text": "berlin",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0175"
+ },
+ {
+  "text": "real madrid",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0176"
+ },
+ {
+  "text": "fc barcelona",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0177"
+ },
+ {
+  "text": "nike air max",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0178"
+ },
+ {
+  "text": "ps5",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0179"
+ },
+ {
+  "text": "spotify",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0180"
+ },
+ {
+  "text": "youtube",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0181"
+ },
+ {
+  "text": "chatgpt",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0182"
+ },
+ {
+  "text": "mercury",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0183"
+ },
+ {
+  "text": "python",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0184"
+ },
+ {
+  "text": "kobe bryant",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0185"
+ },
+ {
+  "text": "bill gates",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0186"
+ },
+ {
+  "text": "mount everest",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0187"
+ },
+ {
+  "text": "coca cola",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0188"
+ },
+ {
+  "text": "hello",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0189"
+ },
+ {
+  "text": "hi",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0190"
+ },
+ {
+  "text": "chewier",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0191"
+ },
+ {
+  "text": "ok google",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0192"
+ },
+ {
+  "text": "jk rowling",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0193"
+ },
+ {
+  "text": "emma watson",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0194"
+ },
+ {
+  "text": "cristiano ronaldo",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0195"
+ },
+ {
+  "text": "adele",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0196"
+ },
+ {
+  "text": "samsung galaxy s24",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "val",
+  "id": "a0197"
+ },
+ {
+  "text": "tesla model 3",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "cannot-tell",
+  "src": "asks",
+  "split": "held",
+  "id": "a0198"
+ },
+ {
+  "text": "muestrame una receta de galletas",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0199"
+ },
+ {
+  "text": "cual es la capital de australia",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0200"
+ },
+ {
+  "text": "como hago pan casero",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0201"
+ },
+ {
+  "text": "donde queda el hospital mas cercano",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0202"
+ },
+ {
+  "text": "dame consejos para dormir mejor",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0203"
+ },
+ {
+  "text": "quiero aprender a tocar la guitarra",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0204"
+ },
+ {
+  "text": "cuanto cuesta un vuelo a madrid",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0205"
+ },
+ {
+  "text": "como se dice hello en español",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0206"
+ },
+ {
+  "text": "que hora es en tokio",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0207"
+ },
+ {
+  "text": "dime un chiste",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0208"
+ },
+ {
+  "text": "necesito una receta de tortilla de patatas",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0209"
+ },
+ {
+  "text": "por que el cielo es azul",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0210"
+ },
+ {
+  "text": "cuantas calorias tiene un aguacate",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0211"
+ },
+ {
+  "text": "ayudame a escribir una carta de presentacion",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0212"
+ },
+ {
+  "text": "me puedes recomendar un libro de ciencia ficcion",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0213"
+ },
+ {
+  "text": "quien gano el mundial de 2018",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0214"
+ },
+ {
+  "text": "y su esposa",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0215"
+ },
+ {
+  "text": "¿Qué altura tiene la Torre Eiffel?",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0216"
+ },
+ {
+  "text": "receta de paella",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0217"
+ },
+ {
+  "text": "muéstrame recetas de galletas de chocolate",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0218"
+ },
+ {
+  "text": "me mostra uma receita de biscoito",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0219"
+ },
+ {
+  "text": "qual e a capital da australia",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0220"
+ },
+ {
+  "text": "como faço pão caseiro",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0221"
+ },
+ {
+  "text": "onde fica o hospital mais proximo",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0222"
+ },
+ {
+  "text": "me dá dicas pra dormir melhor",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0223"
+ },
+ {
+  "text": "quero aprender a tocar violão",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0224"
+ },
+ {
+  "text": "quanto custa uma passagem para lisboa",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0225"
+ },
+ {
+  "text": "que horas são em toquio",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0226"
+ },
+ {
+  "text": "me conta uma piada",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0227"
+ },
+ {
+  "text": "preciso de uma receita de bolo de cenoura",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0228"
+ },
+ {
+  "text": "por que o céu é azul",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0229"
+ },
+ {
+  "text": "quantas calorias tem um abacate",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0230"
+ },
+ {
+  "text": "me ajuda a escrever uma carta de apresentação",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0231"
+ },
+ {
+  "text": "quem ganhou a copa de 2018",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0232"
+ },
+ {
+  "text": "e a esposa dele",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0233"
+ },
+ {
+  "text": "receita de pão de queijo",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0234"
+ },
+ {
+  "text": "mostra uma receita de brigadeiro",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0235"
+ },
+ {
+  "text": "mostrami una ricetta per i biscotti",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0236"
+ },
+ {
+  "text": "qual è la capitale dell'australia",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0237"
+ },
+ {
+  "text": "come faccio il pane in casa",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0238"
+ },
+ {
+  "text": "dov'è l'ospedale più vicino",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0239"
+ },
+ {
+  "text": "dammi dei consigli per dormire meglio",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0240"
+ },
+ {
+  "text": "voglio imparare a suonare la chitarra",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0241"
+ },
+ {
+  "text": "quanto costa un volo per roma",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0242"
+ },
+ {
+  "text": "che ore sono a tokyo",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0243"
+ },
+ {
+  "text": "raccontami una barzelletta",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0244"
+ },
+ {
+  "text": "mi serve una ricetta per la carbonara",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0245"
+ },
+ {
+  "text": "perché il cielo è azzurro",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0246"
+ },
+ {
+  "text": "quante calorie ha un avocado",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0247"
+ },
+ {
+  "text": "aiutami a scrivere una lettera di presentazione",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0248"
+ },
+ {
+  "text": "chi ha vinto i mondiali del 2018",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0249"
+ },
+ {
+  "text": "e sua moglie",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0250"
+ },
+ {
+  "text": "cerco un idraulico a milano",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0251"
+ },
+ {
+  "text": "ricetta della pizza margherita",
+  "accept": [
+   "it"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0252"
+ },
+ {
+  "text": "mostra'm una recepta de galetes",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0253"
+ },
+ {
+  "text": "quina és la capital d'austràlia",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0254"
+ },
+ {
+  "text": "com puc fer pa casolà",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0255"
+ },
+ {
+  "text": "on és l'hospital més proper",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0256"
+ },
+ {
+  "text": "dona'm consells per dormir millor",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0257"
+ },
+ {
+  "text": "vull aprendre a tocar la guitarra",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0258"
+ },
+ {
+  "text": "quant costa un bitllet a barcelona",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0259"
+ },
+ {
+  "text": "per què el cel és blau",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0260"
+ },
+ {
+  "text": "m'ajudes a escriure una carta",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0261"
+ },
+ {
+  "text": "a quina hora tanca la farmàcia",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0262"
+ },
+ {
+  "text": "recepta de crema catalana",
+  "accept": [
+   "ca"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0263"
+ },
+ {
+  "text": "montre moi une recette de cookies",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0264"
+ },
+ {
+  "text": "quelle est la capitale de l'australie",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0265"
+ },
+ {
+  "text": "comment faire du pain maison",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0266"
+ },
+ {
+  "text": "ou est l'hopital le plus proche",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0267"
+ },
+ {
+  "text": "donne moi des conseils pour mieux dormir",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0268"
+ },
+ {
+  "text": "je veux apprendre a jouer de la guitare",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0269"
+ },
+ {
+  "text": "combien coute un vol pour paris",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0270"
+ },
+ {
+  "text": "quelle heure est il a tokyo",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0271"
+ },
+ {
+  "text": "raconte moi une blague",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0272"
+ },
+ {
+  "text": "j'ai besoin d'une recette de quiche lorraine",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0273"
+ },
+ {
+  "text": "pourquoi le ciel est bleu",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0274"
+ },
+ {
+  "text": "combien de calories dans un avocat",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0275"
+ },
+ {
+  "text": "aide moi a ecrire une lettre de motivation",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0276"
+ },
+ {
+  "text": "qui a gagne la coupe du monde 2018",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0277"
+ },
+ {
+  "text": "et sa femme",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0278"
+ },
+ {
+  "text": "je cherche un plombier a lyon",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0279"
+ },
+ {
+  "text": "recette de crêpes",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0280"
+ },
+ {
+  "text": "Quelle est la hauteur de la tour Eiffel ?",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0281"
+ },
+ {
+  "text": "zeig mir ein rezept für kekse",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0282"
+ },
+ {
+  "text": "was ist die hauptstadt von australien",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0283"
+ },
+ {
+  "text": "wie backe ich brot zu hause",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0284"
+ },
+ {
+  "text": "wo ist das nächste krankenhaus",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0285"
+ },
+ {
+  "text": "gib mir tipps zum besser schlafen",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0286"
+ },
+ {
+  "text": "ich möchte gitarre lernen",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0287"
+ },
+ {
+  "text": "wie viel kostet ein flug nach berlin",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0288"
+ },
+ {
+  "text": "wie spät ist es in tokio",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0289"
+ },
+ {
+  "text": "erzähl mir einen witz",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0290"
+ },
+ {
+  "text": "ich brauche ein rezept für apfelkuchen",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0291"
+ },
+ {
+  "text": "warum ist der himmel blau",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0292"
+ },
+ {
+  "text": "wie viele kalorien hat eine avocado",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0293"
+ },
+ {
+  "text": "hilf mir bei meinem lebenslauf",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0294"
+ },
+ {
+  "text": "wer hat die weltmeisterschaft 2018 gewonnen",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0295"
+ },
+ {
+  "text": "und seine frau",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0296"
+ },
+ {
+  "text": "wann schliesst die apotheke",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0297"
+ },
+ {
+  "text": "wie funktioniert ein elektromotor",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0298"
+ },
+ {
+  "text": "rezept für kartoffelsalat",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0299"
+ },
+ {
+  "text": "laat me een recept voor koekjes zien",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0300"
+ },
+ {
+  "text": "wat is de hoofdstad van australie",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0301"
+ },
+ {
+  "text": "hoe bak ik zelf brood",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0302"
+ },
+ {
+  "text": "waar is het dichtstbijzijnde ziekenhuis",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0303"
+ },
+ {
+  "text": "geef me tips om beter te slapen",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0304"
+ },
+ {
+  "text": "ik wil gitaar leren spelen",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0305"
+ },
+ {
+  "text": "hoeveel kost een vlucht naar amsterdam",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0306"
+ },
+ {
+  "text": "hoe laat is het in tokio",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0307"
+ },
+ {
+  "text": "vertel me een grap",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0308"
+ },
+ {
+  "text": "waarom is de lucht blauw",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0309"
+ },
+ {
+  "text": "recept voor stroopwafels",
+  "accept": [
+   "nl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0310"
+ },
+ {
+  "text": "visa mig ett recept på kakor",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0311"
+ },
+ {
+  "text": "vad är huvudstaden i australien",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0312"
+ },
+ {
+  "text": "hur bakar jag bröd hemma",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0313"
+ },
+ {
+  "text": "var ligger närmaste sjukhus",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0314"
+ },
+ {
+  "text": "ge mig tips för att sova bättre",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0315"
+ },
+ {
+  "text": "jag vill lära mig spela gitarr",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0316"
+ },
+ {
+  "text": "hur mycket kostar en flygning till stockholm",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0317"
+ },
+ {
+  "text": "vad är klockan i tokyo",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0318"
+ },
+ {
+  "text": "berätta ett skämt",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0319"
+ },
+ {
+  "text": "varför är himlen blå",
+  "accept": [
+   "sv"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0320"
+ },
+ {
+  "text": "vis mig en opskrift på småkager",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0321"
+ },
+ {
+  "text": "hvad er hovedstaden i australien",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0322"
+ },
+ {
+  "text": "hvordan bager jeg brød derhjemme",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0323"
+ },
+ {
+  "text": "hvor er det nærmeste hospital",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0324"
+ },
+ {
+  "text": "giv mig tips til at sove bedre",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0325"
+ },
+ {
+  "text": "jeg vil gerne lære at spille guitar",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0326"
+ },
+ {
+  "text": "hvor meget koster en flybillet til københavn",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0327"
+ },
+ {
+  "text": "hvad er klokken i tokyo",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0328"
+ },
+ {
+  "text": "fortæl mig en vittighed",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0329"
+ },
+ {
+  "text": "hvorfor er himlen blå",
+  "accept": [
+   "da"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0330"
+ },
+ {
+  "text": "vis meg en oppskrift på kjeks",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0331"
+ },
+ {
+  "text": "hva er hovedstaden i australia",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0332"
+ },
+ {
+  "text": "hvordan baker jeg brød hjemme",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0333"
+ },
+ {
+  "text": "hvor er nærmeste sykehus",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0334"
+ },
+ {
+  "text": "gi meg tips for å sove bedre",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0335"
+ },
+ {
+  "text": "jeg vil lære å spille gitar",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0336"
+ },
+ {
+  "text": "hvor mye koster en flybillett til oslo",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0337"
+ },
+ {
+  "text": "hva er klokka i tokyo",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0338"
+ },
+ {
+  "text": "fortell meg en vits",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0339"
+ },
+ {
+  "text": "hvorfor er himmelen blå",
+  "accept": [
+   "no"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0340"
+ },
+ {
+  "text": "arată-mi o rețetă de biscuiți",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0341"
+ },
+ {
+  "text": "care este capitala australiei",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0342"
+ },
+ {
+  "text": "cum fac pâine acasă",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0343"
+ },
+ {
+  "text": "unde este cel mai apropiat spital",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0344"
+ },
+ {
+  "text": "dă-mi sfaturi ca să dorm mai bine",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0345"
+ },
+ {
+  "text": "vreau să învăț să cânt la chitară",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0346"
+ },
+ {
+  "text": "cât costă un zbor spre bucurești",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0347"
+ },
+ {
+  "text": "de ce este cerul albastru",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0348"
+ },
+ {
+  "text": "cum se face o ciorba de legume",
+  "accept": [
+   "ro"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0349"
+ },
+ {
+  "text": "pokaż mi przepis na ciasteczka",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0350"
+ },
+ {
+  "text": "jaka jest stolica australii",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0351"
+ },
+ {
+  "text": "jak upiec chleb w domu",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0352"
+ },
+ {
+  "text": "gdzie jest najbliższy szpital",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0353"
+ },
+ {
+  "text": "daj mi wskazówki jak lepiej spać",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0354"
+ },
+ {
+  "text": "chcę nauczyć się grać na gitarze",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0355"
+ },
+ {
+  "text": "ile kosztuje bilet do warszawy",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0356"
+ },
+ {
+  "text": "dlaczego niebo jest niebieskie",
+  "accept": [
+   "pl"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0357"
+ },
+ {
+  "text": "ukaž mi recept na sušenky",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0358"
+ },
+ {
+  "text": "jaké je hlavní město austrálie",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0359"
+ },
+ {
+  "text": "jak upéct chleba doma",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0360"
+ },
+ {
+  "text": "kde je nejbližší nemocnice",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0361"
+ },
+ {
+  "text": "dej mi tipy jak líp spát",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0362"
+ },
+ {
+  "text": "chci se naučit hrát na kytaru",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0363"
+ },
+ {
+  "text": "kolik stojí letenka do prahy",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0364"
+ },
+ {
+  "text": "proč je obloha modrá",
+  "accept": [
+   "cs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0365"
+ },
+ {
+  "text": "bana kurabiye tarifi göster",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0366"
+ },
+ {
+  "text": "avustralyanın başkenti neresi",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0367"
+ },
+ {
+  "text": "evde ekmek nasıl yapılır",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0368"
+ },
+ {
+  "text": "en yakın hastane nerede",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0369"
+ },
+ {
+  "text": "daha iyi uyumak için tavsiye ver",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0370"
+ },
+ {
+  "text": "gitar çalmayı öğrenmek istiyorum",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0371"
+ },
+ {
+  "text": "istanbul'a uçak bileti ne kadar",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0372"
+ },
+ {
+  "text": "gökyüzü neden mavi",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0373"
+ },
+ {
+  "text": "en yakin eczane nerede",
+  "accept": [
+   "tr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0374"
+ },
+ {
+  "text": "tunjukkan resep kue kering",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0375"
+ },
+ {
+  "text": "apa ibu kota australia",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0376"
+ },
+ {
+  "text": "cara membuat roti di rumah",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0377"
+ },
+ {
+  "text": "dimana rumah sakit terdekat",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0378"
+ },
+ {
+  "text": "kasih saya tips tidur nyenyak",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0379"
+ },
+ {
+  "text": "saya mau belajar main gitar",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0380"
+ },
+ {
+  "text": "berapa harga tiket pesawat ke jakarta",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0381"
+ },
+ {
+  "text": "kenapa langit berwarna biru",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0382"
+ },
+ {
+  "text": "ceritakan lelucon dong",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0383"
+ },
+ {
+  "text": "jam berapa sekarang di tokyo",
+  "accept": [
+   "id"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0384"
+ },
+ {
+  "text": "tunjukkan resipi biskut",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0385"
+ },
+ {
+  "text": "apakah ibu negara australia",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0386"
+ },
+ {
+  "text": "bagaimana nak buat roti di rumah",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0387"
+ },
+ {
+  "text": "di mana hospital yang paling dekat",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0388"
+ },
+ {
+  "text": "beri saya petua untuk tidur lena",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0389"
+ },
+ {
+  "text": "saya mahu belajar bermain gitar",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0390"
+ },
+ {
+  "text": "berapa harga tiket kapal terbang ke kuala lumpur",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0391"
+ },
+ {
+  "text": "kenapa langit biru",
+  "accept": [
+   "ms"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0392"
+ },
+ {
+  "text": "näytä minulle keksireseptti",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0393"
+ },
+ {
+  "text": "mikä on australian pääkaupunki",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0394"
+ },
+ {
+  "text": "miten leivon leipää kotona",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0395"
+ },
+ {
+  "text": "missä on lähin sairaala",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0396"
+ },
+ {
+  "text": "anna vinkkejä nukkumiseen",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0397"
+ },
+ {
+  "text": "haluan oppia soittamaan kitaraa",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0398"
+ },
+ {
+  "text": "paljonko lento helsinkiin maksaa",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0399"
+ },
+ {
+  "text": "miksi taivas on sininen",
+  "accept": [
+   "fi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0400"
+ },
+ {
+  "text": "mutass egy sütemény receptet",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0401"
+ },
+ {
+  "text": "mi ausztrália fővárosa",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0402"
+ },
+ {
+  "text": "hogyan süssek kenyeret otthon",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0403"
+ },
+ {
+  "text": "hol van a legközelebbi kórház",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0404"
+ },
+ {
+  "text": "adj tippeket a jobb alváshoz",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0405"
+ },
+ {
+  "text": "gitározni szeretnék tanulni",
+  "accept": [
+   "hu"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0406"
+ },
+ {
+  "text": "pokaži mi recept za kekse",
+  "accept": [
+   "hr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0407"
+ },
+ {
+  "text": "koji je glavni grad australije",
+  "accept": [
+   "hr",
+   "sr",
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "shared": true,
+  "split": "dev",
+  "id": "a0408"
+ },
+ {
+  "text": "kako ispeći kruh kod kuće",
+  "accept": [
+   "hr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0409"
+ },
+ {
+  "text": "gdje je najbliža bolnica",
+  "accept": [
+   "hr",
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "shared": true,
+  "split": "dev",
+  "id": "a0410"
+ },
+ {
+  "text": "daj mi savjete za bolji san",
+  "accept": [
+   "hr",
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "shared": true,
+  "split": "held",
+  "id": "a0411"
+ },
+ {
+  "text": "želim naučiti svirati gitaru",
+  "accept": [
+   "hr",
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "shared": true,
+  "split": "val",
+  "id": "a0412"
+ },
+ {
+  "text": "koliko košta let do zagreba",
+  "accept": [
+   "hr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0413"
+ },
+ {
+  "text": "zašto je nebo plavo",
+  "accept": [
+   "hr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0414"
+ },
+ {
+  "text": "pokaži mi recept za kolače",
+  "accept": [
+   "sr",
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "shared": true,
+  "split": "dev",
+  "id": "a0415"
+ },
+ {
+  "text": "kako da ispečem hleb kod kuće",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0416"
+ },
+ {
+  "text": "gde je najbliža bolnica",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0417"
+ },
+ {
+  "text": "daj mi savete za bolji san",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0418"
+ },
+ {
+  "text": "želim da naučim da sviram gitaru",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0419"
+ },
+ {
+  "text": "kako ispeći hljeb kod kuće",
+  "accept": [
+   "bs"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0420"
+ },
+ {
+  "text": "cho tôi công thức làm bánh quy",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0421"
+ },
+ {
+  "text": "thủ đô của úc là gì",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0422"
+ },
+ {
+  "text": "làm bánh mì ở nhà như thế nào",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0423"
+ },
+ {
+  "text": "bệnh viện gần nhất ở đâu",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0424"
+ },
+ {
+  "text": "cho mình vài mẹo để ngủ ngon hơn",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0425"
+ },
+ {
+  "text": "tôi muốn học chơi guitar",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0426"
+ },
+ {
+  "text": "giá vé máy bay đi hà nội bao nhiêu",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0427"
+ },
+ {
+  "text": "tại sao bầu trời màu xanh",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0428"
+ },
+ {
+  "text": "cach nau pho ngon",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0429"
+ },
+ {
+  "text": "gan day co quan ca phe nao khong",
+  "accept": [
+   "vi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0430"
+ },
+ {
+  "text": "mujhe cookie ki recipe dikhao",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0431"
+ },
+ {
+  "text": "australia ki rajdhani kya hai",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0432"
+ },
+ {
+  "text": "ghar par roti kaise banaye",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0433"
+ },
+ {
+  "text": "sabse najdik hospital kahan hai",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0434"
+ },
+ {
+  "text": "mujhe achhi neend ke tips batao",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0435"
+ },
+ {
+  "text": "mujhe guitar bajana seekhna hai",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0436"
+ },
+ {
+  "text": "delhi ka ticket kitne ka hai",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0437"
+ },
+ {
+  "text": "aasman neela kyu hota hai",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0438"
+ },
+ {
+  "text": "mujhe biscuit ki recipe dikhain",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0439"
+ },
+ {
+  "text": "australia ka dar ul hukumat kya hai",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0440"
+ },
+ {
+  "text": "ghar mein roti kaise banayen",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0441"
+ },
+ {
+  "text": "sab se qareeb hospital kahan hai",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0442"
+ },
+ {
+  "text": "mujhe achi neend ke liye mashwara dein",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0443"
+ },
+ {
+  "text": "lahore ka ticket kitne ka hai",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0444"
+ },
+ {
+  "text": "wys my 'n resep vir koekies",
+  "accept": [
+   "af"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0445"
+ },
+ {
+  "text": "wat is die hoofstad van australië",
+  "accept": [
+   "af"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0446"
+ },
+ {
+  "text": "hoe bak ek brood tuis",
+  "accept": [
+   "af"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0447"
+ },
+ {
+  "text": "waar is die naaste hospitaal",
+  "accept": [
+   "af"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0448"
+ },
+ {
+  "text": "ano ang kabisera ng australia",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "val",
+  "id": "a0449"
+ },
+ {
+  "text": "magkano ang ticket papuntang maynila",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "val",
+  "id": "a0450"
+ },
+ {
+  "text": "paano magluto ng adobo",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0451"
+ },
+ {
+  "text": "saan ang pinakamalapit na ospital",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "held",
+  "id": "a0452"
+ },
+ {
+  "text": "hver er höfuðborg ástralíu",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "held",
+  "id": "a0453"
+ },
+ {
+  "text": "hvar er næsta sjúkrahús",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0454"
+ },
+ {
+  "text": "cila është kryeqyteti i australisë",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0455"
+ },
+ {
+  "text": "ku është spitali më i afërt",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "val",
+  "id": "a0456"
+ },
+ {
+  "text": "mi volas lerni ludi gitaron",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "val",
+  "id": "a0457"
+ },
+ {
+  "text": "nataka kujua mji mkuu wa australia",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0458"
+ },
+ {
+  "text": "Mnara wa Eiffel una urefu gani?",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "held",
+  "id": "a0459"
+ },
+ {
+  "text": "Ukuta wa Berlin ulianguka mwaka gani?",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0460"
+ },
+ {
+  "text": "Mji mkuu wa Australia ni upi?",
+  "accept": [
+   "unknown"
+  ],
+  "cls": "no-prior",
+  "src": "asks",
+  "split": "held",
+  "id": "a0461"
+ },
+ {
+  "text": "покажи рецепт печенья",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0462"
+ },
+ {
+  "text": "какая столица австралии",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0463"
+ },
+ {
+  "text": "как испечь хлеб дома",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0464"
+ },
+ {
+  "text": "где ближайшая больница",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0465"
+ },
+ {
+  "text": "дай советы как лучше спать",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0466"
+ },
+ {
+  "text": "хочу научиться играть на гитаре",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0467"
+ },
+ {
+  "text": "сколько стоит билет в москву",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0468"
+ },
+ {
+  "text": "почему небо голубое",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0469"
+ },
+ {
+  "text": "расскажи анекдот",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0470"
+ },
+ {
+  "text": "сколько калорий в авокадо",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0471"
+ },
+ {
+  "text": "какова высота эйфелевой башни",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0472"
+ },
+ {
+  "text": "покажи рецепт печива",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0473"
+ },
+ {
+  "text": "яка столиця австралії",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0474"
+ },
+ {
+  "text": "як спекти хліб вдома",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0475"
+ },
+ {
+  "text": "де найближча лікарня",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0476"
+ },
+ {
+  "text": "дай поради як краще спати",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0477"
+ },
+ {
+  "text": "хочу навчитися грати на гітарі",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0478"
+ },
+ {
+  "text": "скільки коштує квиток до києва",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0479"
+ },
+ {
+  "text": "чому небо блакитне",
+  "accept": [
+   "uk"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0480"
+ },
+ {
+  "text": "покажи ми рецепта за бисквити",
+  "accept": [
+   "bg"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0481"
+ },
+ {
+  "text": "коя е столицата на австралия",
+  "accept": [
+   "bg"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0482"
+ },
+ {
+  "text": "как да изпека хляб вкъщи",
+  "accept": [
+   "bg"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0483"
+ },
+ {
+  "text": "къде е най-близката болница",
+  "accept": [
+   "bg"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0484"
+ },
+ {
+  "text": "искам да се науча да свиря на китара",
+  "accept": [
+   "bg"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0485"
+ },
+ {
+  "text": "покажи ми рецепт за колаче",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0486"
+ },
+ {
+  "text": "који је главни град аустралије",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0487"
+ },
+ {
+  "text": "где је најближа болница",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0488"
+ },
+ {
+  "text": "желим да научим да свирам гитару",
+  "accept": [
+   "sr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0489"
+ },
+ {
+  "text": "δείξε μου μια συνταγή για μπισκότα",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0490"
+ },
+ {
+  "text": "ποια είναι η πρωτεύουσα της αυστραλίας",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0491"
+ },
+ {
+  "text": "πώς φτιάχνω ψωμί στο σπίτι",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0492"
+ },
+ {
+  "text": "πού είναι το πλησιέστερο νοσοκομείο",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0493"
+ },
+ {
+  "text": "θέλω να μάθω κιθάρα",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0494"
+ },
+ {
+  "text": "γιατί ο ουρανός είναι μπλε",
+  "accept": [
+   "el"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0495"
+ },
+ {
+  "text": "תראה לי מתכון לעוגיות",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0496"
+ },
+ {
+  "text": "מהי בירת אוסטרליה",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0497"
+ },
+ {
+  "text": "איך אופים לחם בבית",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0498"
+ },
+ {
+  "text": "איפה בית החולים הקרוב ביותר",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0499"
+ },
+ {
+  "text": "תן לי טיפים לשינה טובה",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0500"
+ },
+ {
+  "text": "אני רוצה ללמוד לנגן בגיטרה",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0501"
+ },
+ {
+  "text": "כמה עולה טיסה לתל אביב",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0502"
+ },
+ {
+  "text": "למה השמיים כחולים",
+  "accept": [
+   "he"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0503"
+ },
+ {
+  "text": "أرني وصفة كوكيز",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0504"
+ },
+ {
+  "text": "ما هي عاصمة أستراليا",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0505"
+ },
+ {
+  "text": "كيف أخبز الخبز في البيت",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0506"
+ },
+ {
+  "text": "أين أقرب مستشفى",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0507"
+ },
+ {
+  "text": "أعطني نصائح لنوم أفضل",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0508"
+ },
+ {
+  "text": "أريد أن أتعلم العزف على الجيتار",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0509"
+ },
+ {
+  "text": "كم سعر تذكرة الطيران إلى القاهرة",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0510"
+ },
+ {
+  "text": "لماذا السماء زرقاء",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0511"
+ },
+ {
+  "text": "احكي لي نكتة",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0512"
+ },
+ {
+  "text": "كم سعرة حرارية في الأفوكادو",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0513"
+ },
+ {
+  "text": "یک دستور پخت کلوچه نشان بده",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0514"
+ },
+ {
+  "text": "پایتخت استرالیا کجاست",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0515"
+ },
+ {
+  "text": "چطور در خانه نان بپزم",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0516"
+ },
+ {
+  "text": "نزدیک‌ترین بیمارستان کجاست",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0517"
+ },
+ {
+  "text": "می‌خواهم گیتار یاد بگیرم",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0518"
+ },
+ {
+  "text": "چرا آسمان آبی است",
+  "accept": [
+   "fa"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0519"
+ },
+ {
+  "text": "مجھے بسکٹ کی ترکیب دکھائیں",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0520"
+ },
+ {
+  "text": "آسٹریلیا کا دارالحکومت کیا ہے",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0521"
+ },
+ {
+  "text": "گھر پر روٹی کیسے بنائیں",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0522"
+ },
+ {
+  "text": "سب سے قریب ہسپتال کہاں ہے",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0523"
+ },
+ {
+  "text": "مجھے گٹار سیکھنا ہے",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0524"
+ },
+ {
+  "text": "آسمان نیلا کیوں ہے",
+  "accept": [
+   "ur"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0525"
+ },
+ {
+  "text": "मुझे कुकीज़ की रेसिपी दिखाओ",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0526"
+ },
+ {
+  "text": "ऑस्ट्रेलिया की राजधानी क्या है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0527"
+ },
+ {
+  "text": "घर पर रोटी कैसे बनाएं",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0528"
+ },
+ {
+  "text": "सबसे नज़दीकी अस्पताल कहाँ है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0529"
+ },
+ {
+  "text": "मुझे अच्छी नींद के लिए टिप्स दो",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0530"
+ },
+ {
+  "text": "मुझे गिटार बजाना सीखना है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0531"
+ },
+ {
+  "text": "दिल्ली का टिकट कितने का है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0532"
+ },
+ {
+  "text": "आसमान नीला क्यों होता है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0533"
+ },
+ {
+  "text": "मला कुकीजची रेसिपी दाखव",
+  "accept": [
+   "mr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0534"
+ },
+ {
+  "text": "ऑस्ट्रेलियाची राजधानी कोणती आहे",
+  "accept": [
+   "mr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0535"
+ },
+ {
+  "text": "जवळचे रुग्णालय कुठे आहे",
+  "accept": [
+   "mr"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0536"
+ },
+ {
+  "text": "আমাকে কুকিজের রেসিপি দেখাও",
+  "accept": [
+   "bn"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0537"
+ },
+ {
+  "text": "অস্ট্রেলিয়ার রাজধানী কী",
+  "accept": [
+   "bn"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0538"
+ },
+ {
+  "text": "বাড়িতে রুটি কীভাবে বানাব",
+  "accept": [
+   "bn"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0539"
+ },
+ {
+  "text": "কাছের হাসপাতাল কোথায়",
+  "accept": [
+   "bn"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0540"
+ },
+ {
+  "text": "আমি গিটার শিখতে চাই",
+  "accept": [
+   "bn"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0541"
+ },
+ {
+  "text": "குக்கீ செய்முறையைக் காட்டு",
+  "accept": [
+   "ta"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0542"
+ },
+ {
+  "text": "ஆஸ்திரேலியாவின் தலைநகரம் என்ன",
+  "accept": [
+   "ta"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0543"
+ },
+ {
+  "text": "அருகிலுள்ள மருத்துவமனை எங்கே",
+  "accept": [
+   "ta"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0544"
+ },
+ {
+  "text": "நான் கிட்டார் கற்க விரும்புகிறேன்",
+  "accept": [
+   "ta"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0545"
+ },
+ {
+  "text": "కుకీల రెసిపీ చూపించు",
+  "accept": [
+   "te"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0546"
+ },
+ {
+  "text": "ఆస్ట్రేలియా రాజధాని ఏమిటి",
+  "accept": [
+   "te"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0547"
+ },
+ {
+  "text": "దగ్గరలో ఆసుపత్రి ఎక్కడ ఉంది",
+  "accept": [
+   "te"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0548"
+ },
+ {
+  "text": "ขอสูตรคุกกี้หน่อย",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0549"
+ },
+ {
+  "text": "เมืองหลวงของออสเตรเลียคืออะไร",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0550"
+ },
+ {
+  "text": "ทำขนมปังที่บ้านยังไง",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0551"
+ },
+ {
+  "text": "โรงพยาบาลที่ใกล้ที่สุดอยู่ที่ไหน",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0552"
+ },
+ {
+  "text": "ขอเคล็ดลับนอนหลับสบาย",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0553"
+ },
+ {
+  "text": "อยากเรียนเล่นกีตาร์",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0554"
+ },
+ {
+  "text": "ตั๋วเครื่องบินไปเชียงใหม่ราคาเท่าไหร่",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0555"
+ },
+ {
+  "text": "ทำไมท้องฟ้าถึงสีฟ้า",
+  "accept": [
+   "th"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0556"
+ },
+ {
+  "text": "给我看一个饼干食谱",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0557"
+ },
+ {
+  "text": "澳大利亚的首都是哪里",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0558"
+ },
+ {
+  "text": "怎么在家做面包",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0559"
+ },
+ {
+  "text": "最近的医院在哪里",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0560"
+ },
+ {
+  "text": "给我一些睡好觉的建议",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0561"
+ },
+ {
+  "text": "我想学吉他",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0562"
+ },
+ {
+  "text": "去北京的机票多少钱",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0563"
+ },
+ {
+  "text": "天空为什么是蓝色的",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0564"
+ },
+ {
+  "text": "讲个笑话",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0565"
+ },
+ {
+  "text": "牛油果有多少卡路里",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0566"
+ },
+ {
+  "text": "2018年世界杯谁赢了",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0567"
+ },
+ {
+  "text": "台北現在幾點",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0568"
+ },
+ {
+  "text": "我想學彈吉他",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0569"
+ },
+ {
+  "text": "埃菲尔铁塔有多高",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0570"
+ },
+ {
+  "text": "クッキーのレシピを見せて",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0571"
+ },
+ {
+  "text": "オーストラリアの首都はどこ",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0572"
+ },
+ {
+  "text": "家でパンを焼くにはどうすればいい",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0573"
+ },
+ {
+  "text": "一番近い病院はどこですか",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0574"
+ },
+ {
+  "text": "よく眠れるコツを教えて",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0575"
+ },
+ {
+  "text": "ギターを習いたいです",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0576"
+ },
+ {
+  "text": "東京行きの航空券はいくらですか",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0577"
+ },
+ {
+  "text": "なぜ空は青いの",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0578"
+ },
+ {
+  "text": "冗談を言って",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0579"
+ },
+ {
+  "text": "アボカドのカロリーは",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0580"
+ },
+ {
+  "text": "エッフェル塔の高さはどれくらいですか",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0581"
+ },
+ {
+  "text": "쿠키 레시피 보여줘",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0582"
+ },
+ {
+  "text": "호주의 수도는 어디야",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0583"
+ },
+ {
+  "text": "집에서 빵 만드는 법",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0584"
+ },
+ {
+  "text": "가장 가까운 병원이 어디예요",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0585"
+ },
+ {
+  "text": "잠 잘 자는 팁 알려줘",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0586"
+ },
+ {
+  "text": "기타 배우고 싶어요",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "val",
+  "id": "a0587"
+ },
+ {
+  "text": "서울행 비행기 표 얼마예요",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "held",
+  "id": "a0588"
+ },
+ {
+  "text": "하늘은 왜 파란색이야",
+  "accept": [
+   "ko"
+  ],
+  "cls": "lang",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0589"
+ },
+ {
+  "text": "iphone 15 가격 알려줘",
+  "accept": [
+   "ko"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0590"
+ },
+ {
+  "text": "유튜브에서 파이썬 강의 추천해줘",
+  "accept": [
+   "ko"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0591"
+ },
+ {
+  "text": "python でリストを逆順にする方法",
+  "accept": [
+   "ja"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0592"
+ },
+ {
+  "text": "iphone 15 の値段を教えて",
+  "accept": [
+   "ja"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0593"
+ },
+ {
+  "text": "怎么用python反转字符串",
+  "accept": [
+   "zh"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0594"
+ },
+ {
+  "text": "iphone 15多少钱",
+  "accept": [
+   "zh"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "held",
+  "id": "a0595"
+ },
+ {
+  "text": "推荐一个好用的vpn",
+  "accept": [
+   "zh"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0596"
+ },
+ {
+  "text": "как установить python на windows",
+  "accept": [
+   "ru"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0597"
+ },
+ {
+  "text": "посоветуй хороший ноутбук для gaming",
+  "accept": [
+   "ru"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0598"
+ },
+ {
+  "text": "كيف أثبت python على ويندوز",
+  "accept": [
+   "ar"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0599"
+ },
+ {
+  "text": "كم سعر iphone 15",
+  "accept": [
+   "ar"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0600"
+ },
+ {
+  "text": "iphone 15 की कीमत क्या है",
+  "accept": [
+   "hi"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0601"
+ },
+ {
+  "text": "python में लिस्ट को उल्टा कैसे करें",
+  "accept": [
+   "hi"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0602"
+ },
+ {
+  "text": "iphone 15 ราคาเท่าไหร่",
+  "accept": [
+   "th"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0603"
+ },
+ {
+  "text": "สอน python เบื้องต้น",
+  "accept": [
+   "th"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0604"
+ },
+ {
+  "text": "איך מתקינים python על ווינדוס",
+  "accept": [
+   "he"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0605"
+ },
+ {
+  "text": "כמה עולה iphone 15",
+  "accept": [
+   "he"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0606"
+ },
+ {
+  "text": "dame un recipe de pancakes",
+  "accept": [
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0607"
+ },
+ {
+  "text": "quiero un playlist de chill music",
+  "accept": [
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0608"
+ },
+ {
+  "text": "como instalo python en windows",
+  "accept": [
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0609"
+ },
+ {
+  "text": "cual es el mejor laptop para gaming",
+  "accept": [
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0610"
+ },
+ {
+  "text": "como se dice thank you en japones",
+  "accept": [
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "held",
+  "id": "a0611"
+ },
+ {
+  "text": "ich brauche ein update für meine app",
+  "accept": [
+   "de",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "held",
+  "id": "a0612"
+ },
+ {
+  "text": "wie installiere ich python unter windows",
+  "accept": [
+   "de",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0613"
+ },
+ {
+  "text": "wie sagt man hello auf spanisch",
+  "accept": [
+   "de",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0614"
+ },
+ {
+  "text": "c'est quoi le meilleur laptop pour gaming",
+  "accept": [
+   "fr",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0615"
+ },
+ {
+  "text": "comment installer python sur windows",
+  "accept": [
+   "fr",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0616"
+ },
+ {
+  "text": "qual o melhor smartphone para gaming",
+  "accept": [
+   "pt",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0617"
+ },
+ {
+  "text": "como instalar python no windows",
+  "accept": [
+   "pt",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0618"
+ },
+ {
+  "text": "what is the meaning of saudade in portuguese",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0619"
+ },
+ {
+  "text": "how do you say gracias in english",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0620"
+ },
+ {
+  "text": "translate buenos dias to english",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0621"
+ },
+ {
+  "text": "tell me about la tomatina",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "held",
+  "id": "a0622"
+ },
+ {
+  "text": "what does como estas mean",
+  "accept": [
+   "en",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0623"
+ },
+ {
+  "text": "show me una receta de paella",
+  "accept": [
+   "en",
+   "es",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0624"
+ },
+ {
+  "text": "iphone 15 ka price kya hai",
+  "accept": [
+   "hi",
+   "ur",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0625"
+ },
+ {
+  "text": "mujhe ek good recipe batao for biryani",
+  "accept": [
+   "hi",
+   "ur",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "val",
+  "id": "a0626"
+ },
+ {
+  "text": "bagaimana cara install python di windows",
+  "accept": [
+   "id",
+   "ms",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0627"
+ },
+ {
+  "text": "hoe installeer ik python op windows",
+  "accept": [
+   "nl",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0628"
+ },
+ {
+  "text": "jak zainstalować pythona na windowsie",
+  "accept": [
+   "pl",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0629"
+ },
+ {
+  "text": "windows'ta python nasıl kurulur",
+  "accept": [
+   "tr",
+   "unknown"
+  ],
+  "cls": "code-switch",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0630"
+ },
+ {
+  "text": "pan casero",
+  "accept": [
+   "es"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0631"
+ },
+ {
+  "text": "receta de flan",
+  "accept": [
+   "es"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "held",
+  "id": "a0632"
+ },
+ {
+  "text": "donde esta el baño",
+  "accept": [
+   "es"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0633"
+ },
+ {
+  "text": "meilleur restaurant paris",
+  "accept": [
+   "fr"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0634"
+ },
+ {
+  "text": "recette de ratatouille",
+  "accept": [
+   "fr"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0635"
+ },
+ {
+  "text": "rezept für pfannkuchen",
+  "accept": [
+   "de"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0636"
+ },
+ {
+  "text": "wetter morgen berlin",
+  "accept": [
+   "de"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0637"
+ },
+ {
+  "text": "ricetta tiramisù",
+  "accept": [
+   "it"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0638"
+ },
+ {
+  "text": "dove mangiare roma",
+  "accept": [
+   "it"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0639"
+ },
+ {
+  "text": "receita de feijoada",
+  "accept": [
+   "pt"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0640"
+ },
+ {
+  "text": "рецепт борща",
+  "accept": [
+   "ru"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0641"
+ },
+ {
+  "text": "погода завтра",
+  "accept": [
+   "ru"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0642"
+ },
+ {
+  "text": "饼干食谱",
+  "accept": [
+   "zh"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0643"
+ },
+ {
+  "text": "今天天气",
+  "accept": [
+   "zh"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0644"
+ },
+ {
+  "text": "クッキー レシピ",
+  "accept": [
+   "ja"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "dev",
+  "id": "a0645"
+ },
+ {
+  "text": "明日の天気",
+  "accept": [
+   "ja"
+  ],
+  "cls": "short",
+  "src": "asks",
+  "split": "val",
+  "id": "a0646"
+ },
+ {
+  "text": "¿En qué año cayó el Muro de Berlín?",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0647"
+ },
+ {
+  "text": "¿Cuál es la capital de Australia?",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0648"
+ },
+ {
+  "text": "En quelle année le mur de Berlin est-il tombé ?",
+  "accept": [
+   "fr"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0649"
+ },
+ {
+  "text": "Wie hoch ist der Eiffelturm?",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0650"
+ },
+ {
+  "text": "In welchem Jahr fiel die Berliner Mauer?",
+  "accept": [
+   "de"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0651"
+ },
+ {
+  "text": "Qual é a altura da Torre Eiffel?",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "held",
+  "id": "a0652"
+ },
+ {
+  "text": "Em que ano caiu o Muro de Berlim?",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "held",
+  "id": "a0653"
+ },
+ {
+  "text": "Qual é a capital da Austrália?",
+  "accept": [
+   "pt"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0654"
+ },
+ {
+  "text": "В каком году пала Берлинская стена?",
+  "accept": [
+   "ru"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0655"
+ },
+ {
+  "text": "كم يبلغ ارتفاع برج إيفل؟",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "held",
+  "id": "a0656"
+ },
+ {
+  "text": "في أي عام سقط جدار برلين؟",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0657"
+ },
+ {
+  "text": "ما هي عاصمة أستراليا؟",
+  "accept": [
+   "ar"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0658"
+ },
+ {
+  "text": "埃菲尔铁塔有多高？",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0659"
+ },
+ {
+  "text": "柏林墙是哪一年倒塌的？",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0660"
+ },
+ {
+  "text": "澳大利亚的首都是哪里？",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0661"
+ },
+ {
+  "text": "エッフェル塔の高さはどれくらいですか？",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0662"
+ },
+ {
+  "text": "ベルリンの壁はいつ崩壊しましたか？",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "val",
+  "id": "a0663"
+ },
+ {
+  "text": "オーストラリアの首都はどこですか？",
+  "accept": [
+   "ja"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "held",
+  "id": "a0664"
+ },
+ {
+  "text": "एफ़िल टॉवर कितना ऊँचा है?",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0665"
+ },
+ {
+  "text": "बर्लिन की दीवार किस वर्ष गिरी थी?",
+  "accept": [
+   "hi"
+  ],
+  "cls": "lang",
+  "src": "cases.json",
+  "split": "dev",
+  "id": "a0666"
+ },
+ {
+  "text": "What is 15% of 240?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "val",
+  "id": "a0667"
+ },
+ {
+  "text": "Give me a 3-day itinerary for Lisbon",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "val",
+  "id": "a0668"
+ },
+ {
+  "text": "What's the capital of Australia?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "dev",
+  "id": "a0669"
+ },
+ {
+  "text": "Write a short thank-you note to my neighbor for watering my plants",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "held",
+  "id": "a0670"
+ },
+ {
+  "text": "Translate 'where is the train station' into Spanish and French",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "held",
+  "id": "a0671"
+ },
+ {
+  "text": "Compare iPhone and Android for a first-time smartphone user",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "dev",
+  "id": "a0672"
+ },
+ {
+  "text": "How does compound interest work? Give an example.",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "val",
+  "id": "a0673"
+ },
+ {
+  "text": "¿Cuál es la capital de Francia?",
+  "accept": [
+   "es"
+  ],
+  "cls": "lang",
+  "src": "everyday",
+  "split": "val",
+  "id": "a0674"
+ },
+ {
+  "text": "东京有多少人口？",
+  "accept": [
+   "zh"
+  ],
+  "cls": "lang",
+  "src": "everyday",
+  "split": "held",
+  "id": "a0675"
+ },
+ {
+  "text": "I have a job interview tomorrow and I'm nervous. Any advice?",
+  "accept": [
+   "en"
+  ],
+  "cls": "en",
+  "src": "everyday",
+  "split": "dev",
+  "id": "a0676"
+ }
+]

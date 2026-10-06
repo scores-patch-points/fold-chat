@@ -34,6 +34,7 @@ export const TIP_SAY = Object.freeze({
   form: "No public email. Opened their contact page; your message is copied — paste it there.",
   formNoCopy: "No public email. Opened their contact page; copy your message below and paste it there.",
   none: "Couldn't find a public contact for this creator. The original page is linked above.",
+  noneHere: "No way to tip them directly. Their own pages:",
   siteContact: " This is the site's contact, not the individual's.",
   // a direct tip page (route 1-3): the creator's OWN page, opened after the click; the Fold sends and takes nothing
   tip: (name, host, where) => `Opened the creator's ${name === "their own site" ? "own support page" : name + " page"} (${host}), found ${where}. The Fold sends nothing and takes nothing; you tip on their page.`,

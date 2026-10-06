@@ -1,0 +1,707 @@
+{
+ "about": "Hand labels of 78 BASELINE snips (the swarm's rung a-d output, reachable sites only), written BEFORE the new code was run. junk=true when the snip is dominated by page chrome OR opens with a chrome run (see docs/SNIP-JUNK-PREREG.md). 'head' is the first 40 characters, for audit only. Sampling: eval/swarm/junk-sample.mjs (sha1 order of site|rung, de-duplicated text, first 78); split = dev|test|held by sha1 of site|rung. The held third was not used to choose any lexicon entry, rule or threshold.",
+ "labels": [
+  {
+   "key": "recipe#1|a|1aeeb1",
+   "site": "recipe#1",
+   "rung": "a",
+   "split": "dev",
+   "junk": false,
+   "head": "Ingredients: - 400g bread flour (14 ounc",
+   "note": "declared recipe"
+  },
+  {
+   "key": "blog#4|a|372099",
+   "site": "blog#4",
+   "rung": "a",
+   "split": "test",
+   "junk": false,
+   "head": "Daring Fireball turns 10 years old today",
+   "note": ""
+  },
+  {
+   "key": "podcast#4|d|f3bb2a",
+   "site": "podcast#4",
+   "rung": "d",
+   "split": "test",
+   "junk": true,
+   "head": "Huberman Lab | Science-Based Tools for E",
+   "note": "nav + banner"
+  },
+  {
+   "key": "health#3|d|a7d2d6",
+   "site": "health#3",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "They can interfere with your daily routi",
+   "note": ""
+  },
+  {
+   "key": "encyclopedia#2|d|e954b7",
+   "site": "encyclopedia#2",
+   "rung": "d",
+   "split": "held",
+   "junk": false,
+   "head": "What is the basic formula for photosynth",
+   "note": ""
+  },
+  {
+   "key": "forum#2|a|865333",
+   "site": "forum#2",
+   "rung": "a",
+   "split": "dev",
+   "junk": false,
+   "head": "Q: Nighthawk R7000 Slow WiFi speed A: Sh",
+   "note": "forum Q&A; entities undecoded but content"
+  },
+  {
+   "key": "recipe#3|c|346f07",
+   "site": "recipe#3",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "com × search Home Cooking Recipes Ingred",
+   "note": "nav lead"
+  },
+  {
+   "key": "blog#4|d|ab4b5f",
+   "site": "blog#4",
+   "rung": "d",
+   "split": "held",
+   "junk": true,
+   "head": "An appreciation of 10 years of Daring Fi",
+   "note": "nav/ads"
+  },
+  {
+   "key": "government#3|c|834768",
+   "site": "government#3",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "gov website belongs to an official gover",
+   "note": "gov banner lead"
+  },
+  {
+   "key": "apidocs#4|d|4112ac",
+   "site": "apidocs#4",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "php\" ; 3 use Twilio\\TwiML\\MessagingRespo",
+   "note": "code sample fragment"
+  },
+  {
+   "key": "government#3|d|29cea5",
+   "site": "government#3",
+   "rung": "d",
+   "split": "test",
+   "junk": false,
+   "head": "Get started You may not need to replace ",
+   "note": ""
+  },
+  {
+   "key": "government#1|c|b4520b",
+   "site": "government#1",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "gov website belongs to an official gover",
+   "note": "gov banner + nav"
+  },
+  {
+   "key": "podcast#2|c|5d8412",
+   "site": "podcast#2",
+   "rung": "c",
+   "split": "test",
+   "junk": true,
+   "head": "Syntax - Web Development Podcast Skip to",
+   "note": "nav"
+  },
+  {
+   "key": "readme#4|c|c16a9a",
+   "site": "readme#4",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "Reload to refresh your session. You swit",
+   "note": "github chrome"
+  },
+  {
+   "key": "readme#1|c|15deac",
+   "site": "readme#1",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Reload to refresh your session. By defau",
+   "note": "github chrome"
+  },
+  {
+   "key": "apidocs#2|c|ba5d5c",
+   "site": "apidocs#2",
+   "rung": "c",
+   "split": "test",
+   "junk": true,
+   "head": "map() Baseline Widely available This fea",
+   "note": "MDN baseline badge lead"
+  },
+  {
+   "key": "museum#3|b|2a1050",
+   "site": "museum#3",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "Rembrandt’s largest, most famous canvas ",
+   "note": ""
+  },
+  {
+   "key": "podcast#4|c|de8770",
+   "site": "podcast#4",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Huberman Lab | Science-Based Tools for E",
+   "note": "nav"
+  },
+  {
+   "key": "sports#1|d|7a0a42",
+   "site": "sports#1",
+   "rung": "d",
+   "split": "test",
+   "junk": false,
+   "head": "[ 152 ] Before that, the club used facil",
+   "note": "wiki prose with cite markers"
+  },
+  {
+   "key": "legal#2|d|1b5850",
+   "site": "legal#2",
+   "rung": "d",
+   "split": "held",
+   "junk": false,
+   "head": "We are responsible for billing you accur",
+   "note": ""
+  },
+  {
+   "key": "travel#2|c|fbdc07",
+   "site": "travel#2",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "Kyoto – Travel guide at Wikivoyage Jump ",
+   "note": "nav lead"
+  },
+  {
+   "key": "encyclopedia#2|a|c11817",
+   "site": "encyclopedia#2",
+   "rung": "a",
+   "split": "dev",
+   "junk": false,
+   "head": "Photosynthesis is the process by which g",
+   "note": ""
+  },
+  {
+   "key": "encyclopedia#2|a|f90218",
+   "site": "encyclopedia#2",
+   "rung": "a",
+   "split": "dev",
+   "junk": false,
+   "head": "Q: Why is photosynthesis important? A: P",
+   "note": ""
+  },
+  {
+   "key": "nonenglish#3|d|2e33d0",
+   "site": "nonenglish#3",
+   "rung": "d",
+   "split": "dev",
+   "junk": true,
+   "head": "من ويكيبيديا، الموسوعة الحرة هذه المقالة",
+   "note": "tagline + hatnote lead"
+  },
+  {
+   "key": "realestate#5|d|89ba5f",
+   "site": "realestate#5",
+   "rung": "d",
+   "split": "held",
+   "junk": false,
+   "head": "About 60% of the rental communities here",
+   "note": ""
+  },
+  {
+   "key": "forum#2|c|a92484",
+   "site": "forum#2",
+   "rung": "c",
+   "split": "test",
+   "junk": true,
+   "head": "Nighthawk R7000 Slow WiFi speed | NETGEA",
+   "note": "nav"
+  },
+  {
+   "key": "literature#4|d|4508d2",
+   "site": "literature#4",
+   "rung": "d",
+   "split": "held",
+   "junk": true,
+   "head": "Search the Wayback Machine Search icon A",
+   "note": "nav"
+  },
+  {
+   "key": "localbiz#4|c|3a8425",
+   "site": "localbiz#4",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Corner Café & Bakery | Restaurants in Up",
+   "note": "nav + subscribe"
+  },
+  {
+   "key": "sports#2|b|6dc2a3",
+   "site": "sports#2",
+   "rung": "b",
+   "split": "test",
+   "junk": false,
+   "head": "Checkout the latest and historical year ",
+   "note": ""
+  },
+  {
+   "key": "literature#3|d|515664",
+   "site": "literature#3",
+   "rung": "d",
+   "split": "test",
+   "junk": false,
+   "head": "Alice’s Adventures in Wonderland, by Lew",
+   "note": "catalog metadata"
+  },
+  {
+   "key": "nonenglish#5|b|840435",
+   "site": "nonenglish#5",
+   "rung": "b",
+   "split": "dev",
+   "junk": false,
+   "head": "朝日新聞社のニュースサイトです。政治、経済、社会、国際、スポーツ、文化、科学など",
+   "note": ""
+  },
+  {
+   "key": "forum#3|b|e02404",
+   "site": "forum#3",
+   "rung": "b",
+   "split": "test",
+   "junk": false,
+   "head": "Hello, Lately my home Wifi has been gett",
+   "note": ""
+  },
+  {
+   "key": "localbiz#4|b|2593e8",
+   "site": "localbiz#4",
+   "rung": "b",
+   "split": "test",
+   "junk": false,
+   "head": "This Upper East Side spot has opened a s",
+   "note": ""
+  },
+  {
+   "key": "literature#2|d|d564e6",
+   "site": "literature#2",
+   "rung": "d",
+   "split": "dev",
+   "junk": true,
+   "head": "It lists works that share the same title",
+   "note": "disambiguation boilerplate"
+  },
+  {
+   "key": "jobs#2|b|2b1d61",
+   "site": "jobs#2",
+   "rung": "b",
+   "split": "dev",
+   "junk": false,
+   "head": "This position is located in the Division",
+   "note": ""
+  },
+  {
+   "key": "changelog#3|b|9b387e",
+   "site": "changelog#3",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "GitHub’s official command line tool. Con",
+   "note": ""
+  },
+  {
+   "key": "literature#2|c|cbe045",
+   "site": "literature#2",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Ozymandias - Wikisource, the free online",
+   "note": "nav"
+  },
+  {
+   "key": "academic#4|c|474320",
+   "site": "academic#4",
+   "rung": "c",
+   "split": "test",
+   "junk": true,
+   "head": "gov website belongs to an official gover",
+   "note": "gov banner lead"
+  },
+  {
+   "key": "events#1|b|5fbbdb",
+   "site": "events#1",
+   "rung": "b",
+   "split": "dev",
+   "junk": false,
+   "head": "Discover free events happening this week",
+   "note": ""
+  },
+  {
+   "key": "government#1|d|6bc8bc",
+   "site": "government#1",
+   "rung": "d",
+   "split": "test",
+   "junk": false,
+   "head": "Checking on refunds ranks as the most fr",
+   "note": ""
+  },
+  {
+   "key": "jobs#2|d|efb3b2",
+   "site": "jobs#2",
+   "rung": "d",
+   "split": "held",
+   "junk": true,
+   "head": "gov Address National Institutes of Healt",
+   "note": "footer lead"
+  },
+  {
+   "key": "recipe#4|a|719b1e",
+   "site": "recipe#4",
+   "rung": "a",
+   "split": "test",
+   "junk": false,
+   "head": "Ingredients: - 400 grams (14 ounces, abo",
+   "note": ""
+  },
+  {
+   "key": "academic#4|b|8175df",
+   "site": "academic#4",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "Down’s syndrome (DS) presents with a con",
+   "note": ""
+  },
+  {
+   "key": "travel#3|c|fc164e",
+   "site": "travel#3",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "Iceland Travel 2026 - Lonely Planet | Eu",
+   "note": "nav"
+  },
+  {
+   "key": "apidocs#3|c|f868b7",
+   "site": "apidocs#3",
+   "rung": "c",
+   "split": "dev",
+   "junk": false,
+   "head": "py JSON (JavaScript Object Notation) , s",
+   "note": ""
+  },
+  {
+   "key": "podcast#3|d|46e2cc",
+   "site": "podcast#3",
+   "rung": "d",
+   "split": "test",
+   "junk": false,
+   "head": "We’re also on the radio in Canada and Au",
+   "note": ""
+  },
+  {
+   "key": "localbiz#4|d|3fc6ed",
+   "site": "localbiz#4",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "Details Address 1645 Third Ave New York ",
+   "note": "listing details"
+  },
+  {
+   "key": "sports#3|c|954e3d",
+   "site": "sports#3",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "NFL Standings - 2026 season - ESPN Skip ",
+   "note": "nav"
+  },
+  {
+   "key": "academic#1|d|fcd335",
+   "site": "academic#1",
+   "rung": "d",
+   "split": "test",
+   "junk": true,
+   "head": "Have an idea for a project that will add",
+   "note": "arXiv chrome"
+  },
+  {
+   "key": "travel#1|d|6b80da",
+   "site": "travel#1",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "Miradouros translates to viewpoints and ",
+   "note": ""
+  },
+  {
+   "key": "product#1|c|81c7fc",
+   "site": "product#1",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "25 Inch USA Icons Skillet | Shop Online ",
+   "note": "cookie consent"
+  },
+  {
+   "key": "recipe#3|b|4f6103",
+   "site": "recipe#3",
+   "rung": "b",
+   "split": "dev",
+   "junk": false,
+   "head": "This is so yummy and easy to make. MUCH ",
+   "note": ""
+  },
+  {
+   "key": "changelog#3|d|82f534",
+   "site": "changelog#3",
+   "rung": "d",
+   "split": "dev",
+   "junk": true,
+   "head": "com and signed with GitHub’s verified si",
+   "note": "commit-signature widget lead"
+  },
+  {
+   "key": "forum#4|c|5beec0",
+   "site": "forum#4",
+   "rung": "c",
+   "split": "test",
+   "junk": true,
+   "head": "Most efficient method for learning to to",
+   "note": "nav"
+  },
+  {
+   "key": "jobs#1|c|980b76",
+   "site": "jobs#1",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Opportunities Skip to Content Close mobi",
+   "note": "nav"
+  },
+  {
+   "key": "blog#4|c|e977b0",
+   "site": "blog#4",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "An appreciation of 10 years of Daring Fi",
+   "note": "nav/ads"
+  },
+  {
+   "key": "news#2|d|1e1a59",
+   "site": "news#2",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "US Ambassador to Japan George Glass pled",
+   "note": ""
+  },
+  {
+   "key": "news#2|a|96243b",
+   "site": "news#2",
+   "rung": "a",
+   "split": "dev",
+   "junk": false,
+   "head": "Ambassador promises cooperation after wo",
+   "note": ""
+  },
+  {
+   "key": "podcast#3|b|d94537",
+   "site": "podcast#3",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "A weekly public radio program and podcas",
+   "note": ""
+  },
+  {
+   "key": "health#1|c|1b40b9",
+   "site": "health#1",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Symptoms of type 2 diabetes and how it's",
+   "note": "cookie banner lead"
+  },
+  {
+   "key": "health#3|c|f13f8e",
+   "site": "health#3",
+   "rung": "c",
+   "split": "dev",
+   "junk": true,
+   "head": "2273 | MyChart | Medical Professionals |",
+   "note": "nav"
+  },
+  {
+   "key": "legal#1|d|4b8113",
+   "site": "legal#1",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "If you choose to use the Smart Window fe",
+   "note": ""
+  },
+  {
+   "key": "nonenglish#1|b|2ae033",
+   "site": "nonenglish#1",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "BBC Mundo le presenta una selección de c",
+   "note": ""
+  },
+  {
+   "key": "realestate#5|a|36866d",
+   "site": "realestate#5",
+   "rung": "a",
+   "split": "held",
+   "junk": true,
+   "head": "Starts: 2026-10-05 Where:",
+   "note": "empty Event template (15 copies on page)"
+  },
+  {
+   "key": "realestate#5|a|e88b16",
+   "site": "realestate#5",
+   "rung": "a",
+   "split": "held",
+   "junk": false,
+   "head": "Q: When were prices and availability in ",
+   "note": "FAQ"
+  },
+  {
+   "key": "readme#1|d|de00d5",
+   "site": "readme#1",
+   "rung": "d",
+   "split": "held",
+   "junk": true,
+   "head": "github ci: attest build provenance for r",
+   "note": "repo file table"
+  },
+  {
+   "key": "readme#2|b|f1287a",
+   "site": "readme#2",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "htmx gives you access to AJAX, CSS Trans",
+   "note": ""
+  },
+  {
+   "key": "encyclopedia#4|d|549979",
+   "site": "encyclopedia#4",
+   "rung": "d",
+   "split": "dev",
+   "junk": false,
+   "head": "As mollusks , octopuses have gills that ",
+   "note": ""
+  },
+  {
+   "key": "legal#4|b|9853ee",
+   "site": "legal#4",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "The Meta Terms govern your use of Facebo",
+   "note": ""
+  },
+  {
+   "key": "forum#1|b|025a5c",
+   "site": "forum#1",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "Hi - I just found your site today and it",
+   "note": ""
+  },
+  {
+   "key": "museum#1|c|b7767b",
+   "site": "museum#1",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Vincent van Gogh - Wheat Field with Cypr",
+   "note": "nav"
+  },
+  {
+   "key": "blog#2|c|ac0688",
+   "site": "blog#2",
+   "rung": "c",
+   "split": "dev",
+   "junk": false,
+   "head": "A Chain Reaction — overreacted overreact",
+   "note": "title+byline then content/code; borderline"
+  },
+  {
+   "key": "podcast#1|d|4cf9f4",
+   "site": "podcast#1",
+   "rung": "d",
+   "split": "test",
+   "junk": true,
+   "head": "By submitting this form, you acknowledge",
+   "note": "form terms boilerplate"
+  },
+  {
+   "key": "forum#4|d|4f6ea5",
+   "site": "forum#4",
+   "rung": "d",
+   "split": "test",
+   "junk": true,
+   "head": "Most efficient method for learning to to",
+   "note": "nav"
+  },
+  {
+   "key": "sports#4|c|b0e9c1",
+   "site": "sports#4",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Arsenal FC - Club profile | Transfermark",
+   "note": "nav"
+  },
+  {
+   "key": "academic#1|b|9c9ff5",
+   "site": "academic#1",
+   "rung": "b",
+   "split": "held",
+   "junk": false,
+   "head": "Abstract page for arXiv paper 1706.03762",
+   "note": ""
+  },
+  {
+   "key": "literature#1|c|c87f1a",
+   "site": "literature#1",
+   "rung": "c",
+   "split": "held",
+   "junk": true,
+   "head": "Pride and Prejudice by Jane Austen | Pro",
+   "note": "nav"
+  },
+  {
+   "key": "localbiz#2|a|6fde86",
+   "site": "localbiz#2",
+   "rung": "a",
+   "split": "test",
+   "junk": false,
+   "head": "Authentically independent: on-site baked",
+   "note": ""
+  }
+ ]
+}

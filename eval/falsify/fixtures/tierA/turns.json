@@ -1,0 +1,1016 @@
+{
+  "A1": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": null,
+    "answer": {
+      "text": "Charles III is the king of the United Kingdom.",
+      "filler": {
+        "text": "Charles III",
+        "span": [
+          0,
+          11
+        ]
+      },
+      "row": {
+        "tier": "T1",
+        "sentence": "Charles III is the king of the United Kingdom and the other Commonwealth realms, having acceded to the throne on 8 September 2022.",
+        "source": {
+          "ref": "S1",
+          "title": "Monarchy of the United Kingdom",
+          "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          153,
+          283
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "Charles III",
+          "span": [
+            0,
+            11
+          ]
+        },
+        "emphasis": [
+          [
+            0,
+            11
+          ],
+          [
+            19,
+            23
+          ],
+          [
+            31,
+            45
+          ]
+        ]
+      },
+      "standing": "survived",
+      "survived": [
+        "no later holder in 3 sources",
+        "Charles III’s page: no death date"
+      ],
+      "by": "mechanical"
+    },
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Monarchy of the United Kingdom",
+        "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the king of the UK?",
+    "searched": [
+      "Who is the king of the UK?",
+      "king of the UK",
+      "Charles III"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'king' of 'United Kingdom'",
+      "status": "satisfied",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "referents",
+          "text": "what 'UK' names: United Kingdom",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v3",
+          "kind": "filler",
+          "text": "who is named as the king",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v4",
+          "kind": "currency",
+          "text": "whether he is still the king",
+          "status": "satisfied",
+          "basis": "asked",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v5",
+          "kind": "rival",
+          "text": "whether any source names someone else",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the king of the UK."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I read Monarchy of the United Kingdom (Wikipedia). One sentence states it.",
+        "detail": "It names Charles III as the king."
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "That says Charles III. What would make me doubt it? A later holder, a death, or a source saying otherwise."
+      },
+      {
+        "n": 5,
+        "who": "app",
+        "say": "I searched “Charles III” and read his page: born 1948, no death date. I found no later holder in the other 2 sources.",
+        "probe": {
+          "id": "p1",
+          "kind": "life-dates",
+          "why": "a person who died cannot be the current holder",
+          "query": "Charles III",
+          "expects": "no death date"
+        },
+        "result": "found no death date"
+      },
+      {
+        "n": 6,
+        "who": "app",
+        "say": "So I’m answering Charles III, and saying what I checked."
+      }
+    ]
+  },
+  "A2": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": {
+      "kind": "unwitnessed",
+      "tried": [
+        "Who is the president of the UK?",
+        "president of the UK"
+      ],
+      "closeBy": [
+        "name the country or the office more exactly"
+      ]
+    },
+    "answer": null,
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "President of the United States",
+        "url": "https://en.wikipedia.org/wiki/President_of_the_United_States",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      },
+      {
+        "ref": "S1",
+        "title": "President of France",
+        "url": "https://en.wikipedia.org/wiki/President_of_France",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the president of the UK?",
+    "searched": [
+      "Who is the president of the UK?",
+      "president of the UK"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'president' of 'United Kingdom'",
+      "status": "open",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "filler",
+          "text": "who is named as the president",
+          "status": "open",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the president of the UK."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I read 2 pages, about the presidents of the United States and France. None of them says who is the president of the UK."
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "So I’m not naming anyone."
+      }
+    ]
+  },
+  "A3": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": {
+      "kind": "no_present_holder",
+      "closest": {
+        "tier": "T1",
+        "sentence": "Louis XVI was the last king of France before the fall of the monarchy during the French Revolution; he reigned from 1774 until 1792.",
+        "source": {
+          "ref": "S1",
+          "title": "List of French monarchs",
+          "url": "https://en.wikipedia.org/wiki/List_of_French_monarchs",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          0,
+          132
+        ],
+        "polarity": "+",
+        "tense": "past",
+        "filler": {
+          "text": "Louis XVI",
+          "span": [
+            0,
+            9
+          ]
+        },
+        "emphasis": [
+          [
+            0,
+            9
+          ],
+          [
+            23,
+            37
+          ]
+        ]
+      },
+      "tried": [
+        "Who is the king of France?",
+        "king of France"
+      ],
+      "closeBy": []
+    },
+    "answer": null,
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "List of French monarchs",
+        "url": "https://en.wikipedia.org/wiki/List_of_French_monarchs",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the king of France?",
+    "searched": [
+      "Who is the king of France?",
+      "king of France"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'king' of 'France'",
+      "status": "refused",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "currency",
+          "text": "whether the source speaks of now",
+          "status": "refused",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the king of France."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I read List of French monarchs (Wikipedia). Its sentence about a king is in the past tense: he was the last king."
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "A sentence about the past cannot say who holds the role now, so I’m not naming anyone."
+      }
+    ]
+  },
+  "A4": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": null,
+    "answer": {
+      "text": "Andy Burnham is the prime minister of the United Kingdom.",
+      "filler": {
+        "text": "Andy Burnham",
+        "span": [
+          30,
+          42
+        ]
+      },
+      "row": {
+        "tier": "T1",
+        "sentence": "The current prime minister is Andy Burnham, who has held the office since 20 July 2026.",
+        "source": {
+          "ref": "S1",
+          "title": "Prime Minister of the United Kingdom",
+          "url": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          90,
+          177
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "Andy Burnham",
+          "span": [
+            30,
+            42
+          ]
+        },
+        "emphasis": [
+          [
+            30,
+            42
+          ],
+          [
+            12,
+            26
+          ]
+        ]
+      },
+      "standing": "survived",
+      "survived": [
+        "no other holder in the 1 source I read",
+        "Andy Burnham’s page: no death date"
+      ],
+      "by": "mechanical"
+    },
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Prime Minister of the United Kingdom",
+        "url": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the prime minister of the UK?",
+    "searched": [
+      "Who is the prime minister of the UK?",
+      "prime minister of the UK",
+      "Andy Burnham"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'prime minister' of 'United Kingdom'",
+      "status": "satisfied",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "filler",
+          "text": "who is named as the prime minister",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v3",
+          "kind": "currency",
+          "text": "whether he is still the prime minister",
+          "status": "satisfied",
+          "basis": "asked",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v4",
+          "kind": "rival",
+          "text": "whether a newer page names someone else",
+          "status": "unmeasured",
+          "basis": "unmeasured",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the prime minister of the UK."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I read Prime Minister of the United Kingdom (Wikipedia). One sentence states it."
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "That says Andy Burnham. What would make me doubt it?"
+      },
+      {
+        "n": 5,
+        "who": "app",
+        "say": "I searched “Andy Burnham” and found no death date.",
+        "probe": {
+          "id": "p1",
+          "kind": "life-dates",
+          "why": "a person who died cannot be the current holder",
+          "query": "Andy Burnham",
+          "expects": "no death date"
+        },
+        "result": "found no death date"
+      },
+      {
+        "n": 6,
+        "who": "app",
+        "say": "I could not reach a newer page to check whether someone took over since.",
+        "unmeasured": true
+      },
+      {
+        "n": 7,
+        "who": "app",
+        "say": "So I’m answering Andy Burnham, and saying what I checked."
+      }
+    ]
+  },
+  "A5": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": {
+      "kind": "refuted",
+      "closest": {
+        "tier": "T1",
+        "sentence": "She died on 8 September 2022 at Balmoral Castle and was succeeded by her eldest son, who became King Charles III.",
+        "source": {
+          "ref": "S2",
+          "title": "Elizabeth II",
+          "url": "https://en.wikipedia.org/wiki/Elizabeth_II",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          144,
+          257
+        ],
+        "polarity": "+",
+        "tense": "past",
+        "filler": {
+          "text": "Charles III",
+          "span": [
+            101,
+            112
+          ]
+        },
+        "emphasis": [
+          [
+            101,
+            112
+          ],
+          [
+            56,
+            65
+          ]
+        ]
+      },
+      "tried": [
+        "Who is the monarch of the UK?",
+        "monarch of the UK",
+        "Elizabeth II"
+      ],
+      "closeBy": []
+    },
+    "answer": null,
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Elizabeth II",
+        "url": "https://en.wikipedia.org/wiki/Elizabeth_II",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the monarch of the UK?",
+    "searched": [
+      "Who is the monarch of the UK?",
+      "monarch of the UK",
+      "Elizabeth II"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'monarch' of 'United Kingdom'",
+      "status": "refused",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "filler",
+          "text": "who is named as the monarch",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v3",
+          "kind": "falsify",
+          "text": "a page that says otherwise",
+          "status": "refused",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the monarch of the UK."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "The first page I read says Elizabeth II is the queen. What would make me doubt it?"
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "I searched “Elizabeth II” and read her page. It says she died and was succeeded.",
+        "probe": {
+          "id": "p1",
+          "kind": "life-dates",
+          "why": "a person who died cannot be the current holder",
+          "query": "Elizabeth II",
+          "expects": "no death date"
+        },
+        "result": "found a death date"
+      },
+      {
+        "n": 5,
+        "who": "app",
+        "say": "A page I checked says otherwise, so I’m not calling her the current monarch."
+      }
+    ]
+  },
+  "A6": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": null,
+    "answer": {
+      "text": "Canberra is the capital of Australia.",
+      "filler": {
+        "text": "Canberra",
+        "span": [
+          0,
+          8
+        ]
+      },
+      "row": {
+        "tier": "T1",
+        "sentence": "Canberra is the capital city of Australia.",
+        "source": {
+          "ref": "S1",
+          "title": "Canberra",
+          "url": "https://en.wikipedia.org/wiki/Canberra",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          0,
+          42
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "Canberra",
+          "span": [
+            0,
+            8
+          ]
+        },
+        "emphasis": [
+          [
+            0,
+            8
+          ],
+          [
+            16,
+            23
+          ],
+          [
+            32,
+            41
+          ]
+        ]
+      },
+      "standing": "survived",
+      "survived": [
+        "no other capital named in 1 source"
+      ],
+      "by": "mechanical"
+    },
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Canberra",
+        "url": "https://en.wikipedia.org/wiki/Canberra",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "What is the capital of Australia?",
+    "searched": [
+      "What is the capital of Australia?",
+      "capital of Australia"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "what is the capital of 'Australia'",
+      "status": "satisfied",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "filler",
+          "text": "what is named as the capital",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        },
+        {
+          "id": "v3",
+          "kind": "rival",
+          "text": "whether any source names another capital",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: what is the capital of Australia."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I can’t answer that from memory, so I’m reading sources."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I read Canberra (Wikipedia). One sentence states it."
+      },
+      {
+        "n": 4,
+        "who": "app",
+        "say": "That says Canberra. I found no other capital named in the source."
+      },
+      {
+        "n": 5,
+        "who": "app",
+        "say": "So I’m answering Canberra, and saying what I checked."
+      }
+    ]
+  },
+  "A7": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [],
+    "gap": null,
+    "answer": {
+      "text": "Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk.",
+      "filler": {
+        "text": "eight",
+        "span": [
+          47,
+          52
+        ]
+      },
+      "row": {
+        "tier": "T1",
+        "sentence": "Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk.",
+        "source": {
+          "ref": "S1",
+          "title": "Spider",
+          "url": "https://en.wikipedia.org/wiki/Spider",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          0,
+          115
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "eight",
+          "span": [
+            47,
+            52
+          ]
+        },
+        "emphasis": [
+          [
+            47,
+            52
+          ],
+          [
+            53,
+            57
+          ]
+        ]
+      },
+      "standing": "survived",
+      "survived": [
+        "no other number named in 1 source"
+      ],
+      "by": "mechanical"
+    },
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Spider",
+        "url": "https://en.wikipedia.org/wiki/Spider",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "How many legs does a spider have?",
+    "searched": [
+      "How many legs does a spider have?",
+      "spider legs"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "how many 'legs' a 'spider' has",
+      "status": "satisfied",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "filler",
+          "text": "what number is named",
+          "status": "satisfied",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: how many legs a spider has."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I read Spider (Wikipedia). One sentence states it."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I found no other number in the source, so I’m answering with the source’s own sentence."
+      }
+    ]
+  },
+  "X1": {
+    "schema": "AnswerTurn@1",
+    "lang": {
+      "code": "en",
+      "by": "function words"
+    },
+    "contest": [
+      {
+        "tier": "T1",
+        "sentence": "Elizabeth II is the queen of the United Kingdom and the other Commonwealth realms.",
+        "source": {
+          "ref": "S1",
+          "title": "Monarchs of the United Kingdom (older copy)",
+          "url": "https://example.org/older-copy",
+          "host": "example.org",
+          "lang": "en"
+        },
+        "span": [
+          0,
+          82
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "Elizabeth II",
+          "span": [
+            0,
+            12
+          ]
+        },
+        "emphasis": [
+          [
+            0,
+            12
+          ],
+          [
+            20,
+            25
+          ]
+        ]
+      },
+      {
+        "tier": "T1",
+        "sentence": "Charles III is the king of the United Kingdom and the other Commonwealth realms, having acceded to the throne on 8 September 2022.",
+        "source": {
+          "ref": "S2",
+          "title": "Monarchy of the United Kingdom",
+          "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+          "host": "en.wikipedia.org",
+          "lang": "en"
+        },
+        "span": [
+          153,
+          283
+        ],
+        "polarity": "+",
+        "tense": "present",
+        "filler": {
+          "text": "Charles III",
+          "span": [
+            0,
+            11
+          ]
+        },
+        "emphasis": [
+          [
+            0,
+            11
+          ],
+          [
+            19,
+            23
+          ]
+        ]
+      }
+    ],
+    "gap": null,
+    "answer": null,
+    "sources": [
+      {
+        "ref": "S1",
+        "title": "Monarchs of the United Kingdom (older copy)",
+        "url": "https://example.org/older-copy",
+        "host": "example.org",
+        "lang": "en"
+      },
+      {
+        "ref": "S2",
+        "title": "Monarchy of the United Kingdom",
+        "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+        "host": "en.wikipedia.org",
+        "lang": "en"
+      }
+    ],
+    "said": "Who is the monarch of the UK?",
+    "searched": [
+      "Who is the monarch of the UK?",
+      "monarch of the UK"
+    ],
+    "void": {
+      "id": "v1",
+      "kind": "ask",
+      "text": "who holds the role 'monarch' of 'United Kingdom'",
+      "status": "contested",
+      "basis": "read",
+      "events": [],
+      "children": [
+        {
+          "id": "v2",
+          "kind": "rival",
+          "text": "two sources name different people",
+          "status": "contested",
+          "basis": "read",
+          "children": [],
+          "events": []
+        }
+      ]
+    },
+    "trace": [
+      {
+        "n": 1,
+        "who": "app",
+        "say": "It looks like a question of fact: who is the monarch of the UK."
+      },
+      {
+        "n": 2,
+        "who": "app",
+        "say": "I read 2 sources and they give different answers."
+      },
+      {
+        "n": 3,
+        "who": "app",
+        "say": "I’m showing both and not choosing between them."
+      }
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+ "prose": {
+  "n": 1683,
+  "exact": 1261,
+  "noWs": 0,
+  "residue": 315,
+  "escapeLiteral": 21,
+  "other": 86,
+  "samples": [
+   {
+    "ask": "cmp4",
+    "snip": "4.c1",
+    "text": "Jerlyn Jones is a registered dietitian nutritionist, national media spokesperson, nutrition writer, "
+   },
+   {
+    "ask": "cod5",
+    "snip": "1.c1",
+    "text": "Check out the video course from Scrimba, our partner"
+   },
+   {
+    "ask": "cod5",
+    "snip": "1.c.nolead2",
+    "text": "To sort the elements in an array without mutating the original array, use toSorted() ."
+   }
+  ]
+ },
+ "a.meta": {
+  "n": 315,
+  "exact": 52,
+  "noWs": 7,
+  "residue": 3,
+  "escapeLiteral": 0,
+  "other": 253,
+  "samples": [
+   {
+    "ask": "cmp2",
+    "snip": "4.a.meta0",
+    "text": "Bacteria and viruses are all around us - some beneficial and some fatal."
+   },
+   {
+    "ask": "cmp3",
+    "snip": "4.a.meta0",
+    "text": "Though climate and weather are closely related, they aren't the same thing. The main difference betw"
+   },
+   {
+    "ask": "cmp4",
+    "snip": "4.a.meta0",
+    "text": "How you prepare your tea and coffee affects their caffeine contents. This article compares the caffe"
+   }
+  ]
+ },
+ "a.article": {
+  "n": 244,
+  "exact": 50,
+  "noWs": 12,
+  "residue": 1,
+  "escapeLiteral": 0,
+  "other": 181,
+  "samples": [
+   {
+    "ask": "cmp8",
+    "snip": "3.a.article0",
+    "text": "Welcome! If you want to learn the differences between Python and JavaScript, then this article is fo"
+   },
+   {
+    "ask": "cmp8",
+    "snip": "4.a.article0",
+    "text": "Python vs JavaScript compared side-by-side: syntax, typing, performance, web development, data scien"
+   },
+   {
+    "ask": "cod1",
+    "snip": "2.a.article0",
+    "text": "Reverse a string in Python with text[::-1]. Why strings have no reverse() method, how to do it with "
+   }
+  ]
+ },
+ "a.faq": {
+  "n": 39,
+  "exact": 13,
+  "noWs": 10,
+  "residue": 2,
+  "escapeLiteral": 0,
+  "other": 14,
+  "samples": [
+   {
+    "ask": "how1",
+    "snip": "1.a.faq0",
+    "text": "How long does it take to change a flat tire?"
+   },
+   {
+    "ask": "liv2",
+    "snip": "2.a.faq0",
+    "text": "What is the average gas price in Atlanta, Georgia?"
+   },
+   {
+    "ask": "liv4",
+    "snip": "4.a.faq0",
+    "text": "Bitcoin (BTC) Price"
+   }
+  ]
+ },
+ "a.qa": {
+  "n": 174,
+  "exact": 94,
+  "noWs": 37,
+  "residue": 2,
+  "escapeLiteral": 0,
+  "other": 41,
+  "samples": [
+   {
+    "ask": "how1",
+    "snip": "1.a.qa1",
+    "text": "How long does it take to change a flat tire?"
+   },
+   {
+    "ask": "how1",
+    "snip": "1.a.qa2",
+    "text": "Can I change a tire by myself?"
+   },
+   {
+    "ask": "how1",
+    "snip": "1.a.qa3",
+    "text": "Do I need to replace all four tires if one goes flat?"
+   }
+  ]
+ },
+ "a.howto": {
+  "n": 6,
+  "exact": 2,
+  "noWs": 0,
+  "residue": 0,
+  "escapeLiteral": 0,
+  "other": 4,
+  "samples": [
+   {
+    "ask": "hlt9",
+    "snip": "2.a.howto1",
+    "text": "3 Ways to Stop a Nose Bleed - wikiHow"
+   },
+   {
+    "ask": "how1",
+    "snip": "0.a.howto1",
+    "text": "How to Change a Tire: Swap Your Flat Out Like a Pro"
+   },
+   {
+    "ask": "how2",
+    "snip": "0.a.howto1",
+    "text": "4 Ways to Unclog a Drain - wikiHow"
+   }
+  ]
+ },
+ "a.event": {
+  "n": 85,
+  "exact": 0,
+  "noWs": 0,
+  "residue": 0,
+  "escapeLiteral": 0,
+  "other": 85,
+  "samples": [
+   {
+    "ask": "liv3",
+    "snip": "1.a.event0",
+    "text": "Sacramento Kings vs. Los Angeles Lakers"
+   },
+   {
+    "ask": "liv3",
+    "snip": "1.a.event1",
+    "text": "Golden State Warriors vs. Los Angeles Lakers"
+   },
+   {
+    "ask": "liv3",
+    "snip": "1.a.event2",
+    "text": "Los Angeles Lakers vs. Sacramento Kings"
+   }
+  ]
+ },
+ "a.product": {
+  "n": 15,
+  "exact": 13,
+  "noWs": 0,
+  "residue": 0,
+  "escapeLiteral": 0,
+  "other": 2,
+  "samples": [
+   {
+    "ask": "prd7",
+    "snip": "0.a.product0",
+    "text": "iPhone 16"
+   },
+   {
+    "ask": "str2",
+    "snip": "2.a.product1",
+    "text": "The Metropolitan Museum of Art"
+   }
+  ]
+ },
+ "a.recipe": {
+  "n": 29,
+  "exact": 6,
+  "noWs": 3,
+  "residue": 2,
+  "escapeLiteral": 0,
+  "other": 18,
+  "samples": [
+   {
+    "ask": "rec1",
+    "snip": "1.a.recipe0",
+    "text": "How to Make the Best Guacamole"
+   },
+   {
+    "ask": "rec1",
+    "snip": "2.a.recipe0",
+    "text": "Guacamole"
+   },
+   {
+    "ask": "rec1",
+    "snip": "3.a.recipe0",
+    "text": "Best Guacamole Recipe"
+   }
+  ]
+ }
+}

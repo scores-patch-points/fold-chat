@@ -151,7 +151,10 @@ test("detectBridge finds the first answering local port", async () => {
   assert.equal(found.ok, true);
   assert.equal(found.base, "http://127.0.0.1:8790");
   assert.equal(found.hello.port, 8790);
-  assert.ok(seen[0].startsWith("http://localhost:8790"), "the standard port is probed first");
+  // no same-origin heimdall (node / extension): the Fold server's own local port is asked first, then the legacy standard port
+  assert.ok(seen[0].startsWith("http://127.0.0.1:8814/heimdall"), "the Fold server's own port is probed first");
+  assert.ok(seen.findIndex((u) => u.startsWith("http://localhost:8790")) < seen.findIndex((u) => u.startsWith("http://127.0.0.1:8790")), "the standard legacy port is probed before its 127.0.0.1 twin");
+  assert.ok(seen.findIndex((u) => u.startsWith("http://localhost:8814")) < seen.findIndex((u) => u.startsWith("http://localhost:8790")), "both 8814 names precede the legacy ports");
 });
 
 test("detectBridge reports not-found without throwing", async () => {
@@ -281,36 +284,46 @@ test("remoteCode goes out SEALED, carries only the task and the prior code, and 
 test("remoteCode de-identifies what leaves, maps the reply back, and records only the masked bytes", async () => {
   const { createTaint } = await import("./fold-chat-seal.js");
   const taint = createTaint().add("Eleanor Voss", "local-read").add("/Users/mlacy/clinic", "folder path");
+  const redact = async (texts) => texts.map((t) => [...t.matchAll(/priya/gi)].map((m) => ({ start: m.index, end: m.index + 5, type: "PERSON", score: 0.85 })));
   const seen = [], audited = [];
   const { setAuditHook } = await import("./fold-chat-client.js");
   setAuditHook({ before: (i) => { audited.push(i); return null; } });
   try {
     const echo = async (url, opts) => {
       const body = JSON.parse(opts.body); seen.push(body);
-      const said = body.messages.at(-1).content.match(/TERM_\d+/)[0];
+      const said = body.messages.at(-1).content.match(/NAME_[a-hj-km-np-z2-9]{6}|PERSON_[a-hj-km-np-z2-9]{6}/)[0];
       const data = "data: " + JSON.stringify({ choices: [{ delta: { content: "```js\n// for " + said + "\n```" } }] }) + "\n\ndata: [DONE]\n\n";
       return { ok: true, status: 200, body: new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode(data)); c.close(); } }) };
     };
-    const out = await remoteCode("build a page for Eleanor Voss, files in /Users/mlacy/clinic", { candidates: ["m"], prior: "<h1>Eleanor Voss</h1>", taint, fetchImpl: echo });
+    const out = await remoteCode("build a page for Eleanor Voss and priya, files in /Users/mlacy/clinic", { candidates: ["m"], prior: "<h1>Eleanor Voss</h1>", taint, redact, fetchImpl: echo });
     const wire = JSON.stringify(seen[0].messages);
-    assert.ok(!/Eleanor|Voss|mlacy/.test(wire), "nothing identifying is on the wire: " + wire);
-    assert.match(out.text, /\/\/ for Eleanor Voss/, "the reply comes back with the real name");
-    assert.equal(out.masked.count >= 2, true);
+    assert.ok(!/Eleanor|Voss|mlacy|priya/i.test(wire), "nothing identifying is on the wire: " + wire);
+    assert.match(out.text, /\/\/ for (Eleanor Voss|priya)/, "the reply comes back with the real name");
+    assert.equal(out.masked.count >= 3, true);
     assert.deepEqual(audited[0].segments.map((x) => x.provenance), ["template", "masked", "masked"], "the audit is told what it is");
     assert.ok(!/Eleanor/.test(JSON.stringify(audited[0].messages)), "the ledger entry holds the masked bytes, not the originals");
   } finally { setAuditHook(null); }
 });
 
-test("remoteCode masks what the holograph's read names in the ask, and falls back to capitalised names when the read is empty or down", async () => {
+test("remoteCode: a redactor that cannot be reached means NOTHING is sent", async () => {
   const seen = [];
-  const run = (readNames) => remoteCode("make a timer for Eleanor Voss, desk run by Priya, ping Mike when done", { candidates: ["m"], readNames, fetchImpl: remoteBridge({ m: "ok" }, seen) });
-  await run(async () => ["Priya", "Eleanor Voss"]);
-  await run(async () => []);
-  await run(async () => { throw new Error("khora down"); });
-  const wire = seen.map((b) => JSON.stringify(b.messages));
-  assert.ok(!/Priya|Voss/.test(wire[0]), "the read's referents are masked");
-  assert.ok(!/Voss|Priya/.test(wire[1]) && !/Voss|Priya/.test(wire[2]), "an empty or failed read still masks the capitalised name and the one after 'by'");
-  assert.match(wire[1], /Mike/, "a lone ordinary-word name with no cue and no read is the known gap — pinned so it is not overclaimed");
+  await assert.rejects(remoteCode("page for priya", { candidates: ["m"], redact: async () => { throw new Error("down"); }, fetchImpl: remoteBridge({ m: "x" }, seen) }), (e) => /not sent/.test(e.message) && !/priya/.test(e.message));
+  assert.equal(seen.length, 0);
+});
+
+test("remoteCode without a redactor runs only the floor, and the audit does NOT call it masked", async () => {
+  const seen = [], audited = [];
+  const { setAuditHook } = await import("./fold-chat-client.js");
+  setAuditHook({ before: (i) => { audited.push(i); return null; } });
+  try {
+    const run = (readNames) => remoteCode("make a timer for Eleanor Voss, desk run by Priya", { candidates: ["m"], readNames, fetchImpl: remoteBridge({ m: "ok" }, seen) });
+    await run(async () => ["Priya"]);
+    await run(async () => { throw new Error("khora down"); });
+    const wire = seen.map((b) => JSON.stringify(b.messages));
+    assert.ok(!/Priya|Voss/.test(wire[0]), "the holograph's referents are masked");
+    assert.ok(!/Voss/.test(wire[1]) && /Priya/.test(wire[1]), "with no read and no redactor only a capitalised multi-word name is seen: the floor, nothing more");
+    assert.deepEqual(audited[0].segments.map((x) => x.provenance), ["template", "ask"], "no redactor judged it, so it is not graded masked");
+  } finally { setAuditHook(null); }
 });
 
 test("remoteCode sends nothing when a private detail cannot be taken out", async () => {

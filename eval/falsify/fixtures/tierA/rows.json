@@ -1,0 +1,540 @@
+{
+ "synthetic": true,
+ "label": "SYNTHETIC hand-built fixtures for the grammar tests (fold-chat-frame / fold-chat-witness). Page texts of A1-A7 are copied from fold-e2e-popper.mjs PAGES; the stale page (A5) and the World War II pages (A8, A8b) are authored here, not read from any source. The `titles` tables are what a title resolver is stubbed to return; their SHAPES follow a live Wikipedia batch query of 2026-10-06 (redirects, a disambiguation page, a redirect whose target shares no word with the run) but they are not that response.",
+ "cases": [
+  {
+   "id": "A1",
+   "ask": "Who is the king of the UK?",
+   "titles": {
+    "king of the uk": {
+     "title": "Monarchy of the United Kingdom",
+     "redirectedFrom": "King of the UK",
+     "disambiguation": false
+    },
+    "king": {
+     "title": "King",
+     "redirectedFrom": null,
+     "disambiguation": false
+    },
+    "uk": {
+     "title": "United Kingdom",
+     "redirectedFrom": "UK",
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "Monarchy of the United Kingdom",
+     "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+     "text": "The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Charles III is the king of the United Kingdom and the other Commonwealth realms, having acceded to the throne on 8 September 2022. The monarch is a constitutional figurehead; executive power is exercised by the government led by the prime minister."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "king",
+      "King"
+     ],
+     [
+      "UK",
+      "United Kingdom"
+     ]
+    ],
+    "predicate": []
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "Charles III is the king of the United Kingdom",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "Charles III"
+    }
+   ]
+  },
+  {
+   "id": "A1b",
+   "note": "same ask, the world has no page called 'king': the role word is the predicate",
+   "ask": "Who is the king of the UK?",
+   "titles": {
+    "uk": {
+     "title": "United Kingdom",
+     "redirectedFrom": "UK",
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "Monarchy of the United Kingdom",
+     "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+     "text": "The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Charles III is the king of the United Kingdom and the other Commonwealth realms, having acceded to the throne on 8 September 2022. The monarch is a constitutional figurehead; executive power is exercised by the government led by the prime minister."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "UK",
+      "United Kingdom"
+     ]
+    ],
+    "predicate": [
+     "king"
+    ]
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "The monarchy of the United Kingdom is the constitutional form",
+     "tier": "T2",
+     "polarity": "+",
+     "tense": "present",
+     "filler": null
+    },
+    {
+     "sentenceStart": "Charles III is the king of the United Kingdom",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "Charles III"
+    }
+   ]
+  },
+  {
+   "id": "A2",
+   "ask": "Who is the president of the UK?",
+   "titles": {
+    "uk": {
+     "title": "United Kingdom",
+     "redirectedFrom": "UK",
+     "disambiguation": false
+    },
+    "president": {
+     "title": "President",
+     "redirectedFrom": null,
+     "disambiguation": true
+    }
+   },
+   "pages": [
+    {
+     "title": "President of the United States",
+     "url": "https://en.wikipedia.org/wiki/President_of_the_United_States",
+     "text": "The president of the United States (POTUS) is the head of state and head of government of the United States. The power of the presidency has grown since the first president, George Washington, took office in 1789. The president is elected to a four-year term and may serve at most two terms. The president lives and works in the White House in Washington, D.C."
+    },
+    {
+     "title": "President of France",
+     "url": "https://en.wikipedia.org/wiki/President_of_France",
+     "text": "The president of France, officially the President of the French Republic, is the head of state of France. The president is elected for a five-year term. The office of president was created by the Constitution of the Fifth Republic in 1958."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "UK",
+      "United Kingdom"
+     ]
+    ],
+    "predicate": [
+     "president"
+    ]
+   },
+   "expectedRows": []
+  },
+  {
+   "id": "A3",
+   "ask": "Who is the king of France?",
+   "titles": {
+    "king of france": {
+     "title": "List of French monarchs",
+     "redirectedFrom": "King of France",
+     "disambiguation": false
+    },
+    "king": {
+     "title": "King",
+     "redirectedFrom": null,
+     "disambiguation": false
+    },
+    "france": {
+     "title": "France",
+     "redirectedFrom": null,
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "List of French monarchs",
+     "url": "https://en.wikipedia.org/wiki/List_of_French_monarchs",
+     "text": "Louis XVI was the last king of France before the fall of the monarchy during the French Revolution; he reigned from 1774 until 1792. The monarchy was abolished in September 1792 and France was proclaimed a republic. France has had no king since the final removal of the monarchy in 1848."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "king",
+      "King"
+     ],
+     [
+      "France",
+      "France"
+     ]
+    ],
+    "predicate": []
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "Louis XVI was the last king of France",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "past",
+     "filler": "Louis XVI"
+    },
+    {
+     "sentenceStart": "France has had no king since",
+     "tier": "T1",
+     "polarity": "-",
+     "tense": "present",
+     "filler": null
+    }
+   ]
+  },
+  {
+   "id": "A4",
+   "ask": "Who is the prime minister of the UK?",
+   "titles": {
+    "uk": {
+     "title": "United Kingdom",
+     "redirectedFrom": "UK",
+     "disambiguation": false
+    },
+    "prime minister": {
+     "title": "Prime minister",
+     "redirectedFrom": null,
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "Prime Minister of the United Kingdom",
+     "url": "https://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+     "text": "The prime minister of the United Kingdom is the head of government of the United Kingdom. The current prime minister is Andy Burnham, who has held the office since 20 July 2026. The prime minister is appointed by the monarch."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "prime minister",
+      "Prime minister"
+     ],
+     [
+      "UK",
+      "United Kingdom"
+     ]
+    ],
+    "predicate": []
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "The prime minister of the United Kingdom is the head of government",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": null
+    }
+   ],
+   "topic": "Prime Minister of the United Kingdom",
+   "expectedRowsWithTopic": [
+    {
+     "sentenceStart": "The prime minister of the United Kingdom is the head of government",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": null
+    },
+    {
+     "sentenceStart": "The current prime minister is Andy Burnham",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "Andy Burnham"
+    },
+    {
+     "sentenceStart": "The prime minister is appointed by the monarch",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "appointed by the monarch"
+    }
+   ]
+  },
+  {
+   "id": "A5",
+   "ask": "Who is the monarch of the UK?",
+   "titles": {
+    "uk": {
+     "title": "United Kingdom",
+     "redirectedFrom": "UK",
+     "disambiguation": false
+    },
+    "monarch": {
+     "title": "Monarch",
+     "redirectedFrom": null,
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "Royal family (stale snapshot)",
+     "url": "https://en.wikipedia.org/wiki/Royal_family_(stale_snapshot)",
+     "text": "Elizabeth II is the monarch of the United Kingdom and the other Commonwealth realms. The royal family lives in several residences."
+    },
+    {
+     "title": "Elizabeth II",
+     "url": "https://en.wikipedia.org/wiki/Elizabeth_II",
+     "text": "Elizabeth II (1926 to 8 September 2022) was Queen of the United Kingdom and the other Commonwealth realms from 6 February 1952 until her death. She died on 8 September 2022 at Balmoral Castle and was succeeded by her eldest son, who became King Charles III."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "person",
+    "referents": [
+     [
+      "monarch",
+      "Monarch"
+     ],
+     [
+      "UK",
+      "United Kingdom"
+     ]
+    ],
+    "predicate": []
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "Elizabeth II is the monarch of the United Kingdom",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "Elizabeth II"
+    }
+   ]
+  },
+  {
+   "id": "A6",
+   "ask": "What is the capital of Australia?",
+   "titles": {
+    "capital of australia": {
+     "title": "Canberra",
+     "redirectedFrom": "Capital of Australia",
+     "disambiguation": false
+    },
+    "australia": {
+     "title": "Australia",
+     "redirectedFrom": null,
+     "disambiguation": false
+    },
+    "capital": {
+     "title": "Capital",
+     "redirectedFrom": null,
+     "disambiguation": true
+    }
+   },
+   "pages": [
+    {
+     "title": "Canberra",
+     "url": "https://en.wikipedia.org/wiki/Canberra",
+     "text": "Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of government for the new nation, it is Australia's largest inland city. Canberra is located at the northern end of the Australian Capital Territory."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "thing",
+    "referents": [
+     [
+      "Australia",
+      "Australia"
+     ]
+    ],
+    "predicate": [
+     "capital"
+    ]
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "Canberra is the capital city of Australia",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "Canberra"
+    },
+    {
+     "sentenceStart": "Founded following the federation",
+     "tier": "T2",
+     "polarity": "+",
+     "tense": "present",
+     "filler": null
+    }
+   ]
+  },
+  {
+   "id": "A7",
+   "ask": "How many legs does a spider have?",
+   "titles": {
+    "legs": {
+     "title": "Leg",
+     "redirectedFrom": "Legs",
+     "disambiguation": false
+    },
+    "spider": {
+     "title": "Spider",
+     "redirectedFrom": null,
+     "disambiguation": false
+    }
+   },
+   "pages": [
+    {
+     "title": "Spider",
+     "url": "https://en.wikipedia.org/wiki/Spider",
+     "text": "Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk. They are the largest order of arachnids and rank seventh in total species diversity among all orders of organisms."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "quantity",
+    "referents": [
+     [
+      "legs",
+      "Leg"
+     ],
+     [
+      "spider",
+      "Spider"
+     ]
+    ],
+    "predicate": []
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "Spiders are air-breathing arthropods that have eight legs",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "present",
+     "filler": "eight"
+    }
+   ]
+  },
+  {
+   "id": "A8",
+   "ask": "What year did World War 2 end?",
+   "titles": {
+    "world war 2": {
+     "title": "World War II",
+     "redirectedFrom": "World War 2",
+     "disambiguation": false
+    },
+    "end": {
+     "title": "End",
+     "redirectedFrom": null,
+     "disambiguation": true
+    }
+   },
+   "pages": [
+    {
+     "title": "World War II",
+     "url": "https://en.wikipedia.org/wiki/World_War_II",
+     "text": "World War II or the Second World War was a global conflict that lasted from 1 September 1939 to 2 September 1945. It involved the vast majority of the world's countries. The war began in 1939 with the invasion of Poland."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "time",
+    "referents": [
+     [
+      "World War 2",
+      "World War II"
+     ]
+    ],
+    "predicate": [
+     "end"
+    ]
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "World War II or the Second World War was a global conflict",
+     "tier": "T2",
+     "polarity": "+",
+     "tense": "past",
+     "filler": null
+    }
+   ]
+  },
+  {
+   "id": "A8b",
+   "note": "the lead plus sentences that DO say the war ended: one year, and several years",
+   "ask": "What year did World War 2 end?",
+   "titles": {
+    "world war 2": {
+     "title": "World War II",
+     "redirectedFrom": "World War 2",
+     "disambiguation": false
+    },
+    "end": {
+     "title": "End",
+     "redirectedFrom": null,
+     "disambiguation": true
+    }
+   },
+   "pages": [
+    {
+     "title": "World War II (extended)",
+     "url": "https://en.wikipedia.org/wiki/World_War_II_(extended)",
+     "text": "World War II or the Second World War was a global conflict that lasted from 1 September 1939 to 2 September 1945. It involved the vast majority of the world's countries. The war began in 1939 with the invasion of Poland. World War II began in 1939 when Germany invaded Poland. World War II ended with the formal surrender of Japan on 2 September 1945. World War II began in 1939 and ended in Europe with the surrender of Germany in May 1945."
+    }
+   ],
+   "expectedFrame": {
+    "slot": "time",
+    "referents": [
+     [
+      "World War 2",
+      "World War II"
+     ]
+    ],
+    "predicate": [
+     "end"
+    ]
+   },
+   "expectedRows": [
+    {
+     "sentenceStart": "World War II or the Second World War was a global conflict",
+     "tier": "T2",
+     "polarity": "+",
+     "tense": "past",
+     "filler": null
+    },
+    {
+     "sentenceStart": "World War II began in 1939 when Germany invaded Poland",
+     "tier": "T2",
+     "polarity": "+",
+     "tense": "unknown",
+     "filler": null
+    },
+    {
+     "sentenceStart": "World War II ended with the formal surrender of Japan",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "unknown",
+     "filler": "1945"
+    },
+    {
+     "sentenceStart": "World War II began in 1939 and ended in Europe",
+     "tier": "T1",
+     "polarity": "+",
+     "tense": "unknown",
+     "filler": null,
+     "fillerCandidates": [
+      "1939",
+      "1945"
+     ]
+    }
+   ]
+  }
+ ]
+}

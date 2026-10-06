@@ -1,0 +1,1235 @@
+{
+ "at": "2026-10-05T21:07:45.104Z",
+ "skippedTurnsWithUncachedPages": 34,
+ "all": {
+  "turns": 89,
+  "sentences": 216,
+  "groundedSentences": {
+   "before": 64,
+   "after": 58
+  },
+  "groundedRatio": {
+   "before": "29.6%",
+   "after": "26.9%"
+  },
+  "turnsWithAnyGroundedSentence": {
+   "before": 45,
+   "after": 44
+  },
+  "typedLanguageGapSentences": 28
+ },
+ "answersJudgedCorrect": {
+  "turns": 74,
+  "sentences": 151,
+  "groundedSentences": {
+   "before": 50,
+   "after": 49
+  },
+  "groundedRatio": {
+   "before": "33.1%",
+   "after": "32.5%"
+  },
+  "turnsWithAnyGroundedSentence": {
+   "before": 36,
+   "after": 37
+  },
+  "typedLanguageGapSentences": 17
+ },
+ "answersJudgedWrong": {
+  "turns": 15,
+  "sentences": 65,
+  "groundedSentences": {
+   "before": 14,
+   "after": 9
+  },
+  "groundedRatio": {
+   "before": "21.5%",
+   "after": "13.8%"
+  },
+  "turnsWithAnyGroundedSentence": {
+   "before": 9,
+   "after": 7
+  },
+  "typedLanguageGapSentences": 11
+ },
+ "byLabel": {
+  "default": {
+   "turns": 66,
+   "sentences": 103,
+   "groundedSentences": {
+    "before": 43,
+    "after": 33
+   },
+   "groundedRatio": {
+    "before": "41.7%",
+    "after": "32.0%"
+   },
+   "turnsWithAnyGroundedSentence": {
+    "before": 34,
+    "after": 30
+   },
+   "typedLanguageGapSentences": 13
+  },
+  "frontier": {
+   "turns": 23,
+   "sentences": 113,
+   "groundedSentences": {
+    "before": 21,
+    "after": 25
+   },
+   "groundedRatio": {
+    "before": "18.6%",
+    "after": "22.1%"
+   },
+   "turnsWithAnyGroundedSentence": {
+    "before": 11,
+    "after": 14
+   },
+   "typedLanguageGapSentences": 15
+  }
+ },
+ "rows": [
+  {
+   "key": "default/a1_eiffel_year/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/a2_austen/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/a3_apollo_date/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/a4_fleming/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/a5_gold_symbol/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/a6_mona_lisa/r1/t0",
+   "label": "default",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 6,
+   "oldGrounded": 3,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "name": 0
+   }
+  },
+  {
+   "key": "default/b1_eiffel_feet/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/b2_everest_m/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/b3_mariana_ft/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/b4_iceland_pop/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/b5_light_kms/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0
+   }
+  },
+  {
+   "key": "default/b6_danube_mi/r1/t0",
+   "label": "default",
+   "stratum": "b_numeric",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/c1_oxford_harvard/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": false,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/c1_oxford_harvard/r2/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/c1_oxford_harvard/r3/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/c2_eiffel_liberty/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/c3_danube_rhine/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0,
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/c4_galileo_newton/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/c5_russia_canada/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": false,
+   "sentences": 2,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/c6_apple_founders/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 2,
+   "oldGrounded": 1,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/c7_eiffel_country_capital/r1/t0",
+   "label": "default",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/d1_austen/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/d1_austen/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/d1_austen/r1/t2",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/d2_mona_lisa/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/d3_everest/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/d3_everest/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/d3_everest/r1/t2",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/d4_telephone/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/d4_telephone/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/d5_armstrong_age/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0
+   }
+  },
+  {
+   "key": "default/d5_armstrong_age/r3/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/d6_curie/r1/t2",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0
+   }
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t0",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/d7_canberra_pop/r1/t1",
+   "label": "default",
+   "stratum": "d_followup",
+   "correct": false,
+   "sentences": 4,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "name": 0,
+    "terms": 0,
+    "no-content": 0
+   }
+  },
+  {
+   "key": "default/e_cap_ar/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/e_cap_de/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_cap_en/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_cap_es/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_cap_fr/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_cap_hi/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_cap_pt/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_cap_ru/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 2,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 2,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_cap_ru/r2/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": false,
+   "sentences": 2,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 2,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_cap_ru/r3/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": false,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 2,
+   "newWhy": {
+    "cross-language": 0,
+    "name": 0
+   }
+  },
+  {
+   "key": "default/e_cap_sw/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": false,
+   "sentences": 2,
+   "oldGrounded": 2,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/e_cap_zh/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "no-content": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_ar/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_de/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_en/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_eiffel_es/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_fr/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_ja/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_eiffel_pt/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_eiffel_sw/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_eiffel_zh/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0
+   }
+  },
+  {
+   "key": "default/e_wall_de/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "default/e_wall_en/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "default/e_wall_es/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/e_wall_fr/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "default/e_wall_zh/r1/t0",
+   "label": "default",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "default/f1_king_us/r1/t0",
+   "label": "default",
+   "stratum": "f_gap",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0,
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/f2_element_150/r1/t0",
+   "label": "default",
+   "stratum": "f_gap",
+   "correct": true,
+   "sentences": 9,
+   "oldGrounded": 2,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0,
+    "figure": 0,
+    "thin": 0,
+    "terms": 0
+   }
+  },
+  {
+   "key": "default/f3_wc_2034/r1/t0",
+   "label": "default",
+   "stratum": "f_gap",
+   "correct": false,
+   "sentences": 1,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "frontier/a1_eiffel_year/r1/t0",
+   "label": "frontier",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 2,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0,
+    "figure": 0
+   }
+  },
+  {
+   "key": "frontier/a2_austen/r1/t0",
+   "label": "frontier",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 2,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "frontier/a4_fleming/r1/t0",
+   "label": "frontier",
+   "stratum": "a_single",
+   "correct": true,
+   "sentences": 9,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "thin": 0,
+    "name": 0,
+    "terms": 0
+   }
+  },
+  {
+   "key": "frontier/b1_eiffel_feet/r1/t0",
+   "label": "frontier",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "frontier/b2_everest_m/r1/t0",
+   "label": "frontier",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "frontier/b5_light_kms/r1/t0",
+   "label": "frontier",
+   "stratum": "b_numeric",
+   "correct": true,
+   "sentences": 4,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "no-overlap": 0,
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "frontier/c1_oxford_harvard/r1/t0",
+   "label": "frontier",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 4,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "frontier/c2_eiffel_liberty/r1/t0",
+   "label": "frontier",
+   "stratum": "c_multihop",
+   "correct": false,
+   "sentences": 4,
+   "oldGrounded": 1,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure-binding": 0,
+    "name-binding": 0
+   }
+  },
+  {
+   "key": "frontier/c6_apple_founders/r1/t0",
+   "label": "frontier",
+   "stratum": "c_multihop",
+   "correct": true,
+   "sentences": 5,
+   "oldGrounded": 4,
+   "newGrounded": 4,
+   "gaps": 0,
+   "newWhy": {
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "frontier/d1_austen/r1/t0",
+   "label": "frontier",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 4,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure": 0
+   }
+  },
+  {
+   "key": "frontier/d2_mona_lisa/r1/t0",
+   "label": "frontier",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 1,
+   "newGrounded": 3,
+   "gaps": 0,
+   "newWhy": {}
+  },
+  {
+   "key": "frontier/d5_armstrong_age/r1/t0",
+   "label": "frontier",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 4,
+   "oldGrounded": 2,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "thin": 0,
+    "name": 0
+   }
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t0",
+   "label": "frontier",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 4,
+   "oldGrounded": 3,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "frontier/d7_canberra_pop/r1/t1",
+   "label": "frontier",
+   "stratum": "d_followup",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0,
+    "name": 0,
+    "no-content": 0
+   }
+  },
+  {
+   "key": "frontier/e_cap_ar/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 1,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure": 0
+   }
+  },
+  {
+   "key": "frontier/e_cap_ru/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 2,
+   "newGrounded": 1,
+   "gaps": 2,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "frontier/e_eiffel_ar/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": false,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 3,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "frontier/e_eiffel_es/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 6,
+   "oldGrounded": 1,
+   "newGrounded": 0,
+   "gaps": 5,
+   "newWhy": {
+    "no-overlap": 0,
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "frontier/e_eiffel_ru/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 1,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 1,
+   "newWhy": {
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "frontier/e_wall_hi/r1/t0",
+   "label": "frontier",
+   "stratum": "e_multilingual",
+   "correct": true,
+   "sentences": 5,
+   "oldGrounded": 0,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "terms": 0,
+    "figure-binding": 0
+   }
+  },
+  {
+   "key": "frontier/f1_king_us/r1/t0",
+   "label": "frontier",
+   "stratum": "f_gap",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 1,
+   "newGrounded": 2,
+   "gaps": 0,
+   "newWhy": {
+    "figure": 0
+   }
+  },
+  {
+   "key": "frontier/f2_element_150/r1/t0",
+   "label": "frontier",
+   "stratum": "f_gap",
+   "correct": false,
+   "sentences": 36,
+   "oldGrounded": 4,
+   "newGrounded": 3,
+   "gaps": 4,
+   "newWhy": {
+    "figure": 0,
+    "no-content": 0,
+    "no-overlap": 0,
+    "name": 0,
+    "terms": 0,
+    "figure-binding": 0,
+    "cross-language": 0
+   }
+  },
+  {
+   "key": "frontier/f3_wc_2034/r1/t0",
+   "label": "frontier",
+   "stratum": "f_gap",
+   "correct": true,
+   "sentences": 3,
+   "oldGrounded": 0,
+   "newGrounded": 0,
+   "gaps": 0,
+   "newWhy": {
+    "no-overlap": 0,
+    "figure": 0,
+    "figure-binding": 0
+   }
+  }
+ ]
+}

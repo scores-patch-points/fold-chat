@@ -245,7 +245,7 @@ export async function runTurnFeedbackChecks({ browser, URL, ok }) {
     const dom = await page.evaluate(() => { const m = [...document.querySelectorAll(".msg.assistant")].slice(-1)[0]; const note = m?.querySelector(".fold-note.kind-fold"), strand = m?.querySelector(".strand"); return { note: note?.innerText.replace(/\s+/g, " ") || null, above: !!(note && strand && (note.compareDocumentPosition(strand) & Node.DOCUMENT_POSITION_FOLLOWING)), snips: m?.querySelectorAll(".strand-snip").length || 0 }; });
     const n = (a?.notices || []).find((x) => x.kind === "fold");
     ok("bridge unreachable + Facing page: the turn falls back to the strand with the app's note above it (kind 'fold', fellBackFrom 'facing') instead of stopping",
-      posts.length === 0 && a?.authored === "sources" && a?.fellBackFrom === "facing" && !!n && n.text === "No model is reachable (the bridge isn't running), so this shows what the sources say. Start `heimdall up` for written answers." && dom.above && dom.snips >= 1,
+      posts.length === 0 && a?.authored === "sources" && a?.fellBackFrom === "facing" && !!n && n.text === "No model is reachable (no bridge answered and this tab has none loaded), so this shows what the sources say. Run `npm run serve` (the Fold's own server) or use the in-tab model for written answers." && dom.above && dom.snips >= 1,
       JSON.stringify({ chatPOSTs: posts.length, fellBackFrom: a?.fellBackFrom, note: n?.text, dom }), "a toast and nothing else, a different note, or the note below the strand");
   });
   // ── 6. THE CONVERSATION IS A SOURCE: follow-ups resolve against the thread before any search ─────

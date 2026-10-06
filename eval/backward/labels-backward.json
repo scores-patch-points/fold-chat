@@ -1,0 +1,635 @@
+{
+ "assembled-run1.json": {
+  "states": 17,
+  "sentences": 47,
+  "precision": "17/47 (36.2%)",
+  "sensitivity_topK_verbatim_plus_derived": {
+   "1": "8/18 (44.4%)",
+   "2": "15/34 (44.1%)",
+   "3": "17/47 (36.2%)"
+  },
+  "rows": [
+   {
+    "id": "a2_austen",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination"
+   },
+   {
+    "id": "a2_austen",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Pride is a primary emotion characterized by a sense of security with one's identity , performance, and/or accomplishments."
+   },
+   {
+    "id": "a2_austen",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Depending on the context, pride may be viewed as either a virtue or a vice ."
+   },
+   {
+    "id": "a3_apollo_date",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "By 1972, six Apollo missions had landed twelve people on the Moon and stayed up to three days."
+   },
+   {
+    "id": "a3_apollo_date",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The first spaceflights to an extraterrestrial body were to the Moon, starting in 1959 with the flyby of Luna 1 (sent by the Soviet Union ), and the intentional "
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "A number of natural penicillins have been discovered, but only two purified compounds are in clinical use: penicillin G ( intramuscular or intravenous use ) and"
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Penicillin was discovered in 1928 by the Scottish physician Alexander Fleming as a crude extract of P. rubens ."
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "In his Nobel lecture on 11 December 1945, he briefly mentioned lysozyme, saying, \"Penicillin was not the first antibiotic I happened to discover.\""
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Gold is a chemical element ; its chemical symbol is Au (from Latin aurum ) and atomic number 79."
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Gold is a chemical element; its chemical symbol is 'Au' (from Latin aurum) and atomic number 79."
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Chemical symbols are the abbreviations used in chemistry , mainly for chemical elements , but also for functional groups , chemical compounds, and other entitie"
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The Mona Lisa is a half-length portrait painting by the Italian artist Leonardo da Vinci ."
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The painting has been traditionally considered to depict the Italian noblewoman Lisa del Giocondo ."
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "It is painted in oil on a white poplar panel ."
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris."
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Its base is square, measuring 125 metres (410 ft) on each side."
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft)."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in)."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The closest sea to Mount Everest's summit is the Bay of Bengal, almost 700 km (430 mi) away."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Climbers usually begin their ascent from base camps above 5,000 m (16,404 ft)."
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The maximum known depth is 10,935 ± 6 meters (35,876 ± 20 ft; 5,979.3 ± 3.3 fathoms; 6.7947 ± 0.0037 mi) at the southern end of a small slot-shaped valley in it"
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "During this survey, the deepest part of the trench was recorded when the Challenger II measured a depth of 5,960 fathoms (10,900 meters; 35,760 feet) at 11°19′N"
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Using both ocean-bottom seismometers and hydrophones , the scientists were able to map structures as deep as 97 kilometers (318,000 ft; 53,000 fathoms; 60 miles"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its capital and largest city is Reykjavík , which is home to about 35% of the country's roughly 395,000 residents (excluding nearby towns/suburbs, which are sep"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "According to the Landnámabók , an ancient manuscript, the settlement of Iceland began in 874 AD, when the Norwegian chieftain Ingólfr Arnarson became the island"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "In 1397, Iceland followed Norway 's integration into the Kalmar Union along with the kingdoms of Denmark and Sweden , coming under de facto Danish rule upon its"
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "For example, in imperial units , the speed of light is approximately 186 282 miles per second."
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The fastest possible speed at which energy or information can travel, according to special relativity , is the speed of light in vacuum c = 299 792 458 metres p"
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The value 299,792,458 metres per second is approximately 1 billion kilometres per hour; 700 million miles per hour ."
+   },
+   {
+    "id": "c1_oxford_harvard",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Harvard University is a private Ivy League research university in Cambridge, Massachusetts, United States."
+   },
+   {
+    "id": "c1_oxford_harvard",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "In 1780, the Constitution of Massachusetts referred to it as a university, and a new medical school established in 1782 was named the Medical Institution of Har"
+   },
+   {
+    "id": "c1_oxford_harvard",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Following the American Civil War, under Harvard president Charles William Eliot's long tenure from 1869 to 1909, Harvard developed multiple professional schools"
+   },
+   {
+    "id": "c2_eiffel_liberty",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "According to The New York Times, \"[at] a time when the [CIC] was helping finance one of the world's best-known landmarks, the Eiffel Tower, as a monument to Fre"
+   },
+   {
+    "id": "c2_eiffel_liberty",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France."
+   },
+   {
+    "id": "c2_eiffel_liberty",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889."
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Originating in Germany, the Danube flows southeast for 2,850 km (1,770 mi) , passing through or bordering Austria, Slovakia, Hungary, Croatia, Serbia, Romania, "
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Draining an area of 185,000 km , it is the second-longest river in Central and Western Europe (after the Danube ), at about 1,230 km (760 mi) with an average di"
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 2,
+    "how": "derived",
+    "verdict": "off",
+    "quote": "Longer: Rhine (Danube: 2,850 km < Rhine: 185,000 km)"
+   },
+   {
+    "id": "c4_galileo_newton",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "His book Philosophiæ Naturalis Principia Mathematica ( Mathematical Principles of Natural Philosophy ), first published in 1687, achieved the first great unific"
+   },
+   {
+    "id": "c4_galileo_newton",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Galileo was born in Pisa (then part of the Duchy of Florence ) on 15 February 1564, the first of six children of Vincenzo Galilei , a leading lutenist , compose"
+   },
+   {
+    "id": "c4_galileo_newton",
+    "idx": 2,
+    "how": "derived",
+    "verdict": "off",
+    "quote": "Older: Galileo Galilei (Isaac Newton: 1687 > Galileo Galilei: 1564)"
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "It is a highly urbanised country, with three-fourths of its population living in urban areas."
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Moscow , the most populous metropolitan area in Europe , is the capital and largest city of Russia , while Saint Petersburg is its second-largest city and a maj"
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean, making it the second-largest co"
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, I"
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Apple Computer Company was founded as a partnership on April 1, 1976, by Steve Jobs , Steve Wozniak , and Ronald Wayne ."
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Apple Computer, Inc. was incorporated in Cupertino, California , on January 3, 1977, without Wayne, who had left and sold his share of the company back to Jobs "
+   }
+  ]
+ },
+ "assembled-run2.json": {
+  "states": 21,
+  "sentences": 40,
+  "precision": "21/40 (52.5%)",
+  "sensitivity_topK_verbatim_plus_derived": {
+   "1": "13/15 (86.7%)",
+   "2": "19/28 (67.9%)",
+   "3": "21/40 (52.5%)"
+  },
+  "rows": [
+   {
+    "id": "a1_eiffel_year",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889."
+   },
+   {
+    "id": "a1_eiffel_year",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was constructed as the centrepiece of the 1889 World's Fair, and to "
+   },
+   {
+    "id": "a1_eiffel_year",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for "
+   },
+   {
+    "id": "a3_apollo_date",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The first spaceflights to an extraterrestrial body were to the Moon, starting in 1959 with the flyby of Luna 1 (sent by the Soviet Union ), and the intentional "
+   },
+   {
+    "id": "a3_apollo_date",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "By 1972, six Apollo missions had landed twelve people on the Moon and stayed up to three days."
+   },
+   {
+    "id": "a3_apollo_date",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "A study published in 2022, using high-resolution simulations (up to 10 particles), found that giant impacts can immediately place a satellite with similar mass "
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Penicillin was discovered in 1928 by the Scottish physician Alexander Fleming as a crude extract of P. rubens ."
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The laboratory in which Fleming discovered and tested penicillin is preserved as the Alexander Fleming Laboratory Museum in St. Mary's Hospital, Paddington."
+   },
+   {
+    "id": "a4_fleming",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "It was coined by Alexander Fleming on 7 March 1929 when he discovered the antibacterial property of Penicillium rubens ."
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Gold is a chemical element ; its chemical symbol is Au (from Latin aurum ) and atomic number 79."
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Gold is a chemical element; its chemical symbol is 'Au' (from Latin aurum) and atomic number 79."
+   },
+   {
+    "id": "a5_gold_symbol",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Chemical symbols are the abbreviations used in chemistry , mainly for chemical elements , but also for functional groups , chemical compounds, and other entitie"
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The Mona Lisa is a half-length portrait painting by the Italian artist Leonardo da Vinci ."
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The painting's global fame and popularity partly stem from its 1911 theft by Vincenzo Peruggia , who attributed his actions to Italian patriotism—a belief it sh"
+   },
+   {
+    "id": "a6_mona_lisa",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "It holds the Guinness World Record for the highest known painting insurance valuation in history at US$100 million in 1962, equivalent to $1 billion as of 2023 "
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris."
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft)."
+   },
+   {
+    "id": "b1_eiffel_feet",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "The top level's upper platform is 276 m (906 ft) above the ground—the highest public observation deck in the European Union."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its height was most recently measured in 2020 through a joint survey by Nepalese and Chinese authorities as 8,848.86 m (29,031 ft 8+1⁄2 in)."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "His raw data gave an average height of 9,200 m (30,200 ft) for peak \"b\", but this did not consider light refraction, which distorts heights."
+   },
+   {
+    "id": "b2_everest_m",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Kangchenjunga was declared to be 8,582 m (28,156 ft), while Peak XV was given the height of 8,840 m (29,002 ft)."
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The maximum known depth is 10,935 ± 6 meters (35,876 ± 20 ft; 5,979.3 ± 3.3 fathoms; 6.7947 ± 0.0037 mi) at the southern end of a small slot-shaped valley in it"
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "During this survey, the deepest part of the trench was recorded when the Challenger II measured a depth of 5,960 fathoms (10,900 meters; 35,760 feet) at 11°19′N"
+   },
+   {
+    "id": "b3_mariana_ft",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Using both ocean-bottom seismometers and hydrophones , the scientists were able to map structures as deep as 97 kilometers (318,000 ft; 53,000 fathoms; 60 miles"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its capital and largest city is Reykjavík , which is home to about 35% of the country's roughly 395,000 residents (excluding nearby towns/suburbs, which are sep"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "According to the Landnámabók , an ancient manuscript, the settlement of Iceland began in 874 AD, when the Norwegian chieftain Ingólfr Arnarson became the island"
+   },
+   {
+    "id": "b4_iceland_pop",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "In 1397, Iceland followed Norway 's integration into the Kalmar Union along with the kingdoms of Denmark and Sweden , coming under de facto Danish rule upon its"
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "For example, in imperial units , the speed of light is approximately 186 282 miles per second."
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "The fastest possible speed at which energy or information can travel, according to special relativity , is the speed of light in vacuum c = 299 792 458 metres p"
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "A cyclist who covers 30 metres in a time of 2 seconds, for example, has a speed of 15 metres per second."
+   },
+   {
+    "id": "b5_light_kms",
+    "idx": 3,
+    "how": "derived",
+    "verdict": "states",
+    "quote": "186,282 miles/s = 299792 kilometres/s"
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Originating in Germany, the Danube flows southeast for 2,850 km (1,770 mi) , passing through or bordering Austria, Slovakia, Hungary, Croatia, Serbia, Romania, "
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Draining an area of 185,000 km , it is the second-longest river in Central and Western Europe (after the Danube ), at about 1,230 km (760 mi) with an average di"
+   },
+   {
+    "id": "c3_danube_rhine",
+    "idx": 2,
+    "how": "derived",
+    "verdict": "states",
+    "quote": "Longer: Danube (Danube: 2,850 km > Rhine: 1,230 km)"
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "It is a highly urbanised country, with three-fourths of its population living in urban areas."
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Moscow , the most populous metropolitan area in Europe , is the capital and largest city of Russia , while Saint Petersburg is its second-largest city and a maj"
+   },
+   {
+    "id": "c5_russia_canada",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Its ten provinces and three territories extend from the Atlantic Ocean to the Pacific Ocean and northward into the Arctic Ocean, making it the second-largest co"
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 0,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Founded in 1976 as Apple Computer Company by Steve Jobs , Steve Wozniak and Ronald Wayne , the company was incorporated by Jobs and Wozniak as Apple Computer, I"
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 1,
+    "how": "verbatim",
+    "verdict": "states",
+    "quote": "Apple Computer Company was founded as a partnership on April 1, 1976, by Steve Jobs , Steve Wozniak , and Ronald Wayne ."
+   },
+   {
+    "id": "c6_apple_founders",
+    "idx": 2,
+    "how": "verbatim",
+    "verdict": "off",
+    "quote": "Apple Computer, Inc. was incorporated in Cupertino, California , on January 3, 1977, without Wayne, who had left and sold his share of the company back to Jobs "
+   }
+  ]
+ }
+}

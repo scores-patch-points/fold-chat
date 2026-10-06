@@ -48,6 +48,17 @@ test("planTurn: a push-back with an earlier answer is a reply ABOUT it — no se
   }
 });
 
+test("a push-back that carries a pronoun ('prove it') is still a move — the carried-referent search would have searched 'it' with the referent tacked on", () => {
+  const referents = { entities: [{ surface: "Canberra", turn: 1, kind: "name" }], turn: 1 };
+  const prior = [{ role: "user", content: "What's the capital of Australia?" }, { role: "assistant", content: "The capital of Australia is Canberra.", mode: "chat" }];
+  assert.equal(turnPlan("prove it", prior, { referents }).mode, "web", "turnPlan alone searches it");
+  const p = planTurn("prove it", prior, { referents });
+  assert.equal(p.mode, "thread");
+  assert.equal(p.search, null);
+  // …while a real pronoun question is still carried, not a move
+  assert.notEqual(planTurn("what happened to him?", prior, { referents }).kind, "move");
+});
+
 test("FALSIFIER: a cold push-back or cold 'what?' (nothing earlier to follow) writes nothing — no search, no model", () => {
   for (const q of ["are you sure?", "prove it", "how do these fit together", "what?", "why?"]) {
     const p = planTurn(q, []);
@@ -141,4 +152,12 @@ test("FLOW_ENFORCEMENT: every flow rule Terry keeps is mapped to code in THIS ap
     assert.equal(typeof mod[row.enforced.holds], "function", `${row.rule}: ${row.enforced.file} exports ${row.enforced.holds}`);
   }
   assert.ok(unwired.length > 0 && unwired.length < FLOW_ENFORCEMENT.length, "the unwired are listed, not hidden: " + unwired.join("; "));
+});
+
+test("a thread-grounded reply's own labels [T1] / [T2] never reach the person (measured: the model writes them when told not to)", async () => {
+  const { stripScaffolding } = await import("./fold-chat-attribution.js");
+  const out = stripScaffolding("Here's the source: \"The capital is Canberra.\" [T2]", []);
+  assert.doesNotMatch(out.text, /\[T\d\]/);
+  assert.equal(out.removed, 1);
+  assert.equal(stripScaffolding("Stage T2 tumours differ.", []).text, "Stage T2 tumours differ.", "a bare T2 is not a label");
 });

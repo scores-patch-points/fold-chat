@@ -1,0 +1,217 @@
+{
+ "at": "2026-10-05T22:15:37.032Z",
+ "summary": {
+  "k": 2,
+  "model": "gemma2:2b",
+  "casesWithHolons": 13,
+  "voiced": 10,
+  "noAnswer": 3,
+  "gateAccepted": 8,
+  "certified": 8,
+  "goldVoiced": 9,
+  "goldVoicedAndGateAccepted": 7,
+  "goldFinalWithFallback": 10,
+  "medianMs": 2221
+ },
+ "rows": [
+  {
+   "id": "a1_eiffel_year",
+   "answered": true,
+   "voiced": "The Eiffel Tower was completed in 1889.",
+   "noAnswer": false,
+   "gateAccepted": false,
+   "gateWhy": "figure-binding",
+   "certified": false,
+   "certWhy": "figure-binding",
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 15951
+  },
+  {
+   "id": "a2_austen",
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "id": "a3_apollo_date",
+   "answered": true,
+   "voiced": "NO ANSWER.",
+   "noAnswer": true,
+   "gateAccepted": false,
+   "gateWhy": null,
+   "certified": false,
+   "certWhy": null,
+   "goldVoiced": null,
+   "goldFinal": false,
+   "ms": 1396
+  },
+  {
+   "id": "a4_fleming",
+   "answered": true,
+   "voiced": "Alexander Fleming discovered penicillin.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 1259
+  },
+  {
+   "id": "a5_gold_symbol",
+   "answered": true,
+   "voiced": "The chemical symbol for gold is 'Au'.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 1475
+  },
+  {
+   "id": "a6_mona_lisa",
+   "answered": true,
+   "voiced": "Leonardo da Vinci painted the Mona Lisa.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 1381
+  },
+  {
+   "id": "b1_eiffel_feet",
+   "answered": true,
+   "voiced": "The Eiffel Tower is 330 metres (1,083 ft) tall.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 2272
+  },
+  {
+   "id": "b2_everest_m",
+   "answered": true,
+   "voiced": "Mount Everest is 8,848.86 meters tall.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 2145
+  },
+  {
+   "id": "b3_mariana_ft",
+   "answered": true,
+   "voiced": "The maximum known depth of the Mariana Trench is 10,935 ± 6 meters (35,876 ± 20 ft).",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 8785
+  },
+  {
+   "id": "b4_iceland_pop",
+   "answered": true,
+   "voiced": "Iceland's population is roughly 395,000.",
+   "noAnswer": false,
+   "gateAccepted": false,
+   "gateWhy": "figure",
+   "certified": false,
+   "certWhy": "figure",
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 2221
+  },
+  {
+   "id": "b5_light_kms",
+   "answered": true,
+   "voiced": "The speed of light is approximately 299 792 458 metres per second.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": false,
+   "goldFinal": false,
+   "ms": 2741
+  },
+  {
+   "id": "b6_danube_mi",
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "id": "c1_oxford_harvard",
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "id": "c2_eiffel_liberty",
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "id": "c3_danube_rhine",
+   "answered": true,
+   "voiced": "NO ANSWER",
+   "noAnswer": true,
+   "gateAccepted": false,
+   "gateWhy": null,
+   "certified": false,
+   "certWhy": null,
+   "goldVoiced": null,
+   "goldFinal": false,
+   "ms": 1394
+  },
+  {
+   "id": "c4_galileo_newton",
+   "answered": false,
+   "gap": "no-figure-of-kind"
+  },
+  {
+   "id": "c5_russia_canada",
+   "answered": true,
+   "voiced": "NO ANSWER.",
+   "noAnswer": true,
+   "gateAccepted": false,
+   "gateWhy": null,
+   "certified": false,
+   "certWhy": null,
+   "goldVoiced": null,
+   "goldFinal": true,
+   "ms": 4278
+  },
+  {
+   "id": "c6_apple_founders",
+   "answered": true,
+   "voiced": "Steve Jobs, Steve Wozniak, and Ronald Wayne founded Apple Computer Company in 1976.",
+   "noAnswer": false,
+   "gateAccepted": true,
+   "gateWhy": null,
+   "certified": true,
+   "certWhy": null,
+   "goldVoiced": true,
+   "goldFinal": true,
+   "ms": 6256
+  },
+  {
+   "id": "c7_eiffel_country_capital",
+   "answered": false,
+   "gap": "no-holon-bears"
+  }
+ ]
+}

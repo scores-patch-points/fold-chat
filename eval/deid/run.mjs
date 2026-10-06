@@ -1,37 +1,27 @@
-// Probe: how much of the private naming in informal, caseless asks does the de-identifier actually mask?
-// Usage: node eval/deid/run.mjs [--no-read]   (the read goes to the local heimdall bridge; nothing leaves this machine)
+// How much of the private naming in informal, caseless asks does the whole JS pipeline mask?
+// Runs fold-chat-redact.js deidentify() against the local Python redactor (scripts/pii/server.py must be up). Nothing leaves this machine.
+// Usage: node eval/deid/run.mjs [--cases=./cases-heldout.json] [--mode=open] [--show] [--no-redactor]
 import { readFileSync } from "node:fs";
-import { createDeid, namesIn } from "../../fold-chat-deid.js";
-import { read } from "../../fold-chat-client.js";
-import { informalTerms, defaultPriors } from "../../fold-chat-informal.js";
-const PRIORS = defaultPriors();
-const useInformal = process.argv.includes("--informal");
+import { createRedactor, deidentify } from "../../fold-chat-redact.js";
 
-const casesFile = process.argv.find((a) => a.startsWith("--cases="))?.slice(8) || "./cases.json";
-const { cases } = JSON.parse(readFileSync(new URL(casesFile, import.meta.url)));
-const useRead = !process.argv.includes("--no-read");
+const arg = (k, d) => process.argv.find((a) => a.startsWith(`--${k}=`))?.slice(k.length + 3) || d;
+const { cases } = JSON.parse(readFileSync(new URL(arg("cases", "./cases.json"), import.meta.url)));
+const mode = arg("mode", "default"), floorOnly = process.argv.includes("--no-redactor");
+const redactor = createRedactor();
+if (!floorOnly && !(await redactor.health())) { console.error("the PII redactor is not up: scripts/pii/.venv/bin/python scripts/pii/server.py"); process.exit(2); }
 const lc = (s) => s.toLowerCase();
-let rows = [];
+const rows = [];
 for (const c of cases) {
-  let named = [], viaRead = false;
-  if (useRead) { try { const r = await read(c.text, { source: "deid-probe" }); named = (r.referents || []).flatMap((x) => x.surfaces || []); viaRead = named.length > 0; } catch { /* the bridge being down is a result, not a crash */ } }
-  if (!named.length) named = namesIn(c.text);
-  const inf = useInformal ? informalTerms(c.text, PRIORS) : [];
-  const extra = [...named.map((term) => ({ term, whole: true })), ...inf];
-  named = [...new Set([...named, ...inf.map((f) => f.term)])];
-  const d = createDeid({ extra });
-  const masked = d.mask(c.text);
-  const left = c.gold.filter((g) => lc(masked).includes(lc(g)));
-  // a gold name counts as caught when none of its words (≥3 chars, not a bare connector) survive
-  const missed = c.gold.filter((g) => g.split(/\s+/).filter((w) => w.length >= 2 && !/^(and|the)$/.test(w)).some((w) => lc(masked).includes(lc(w.replace(/^@/, "")))));
-  const over = [...new Set(named)].filter((n) => !c.gold.some((g) => lc(g).includes(lc(n)) || lc(n).includes(lc(g))));
-  rows.push({ id: c.id, reg: c.reg, gold: c.gold.length, caught: c.gold.length - missed.length, missed, over, viaRead, masked });
+  let out;
+  try { out = await deidentify([c.text], { mode, redact: floorOnly ? null : (t) => redactor.spans(t) }); } catch (e) { rows.push({ ...c, error: e.message, caught: 0 }); continue; }
+  const masked = out.texts[0];
+  const missed = c.gold.filter((g) => lc(masked).includes(lc(g.replace(/^@/, ""))));
+  rows.push({ ...c, masked, missed, caught: c.gold.length - missed.length, ids: out.deid.stats().count, passes: out.passes });
 }
-const pad = (s, n) => String(s).padEnd(n);
-for (const r of rows) console.log(pad(r.id, 8), pad(r.reg, 10), `${r.caught}/${r.gold}`.padEnd(5), r.viaRead ? "read " : "floor", r.missed.length ? "MISSED " + JSON.stringify(r.missed) : "", r.over.length ? "OVER " + JSON.stringify(r.over) : "");
-const g = rows.reduce((a, r) => a + r.gold, 0), k = rows.reduce((a, r) => a + r.caught, 0);
-const negs = rows.filter((r) => r.gold === 0), overAll = rows.reduce((a, r) => a + r.over.length, 0);
-console.log(`\nrecall ${k}/${g} = ${(100 * k / g).toFixed(0)}%   over-masked terms: ${overAll} (${negs.filter((r) => r.over.length).length}/${negs.length} no-name asks touched)   read used on ${rows.filter((r) => r.viaRead).length}/${rows.length}`);
-const byReg = {}; for (const r of rows) { const b = (byReg[r.reg] ||= { g: 0, k: 0 }); b.g += r.gold; b.k += r.caught; }
-console.log(Object.entries(byReg).filter(([, b]) => b.g).map(([k, b]) => `${k} ${b.k}/${b.g}`).join(" · "));
-if (process.argv.includes("--show")) for (const r of rows) console.log("\n" + r.id + ": " + r.masked);
+for (const r of rows) console.log(r.id.padEnd(8), r.reg.padEnd(10), `${r.caught}/${r.gold.length}`.padEnd(5), r.error ? "REFUSED " + r.error : r.missed.length ? "MISSED " + JSON.stringify(r.missed) : "", r.gold.length ? "" : `masked ${r.ids} (should be 0)`);
+const g = rows.reduce((a, r) => a + r.gold.length, 0), k = rows.reduce((a, r) => a + r.caught, 0);
+const neg = rows.filter((r) => !r.gold.length), touched = neg.filter((r) => r.ids > 0).length;
+console.log(`\nmode ${mode}${floorOnly ? " (floor only: no redactor)" : ""}: recall ${k}/${g} = ${(100 * k / g).toFixed(0)}%   no-name asks with anything masked: ${touched}/${neg.length}`);
+const by = {}; for (const r of rows) { const b = (by[r.reg] ||= [0, 0]); b[0] += r.caught; b[1] += r.gold.length; }
+console.log(Object.entries(by).filter(([, b]) => b[1]).map(([x, b]) => `${x} ${b[0]}/${b[1]}`).join(" · "));
+if (process.argv.includes("--show")) for (const r of rows) console.log("\n" + r.id + ": " + (r.masked ?? "(refused)"));

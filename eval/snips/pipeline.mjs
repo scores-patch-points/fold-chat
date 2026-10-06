@@ -13,7 +13,8 @@ import { get, makeFetch, closeNet, STATS, FOLD_RELAY } from "./lib/net.mjs";
 import { tokens, coverage, relevant, gnorm, squash, visibleNorm, decodeEntities } from "./lib/text.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const OUT = path.join(here, "data", "out"), PAGES = path.join(here, "data", "pages");
+const WEBFIRST = process.argv.includes("--webfirst");
+const OUT = path.join(here, "data", WEBFIRST ? "out-webfirst" : "out"), PAGES = path.join(here, "data", "pages");
 fs.mkdirSync(OUT, { recursive: true }); fs.mkdirSync(PAGES, { recursive: true });
 const argv = process.argv.slice(2);
 const arg = (k, d = null) => { const i = argv.indexOf("--" + k); return i < 0 ? d : (argv[i + 1] && !argv[i + 1].startsWith("--") ? argv[i + 1] : true); };
@@ -34,7 +35,9 @@ const HINTS = { personalPronouns: ["he", "him", "his", "she", "her", "hers", "é
 // ── candidate selection: the app's own ordering/gate/diversify from searchWeb (copied; searchWeb itself reads inside) ────────────
 const rankOf = (r) => (r.kind === "web" || /wikipedia\.org\/wiki\//.test(r.url) ? 0 : /(^|\.)doi\.org|pdf|\.pdf$/i.test(r.url) ? 3 : /github\.com/.test(r.url) ? 2 : 1);
 function chooseReads(results, query, cfg = EFFORT.balanced) {
-  const ordered = [...results].sort((a, b) => rankOf(a) - rankOf(b));
+  // EXPLORATORY variant (--webfirst): the open-web hits are queued ahead of the API scopes' hits (the app queues whichever answered first, which is Wikipedia's keyword search)
+  const base = WEBFIRST ? [...results].sort((a, b) => (a.kind === "web" ? 0 : 1) - (b.kind === "web" ? 0 : 1)) : results;
+  const ordered = [...base].sort((a, b) => rankOf(a) - rankOf(b));
   const readable = ordered.filter((r) => rankOf(r) < 3);
   const poolAll = readable.length ? readable : ordered;
   const g = applyGate(poolAll, entitiesOf(query), query, cfg);
