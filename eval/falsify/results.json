@@ -340,5 +340,215 @@
     "evidence": "{\"searchesAfterNudge\":[\"Who is the king of the UK?\",\"king of the UK\"]}"
    }
   ]
+ },
+ {
+  "head": "d9e356f",
+  "foldChatSha": "309ec12853aa8ae3",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 3,
+   "FALSIFIED": 0,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "K1",
+    "conj": "CONTROL: a true, witnessed answer ships",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The capital of Australia is Canberra.\",\"shown\":\"The capital of Australia is Canberra. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy\",\"void\":null}"
+   },
+   {
+    "id": "K2",
+    "conj": "CONTROL: a true, witnessed paraphrase ships",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"Canberra is Australia's capital city.\",\"shown\":\"Canberra is Australia's capital city. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy\",\"void\":null}"
+   },
+   {
+    "id": "C6",
+    "conj": "a bare nudge after a stopped turn re-asks the stopped ask and never searches the word",
+    "verdict": "STANDS",
+    "evidence": "{\"searchesAfterNudge\":[\"Who is the king of the UK?\",\"king of the UK\"]}"
+   }
+  ]
+ },
+ {
+  "head": "cb8e70b",
+  "foldChatSha": "309ec12853aa8ae3",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 6,
+   "FALSIFIED": 14,
+   "UNMEASURED": 1
+  },
+  "results": [
+   {
+    "id": "C1",
+    "conj": "no model sentence ships unless a passage states it (UK president / Queen Elizabeth II)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"stored\":\"The UK does not have a president. The current monarch is Queen Elizabeth II.\",\"shown\":\"The UK does not have a president. The current monarch is Queen Elizabeth II. ▸ ✱ nothing retrieved supports this ▸ how this was answered Answered in under 1 s · read 2 sources · gemma2:2b · effort bal\",\"flagged\":true,\"void\":\"unsupported\",\"authored\":null}"
+   },
+   {
+    "id": "C2",
+    "conj": "a claim a passage CONTRADICTS does not ship (king of the UK)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"stored\":\"The UK doesn't have a king.\",\"shown\":\"The UK doesn't have a king. ▸ ✱ nothing retrieved supports this ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy retry ⋯\",\"flagged\":true,\"void\":\"unsupported\",\"authored\":null}"
+   },
+   {
+    "id": "C3",
+    "conj": "'according to the sources' is never written over a claim no source states in the present tense (king of France)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"stored\":\"According to the sources, the king of France is Louis XVI.\",\"shown\":\"According to the sources, the king of France is Louis XVI. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy retry ⋯\",\"flagged\":false,\"void\":null,\"authored\":null}"
+   },
+   {
+    "id": "C4",
+    "conj": "a name absent from every passage never ships (PM of the UK / Sunak)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"stored\":\"The current prime minister of the UK is Rishi Sunak.\",\"shown\":\"The current prime minister of the UK is Rishi Sunak. ▸ ✱ nothing retrieved supports this ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy retry ⋯\",\"flagged\":true,\"void\":\"unsupported\",\"authored\":null}"
+   },
+   {
+    "id": "C9",
+    "conj": "SEARCH FALSIFIES: after a draft, the fold searches for a counterexample to the draft's own claim (a query naming it)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"searchedTheClaim\":false,\"queries\":[\"Who is the monarch of the UK?\",\"monarch of the UK\"]}"
+   },
+   {
+    "id": "C10",
+    "conj": "a claim the search refutes does not ship as the answer, and the refuting passage is shown",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"shipped\":true,\"refutingPassageShown\":false,\"stored\":\"The current monarch is Queen Elizabeth II.\",\"shown\":\"The current monarch is Queen Elizabeth II. ▸ ✱ nothing retrieved supports this ▸ how this was answered Answered in under 1 s · read 2 sources · gemma2:2b · effort balanced copy retry ⋯\"}"
+   },
+   {
+    "id": "C7",
+    "conj": "relay down: a plain-fact question is answered from a read source or ends in a typed gap, never a model answer with nothing read",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"A spider has eight legs.\",\"readSources\":1,\"void\":null,\"authored\":null,\"shown\":\"A spider has eight legs. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy retry ⋯\"}"
+   },
+   {
+    "id": "C8",
+    "conj": "(completeness, not a refutation) relay down: the Spider article is still read",
+    "verdict": "STANDS",
+    "evidence": "{\"readSources\":1,\"wikiSearches\":[\"How many legs does a spider have?\"],\"void\":null}"
+   },
+   {
+    "id": "K1",
+    "conj": "CONTROL: a true, witnessed answer ships",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The capital of Australia is Canberra.\",\"shown\":\"The capital of Australia is Canberra. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy\",\"void\":null}"
+   },
+   {
+    "id": "K2",
+    "conj": "CONTROL: a true, witnessed paraphrase ships",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"Canberra is Australia's capital city.\",\"shown\":\"Canberra is Australia's capital city. ▸ 1 passage from 1 source ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy\",\"void\":null}"
+   },
+   {
+    "id": "K3",
+    "conj": "a figure the model converted itself is not silently shipped as sourced (recorded, no prediction)",
+    "verdict": "STANDS",
+    "evidence": "{\"stored\":\"The Eiffel Tower is about 1,082 feet tall.\",\"marked\":true,\"shown\":\"The Eiffel Tower is about 1,082 feet tall. ▸ ✱ nothing retrieved supports this ▸ how this was answered Answered in under 1 s · read 1 source · gemma2:2b · effort balanced copy retry ⋯\"}"
+   },
+   {
+    "id": "A1",
+    "conj": "a slot ask is ANSWERED (one line + citation + a trace naming the searched claim), model off: king of the UK",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United K\\\"\",\"no search of the turn names Charles (the page 'Charles III' is reachable only by such a query)\",\"no .trace-line records a search naming 'Charles III'\"],\"stored\":\"The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Charles III is the king of the United Kingdom and the other Commonwealth realms, having\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of stat\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the king of the UK?\",\"king of the UK\"],\"modelCalls\":1,\"searchedCharles\":false,\"traceNamesSearch\":false}"
+   },
+   {
+    "id": "A2",
+    "conj": "an unwitnessed slot ask is a typed gap, never a name: president of the UK from a US/France pool",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no typed .gap drawn; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS ‹ Prev 1 of 2 Next › The pre\\\"\"],\"stored\":\"The president of the United States (POTUS) is the head of state and head of government of the United States. The power of the presidency has grown since the first president, George Washington, took office in 1789. The president is elected t\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS ‹ Prev 1 of 2 Next › The president of the United States (POTUS) is the head of state and head of government of the United States\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the president of the UK?\",\"president of the UK\"],\"modelCalls\":1}"
+   },
+   {
+    "id": "A3",
+    "conj": "a past-tense sentence cannot witness a present holder: king of France (gap no_present_holder + the past sentence)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no typed .gap (gap no_present_holder expected); on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Louis XVI was the last king \\\"\"],\"stored\":\"Louis XVI was the last king of France before the fall of the monarchy during the French Revolution; he reigned from 1774 until 1792. The monarchy was abolished in September 1792 and France was proclaimed a republic. France has had no king s\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Louis XVI was the last king of France before the fall of the monarchy during the French Revolution; he reigned from 1774 until 1\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the king of France?\",\"king of France\"],\"modelCalls\":1,\"pastSentenceShown\":true}"
+   },
+   {
+    "id": "A4",
+    "conj": "the present holder comes from the page, never memory: prime minister of the UK (Burnham, never Sunak)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The prime minister of the Un\\\"\"],\"stored\":\"The prime minister of the United Kingdom is the head of government of the United Kingdom. The current prime minister is Andy Burnham, who has held the office since 20 July 2026. The prime minister is appointed by the monarch.\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The prime minister of the United Kingdom is the head of government of the United Kingdom. The current prime minister is Andy Bur\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the prime minister of the UK?\",\"prime minister of the UK\"],\"modelCalls\":1}"
+   },
+   {
+    "id": "A5",
+    "conj": "the search falsifies the stale holder: the first search returns only a stale page saying Elizabeth II is the queen; the refutation is reachable only by a query naming her",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"the refuting passage (death 8 September 2022 / succeeded) is not drawn outside the trace; on screen: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United K\\\"\",\"no search of the turn names Elizabeth\"],\"stored\":\"The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Elizabeth II is the queen of the United Kingdom and the other Commonwealth realms, the \",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of stat\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the monarch of the UK?\",\"monarch of the UK\"],\"modelCalls\":1,\"queriedElizabeth\":false,\"refutationShown\":false}"
+   },
+   {
+    "id": "A6",
+    "conj": "CONTROL: a true, witnessed slot ask is answered, model off: capital of Australia (no over-suppression)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Canberra is the capital city\\\"\"],\"stored\":\"Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of government for the new nation, it is Australia's largest inland city. Canberra is located at the northern end of the Aus\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of governme\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"What is the capital of Australia?\",\"capital of Australia\"],\"modelCalls\":1}"
+   },
+   {
+    "id": "A7",
+    "conj": "a quantity slot is answered from the page, model off: legs of a spider",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Spiders are air-breathing ar\\\"\"],\"stored\":\"Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk. They are the largest order of arachnids and rank seventh in total species diversity among all orders of organisms.\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Spiders are air-breathing arthropods that have eight legs, chelicerae with fangs, and spinnerets that extrude silk. They are the\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"How many legs does a spider have?\"],\"modelCalls\":1}"
+   },
+   {
+    "id": "A8",
+    "conj": "NO PREDICTION: year World War 2 ended — an answer, an honest closest sentence, or a gap; a wrong or made-up year is a falsification",
+    "verdict": "UNMEASURED",
+    "evidence": "{\"reason\":\"neither an answer card nor a gap was drawn, so there is nothing to judge\",\"stored\":\"World War II, also known as the Second World War, was a global conflict between two coalitions, the Allies and the Axis powers. It lasted from 1 September 1939 to 2 September 1945. It involved the vast majority of the world's countries, inc\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS World War II, also known as the Second World War, was a global conflict between two coalitions, the Allies and the Axis powers. \",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"What year did World War 2 end?\",\"year did World War 2 end\"],\"modelCalls\":1}"
+   },
+   {
+    "id": "C5",
+    "conj": "an unanswered (stopped) ask is not carried into the next turn's model input",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"turn2Roles\":[\"system\",\"user\",\"user\"],\"carriedStoppedAsk\":true,\"snippet\":\"nted by the monarch.\\\"},{\\\"role\\\":\\\"user\\\",\\\"content\\\":\\\"Who is the king of the UK?\\\"},{\\\"role\\\":\\\"user\\\",\\\"content\\\":\\\"Who is the prime minister of t\"}"
+   },
+   {
+    "id": "C6",
+    "conj": "a bare nudge after a stopped turn re-asks the stopped ask and never searches the word",
+    "verdict": "STANDS",
+    "evidence": "{\"searchesAfterNudge\":[\"Who is the king of the UK?\",\"king of the UK\"]}"
+   }
+  ]
+ },
+ {
+  "head": "cb8e70b",
+  "foldChatSha": "309ec12853aa8ae3",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 0,
+   "FALSIFIED": 2,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "A1",
+    "conj": "a slot ask is ANSWERED (one line + citation + a trace naming the searched claim), model off: king of the UK",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United K\\\"\",\"no search of the turn names Charles (the page 'Charles III' is reachable only by such a query)\",\"no .trace-line records a search naming 'Charles III'\"],\"stored\":\"The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of state of the United Kingdom. Charles III is the king of the United Kingdom and the other Commonwealth realms, having\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS The monarchy of the United Kingdom is the constitutional form of government by which a hereditary monarch reigns as head of stat\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"Who is the king of the UK?\",\"king of the UK\"],\"modelCalls\":1,\"searchedCharles\":false,\"traceNamesSearch\":false}"
+   },
+   {
+    "id": "A6",
+    "conj": "CONTROL: a true, witnessed slot ask is answered, model off: capital of Australia (no over-suppression)",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"refutedBy\":[\"no .answer-card; on screen instead: \\\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Canberra is the capital city\\\"\"],\"stored\":\"Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of government for the new nation, it is Australia's largest inland city. Canberra is located at the northern end of the Aus\",\"shown\":\"MODEL DECLINED The model could not answer (heimdall bridge answered 500). Showing what the sources say instead. try again FROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS Canberra is the capital city of Australia. Founded following the federation of the colonies of Australia as the seat of governme\",\"cards\":0,\"answerText\":[],\"cites\":[],\"traces\":[],\"gaps\":[],\"contests\":[],\"wikiSearches\":[\"What is the capital of Australia?\",\"capital of Australia\"],\"modelCalls\":1}"
+   }
+  ]
+ },
+ {
+  "head": "cb8e70b",
+  "foldChatSha": "309ec12853aa8ae3",
+  "url": "http://127.0.0.1:8814/",
+  "tally": {
+   "STANDS": 0,
+   "FALSIFIED": 1,
+   "UNMEASURED": 0
+  },
+  "results": [
+   {
+    "id": "C5",
+    "conj": "an unanswered (stopped) ask is not carried into the next turn's model input",
+    "verdict": "FALSIFIED",
+    "evidence": "{\"turn2Roles\":[\"system\",\"user\",\"user\"],\"carriedStoppedAsk\":true,\"snippet\":\"nted by the monarch.\\\"},{\\\"role\\\":\\\"user\\\",\\\"content\\\":\\\"Who is the king of the UK?\\\"},{\\\"role\\\":\\\"user\\\",\\\"content\\\":\\\"Who is the prime minister of t\"}"
+   }
+  ]
  }
 ]

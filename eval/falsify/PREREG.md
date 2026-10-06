@@ -175,3 +175,65 @@ Result: 0 stand · 7 falsified · 1 unmeasured. Every prediction held (A8 had no
 * The model is still called for slot asks (modelCalls 1 on every case). D2 is not yet true.
 * Retrieval never queries the candidate's name (A1 "Charles", A5 "Elizabeth"): the only searches are the ask and the frame-shed ask. The refutation pages were unreachable, exactly as designed — nothing in today's turn searches to falsify.
 * The new judges are therefore a real bar: the page that passes them must draw a card/gap/contest with those class names, put the candidate's name in a search, and name that search in a trace line.
+
+---
+## RUN 3 (after the answer pipeline) — HEAD cb8e70b + working tree (served fold-chat.js sha256 309ec12853aa8ae3), 2026-10-06; appended, nothing above changed
+Verifier run; no repo file but this one was edited. Driver: `node fold-e2e-popper.mjs` (all 21 cases, once) against the page already served on 8814; then C5 alone once more and A1/A6 alone once more (timing check: same verdicts). Raw: `eval/falsify/results.json` (last three entries: the full run, A1+A6, C5). Load average ~200 throughout; no case came back UNMEASURED for a harness reason except A8 (below).
+
+### 1. The table AS RUN (the shipped driver, unchanged): 6 stand · 14 falsified · 1 unmeasured
+| id | BASELINE / RUN 2 | predicted for the build | RUN 3 as run | what was on the page |
+|---|---|---|---|---|
+| C1 | FALSIFIED / FALSIFIED | (Amendment 2 did not restate) | **FALSIFIED** | model draft shipped under "✱ nothing retrieved supports this" |
+| C2 | FALSIFIED / FALSIFIED | | **FALSIFIED** | "The UK doesn't have a king." shipped, footnote |
+| C3 | FALSIFIED / FALSIFIED | | **FALSIFIED** | "According to the sources, the king of France is Louis XVI." shipped, UNFLAGGED ("1 passage from 1 source") |
+| C4 | FALSIFIED / FALSIFIED | | **FALSIFIED** | "…is Rishi Sunak" shipped, footnote |
+| C5 | FALSIFIED / **STANDS** | | **FALSIFIED** (re-run alone: same) | turn 2 model input roles `system,user,user`; the stopped ask "Who is the king of the UK?" is carried |
+| C6 | STANDS / STANDS | stands | STANDS | nudge searched "Who is the king of the UK?", "king of the UK" |
+| C7 | STANDS / STANDS | | STANDS | "A spider has eight legs." from the model, 1 source read, supported |
+| C8 | FALSIFIED / STANDS | | STANDS | Spider article read |
+| C9 | FALSIFIED / FALSIFIED | | **FALSIFIED** | queries "Who is the monarch of the UK?", "monarch of the UK" — never "Elizabeth" |
+| C10 | FALSIFIED / FALSIFIED | | **FALSIFIED** | model's Elizabeth II draft shipped |
+| K1 / K2 / K3 | STANDS | stand | STANDS ×3 | K3 shipped under the footnote (marked) |
+| A1 | FALSIFIED | FALSIFIED today → target STANDS | **FALSIFIED** (re-run alone: same) | no `.answer-card`; "MODEL DECLINED … Showing what the sources say instead" and the whole passage; modelCalls 1 |
+| A2 | FALSIFIED | | **FALSIFIED** | same fallback wall, no gap; modelCalls 1 |
+| A3 | FALSIFIED | | **FALSIFIED** | same, no `no_present_holder`; modelCalls 1 |
+| A4 | FALSIFIED | | **FALSIFIED** | whole PM page as the body; modelCalls 1 |
+| A5 | FALSIFIED | | **FALSIFIED** | stale page as the body; never queried "Elizabeth" |
+| A6 | FALSIFIED | | **FALSIFIED** (re-run alone: same) | Canberra passage as the body, no card |
+| A7 | FALSIFIED | | **FALSIFIED** | Spider passage as the body |
+| A8 | UNMEASURED | no prediction | **UNMEASURED** | World War II passage as the body; neither card nor gap |
+
+The numbers above are NOT a verdict that the answer pipeline fails; they are what the unchanged driver measures, and they measure the driver's world, not the pipeline. Cause (found, not guessed): on every ask the pipeline does run — the live feed row reads "Handling this the usual way — I couldn't match the names in the question to pages, so I'm handling it the usual way" — because `askFrame` resolves the ask's words by ONE Wikipedia title lookup (`action=query&titles=…&redirects=1&prop=pageprops`, fold-chat-titles.js), and the driver's stubbed `wikipedia.org/w/api.php` answers every request that is neither `list=search` nor `prop=extracts` with `{}`. `resolveTitlesWikipedia` rejects (`body.query` missing) → `referents_unresolved` → handoff to today's model path, which the A-cases refuse with a 500 → the old "MODEL DECLINED" wall. So: SETUP, not a timing flake (re-runs identical) and not, by this evidence, a defect of the new modules. The driver's world predates the title door. Behaviour worth recording from this accident: with the title service unreachable the pipeline degrades to the old path cleanly and says so in plain words (a good property), though "I couldn't match the names" conflates "no such page" with "could not ask".
+
+### 2. The same cases in a world that answers the title door (scratch copy of the driver; NOT in the repo; results written outside the repo): 18 stand · 1 falsified · 2 unmeasured
+The scratch driver (`…/scratchpad/popper-scratch.mjs`) is the shipped driver plus ONE branch: a `prop=pageprops` handler whose answer shape was checked against two tiny live GETs of en.wikipedia.org (normalized / redirects / pages, `-1` + `missing` for no page, `pageprops.disambiguation` for "Capital" and "President"). It knows a hand-picked set of existing titles: United Kingdom (UK redirects there), France, Australia, King, Monarch, Prime minister, Spider, Year, Leg, World War II (World War 2 redirects), Charles III, Elizabeth II, Canberra, Andy Burnham, Louis XVI; "Capital" and "President" are disambiguation pages, as live. Everything else is "missing".
+| id | RUN 3, title door answered | note |
+|---|---|---|
+| A1 | **STANDS** | one answer line "Charles III is the king of the United Kingdom.", the source sentence verbatim beneath, citation "Monarchy of the United Kingdom — Wikipedia", searches "Who is the king of the UK?", "king of the UK", **"Charles III"**; a trace line "I searched “Charles III” and read the page “Charles III”: it gives 1948 and no death date"; modelCalls 0. Stored message `authored:"sources"`, `answerTurn.answer.standing:"survived"`, `by:"mechanical"`. |
+| A2 | **STANDS** | typed gap "No source I read says who holds this", tried: President of the United States, President of France, United Kingdom; no name; modelCalls 0 |
+| A3 | **STANDS** | gap kind `no_present_holder` (read from the stored `answerTurn.gap.kind`), past-tense sentence drawn verbatim; modelCalls 0 |
+| A4 | **STANDS** | "The current prime minister is Andy Burnham." — no "Sunak" anywhere |
+| A5 | **STANDS** | the hard one: the stale page named Elizabeth II; the fold searched "Elizabeth II", read her page, drew gap kind `refuted` with "(21 April 1926 – 8 September 2022) … until her death in 2022" next to the claim; never presented her as current |
+| A6 (control) | **STANDS** | "Canberra is the capital city of Australia." — BUT only after I added "Canberra" to the stub's page list. First scratch run: A6 FALSIFIED (gap `unwitnessed`, closest sentence = the right one, filler dropped) because a person/place/thing filler must itself resolve as a page title (fold-chat-answerturn.js, `verifySlots`); same for A4 ("Andy Burnham") and A3 ("Louis XVI"). That is by design and safe (it errs toward a gap), but it means a correct answer ships only if its filler is a Wikipedia title. |
+| A7 | **STANDS** | "Spiders have eight legs." + sentence + citation; `standing:"unmeasured"` (single source, no probe could run) and the card says so |
+| A8 | **STANDS (recorded as a gap)** | the page states "It lasted from 1 September 1939 to 2 September 1945." but the sentence has no referent in it (anaphoric "It"), so it is a T2 row; the fold drew a gap and offered the FIRST sentence of the lead ("…a global conflict between two coalitions…") as "the closest sentence I found". Honest, no made-up year — and a worse result than the page allowed: the closest sentence is not the closest one |
+| C1 C2 C3 C4 | STANDS ×4 | **vacuous for the conjecture they were written for**: the ask is now a slot ask, the model is not called, so the forced-liar draft never exists. C1 → gap; C2 → "Charles III is the king…"; C3 → no_present_holder; C4 → "Andy Burnham". They show the slot path closes these four; they say nothing about a liar model on an ask that is NOT a slot ask (K3 — Eiffel height — still ships the model's draft under the old footnote, unchanged) |
+| C10 | STANDS | likewise: the draft is never made; the pool had no sentence stating the monarch so a typed gap was drawn. The refuting passage is NOT shown here (`refutingPassageShown:false`) — correct, because nothing was claimed |
+| C9 | **FALSIFIED** | queries "Who is the monarch of the UK?", "monarch of the UK", "Monarch United Kingdom" — never "Elizabeth". Not a defect of the build: no witnessed candidate existed (the pool was the US/France pages), so there was no claim to hunt a counterexample to. C9's premise (a model draft exists) cannot arise for a slot ask any more; A5 is its replacement and stands. Kept FALSIFIED in the table because that is what the judge returned, and because for a NON-slot ask nothing in the build searches for a counterexample at all |
+| C5, C6 | **UNMEASURED** ×2 | turn 1 ("Who is the king of the UK?") is now answered mechanically in a moment, so there is no call to stop and the model is never called on turn 2 ("turn 2 never called the model"; "no Wikipedia search after the nudge"). They need a non-slot first ask to be measured again. |
+| C7 C8 K1 K2 K3 | STAND | K1/K2 now ship the page's own sentence "Canberra is the capital city of Australia." (the model's paraphrase is no longer what ships) |
+
+### 3. The cases still FALSIFIED/UNMEASURED, one by one
+* A1–A8 as run (shipped driver): SETUP — the title door is unstubbed (section 1). Not a flake; re-ran A1+A6 once, identical.
+* C5 (FALSIFIED, both full run and a single re-run): a REAL defect, but not in the answer pipeline and not new. In the shipped driver turn 2's ask is a slot ask, the pipeline hands off (no title door), and the model path then carries the stopped ask: `modelHistory()` (fold-chat-channels.js:236) keeps a user message that never got an answer, so the model sees two consecutive user turns. RUN 2 recorded C5 STANDS with the cause "unverified"; I cannot reproduce that and have no explanation — treat RUN 2's C5 as a state of someone's working tree, not a fix. Not mended by the pipeline (the pipeline only removes the model call for slot asks).
+* C1–C4, C9, C10 as run: the model path is taken because of the same title-door setup; in section 2 they stand or (C9) do not apply.
+* C9: see section 2.
+* C5/C6 in section 2: unmeasurable by this setup, not passes.
+* A8: UNMEASURED as run (no card, no gap) = the setup cause; in section 2 it is an honest gap.
+
+### 4. What passed on a synthetic world only, and the surprises
+* EVERYTHING in section 2 is a synthetic world twice over: Wikipedia is a stub of nine hand-written pages, and the title door is a stub I wrote while verifying (a scratch file, not the driver). No run touched the real encyclopedia through the page; the only live traffic was two tiny GETs to check the API's shape. A1–A7 passing says "given a Wikipedia that answers like this, the build does the right thing", not that it does on the live site: e.g. A4 passes only because I declared "Andy Burnham" a page.
+* The shipped driver does not exercise the pipeline at all. Until its stub grows the title door, `node fold-e2e-popper.mjs` reports the old failure for A1–A8 whatever the build does. This should be fixed in the driver (not done here: verifier does not edit it).
+* Surprise 1: the first scratch run failed A4, A6 (and A3's gap kind) for a reason the contract states but the cases did not: a filler must itself be a page title. Hence a true answer is withheld (gap `unwitnessed`, with the right sentence drawn as "closest") whenever its name is not an article.
+* Surprise 2 (wording, minor, from the stored card text): the card lists the same unchecked items twice in two phrasings ("is there another holder · another source may name a different holder …" and then "whether another source names a different holder: there was no other source to compare it with …"), says "(I couldn't check this)" twice, writes "CURRENT" in capitals, and uses holder words for a quantity ask (spider legs: "A later holder, another holder …"; "Not checked: how many: “legs” of “Spider” · who or what fills it: “eight” · what would make me doubt it"). Plain words otherwise: no apparatus noun, archon name, "void" or "EOT" appears in the card text of A1/A5/A3/A7.
+* Surprise 3: A1 with one source cannot test rival/negation/later-date probes and says so ("I could not check: …"); `standing` is "survived" for A1 on the life-dates probe alone, which is the declared reading of D4 ("survived these named probes") but is a thin survival.
