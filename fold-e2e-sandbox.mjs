@@ -21,6 +21,10 @@ const out = await page.evaluate(async () => {
     blank: await time("<!doctype html><html><body></body></html>"),
     script: await time("const a = 1; a.b.c;", { kind: "js" }),
     moduleOk: await time("export function slugify(t) { return String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }\nexport default slugify;", { kind: "js" }),
+    triedAdd: await time("export function add(a, b) { return a + b; }", { kind: "js" }),
+    triedSlug: await time("function slugify(title) { title = title.toLowerCase(); title = title.replace(/[^a-zA-Z0-9]/g, '-'); title = title.replace(/^-+/, '').replace(/-+$/, ''); return title; }", { kind: "js" }),
+    triedBoom: await time("function boom(x) { throw new Error('nope'); }", { kind: "js" }),
+    triedMany: await (async () => { const r = await m.callMany("function dbl(n) { return n * 2; }", ["dbl(4)", "dbl([1])", "undefinedFn()", 'dbl("a")']); return r; })(),
     moduleBad: await time("export function f() { return nope.x; }\nf();", { kind: "js" }),
   };
 });
@@ -57,5 +61,10 @@ check("a bare script that throws is caught", out.script.facts.loadErrors.length 
 check("a tab in the background is NOT judged a hang: the verdict waits until it is shown, then runs its own clock", bg.whileHidden && bg.afterShown >= 400 && bg.never && bg.never.ok === false, JSON.stringify(bg));
 check("a MODULE (export/import) is run as a module — `export` is not a syntax error — and a function that draws nothing is not 'blank'", out.moduleOk.facts.loaded && out.moduleOk.facts.loadErrors.length === 0 && !out.moduleOk.checks.some((c) => c.ok === false) && !out.moduleOk.checks.some((c) => c.name === "renders something visible"), JSON.stringify(out.moduleOk.checks));
 check("…but a module that really throws is still caught", out.moduleBad.facts.loadErrors.length >= 1 && /nope/i.test(out.moduleBad.facts.loadErrors[0].message), JSON.stringify(out.moduleBad.facts.loadErrors[0]));
+const tried = (r) => r.checks.find((c) => c.name === "tried it");
+check("TRY IT: a function is CALLED with sample inputs and the values that came back are reported", /add\(0, 0\) → 0/.test(tried(out.triedAdd)?.detail || "") && /add\(7, 7\) → 14/.test(tried(out.triedAdd).detail) && out.triedAdd.facts.trials.length === 3, tried(out.triedAdd)?.detail);
+check("TRY IT: a function that is subtly WRONG shows its wrong output — here a run of punctuation becomes several hyphens — and the round is not failed for it", /slugify\("Hello, World!"\) → "hello--world"/.test(tried(out.triedSlug)?.detail || "") && tried(out.triedSlug).ok === null && !out.triedSlug.checks.some((c) => c.ok === false), tried(out.triedSlug)?.detail);
+check("TRY IT: a function that throws is REPORTED as throwing — not hidden, not a failed round", /boom\(.*\) threw Error: nope/.test(tried(out.triedBoom)?.detail || "") && !out.triedBoom.checks.some((c) => c.ok === false), tried(out.triedBoom)?.detail);
+check("TRY IT: callMany returns each call's own result, errors included, in order", out.triedMany.length === 4 && out.triedMany[0].value === "8" && out.triedMany[1].value === "NaN" || out.triedMany[1].value === "null" && out.triedMany[2].ok === false && /undefinedFn/.test(out.triedMany[2].error) && out.triedMany[3].value === "NaN" || out.triedMany[3].value === "null", JSON.stringify(out.triedMany));
 console.log(`\n${R.filter(Boolean).length}/${R.length} stand`);
 process.exit(R.every(Boolean) ? 0 : 1);

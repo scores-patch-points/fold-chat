@@ -183,7 +183,7 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   // ── the cursor ──
   function paintScrub() {
     const P = eotNow(), F = P.frames, N = F.length;
-    scrub.hidden = N < 3;                                                // a start and one frame has nothing to scrub
+    scrub.hidden = N < 2;                                                // no content yet: nothing to scrub, play or change
     if (scrub.hidden) return;
     const at = scrubbed(), i = cursorAt(), fr = F[i];
     range.max = String(N - 1); range.value = String(i);
@@ -192,9 +192,12 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
     scrub.classList.toggle("on", at);
     prev.disabled = i <= 0; next.disabled = !at; latestBtn.hidden = !at;
     const v = at ? frameVersion(i) : null;
-    const canReset = !!onReset && at && !!v && fr.kind !== "start" && !!fr.code;
+    // Scrubbed back: reset to that exact code. At the newest frame of a FINISHED run: "Change this" — the next change starts from the result.
+    const vNow = at ? v : artifactOf(fold);
+    const canReset = !!onReset && !!vNow && fr.kind !== "start" && !!fr.code && (at || fold.status !== "running");
     resetBtn.hidden = !canReset;
-    if (canReset) resetBtn.title = `the next change starts from this exact code (${frameWords(fr)}) — not the newest attempt`;
+    resetBtn.textContent = at ? "Reset from here" : "Change this";
+    if (canReset) resetBtn.title = at ? `the next change starts from this exact code (${frameWords(fr)}) — not the newest attempt` : "the next change starts from this result, not from scratch";
     marker.hidden = !resetMark;
     if (resetMark) {
       marker.textContent = "";
@@ -210,7 +213,7 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   next.onclick = () => moveTo(cursorAt() + 1);
   resetBtn.onclick = () => {
     const P = eotNow(), i = cursorAt(), fr = P.frames[i], v = frameVersion(i);
-    if (!v || !onReset || !fr || fr.kind === "start") return;
+    if (!v || !onReset || !fr || fr.kind === "start") return;   // (at the newest frame the version is the one that frame belongs to)
     const k = anchorOf(i);
     resetMark = { index: i, round: fr.round, text: fr.complete ? roundName(v) : `${roundName(v)} (${fr.label})` };
     onReset({ index: i, eventId: P.eot.provenance.events[k]?.event_id || null, seq: P.trace[k]?.seq ?? 0, version: { round: fr.round, kind: v.kind, code: fr.code, partial: !fr.complete }, foldId: fold.id });

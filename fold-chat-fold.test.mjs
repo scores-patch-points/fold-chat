@@ -177,3 +177,37 @@ test("falsifier: runAgent's own onVersion payload (code under `text`) lands in t
   assert.ok(f.versions[0].code.includes("<button"), "the attempt's code must be stored, not an empty string");
   assert.ok(f.versions[0].lines >= 1);
 });
+
+test("framesOf: frames are the moments the CONTENT changes — never the actions taken about it", async () => {
+  const { framesOf } = await import("./fold-chat-fold.js");
+  const f = createFold({ task: "t" });
+  addEvent(f, { type: "read", referents: 1, relations: 0 });                              // actions: not frames
+  addEvent(f, { type: "requirements", terms: ["x"] });
+  assert.equal(framesOf(f).length, 1, "before any code there is only the empty start");
+  const one = ["function a() {", "  return 1;", "}", "", "function b() {", "  return 2;", "}"].join("\n");
+  addVersion(f, { round: 1, maker: { kind: "penelope" }, kind: "js", code: one, units: ["a", "b"] });
+  addEvent(f, { type: "check", round: 1, name: "loads", ok: true });                       // a check: not a frame
+  addEvent(f, { type: "escalate", round: 2, why: "stuck" });                               // an escalation: not a frame
+  let fr = framesOf(f);
+  assert.deepEqual(fr.map((x) => x.kind), ["start", "unit", "unit"], "the first draft assembles unit by unit");
+  assert.ok(fr[1].code.includes("function a") && !fr[1].code.includes("function b"), "frame 1 has only the first unit");
+  assert.equal(fr[2].code, one); assert.equal(fr[2].complete, true); assert.equal(fr[1].complete, false);
+  // attempt 2 changes two places → two change frames, each building on the last; attempt 3 is identical → no frame
+  const two = one.replace("return 1;", "return 10;").replace("return 2;", "return 20;");
+  addVersion(f, { round: 2, maker: { kind: "remote", model: "m" }, kind: "js", code: two });
+  addVersion(f, { round: 3, maker: { kind: "remote", model: "m" }, kind: "js", code: two });
+  fr = framesOf(f);
+  assert.deepEqual(fr.map((x) => x.kind), ["start", "unit", "unit", "change", "change"], "an identical re-draft adds no frame");
+  assert.ok(fr[3].code.includes("return 10;") && fr[3].code.includes("return 2;") && !fr[3].code.includes("return 20;"), "change 1 of 2 is applied, change 2 is not yet");
+  assert.equal(fr[4].code, two); assert.equal(fr[4].complete, true);
+  assert.deepEqual(fr[3].step, [1, 2]);
+  assert.equal(fr.every((x, i) => x.n === i), true);
+});
+
+test("framesOf: a first draft with no units is one frame; a one-change edit is one 'revision' frame", async () => {
+  const { framesOf } = await import("./fold-chat-fold.js");
+  const f = createFold({ task: "t" });
+  addVersion(f, { round: 1, maker: { kind: "remote", model: "m" }, kind: "html", code: "<b>one</b>\n<i>two</i>" });
+  addVersion(f, { round: 2, maker: { kind: "remote", model: "m" }, kind: "html", code: "<b>ONE</b>\n<i>two</i>" });
+  assert.deepEqual(framesOf(f).map((x) => x.kind), ["start", "first", "revision"]);
+});
