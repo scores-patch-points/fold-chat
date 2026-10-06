@@ -13,7 +13,7 @@ experiments/**/sim-*.txt
 # eval harness output: copies of the app and generated results (the scripts and README are kept)
 eval/.app/
 eval/.app-*/
-eval/cases.json
+!eval/cases.json
 eval/controls-results.json
 eval/results.json
 
@@ -36,6 +36,7 @@ eval/controls-results*.json
 # --- general rules, so new runs don't need a new line each time ---
 # fetched / captured web content, wherever a harness puts it
 **/cache/
+!/experiments/specimen-assembly/specimens/cache/
 **/pages/
 **/raw/
 **/raw-*/
