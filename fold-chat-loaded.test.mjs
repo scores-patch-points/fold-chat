@@ -127,3 +127,12 @@ test("poller: a get() that throws never breaks it, and overlapping refreshes do 
   assert.equal(n, 2); release({}); await a; await b;
   p.stop();
 });
+
+test("an outside provider's sealed lane is not a loaded model: it is neither resident nor in the fleet", async () => {
+  const hosted = { name: "deepinfra:google/gemma-2-9b-it", size: 0, heimdall: { frontier: "deepinfra", privacy: "sealed-external", location: "external" } };
+  const local = { name: "gemma2:2b", size: 2355678412, size_vram: 2355678412 };
+  const got = await fetchLoaded({ base: "http://b", fetchImpl: fakeFetch([[/\/api\/ps$/, { models: [hosted, local] }], [/\/api\/tags$/, { models: [] }]]) });
+  const ids = (got.entries || []).map((e) => e.id);
+  assert.ok(ids.includes("gemma2:2b"), "the resident model is listed");
+  assert.ok(!ids.some((id) => /deepinfra/.test(id)), "the hosted lane is not: " + JSON.stringify(ids));
+});

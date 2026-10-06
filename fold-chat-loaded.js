@@ -40,6 +40,8 @@ function entriesOf(json, source) {
   for (const m of Array.isArray(json?.models) ? json.models : []) {
     const id = bare(m?.name ?? m?.model);
     if (!id) continue;
+    // an outside provider's lane (sealed-external) is not resident anywhere: it is not "loaded", and it is not in the fleet
+    if (m?.heimdall?.frontier || m?.heimdall?.location === "external") continue;
     out.push({
       id,
       place: placeOf(m, source),

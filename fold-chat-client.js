@@ -143,6 +143,8 @@ export const TIERS = Object.freeze({
   remote: { id: "remote", label: "Open remote", note: "configured outside providers" },
   frontier: { id: "frontier", label: "Frontier · sealed", note: "sealed-external — the reading only" },
 });
+/** Providers whose small open models are the cheap remote tier (heimdall hosted.js keeps the same list). */
+export const HOSTED_PROVIDERS = Object.freeze(["openrouter", "together", "fireworks", "deepinfra"]);
 export const TIER_ORDER = Object.freeze(["local", "fleet", "remote", "frontier"]);
 // Free tiers: a model here costs nothing and never leaves the trust domain
 // (in-tab WebLLM, this machine's Ollama, and the fold's own linked hosts).
@@ -214,7 +216,8 @@ function pickFrom(list) {
  *  otherwise its kind (or provider) names the tier. Pure and testable. */
 export function tierOf(m) {
   if (!m) return "local";
-  if (m.sealed) return "frontier";
+  // small hosted open models (OpenRouter, Together, …) are still sealed, but they are the cheap remote tier, not frontier
+  if (m.sealed) return HOSTED_PROVIDERS.includes(m.provider) ? "remote" : "frontier";
   const k = m.kind || String(m.provider || "");
   if (k === "webllm" || k === "webllm-page" || k === "local") return "local";
   if (k === "fleet" || k === "native") return "fleet";
@@ -515,11 +518,52 @@ export async function ledger({ base = null, fetchImpl = fetch } = {}) {
   return r.json();
 }
 
+/** Tokens used and saved, in plain words, from heimdall's /api/meter (`tokens`). Pure. null when this heimdall predates the token ledger.
+ *  `used` is what went to outside providers (their own counts when they report them); `saved` is what open-remote and local lanes
+ *  served instead of the reference frontier model; `cancelled` is calls stopped because another lane had already won. */
+export function describeTokens(m) {
+  const t = m?.tokens;
+  if (!t || !t.used) return null;
+  const n = (x) => Math.round(Number(x) || 0).toLocaleString("en-US");
+  const usd = (x) => { const v = Number(x) || 0; return v === 0 ? "$0" : v < 0.01 ? "$" + v.toFixed(4) : "$" + v.toFixed(2); };
+  return {
+    used: `${n(t.used.input)} in · ${n(t.used.output)} out`,
+    cost: usd(t.used.usd),
+    saved: `${n(t.saved?.tokens)} tokens`,
+    savedUsd: usd(t.saved?.usd),
+    versus: t.saved?.versus || "",
+    local: t.local?.calls ? `${n(t.local.input + t.local.output)} tokens on this machine and the fleet (free)` : "",
+    cancelled: t.cancelled || 0,
+    exact: t.exact == null ? "" : t.exact >= 1 ? "all counts reported by the providers" : `${Math.round(t.exact * 100)}% of counts reported by the providers, the rest counted by chunk`,
+    rows: (t.used.byModel || []).map((r) => ({ model: r.model, lane: r.lane, calls: r.calls, tokens: n((r.input || 0) + (r.output || 0)), usd: usd(r.usd) })),
+  };
+}
+
 /** The sealed gate's shape: which providers are configured, and the rule. */
 export async function frontier({ base = null, fetchImpl = fetch } = {}) {
   const r = await fetchImpl(bridgeBase(base) + "/api/frontier", { cache: "no-store" });
   if (!r.ok) throw new Error("heimdall bridge answered " + r.status);
   return r.json();
+}
+
+/** One request to several small hosted models AT ONCE (heimdall POST /api/race). The caller must say how the messages were
+ *  sealed: `privacy` is "sealed-external" (the Fold de-identified them) or "explicit" (the person chose to send as written) —
+ *  nothing is sent without it. `mode` "first" answers with the first success; "all" waits for every lane (compare / witness).
+ *  `models` are "provider:model" ids from listModels(); none = the loaded hosted lanes, one per provider first, up to `n`.
+ *  Resolves { mode, winner:{model,provider,text,ms,tokens}|null, results:[…], asked, pending? }; a 502 (every lane failed)
+ *  and a 404 (no hosted model loaded) reject with .status and the lanes' reasons in .results when heimdall gave them. */
+export async function race(messages, { privacy = null, models = null, n = 3, mode = "first", maxTokens = 512, temperature = 0.7, base = null, signal = null, fetchImpl = fetch } = {}) {
+  if (privacy !== "sealed-external" && privacy !== "explicit") throw new Error("race needs a privacy mode — seal the messages first, then pass privacy:\"sealed-external\" (or \"explicit\")");
+  const r = await fetchImpl(bridgeBase(base) + "/api/race", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ messages, mode, n, max_tokens: maxTokens, temperature, heimdall_privacy: privacy, ...(Array.isArray(models) && models.length ? { models } : {}) }),
+    ...(signal ? { signal } : {}),
+  });
+  let j = null;
+  try { j = await r.json(); } catch { /* not json */ }
+  if (!r.ok) { const err = new Error(j?.error || "heimdall race answered " + r.status); err.status = r.status; if (j?.results) err.results = j.results; throw err; }
+  return j;
 }
 
 /** Which providers already have a key set on the machine (names only). */
@@ -573,8 +617,8 @@ export async function reloadProviderKeys({ base = null, fetchImpl = fetch } = {}
   return r.json();
 }
 
-const PROVIDER_NAMES = { anthropic: "Anthropic", openai: "OpenAI" };
-const providerLabel = (p) => PROVIDER_NAMES[p] || (p ? p[0].toUpperCase() + p.slice(1) : "The provider");
+export const PROVIDER_NAMES = { anthropic: "Anthropic", openai: "OpenAI", openrouter: "OpenRouter", together: "Together", fireworks: "Fireworks", deepinfra: "DeepInfra" };
+export const providerLabel = (p) => PROVIDER_NAMES[p] || (p ? p[0].toUpperCase() + p.slice(1) : "The provider");
 
 /** Where one provider's key stands, from the app's point of view: is a key stored,
  *  and has the running heimdall LOADED it (does the model list show a sealed model
@@ -813,7 +857,7 @@ const NOT_A_CODE_WRITER = /voxtral|lunaris|whisper|tts|image|chroma|embed|rolepl
 // The order the Fold prefers: measured fast and reachable first. The bridge's
 // /api/tags lists models that do not all answer, so the caller TRIES these in
 // order and keeps the first that does.
-const REMOTE_PREFERENCE = [/^openai-fast$/, /^GLM-[\d.]+-Flash$/i, /^pollinations:openai-fast$/, /claude.*haiku/i, /deepseek.*flash/i, /sonnet/i];
+const REMOTE_PREFERENCE = [/^(openrouter|together|fireworks|deepinfra):/, /^openai-fast$/, /^GLM-[\d.]+-Flash$/i, /^pollinations:openai-fast$/, /claude.*haiku/i, /deepseek.*flash/i, /sonnet/i];
 
 // What a remote model did the last time it was asked, kept for this page's life so the app stops asking the same dead door.
 // A 404 means the bridge does not actually serve it (it only LISTS it): skip for 30 minutes. A timeout or an empty answer is
@@ -845,7 +889,8 @@ export function remoteCandidates(models, { now = Date.now() } = {}) {
   const sealed = (Array.isArray(models) ? models : []).filter((m) => m && m.sealed && !NOT_A_CODE_WRITER.test(String(m.id)));
   const ids = new Set(sealed.map((m) => String(m.id)));
   const bare = (id) => (id.includes(":") && !/^[^:]*\d/.test(id) ? id.slice(id.indexOf(":") + 1) : id);   // "pollinations:openai-fast" → "openai-fast"; "gemma4:31b" keeps its tag
-  const unique = sealed.filter((m) => { const id = String(m.id); const b = bare(id); return b === id || !ids.has(b); });
+  // a hosted provider's lane is ALWAYS its prefixed id: the same small model on two providers is two lanes (so they can race), never one
+  const unique = sealed.filter((m) => { const id = String(m.id); if (HOSTED_PROVIDERS.includes(m.provider)) return id.startsWith(m.provider + ":"); const b = bare(id); return b === id || !ids.has(b); });
   const alive = unique.filter((m) => { const h = modelHealth.get(String(m.id)); return !h || h.until <= now; });
   const ranked = [];
   if (lastGoodModel && alive.some((m) => m.id === lastGoodModel)) ranked.push(lastGoodModel);
@@ -856,8 +901,8 @@ export function remoteCandidates(models, { now = Date.now() } = {}) {
 
 const REMOTE_CODE_SYSTEM = "You are a careful senior engineer. Do exactly what the task asks and return ONE complete, self-contained file — no explanation, no commentary. If the task is a web page, return a single HTML document with its CSS and JavaScript inline. Put the file in a single fenced code block.";
 
-/** One sealed remote draw for a code task. Tries `candidates` in order — each
- *  with its own short deadline — and returns the first that answers:
+/** One sealed remote draw for a code task. Sends `candidates` out `race` at a time (default 3, all at once; the first answer wins and the
+ *  rest are cancelled) — each with its own short deadline — and returns the first that answers:
  *  { text, model, tried:[{model, error}] }. `prior` is the previous attempt's
  *  code (a repair carries it, so the remote model fixes rather than restarts).
  *
@@ -871,7 +916,7 @@ const REMOTE_CODE_SYSTEM = "You are a careful senior engineer. Do exactly what t
  *  `readNames(text) → [surface]` is the holograph's read of the request (khora referents, local):
  *  what the request NAMES is masked even when the Fold never saw it before. A read that fails or
  *  comes back empty (it does for one-liners) falls back to namesIn(), capitalised multi-word names. */
-export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 40000, maxTokens = 4096, onTry = null, run = null, taint = null, mask = true, mode = "default", redact = null, readNames = null, readTimeoutMs = 4000, fetchImpl = fetch } = {}) {
+export async function remoteCode(prompt, { candidates, prior = null, base = null, signal = null, perModelMs = 40000, maxTokens = 4096, onTry = null, run = null, taint = null, mask = true, mode = "default", redact = null, readNames = null, readTimeoutMs = 4000, race = 3, fetchImpl = fetch } = {}) {
   const tried = [];
   // Every part of the request says where it came from — the audit grades the
   // request from this, and refuses what it cannot place.
@@ -896,23 +941,42 @@ export async function remoteCode(prompt, { candidates, prior = null, base = null
   const messages = parts.map(({ role, content }) => ({ role, content }));
   const segments = parts.map((p) => ({ role: p.role, chars: p.content.length, provenance: p.provenance }));
   const sent = [];
-  for (const model of candidates || []) {
-    if (signal?.aborted) throw Object.assign(new Error("aborted"), { name: "AbortError" });
+  // ONE attempt at one model. Resolves { text, model, auditId } or null (answered nothing / failed / was cancelled because another lane won).
+  const attempt = async (model, ctl) => {
     const auditId = newAuditId();
     sent.push({ auditId, model });
     onTry?.(model, auditId);
+    const sig = signal ? anySignal([signal, ctl.signal]) : ctl.signal;
     try {
-      const out = await chat(model, messages, { base, privacy: "sealed-external", signal, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run, masking: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null } });
+      const out = await chat(model, messages, { base, privacy: "sealed-external", signal: sig, temperature: 0.2, maxTokens, totalTimeoutMs: perModelMs, fetchImpl, audit: { id: auditId, segments, purpose: "escalated code draw", run, masking: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null } });
       const text = String(deid ? deid.unmask(out?.text ?? "") : out?.text ?? "").trim();
-      if (text) noteModelHealth(model, "ok");
-      else noteModelHealth(model, "empty");
-      if (text) return { text, model, tried, sent, auditId, masked: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null };
+      if (text) { noteModelHealth(model, "ok"); return { text, model, auditId }; }
+      noteModelHealth(model, "empty");
       tried.push({ model, error: "answered with nothing" });
     } catch (e) {
-      if (signal?.aborted || e?.name === "AbortError") throw e;
+      if (signal?.aborted) throw Object.assign(e, { name: "AbortError" });
+      if (ctl.signal.aborted) return null;   // another lane won and this one was cancelled: not a failure, not a health mark
       noteModelHealth(model, outcomeOfError(e));
       tried.push({ model, error: String(e?.message || e).slice(0, 120) });
     }
+    return null;
+  };
+  // The candidates go out `race` at a time, all at once, and the FIRST answer wins: the others are cancelled at once (heimdall stops
+  // the provider call, so their tokens are not spent). No answer from the whole batch moves on to the next batch.
+  const width = Math.max(1, Math.floor(race) || 1);
+  const list = candidates || [];
+  for (let at = 0; at < list.length; at += width) {
+    if (signal?.aborted) throw Object.assign(new Error("aborted"), { name: "AbortError" });
+    const batch = list.slice(at, at + width);
+    const ctls = batch.map(() => new AbortController());
+    const winner = await new Promise((resolve, reject) => {
+      let left = batch.length;
+      batch.forEach((model, k) => attempt(model, ctls[k]).then((r) => {
+        if (r) { ctls.forEach((c, j) => { if (j !== k) c.abort(); }); resolve(r); }
+        else if (--left === 0) resolve(null);
+      }, (e) => { ctls.forEach((c) => c.abort()); reject(e); }));
+    });
+    if (winner) return { text: winner.text, model: winner.model, tried, sent, auditId: winner.auditId, masked: deid ? { ...deid.stats(), viaRead: !!deid.viaRead } : null };
   }
   const err = new Error("no sealed remote model answered" + (tried.length ? " (" + tried.map((t) => `${t.model}: ${t.error}`).join("; ") + ")" : ""));
   err.status = 502; err.tried = tried; err.sent = sent;

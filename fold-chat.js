@@ -421,7 +421,7 @@ export function mount(root, opts = {}) {
     composerWrap: $("composerWrap"), composer: $("composer"), input: $("input"), send: $("send"), attach: $("attach"),
     footer: $("footer"), drawer: $("drawer"), toast: $("toast"),
     settingsModal: $("settingsModal"), settingsClose: $("settingsClose"), settingsCancel: $("settingsCancel"), settingsSave: $("settingsSave"),
-    setBridge: $("setBridge"), bridgeDetect: $("bridgeDetect"), bridgeStatus: $("bridgeStatus"), setPreset: $("setPreset"), setAgentLane: $("setAgentLane"), setAgentRounds: $("setAgentRounds"), setAgentEscalate: $("setAgentEscalate"), setTheme: $("setTheme"), setMode: $("setMode"), setTransparency: $("setTransparency"), setAbout: $("setAbout"),
+    setPreset: $("setPreset"), setAgentLane: $("setAgentLane"), setAgentRounds: $("setAgentRounds"), setAgentEscalate: $("setAgentEscalate"), setTheme: $("setTheme"), setMode: $("setMode"), setTransparency: $("setTransparency"),
     keyAnthropic: $("keyAnthropic"), keyOpenai: $("keyOpenai"), keyStatus: $("keyStatus"),
   };
 
@@ -2611,51 +2611,21 @@ export function mount(root, opts = {}) {
 
   function openSettings() {
     for (const [k, p] of Object.entries(PRESETS)) if (!E.setPreset.querySelector(`option[value="${k}"]`)) E.setPreset.append(new Option(p.label, k));
-    E.setBridge.value = bridge;
     E.setPreset.value = preset;
     if (E.setAgentLane) E.setAgentLane.value = agentLane();
     if (E.setAgentRounds) E.setAgentRounds.value = String(agentRounds());
     if (E.setAgentEscalate) E.setAgentEscalate.checked = agentEscalates();
     paintTheme(); paintModeSetting(); paintTransparency();
-    E.setAbout.innerHTML = `bridge <b>${esc(bridge)}</b> · version <b>v0.1</b> · cloud models are <b>sealed-external</b> by default; raw workspace tokens never leave.`;
-    updateBridgeStatus();
     refreshKeyStatus();
     E.settingsModal.hidden = false;
-    E.setBridge.focus();
   }
   function closeSettings() { E.settingsModal.hidden = true; }
   function saveSettings() {
-    const next = E.setBridge.value.trim();
-    // The same-origin embedded heimdall is found, not stored: a stored copy would go stale on another port or host.
-    if (next && client.bridgeBase(next) !== client.sameOriginBridge()) { try { localStorage.setItem("fold-chat:bridge", next); } catch (e) {} }
     applyPreset(E.setPreset.value);
     try { if (E.setAgentLane) localStorage.setItem("fold-chat:agentlane", E.setAgentLane.value); if (E.setAgentRounds) localStorage.setItem("fold-chat:agentrounds", E.setAgentRounds.value); if (E.setAgentEscalate) localStorage.setItem("fold-chat:agentescalate", E.setAgentEscalate.checked ? "1" : "0"); } catch (e) {}
     closeSettings();
     toast("settings saved");
-    // The bridge may have moved — re-list the models it serves.
-    if (next && client.bridgeBase(next) !== client.bridgeBase(bridge)) location.reload();
   }
-  // The bridge line under the field: found / not found, and the gate it reports.
-  function updateBridgeStatus() {
-    if (!E.bridgeStatus) return;
-    if (bridgeHello) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b> — every model and the sealed-external gate route here.`;
-    else if (bridge && modelsUp) E.bridgeStatus.innerHTML = `connected · <b>${esc(bridge)}</b>.`;
-    else E.bridgeStatus.innerHTML = `no bridge found — the model still runs in this tab. Start the Fold's own server (<b>npm run serve</b>: it carries heimdall at <b>/heimdall</b>), then Detect.`;
-  }
-  E.bridgeDetect.onclick = async () => {
-    E.bridgeStatus.textContent = "looking for heimdall…";
-    const found = await client.detectBridge({ override: E.setBridge.value.trim() || null });
-    if (found.ok) {
-      bridge = found.base; bridgeHello = found.hello;
-      E.setBridge.value = bridge;
-      if (bridge !== client.sameOriginBridge()) { try { localStorage.setItem("fold-chat:bridge", bridge); } catch (e) {} }
-      await refreshModels();
-      updateBridgeStatus();
-      toast("heimdall found at " + bridge);
-    } else {
-      bridgeHello = null; updateBridgeStatus(); toast("no heimdall found (this server's /heimdall, then the legacy local bridge)");
-    }
-  };
   // Provider keys: posted to the localhost bridge, stored server-side (beside
   // `heimdall key`), and never kept in this page. The field is cleared on save.
   const KEY_TONE_COLOR = { ok: "var(--ok)", warn: "var(--warn)", bad: "var(--bad)" };
@@ -2663,11 +2633,24 @@ export function mount(root, opts = {}) {
   function showKeyStatus({ tone = "warn", headline = "", lines = [] }, actions = []) {
     const box = E.keyStatus; if (!box) return;
     box.textContent = "";
-    if (headline) { const h = el("div", "", headline); h.style.fontWeight = "600"; h.style.color = KEY_TONE_COLOR[tone] || ""; box.append(h); }
-    for (const l of lines) box.append(el("div", "", l));
+    if (headline) { const h = el("div", "keyhead", headline); h.style.color = KEY_TONE_COLOR[tone] || ""; box.append(h); }
+    // A key that WORKS shows what it unlocked and tucks the rest (where it is stored, what stays private) under Details.
+    // A key that needs attention shows every line, because the lines say what to do.
+    let shown = lines, more = [];
+    if (tone === "ok" && lines.length > 2) {
+      const pick = lines.find((l) => /^Unlocked/.test(l)) || lines[0];
+      shown = [pick.split(" heimdall now offers")[0]];
+      more = lines.filter((l) => l !== pick);
+    }
+    for (const l of shown) box.append(el("div", "keyline", l));
+    if (more.length) {
+      const d = el("details", "keymore"); d.append(el("summary", "", "Details"));
+      for (const l of more) d.append(el("div", "keyline", l));
+      box.append(d);
+    }
     if (actions.length) {
-      const bar = el("div"); bar.style.marginTop = "6px";
-      for (const a of actions) { const b = el("button", "btn", a.label); b.type = "button"; b.style.marginRight = "6px"; b.onclick = a.run; bar.append(b); }
+      const bar = el("div", "keyactions");
+      for (const a of actions) { const b = el("button", "btn", a.label); b.type = "button"; b.onclick = a.run; bar.append(b); }
       box.append(bar);
     }
   }
@@ -2682,9 +2665,9 @@ export function mount(root, opts = {}) {
       const lines = []; const actions = []; let notLoaded = false;
       for (const p of stored) {
         const st = client.keyLoadState(p.provider, { stored, models });
-        const nm = p.provider === "anthropic" ? "Anthropic" : p.provider === "openai" ? "OpenAI" : p.provider;
+        const nm = client.providerLabel(p.provider);
         if (st.state === "loaded") lines.push(`${nm} ${p.masked || ""}: saved and loaded. heimdall offers ${st.models.length} model${st.models.length === 1 ? "" : "s"} (${st.models.join(", ")}), and the Fold's online help can use ${st.models.length === 1 ? "it" : "them"}.`);
-        else { notLoaded = true; lines.push(`${nm} ${p.masked || ""}: saved, but heimdall has not loaded it yet, so no ${nm} model is available. Press "Load now"; if that does not help, restart heimdall (stop it, then: heimdall up). The key is saved, nothing is lost.`); }
+        else { notLoaded = true; lines.push(`${nm} ${p.masked || ""}: saved, but heimdall has not loaded it yet, so no ${nm} model is available. Press "Load now"; if that does not help, restart the Fold's server (npm run serve). The key is saved, nothing is lost.`); }
         actions.push({ label: `Test ${nm} again`, run: () => testKey(p.provider) });
       }
       if (notLoaded) actions.unshift({ label: "Load now", run: loadKeysNow });
@@ -2695,7 +2678,7 @@ export function mount(root, opts = {}) {
     try { await client.reloadProviderKeys({ base: bridge }); await refreshModels(); toast("heimdall reloaded its keys"); }
     catch (e) {
       showKeyStatus({ tone: "warn", headline: "heimdall could not reload the keys", lines: e.status === 404
-        ? ["The heimdall that is running started before this feature and cannot reload. Restart it (stop it, then: heimdall up). The key is saved, nothing is lost."]
+        ? ["The heimdall that is running started before this feature and cannot reload. Restart the Fold's server (npm run serve). The key is saved, nothing is lost."]
         : [String(e.message || e)] });
       return;
     }
@@ -2709,7 +2692,7 @@ export function mount(root, opts = {}) {
       const d = client.describeKeyResult(provider, j, { models });
       showKeyStatus(d, [{ label: "Test again", run: () => testKey(provider) }]);
     } catch (e) {
-      showKeyStatus({ tone: "warn", headline: "Could not test the key", lines: [e.status === 404 ? "This heimdall is an older version and cannot test keys. Restart it (stop it, then: heimdall up) to get the check." : String(e.message || e)] });
+      showKeyStatus({ tone: "warn", headline: "Could not test the key", lines: [e.status === 404 ? "This heimdall is an older version and cannot test keys. Restart the Fold's server (npm run serve) to get the check." : String(e.message || e)] });
     }
   }
   async function saveProviderKey(provider, input) {
@@ -2738,11 +2721,17 @@ export function mount(root, opts = {}) {
       toast(String(e.message || e));
     } finally { if (btn) btn.disabled = false; }
   }
-  for (const [provider, input] of [["anthropic", E.keyAnthropic], ["openai", E.keyOpenai]]) {
+  // one row per provider that takes a key here; the ids are keyAnthropic, keyOpenai, keyOpenrouter, keyTogether, keyFireworks, keyDeepinfra
+  for (const [provider, input] of ["anthropic", "openai", "openrouter", "together", "fireworks", "deepinfra"].map((p) => [p, $("key" + p[0].toUpperCase() + p.slice(1))])) {
     const btn = E.settingsModal.querySelector(`button[data-provider="${provider}"]`);
     if (btn) btn.onclick = () => saveProviderKey(provider, input);
     if (input) input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); saveProviderKey(provider, input); } });
     if (input && btn) input.addEventListener("input", () => { btn.textContent = "Save"; btn.classList.remove("saved", "err", "warn"); });
+  }
+  // each settings section remembers whether it was left open; General opens by default, the rest start collapsed
+  for (const d of E.settingsModal.querySelectorAll("details.set")) {
+    try { const v = localStorage.getItem("fold.set." + d.id); if (v != null) d.open = v === "1"; } catch { /* storage unavailable: the defaults stand */ }
+    d.addEventListener("toggle", () => { try { localStorage.setItem("fold.set." + d.id, d.open ? "1" : "0"); } catch { /* ignore */ } });
   }
   E.railSettings.onclick = openSettings;
   E.settingsClose.onclick = E.settingsCancel.onclick = closeSettings;
@@ -2769,6 +2758,25 @@ export function mount(root, opts = {}) {
     const x = closeButton(); x.setAttribute("aria-label", "Close evidence"); x.onclick = () => toggleDrawer();
     head.querySelector(".drawer-head").append(x);
     E.drawer.append(head);
+    // tokens used and saved: the numbers the providers reported, and what the cheaper lanes kept off the frontier bill
+    const tk = client.describeTokens(meterInfo);
+    if (tk) {
+      const box = el("div", "tokens");
+      const stat = (label, big, small) => { const d = el("div", "tstat"); d.append(el("div", "tlabel", label), el("div", "tbig", big)); if (small) d.append(el("div", "tsmall", small)); return d; };
+      const row = el("div", "tstats");
+      row.append(stat("Used", tk.cost, tk.used), stat("Saved", tk.savedUsd, tk.saved), stat("Cancelled", String(tk.cancelled), "losing calls stopped"));
+      box.append(row);
+      if (tk.versus) box.append(el("div", "tnote", "Saved is measured against " + tk.versus + ". Token counts are measured; the price is a stated estimate."));
+      if (tk.exact) box.append(el("div", "tnote", tk.exact + "."));
+      if (tk.local) box.append(el("div", "tnote", tk.local + "."));
+      if (tk.rows.length) {
+        const table = el("table", "ledger");
+        const hr = el("tr"); for (const h of ["model", "calls", "tokens", "cost"]) hr.append(el("th", "", h)); table.append(hr);
+        for (const r of tk.rows) { const tr = el("tr"); tr.append(el("td", "", r.model), el("td", "", String(r.calls)), el("td", "", r.tokens), el("td", "", r.usd)); table.append(tr); }
+        box.append(table);
+      }
+      E.drawer.append(box);
+    }
     if (led?.entries?.length) {
       const table = el("table", "ledger");
       const hr = el("tr"); for (const h of ["at", "selected", "reason", "tokens", "ok"]) hr.append(el("th", "", h)); table.append(hr);
@@ -3113,7 +3121,6 @@ export function mount(root, opts = {}) {
       const first = life.byRecent(Object.values(sessions))[0];
       if (first) open(first.id); else closeThread();
       refreshMeter();
-      updateBridgeStatus();
       startLoadedPoller();
     });
   });

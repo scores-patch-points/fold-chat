@@ -271,9 +271,9 @@ function remoteBridge(byModel, seen = []) {
 
 test("remoteCode goes out SEALED, carries only the task and the prior code, and keeps the first model that answers", async () => {
   const seen = [], tries = [];
-  const out = await remoteCode("make a timer", { candidates: ["dead-model", "openai-fast", "glm"], prior: "<b>old</b>", fetchImpl: remoteBridge({ "dead-model": new Error("x"), "openai-fast": "```html\n<p>new</p>\n```" }, seen), onTry: (m) => tries.push(m) });
+  const out = await remoteCode("make a timer", { candidates: ["dead-model", "openai-fast", "glm"], race: 1, prior: "<b>old</b>", fetchImpl: remoteBridge({ "dead-model": new Error("x"), "openai-fast": "```html\n<p>new</p>\n```" }, seen), onTry: (m) => tries.push(m) });
   assert.equal(out.model, "openai-fast");
-  assert.deepEqual(tries, ["dead-model", "openai-fast"], "stops at the first answer");
+  assert.deepEqual(tries, ["dead-model", "openai-fast"], "race:1 is the old one-at-a-time rule: it stops at the first answer");
   assert.equal(out.tried[0].model, "dead-model");
   for (const b of seen) assert.equal(b.heimdall_privacy, "sealed-external", "every outside request is sealed");
   const msgs = seen[1].messages.map((m) => m.content).join("\n");

@@ -626,43 +626,84 @@
 
   /* ---------------- settings ---------------- */
   .modal { position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center; background: var(--scrim); }
-  .sheet { width: min(560px, calc(100vw - 32px)); max-height: 84vh; max-height: 84dvh; overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-xl); box-shadow: var(--shadow); padding: 20px 22px 18px; }
-  .sheet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .sheet-head h2 { font: 700 18px/1.2 var(--sans); margin: 0; letter-spacing: -.01em; }
+  .sheet { width: min(520px, calc(100vw - 32px)); max-height: 84vh; max-height: 84dvh; overflow-y: auto; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: 16px 22px 14px; }
+  .sheet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .sheet-head h2 { font: 600 16px/1.2 var(--sans); margin: 0; }
   .sheet-head .grow { flex: 1; }
-  .sheet-close { width: 34px; height: 34px; border: none; background: transparent; color: var(--mut); border-radius: var(--r-md); display: grid; place-items: center; }
-  .sheet-close:hover { background: var(--side2); color: var(--ink); }
-  .sheet-close svg { width: 18px; height: 18px; }
+  .sheet-close { width: 32px; height: 32px; border: none; background: transparent; color: var(--mut); border-radius: var(--r-sm); display: grid; place-items: center; }
+  .sheet-close:hover { color: var(--ink); }
+  .sheet-close svg { width: 16px; height: 16px; }
+  /* sections: flat, divided by a hairline, each one collapses */
+  .set { border-top: 1px solid var(--line); }
+  .set > summary { list-style: none; display: flex; align-items: center; gap: 8px; padding: 12px 0; min-height: 40px; cursor: pointer; font-size: var(--fs-md); font-weight: 600; color: var(--ink); user-select: none; }
+  .set > summary::-webkit-details-marker { display: none; }
+  .set > summary::after { content: ""; margin-left: auto; width: 6px; height: 6px; border-right: 1.5px solid var(--mut); border-bottom: 1.5px solid var(--mut); transform: rotate(45deg) translate(-2px, -2px); transition: transform .12s; }
+  .set[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+  .set > summary:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; border-radius: var(--r-sm); }
+  .set-body { padding: 0 0 14px; }
+  .line { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 36px; padding: 3px 0; }
+  .line.stack { flex-direction: column; align-items: stretch; gap: 4px; }
+  .line > label, .line > .flabel { font-size: var(--fs-md); font-weight: 400; color: var(--ink2); }
+  .line > .grow { flex: 1; min-width: 0; }
+  .set .hint { font-size: var(--fs-sm); color: var(--mut); margin: 4px 0 6px; line-height: 1.45; }
+  .set input[type="text"], .set select { padding: 6px 9px; min-height: 34px; border: 1px solid var(--line2); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); font: inherit; font-size: var(--fs-md); max-width: 100%; }
+  .line.stack select { width: 100%; }
+  .set input[type="text"]:focus, .set select:focus, .keyrow input:focus { outline: none; border-color: var(--acc); }
+  .set label.check { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; font-size: var(--fs-md); font-weight: 400; color: var(--ink2); }
+  .set .models { border: 0; padding: 0; }
+  .set .tier { padding: 8px 0 2px; }
+  .set .model .kindtag, .set .model .seal { border: 0; padding: 0; }
+  .set .btn { min-height: 32px; padding: 4px 12px; border-radius: var(--r-sm); font-size: var(--fs-md); font-weight: 500; }
+  /* keys: a quiet list, Save is plain text */
+  #keyStatus { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: var(--fs-md); line-height: 1.55; color: var(--ink2); }
+  #keyStatus .keyhead { font-weight: 600; color: var(--ink); }
+  #keyStatus .keyline { margin-top: 4px; overflow-wrap: anywhere; }
+  #keyStatus .keymore { margin-top: 6px; }
+  #keyStatus .keymore > summary { cursor: pointer; color: var(--mut); font-size: var(--fs-sm); list-style: none; }
+  #keyStatus .keymore > summary::-webkit-details-marker { display: none; }
+  #keyStatus .keymore > summary::before { content: "+ "; }
+  #keyStatus .keymore[open] > summary::before { content: "\2212 "; }
+  #keyStatus .keymore .keyline { color: var(--mut); font-size: var(--fs-sm); }
+  #keyStatus .keyactions { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .tokens { margin: 10px 0 14px; }
+  .tstats { display: flex; gap: 22px; flex-wrap: wrap; }
+  .tstat .tlabel { font-size: var(--fs-xs); color: var(--mut); text-transform: uppercase; letter-spacing: .04em; }
+  .tstat .tbig { font-size: 20px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .tstat .tsmall { font-size: var(--fs-sm); color: var(--mut); }
+  .tokens .tnote { font-size: var(--fs-sm); color: var(--mut); margin-top: 6px; }
+  .keygroup { margin: 12px 0 2px; font-size: var(--fs-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--mut); }
+  .keygroup span { font-weight: 400; letter-spacing: 0; text-transform: none; margin-left: 6px; }
+  .keyrow { display: grid; grid-template-columns: 84px 1fr auto auto; align-items: center; gap: 8px; margin: 2px 0; }
+  .keyrow .keyname { font-size: var(--fs-md); font-weight: 400; color: var(--ink2); }
+  .keyrow input { min-width: 0; padding: 6px 9px; min-height: 34px; border: 1px solid var(--line2); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); font: inherit; font-size: var(--fs-md); }
+  .keyrow .btn { border: 0; background: transparent; color: var(--ink2); padding: 4px 6px; min-width: 4.5em; text-align: right; }
+  .keyrow .btn:hover { background: transparent; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .keyget { font-size: var(--fs-sm); color: var(--mut); text-decoration: none; white-space: nowrap; padding: 4px 2px; }
+  .keyget:hover, .keyget:focus-visible { color: var(--acc); text-decoration: underline; text-underline-offset: 3px; }
+  .keyrow.saved .keyname { color: var(--ok); }
+  .keyrow .btn.saved { background: transparent; color: var(--ok); }
+  .keyrow .btn.err { color: var(--bad); }
+  .keyrow .btn.warn { color: var(--warn); }
+  /* choices: a flat segmented control, not pills */
+  .seg { display: inline-flex; border: 1px solid var(--line2); border-radius: var(--r-sm); overflow: hidden; }
+  .seg button { border: none; border-left: 1px solid var(--line); background: transparent; color: var(--mut); border-radius: 0; padding: 4px 12px; min-height: 30px; font-size: var(--fs-md); font-weight: 400; }
+  .seg button:first-child { border-left: 0; }
+  .seg button:hover { color: var(--ink); }
+  .seg button.on { background: var(--side2); color: var(--ink); font-weight: 600; }
+  /* generic dialog fields (rename, new project, …) keep their own look */
   .field { margin: 14px 0; }
   .field > label, .field .flabel { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--ink2); margin-bottom: 5px; }
   .field .hint { font-size: var(--fs-sm); color: var(--mut); margin-top: 5px; }
   .field input[type="text"], .field select { width: 100%; padding: 9px 11px; border: 1px solid var(--field-line); border-radius: var(--r-md); background: var(--bg); color: var(--ink); font: inherit; }
   .field input[type="text"]:focus, .field select:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
-  .field .models { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 4px 4px 6px; }
-  .field .tier { padding: 9px 8px 3px; }
-  .field .hint.keyhint { margin: 0 0 8px; }
-  .keyrow { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-  .keyrow .keyname { width: 78px; flex: none; font-size: 13px; font-weight: 600; color: var(--ink2); }
-  .keyrow input { flex: 1; min-width: 0; padding: 8px 10px; border: 1px solid var(--field-line); border-radius: var(--r-md); background: var(--bg); color: var(--ink); font: inherit; }
-  .keyrow input:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 1px var(--acc); }
-  .keyrow .btn { padding: 8px 12px; }
-  .keyrow.saved { background: color-mix(in srgb, var(--ok) 12%, transparent); border-radius: var(--r-md); }
-  .keyrow .btn.saved { background: var(--ok); color: var(--bg); border-color: var(--ok); }
-  .keyrow .btn.err { border-color: var(--bad); color: var(--bad); }
-  .seg { display: inline-flex; gap: 2px; background: var(--side2); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 3px; }
-  .seg button { border: none; background: transparent; color: var(--mut); border-radius: var(--r-pill); padding: 6px 16px; min-height: 32px; font-size: 13px; font-weight: 600; }
-  .seg button:hover { color: var(--ink); }
-  .seg button.on { background: var(--bg); color: var(--ink); box-shadow: var(--shadow-sm), 0 0 0 1px var(--line); }
   .field .row { display: flex; align-items: center; gap: 10px; }
   .field .row .grow { flex: 1; }
   .btn { padding: 9px 16px; min-height: 38px; border-radius: var(--r-md); border: 1px solid var(--line2); background: var(--bg); color: var(--ink); font-weight: 600; font-size: var(--fs-md); transition: background .12s; }
   .btn:hover { background: var(--side2); }
   .btn.primary { background: var(--acc-solid); border-color: var(--acc-solid); color: var(--on-acc); }
   .btn.primary:hover { background: var(--acc-solid); filter: brightness(1.1); }
-  .sheet-foot { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+  .sheet-foot { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
   .sheet-foot .grow { flex: 1; }
-  .about { font-size: var(--fs-sm); color: var(--mut); }
-  .about b { color: var(--ink2); }
 
   /* ---------------- phones ----------------
      The rail and the sidebar become ONE overlay drawer (the ☰ in the top bar
@@ -699,8 +740,8 @@
     .disc-head { flex-wrap: wrap; }
     .disc-line { margin-left: 0; max-width: 100%; flex: 1 0 100%; }
     .art-btn { min-height: 32px; }
-    .keyrow { flex-wrap: wrap; }
-    .keyrow .keyname { width: 100%; }
+    .keyrow { grid-template-columns: 1fr auto auto; }
+    .keyrow .keyname { grid-column: 1 / -1; }
     .footer { padding-top: 0; font-size: var(--fs-xs); }
     .toast { bottom: 76px; }
     .drawer { padding: 12px 14px 14px; }
@@ -799,90 +840,74 @@
       </button>
     </div>
 
-    <div class="field">
-      <label for="setBridge">Heimdall bridge</label>
-      <div class="row">
-        <input type="text" id="setBridge" class="grow" placeholder="found automatically (this server's /heimdall)" autocomplete="off" spellcheck="false">
-        <button type="button" class="btn" id="bridgeDetect">Detect</button>
-      </div>
-      <div class="hint" id="bridgeStatus" role="status">Looking for heimdall…</div>
-    </div>
-
-    <div class="field" role="group" aria-labelledby="keysLabel">
-      <div class="flabel" id="keysLabel">API keys</div>
-      <div class="hint keyhint">Entered here, stored on <b>this machine</b> beside `heimdall key` — never in this page, never sent to an outside model.</div>
-      <div class="keyrow"><label class="keyname" for="keyAnthropic">Anthropic</label><input type="password" id="keyAnthropic" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="anthropic">Save</button></div>
-      <div class="keyrow"><label class="keyname" for="keyOpenai">OpenAI</label><input type="password" id="keyOpenai" placeholder="sk-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="openai">Save</button></div>
-      <div class="hint" id="keyStatus" role="status">No provider keys saved on this machine yet.</div>
-    </div>
-
-    <div class="field" role="group" aria-labelledby="modelsLabel">
-      <div class="flabel" id="modelsLabel">Models</div>
-      <div class="models" id="models"></div>
-      <div class="hint">Each tier is a different trust boundary — an outside model is sealed-external, the reading only.</div>
-    </div>
-
-    <div class="field">
-      <label for="setAgentLane">Agent engine</label>
-      <select id="setAgentLane">
-        <option value="compose">Compose — penelope writes the code (built for small models)</option>
-        <option value="khora">Loop — the khora's agent loop in its sandbox (list · read · write · run)</option>
-      </select>
-      <label for="setAgentRounds">Rounds the agent may go again</label>
-      <select id="setAgentRounds"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
-      <label class="check"><input type="checkbox" id="setAgentEscalate"> Escalate to a sealed remote model when local is busy, slow or draws nothing</label>
-      <div class="hint">Goes only through heimdall's sealed-external gate: your task text and the last attempt's code, never workspace files. The feed always says when it happens.</div>
-      <div class="hint">Either way the agent runs what comes back in a sandbox, janus rules on what it measured, and a failure goes round again.</div>
-    </div>
-
-    <div class="field">
-      <label for="setPreset">Preset</label>
-      <select id="setPreset"></select>
-      <div class="hint">The system prompt each new turn carries.</div>
-    </div>
-
-    <div class="field">
-      <div class="flabel" id="themeLabel">Theme</div>
-      <div class="row">
-        <div class="seg" id="setTheme" role="group" aria-labelledby="themeLabel">
-          <button type="button" data-theme="system">System</button>
-          <button type="button" data-theme="light">Light</button>
-          <button type="button" data-theme="dark">Dark</button>
+    <details class="set" id="setGeneral" open>
+      <summary>General</summary>
+      <div class="set-body">
+        <div class="line"><span class="flabel" id="themeLabel">Theme</span>
+          <div class="seg" id="setTheme" role="group" aria-labelledby="themeLabel">
+            <button type="button" data-theme="system">System</button>
+            <button type="button" data-theme="light">Light</button>
+            <button type="button" data-theme="dark">Dark</button>
+          </div>
         </div>
-        <div class="grow"></div>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="flabel" id="modeLabel">Default engagement</div>
-      <div class="row">
-        <div class="seg" id="setMode" role="group" aria-labelledby="modeLabel">
-          <button type="button" data-mode="chat">Chat</button>
-          <button type="button" data-mode="code">Agent</button>
+        <div class="line"><span class="flabel" id="modeLabel">Default engagement</span>
+          <div class="seg" id="setMode" role="group" aria-labelledby="modeLabel">
+            <button type="button" data-mode="chat">Chat</button>
+            <button type="button" data-mode="code">Agent</button>
+          </div>
         </div>
-        <div class="grow"></div>
-      </div>
-      <div class="hint">Chat answers from the routed models; Agent dispatches the same turn through the machine door (read → derive → execute → retain) and lands real artifacts. Both share the project's folder and the one thread — a turn can be converted between them.</div>
-    </div>
-
-    <div class="field">
-      <div class="flabel" id="transLabel">Transparency</div>
-      <div class="row">
-        <div class="seg" id="setTransparency" role="group" aria-labelledby="transLabel">
-          <button type="button" data-transparency="1">On</button>
-          <button type="button" data-transparency="0">Off</button>
+        <div class="line"><span class="flabel" id="transLabel">Transparency</span>
+          <div class="seg" id="setTransparency" role="group" aria-labelledby="transLabel">
+            <button type="button" data-transparency="1">On</button>
+            <button type="button" data-transparency="0">Off</button>
+          </div>
         </div>
-        <div class="grow"></div>
+        <div class="hint">Transparency shows the “how this was answered” line under every answer.</div>
+        <div class="line"><label for="setPreset">Preset</label><select id="setPreset"></select></div>
+        <div class="line"><span class="flabel">Display</span><button type="button" class="btn" id="topFocus">Full screen</button></div>
       </div>
-      <div class="hint">On: every answer carries its grounding record — addressed sources, what is not in the material, and the on-record line. This switch shows or hides the “how this was answered” line under every answer.</div>
-    </div>
+    </details>
 
-    <div class="field">
-      <div class="flabel">Display</div>
-      <div class="row"><button type="button" class="btn" id="topFocus">Full screen</button><div class="grow"></div></div>
-    </div>
+    <details class="set" id="setAgent">
+      <summary>Agent</summary>
+      <div class="set-body">
+        <div class="line stack"><label for="setAgentLane">Engine</label>
+          <select id="setAgentLane">
+            <option value="compose">Compose — penelope writes the code (built for small models)</option>
+            <option value="khora">Loop — the khora's agent loop in its sandbox (list · read · write · run)</option>
+          </select>
+        </div>
+        <div class="line"><label for="setAgentRounds">Rounds it may go again</label>
+          <select id="setAgentRounds"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+        </div>
+        <label class="check"><input type="checkbox" id="setAgentEscalate"> Escalate to a sealed remote model when local is busy, slow or draws nothing</label>
+        <div class="hint">Escalation goes only through heimdall's sealed-external gate: your task text and the last attempt's code, never workspace files. The feed says when it happens.</div>
+      </div>
+    </details>
 
-    <div class="about" id="setAbout"></div>
+    <details class="set" id="setModelsSec">
+      <summary>Models</summary>
+      <div class="set-body">
+        <div class="models" id="models"></div>
+        <div class="hint">Each tier is a different trust boundary. An outside model is sealed-external, the reading only.</div>
+      </div>
+    </details>
+
+    <details class="set" id="setKeys">
+      <summary>API keys</summary>
+      <div class="set-body">
+        <div class="hint keyhint">Stored on this machine beside `heimdall key`. Never in this page, never sent to an outside model.</div>
+        <div class="keygroup">Frontier</div>
+        <div class="keyrow"><label class="keyname" for="keyAnthropic">Anthropic</label><input type="password" id="keyAnthropic" placeholder="sk-ant-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="anthropic">Save</button><a class="keyget" href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener noreferrer" title="Opens Anthropic in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="keyrow"><label class="keyname" for="keyOpenai">OpenAI</label><input type="password" id="keyOpenai" placeholder="sk-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="openai">Save</button><a class="keyget" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" title="Opens OpenAI in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="keygroup">Small hosted models <span>cents per million tokens; the Fold can ask several at once</span></div>
+        <div class="keyrow"><label class="keyname" for="keyOpenrouter">OpenRouter</label><input type="password" id="keyOpenrouter" placeholder="sk-or-…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="openrouter">Save</button><a class="keyget" href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" title="Opens OpenRouter in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="keyrow"><label class="keyname" for="keyTogether">Together</label><input type="password" id="keyTogether" placeholder="API key" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="together">Save</button><a class="keyget" href="https://api.together.ai/settings/api-keys" target="_blank" rel="noopener noreferrer" title="Opens Together in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="keyrow"><label class="keyname" for="keyFireworks">Fireworks</label><input type="password" id="keyFireworks" placeholder="fw_…" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="fireworks">Save</button><a class="keyget" href="https://app.fireworks.ai/settings/users/api-keys" target="_blank" rel="noopener noreferrer" title="Opens Fireworks in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="keyrow"><label class="keyname" for="keyDeepinfra">DeepInfra</label><input type="password" id="keyDeepinfra" placeholder="API key" autocomplete="off" spellcheck="false"><button type="button" class="btn" data-provider="deepinfra">Save</button><a class="keyget" href="https://deepinfra.com/dash/api_keys" target="_blank" rel="noopener noreferrer" title="Opens DeepInfra in a new tab: sign up or sign in there, create a key, and paste it here">Get a key &#8599;</a></div>
+        <div class="hint" id="keyStatus" role="status">No provider keys saved on this machine yet.</div>
+      </div>
+    </details>
 
     <div class="sheet-foot">
       <div class="grow"></div>
