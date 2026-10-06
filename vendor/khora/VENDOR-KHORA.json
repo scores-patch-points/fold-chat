@@ -19,7 +19,8 @@
     "the-fold/earned-cast.js",
     "organs/pathos.js",
     "the-fold/pathos-turn.js",
-    "the-fold/relative.js"
+    "the-fold/relative.js",
+    "the-fold/span-drift.js"
   ],
   "files": {
     "adapters/text/priors.js": "4a23db12c801354e1618c60951c7b5a80541994bdf6b89c5c1fc64bacb5cb80f",
@@ -49,7 +50,9 @@
     "organs/witness-sentences.js": "424d8ed0913066c01156088c32e0d8afe217db0c9fee5e438acea0bb0fe977e6",
     "the-fold/earned-cast.js": "1e806afc80c8bf72c396bc2cc3fa8c98035585c143f469d354edad1fd95b27a0",
     "the-fold/pathos-turn.js": "1c5b2d028d600ea2aabfac2df44430730db8d5c479d8c009ce768158d04a8039",
-    "the-fold/relative.js": "d2a3bf70a9950dc1885295bf8578910c3a9cd1c8516cdd86e4d77932f3aa9bf3"
+    "the-fold/record-log.js": "3bf3a2787ee8fddfaf9cdfdc36c6e189bdbecb485203e1c4ba8fae269db40ada",
+    "the-fold/relative.js": "d2a3bf70a9950dc1885295bf8578910c3a9cd1c8516cdd86e4d77932f3aa9bf3",
+    "the-fold/span-drift.js": "4cdf25f11885a661afcfc7ae0a95f406b6f10fd978cc6b2205d170cc497b4208"
   },
   "skips": [],
   "missing": []

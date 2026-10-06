@@ -65,6 +65,9 @@ export const ENTRIES = [
   "the-fold/pathos-turn.js",
   // the keyless memory (THE-HOLOGRAPH §3): sdrOf, Field.recall, nullBand — the shadow and echo tiers
   "the-fold/relative.js",
+  // DOES A CITED SPAN STILL NAME ITS BYTES (span-drift.js): exact / shifted / moved / gone over `ref#start-end`, ambiguity said, never rewritten.
+  // Pure; closes over record-log.js's resolveAddress. A pure function of its inputs, for the chat's citation check.
+  "the-fold/span-drift.js",
 ];
 
 const NODE_IMPORT = /(?:^|\n)\s*(?:import\s+(?:[^"'\n;]*?\sfrom\s+)?|export\s+[^"'\n;]*?\sfrom\s+)["']node:[^"']+["']/;
