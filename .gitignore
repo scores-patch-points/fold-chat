@@ -83,7 +83,7 @@ __pycache__/
 /eval/results-cur.json
 /eval/snips/judged.json
 /eval/snips/gold-verify.json
-/eval/snips/asks.json
+!/eval/snips/asks.json
 /experiments/*/out/
 /experiments/*/vendor/
 !/experiments/specimen-assembly/vendor/

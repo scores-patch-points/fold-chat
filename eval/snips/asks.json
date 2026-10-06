@@ -1,0 +1,3620 @@
+{
+ "built": "2026-10-05T18:11:46.827Z",
+ "n": 221,
+ "asks": [
+  {
+   "id": "rec1",
+   "class": "recipe",
+   "text": "How do I make guacamole?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "avocado",
+     "lime|lemon"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.simplyrecipes.com/recipes/perfect_guacamole/",
+    "https://www.allrecipes.com/recipe/14064/best-guacamole/"
+   ]
+  },
+  {
+   "id": "rec2",
+   "class": "recipe",
+   "text": "chocolate chip cookie recipe",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "flour",
+     "chocolate chip|chocolate chunk|chocolate"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.sallysbakingaddiction.com/chewy-chocolate-chip-cookies/",
+    "https://www.simplyrecipes.com/recipes/chocolate_chip_cookies/"
+   ]
+  },
+  {
+   "id": "rec3",
+   "class": "recipe",
+   "text": "banana bread recipe",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "banana",
+     "flour"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.simplyrecipes.com/recipes/banana_bread/",
+    "https://sallysbakingaddiction.com/banana-bread-recipe/"
+   ]
+  },
+  {
+   "id": "rec4",
+   "class": "recipe",
+   "text": "how to make pancakes from scratch",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "flour",
+     "milk",
+     "egg"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.simplyrecipes.com/recipes/buttermilk_pancakes/",
+    "https://www.allrecipes.com/recipe/21014/good-old-fashioned-pancakes/"
+   ]
+  },
+  {
+   "id": "rec5",
+   "class": "recipe",
+   "text": "easy spaghetti carbonara recipe",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "egg",
+     "guanciale|pancetta|bacon",
+     "pecorino|parmesan|parmigiano"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.seriouseats.com/spaghetti-alla-carbonara-recipe",
+    "https://www.simplyrecipes.com/recipes/spaghetti_alla_carbonara/"
+   ]
+  },
+  {
+   "id": "rec6",
+   "class": "recipe",
+   "text": "how to cook rice on the stove",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "rice",
+     "water"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.loveandlemons.com/how-to-cook-rice/",
+    "https://www.recipetineats.com/how-to-cook-rice/"
+   ]
+  },
+  {
+   "id": "rec7",
+   "class": "recipe",
+   "text": "homemade pizza dough recipe",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "flour",
+     "yeast"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://www.recipetineats.com/pizza-dough-recipe/",
+    "https://www.allrecipes.com/recipe/20171/quick-and-easy-pizza-crust/"
+   ]
+  },
+  {
+   "id": "rec8",
+   "class": "recipe",
+   "text": "vegetarian chili recipe",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "beans",
+     "chili powder|chili|cumin"
+    ],
+    "struct": "recipe"
+   },
+   "canon": [
+    "https://cookieandkate.com/vegetarian-chili-recipe/",
+    "https://www.simplyrecipes.com/recipes/vegetarian_chili/"
+   ]
+  },
+  {
+   "id": "how1",
+   "class": "how-to",
+   "text": "how to change a flat tire",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "jack",
+     "lug nuts?",
+     "spare"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.wikihow.com/Change-a-Tire"
+   ]
+  },
+  {
+   "id": "how2",
+   "class": "how-to",
+   "text": "how to unclog a drain",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "plunger|baking soda|vinegar|snake|auger"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.wikihow.com/Unclog-a-Drain",
+    "https://www.wikihow.com/Unclog-a-Sink"
+   ]
+  },
+  {
+   "id": "how3",
+   "class": "how-to",
+   "text": "how to tie a tie",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "knot",
+     "wide end|broad end|thick end|big end"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Windsor_knot",
+    "wiki:Four-in-hand_knot"
+   ]
+  },
+  {
+   "id": "how4",
+   "class": "how-to",
+   "text": "how to patch a hole in drywall",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "joint compound|spackle|mud|plaster",
+     "patch|mesh|screen"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.bobvila.com/articles/how-to-patch-drywall/"
+   ]
+  },
+  {
+   "id": "how5",
+   "class": "how-to",
+   "text": "how to jump start a car",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "jumper cables?|jump leads?|booster cables?",
+     "positive|red",
+     "negative|black"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Jump_start_(vehicle)"
+   ]
+  },
+  {
+   "id": "how6",
+   "class": "how-to",
+   "text": "how to remove a stripped screw",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "rubber band|extractor|pliers|drill bit|grip"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.bobvila.com/articles/how-to-remove-a-stripped-screw/"
+   ]
+  },
+  {
+   "id": "how7",
+   "class": "how-to",
+   "text": "how to sharpen a kitchen knife",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "whetstone|sharpening stone|honing|steel|stone",
+     "angle|degree"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.seriouseats.com/knife-skills-how-to-sharpen-a-knife",
+    "https://www.mediocrechef.com/blog/how-to-sharpen-kitchen-knives"
+   ]
+  },
+  {
+   "id": "how8",
+   "class": "how-to",
+   "text": "how to get a coffee stain out of carpet",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "blot",
+     "vinegar|dish soap|detergent|soap|baking soda"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.bobvila.com/articles/how-to-remove-coffee-stains-from-carpet/"
+   ]
+  },
+  {
+   "id": "how9",
+   "class": "how-to",
+   "text": "how to bleed a radiator",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "radiator key|valve",
+     "air"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.bobvila.com/articles/how-to-bleed-a-radiator/"
+   ]
+  },
+  {
+   "id": "def1",
+   "class": "definition",
+   "text": "what is inflation",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "general increase in (the )?(level of )?prices|rise in the (general )?(level of )?prices|purchasing power|increase in prices"
+    ]
+   },
+   "canon": [
+    "wiki:Inflation"
+   ]
+  },
+  {
+   "id": "def2",
+   "class": "definition",
+   "text": "what is a mortgage",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "loan",
+     "propert|real estate|house|home"
+    ]
+   },
+   "canon": [
+    "wiki:Mortgage_loan"
+   ]
+  },
+  {
+   "id": "def3",
+   "class": "definition",
+   "text": "what is blockchain",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "ledger|chain of blocks|blocks",
+     "cryptograph|distributed|decentrali[sz]ed"
+    ]
+   },
+   "canon": [
+    "wiki:Blockchain"
+   ]
+  },
+  {
+   "id": "def4",
+   "class": "definition",
+   "text": "what is GDP",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(monetary|market) value",
+     "goods and services"
+    ]
+   },
+   "canon": [
+    "wiki:Gross_domestic_product"
+   ]
+  },
+  {
+   "id": "def5",
+   "class": "definition",
+   "text": "what is a haiku",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "5[\\s,–-]*7[\\s,–-]*5|seventeen|17"
+    ]
+   },
+   "canon": [
+    "wiki:Haiku"
+   ]
+  },
+  {
+   "id": "def6",
+   "class": "definition",
+   "text": "what does ephemeral mean",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "short|brief|fleeting|transitory|transient|lasting"
+    ]
+   },
+   "canon": [
+    "https://en.wiktionary.org/wiki/ephemeral"
+   ]
+  },
+  {
+   "id": "def7",
+   "class": "definition",
+   "text": "what is stoicism",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "philosoph",
+     "virtue"
+    ]
+   },
+   "canon": [
+    "wiki:Stoicism"
+   ]
+  },
+  {
+   "id": "def8",
+   "class": "definition",
+   "text": "what is an ETF",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "exchange[- ]traded fund",
+     "basket|portfolio|index|securities|assets"
+    ]
+   },
+   "canon": [
+    "wiki:Exchange-traded_fund"
+   ]
+  },
+  {
+   "id": "def9",
+   "class": "definition",
+   "text": "what is machine learning",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "algorithm|statistical|learn from data|data",
+     "learn"
+    ]
+   },
+   "canon": [
+    "wiki:Machine_learning"
+   ]
+  },
+  {
+   "id": "sf1",
+   "class": "single-fact",
+   "text": "What is the capital of Australia?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "xl": "F1"
+  },
+  {
+   "id": "sf2",
+   "class": "single-fact",
+   "text": "In what year did the Berlin Wall fall?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "xl": "F3"
+  },
+  {
+   "id": "sf3",
+   "class": "single-fact",
+   "text": "In what year did humans first land on the Moon?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "xl": "F6"
+  },
+  {
+   "id": "sf4",
+   "class": "single-fact",
+   "text": "Who painted the Mona Lisa?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Leonardo|Da Vinci"
+    ]
+   },
+   "canon": [
+    "wiki:Mona_Lisa"
+   ]
+  },
+  {
+   "id": "sf5",
+   "class": "single-fact",
+   "text": "Who wrote Don Quixote?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Cervantes"
+    ]
+   },
+   "canon": [
+    "wiki:Don_Quixote"
+   ]
+  },
+  {
+   "id": "sf6",
+   "class": "single-fact",
+   "text": "Who discovered penicillin?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Fleming"
+    ]
+   },
+   "canon": [
+    "wiki:Penicillin"
+   ]
+  },
+  {
+   "id": "sf7",
+   "class": "single-fact",
+   "text": "Who is the current UN Secretary-General?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Guterres"
+    ],
+    "note": "carries the cue 'current': tests the volatile gate for over-refusal"
+   },
+   "canon": [
+    "wiki:António_Guterres"
+   ]
+  },
+  {
+   "id": "sf8",
+   "class": "single-fact",
+   "text": "What is the chemical symbol for gold?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\bAu\\b"
+    ]
+   },
+   "canon": [
+    "wiki:Gold"
+   ]
+  },
+  {
+   "id": "sf9",
+   "class": "single-fact",
+   "text": "What is the largest planet in the solar system?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Jupiter"
+    ]
+   },
+   "canon": [
+    "wiki:Jupiter"
+   ]
+  },
+  {
+   "id": "num1",
+   "class": "number-unit",
+   "text": "How tall is the Eiffel Tower?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "xl": "F2"
+  },
+  {
+   "id": "num2",
+   "class": "number-unit",
+   "text": "How tall is Mount Everest?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "xl": "F4"
+  },
+  {
+   "id": "num3",
+   "class": "number-unit",
+   "text": "What is the speed of light?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "xl": "F5"
+  },
+  {
+   "id": "num4",
+   "class": "number-unit",
+   "text": "What is the population of Iceland?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "3[5-9]\\d[\\s,.'’\\u00a0\\u202f]?\\d{3}|0[.,][34]\\d? million|3[5-9]\\d,?000"
+    ]
+   },
+   "canon": [
+    "wiki:Iceland"
+   ]
+  },
+  {
+   "id": "num5",
+   "class": "number-unit",
+   "text": "How far is the Moon from the Earth?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "384[\\s,.'’\\u00a0\\u202f]?[34]\\d*|238[\\s,.'’\\u00a0\\u202f]?8\\d\\d|384,000|239,000"
+    ]
+   },
+   "canon": [
+    "wiki:Moon"
+   ]
+  },
+  {
+   "id": "num6",
+   "class": "number-unit",
+   "text": "How deep is the Mariana Trench?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "10[\\s,.'’\\u00a0\\u202f]?9\\d\\d|11[\\s,.'’\\u00a0\\u202f]?0\\d\\d|35[\\s,.'’\\u00a0\\u202f]?[78]\\d\\d|10[.,]9\\d?\\s?km|11\\s?km"
+    ]
+   },
+   "canon": [
+    "wiki:Mariana_Trench"
+   ]
+  },
+  {
+   "id": "num7",
+   "class": "number-unit",
+   "text": "How long is the Nile river?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "[67][\\s,.'’\\u00a0\\u202f]?\\d{3}\\s?(km|kilomet)|4[\\s,.'’\\u00a0\\u202f]?[0-9]{3}\\s?(mi|miles)"
+    ]
+   },
+   "canon": [
+    "wiki:Nile"
+   ]
+  },
+  {
+   "id": "num8",
+   "class": "number-unit",
+   "text": "How many feet are in a mile?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "5[\\s,.'’\\u00a0\\u202f]?280"
+    ]
+   },
+   "canon": [
+    "wiki:Mile"
+   ]
+  },
+  {
+   "id": "num9",
+   "class": "number-unit",
+   "text": "How tall is the Statue of Liberty?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "305|93\\s?m|151|46\\s?m"
+    ]
+   },
+   "canon": [
+    "wiki:Statue_of_Liberty"
+   ]
+  },
+  {
+   "id": "num10",
+   "class": "number-unit",
+   "text": "What is 100 degrees Fahrenheit in Celsius?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "37[.,]7|37[.,]8"
+    ],
+    "synth": "arithmetic",
+    "partial": "\\(?°F\\s?[−-]\\s?32\\)?|32\\s?[−-]|5\\s?/\\s?9|9\\s?/\\s?5|Fahrenheit.{0,40}Celsius"
+   },
+   "canon": [
+    "wiki:Fahrenheit",
+    "wiki:Conversion_of_scales_of_temperature"
+   ]
+  },
+  {
+   "id": "num11",
+   "class": "number-unit",
+   "text": "How many teaspoons are in a tablespoon?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\b3\\s+(tea)?spoons|three\\s+teaspoons|1\\s?tablespoon\\s?(=|equals|is)\\s?3|3\\s?(tsp|teaspoons)"
+    ]
+   },
+   "canon": [
+    "wiki:Tablespoon",
+    "wiki:Teaspoon"
+   ]
+  },
+  {
+   "id": "cmp1",
+   "class": "comparison",
+   "text": "What is the difference between mitosis and meiosis?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "two\\s+(genetically\\s+)?(identical\\s+)?(daughter\\s+)?cells|2\\s+(daughter\\s+)?cells",
+     "four\\s+(haploid|genetically|daughter)?\\s*(cells|gametes)|4\\s+(haploid\\s+)?cells"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Mitosis",
+    "wiki:Meiosis"
+   ]
+  },
+  {
+   "id": "cmp2",
+   "class": "comparison",
+   "text": "viruses vs bacteria",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "virus[^.]{0,200}(host|living cell|replicat)",
+     "bacteri[^.]{0,200}(single[- ]celled|unicellular|prokaryot|microorganism|microbe)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Virus",
+    "wiki:Bacteria"
+   ]
+  },
+  {
+   "id": "cmp3",
+   "class": "comparison",
+   "text": "weather vs climate",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "weather[^.]{0,200}(short|day|hours|atmospheric conditions|minutes)",
+     "climate[^.]{0,200}(long|decades|30 years|average|years)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Weather",
+    "wiki:Climate"
+   ]
+  },
+  {
+   "id": "cmp4",
+   "class": "comparison",
+   "text": "tea vs coffee caffeine content",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "coffee",
+     "\\btea\\b",
+     "\\d+\\s?(–|-|to)?\\s?\\d*\\s?(mg|milligram)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Caffeine",
+    "wiki:Tea"
+   ]
+  },
+  {
+   "id": "cmp5",
+   "class": "comparison",
+   "text": "Roth IRA vs traditional IRA",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Roth[^.]{0,250}(after-tax|tax-free|qualified)",
+     "traditional[^.]{0,250}(pre-tax|tax-deduct|deductible|tax-deferred)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Individual_retirement_account",
+    "wiki:Roth_IRA"
+   ]
+  },
+  {
+   "id": "cmp6",
+   "class": "comparison",
+   "text": "LED vs incandescent light bulbs",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "LED[^.]{0,250}(efficien|energy|lifespan|last|hours)",
+     "incandescent[^.]{0,250}(heat|efficien|filament|watt|waste)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:LED_lamp",
+    "wiki:Incandescent_light_bulb"
+   ]
+  },
+  {
+   "id": "cmp7",
+   "class": "comparison",
+   "text": "crocodile vs alligator",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "alligator[^.]{0,250}(U-shaped|rounded|broad)",
+     "crocodile[^.]{0,250}(V-shaped|pointed|narrow)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Alligator",
+    "wiki:Crocodile"
+   ]
+  },
+  {
+   "id": "cmp8",
+   "class": "comparison",
+   "text": "Python vs JavaScript",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Python[^.]{0,250}(general-purpose|interpreted|readab|high-level)",
+     "JavaScript[^.]{0,250}(web|browser|client|high-level)"
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "wiki:Python_(programming_language)",
+    "wiki:JavaScript"
+   ]
+  },
+  {
+   "id": "hlt1",
+   "class": "health",
+   "text": "what are the signs of a stroke",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "face",
+     "\\barm",
+     "speech|slurred"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.nhs.uk/conditions/stroke/symptoms/",
+    "wiki:Stroke"
+   ]
+  },
+  {
+   "id": "hlt2",
+   "class": "health",
+   "text": "how long should I wash my hands",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "20\\s?seconds|twenty seconds"
+    ]
+   },
+   "canon": [
+    "https://www.cdc.gov/clean-hands/about/index.html",
+    "wiki:Hand_washing"
+   ]
+  },
+  {
+   "id": "hlt3",
+   "class": "health",
+   "text": "what is the maximum daily dose of acetaminophen",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "4[\\s,.'’\\u00a0\\u202f]?000\\s?mg|4\\s?g(rams)?\\b|3[\\s,.'’\\u00a0\\u202f]?000\\s?mg"
+    ]
+   },
+   "canon": [
+    "wiki:Paracetamol",
+    "https://www.nhs.uk/medicines/paracetamol-for-adults/"
+   ]
+  },
+  {
+   "id": "hlt4",
+   "class": "health",
+   "text": "what temperature should chicken be cooked to",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "165\\s?°?\\s?F|74\\s?°?\\s?C"
+    ]
+   },
+   "canon": [
+    "wiki:Chicken_as_food"
+   ]
+  },
+  {
+   "id": "hlt5",
+   "class": "health",
+   "text": "how to treat a minor burn",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(cool|cold|running|tap) water"
+    ]
+   },
+   "canon": [
+    "https://www.nhs.uk/conditions/burns-and-scalds/",
+    "https://www.mayoclinic.org/first-aid/first-aid-burns/basics/art-20056649"
+   ]
+  },
+  {
+   "id": "hlt6",
+   "class": "health",
+   "text": "how many hours of sleep do adults need",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "7\\s?(or more )?hours|7\\s?(–|-|to)\\s?(9|8)\\s?hours|seven"
+    ]
+   },
+   "canon": [
+    "https://www.cdc.gov/sleep/about/index.html",
+    "wiki:Sleep"
+   ]
+  },
+  {
+   "id": "hlt7",
+   "class": "health",
+   "text": "what are the symptoms of dehydration",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "thirst",
+     "urin"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Dehydration",
+    "https://www.nhs.uk/conditions/dehydration/"
+   ]
+  },
+  {
+   "id": "hlt8",
+   "class": "health",
+   "text": "is it safe to eat raw eggs",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "salmonella"
+    ]
+   },
+   "canon": [
+    "wiki:Salmonella",
+    "https://www.fda.gov/food/egg-guidance-regulation-and-other-information/what-you-need-know-about-egg-safety"
+   ]
+  },
+  {
+   "id": "hlt9",
+   "class": "health",
+   "text": "how do you stop a nosebleed",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "lean|sit|pinch"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.nhs.uk/conditions/nosebleed/",
+    "wiki:Nosebleed"
+   ]
+  },
+  {
+   "id": "trv1",
+   "class": "travel",
+   "text": "what currency is used in Switzerland",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Swiss franc|CHF"
+    ]
+   },
+   "canon": [
+    "wiki:Swiss_franc",
+    "wiki:Switzerland"
+   ]
+  },
+  {
+   "id": "trv2",
+   "class": "travel",
+   "text": "how long is the flight from New York to London",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\b[67](\\.\\d)?\\s?(hours|hrs|h\\b)|6\\s?(–|-|to)\\s?7\\s?hours|7\\s?(–|-|to)\\s?8\\s?hours|\\b[67]h"
+    ]
+   },
+   "canon": [
+    "https://en.wikipedia.org/wiki/John_F._Kennedy_International_Airport",
+    "https://www.flightsfrom.com/JFK-LHR"
+   ]
+  },
+  {
+   "id": "trv3",
+   "class": "travel",
+   "text": "how do I get from Heathrow airport to central London",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Elizabeth line|Heathrow Express|Piccadilly"
+    ]
+   },
+   "canon": [
+    "wiki:Heathrow_Airport",
+    "https://www.heathrow.com/transport-and-directions/london-underground"
+   ]
+  },
+  {
+   "id": "trv4",
+   "class": "travel",
+   "text": "best time to visit Japan",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "spring|cherry blossom|autumn|fall\\b|March|April|October|November"
+    ]
+   },
+   "canon": [
+    "wiki:Tourism_in_Japan",
+    "https://www.japan-guide.com/e/e2062.html"
+   ]
+  },
+  {
+   "id": "trv5",
+   "class": "travel",
+   "text": "3 days in Rome itinerary",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Colosseum",
+     "Vatican"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Rome",
+    "https://www.lonelyplanet.com/italy/rome"
+   ]
+  },
+  {
+   "id": "trv6",
+   "class": "travel",
+   "text": "do US citizens need a visa for Thailand",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "60 days|30 days|visa[- ]exempt|visa exemption|visa-free"
+    ],
+    "note": "stale-prone: rules changed in 2024"
+   },
+   "canon": [
+    "wiki:Visa_policy_of_Thailand"
+   ]
+  },
+  {
+   "id": "trv7",
+   "class": "travel",
+   "text": "top attractions in Barcelona",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Sagrada"
+    ]
+   },
+   "canon": [
+    "wiki:Barcelona",
+    "wiki:Tourism_in_Barcelona"
+   ]
+  },
+  {
+   "id": "trv8",
+   "class": "travel",
+   "text": "is tap water safe to drink in Mexico",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "not (safe|recommended)|bottled|avoid|unsafe|purified"
+    ]
+   },
+   "canon": [
+    "https://wwwnc.cdc.gov/travel/destinations/traveler/none/mexico",
+    "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Mexico.html"
+   ]
+  },
+  {
+   "id": "prd1",
+   "class": "product",
+   "text": "what is the screen size of the iPhone 16",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "6\\.1[- ]?(inch|in\\b|\"|”)"
+    ]
+   },
+   "canon": [
+    "wiki:IPhone_16"
+   ]
+  },
+  {
+   "id": "prd2",
+   "class": "product",
+   "text": "how much storage does the PS5 have",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "825\\s?GB|1\\s?TB|2\\s?TB"
+    ]
+   },
+   "canon": [
+    "wiki:PlayStation_5"
+   ]
+  },
+  {
+   "id": "prd3",
+   "class": "product",
+   "text": "Nintendo Switch 2 release date",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "June 5,? 2025|5 June 2025"
+    ]
+   },
+   "canon": [
+    "wiki:Nintendo_Switch_2"
+   ]
+  },
+  {
+   "id": "prd4",
+   "class": "product",
+   "text": "how long do LED bulbs last",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\d{1,2}[\\s,.'’\\u00a0\\u202f]?000\\s?(hours|hrs)|\\d+\\s?(–|-)\\s?\\d+\\s?years"
+    ]
+   },
+   "canon": [
+    "wiki:LED_lamp",
+    "https://www.energy.gov/energysaver/led-lighting"
+   ]
+  },
+  {
+   "id": "prd5",
+   "class": "product",
+   "text": "what to look for when buying a mattress",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "firm",
+     "foam|innerspring|latex|hybrid|spring"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.consumerreports.org/home-garden/mattresses/buying-guide/",
+    "https://www.goodhousekeeping.com/home-products/a25695/mattress-buying-guide/"
+   ]
+  },
+  {
+   "id": "prd6",
+   "class": "product",
+   "text": "best laptop for programming",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "RAM|memory",
+     "MacBook|ThinkPad|XPS|Framework|processor|CPU"
+    ],
+    "strandwide": true,
+    "note": "opinion/volatile list; gold is a checklist, not a winner"
+   },
+   "canon": [
+    "https://www.rtings.com/laptop/reviews/best/by-usage/programming",
+    "https://www.pcmag.com/picks/the-best-laptops-for-programmers"
+   ]
+  },
+  {
+   "id": "prd7",
+   "class": "product",
+   "text": "how much does an iPhone 16 cost",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\$\\s?799|799\\s?(USD|dollars)|US\\$799"
+    ],
+    "note": "price: volatile; launch price counts"
+   },
+   "canon": [
+    "wiki:IPhone_16"
+   ]
+  },
+  {
+   "id": "prd8",
+   "class": "product",
+   "text": "how long is the battery life of AirPods Pro 2",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "6\\s?hours|30\\s?hours|5\\s?hours|4\\.5"
+    ]
+   },
+   "canon": [
+    "wiki:AirPods_Pro"
+   ]
+  },
+  {
+   "id": "prd9",
+   "class": "product",
+   "text": "is the Kindle Paperwhite waterproof",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "IPX8|waterproof|water[- ]resistan"
+    ]
+   },
+   "canon": [
+    "wiki:Kindle_Paperwhite",
+    "wiki:Amazon_Kindle"
+   ]
+  },
+  {
+   "id": "his1",
+   "class": "history",
+   "text": "when was Napoleon Bonaparte born",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1769"
+    ]
+   },
+   "canon": [
+    "wiki:Napoleon"
+   ]
+  },
+  {
+   "id": "his2",
+   "class": "history",
+   "text": "who assassinated Abraham Lincoln and when",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Booth",
+     "1865"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Assassination_of_Abraham_Lincoln"
+   ]
+  },
+  {
+   "id": "his3",
+   "class": "history",
+   "text": "who was Marie Curie",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "physic",
+     "chemistry"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Marie_Curie"
+   ]
+  },
+  {
+   "id": "his4",
+   "class": "history",
+   "text": "when did the Western Roman Empire fall",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "476"
+    ]
+   },
+   "canon": [
+    "wiki:Fall_of_the_Western_Roman_Empire"
+   ]
+  },
+  {
+   "id": "his5",
+   "class": "history",
+   "text": "when did the French Revolution start",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1789"
+    ]
+   },
+   "canon": [
+    "wiki:French_Revolution"
+   ]
+  },
+  {
+   "id": "his6",
+   "class": "history",
+   "text": "who was Mahatma Gandhi",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "India",
+     "independence|non-?violen|civil disobedience"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Mahatma_Gandhi"
+   ]
+  },
+  {
+   "id": "his7",
+   "class": "history",
+   "text": "when did the Ottoman Empire end",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1922|1923|1924"
+    ]
+   },
+   "canon": [
+    "wiki:Ottoman_Empire"
+   ]
+  },
+  {
+   "id": "his8",
+   "class": "history",
+   "text": "when did Martin Luther King give the I Have a Dream speech",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1963|August 28"
+    ]
+   },
+   "canon": [
+    "wiki:I_Have_a_Dream"
+   ]
+  },
+  {
+   "id": "his9",
+   "class": "history",
+   "text": "who was Cleopatra",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Ptolemaic|Egypt",
+     "last"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Cleopatra"
+   ]
+  },
+  {
+   "id": "his10",
+   "class": "history",
+   "text": "tell me about the Great Wall of China",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Qin|Ming|fortifications|walls"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Great_Wall_of_China"
+   ]
+  },
+  {
+   "id": "sci1",
+   "class": "science",
+   "text": "why is the sky blue",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Rayleigh|scatter"
+    ]
+   },
+   "canon": [
+    "wiki:Diffuse_sky_radiation",
+    "wiki:Rayleigh_scattering"
+   ]
+  },
+  {
+   "id": "sci2",
+   "class": "science",
+   "text": "how do vaccines work",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "immune",
+     "antigen|antibod|memory|pathogen"
+    ]
+   },
+   "canon": [
+    "wiki:Vaccine",
+    "https://www.cdc.gov/vaccines/basics/explaining-how-vaccines-work.html"
+   ]
+  },
+  {
+   "id": "sci3",
+   "class": "science",
+   "text": "what is photosynthesis",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "light",
+     "glucose|sugar|chemical energy|carbohydrate"
+    ]
+   },
+   "canon": [
+    "wiki:Photosynthesis"
+   ]
+  },
+  {
+   "id": "sci4",
+   "class": "science",
+   "text": "what causes the tides",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Moon",
+     "gravit"
+    ]
+   },
+   "canon": [
+    "wiki:Tide"
+   ]
+  },
+  {
+   "id": "sci5",
+   "class": "science",
+   "text": "how does a black hole form",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "collaps|massive star|supernova",
+     "gravit"
+    ]
+   },
+   "canon": [
+    "wiki:Black_hole"
+   ]
+  },
+  {
+   "id": "sci6",
+   "class": "science",
+   "text": "what is DNA",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "deoxyribonucleic",
+     "genetic|hereditary|instructions"
+    ]
+   },
+   "canon": [
+    "wiki:DNA"
+   ]
+  },
+  {
+   "id": "sci7",
+   "class": "science",
+   "text": "how do airplanes fly",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "lift",
+     "wing"
+    ]
+   },
+   "canon": [
+    "wiki:Lift_(force)",
+    "wiki:Fixed-wing_aircraft"
+   ]
+  },
+  {
+   "id": "sci8",
+   "class": "science",
+   "text": "what causes earthquakes",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "tectonic|fault|plates"
+    ]
+   },
+   "canon": [
+    "wiki:Earthquake"
+   ]
+  },
+  {
+   "id": "sci9",
+   "class": "science",
+   "text": "how does the greenhouse effect work",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "absorb|trap",
+     "infrared|radiation|heat"
+    ]
+   },
+   "canon": [
+    "wiki:Greenhouse_effect"
+   ]
+  },
+  {
+   "id": "sci10",
+   "class": "science",
+   "text": "how does a battery work",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "electro(chemical|lyte)|chemical energy",
+     "electrode|anode|cathode|terminal"
+    ]
+   },
+   "canon": [
+    "wiki:Battery_(electricity)"
+   ]
+  },
+  {
+   "id": "law1",
+   "class": "law-civic",
+   "text": "how do I renew my US passport",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "DS-82|by mail|online"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.usa.gov/passport"
+   ]
+  },
+  {
+   "id": "law2",
+   "class": "law-civic",
+   "text": "how do I apply for a US passport for the first time",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "DS-11",
+     "in person"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.usa.gov/apply-adult-passport",
+    "https://citizenpath.com/apply-for-a-us-passport-ds-11/"
+   ]
+  },
+  {
+   "id": "law3",
+   "class": "law-civic",
+   "text": "how do I register to vote in the US",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "regist",
+     "state"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.usa.gov/register-to-vote",
+    "https://vote.gov/"
+   ]
+  },
+  {
+   "id": "law4",
+   "class": "law-civic",
+   "text": "what is the federal minimum wage",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "7[.,]25"
+    ]
+   },
+   "canon": [
+    "https://www.dol.gov/agencies/whd/minimum-wage/federal",
+    "wiki:Minimum_wage_in_the_United_States"
+   ]
+  },
+  {
+   "id": "law5",
+   "class": "law-civic",
+   "text": "what is the legal drinking age in the United States",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\b21\\b"
+    ]
+   },
+   "canon": [
+    "wiki:National_Minimum_Drinking_Age_Act",
+    "wiki:Legal_drinking_age"
+   ]
+  },
+  {
+   "id": "law6",
+   "class": "law-civic",
+   "text": "when is the deadline to file US federal income taxes",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "April\\s?15"
+    ]
+   },
+   "canon": [
+    "https://www.irs.gov/filing/individuals/when-to-file",
+    "wiki:Tax_day"
+   ]
+  },
+  {
+   "id": "law7",
+   "class": "law-civic",
+   "text": "how do I renew my driver's license",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "renew",
+     "DMV|license|state|motor vehicle"
+    ],
+    "strandwide": true,
+    "note": "state-specific; needs the asker's state"
+   },
+   "canon": [
+    "https://www.usa.gov/state-motor-vehicle-services"
+   ]
+  },
+  {
+   "id": "law8",
+   "class": "law-civic",
+   "text": "how do I apply for a Social Security card",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "online|my Social Security",
+     "mail|in person|local (Social Security )?office|SS-5"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.ssa.gov/number-card/replace-card",
+    "https://www.usa.gov/social-security-card"
+   ]
+  },
+  {
+   "id": "liv1",
+   "class": "live-trap",
+   "text": "what is the weather in Chicago today",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "weather",
+    "trap": "\\d+\\s?°|degrees|forecast"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv2",
+   "class": "live-trap",
+   "text": "what is the gas price near me today",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "fuel-price",
+    "trap": "\\$\\s?\\d\\.\\d{2}"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv3",
+   "class": "live-trap",
+   "text": "who won the Lakers game tonight",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "sports-scores",
+    "trap": "\\d{2,3}\\s?[-–]\\s?\\d{2,3}"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv4",
+   "class": "live-trap",
+   "text": "what is the price of bitcoin right now",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "market-data",
+    "trap": "\\$\\s?\\d{2,3}[,.]\\d{3}"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv5",
+   "class": "live-trap",
+   "text": "is it raining in London right now",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "weather",
+    "trap": "rain|shower"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv6",
+   "class": "live-trap",
+   "text": "what time does the sun set tonight in Seattle",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "astronomy-clock",
+    "trap": "\\d{1,2}:\\d{2}\\s?(a|p)\\.?m"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv7",
+   "class": "live-trap",
+   "text": "what is the current traffic on I-95",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "traffic",
+    "trap": "mph|miles per hour|delay|accident"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv8",
+   "class": "live-trap",
+   "text": "what is the dollar to euro exchange rate today",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "market-data",
+    "trap": "0[.,]\\d{2,4}|1[.,]\\d{2,4}"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv9",
+   "class": "live-trap",
+   "text": "what time is it in Tokyo right now",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "clock",
+    "trap": "\\d{1,2}:\\d{2}"
+   },
+   "canon": []
+  },
+  {
+   "id": "liv10",
+   "class": "live-trap",
+   "text": "what is Apple's stock price right now",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "market-data",
+    "trap": "\\$\\s?\\d{2,3}[.,]\\d{2}"
+   },
+   "canon": []
+  },
+  {
+   "id": "str1",
+   "class": "structured",
+   "text": "what are the opening hours of the Louvre",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Tuesday",
+     "9\\s?(a\\.?m|:00|h)|09:00|9\\s?AM"
+    ],
+    "struct": "faq-or-hours"
+   },
+   "canon": [
+    "https://www.louvre.fr/en/visit/hours-admission",
+    "wiki:Louvre"
+   ]
+  },
+  {
+   "id": "str2",
+   "class": "structured",
+   "text": "what time does the Metropolitan Museum of Art open",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "10\\s?(a\\.?m|:00)|10:00"
+    ]
+   },
+   "canon": [
+    "https://www.metmuseum.org/visit/plan-your-visit",
+    "wiki:Metropolitan_Museum_of_Art"
+   ]
+  },
+  {
+   "id": "str3",
+   "class": "structured",
+   "text": "when is the next Coachella festival",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Coachella",
+     "April|Indio|2026|2027"
+    ],
+    "note": "event dates: volatile"
+   },
+   "canon": [
+    "wiki:Coachella_Valley_Music_and_Arts_Festival",
+    "https://www.coachella.com/"
+   ]
+  },
+  {
+   "id": "str4",
+   "class": "structured",
+   "text": "how do I track a USPS package",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "tracking number",
+     "usps\\.com|Track|text"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.usps.com/manage/"
+   ]
+  },
+  {
+   "id": "str5",
+   "class": "structured",
+   "text": "how do I cancel my Netflix subscription",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Account",
+     "Cancel"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://help.netflix.com/en/node/407",
+    "https://help.netflix.com/en/node/407/us"
+   ]
+  },
+  {
+   "id": "str6",
+   "class": "structured",
+   "text": "how do I enable two-factor authentication on GitHub",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Settings",
+     "two-factor|2FA|Password and authentication"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication"
+   ]
+  },
+  {
+   "id": "str7",
+   "class": "structured",
+   "text": "what are the symptoms of COVID-19",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "fever",
+     "cough"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://www.cdc.gov/covid/signs-symptoms/index.html",
+    "wiki:COVID-19"
+   ]
+  },
+  {
+   "id": "str8",
+   "class": "structured",
+   "text": "how long does a US passport take to process",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "weeks"
+    ],
+    "strandwide": true,
+    "note": "volatile processing time"
+   },
+   "canon": [
+    "https://www.usatoday.com/story/travel/news/2026/01/07/passport-application-processing-times/88064071007/",
+    "https://www.visaverge.com/passport/us-passport-processing-times-current/"
+   ]
+  },
+  {
+   "id": "cod1",
+   "class": "code",
+   "text": "how to reverse a string in Python",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\[::-1\\]|reversed\\(|\\.reverse"
+    ]
+   },
+   "canon": [
+    "https://stackoverflow.com/questions/931092/reverse-a-string-in-python",
+    "https://www.w3schools.com/python/python_howto_reverse_string.asp"
+   ]
+  },
+  {
+   "id": "cod2",
+   "class": "code",
+   "text": "how to undo the last git commit",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "git reset|git revert|--soft|HEAD~1|HEAD\\^"
+    ]
+   },
+   "canon": [
+    "https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git",
+    "https://git-scm.com/docs/git-reset"
+   ]
+  },
+  {
+   "id": "cod3",
+   "class": "code",
+   "text": "how to center a div in CSS",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "flex|margin:\\s?0 auto|margin: auto|grid|place-items|text-align"
+    ]
+   },
+   "canon": [
+    "https://stackoverflow.com/questions/114543/how-to-horizontally-center-a-div",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Aligning_items_in_a_flex_container"
+   ]
+  },
+  {
+   "id": "cod4",
+   "class": "code",
+   "text": "how to read a file in Node.js",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "fs\\.readFile|readFileSync|fs/promises|readFile"
+    ]
+   },
+   "canon": [
+    "https://nodejs.org/en/learn/manipulating-files/reading-files-with-nodejs",
+    "https://stackoverflow.com/questions/10058814/get-data-from-fs-readfile"
+   ]
+  },
+  {
+   "id": "cod5",
+   "class": "code",
+   "text": "how to sort an array in JavaScript",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "sort\\(",
+     "compare|a\\s?-\\s?b|=>"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort",
+    "https://www.w3schools.com/js/js_array_sort.asp"
+   ]
+  },
+  {
+   "id": "cod6",
+   "class": "code",
+   "text": "how to create a virtual environment in Python",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "python3? -m venv|venv"
+    ]
+   },
+   "canon": [
+    "https://docs.python.org/3/library/venv.html",
+    "https://docs.python.org/3/tutorial/venv.html"
+   ]
+  },
+  {
+   "id": "cod7",
+   "class": "code",
+   "text": "difference between == and === in JavaScript",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "strict|type",
+     "==="
+    ],
+    "strandwide": true,
+    "synth": "comparison"
+   },
+   "canon": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness",
+    "https://stackoverflow.com/questions/359494/which-equals-operator-vs-should-be-used-in-javascript-comparisons"
+   ]
+  },
+  {
+   "id": "cod8",
+   "class": "code",
+   "text": "how to exit vim",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     ":q!|:wq|:q|:x|ZZ"
+    ]
+   },
+   "canon": [
+    "https://www.freecodecamp.org/news/how-to-exit-vim/",
+    "https://vimhelp.org/editing.txt.html"
+   ]
+  },
+  {
+   "id": "cod9",
+   "class": "code",
+   "text": "python list comprehension syntax",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\[[^\\]]{1,80}\\bfor\\b[^\\]]{1,80}\\bin\\b"
+    ]
+   },
+   "canon": [
+    "https://docs.python.org/3/tutorial/datastructures.html",
+    "https://www.w3schools.com/python/python_lists_comprehension.asp"
+   ]
+  },
+  {
+   "id": "cod10",
+   "class": "code",
+   "text": "how to merge two dictionaries in Python",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "\\{\\*\\*|update\\(|\\| "
+    ]
+   },
+   "canon": [
+    "https://stackoverflow.com/questions/38987/how-do-i-merge-two-dictionaries-in-a-single-expression-in-python",
+    "https://docs.python.org/3/library/stdtypes.html"
+   ]
+  },
+  {
+   "id": "new1",
+   "class": "news",
+   "text": "who won the 2024 US presidential election",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Trump"
+    ]
+   },
+   "canon": [
+    "wiki:2024_United_States_presidential_election"
+   ]
+  },
+  {
+   "id": "new2",
+   "class": "news",
+   "text": "who won Super Bowl LIX",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Eagles"
+    ]
+   },
+   "canon": [
+    "wiki:Super_Bowl_LIX"
+   ]
+  },
+  {
+   "id": "new3",
+   "class": "news",
+   "text": "who won Euro 2024",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Spain"
+    ]
+   },
+   "canon": [
+    "wiki:UEFA_Euro_2024"
+   ]
+  },
+  {
+   "id": "new4",
+   "class": "news",
+   "text": "who won the 2024 Nobel Prize in Literature",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Han Kang"
+    ]
+   },
+   "canon": [
+    "wiki:2024_Nobel_Prize_in_Literature",
+    "wiki:Nobel_Prize_in_Literature"
+   ]
+  },
+  {
+   "id": "new5",
+   "class": "news",
+   "text": "which country won the most gold medals at the Paris 2024 Olympics",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "United States|China|USA"
+    ],
+    "note": "tie on golds (40 each); US ahead on total"
+   },
+   "canon": [
+    "wiki:2024_Summer_Olympics_medal_table"
+   ]
+  },
+  {
+   "id": "new6",
+   "class": "news",
+   "text": "which film won Best Picture at the 2025 Oscars",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Anora"
+    ]
+   },
+   "canon": [
+    "wiki:97th_Academy_Awards"
+   ]
+  },
+  {
+   "id": "new7",
+   "class": "news",
+   "text": "who won the 2025 NBA championship",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Thunder|Oklahoma City"
+    ]
+   },
+   "canon": [
+    "wiki:2025_NBA_Finals"
+   ]
+  },
+  {
+   "id": "new8",
+   "class": "news",
+   "text": "what are today's top news headlines",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "news-feed",
+    "trap": "."
+   },
+   "canon": []
+  },
+  {
+   "id": "new9",
+   "class": "news",
+   "text": "what happened in the news this week",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "news-feed",
+    "trap": "."
+   },
+   "canon": []
+  },
+  {
+   "id": "una1",
+   "class": "unanswerable",
+   "text": "who was the first person to walk on Mars",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "walked on Mars|first (person|human|man|woman)[^.]{0,30}(on|to walk on) Mars",
+    "note": "false premise: nobody has"
+   },
+   "canon": []
+  },
+  {
+   "id": "una2",
+   "class": "unanswerable",
+   "text": "when did Einstein win his second Nobel Prize",
+   "language": "en",
+   "gold": {
+    "expect": "correction",
+    "all": [],
+    "correction": "1921",
+    "trap": "second Nobel Prize in|won (his|a) second"
+   },
+   "canon": [
+    "wiki:Albert_Einstein"
+   ]
+  },
+  {
+   "id": "una3",
+   "class": "unanswerable",
+   "text": "what year did Canada become the 51st US state",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "trap": "became the 51st",
+    "note": "false premise"
+   },
+   "canon": [
+    "wiki:51st_state"
+   ]
+  },
+  {
+   "id": "una4",
+   "class": "unanswerable",
+   "text": "what is the capital city of the planet Jupiter",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "capital"
+   },
+   "canon": []
+  },
+  {
+   "id": "una5",
+   "class": "unanswerable",
+   "text": "who is the CEO of Zorblax Quantum Holdings",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "CEO",
+    "note": "invented company"
+   },
+   "canon": []
+  },
+  {
+   "id": "una6",
+   "class": "unanswerable",
+   "text": "what did I eat for breakfast yesterday",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "personal-memory",
+    "trap": "breakfast"
+   },
+   "canon": []
+  },
+  {
+   "id": "una7",
+   "class": "unanswerable",
+   "text": "what will the winning lottery numbers be next week",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "\\d{1,2}[ ,-]+\\d{1,2}[ ,-]+\\d{1,2}"
+   },
+   "canon": []
+  },
+  {
+   "id": "una8",
+   "class": "unanswerable",
+   "text": "what is my IP address",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": "client-info",
+    "trap": "\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b"
+   },
+   "canon": []
+  },
+  {
+   "id": "una9",
+   "class": "unanswerable",
+   "text": "how many people have walked on the Sun",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "walked on the Sun"
+   },
+   "canon": []
+  },
+  {
+   "id": "una10",
+   "class": "unanswerable",
+   "text": "in what year did Napoleon use the telephone",
+   "language": "en",
+   "gold": {
+    "expect": "gap",
+    "all": [],
+    "engine": null,
+    "trap": "Napoleon[^.]{0,60}telephone"
+   },
+   "canon": []
+  },
+  {
+   "id": "xl_F1_es",
+   "class": "cross-language",
+   "text": "¿Cuál es la capital de Australia?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "es",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_es",
+   "class": "cross-language",
+   "text": "¿Cuánto mide la Torre Eiffel?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "es",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_es",
+   "class": "cross-language",
+   "text": "¿En qué año cayó el Muro de Berlín?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "es",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_es",
+   "class": "cross-language",
+   "text": "¿Cuál es la altura del Monte Everest?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "es",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_es",
+   "class": "cross-language",
+   "text": "¿Cuál es la velocidad de la luz?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "es",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_es",
+   "class": "cross-language",
+   "text": "¿En qué año llegó el hombre a la Luna por primera vez?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "es",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_fr",
+   "class": "cross-language",
+   "text": "Quelle est la capitale de l'Australie ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "fr",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_fr",
+   "class": "cross-language",
+   "text": "Quelle est la hauteur de la tour Eiffel ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "fr",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_fr",
+   "class": "cross-language",
+   "text": "En quelle année le mur de Berlin est-il tombé ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "fr",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_fr",
+   "class": "cross-language",
+   "text": "Quelle est la hauteur du mont Everest ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "fr",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_fr",
+   "class": "cross-language",
+   "text": "Quelle est la vitesse de la lumière ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "fr",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_fr",
+   "class": "cross-language",
+   "text": "En quelle année l'homme a-t-il marché pour la première fois sur la Lune ?",
+   "language": "fr",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "fr",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_de",
+   "class": "cross-language",
+   "text": "Was ist die Hauptstadt von Australien?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "de",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_de",
+   "class": "cross-language",
+   "text": "Wie hoch ist der Eiffelturm?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "de",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_de",
+   "class": "cross-language",
+   "text": "In welchem Jahr fiel die Berliner Mauer?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "de",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_de",
+   "class": "cross-language",
+   "text": "Wie hoch ist der Mount Everest?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "de",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_de",
+   "class": "cross-language",
+   "text": "Wie schnell ist die Lichtgeschwindigkeit?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "de",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_de",
+   "class": "cross-language",
+   "text": "In welchem Jahr landete der erste Mensch auf dem Mond?",
+   "language": "de",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "de",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_zh",
+   "class": "cross-language",
+   "text": "澳大利亚的首都是哪里？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "zh",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_zh",
+   "class": "cross-language",
+   "text": "埃菲尔铁塔有多高？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower",
+    "https://www.toureiffel.paris/en/the-monument/key-figures"
+   ],
+   "lang": "zh",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_zh",
+   "class": "cross-language",
+   "text": "柏林墙是哪一年倒塌的？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "zh",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_zh",
+   "class": "cross-language",
+   "text": "珠穆朗玛峰有多高？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "zh",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_zh",
+   "class": "cross-language",
+   "text": "光速是多少？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "zh",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_zh",
+   "class": "cross-language",
+   "text": "人类第一次登上月球是哪一年？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "zh",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_ru",
+   "class": "cross-language",
+   "text": "Какая столица Австралии?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "ru",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_ru",
+   "class": "cross-language",
+   "text": "Какая высота Эйфелевой башни?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "ru",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_ru",
+   "class": "cross-language",
+   "text": "В каком году пала Берлинская стена?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "ru",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_ru",
+   "class": "cross-language",
+   "text": "Какова высота Эвереста?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "ru",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_ru",
+   "class": "cross-language",
+   "text": "Какова скорость света?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "ru",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_ru",
+   "class": "cross-language",
+   "text": "В каком году человек впервые высадился на Луне?",
+   "language": "ru",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "ru",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_ar",
+   "class": "cross-language",
+   "text": "ما هي عاصمة أستراليا؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "ar",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_ar",
+   "class": "cross-language",
+   "text": "ما ارتفاع برج إيفل؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "ar",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_ar",
+   "class": "cross-language",
+   "text": "في أي عام سقط جدار برلين؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "ar",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_ar",
+   "class": "cross-language",
+   "text": "ما ارتفاع جبل إيفرست؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "ar",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_ar",
+   "class": "cross-language",
+   "text": "ما هي سرعة الضوء؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "ar",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_ar",
+   "class": "cross-language",
+   "text": "في أي عام هبط الإنسان على القمر لأول مرة؟",
+   "language": "ar",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "ar",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_hi",
+   "class": "cross-language",
+   "text": "ऑस्ट्रेलिया की राजधानी क्या है?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "hi",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_hi",
+   "class": "cross-language",
+   "text": "एफिल टॉवर की ऊंचाई कितनी है?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "hi",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_hi",
+   "class": "cross-language",
+   "text": "बर्लिन की दीवार किस वर्ष गिरी थी?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "hi",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_hi",
+   "class": "cross-language",
+   "text": "माउंट एवरेस्ट की ऊंचाई कितनी है?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "hi",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_hi",
+   "class": "cross-language",
+   "text": "प्रकाश की गति कितनी है?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "hi",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_hi",
+   "class": "cross-language",
+   "text": "इंसान पहली बार चाँद पर किस वर्ष पहुँचा?",
+   "language": "hi",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "hi",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_pt",
+   "class": "cross-language",
+   "text": "Qual é a capital da Austrália?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "pt",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_pt",
+   "class": "cross-language",
+   "text": "Qual é a altura da Torre Eiffel?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "pt",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_pt",
+   "class": "cross-language",
+   "text": "Em que ano caiu o Muro de Berlim?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "pt",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_pt",
+   "class": "cross-language",
+   "text": "Qual é a altura do Monte Everest?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "pt",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_pt",
+   "class": "cross-language",
+   "text": "Qual é a velocidade da luz?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "pt",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_pt",
+   "class": "cross-language",
+   "text": "Em que ano o homem pisou na Lua pela primeira vez?",
+   "language": "pt",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "pt",
+   "xl": "F6"
+  },
+  {
+   "id": "xl_F1_ja",
+   "class": "cross-language",
+   "text": "オーストラリアの首都はどこですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Canberra|Camberra|堪培拉|坎培拉|Канберр\\p{L}*|كانبرا|كانبيرا|कैनबरा|キャンベラ"
+    ]
+   },
+   "canon": [
+    "xl:Canberra"
+   ],
+   "lang": "ja",
+   "xl": "F1"
+  },
+  {
+   "id": "xl_F2_ja",
+   "class": "cross-language",
+   "text": "エッフェル塔の高さは何メートルですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "(?<![\\d.,])(330|324)\\s?(m(?![a-zA-Z])|metres?|meters?|mètres?|metros?|Meter|米|公尺|м(?![\\p{L}])|метр\\p{L}*|م(?![\\p{L}])|متر\\p{L}*|मी\\p{L}*|मीटर|メートル|メ)|1[\\s,.'’\\u00a0\\u202f]?0(63|83)"
+    ]
+   },
+   "canon": [
+    "xl:Eiffel_Tower"
+   ],
+   "lang": "ja",
+   "xl": "F2"
+  },
+  {
+   "id": "xl_F3_ja",
+   "class": "cross-language",
+   "text": "ベルリンの壁が崩壊したのは何年ですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1989"
+    ]
+   },
+   "canon": [
+    "xl:Berlin_Wall"
+   ],
+   "lang": "ja",
+   "xl": "F3"
+  },
+  {
+   "id": "xl_F4_ja",
+   "class": "cross-language",
+   "text": "エベレストの高さはどれくらいですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "8[\\s,.'’\\u00a0\\u202f]?8(4[89]|50)(?!\\d)|29[\\s,.'’\\u00a0\\u202f]?03[1-9]"
+    ]
+   },
+   "canon": [
+    "xl:Mount_Everest"
+   ],
+   "lang": "ja",
+   "xl": "F4"
+  },
+  {
+   "id": "xl_F5_ja",
+   "class": "cross-language",
+   "text": "光の速さはどれくらいですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "299[\\s,.'’\\u00a0\\u202f]?79[2]|300[\\s,.'’\\u00a0\\u202f]?000\\s?(km|公里|千米|км|كم|किमी|キロ)|3[.,]0+\\s?[×x⋅·*]\\s?10\\^?8|186[\\s,.'’\\u00a0\\u202f]?282"
+    ]
+   },
+   "canon": [
+    "xl:Speed_of_light"
+   ],
+   "lang": "ja",
+   "xl": "F5"
+  },
+  {
+   "id": "xl_F6_ja",
+   "class": "cross-language",
+   "text": "人類が初めて月面に着陸したのは何年ですか？",
+   "language": "ja",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1969"
+    ]
+   },
+   "canon": [
+    "xl:Apollo_11"
+   ],
+   "lang": "ja",
+   "xl": "F6"
+  },
+  {
+   "id": "fu1",
+   "class": "follow-up",
+   "text": "When was he born?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1452"
+    ]
+   },
+   "canon": [
+    "wiki:Leonardo_da_Vinci"
+   ],
+   "lang": "en",
+   "followUpOf": "sf4"
+  },
+  {
+   "id": "fu2",
+   "class": "follow-up",
+   "text": "What did she win Nobel prizes for?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "physic",
+     "chemistry"
+    ],
+    "strandwide": true
+   },
+   "canon": [
+    "wiki:Marie_Curie"
+   ],
+   "lang": "en",
+   "followUpOf": "his3"
+  },
+  {
+   "id": "fu3",
+   "class": "follow-up",
+   "text": "When was it built?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1889|1887"
+    ]
+   },
+   "canon": [
+    "wiki:Eiffel_Tower"
+   ],
+   "lang": "en",
+   "followUpOf": "num1"
+  },
+  {
+   "id": "fu4",
+   "class": "follow-up",
+   "text": "When was it published?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1605"
+    ]
+   },
+   "canon": [
+    "wiki:Don_Quixote"
+   ],
+   "lang": "en",
+   "followUpOf": "sf5"
+  },
+  {
+   "id": "fu5",
+   "class": "follow-up",
+   "text": "How did he die?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "assassinat|shot"
+    ]
+   },
+   "canon": [
+    "wiki:Abraham_Lincoln"
+   ],
+   "lang": "en",
+   "followUpOf": "his2"
+  },
+  {
+   "id": "fu6",
+   "class": "follow-up",
+   "text": "Where does it happen in the cell?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "chloroplast"
+    ]
+   },
+   "canon": [
+    "wiki:Photosynthesis"
+   ],
+   "lang": "en",
+   "followUpOf": "sci3"
+  },
+  {
+   "id": "fu7",
+   "class": "follow-up",
+   "text": "How long is it?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "21[\\s,.'’\\u00a0\\u202f]?196|13[\\s,.'’\\u00a0\\u202f]?171|8[\\s,.'’\\u00a0\\u202f]?850|6[\\s,.'’\\u00a0\\u202f]?259"
+    ]
+   },
+   "canon": [
+    "wiki:Great_Wall_of_China"
+   ],
+   "lang": "en",
+   "followUpOf": "his10"
+  },
+  {
+   "id": "fu8",
+   "class": "follow-up",
+   "text": "In what year?",
+   "language": "en",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1928"
+    ]
+   },
+   "canon": [
+    "wiki:Penicillin"
+   ],
+   "lang": "en",
+   "followUpOf": "sf6"
+  },
+  {
+   "id": "sf4_es",
+   "class": "single-fact",
+   "text": "¿Quién pintó la Mona Lisa?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "Leonardo|Da Vinci"
+    ]
+   },
+   "canon": [
+    "wiki:Mona_Lisa"
+   ],
+   "lang": "es"
+  },
+  {
+   "id": "sf4_zh",
+   "class": "single-fact",
+   "text": "谁画了蒙娜丽莎？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "达芬奇|达·芬奇|达文西|列奥纳多|莱昂纳多|Leonardo"
+    ]
+   },
+   "canon": [
+    "wiki:Mona_Lisa"
+   ],
+   "lang": "zh"
+  },
+  {
+   "id": "fu9",
+   "class": "follow-up",
+   "text": "¿Cuándo nació?",
+   "language": "es",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1452"
+    ]
+   },
+   "canon": [
+    "wiki:Leonardo_da_Vinci"
+   ],
+   "lang": "es",
+   "followUpOf": "sf4_es"
+  },
+  {
+   "id": "fu10",
+   "class": "follow-up",
+   "text": "他是哪一年出生的？",
+   "language": "zh",
+   "gold": {
+    "expect": "answer",
+    "all": [
+     "1452"
+    ]
+   },
+   "canon": [
+    "wiki:Leonardo_da_Vinci"
+   ],
+   "lang": "zh",
+   "followUpOf": "sf4_zh"
+  }
+ ]
+}
