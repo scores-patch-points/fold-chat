@@ -7,7 +7,7 @@
 // The mouth does not learn; the SYSTEM does: kept values enter the library, the scoreboard counts who filled each
 // shape, and a shape the mouth walls on three times becomes a STANDING RULE (never asked again; box-owned or a named gap).
 // Pure apart from the memory's store (injected; localStorage by default).
-import { BLOCKS, FORMULAS } from "./fold-blocks.js";
+import { BLOCKS } from "./fold-blocks.js";
 import { checkValue } from "./fold-blocks-kernel.js";
 
 /* ---------------- declared defaults (Constitution II.11: declared, not measured) ---------------- */
@@ -80,7 +80,6 @@ export const HUNT = Object.freeze({
 });
 /* ---------------- the box: shapes derived, never drawn. `late` rules read other units, so they run after the first pass ---------------- */
 const slug = (s) => String(s || "").toLowerCase().replace(/\(.*?\)/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 24) || null;
-function formulaFor(ask) { const q = ask.toLowerCase(); const rules = [[/mortgage|home loan/, "mortgage_payment"], [/\bloan|borrow|repay/, "loan_payment"], [/\btip\b|split|bill/, "split_bill"], [/compound|savings|interest grow|invest/, "compound_growth"], [/\bbmi\b|body mass/, "bmi"], [/percent(age)? change|increase|decrease/, "percent_change"], [/percent of|percentage of|discount/, "percent_of"], [/per (unit|person|item)|cost per/, "per_unit"]]; const r = rules.find(([rx]) => rx.test(q)); return r ? r[1] : null; }
 export const BOX = Object.freeze({
   "form.fields": { run: (u, c) => purposeOf(c.ask).fields },
   "form.submit": { run: (u, c) => purposeOf(c.ask).submit },
@@ -88,15 +87,6 @@ export const BOX = Object.freeze({
   "hero.cta": { run: (u, c) => (c.plan.includes("book : form") ? purposeOf(c.ask).cta : null) },
   "nav.items": { late: true, run: (u, c) => { const it = [c.filled.get("list.heading"), c.plan.includes("book : form") ? (purposeOf(c.ask).cta.split(" ")[0]) : null, c.filled.get("end.text") ? "Visit" : null].filter(Boolean); return it.length >= 2 ? it.join(", ") : null; } },
   "input.name": { late: true, run: (u, c) => slug(c.filled.get(`${u.name}.label`)) },
-  "result.formula": { run: (u, c) => formulaFor(c.ask) },
-  "result.label": { late: true, run: (u, c) => { const f = FORMULAS[c.filled.get(`${u.name}.formula`)]; return f ? cap(f.about) : null; } },
-  "result.args": { late: true, run: (u, c) => {
-    const f = FORMULAS[c.filled.get(`${u.name}.formula`)]; if (!f) return null;
-    const inputs = c.inputs();
-    const used = new Set();
-    const args = f.params.map((p) => { const pw = contentWords(p); let best = null, bn = 0; for (const x of inputs) { if (used.has(x.input)) continue; const n = contentWords(x.input.replace(/_/g, " ") + " " + (x.label || "")).filter((w) => pw.some((q) => q.startsWith(w.slice(0, 4)) || w.startsWith(q.slice(0, 4)))).length; if (n > bn) { bn = n; best = x; } } if (best) { used.add(best.input); return best.input; } return slug(p); });
-    return args.join(", ");
-  } },
 });
 
 /* ---------------- the probe: several framings; meaning is what survives them ---------------- */
@@ -108,7 +98,7 @@ export function probe(u, value, c) {
   const shape = checkValue(u.propType, v);
   if (!shape.ok) return { ok: false, code: "shape", why: shape.why };
   const tt = u.propType.replace(/\?$/, "");
-  if (/[<>{}]|^\s*[\w#.-]+\s*=|\be\.g\.|\bvalue\b|^\(|\bTODO\b|lorem/i.test(v) || ((tt === "text" || tt === "list") && /^[a-z]+(_[a-z]+)+$/i.test(v)) || v.toLowerCase() === u.prop || v === u.spec) return { ok: false, code: "echo", why: "it repeats the instructions instead of being the content" };
+  if (tt !== "expr" && (/[<>{}]|^\s*[\w#.-]+\s*=|\be\.g\.|\bvalue\b|^\(|\bTODO\b|lorem/i.test(v) || ((tt === "text" || tt === "list") && /^[a-z]+(_[a-z]+)+$/i.test(v)) || v.toLowerCase() === u.prop || v === u.spec)) return { ok: false, code: "echo", why: "it repeats the instructions instead of being the content" };
   const t = u.propType.replace(/\?$/, "");
   if (t === "text" || t === "list") {
     const limit = u.cell ? (DECLARED.words[u.cell] ?? 12) : t === "list" ? 40 : DECLARED.words[u.prop] ?? DECLARED.words.text;

@@ -2,7 +2,7 @@
 // Law 2 (the watchmaker): an assembly is a run of lines closed by `!EVA`. It is validated alone, against only what
 // already stands; it commits whole or not at all. A failed assembly never touches the ones before it.
 // Pure: no DOM, no IO, no model.
-import { BLOCKS, TERRAINS, STANCES, OPS, DESERT, KINDS, FORMULAS, formulaExpr, expr, isColor, contrastRatio, THEME_DEFAULTS } from "./fold-blocks.js";
+import { BLOCKS, TERRAINS, STANCES, OPS, DESERT, KINDS, expr, isColor, contrastRatio, THEME_DEFAULTS } from "./fold-blocks.js";
 
 export const ERRORS = Object.freeze({
   syntax: { face: "ingest", fix: "Write only EOT shapes: `name : type`, `name.prop = value`, `a -> b`, `!EVA names`." },
@@ -82,7 +82,6 @@ function parseValue(type, raw) {
   if (t === "name") return /^[A-Za-z_]\w*$/.test(s) ? { ok: true, value: s } : { ok: false, why: `"${s}" is not a plain name (letters, digits, _)` };
   if (t === "color") return isColor(s) ? { ok: true, value: s.toLowerCase() } : { ok: false, why: `"${s}" is not a #hex colour` };
   if (t === "expr") { const e = expr(s); return e.ok ? { ok: true, value: s } : { ok: false, why: `expression: ${e.error}` }; }
-  if (t === "formula") { const v = s.toLowerCase().replace(/\(.*$/, "").trim(); return FORMULAS[v] ? { ok: true, value: v } : { ok: false, why: `"${s}" is not in the formula catalog (${Object.keys(FORMULAS).join(", ")})` }; }
   if (t.startsWith("choice:")) { const opts = t.slice(7).split("|"); const v = s.toLowerCase(); return opts.includes(v) ? { ok: true, value: v } : { ok: false, why: `"${s}" is not one of ${opts.join(", ")}` }; }
   return { ok: true, value: s };
 }
@@ -224,12 +223,8 @@ function validateEntity(st, e, errors, notes) {
   }
   for (const k of Object.keys(def.props)) if (baseType(def.props[k]) === "blocks") for (const c of props[k] || []) { const x = E[c]; if (!x) errors.push(err("dependency", `${e.name} holds ${c}, which does not exist yet: declare it first`, e.rawLine[k], e.name)); else if (!BLOCKS[x.type] || BLOCKS[x.type].ambient) errors.push(err("bad-value", `${c} is a ${x.type} and cannot sit inside ${e.name}`, e.rawLine[k], e.name)); else if (c === e.name) errors.push(err("bad-value", `${e.name} cannot hold itself`, e.rawLine[k], e.name)); }
   if (e.type === "result") {
-    if (props.formula) {
-      const f = formulaExpr(props.formula, props.args || []);
-      if (!f.ok) errors.push(err("bad-value", `${e.name}: ${f.why}`, e.rawLine.args || e.rawLine.formula, e.name));
-      else { if (props.expr) notes.push(`${e.name}: the catalog formula ${props.formula} is used; the written .expr is ignored`); props.expr = f.expr; props.format = props.format || FORMULAS[props.formula].format; }
-    } else if (props.expr) notes.push(`${e.name}: its formula was written by the model, not taken from the catalog. It is checked for shape, not for meaning.`);
-    else if (!errors.some((x) => x.target === e.name && x.code === "bad-value")) errors.push(err("missing-prop", `${e.name} needs a .formula from the catalog (or an .expr)`, e.line, e.name));
+    if (props.expr) notes.push(`${e.name}: its computation was written by the model (an expression over the inputs), not taken from a catalog. It is checked for shape, not for meaning.`);
+    else if (!errors.some((x) => x.target === e.name && x.code === "bad-value")) errors.push(err("missing-prop", `${e.name} needs an .expr that computes the answer from the inputs`, e.line, e.name));
   }
   if (e.type === "result" && props.expr) { const inputs = new Set(Object.values(E).filter((x) => x.type === "input").map((x) => x.props.name || unquote(x.raw.name))); for (const n of expr(props.expr).names) if (!inputs.has(n)) errors.push(err("dependency", `${e.name}.expr uses ${n}, but no input is named ${n}${inputs.size ? ` (inputs: ${[...inputs].join(", ")})` : ""}`, e.rawLine.expr, e.name)); }
   if (e.type === "input") { if (props.kind === "choice" && !(props.options || []).length) errors.push(err("missing-prop", `${e.name} is a choice, so it needs .options`, e.line, e.name)); const dup = Object.values(E).find((x) => x !== e && x.type === "input" && (x.props.name || unquote(x.raw.name)) === props.name); if (dup) errors.push(err("redefined", `two inputs are named ${props.name} (${dup.name}, ${e.name})`, e.rawLine.name, e.name)); }

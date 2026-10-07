@@ -71,11 +71,12 @@ export const TESTS = [
     const b = w.units.find((u) => u.key === "b.name"); A.eq(b.value, "deposit"); A.eq(b.by, "mouth");
     A.eq(w.units.find((u) => u.key === "a.name").by, "box");
   }],
-  ["weave: a widget's formula, arguments and label are box-owned; the missing input is supplied", async () => {
-    const r = await make("A mortgage calculator: home price, deposit percent and interest rate, over 25 years", { memory: mem(), complete: mouth({ "look.accent": "#1d4ed8", "look.font": "sans", "look.radius": "round", "title.text": "Mortgage calculator", "a.label": "Home price", "a.value": "250000", "b.label": "Deposit percent", "b.value": "20", "c.label": "Interest rate", "c.value": "4.5" }) });
+  ["weave: a widget's answer is the model's own expression; a name it uses that no input provides is supplied by the app", async () => {
+    const r = await make("A mortgage calculator: home price, deposit percent and interest rate, over 25 years", { memory: mem(), complete: mouth({ "look.accent": "#1d4ed8", "look.font": "sans", "look.radius": "round", "title.text": "Mortgage calculator", "a.label": "Home price", "a.value": "250000", "b.label": "Deposit percent", "b.value": "20", "c.label": "Interest rate", "c.value": "4.5", "out.label": "Monthly", "out.expr": "(home_price * (1 - deposit_percent / 100)) * (interest_rate / 1200) / (1 - (1 + interest_rate / 1200) ^ (-years * 12))" }) });
     A.ok(r.ok, JSON.stringify(r.steps));
-    const res = r.steps[2].units; A.ok(res.every((u) => u.by === "box"), "no mouth draw for the result");
-    const p = r.model.blocks.out.props; A.near(expr(p.expr).run({ home_price: 250000, deposit_percent: 20, interest_rate: 4.5, years: 25 }), 1111.67, 1, "the answer");
+    const p = r.model.blocks.out.props;
+    A.ok(String(p.expr).includes("home_price"), "the expression is the model's");
+    A.near(expr(p.expr).run({ home_price: 250000, deposit_percent: 20, interest_rate: 4.5, years: 25 }), 1111.67, 1, "the answer");
   }],
   ["memory: kept values are recalled by frame; a shape that walls three times becomes a standing rule; a rejected value is never recalled", async () => {
     const m = mem();
@@ -209,14 +210,13 @@ export const TESTS = [
     A.near(m.run({ price: 320000, deposit: 15, rate: 4.6, years: 25 }), 1527.0, 2, "mortgage");
     A.eq(formatValue(1527.04, "money"), "£1,527");
   }],
-  ["compute: catalog formulas are expanded by the app; arity and names are checked", () => {
+  ["compute: a result is the model's own expression; an undeclared name is caught", () => {
     const k = createKernel();
     A.ok(k.submit(`a : input\na.name = price\na.label = Price\na.kind = number\nb : input\nb.name = dep\nb.label = Deposit\nb.kind = number\nc : input\nc.name = rate\nc.label = Rate\nc.kind = number\n!EVA a, b, c`).ok);
-    A.eq(codes(k.submit(`m : result\nm.label = Monthly\nm.formula = mortgage_payment\nm.args = price, dep, rate\n!EVA m`)), ["bad-value"], "three args for four params");
-    A.ok(k.submit(`m : result\nm.label = Monthly\nm.formula = mortgage_payment\nm.args = price, dep, rate, 25\n!EVA m`).ok);
+    A.ok(k.submit(`m : result\nm.label = Monthly\nm.expr = (price * (1 - dep / 100)) * (rate / 1200) / (1 - (1 + rate / 1200) ^ (-25 * 12))\n!EVA m`).ok);
     const r = k.model().blocks.m.props;
-    A.eq(r.format, "money"); A.near(expr(r.expr).run({ price: 320000, dep: 15, rate: 4.6 }), 1527.0, 2, "mortgage via catalog");
-    A.ok(codes(k.submit(`z : result\nz.label = Z\nz.formula = magic\n!EVA z`)).includes("bad-value"));
+    A.near(expr(r.expr).run({ price: 320000, dep: 15, rate: 4.6 }), 1527.0, 2, "mortgage, written by the model");
+    A.ok(codes(k.submit(`z : result\nz.label = Z\nz.expr = magic * 2\n!EVA z`)).includes("dependency"), "an undeclared name is caught");
   }],
   ["compute: a result may only name declared inputs", () => {
     const k = createKernel();
@@ -252,12 +252,11 @@ export const TESTS = [
     A.ok(blank.ok, "an unfilled optional value is simply absent");
     A.ok(codes(createKernel().submit(PLANS.document[1].skeleton())).includes("missing-prop"), "an unfilled required value is caught");
   }],
-  ["make: an input a catalog formula needs is supplied by the app, with the value the request states", () => {
+  ["make: an input the model's expression uses, that no input provides, is supplied by the app with the value the request states", () => {
     const k = createKernel();
     A.ok(k.submit(`a : input\na.name = price\na.label = Price\na.kind = number\nb : input\nb.name = dep\nb.label = Deposit\nb.kind = number\nc : input\nc.name = rate\nc.label = Rate\nc.kind = number\n!EVA a, b, c`).ok);
-    const s = supplyInputs(k, "out.formula = mortgage_payment\nout.args = price, dep, rate, years", "a mortgage calculator over 25 years");
+    const s = supplyInputs(k, "out.expr = (price * (1 - dep / 100)) * (rate / 1200) / (1 - (1 + rate / 1200) ^ (-years * 12))", "a mortgage calculator over 25 years");
     A.ok(s, "supplied"); A.has(s.note, "years = 25");
-    A.ok(k.submit(`m : result\nm.label = Monthly\nm.formula = mortgage_payment\nm.args = price, dep, rate, years\n!EVA m`).ok);
   }],
   ["make: the skeleton owns structure; a model that renames a type is ignored, and that is reported", () => {
     const f = fillSkeleton(PLANS.website[0].skeleton(), "look : minimalist\nlook.accent = #222222\nlook.font = sans\n!EVA look");

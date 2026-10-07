@@ -83,26 +83,11 @@ export function expr(src) {
   }
   return { ok: true, names: names, run: function (vars) { return ev(ast, vars || {}); } };
 }
-/* ---------------- the formula catalog: computations are definitions (DEF on a Kind), tested once, selected by the model ----------------
-   p0, p1, … are the parameters, in order. A formula the catalog lacks may still be written as .expr, and is marked unchecked. */
-export const FORMULAS = Object.freeze({
-  mortgage_payment: { params: ["home price", "deposit %", "yearly interest rate %", "years"], about: "monthly repayment on a home", format: "money", expr: "(p0 * (1 - p1 / 100)) * (p2 / 1200) / (1 - (1 + p2 / 1200) ^ (-p3 * 12))" },
-  loan_payment: { params: ["amount borrowed", "yearly interest rate %", "years"], about: "monthly repayment on a loan", format: "money", expr: "p0 * (p1 / 1200) / (1 - (1 + p1 / 1200) ^ (-p2 * 12))" },
-  split_bill: { params: ["bill", "tip %", "people"], about: "each person's share of a bill with tip", format: "money", expr: "p0 * (1 + p1 / 100) / p2" },
-  compound_growth: { params: ["starting amount", "yearly rate %", "years"], about: "savings after compound interest", format: "money", expr: "p0 * (1 + p1 / 100) ^ p2" },
-  percent_of: { params: ["amount", "percent"], about: "a percentage of an amount", format: "number", expr: "p0 * p1 / 100" },
-  percent_change: { params: ["before", "after"], about: "the change between two values, in %", format: "percent", expr: "(p1 - p0) / p0 * 100" },
-  per_unit: { params: ["total", "units"], about: "the amount per unit or per person", format: "number", expr: "p0 / p1" },
-  bmi: { params: ["weight kg", "height cm"], about: "body mass index", format: "number", expr: "p0 / (p1 / 100) ^ 2" },
-  total: { params: ["a", "b", "c"], about: "the sum of three values", format: "number", expr: "p0 + p1 + p2" },
-});
-/** The catalog formula with its arguments (input names or numbers) put in. Returns { ok, expr } or { ok:false, why }. */
-export function formulaExpr(name, args) {
-  const F = FORMULAS[name]; if (!F) return { ok: false, why: `${name} is not in the formula catalog` };
-  if ((args || []).length !== F.params.length) return { ok: false, why: `${name} takes ${F.params.length} values (${F.params.join(", ")}); got ${(args || []).length}` };
-  for (const a of args) if (!/^-?\d+(\.\d+)?$/.test(a) && !/^[A-Za-z_]\w*$/.test(a)) return { ok: false, why: `"${a}" is neither a number nor an input name` };
-  return { ok: true, expr: F.expr.replace(/p(\d+)/g, (_, i) => (/^-/.test(args[i]) ? `(${args[i]})` : args[i])) };
-}
+/* ---------------- there is no formula catalog ----------------
+   A computation is the model's OWN expression (.expr), written in the input names.
+   The kernel checks its shape (a real expression over named inputs) but not its
+   meaning; the app evaluates it in the sandbox. Nothing is selected from a menu. */
+
 export function formatValue(x, format, { currency = "£", unit = "" } = {}) {
   if (typeof x !== "number" || !isFinite(x)) return "—";
   const n = (d) => x.toLocaleString("en-GB", { maximumFractionDigits: d, minimumFractionDigits: 0 });
@@ -147,7 +132,7 @@ export const BLOCKS = Object.freeze({
     (p) => `<a class="btn ${esc(p.style || "solid")}" href="${esc(/^(https?:|#|\/)/.test(p.href || "") ? p.href : "#")}">${esc(p.label)}</a>`),
   sources: block(["Link", "Dissecting"], ["NUL", "CON"], "the references a document cites, by key", { room: "room", title: "text?" },
     (p, ctx) => `<section class="b-sources"><h2 class="blk-h">${esc(p.title || "Sources")}</h2><ol>${rowsOf(ctx, p.room).map((r) => { const v = Object.values(r); return `<li id="src-${esc(v[0])}"><b>${esc(v[0])}</b> ${esc(v.slice(1).join(" · "))}</li>`; }).join("")}</ol></section>`, { sources: true }),
-  result: block(["Lens", "Dissecting"], ["EVA"], "a value the app computes from the inputs", { label: "text", formula: "formula?", args: "list?", expr: "expr?", format: "choice:number|money|percent?", unit: "text?", currency: "text?" },
+  result: block(["Lens", "Dissecting"], ["EVA"], "a value the app computes from the inputs", { label: "text", expr: "expr?", format: "choice:number|money|percent?", unit: "text?", currency: "text?" },
     (p) => `<div class="b-result"><span>${esc(p.label)}</span><output data-expr="${esc(p.expr)}" data-format="${esc(p.format || "number")}" data-unit="${esc(p.unit || "")}" data-currency="${esc(p.currency || "£")}">—</output></div>`),
   quote: block(["Lens", "Binding"], ["NUL", "CON"], "someone's words, held to their source", { text: "text", source: "text" },
     (p) => `<figure class="b-quote"><blockquote>${esc(p.text)}</blockquote><figcaption>${esc(p.source)}</figcaption></figure>`),

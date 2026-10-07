@@ -3,7 +3,7 @@
 // THE MODEL IS THE LEAF. The app lays out each assembly as a skeleton: the names, the types and every binding it can
 // decide itself (which room a block reads, which field is the title). The model writes only the values after the `=`.
 // A 2B model cannot reliably invent structure; it can fill a form. The frame (the app) is composed by the app alone.
-import { BLOCKS, KINDS, FORMULAS } from "./fold-blocks.js";
+import { BLOCKS, KINDS, expr } from "./fold-blocks.js";
 import { createKernel, ingest } from "./fold-blocks-kernel.js";
 import { editEOT } from "./fold-blocks-edit.js";
 import { weaveAssembly } from "./fold-blocks-weave.js";
@@ -48,10 +48,10 @@ export const PLANS = Object.freeze({
       skeleton: () => `title : heading\ntitle.text = \na : input\na.kind = number\na.name = \na.label = \na.value = \nb : input\nb.kind = number\nb.name = \nb.label = \nb.value = \nc : input\nc.kind = number\nc.name = \nc.label = \nc.value = \n!EVA title, a, b, c`,
       hints: `title.text: what the widget does, a few words\nname: ONE lowercase word with no spaces, used in formulas (like price or rate)\nlabel: what the person sees\nvalue: a sensible starting number (digits only)`,
       example: `title : heading\ntitle.text = Split the bill\na : input\na.kind = number\na.name = bill\na.label = Bill total (£)\na.value = 60\nb : input\nb.kind = number\nb.name = tip\nb.label = Tip (%)\nb.value = 12\nc : input\nc.kind = number\nc.name = people\nc.label = People\nc.value = 3\n!EVA title, a, b, c` },
-    { id: "results", goal: "the answer: pick a formula from the catalog and give it the inputs (the app computes it)", required: true,
-      skeleton: () => `out : result\nout.label = \nout.formula = \nout.args = \n!EVA out`,
-      hints: (k) => `label: what the answer is\nformula: ONE name from this catalog:\n${Object.entries(FORMULAS).map(([n, f]) => `  ${n} (${f.params.join(", ")}): ${f.about}`).join("\n")}\nargs: the formula's values IN ORDER, comma separated. Each is one of these input names: ${inputs(k).map((x) => x.input).join(", ") || "(none)"}, or a plain number (like 25)`,
-      example: `out : result\nout.label = Each person pays\nout.formula = split_bill\nout.args = bill, tip, people\n!EVA out` },
+    { id: "results", goal: "the answer: write the arithmetic that computes it from the inputs (the app evaluates it)", required: true,
+      skeleton: () => `out : result\nout.label = \nout.expr = \n!EVA out`,
+      hints: (k) => `label: what the answer is\nexpr: the arithmetic that gives the answer, written IN THE INPUT NAMES (e.g. bill * (1 + tip / 100) / people). Use only these inputs: ${inputs(k).map((x) => x.input).join(", ") || "(none)"}, plus numbers and + - * / ^ ( ).`,
+      example: `out : result\nout.label = Each person pays\nout.expr = bill * (1 + tip / 100) / people\n!EVA out` },
   ],
   document: [
     { id: "look", goal: "the look: one theme", required: false,
@@ -89,20 +89,14 @@ export function monologue(ask, { kind = null } = {}) {
   lines.push({ say: `To satisfy a ${k}, I must produce:`, why: steps.join("; ") });
 
   if (k === "widget") {
-    const fnames = Object.keys(FORMULAS);
-    lines.push({ say: `A widget computes exactly ONE formula from a fixed catalog.`, why: `the catalog: ${fnames.join(", ")}` });
-    const wantsTimer = /\b(countdown|timer|stopwatch|clock)\b/.test(q);
-    if (wantsTimer) {
-      lines.push({ say: `A countdown timer is not in the catalog — nothing there counts down or ticks.`, bad: true });
-      lines.push({ say: `So this CANNOT be satisfied as a widget. What would satisfy it: a timer block that decrements and shows the remaining time. That block is not built.`, bad: true });
-      return { kind: k, satisfiable: false, why: "a countdown timer is not a catalog formula, and no timer block exists — a widget would have to borrow a wrong formula", lines };
+    lines.push({ say: `A widget computes ONE value from a few inputs, by an expression the model writes — there is no catalog to pick from.`, why: null });
+    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow)\b/.exec(q);
+    if (behaviour) {
+      lines.push({ say: `"${behaviour[1]}" is a behaviour over time, not a value computed from inputs. An expression cannot satisfy it.`, bad: true });
+      lines.push({ say: `What would satisfy it: a block that runs over time (a timer). That block is not built.`, bad: true });
+      return { kind: k, satisfiable: false, why: `this asks for a behaviour over time ("${behaviour[1]}"), not a value computed from inputs — no such block exists`, lines };
     }
-    const hit = fnames.filter((n) => q.includes(n.split("_")[0]));
-    if (!hit.length) {
-      lines.push({ say: `No catalog formula matches this ask by name. A widget could only borrow a wrong one.`, bad: true });
-      return { kind: k, satisfiable: false, why: "no catalog formula matches the ask", lines };
-    }
-    lines.push({ say: `Closest catalog formula: ${hit[0]}. If the model picks anything else, it is filling the shape, not the ask.`, why: null });
+    lines.push({ say: `To satisfy it: the inputs, and one expression giving the answer from them.`, why: null });
     return { kind: k, satisfiable: true, why: null, lines };
   }
   if (k === "document") lines.push({ say: `A document is satisfied by its own writing: a title, an opening, three sections.`, why: "no formula; the words are the thing" });
@@ -145,25 +139,30 @@ export function fillSkeleton(skeleton, answer) {
 /** A catalog formula names a value no input provides: adding that input is structure, so the APP does it (its own
  *  checkpointed assembly). The starting value is read from the request only when the request states it ("over 25 years"). */
 export function supplyInputs(kernel, text, ask) {
-  const f = /\.formula\s*=\s*([a-z_]+)/i.exec(text), a = /\.args\s*=\s*(.+)/i.exec(text);
-  if (!f || !a || !FORMULAS[f[1].toLowerCase()]) return null;
-  const F = FORMULAS[f[1].toLowerCase()];
-  const args = a[1].split(/\s*,\s*/).map((x) => x.trim()).filter(Boolean);
+  // A widget has NO catalog: the model writes the computation as an expression
+  // in the input names. Any name the expression uses that no input provides is
+  // added by the APP (its own checkpointed assembly) — the structure is computed,
+  // the model only names what it needs.
+  const e = /\.expr\s*=\s*(.+)/i.exec(text);
+  if (!e) return null;
+  let names = [];
+  try { names = expr(e[1]).names || []; } catch { return null; }
   const have = new Set(inputs(kernel).map((x) => x.input));
-  const missing = args.map((x, i) => ({ name: x, param: F.params[i] })).filter((x) => x.param && /^[A-Za-z_]\w*$/.test(x.name) && !have.has(x.name));
+  const missing = [...new Set(names)].filter((n) => /^[A-Za-z_]\w*$/.test(n) && !have.has(n));
   if (!missing.length) return null;
-  const lines = [], names = [], said = [];
-  missing.forEach((m, j) => {
-    const id = `auto_${m.name}`.slice(0, 32);
-    const word = m.name.replace(/_/g, " ");
+  const lines = [], ids = [], said = [];
+  missing.forEach((name) => {
+    const id = `auto_${name}`.slice(0, 32);
+    const word = name.replace(/_/g, " ");
+    const label = word.charAt(0).toUpperCase() + word.slice(1);
     const num = new RegExp(`(\\d+(?:\\.\\d+)?)\\s*%?\\s*(?:-\\s*)?${word.split(" ")[0]}`, "i").exec(String(ask || ""));
-    lines.push(`${id} : input`, `${id}.kind = number`, `${id}.name = ${m.name}`, `${id}.label = ${m.param[0].toUpperCase() + m.param.slice(1)}`);
-    if (num) { lines.push(`${id}.value = ${num[1]}`); said.push(`${m.name} = ${num[1]} (from your request)`); } else said.push(`${m.name} (no value in the request; set it in the widget)`);
-    names.push(id);
+    lines.push(`${id} : input`, `${id}.kind = number`, `${id}.name = ${name}`, `${id}.label = ${label}`);
+    if (num) { lines.push(`${id}.value = ${num[1]}`); said.push(`${name} = ${num[1]} (from your request)`); } else said.push(`${name} (no value in the request; set it in the widget)`);
+    ids.push(id);
   });
-  const t = lines.join("\n") + `\n!EVA ${names.join(", ")}`;
+  const t = lines.join("\n") + `\n!EVA ${ids.join(", ")}`;
   const v = kernel.submit(t, { by: "app", label: "supplied inputs" });
-  return v.ok ? { text: t, note: `the formula needs ${missing.map((m) => m.name).join(", ")}, which no input gave, so the app added ${missing.length > 1 ? "them" : "it"}: ${said.join("; ")}` } : null;
+  return v.ok ? { text: t, note: `the computation uses ${missing.join(", ")}, which no input gave, so the app added ${missing.length > 1 ? "them" : "it"}: ${said.join("; ")}` } : null;
 }
 
 /** The frame: the app places what passed, in order. Composed by the app, checked by the kernel like everything else. */
