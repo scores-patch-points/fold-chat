@@ -12,5 +12,9 @@
 
 import "./fold-exit-install.js";
 import { mount } from "./fold-chat.js";
+import { mountAgentic } from "./fold-chat-agentic.js";
 
 mount(document.querySelector(".app"));
+// a different thing to start than a chat, in the same list: the (simplified)
+// agentic run. It streams the real loop from the local agentic surface.
+mountAgentic();
