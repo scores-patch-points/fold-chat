@@ -87,19 +87,19 @@ test("placeOf", () => {
 
 test("noModelWhy: the bridge, the list, the embedders, and the selected model each say their own reason", () => {
   assert.equal(noModelWhy({ bridgeUp: false }).code, "bridge-down");
-  assert.match(noModelWhy({ bridgeUp: false }).text, /bridge isn't reachable/);
+  assert.match(noModelWhy({ bridgeUp: false }).text, /no model can run in this tab/);
   assert.equal(noModelWhy({ bridgeUp: true, models: [] }).code, "no-models");
   assert.equal(noModelWhy({ bridgeUp: true, models: [{ id: "nomic-embed-text:latest" }] }).code, "no-chat-model");
   const w = noModelWhy({ bridgeUp: true, models: [{ id: "gemma2:2b" }], selectedId: "llama3:latest" });
-  assert.equal(w.code, "selected-missing"); assert.match(w.text, /selected model \(llama3\) isn't loaded anywhere/);
+  assert.equal(w.code, "selected-missing"); assert.match(w.text, /selected model \(llama3\) isn't available here/);
   assert.equal(noModelWhy({ bridgeUp: true, models: [{ id: "gemma2:2b" }], selectedId: "gemma2:2b" }).code, "ok");
 });
 
-test("noModelWhy: no-webgpu advice names a WebGPU browser or the Fold's own server, never the extension", () => {
+test("noModelWhy: no-webgpu advice names a WebGPU browser, never the extension", () => {
   const w = noModelWhy({ bridgeUp: false, models: [], page: { available: false, reason: "no-webgpu" } });
   assert.equal(w.code, "no-webgpu");
   assert.doesNotMatch(w.text, /extension/i);
-  assert.match(w.text, /WebGPU browser/); assert.match(w.text, /npm run serve/);
+  assert.match(w.text, /WebGPU browser/);
 });
 
 test("poller: ticks only while visible, pauses on hidden, refreshes on return, refresh() after a turn, never stacks", async () => {

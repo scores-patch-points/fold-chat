@@ -401,7 +401,7 @@ test("Stop while the download question is open (or the load is running) releases
 
 test("typed errors: no WebGPU, a loader that cannot fetch, a model that will not load, a generation that fails — each with words and a status the notices read", async () => {
   const cases = [
-    [new PageEngineError("no-gpu", "no WebGPU", { reason: "no-webgpu" }), 501, /no WebGPU \(no-webgpu\).*npm run serve/],
+    [new PageEngineError("no-gpu", "no WebGPU", { reason: "no-webgpu" }), 501, /no WebGPU \(no-webgpu\).*WebGPU browser/],
     [new PageEngineError("loader", "net down"), 502, /runtime could not be fetched.*network once/],
     [new PageEngineError("load-failed", "boom"), 500, /boom/],
   ];
@@ -560,14 +560,14 @@ test("footer: a first load shows percent, text and where it lives; the loaded mo
   assert.equal(placeOf({ id: "x" }, "page"), "this tab (WebLLM)");
 });
 
-test("footer: bridge down and an idle in-tab engine is calm; a device with no WebGPU says so and offers a WebGPU browser or the Fold's own server", () => {
+test("footer: bridge down and an idle in-tab engine is calm; a device with no WebGPU says so and offers a WebGPU browser", () => {
   const idle = describeLoaded({ bridge: "down", entries: [], errors: ["x"], page: { available: true, reason: "ok", entries: [], loading: null } });
   assert.equal(idle.kind, "idle");
   assert.match(idle.text, /no model loaded in this tab/);
   const noGpu = describeLoaded({ bridge: "down", entries: [], errors: [], page: { available: false, reason: "no-webgpu", entries: [], loading: null } });
   assert.equal(noGpu.kind, "down");
   assert.match(noGpu.text, /no WebGPU here/);
-  assert.match(noGpu.title, /WebGPU browser or the Fold's own server/); assert.doesNotMatch(noGpu.title, /extension/);
+  assert.match(noGpu.title, /WebGPU browser/); assert.doesNotMatch(noGpu.title, /extension/);
   // the bridge is UP but serves nothing, and the tab can run a model: that is not "no chat model" — the first ask loads one here
   const empty = describeLoaded({ bridge: "up", entries: [], servable: 0, page: { available: true, reason: "ok", entries: [], loading: null } });
   assert.equal(empty.kind, "idle");
@@ -583,10 +583,10 @@ test("noModelWhy: an in-tab model means the bridge being down is not why there i
   assert.equal(noModelWhy({ bridgeUp: false, models: tab, selectedId: "gemma2:2b" }).code, "selected-missing");
   const w = noModelWhy({ bridgeUp: false, models: [], page: { available: false, reason: "no-webgpu" } });
   assert.equal(w.code, "no-webgpu");
-  assert.match(w.text, /no WebGPU \(no-webgpu\).*npm run serve/); assert.doesNotMatch(w.text, /extension/);
+  assert.match(w.text, /no WebGPU \(no-webgpu\).*WebGPU browser/); assert.doesNotMatch(w.text, /extension/);
   assert.equal(noModelWhy({ bridgeUp: false, models: [], page: { available: false, reason: "no-engine" } }).code, "bridge-down", "the extension has no engine; that is not a WebGPU fault");
   assert.equal(noModelWhy({ bridgeUp: false }).code, "bridge-down");
-  assert.match(noModelWhy({ bridgeUp: false }).text, /bridge isn't reachable/);
+  assert.match(noModelWhy({ bridgeUp: false }).text, /no model can run in this tab/);
 });
 
 // ───────────────────────── 6. no hard-coded standalone port in app code ─────────────────────────
@@ -602,7 +602,7 @@ test("no app code names the old standalone port, except the two named legacy all
       const full = path.join(dir, e.name);
       if (e.isDirectory()) { if (!SKIP_DIRS.has(e.name)) walk(full); continue; }
       if (!/\.(m?js|html|css|json)$/.test(e.name) || SKIP_FILE(e.name)) continue;
-      if (fs.readFileSync(full, "utf8").includes("8790") && !ALLOWED.has(path.relative(HERE, full))) hits.push(path.relative(HERE, full));
+      if (fs.readFileSync(full, "utf8").includes(":8790") && !ALLOWED.has(path.relative(HERE, full))) hits.push(path.relative(HERE, full));
     }
   };
   walk(HERE);

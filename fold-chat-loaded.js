@@ -103,15 +103,15 @@ export function describeLoaded(state, { max = 3 } = {}) {
     return { kind: "loading", dot: "\u25D0", text: `${what} ${bare(pg.loading.name || pg.loading.id)} \u00b7 ${pct == null ? "" : pct + "% \u00b7 "}in this tab (WebLLM)`, title: String(pg.loading.text || "loading the model in this tab") + "\nThe model is downloaded once to this browser's own cache, then runs on this device's GPU. Nothing leaves the tab." };
   }
   if (st.bridge === "down" && !list.length) {
-    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: "This tab can run a model itself (WebGPU) \u2014 no bridge needed. The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.\n" + (st.errors || []).join("\n") };
-    if (pg && pg.reason && pg.reason !== "no-engine") return { kind: "down", dot: "\u25CB", text: "no WebGPU here, and no bridge \u2014 Sources only still works", title: `This browser cannot run a model in the tab (${pg.reason}). Use a WebGPU browser or the Fold's own server (\`npm run serve\`) so its bridge can serve one. Sources only needs no model.\n` + (st.errors || []).join("\n") };
-    return { kind: "down", dot: "\u25CB", text: "no model reachable \u2014 Sources only still works", title: "The heimdall bridge did not answer, so no model can be reached. Sources only needs no model. Start the Fold's own server (`npm run serve`) for written answers.\n" + (st.errors || []).join("\n") };
+    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: "This tab can run a model itself (WebGPU). The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.\n" + (st.errors || []).join("\n") };
+    if (pg && pg.reason && pg.reason !== "no-engine") return { kind: "down", dot: "\u25CB", text: "no WebGPU here \u2014 Sources only still works", title: `This browser cannot run a model in the tab (${pg.reason}). Use a WebGPU browser for a written answer. Sources only needs no model.\n` + (st.errors || []).join("\n") };
+    return { kind: "down", dot: "\u25CB", text: "no model reachable \u2014 Sources only still works", title: "No model can run in this tab. Sources only needs no model.\n" + (st.errors || []).join("\n") };
   }
   if (!list.length) {
     // The tab can run a model itself: an empty bridge is not "no model" — the first ask loads one here (after asking to download).
-    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: `This tab can run a model itself (WebGPU). The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.${st.servable ? ` The bridge can also serve ${st.servable} model(s).` : ""}` };
-    if (st.servable === 0) return { kind: "empty", dot: "○", text: "no chat model on the bridge \u2014 Sources only still works", title: "The bridge is reachable but lists no model it can serve. Sources only needs no model." };
-    return { kind: "idle", dot: "○", text: "no model loaded — the first ask will load one", title: `Nothing is resident in memory right now${st.servable ? `; the bridge can serve ${st.servable} model(s)` : ""}.` };
+    if (pg && pg.available) return { kind: "idle", dot: "\u25CB", text: "no model loaded in this tab \u2014 the first ask loads one here", title: `This tab can run a model itself (WebGPU). The first ask downloads it once (it asks first), then it runs in this tab and nothing leaves it.${st.servable ? ` ${st.servable} model(s) can also be served.` : ""}` };
+    if (st.servable === 0) return { kind: "empty", dot: "○", text: "no chat model available \u2014 Sources only still works", title: "No model that can write is available. Sources only needs no model." };
+    return { kind: "idle", dot: "○", text: "no model loaded — the first ask will load one", title: `Nothing is resident in memory right now${st.servable ? `; ${st.servable} model(s) can be served` : ""}.` };
   }
   const label = (e) => bare(e.id) + (e.place === "this machine" ? "" : e.place === "fleet" ? " (fleet)" : e.place === "this tab (WebLLM)" ? " (this tab)" : " (tab)");
   const shown = list.slice(0, max).map(label), more = list.length - shown.length;
@@ -130,12 +130,12 @@ export function noModelWhy({ bridgeUp = true, models = [], selectedId = null, pa
   // A model listed IN THIS TAB needs no bridge: the bridge being down is then not why there is "no model".
   const inTab = list.some((m) => m?.kind === "webllm-page");
   if (!bridgeUp && !inTab) {
-    if (page && page.available === false && page.reason && page.reason !== "no-engine") return { code: "no-webgpu", text: `this browser has no WebGPU (${page.reason}) and the bridge isn't reachable — use a WebGPU browser or the Fold's own server (\`npm run serve\`)` };
-    return { code: "bridge-down", text: "the bridge isn't reachable — start the Fold's own server (`npm run serve`)" };
+    if (page && page.available === false && page.reason && page.reason !== "no-engine") return { code: "no-webgpu", text: `this browser has no WebGPU (${page.reason}) — use a WebGPU browser for a written answer` };
+    return { code: "bridge-down", text: "no model can run in this tab — use a WebGPU browser for a written answer" };
   }
   if (!list.length) return { code: "no-models", text: "the bridge is up but serves no model — pull one (`ollama pull gemma2:2b`) or connect a fleet worker" };
   if (!list.some(isChat)) return { code: "no-chat-model", text: "the bridge only serves embedding models — none can write an answer; pull a chat model (`ollama pull gemma2:2b`)" };
-  if (selectedId && !list.some((m) => m.id === selectedId)) return { code: "selected-missing", text: `the selected model (${bare(selectedId)}) isn't loaded anywhere the bridge can reach — pick another from the list` };
+  if (selectedId && !list.some((m) => m.id === selectedId)) return { code: "selected-missing", text: `the selected model (${bare(selectedId)}) isn't available here — pick another from the list` };
   return { code: "ok", text: "" };
 }
 

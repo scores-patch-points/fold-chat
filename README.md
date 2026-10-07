@@ -182,12 +182,28 @@ the sources' own passages, verbatim, strung together in source order with the S#
 that differ the ask). Every stored snip is checked to occur in the page text it came from; such a message is
 `authored: "sources"`, is never scored, and reaches later turns marked as the sources' words, not the model's.
 
+## The REC loop: going back
+
+After the answer is written, every sentence is tried against everything read (`fold-chat-falsify.js`: per-source
+states / contradicts / silent, syndicated copies counted once, and a swap test, where a competing figure or name from the same
+source is put in its place and the wrong version must stop matching). A sentence no source states, one a source
+contradicts, or one the swap shows loose sends the turn back. First to INS: every page the turn read is kept whole in
+memory for the turn (never stored or sent), and the failing claim is recalled against each page's shadow Field
+(`relative.js`, via `impressionOf`) for a new impression of that page for the claim. Only what the pages do not hold
+goes on to SIG, a new search with the claim as the query. The
+cross-reference re-runs on the wider ground, and SYN restates only the sentences still failing. A restatement
+replaces a sentence only if it then holds; otherwise the sentence stays and is marked. Two laps at most, 25 s (45 s
+on Deep); Fast skips it. The laps are on the record (`record.loop`), in the Checks tab, and on the replay's tape.
+In the reading panel this is the only motion: an arc from ∗ back to ○ and the levels lighting in reverse. Everything
+else there is still.
+
 ## What an answer shows at rest
 
-Under an answer, at most two quiet lines: **`3 passages from 1 source · ✱ 3 of 6
-sentences have no source`** (opens to the documents read, their numbered passages,
-and the gap's detail) and **`how this was answered · effort deep · gemma2:2b`**
-(opens to the process steps). Message actions (copy, retry, ⋯) appear on hover or
+Under a presented answer, one summary line: **`3 sources · 2 of 3 sentences backed · held 9 checks ·
+Answered in 22 s · gemma2:2b`**. Each part opens the turn's one inspector at its tab — **Sources** (the
+passages, in their sites' type), **Checks** (the attempts to break it), **Process** (the replay, the steps,
+web reads, route and the JSON log). The sentences carry the evidence: an unbacked sentence is dotted
+(click → Checks); hovering a backed one lights its passage (click → Sources). Only a failed turn shows a banner. Message actions (copy, retry, ⋯) appear on hover or
 focus, and on touch for the last message (tap any message to reveal its own).
 
 ## Develop and test

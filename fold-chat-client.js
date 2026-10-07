@@ -291,7 +291,7 @@ function pageError(e, model) {
   const kind = e instanceof PageEngineError ? e.kind : "error";
   const msg = String(e?.message || e);
   const out = new Error(
-    kind === "no-gpu" ? `this browser has no WebGPU (${e.reason || "no-adapter"}), so ${model} cannot run in this tab \u2014 use a WebGPU browser or the Fold's own server (\`npm run serve\`)`
+    kind === "no-gpu" ? `this browser has no WebGPU (${e.reason || "no-adapter"}), so ${model} cannot run in this tab \u2014 use a WebGPU browser`
     : kind === "loader" ? `the in-tab model runtime could not be fetched (${msg}) \u2014 it needs the network once`
     : msg);
   out.status = kind === "no-gpu" ? 501 : kind === "loader" ? 502 : kind === "bad-request" ? 422 : 500;

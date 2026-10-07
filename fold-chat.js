@@ -369,10 +369,16 @@ function menuAt(anchor, items) {
 }
 
 export function mount(root, opts = {}) {
+  // NO_HEIMDALL (user, 2026-10-07): there is no bridge — the fold answers from
+  // the model IN THIS TAB. Declared HERE, before its first use at the bridge
+  // line just below: a `const` read before its declaration is a TDZ
+  // ReferenceError that crashes mount() and the whole app (found live: nothing
+  // could submit, in any mode).
+  const NO_HEIMDALL = true;
   // Where heimdall is. The stored override / opts.bridge is preferred (except an old stored standalone-bridge port, which never
   // shadows the embedded heimdall serving this very page); on boot the surface probes the same-origin /heimdall first, then the
   // legacy local port, so a fresh page finds a bridge the person never had to type in. A page with none still has its in-tab model.
-  let bridge = client.pickBridge(opts.bridge || localStorage.getItem("fold-chat:bridge"));
+  let bridge = NO_HEIMDALL ? null : client.pickBridge(opts.bridge || localStorage.getItem("fold-chat:bridge"));
   let bridgeHello = null;
   const sessions = load("fold-chat:sessions", {});
   // Sessions stored before the channels were split carry the system-authored
@@ -475,6 +481,10 @@ export function mount(root, opts = {}) {
   // HIDDEN FOR NOW (user, 2026-10-07): the external-calls monitor / evidence drawer and the lock / sealed-external indicators. UI only: the sealing, the
   // redactor and the outbound audit ledger still run underneath, so nothing changes about what can leave; flip to false to show them again.
   const HIDE_EXTERNAL = true;
+  // NO HEIMDALL (user, 2026-10-07): there is no bridge. The fold answers from the model IN THIS TAB (WebLLM, fold-chat-webllm.js)
+  // and never probes or routes a turn through a heimdall bridge. The bridge code stays in the modules (a page can still be run
+  // against one deliberately), but this surface does not look for it, list its models, or call it.
+  // NO_HEIMDALL is declared at the top of mount() — hoisted above its first use.
   document.documentElement.toggleAttribute("data-hide-external", HIDE_EXTERNAL);
   document.documentElement.toggleAttribute("data-hide-agent", HIDE_AGENT);
   let engagement = HIDE_AGENT ? "chat" : (localStorage.getItem("fold-chat:engagement") || localStorage.getItem("fold-chat:mode") || "chat");
@@ -588,15 +598,16 @@ export function mount(root, opts = {}) {
   // Where a model runs, in the words a turn is labelled with. An in-tab model is "in this tab" — never "sealed-external".
   const placeLabel = (mm) => mm?.sealed ? "sealed-external" : client.isPageModel(mm) ? "in this tab" : "local";
   async function refreshModels({ pageOnly = false } = {}) {
-    // pageOnly: the boot's first paint — the in-tab models are listed before (and without waiting for) the bridge probes.
-    const all = await client.listAllModels({ base: bridge, bridge: !pageOnly });
+    // pageOnly: the boot's first paint — the in-tab models are listed first. With NO_HEIMDALL the bridge is never probed at all,
+    // so the tab's own models are the WHOLE list.
+    const all = await client.listAllModels({ base: bridge, bridge: NO_HEIMDALL ? false : !pageOnly });
     if (pageOnly) {
       if (!all.page.available || models.length) return;
       models = all.models; pageGpu = all.page;
-    } else { models = all.models; modelsUp = all.bridgeUp; pageGpu = all.page; }
+    } else { models = all.models; modelsUp = NO_HEIMDALL ? false : all.bridgeUp; pageGpu = all.page; }
     try { noteWindows(models.filter(client.isPageModel).map((m) => ({ id: m.id, ctx: m.contextWindow }))); } catch {}
-    // The bridge is optional now: only when NOTHING can answer (no bridge, no WebGPU) does the page say so.
-    if (!pageOnly && !all.bridgeUp && !all.page.available) toast(noModelWhy({ bridgeUp: false, models, page: pageGpu }).text);
+    // Only when NOTHING can answer (no in-tab model, no bridge) does the page say so.
+    if (!pageOnly && !all.bridgeUp && !all.page.available) toast(noModelWhy({ bridgeUp: all.bridgeUp, models, page: pageGpu }).text);
     renderModels();
     paintHint();
     loadedPoller?.refresh();
@@ -614,7 +625,7 @@ export function mount(root, opts = {}) {
     h.hidden = !show;
     if (show) document.getElementById("turnHintText").textContent = toFetch
       ? `Download ${sel.sizeLabel} to start \u2014 the first message asks once, then ${sel.name} runs in this tab and nothing leaves it. Or switch the chip to Sources only (no model).`
-      : `No model reachable (${why.code === "bridge-down" ? "the bridge isn't running" : why.text}) \u2014 switch the chip to Sources only to get cited passages anyway.`;
+      : `No model reachable (${why.text}) \u2014 switch the chip to Sources only to get cited passages anyway.`;
   }
   { const hb = document.getElementById("turnHintBtn"); if (hb) hb.onclick = () => setAnswerMode("snips"); }
   const noModelText = () => noModelWhy({ bridgeUp: modelsUp, models, selectedId: sessions[activeId]?.model || null, page: pageState() }).text || "no model is available";
@@ -632,7 +643,7 @@ export function mount(root, opts = {}) {
   function startLoadedPoller() {
     if (loadedPoller || !fLoaded) return;
     loadedPoller = createLoadedPoller({
-      get: () => fetchLoaded({ base: client.bridgeBase(bridge), upstream: bridgeHello?.upstream || null, page: pageState() }),
+      get: () => fetchLoaded({ base: NO_HEIMDALL ? null : client.bridgeBase(bridge), upstream: NO_HEIMDALL ? null : (bridgeHello?.upstream || null), page: pageState() }),
       onState: paintLoaded,
       isVisible: () => document.visibilityState !== "hidden",
       onVisibilityChange: (cb) => { document.addEventListener("visibilitychange", cb); return () => document.removeEventListener("visibilitychange", cb); },
@@ -3157,6 +3168,7 @@ export function mount(root, opts = {}) {
   // terminal after heimdall started is stored but not loaded until heimdall reloads or restarts).
   async function refreshKeyStatus() {
     if (!E.keyStatus) return;
+    if (NO_HEIMDALL) { showKeyStatus({ tone: "warn", headline: "", lines: ["This surface answers with the model in this tab — there is no heimdall bridge, so provider keys are not used."] }); return; }
     try {
       const j = await client.listProviderKeys({ base: bridge });
       const stored = j.providers || [];
@@ -3243,15 +3255,15 @@ export function mount(root, opts = {}) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !E.settingsModal.hidden) closeSettings(); });
 
   /* ---------------- evidence drawer ---------------- */
-  async function refreshMeter() { try { meterInfo = await client.meter({ base: bridge }); } catch { meterInfo = null; } }
+  async function refreshMeter() { if (NO_HEIMDALL) { meterInfo = null; return; } try { meterInfo = await client.meter({ base: bridge }); } catch { meterInfo = null; } }
   async function toggleDrawer() {
     const open = E.drawer.style.display === "none";
     E.drawer.style.display = open ? "" : "none";
     E.railEvidence.setAttribute("aria-pressed", open ? "true" : "false");
     if (!open) return;
     E.drawer.innerHTML = "";
-    const f = await client.frontier({ base: bridge }).catch(() => null);
-    const led = await client.ledger({ base: bridge }).catch(() => null);
+    const f = NO_HEIMDALL ? null : await client.frontier({ base: bridge }).catch(() => null);
+    const led = NO_HEIMDALL ? null : await client.ledger({ base: bridge }).catch(() => null);
     await refreshMeter();
     const c = meterInfo?.counts || {};
     const head = el("div");
@@ -3512,7 +3524,6 @@ export function mount(root, opts = {}) {
     if (!HIDE_AGENT) row("Mode", MODES.map(([key, label, note]) => ({ key, label, note })), engagement, (k) => setEngagement(k), "mode");
     if (engagement !== "code") row("Effort · this message", web.EFFORT_LEVELS, composerEffort, (k) => setEffort(k), "effort");
     if (engagement !== "code") row("Answer · this message", ANSWER_MODES, composerAnswer, (k) => setAnswerMode(k), "answer");
-    pop.append(el("div", "epop-f", "Sealed-external: every request goes through heimdall's gate."));
     pop.addEventListener("keydown", (e) => {
       const items = [...pop.querySelectorAll("button")];
       const i = items.indexOf(document.activeElement);
@@ -3617,21 +3628,23 @@ export function mount(root, opts = {}) {
   renderProjects();
   paintTurn();
   // The tab's own models are listed FIRST, without waiting for any probe: the app boots and can answer with no bridge at all.
-  // Then auto-detect the bridge (a custom override, the same-origin embedded /heimdall, then the legacy local port) and list
-  // whatever it serves besides. A page served from GitHub Pages finds the person's own heimdall this way, with no URL to type.
+  // With NO_HEIMDALL there is NO probe at all — the in-tab models are the whole list. Otherwise the bridge is auto-detected
+  // (a custom override, the same-origin embedded /heimdall, then the legacy local port) and whatever it serves is listed besides.
   refreshModels({ pageOnly: true }).catch(() => {});
-  client.detectBridge({ override: opts.bridge || localStorage.getItem("fold-chat:bridge") || null }).then((found) => {
+  const openFirstChat = () => refreshModels().then(() => {
+    // Husks first (never-used "New chat" rows older than ten minutes), then the
+    // most recent chat. NO chats is the welcome state — a reload after deleting
+    // the last chat must not conjure an empty one; the first send creates it.
+    const husks = life.pruneStaleEmpties(sessions, { minAgeMs: 10 * 60 * 1000 });
+    if (husks.length) { tombstone(husks); save("fold-chat:sessions", sessions); }
+    const first = life.byRecent(Object.values(sessions))[0];
+    if (first) open(first.id); else closeThread();
+    refreshMeter();
+    startLoadedPoller();
+  });
+  if (NO_HEIMDALL) openFirstChat();
+  else client.detectBridge({ override: opts.bridge || localStorage.getItem("fold-chat:bridge") || null }).then((found) => {
     if (found.ok) { bridge = found.base; bridgeHello = found.hello; }
-    refreshModels().then(() => {
-      // Husks first (never-used "New chat" rows older than ten minutes), then the
-      // most recent chat. NO chats is the welcome state — a reload after deleting
-      // the last chat must not conjure an empty one; the first send creates it.
-      const husks = life.pruneStaleEmpties(sessions, { minAgeMs: 10 * 60 * 1000 });
-      if (husks.length) { tombstone(husks); save("fold-chat:sessions", sessions); }
-      const first = life.byRecent(Object.values(sessions))[0];
-      if (first) open(first.id); else closeThread();
-      refreshMeter();
-      startLoadedPoller();
-    });
+    openFirstChat();
   });
 }
