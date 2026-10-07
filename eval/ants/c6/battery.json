@@ -1,0 +1,145 @@
+{
+ "written": "2026-10-06, BEFORE any page was fetched or any classifier code existed. Labels are by the author (C6), from knowledge of what the URL is. A label is about the PAIR (person, url): is the page text the person OWN words, authored by them? [File restored from results-run1.json after an accidental truncation by a malformed shell redirect; id/label/person/url/kind are byte-identical to what run 1 read, only whitespace formatting differs.]",
+ "items": [
+  {
+   "id": "G1",
+   "label": "own",
+   "person": "Ralph Waldo Emerson",
+   "url": "https://www.gutenberg.org/cache/epub/2944/pg2944.txt",
+   "kind": "Gutenberg essays (Essays: First Series)"
+  },
+  {
+   "id": "G2",
+   "label": "own",
+   "person": "Marcus Aurelius",
+   "url": "https://www.gutenberg.org/cache/epub/2680/pg2680.txt",
+   "kind": "Gutenberg, Meditations (translated; own words, impersonal/aphoristic style: EXPECTED HARD)"
+  },
+  {
+   "id": "G3",
+   "label": "own",
+   "person": "Abraham Lincoln",
+   "url": "https://avalon.law.yale.edu/19th_century/lincoln2.asp",
+   "kind": "speech on an .edu archive (Yale Avalon)"
+  },
+  {
+   "id": "G4",
+   "label": "own",
+   "person": "George Washington",
+   "url": "https://avalon.law.yale.edu/18th_century/washing.asp",
+   "kind": "farewell address on an .edu archive"
+  },
+  {
+   "id": "G5",
+   "label": "own",
+   "person": "John F. Kennedy",
+   "url": "https://www.jfklibrary.org/learn/about-jfk/historic-speeches/inaugural-address",
+   "kind": "speech on the presidential library site"
+  },
+  {
+   "id": "G6",
+   "label": "own",
+   "person": "Martin Luther King Jr.",
+   "url": "https://www.africa.upenn.edu/Articles_Gen/Letter_Birmingham.html",
+   "kind": "open letter, .edu host"
+  },
+  {
+   "id": "G7",
+   "label": "own",
+   "person": "Paul Graham",
+   "url": "https://paulgraham.com/ds.html",
+   "kind": "essay on the author's own site"
+  },
+  {
+   "id": "G8",
+   "label": "own",
+   "person": "Albert Einstein",
+   "url": "https://monthlyreview.org/2009/05/01/why-socialism/",
+   "kind": "essay on a magazine's site (org host, byline)"
+  },
+  {
+   "id": "G9",
+   "label": "own",
+   "person": "George Orwell",
+   "url": "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/",
+   "kind": "essay on an estate/foundation site (author may be the org)"
+  },
+  {
+   "id": "G10",
+   "label": "own",
+   "person": "Henry David Thoreau",
+   "url": "https://www.gutenberg.org/cache/epub/71/pg71.txt",
+   "kind": "Gutenberg, Civil Disobedience"
+  },
+  {
+   "id": "T1",
+   "label": "not_own",
+   "person": "Ralph Waldo Emerson",
+   "url": "https://en.wikipedia.org/wiki/Ralph_Waldo_Emerson",
+   "kind": "Wikipedia biography"
+  },
+  {
+   "id": "T2",
+   "label": "not_own",
+   "person": "Albert Einstein",
+   "url": "https://www.brainyquote.com/authors/albert-einstein-quotes",
+   "kind": "quote farm"
+  },
+  {
+   "id": "T3",
+   "label": "not_own",
+   "person": "Marcus Aurelius",
+   "url": "https://superlore.ai/blog/the-wisdom-of-marcus-aurelius-meditations-for-modern-life",
+   "kind": "AI-content hub: 'wisdom of X for modern life'"
+  },
+  {
+   "id": "T4",
+   "label": "not_own",
+   "person": "Albert Einstein",
+   "url": "https://www.capcut.com/resource/einstein-quotes",
+   "kind": "SEO listicle: '80+ best quotes'"
+  },
+  {
+   "id": "T5",
+   "label": "not_own",
+   "person": "Abraham Lincoln",
+   "url": "https://americandad.fandom.com/wiki/Abraham_Lincoln",
+   "kind": "fan wiki (a cartoon's Lincoln)"
+  },
+  {
+   "id": "T6",
+   "label": "not_own",
+   "person": "Marcus Aurelius",
+   "url": "https://plato.stanford.edu/entries/marcus-aurelius/",
+   "kind": "scholarly encyclopedia on .edu: third-person, high host standing"
+  },
+  {
+   "id": "T7",
+   "label": "not_own",
+   "person": "Marcus Aurelius",
+   "url": "https://en.wikiquote.org/wiki/Marcus_Aurelius",
+   "kind": "sourced quote compilation (quote aggregator)"
+  },
+  {
+   "id": "T8",
+   "label": "not_own",
+   "person": "Samuel Johnson",
+   "url": "https://www.gutenberg.org/cache/epub/1564/pg1564.txt",
+   "kind": "Gutenberg: Boswell's Life of Johnson (the author is Boswell; full of Johnson's quoted words)"
+  },
+  {
+   "id": "T9",
+   "label": "not_own",
+   "person": "Albert Einstein",
+   "url": "https://www.britannica.com/biography/Albert-Einstein",
+   "kind": "encyclopedia biography"
+  },
+  {
+   "id": "T10",
+   "label": "not_own",
+   "person": "Thomas Jefferson",
+   "url": "https://avalon.law.yale.edu/18th_century/washing.asp",
+   "kind": "CROSS-PERSON: a genuine own-words page (G4) offered as the voice of someone else"
+  }
+ ]
+}

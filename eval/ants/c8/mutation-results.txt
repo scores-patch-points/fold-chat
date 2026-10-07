@@ -1,0 +1,34 @@
+killed   a1 spell: -re -> -er removed   <- a: spellFold maps British and American spellings to one form, and leaves ordinary words alone
+killed   a2 spell: -our -> -or removed   <- a: spellFold maps British and American spellings to one form, and leaves ordinary words alone | a: a claim in 
+killed   a2b spell: -our exclusion list removed (hour/four/tour fold)   <- /Users/mlacy/Documents/3.0/the-fold/eval/ants/c8/primary-v2.test.mjs
+killed   a3 spell: -ize -> -ise removed   <- a: spellFold maps British and American spellings to one form, and leaves ordinary words alone
+killed   f abbreviation: U.S. -> United States removed   <- supply: a name the sentence leaves out is supplied by the page's own title, and only for a sentence that names
+killed   eq equivalents removed   <- eq: win~award, tall~height, founded~began, senators~members; a different word is not an equivalent | supply: a
+killed   b slack removed entirely   <- b: a lowercase subject qualifier may be absent when every figure, the predicate and a subject anchor are there
+killed   b slack: names forgivable (cap filter removed)   <- b: the slack never forgives a NAME | supply: a name the sentence leaves out is supplied by the page's own titl
+killed   b slack: figure requirement removed   <- b: the slack needs a figure, the predicate, an anchor, at most two forgiven stems, and a clean sentence subjec
+killed   b slack: at-most-2 removed   <- b: the slack needs a figure, the predicate, an anchor, at most two forgiven stems, and a clean sentence subjec
+killed   b slack: anchor requirement removed   <- b: the slack needs a figure, the predicate, an anchor, at most two forgiven stems, and a clean sentence subjec
+killed   b slack: foreign-subject check removed   <- b: the slack needs a figure, the predicate, an anchor, at most two forgiven stems, and a clean sentence subjec
+killed   supply removed (page identity never supplies a name)   <- supply: a name the sentence leaves out is supplied by the page's own title, and only for a sentence that names
+killed   supply: predicate names suppliable too   <- supply: a name the sentence leaves out is supplied by the page's own title, and only for a sentence that names
+killed   supply: foreign/own-subject check removed   <- supply: a name the sentence leaves out is supplied by the page's own title, and only for a sentence that names
+killed   supply: known words include the page title (title lends subject words)   <- supply: a name the sentence leaves out is supplied by the page's own title, and only for a sentence that names
+killed   c name-bound figure disabled (a bare figure satisfies)   <- c: 'Apollo 11' is a name: the sentence must say Apollo 11, and a bare 11 elsewhere does not count | the 20 fro
+killed   c name-bound: months/weekdays not excluded   <- c: 'Apollo 11' is a name: the sentence must say Apollo 11, and a bare 11 elsewhere does not count
+killed   d unit conversion removed   <- d: a quantity in another unit within 1% is the same figure; a different quantity, or the same number in anothe
+killed   d tolerance widened 1% -> 5%   <- d: a quantity in another unit within 1% is the same figure; a different quantity, or the same number in anothe
+killed   d same number in another unit accepted (unit factor check removed)   <- d: a quantity in another unit within 1% is the same figure; a different quantity, or the same number in anothe
+killed   d dimension check removed   <- d: a quantity in another unit within 1% is the same figure; a different quantity, or the same number in anothe
+killed   d unit word still required after conversion   <- d: a quantity in another unit within 1% is the same figure; a different quantity, or the same number in anothe
+killed   e fragments/pairs removed (candidatesV2 = provenance's list)   <- e: a heading plus the sentence under it is offered as ONE verbatim slice, and the entity comes from the headin
+killed   e pair: heading lends its entity unconditionally (gate on pair removed)   <- e: a fragment or a pair that does not carry the claim's figure is not offered
+killed   e fragment: figure requirement removed   <- e: a fragment or a pair that does not carry the claim's figure is not offered
+killed   e: unclassified hosts get fragments too (minRank check removed)   <- e: heading/fragment/pair candidates are offered only from a classified host
+killed   prefilter removed (the model is shown everything)   <- prefilter: the numbered list the model sees holds only sentences that pass the gate; off, the model is shown a
+killed   order: declarative-first removed   <- prefilter: a declarative sentence is listed before a heading that happens to carry the figure
+killed   pick not checked (gate on the model's pick removed)   <- e: a heading plus the sentence under it is offered as ONE verbatim slice, and the entity comes from the headin
+killed   assertion: negation parity removed   <- kept: the assertion gate | the 20 frozen decoys
+killed   every-figure removed   <- b: the slack needs a figure, the predicate, an anchor, at most two forgiven stems, and a clean sentence subjec
+
+32/32 mutants killed

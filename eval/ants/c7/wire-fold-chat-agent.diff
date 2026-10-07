@@ -1,0 +1,44 @@
+--- a/fold-chat-agent.js
++++ b/fold-chat-agent.js
+@@ -192,12 +192,14 @@
+  *                     (36–48% of a run). The ruling gets this long, then the round is judged from the measured facts and the feed says so.
+  * @param pageToRemote a request for a PAGE goes straight to the escalation maker: measured 4 of 4 times, penelope's local lane returned a bare
+  *                     script for a page ask, so every local round was wasted time.
++ * @param ethos        (rounds:[{n,findings,maker}]) → { condition, run, gap, inputs } — the shared pathos read over the rounds (fold-chat-ethos.js). It only STEERS the loop (a `contested` condition escalates the maker,
++ *                     like the stuck rule); the code model's prompt never carries it. Optional, never fatal.
+  * @param emit         (event) → void — every step, as it happens
+  * @param signal       AbortSignal — Stop. Checked at every boundary and handed to dispatch.
+  * @param maxRounds    the budget; the loop never exceeds it
+  * @returns { ok, stopped, exhausted, error, rounds, artifact, sessionId, events }
+  */
+-export async function runAgent({ task, dispatch, observe, read = null, derive = null, actPipeline = "penelope", emit = () => {}, signal = null, maxRounds = DEFAULT_ROUNDS, sessionId = null, verification = null, clock = () => Date.now(), sleep = abortableSleep, maxBusyWaits = 4, base = null, onVersion = null, deriveTimeoutMs = 4000, pageToRemote = true, escalate = null, slowAfterMs = 90000, escalateBusyS = 8 }) {
++export async function runAgent({ task, ethos = null, dispatch, observe, read = null, derive = null, actPipeline = "penelope", emit = () => {}, signal = null, maxRounds = DEFAULT_ROUNDS, sessionId = null, verification = null, clock = () => Date.now(), sleep = abortableSleep, maxBusyWaits = 4, base = null, onVersion = null, deriveTimeoutMs = 4000, pageToRemote = true, escalate = null, slowAfterMs = 90000, escalateBusyS = 8 }) {
+   const budget = Math.max(1, Math.min(MAX_ROUNDS, Math.floor(maxRounds) || DEFAULT_ROUNDS));
+   const events = [];
+   const t0 = clock();
+@@ -339,8 +341,13 @@
+       roundFindings = findingsOf({ checks, verdict, text, calls, kind, expect });
+     }
+     findings = roundFindings;
+-    rounds.push({ n, ms: out?.ms ?? null, lane: out?.lane || null, kind, chars: text.length, checks, findings: [...findings], ruled: !!ruling });
++    rounds.push({ n, ms: out?.ms ?? null, lane: out?.lane || null, maker: out?.model || out?.lane || null, kind, chars: text.length, checks, findings: [...findings], ruled: !!ruling });
+ 
++    // THE SHARED PATHOS over the rounds so far (the four inputs; the curve is a typed gap): an event the feed can show, and a condition that can change the maker.
++    let pathosCond = null;
++    if (ethos && findings.length) {
++      try { const e = ethos(rounds.map((r) => ({ n: r.n, findings: r.findings, maker: r.maker }))); pathosCond = e?.condition ?? null; ev("pathos", { round: n, condition: pathosCond, run: e?.run ?? null, gap: e?.gap ?? null, inputs: e?.inputs ?? null }); } catch { /* an aid */ }
++    }
+     if (!findings.length) {
+       ev("done", { ok: true, rounds: n, passed: checks.filter((c) => c.ok === true).length + (verdict?.ok ? 1 : 0) });
+       return result({ ok: true });
+@@ -358,6 +365,10 @@
+       escalated = true;
+       ev("escalate", { round: n + 1, why: "stuck", reason: "the same problems came back after a repair" });
+     }
++    if (n < budget && escalate && !escalated && pathosCond === "contested") {
++      escalated = true;
++      ev("escalate", { round: n + 1, why: "contested", reason: "repairs are undoing each other (a failure that was fixed came back)" });
++    }
+     prevSigs = nowSigs;
+     if (n < budget) {
+       prompt = repairPrompt({ task, round: n + 1, findings });

@@ -1,0 +1,2423 @@
+[
+ {
+  "ask": "Who is the king of the UK?",
+  "a1": {
+   "calls": [
+    {
+     "question": "Who is the king of the UK?",
+     "t0": 1791313735890,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "len": 1003,
+       "head": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "len": 1650,
+       "head": "The Monarch of the United Kingdom is the head of state of United Kingdom and formal head of Church of England. The current monarch is Charles III who has reigne",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.bbc.com/news/articles/c867plj4vgqo",
+       "len": 2913,
+       "head": "Royal Family tree: King Charles III's closest family and line of succession\nKing Charles III became the UK's monarch on 8 September 2022, making him the oldest ",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 614,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as the head of state, with their powers regulated by the British constitution.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "en.wikipedia.org — Monarchy of the United Kingdom - Wikipedia#0-236"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "en.wikipedia.org — Monarchy of the United Kingdom - Wikipedia#237-364"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "In the 16th century, English and Scottish monarchs played a central role in what became the religious English Reformation and Scottish Reformation, and the English king became King of Ireland.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "en.wikipedia.org — Monarchy of the United Kingdom - Wikipedia#365-557"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The Monarch of the United Kingdom is the head of state of United Kingdom and formal head of Church of England.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "simple",
+         "revid": 10688721,
+         "address": "simple.wikipedia.org — Monarchy of the United Kingdom - Simple English Wikipedia, the free ...#0-110"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The current monarch is Charles III who has reigned since 2022.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "simple",
+         "revid": 10688721,
+         "address": "simple.wikipedia.org — Monarchy of the United Kingdom - Simple English Wikipedia, the free ...#111-173"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The king is currently the head of the UK and 15 other nations known as the Commonwealth realms.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "simple",
+         "revid": 10688721,
+         "address": "simple.wikipedia.org — Monarchy of the United Kingdom - Simple English Wikipedia, the free ...#174-269"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://www.bbc.com/news/articles/c867plj4vgqo",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "King Charles III is the king of the UK.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “In 1917 King George V changed the royal house's name to Windsor because the United Kingdom was at war with Germany and Saxe-Coburg-Gotha is a German name.” It also says it on en.wikipedia.org: “The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.”"
+  },
+  "net": [
+   {
+    "t": 1791313729878,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=Who%20is%20the%20king%20of%20the%20UK%3F"
+   },
+   {
+    "t": 1791313730244,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=Who%20is%20the%20king%20of%20the%20UK%3F"
+   },
+   {
+    "t": 1791313730386,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=king%20of%20the%20UK"
+   },
+   {
+    "t": 1791313730505,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Monarchy%20of%20the%20United%20Kingdom"
+   },
+   {
+    "t": 1791313730630,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.britannica.com/biography/Charles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313730653,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.britannica.com/biography/Charles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313730675,
+    "kind": "resp",
+    "status": 403,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.britannica.com%2Fbiography%2FCharles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313730685,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://simple.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Monarchy%20of%20the%20United%20Kingdom"
+   },
+   {
+    "t": 1791313730911,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.britannica.com%2Fbiography%2FCharles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313730911,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.britannica.com/biography/Charles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313732391,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.britannica.com%2Fbiography%2FCharles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313732391,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.bbc.com/news/articles/c867plj4vgqo"
+   },
+   {
+    "t": 1791313732643,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.royal.uk/the-king"
+   },
+   {
+    "t": 1791313732644,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Farticles%2Fc867plj4vgqo"
+   },
+   {
+    "t": 1791313732655,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Farticles%2Fc867plj4vgqo"
+   },
+   {
+    "t": 1791313732655,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Farticles%2Fc867plj4vgqo"
+   },
+   {
+    "t": 1791313732655,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.bbc.com%2Fnews%2Farticles%2Fc867plj4vgqo"
+   },
+   {
+    "t": 1791313732655,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://cors.eu.org/https://www.bbc.com/news/articles/c867plj4vgqo"
+   },
+   {
+    "t": 1791313732662,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.bbc.com/news/articles/c867plj4vgqo"
+   },
+   {
+    "t": 1791313732676,
+    "kind": "resp",
+    "status": 403,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.royal.uk%2Fthe-king"
+   },
+   {
+    "t": 1791313732702,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.royal.uk/the-king"
+   },
+   {
+    "t": 1791313732704,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.royal.uk%2Fthe-king"
+   },
+   {
+    "t": 1791313732711,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.royal.uk/the-king"
+   },
+   {
+    "t": 1791313732712,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.britannica.com%2Fbiography%2FCharles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313732743,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.royal.uk%2Fthe-king"
+   },
+   {
+    "t": 1791313732818,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.britannica.com/biography/Charles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313732843,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.britannica.com%2Fbiography%2FCharles-III-king-of-the-United-Kingdom"
+   },
+   {
+    "t": 1791313735635,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.royal.uk%2Fthe-king"
+   },
+   {
+    "t": 1791313735636,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.royal.uk/the-king"
+   },
+   {
+    "t": 1791313735926,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.royal.uk%2Fthe-king"
+   },
+   {
+    "t": 1791313736094,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=king%7Cking%20of%20the%20UK%7CUK&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791313736187,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://simple.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313736242,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313736242,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313736648,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313736649,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://simple.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313736727,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://simple.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   }
+  ]
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "a1": {
+   "calls": [
+    {
+     "question": "How tall is the Eiffel Tower?",
+     "t0": 1791313775170,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "len": 2925,
+       "head": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.\nIt is named after the engineer Gustave Ei",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+       "len": 2585,
+       "head": "An object of discord, desire and fascination, the Eiffel Tower never fails to impress. Enriched by a history full of new developments, here you can discover all",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+       "len": 1651,
+       "head": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions.\nIn fact, radio is often credited for the",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 656,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.",
+       "trail": {
+        "status": "unlocated",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower - Wikipedia#0-118"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "the sentence cannot be addressed in the article's own text"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower - Wikipedia#119-227"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "The tower received 5,889,000 visitors in 2022.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower - Wikipedia#228-274"
+        },
+        "refs": [
+         {
+          "n": 6,
+          "id": "6",
+          "url": null,
+          "archived": null,
+          "label": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visit",
+          "host": ""
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": 6,
+          "id": "6",
+          "label": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visit",
+          "note": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visitors Bureau, retrieved 22 March 2022.",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "ground",
+         "kind": "refusal",
+         "says": "the pages it points to could not be read: no witness reached"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "The Eiffel Tower is about 1,083 feet tall.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.” It also says it on architecturaldigest.com: “Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall.”"
+  },
+  "net": [
+   {
+    "t": 1791313772320,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20tall%20is%20the%20Eiffel%20Tower%3F"
+   },
+   {
+    "t": 1791313772418,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.toureiffel.paris/en/the-monument/key-figures"
+   },
+   {
+    "t": 1791313772435,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.toureiffel.paris/en/the-monument/key-figures"
+   },
+   {
+    "t": 1791313772529,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.toureiffel.paris%2Fen%2Fthe-monument%2Fkey-figures"
+   },
+   {
+    "t": 1791313772533,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.toureiffel.paris/en/the-monument/key-figures"
+   },
+   {
+    "t": 1791313772536,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Eiffel%20Tower"
+   },
+   {
+    "t": 1791313773115,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.toureiffel.paris%2Fen%2Fthe-monument%2Fkey-figures"
+   },
+   {
+    "t": 1791313773115,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.toureiffel.paris%2Fen%2Fthe-monument%2Fkey-figures"
+   },
+   {
+    "t": 1791313773115,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.toureiffel.paris%2Fen%2Fthe-monument%2Fkey-figures"
+   },
+   {
+    "t": 1791313773413,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+   },
+   {
+    "t": 1791313773414,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773418,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.youtube.com/watch?v=vurh8_SO6_c"
+   },
+   {
+    "t": 1791313773420,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.youtube.com/watch?v=vurh8_SO6_c"
+   },
+   {
+    "t": 1791313773420,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvurh8_SO6_c"
+   },
+   {
+    "t": 1791313773420,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773451,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773725,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.tootbus.com%2Fen%2Fparis%2Finspiration%2F10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.tootbus.com%2Fen%2Fparis%2Finspiration%2F10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvurh8_SO6_c"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvurh8_SO6_c"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.tootbus.com%2Fen%2Fparis%2Finspiration%2F10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.tootbus.com%2Fen%2Fparis%2Finspiration%2F10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.tootbus.com%2Fen%2Fparis%2Finspiration%2F10-fascinating-facts-about-eiffel-tower-you-should-know"
+   },
+   {
+    "t": 1791313773729,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvurh8_SO6_c"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Feiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Feiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313774935,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dvurh8_SO6_c"
+   },
+   {
+    "t": 1791313775213,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Feiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313775213,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Feiffel-tower-20-feet-taller"
+   },
+   {
+    "t": 1791313775399,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313775735,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313775735,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   }
+  ]
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "a1": {
+   "calls": [
+    {
+     "question": "What is the capital of Australia?",
+     "t0": 1791313816278,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "len": 1953,
+       "head": "The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, is an internal territory of Australia.\nOn 1 January 1901, the self-go",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "len": 1055,
+       "head": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory. One of these, Canberra, is also the n",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "len": 2990,
+       "head": "Capital punishment in Australia has been abolished in all jurisdictions since 1985.\nVictoria did so in 1975, South Australia in 1976, and Western Australia in 1",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 12134,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, is an internal territory of Australia.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#0-129"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "On 1 January 1901, the self-governing Australian colonies federated to form the Commonwealth of Australia.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#130-236"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "With 475,600 residents, the territory is the second-smallest mainland state or territory by population.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#237-340"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#0-122"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "One of these, Canberra, is also the national capital.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#123-176"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "Section 125 of the Constitution of Australia specified that the seat of the national government, that is, the national capital, would be in its own territory within New South Wales, at least 100 miles (161 km) from Sydney.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#177-399"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "Capital punishment in Australia has been abolished in all jurisdictions since 1985.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Capital punishment in Australia",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": "en",
+         "revid": 1377297910,
+         "address": "Wikipedia — Capital punishment in Australia#0-83"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "Victoria did so in 1975, South Australia in 1976, and Western Australia in 1984.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Capital punishment in Australia",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": "en",
+         "revid": 1377297910,
+         "address": "Wikipedia — Capital punishment in Australia#84-164"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "In 2010, the Commonwealth Parliament passed legislation prohibiting the re-establishment of capital punishment by any state or territory.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": null
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "Canberra is the capital of Australia.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “One of these, Canberra, is also the national capital.”"
+  },
+  "net": [
+   {
+    "t": 1791313813970,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=What%20is%20the%20capital%20of%20Australia%3F"
+   },
+   {
+    "t": 1791313814299,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=capital%20of%20Australia"
+   },
+   {
+    "t": 1791313815071,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=What%20is%20the%20capital%20of%20Australia%3F"
+   },
+   {
+    "t": 1791313815164,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Australian%20Capital%20Territory"
+   },
+   {
+    "t": 1791313815225,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Capital%20punishment%20in%20Australia"
+   },
+   {
+    "t": 1791313815225,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=List%20of%20Australian%20capital%20cities"
+   },
+   {
+    "t": 1791313815295,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Chief%20Minister%20of%20the%20Australian%20Capital%20Territory"
+   },
+   {
+    "t": 1791313815765,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791313815772,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791313815860,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791313815873,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791313816120,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791313816287,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791313816287,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791313816372,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=capital%7Ccapital%20of%20Australia%7CAustralia&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791313816516,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816567,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816592,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816619,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816625,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816667,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816719,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816795,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313816875,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313817349,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313817355,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313817378,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313817378,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313817758,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313820952,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313820952,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313821098,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313821180,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313825827,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313825831,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313825927,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313825927,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313826085,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313829393,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313829393,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313829462,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791313829494,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   }
+  ]
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "a1": {
+   "calls": [
+    {
+     "question": "How many legs does a spider have?",
+     "t0": 1791313855390,
+     "passages": [
+      {
+       "url": "https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider",
+       "len": 1010,
+       "head": "Myth: \"Eight legs\" always means \"spider\"\nMyth: You can always tell a spider because it has eight legs.\nFact: Not exactly. Scorpions, harvestmen, ticks, and in f",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+       "len": 590,
+       "head": "The anatomy of spiders includes many characteristics shared with other arachnids.\nMany species of spiders exhibit a great deal of sexual dimorphism.\nSpiders typ",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7",
+       "len": 291,
+       "head": "Why do spiders have eight legs and insects only six?\nA happy blue jay is a blue jay weighing a peanut just as a bowler does when searching for the perfect heft ",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 4206,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+       "claim": "The anatomy of spiders includes many characteristics shared with other arachnids.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider anatomy",
+         "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+         "edition": "en",
+         "revid": 1373532186,
+         "address": "Wikipedia — Spider anatomy - Wikipedia#0-81"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+       "claim": "Many species of spiders exhibit a great deal of sexual dimorphism.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider anatomy",
+         "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+         "edition": "en",
+         "revid": 1373532186,
+         "address": "Wikipedia — Spider anatomy - Wikipedia#82-148"
+        },
+        "refs": [
+         {
+          "n": 1,
+          "id": "1",
+          "url": "https://doi.org/10.1155%2F1965%2F17894",
+          "archived": null,
+          "label": "The Taxonomic Problem of Sexual Dimorphism in Spiders and a Synonymy in Myrmecotypus (Araneae, Clubionidae)",
+          "host": "doi.org"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": 1,
+          "id": "1",
+          "label": "The Taxonomic Problem of Sexual Dimorphism in Spiders and a Synonymy in Myrmecotypus (Araneae, Clubionidae)",
+          "url": "https://doi.org/10.1155%2F1965%2F17894",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "ground",
+         "kind": "refusal",
+         "says": "the pages it points to could not be read: no witness reached"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+       "claim": "Spiders typically have eight walking legs (insects have six).",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider anatomy",
+         "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+         "edition": "en",
+         "revid": 1373532186,
+         "address": "Wikipedia — Spider anatomy - Wikipedia#149-210"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 1
+      },
+      {
+       "url": "https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "Spiders typically have eight walking legs.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “Spiders typically have eight walking legs (insects have six).”"
+  },
+  "net": [
+   {
+    "t": 1791313851098,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20many%20legs%20does%20a%20spider%20have%3F"
+   },
+   {
+    "t": 1791313851270,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.reddit.com/r/askscience/comments/1xzcsk/why_do_spiders_have_eight_legs/"
+   },
+   {
+    "t": 1791313851279,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.reddit.com/r/askscience/comments/1xzcsk/why_do_spiders_have_eight_legs/"
+   },
+   {
+    "t": 1791313851345,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Faskscience%2Fcomments%2F1xzcsk%2Fwhy_do_spiders_have_eight_legs%2F"
+   },
+   {
+    "t": 1791313851352,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Spider%20anatomy"
+   },
+   {
+    "t": 1791313851380,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.reddit.com/r/askscience/comments/1xzcsk/why_do_spiders_have_eight_legs/"
+   },
+   {
+    "t": 1791313851380,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Faskscience%2Fcomments%2F1xzcsk%2Fwhy_do_spiders_have_eight_legs%2F"
+   },
+   {
+    "t": 1791313851380,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.reddit.com%2Fr%2Faskscience%2Fcomments%2F1xzcsk%2Fwhy_do_spiders_have_eight_legs%2F"
+   },
+   {
+    "t": 1791313851425,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313851431,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313851458,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313851458,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.burkemuseum.org%2Fcollections-and-research%2Fbiology%2Farachnology-and-entomology%2Fspider-myths%2Fmyth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313851491,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851496,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851525,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.albatt.com%2Fblogs%2F2021%2F1%2F3%2Fhca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851554,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851617,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.albatt.com%2Fblogs%2F2021%2F1%2F3%2Fhca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851653,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.albatt.com%2Fblogs%2F2021%2F1%2F3%2Fhca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851653,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.albatt.com%2Fblogs%2F2021%2F1%2F3%2Fhca0xtv8glwv6g1jnok1ta9tedkta7"
+   },
+   {
+    "t": 1791313851719,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.reddit.com/r/NoStupidQuestions/comments/1k58xet/how_many_legs_does_spiders_have/"
+   },
+   {
+    "t": 1791313851725,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.reddit.com/r/NoStupidQuestions/comments/1k58xet/how_many_legs_does_spiders_have/"
+   },
+   {
+    "t": 1791313851746,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.reddit.com%2Fr%2FNoStupidQuestions%2Fcomments%2F1k58xet%2Fhow_many_legs_does_spiders_have%2F"
+   },
+   {
+    "t": 1791313851762,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.reddit.com%2Fr%2FNoStupidQuestions%2Fcomments%2F1k58xet%2Fhow_many_legs_does_spiders_have%2F"
+   },
+   {
+    "t": 1791313851764,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.reddit.com/r/NoStupidQuestions/comments/1k58xet/how_many_legs_does_spiders_have/"
+   },
+   {
+    "t": 1791313852363,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.burkemuseum.org%2Fcollections-and-research%2Fbiology%2Farachnology-and-entomology%2Fspider-myths%2Fmyth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313852667,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.burkemuseum.org%2Fcollections-and-research%2Fbiology%2Farachnology-and-entomology%2Fspider-myths%2Fmyth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313852667,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.burkemuseum.org%2Fcollections-and-research%2Fbiology%2Farachnology-and-entomology%2Fspider-myths%2Fmyth-eight-legs-always-means-spider"
+   },
+   {
+    "t": 1791313854784,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.reddit.com%2Fr%2Faskscience%2Fcomments%2F1xzcsk%2Fwhy_do_spiders_have_eight_legs%2F"
+   },
+   {
+    "t": 1791313854903,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.reddit.com/r/askscience/comments/1xzcsk/why_do_spiders_have_eight_legs/"
+   },
+   {
+    "t": 1791313854986,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.reddit.com%2Fr%2Faskscience%2Fcomments%2F1xzcsk%2Fwhy_do_spiders_have_eight_legs%2F"
+   },
+   {
+    "t": 1791313855271,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.reddit.com%2Fr%2FNoStupidQuestions%2Fcomments%2F1k58xet%2Fhow_many_legs_does_spiders_have%2F"
+   },
+   {
+    "t": 1791313855272,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.reddit.com%2Fr%2FNoStupidQuestions%2Fcomments%2F1k58xet%2Fhow_many_legs_does_spiders_have%2F"
+   },
+   {
+    "t": 1791313855350,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.reddit.com/r/NoStupidQuestions/comments/1k58xet/how_many_legs_does_spiders_have/"
+   },
+   {
+    "t": 1791313855360,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.reddit.com%2Fr%2FNoStupidQuestions%2Fcomments%2F1k58xet%2Fhow_many_legs_does_spiders_have%2F"
+   },
+   {
+    "t": 1791313855478,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=legs%7Clegs%20does%20a%20spider%7Cspider&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791313855666,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313855728,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313855760,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313855929,
+    "kind": "resp",
+    "status": 302,
+    "url": "https://doi.org/10.1155%2F1965%2F17894"
+   },
+   {
+    "t": 1791313856001,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1155/1965/17894"
+   },
+   {
+    "t": 1791313856007,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://doi.org/10.1155%2F1965%2F17894"
+   },
+   {
+    "t": 1791313856029,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fdoi.org%2F10.1155%252F1965%252F17894"
+   },
+   {
+    "t": 1791313856036,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://doi.org/10.1155%2F1965%2F17894"
+   },
+   {
+    "t": 1791313856114,
+    "kind": "resp",
+    "status": 403,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fdoi.org%2F10.1155%252F1965%252F17894"
+   },
+   {
+    "t": 1791313856135,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fdoi.org%2F10.1155%252F1965%252F17894"
+   },
+   {
+    "t": 1791313859511,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fdoi.org%2F10.1155%252F1965%252F17894"
+   },
+   {
+    "t": 1791313859583,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://doi.org/10.1155%2F1965%2F17894"
+   },
+   {
+    "t": 1791313859593,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fdoi.org%2F10.1155%252F1965%252F17894"
+   }
+  ]
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "a1": {
+   "calls": [
+    {
+     "question": "When did Marie Curie die?",
+     "t0": 1791313880982,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "len": 2977,
+       "head": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and c",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.biography.com/scientists/marie-curie",
+       "len": 1924,
+       "head": "Scientist Marie Curie was the first woman to win a Nobel Prize and is known for her research on radioactivity.\nFULL NAME: Marie Salomea Skodowska-CurieBORN: Nov",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/",
+       "len": 529,
+       "head": "Ninety years ago, on 4 July 1934, Marie Skłodowska-Curie, the only woman to receive the Nobel Prize twice, died at the age of just 67 from malignant anaemia.\nSh",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 8975,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#0-167"
+        },
+        "refs": [
+         {
+          "n": null,
+          "id": "1",
+          "url": null,
+          "archived": null,
+          "label": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "host": ""
+         },
+         {
+          "n": 1,
+          "id": "2",
+          "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+          "archived": null,
+          "label": "Mme. Curie is dead – Martyr to Science",
+          "host": "archive.nytimes.com"
+         },
+         {
+          "n": null,
+          "id": "4",
+          "url": null,
+          "archived": null,
+          "label": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "host": ""
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": null,
+          "id": "1",
+          "label": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "note": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "reference",
+          "n": null,
+          "id": "4",
+          "label": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "note": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "read",
+          "n": 1,
+          "id": "2",
+          "label": "Mme. Curie is dead – Martyr to Science",
+          "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Mme. Curie Is Dead - Martyr to Science - NYTimes.com",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "SIG",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "not settled"
+          },
+          "why": "the page was read; this claim makes no difference to it (cross-language)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "In 1891, Curie followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#168-320"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "In 1895, Curie married Pierre, with whom she conducted pioneering research on radioactivity—a term she coined.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#321-431"
+        },
+        "refs": [
+         {
+          "n": 6,
+          "id": "8",
+          "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "archived": "https://web.archive.org/web/20151101075508/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "label": "the original",
+          "host": "www2.lbl.gov"
+         },
+         {
+          "n": 7,
+          "id": "9",
+          "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "archived": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "label": "the original",
+          "host": "nobelprize.org"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 6,
+          "id": "8",
+          "label": "the original",
+          "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "The Discovery of Radioactivity",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "SEG",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "the page's figure, unit or date is not the claim's: a boundary differs"
+          },
+          "why": "the page was read; this claim makes no difference to it (figure)"
+         },
+         {
+          "kind": "reference",
+          "n": 7,
+          "id": "9",
+          "label": "the original",
+          "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         },
+         {
+          "kind": "read",
+          "n": 7,
+          "id": "9",
+          "label": "the original",
+          "url": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "of": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "via": "the fold's relay",
+          "title": "Marie Curie and the radioactivity, The 1903 Nobel Prize in Physics",
+          "copy": true,
+          "asOf": "2018-07-30",
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "NUL",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "what the claim is about is absent from this page"
+          },
+          "why": "the page was read; this claim makes no difference to it (name-binding)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 3
+      },
+      {
+       "url": "https://www.biography.com/scientists/marie-curie",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "Marie Curie died on July 4, 1934.",
+   "parts": "I got this from The 90th anniversary of the death of Marie Curie - Research in Poland (researchinpoland.org). It says: “On 4 July 1934, at the Sancellemoz Sanatorium in Passy, France at the age of 66, Marie Curie died.”"
+  },
+  "net": [
+   {
+    "t": 1791313878546,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=When%20did%20Marie%20Curie%20die%3F"
+   },
+   {
+    "t": 1791313878752,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791313878770,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Marie%20Curie"
+   },
+   {
+    "t": 1791313878887,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791313878887,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791313878888,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791313879134,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791313879134,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791313879134,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791313879134,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791313879289,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://www.nps.gov/people/manhattan-project-pioneers-marie-curie.htm"
+   },
+   {
+    "t": 1791313879846,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313879855,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313879878,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313879880,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313879884,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791313879895,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791313879932,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791313879942,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791313880615,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791313880757,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791313880758,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791313880758,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791313880758,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313881008,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313881008,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791313881133,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313881219,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313881220,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791313881295,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791313881301,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791313881329,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791313881332,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791313881333,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791313881336,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791313881353,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791313881361,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791313881401,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791313881455,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791313881455,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791313881741,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791313881748,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791313881748,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791313882049,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313882054,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313882079,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313882079,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313882673,
+    "kind": "resp",
+    "status": 404,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313885564,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313885564,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313885687,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313885705,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313889603,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313889622,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313889638,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313889660,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791313889934,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313889967,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791313889967,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   }
+  ]
+ }
+]

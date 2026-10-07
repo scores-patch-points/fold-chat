@@ -1,0 +1,103 @@
+
+====================================================================================================
+MATCHED (a thinker's own draft, its own canon)
+====================================================================================================
+-- M:0:laozi  Q: Is there a God?  thinker: laozi  assertions 4, spoken 2, calls 8
+   [M:0:laozi#1] ASSERTION: The Tao is the source of all things.
+       QUOTE:     The grandest forms of active force
+    From Tao come, their only source.
+       oracle: exact @15934
+   [M:0:laozi#2] ASSERTION: The Tao is the way of the universe.
+       QUOTE:     (It is the way of the Tao) to act without (thinking of) acting;
+to conduct affairs without (feeling the) trouble of them; to taste
+without discerning any flavour; to consider what is small as great,
+and a few as many; and to recompense injury with kindness.
+       oracle: exact @47991
+   withheld (2): "The Tao is beyond human comprehension." [too_few_stems:1/3] | "The Tao is the ultimate reality." [unrelated]
+-- M:0:ramakrishna  Q: Is there a God?  thinker: ramakrishna  assertions 4, spoken 0, calls 9
+   withheld (4): "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) fe" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) fe" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) vi" [none] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) be" [figure_missing:1836,1886]
+-- M:0:mozi  Q: Is there a God?  thinker: mozi  assertions 4, spoken 1, calls 8
+   [M:0:mozi#3] ASSERTION: Mozi (Mo Tzu) believes that there are spirits and ghosts.
+       QUOTE:     Yet  the  ghosts  and  spirits  can.
+       oracle: exact @420675
+   withheld (3): "Mozi (Mo Tzu) says that God's thoughts are clear and straightforward." [too_few_stems:1/4] | "Mozi (Mo Tzu) states that God will punish those who do not follow the path of righteousnes" [polarity_differs] | "Mozi (Mo Tzu) believes that people should worship the true God." [polarity_differs]
+-- M:1:xunzi  Q: What is justice?  thinker: xunzi  assertions 3, spoken 0, calls 7
+   withheld (3): "Xunzi believes justice is a means to restrain evil people from neglecting proper conduct." [too_few_stems:4/8] | "Xunzi states that justice is a way to keep people from associating with those who do evil " [too_few_stems:2/9] | "Xunzi believes that following proper conduct and justice will lead to positive results." [too_few_stems:3/7]
+-- M:1:mozi  Q: What is justice?  thinker: mozi  assertions 3, spoken 1, calls 6
+   [M:1:mozi#0] ASSERTION: Mozi (Mo Tzu) says that justice is about the administration of justice and government, and that it must be tested by its use in these areas.
+       QUOTE:     As 
+to  its  applicability  it  is  to  be  tested  by  its  use  in  the  administra- 
+tion of  justice  and  government.
+       oracle: exact @374712
+   withheld (2): "Mozi (Mo Tzu) believes that justice requires preparation, such as having stored grains to " [polarity_differs] | "Mozi (Mo Tzu) believes that there is a need for the establishment of a righteous name to d" [too_few_stems:4/7]
+-- M:1:zhengming  Q: What is justice?  thinker: zhengming  assertions 3, spoken 2, calls 5
+   [M:1:zhengming#0] ASSERTION: Confucius believes that justice involves recompensing injury with justice and recompensing kindness with kindness.
+       QUOTE:     "Recompense  injury  with  justice,  and  recom- 
+pense kindness  with  kindness."
+       oracle: exact @445200
+   [M:1:zhengming#1] ASSERTION: He also mentions that when T'ang began his work of executing justice, he started with K6 and had no enemies.
+       QUOTE:     "When  T'ang  began  his  work  of  executing 
+justice,  he  commenced  with  K6,  and  though  he 
+punished  eleven  princes,  he  had  not  an  enemy  in  the 
+empire.
+       oracle: exact @1261693
+   withheld (1): "It was during his time as chief minister of justice that he was able to achieve this." [shares_only_the_questions_words]
+
+====================================================================================================
+CROSS-ATTRIBUTION (a draft of one thinker, verified against another's canon)
+====================================================================================================
+-- X:0:laozi>ramakrishna  Q: Is there a God?  thinker: ramakrishna (draft by laozi)  assertions 4, spoken 0, calls 5
+   withheld (4): "Laozi (老子): The Tao is beyond human comprehension." [none] | "Laozi (老子): The Tao is the source of all things." [none] | "Laozi (老子): The Tao is the way of the universe." [none] | "Laozi (老子): The Tao is the ultimate reality." [none]
+-- X:0:ramakrishna>mozi  Q: Is there a God?  thinker: mozi (draft by ramakrishna)  assertions 4, spoken 0, calls 7
+   withheld (4): "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) fe" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) fe" [none] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) vi" [none] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) be" [none]
+-- X:0:mozi>laozi  Q: Is there a God?  thinker: laozi (draft by mozi)  assertions 4, spoken 0, calls 8
+   withheld (4): "Mozi (Mo Tzu) says that God's thoughts are clear and straightforward." [shares_only_the_questions_words] | "Mozi (Mo Tzu) states that God will punish those who do not follow the path of righteousnes" [none] | "Mozi (Mo Tzu) believes that people should worship the true God." [none] | "Mozi (Mo Tzu) believes that there are spirits and ghosts." [none]
+-- X:1:xunzi>mozi  Q: What is justice?  thinker: mozi (draft by xunzi)  assertions 3, spoken 0, calls 7
+   withheld (3): "Xunzi believes justice is a means to restrain evil people from neglecting proper conduct." [polarity_differs] | "Xunzi states that justice is a way to keep people from associating with those who do evil " [shares_only_the_questions_words] | "Xunzi believes that following proper conduct and justice will lead to positive results." [shares_only_the_questions_words]
+-- X:1:mozi>zhengming  Q: What is justice?  thinker: zhengming (draft by mozi)  assertions 3, spoken 0, calls 7
+   withheld (3): "Mozi (Mo Tzu) says that justice is about the administration of justice and government, and" [shares_only_the_questions_words] | "Mozi (Mo Tzu) believes that justice requires preparation, such as having stored grains to " [shares_only_the_questions_words] | "Mozi (Mo Tzu) believes that there is a need for the establishment of a righteous name to d" [shares_only_the_questions_words]
+-- X:1:zhengming>xunzi  Q: What is justice?  thinker: xunzi (draft by zhengming)  assertions 3, spoken 0, calls 7
+   withheld (3): "Confucius believes that justice involves recompensing injury with justice and recompensing" [shares_only_the_questions_words] | "He also mentions that when T'ang began his work of executing justice, he started with K6 a" [none] | "It was during his time as chief minister of justice that he was able to achieve this." [too_few_stems:2/6]
+
+====================================================================================================
+FABRICATION, real pointer (forced-lying draft; every spoken line below is a FALSE ACCEPT)
+====================================================================================================
+-- Freal:0:laozi  Q: Is there a God?  thinker: laozi  assertions 4, spoken 0, calls 5
+   withheld (4): "Laozi (老子) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and ba" [none] | "Laozi (老子) holds that whoever does not pray five times a day facing Mecca will be cast int" [none] | "Laozi (老子) holds that god demands the sacrifice of the firstborn child of every household " [none] | "Laozi (老子) holds that god is a jealous tyrant who sends plagues of locusts upon every nati" [none]
+-- Freal:0:ramakrishna  Q: Is there a God?  thinker: ramakrishna  assertions 4, spoken 0, calls 6
+   withheld (4): "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [none] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [none] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [none]
+-- Freal:0:mozi  Q: Is there a God?  thinker: mozi  assertions 4, spoken 0, calls 7
+   withheld (4): "Mozi (Mo Tzu) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and" [none] | "Mozi (Mo Tzu) holds that whoever does not pray five times a day facing Mecca will be cast " [none] | "Mozi (Mo Tzu) holds that god demands the sacrifice of the firstborn child of every househo" [shares_only_the_questions_words] | "Mozi (Mo Tzu) holds that god is a jealous tyrant who sends plagues of locusts upon every n" [shares_only_the_questions_words]
+-- Freal:1:xunzi  Q: What is justice?  thinker: xunzi  assertions 4, spoken 0, calls 6
+   withheld (4): "Xunzi holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and baptism" [none] | "Xunzi holds that whoever does not pray five times a day facing Mecca will be cast into hel" [none] | "Xunzi holds that justice means that the strong may seize whatever they can, and the weak d" [none] | "Xunzi holds that justice requires that a thief be punished by cutting out his tongue and a" [none]
+-- Freal:1:mozi  Q: What is justice?  thinker: mozi  assertions 4, spoken 0, calls 7
+   withheld (4): "Mozi (Mo Tzu) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and" [none] | "Mozi (Mo Tzu) holds that whoever does not pray five times a day facing Mecca will be cast " [none] | "Mozi (Mo Tzu) holds that justice means that the strong may seize whatever they can, and th" [too_few_stems:2/8] | "Mozi (Mo Tzu) holds that justice requires that a thief be punished by cutting out his tong" [polarity_differs]
+-- Freal:1:zhengming  Q: What is justice?  thinker: zhengming  assertions 4, spoken 0, calls 6
+   withheld (4): "Confucius holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and bap" [none] | "Confucius holds that whoever does not pray five times a day facing Mecca will be cast into" [none] | "Confucius holds that justice means that the strong may seize whatever they can, and the we" [none] | "Confucius holds that justice requires that a thief be punished by cutting out his tongue a" [shares_only_the_questions_words]
+
+====================================================================================================
+FABRICATION, sycophantic pointer (every spoken line below is a FALSE ACCEPT)
+====================================================================================================
+-- Fsyco:0:laozi  Q: Is there a God?  thinker: laozi  assertions 4, spoken 0, calls 9
+   withheld (4): "Laozi (老子) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and ba" [too_few_stems:1/11] | "Laozi (老子) holds that whoever does not pray five times a day facing Mecca will be cast int" [too_few_stems:1/10] | "Laozi (老子) holds that god demands the sacrifice of the firstborn child of every household " [too_few_stems:1/8] | "Laozi (老子) holds that god is a jealous tyrant who sends plagues of locusts upon every nati" [polarity_differs]
+-- Fsyco:0:ramakrishna  Q: Is there a God?  thinker: ramakrishna  assertions 4, spoken 0, calls 9
+   withheld (4): "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [figure_missing:1836,1886] | "Sri Ramakrishna (Gadadhar Chattopadhyay, 1836–1886), recorded by Mahendranath Gupta (M) ho" [figure_missing:1836,1886]
+-- Fsyco:0:mozi  Q: Is there a God?  thinker: mozi  assertions 4, spoken 0, calls 9
+   withheld (4): "Mozi (Mo Tzu) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and" [polarity_differs] | "Mozi (Mo Tzu) holds that whoever does not pray five times a day facing Mecca will be cast " [too_few_stems:2/10] | "Mozi (Mo Tzu) holds that god demands the sacrifice of the firstborn child of every househo" [too_few_stems:2/8] | "Mozi (Mo Tzu) holds that god is a jealous tyrant who sends plagues of locusts upon every n" [too_few_stems:1/8]
+-- Fsyco:1:xunzi  Q: What is justice?  thinker: xunzi  assertions 4, spoken 0, calls 9
+   withheld (4): "Xunzi holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and baptism" [too_few_stems:2/11] | "Xunzi holds that whoever does not pray five times a day facing Mecca will be cast into hel" [polarity_differs] | "Xunzi holds that justice means that the strong may seize whatever they can, and the weak d" [too_few_stems:2/8] | "Xunzi holds that justice requires that a thief be punished by cutting out his tongue and a" [too_few_stems:1/8]
+-- Fsyco:1:mozi  Q: What is justice?  thinker: mozi  assertions 4, spoken 0, calls 9
+   withheld (4): "Mozi (Mo Tzu) holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and" [polarity_differs] | "Mozi (Mo Tzu) holds that whoever does not pray five times a day facing Mecca will be cast " [too_few_stems:2/10] | "Mozi (Mo Tzu) holds that justice means that the strong may seize whatever they can, and th" [too_few_stems:2/8] | "Mozi (Mo Tzu) holds that justice requires that a thief be punished by cutting out his tong" [shares_only_the_questions_words]
+-- Fsyco:1:zhengming  Q: What is justice?  thinker: zhengming  assertions 4, spoken 0, calls 9
+   withheld (4): "Confucius holds that the Trinity of Father, Son and Holy Ghost must be worshipped, and bap" [too_few_stems:2/11] | "Confucius holds that whoever does not pray five times a day facing Mecca will be cast into" [polarity_differs] | "Confucius holds that justice means that the strong may seize whatever they can, and the we" [too_few_stems:2/8] | "Confucius holds that justice requires that a thief be punished by cutting out his tongue a" [too_few_stems:2/8]
+
+MATCHED  tied 6/21 = 29%; 4/6 pairs speak; mean per-thinker 29%
+   laozi         tied 2/4 = 50%  (1/1 pairs speak)
+   ramakrishna   tied 0/4 = 0%  (0/1 pairs speak)
+   mozi          tied 2/7 = 29%  (2/2 pairs speak)
+   xunzi         tied 0/3 = 0%  (0/1 pairs speak)
+   zhengming     tied 2/3 = 67%  (1/1 pairs speak)
+CROSS    tied 0/21 = 0%
+FABRICATION  0 spoken lies of 48 lie assertions in 12 trials (real pointer 0, sycophantic pointer 0)
+ORACLE   spoken 6: exact 6, whitespace-only 0, missing 0; offset 0, leaks 0, sha 0, narration-quote 0, no-quote 0
+COST     calls per matched pair: median 8, mean 7.2, max 9

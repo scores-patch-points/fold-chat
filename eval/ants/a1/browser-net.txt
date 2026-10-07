@@ -1,0 +1,203 @@
+
+===== Who is the king of the UK?
+  0.7 200 https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=Who%20is%20the%20king%20of%20the%20UK%3F
+  1.2 200 https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=
+  1.2 200 https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitre
+  1.2 200 https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimi
+  1.3 200 https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=
+  1.3 200 https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimi
+  1.4 200 https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=
+  1.4 200 https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitre
+  1.5 200 https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimi
+  1.5 net::ERR_FAILED http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  1.5 net::ERR_FAILED http://www.trouserpress.com/entry.php?a=king
+  1.6 200 https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitre
+  1.6 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  1.6 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/http://www.trouserpress.com/entry.php?a=king
+  1.6 net::ERR_FAILED https://cors.eu.org/http://www.trouserpress.com/entry.php?a=king
+  1.6 net::ERR_FAILED https://cors.eu.org/http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  1.6 401 corsproxy.io -> http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  1.6 401 corsproxy.io -> http://www.trouserpress.com/entry.php?a=king
+  1.6 net::ERR_FAILED api.allorigins.win -> http://www.trouserpress.com/entry.php?a=king
+  1.8 500 holodeck-proxy.prometheoid.workers.dev -> http://www.trouserpress.com/entry.php?a=king
+  2.3 200 holodeck-proxy.prometheoid.workers.dev -> http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  2.4 net::ERR_ABORTED api.allorigins.win -> http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  2.4 net::ERR_ABORTED api.codetabs.com -> http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178
+  5.0 net::ERR_ABORTED api.codetabs.com -> http://www.trouserpress.com/entry.php?a=king
+  5.2 401 https://r.jina.ai/http://www.trouserpress.com/entry.php?a=king
+  5.2 429 api.microlink.io -> http://www.trouserpress.com/entry.php?a=king
+FEED: details●Read your question  — question of fact details●Searched the web 1.2s — 10 results via DuckDuckGo details●Asked Wikipedia  — 35 results details●Chose where to look  — the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref) details●Read look-alike pages last  — 3 pages named for something else that shares the name: Succession to the British throne; Charles III - Wikipedia details●Set aside off-topic results  — 1 result did not match the ask details●Read Wikipedia — Monarchy of the United Kingdom  — kept 998 of 24,000 chars details●Read Wikipedia — The Kid Who Would Be King  — kept 1,318 of 7,661 chars details●Read Wikipedia — Paul King (VJ)  — kept 1,801 of 3,530 chars details●Read Wikipedia — The Man Who Would Be King (film)  — kept 2,339 of 12,744 chars details●Read Wikipedia — King (new wave band)  — kept 747 of 3,094 chars details↻The encyclopedia only points
+
+===== How tall is the Eiffel Tower?
+  0.0 200 https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20tall%20is%20the%20Eiffel%20Tower%3F
+  0.5 net::ERR_FAILED https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.5 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.5 net::ERR_FAILED https://cors.eu.org/https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.5 401 corsproxy.io -> https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.6 net::ERR_FAILED https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.6 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.6 200 holodeck-proxy.prometheoid.workers.dev -> https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.6 net::ERR_FAILED https://cors.eu.org/https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.6 401 corsproxy.io -> https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.6 net::ERR_ABORTED api.allorigins.win -> https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.6 net::ERR_ABORTED api.codetabs.com -> https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html
+  0.7 200 holodeck-proxy.prometheoid.workers.dev -> https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.8 net::ERR_ABORTED api.allorigins.win -> https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.8 net::ERR_ABORTED api.codetabs.com -> https://www.britannica.com/topic/Eiffel-Tower-Paris-France
+  0.8 200 https://geographyworlds.com/blog/eiffel-tower-paris-landmark-guide/
+  1.2 net::ERR_FAILED https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  1.2 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  1.2 401 corsproxy.io -> https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  1.2 net::ERR_FAILED https://cors.eu.org/https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  1.9 200 holodeck-proxy.prometheoid.workers.dev -> https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  2.0 net::ERR_ABORTED api.allorigins.win -> https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  2.0 net::ERR_ABORTED api.codetabs.com -> https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/
+  2.2 200 https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&or
+  2.4 200 https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&or
+  2.5 200 https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&or
+FEED: details●Read your question  — question of fact details●Searched the web  — 10 results via DuckDuckGo details●Asked Wikipedia  — 20 results details●Chose where to look  — the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref) details●Read look-alike pages last  — 4 pages named for something else that shares the name: Eiffel Tower information : facts, heigh…; Eiffel Tower Height: 330m (1,083 ft) -… details●Read en.wikipedia.org — Eiffel Tower - Wikipedia  — kept 2,907 of 24,000 chars details●Read worldatlas.com — How Tall Is the Eiffel Tower? - WorldAtlas  — 2,784 chars details●Read britannica.com — Eiffel Tower | History, Height, & Facts | Britannica  — kept 990 of 5,791 chars details●Read eiffel-tower.tours — How Tall Is the Eiffel Tower? Height, Floors & Steps 1.4s — kept 1,187 of 13,026 chars details●Read geographyworlds.com — Eiffel Tower Height: 330 Meters Tall | 
+
+===== What is the capital of Australia?
+  0.8 200 https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=What%20is%20the%20capital%20of%20Australia%3F
+  1.3 net::ERR_FAILED https://www.mappr.co/capital-cities/australia/
+  1.3 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.mappr.co/capital-cities/australia/
+  1.4 200 holodeck-proxy.prometheoid.workers.dev -> https://www.mappr.co/capital-cities/australia/
+  1.5 401 corsproxy.io -> https://www.mappr.co/capital-cities/australia/
+  1.6 net::ERR_ABORTED api.allorigins.win -> https://www.mappr.co/capital-cities/australia/
+  1.6 net::ERR_ABORTED api.codetabs.com -> https://www.mappr.co/capital-cities/australia/
+  1.6 net::ERR_ABORTED corsproxy.io -> https://www.mappr.co/capital-cities/australia/
+  1.6 net::ERR_ABORTED https://cors.eu.org/https://www.mappr.co/capital-cities/australia/
+  1.8 200 https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimit
+  1.8 200 https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablel
+  1.8 200 https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitrepor
+  1.9 200 https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimit
+  1.9 200 https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablel
+  1.9 200 https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitrepor
+  2.0 200 https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimit
+  2.0 200 https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablel
+  2.1 200 https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitrepor
+  2.4 net::ERR_FAILED https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  2.4 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  2.4 net::ERR_FAILED https://cors.eu.org/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  2.4 401 corsproxy.io -> https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  2.6 200 holodeck-proxy.prometheoid.workers.dev -> https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  5.9 net::ERR_ABORTED api.allorigins.win -> https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  5.9 net::ERR_ABORTED api.codetabs.com -> https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  6.0 401 https://r.jina.ai/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+  6.0 429 api.microlink.io -> https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.1 net::ERR_FAILED https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.1 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.2 net::ERR_FAILED https://cors.eu.org/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.2 401 corsproxy.io -> https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.3 net::ERR_FAILED api.codetabs.com -> https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 10.4 429 holodeck-proxy.prometheoid.workers.dev -> https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 13.6 net::ERR_ABORTED api.allorigins.win -> https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 13.7 429 api.microlink.io -> https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+ 13.8 401 https://r.jina.ai/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html
+FEED: details●Read your question  — question of fact details●Searched the web 1.2s — 10 results via DuckDuckGo details●Asked Wikipedia  — 33 results details●Chose where to look  — the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref) details●Read look-alike pages last  — 5 pages named for something else that shares the name: Question; Canberra details●Read Wikipedia — Australian Capital Territory  — kept 1,937 of 24,000 chars details●Read Wikipedia — List of Australian capital cities  — 1,055 chars details●Read Wikipedia — Capital punishment in Australia  — kept 2,970 of 22,640 chars details●Read Wikipedia — Chief Minister of the Australian Capital Territory  — 2,360 chars details●Read mappr.co — What is the Capital of Australia? - Mappr  — kept 1,767 of 8,764 chars details↻The encyclopedia only points  — it cites nothing for this sentence. details↻The encyclopedia only po
+
+===== How many legs does a spider have?
+  0.0 200 https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20many%20legs%20does%20a%20spider%20have%3F
+  0.5 net::ERR_FAILED https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  0.5 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  0.5 net::ERR_FAILED https://cors.eu.org/https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  0.5 401 corsproxy.io -> https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  0.6 net::ERR_FAILED https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.6 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.7 net::ERR_FAILED https://cors.eu.org/https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.7 401 corsproxy.io -> https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.7 net::ERR_FAILED https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  0.7 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  0.7 401 corsproxy.io -> https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  0.7 net::ERR_FAILED https://cors.eu.org/https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  0.7 200 holodeck-proxy.prometheoid.workers.dev -> https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.8 net::ERR_ABORTED api.allorigins.win -> https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.8 net::ERR_ABORTED api.codetabs.com -> https://www.spiderpedia.com/how-many-legs-do-spiders-have/
+  0.8 net::ERR_FAILED https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  0.8 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  0.9 401 corsproxy.io -> https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  0.9 200 holodeck-proxy.prometheoid.workers.dev -> https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  0.9 net::ERR_FAILED https://cors.eu.org/https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  1.0 200 holodeck-proxy.prometheoid.workers.dev -> https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  1.0 net::ERR_ABORTED api.allorigins.win -> https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  1.0 net::ERR_ABORTED api.codetabs.com -> https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html
+  1.0 net::ERR_ABORTED api.allorigins.win -> https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  1.0 net::ERR_ABORTED api.codetabs.com -> https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html
+  1.4 200 holodeck-proxy.prometheoid.workers.dev -> https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  1.4 net::ERR_ABORTED api.allorigins.win -> https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  1.4 net::ERR_ABORTED api.codetabs.com -> https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html
+  1.6 200 https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&
+  1.8 200 https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&
+  1.9 302 https://doi.org/10.1155%2F1965%2F17894
+  1.9 200 https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20anatomy&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&
+  2.0 net::ERR_FAILED https://onlinelibrary.wiley.com/doi/10.1155/1965/17894
+  2.0 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://doi.org/10.1155%2F1965%2F17894
+  2.0 401 corsproxy.io -> https://doi.org/10.1155%2F1965%2F17894
+  2.0 net::ERR_FAILED https://cors.eu.org/https://doi.org/10.1155%2F1965%2F17894
+  2.1 403 holodeck-proxy.prometheoid.workers.dev -> https://doi.org/10.1155%2F1965%2F17894
+  5.5 net::ERR_ABORTED api.allorigins.win -> https://doi.org/10.1155%2F1965%2F17894
+  5.5 net::ERR_ABORTED api.codetabs.com -> https://doi.org/10.1155%2F1965%2F17894
+  5.6 401 https://r.jina.ai/https://doi.org/10.1155%2F1965%2F17894
+  5.6 429 api.microlink.io -> https://doi.org/10.1155%2F1965%2F17894
+FEED: details●Read your question  — question of fact details●Searched the web  — 9 results via DuckDuckGo details●Asked Wikipedia  — 20 results details●Chose where to look  — the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref) details●Read look-alike pages last  — 2 pages named for something else that shares the name: Arachnid - Wikipedia; Skipping-rope rhyme details●Read worldatlas.com — How Many Legs Does A Spider Have? - WorldAtlas 1.0s — kept 537 of 7,309 chars details●Read en.wikipedia.org — Spider anatomy - Wikipedia  — kept 586 of 14,342 chars details●Read animalwised.com — How Many Legs Does a Spider Have? - AnimalWised  — kept 500 of 7,140 chars details●Read spiderpedia.com — How Many Legs Do Spiders Have? Spider Anatomy Guide  — kept 167 of 11,431 chars details●Read worldatlas.com — How Many Legs Does A Spider Have? - WorldAtlas  — 2,457 chars details↻The encyc
+
+===== When did Marie Curie die?
+  0.0 200 https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=When%20did%20Marie%20Curie%20die%3F
+  0.5 net::ERR_FAILED https://www.britannica.com/biography/Marie-Curie
+  0.5 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.britannica.com/biography/Marie-Curie
+  0.6 net::ERR_FAILED https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.6 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.6 net::ERR_FAILED https://cors.eu.org/https://www.britannica.com/biography/Marie-Curie
+  0.6 401 corsproxy.io -> https://www.britannica.com/biography/Marie-Curie
+  0.6 net::ERR_FAILED https://cors.eu.org/https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.6 401 corsproxy.io -> https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.7 net::ERR_FAILED api.codetabs.com -> https://www.britannica.com/biography/Marie-Curie
+  0.7 200 holodeck-proxy.prometheoid.workers.dev -> https://www.britannica.com/biography/Marie-Curie
+  0.7 200 holodeck-proxy.prometheoid.workers.dev -> https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.7 net::ERR_FAILED api.codetabs.com -> https://www.britannica.com/question/How-did-Marie-Curie-die
+  0.7 net::ERR_ABORTED api.allorigins.win -> https://www.britannica.com/biography/Marie-Curie
+  0.7 net::ERR_ABORTED api.allorigins.win -> https://www.britannica.com/question/How-did-Marie-Curie-die
+  1.2 net::ERR_FAILED https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  1.2 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  1.3 401 corsproxy.io -> https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  1.3 net::ERR_FAILED https://cors.eu.org/https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  1.3 net::ERR_FAILED api.codetabs.com -> https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  2.1 200 holodeck-proxy.prometheoid.workers.dev -> https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  2.2 net::ERR_ABORTED holodeck-proxy.prometheoid.workers.dev -> https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  2.2 net::ERR_ABORTED api.allorigins.win -> https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/
+  2.3 200 https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&ori
+  2.4 200 https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&ori
+  2.5 net::ERR_FAILED https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.5 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.5 401 corsproxy.io -> https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.6 net::ERR_FAILED https://cors.eu.org/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.6 200 https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&ori
+  2.6 200 holodeck-proxy.prometheoid.workers.dev -> https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.7 net::ERR_ABORTED api.allorigins.win -> https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.7 net::ERR_ABORTED api.codetabs.com -> https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all
+  2.8 net::ERR_FAILED http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  2.8 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  2.8 401 corsproxy.io -> http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  2.8 net::ERR_FAILED https://cors.eu.org/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  3.2 200 holodeck-proxy.prometheoid.workers.dev -> http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  3.2 net::ERR_ABORTED api.allorigins.win -> http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  3.2 net::ERR_ABORTED api.codetabs.com -> http://www2.lbl.gov/abc/wallchart/chapters/03/4.html
+  3.3 net::ERR_FAILED https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  3.3 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  3.3 net::ERR_FAILED https://cors.eu.org/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  3.3 401 corsproxy.io -> https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  3.8 404 holodeck-proxy.prometheoid.workers.dev -> https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  6.8 net::ERR_ABORTED api.allorigins.win -> https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  6.8 net::ERR_ABORTED api.codetabs.com -> https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  7.0 429 api.microlink.io -> https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+  7.0 401 https://r.jina.ai/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 11.1 net::ERR_FAILED https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 11.1 net::ERR_NAME_NOT_RESOLVED https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 11.1 401 corsproxy.io -> https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 11.1 net::ERR_FAILED https://cors.eu.org/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 11.5 429 holodeck-proxy.prometheoid.workers.dev -> https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 14.6 net::ERR_ABORTED api.allorigins.win -> https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 14.6 net::ERR_ABORTED api.codetabs.com -> https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 14.8 401 https://r.jina.ai/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+ 14.8 429 api.microlink.io -> https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html
+FEED: details●Read your question  — question of fact details●Searched the web 1.2s — 9 results via DuckDuckGo details●Asked Wikipedia  — 20 results details●Chose where to look  — the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref) details●Read look-alike pages last  — 5 pages named for something else that shares the name: How did Marie Curie die? | Britannica; Marie Curie: Biography, Scientist, Nobe… details●Set aside off-topic results  — 4 results did not match the ask details●Read en.wikipedia.org — Marie Curie - Wikipedia  — kept 2,961 of 24,000 chars details●Read britannica.com — Marie Curie | Biography, Nobel Prize, Accomplishments, & Fa…  — kept 1,844 of 7,093 chars details●Read nobelprize.org — Marie Curie - Questions and answers - NobelPrize.org 1.8s — kept 973 of 4,030 chars details●Read Wikipedia — Marie-Louise Loubet  — 1,021 chars details●Read britannica.com 

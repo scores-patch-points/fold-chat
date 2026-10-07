@@ -1,0 +1,5 @@
+import * as O from "../../../fold-chat-origin.js";
+const page = { url: "https://www.britannica.com/animal/spider-arachnid", title: "Spider", text: "Spiders, belonging to the order Araneae, are arachnids distinguished by having eight legs, unlike insects, which have six. Insects have six legs, while spiders have eight." };
+for (const c of ["Spiders typically have eight walking legs (insects have six).", "Spiders have eight legs.", "A spider has eight legs.", "How many legs does a spider have? Eight."]) { const s = O.supportOf(c, page, { forWhom: "How many legs does a spider have?" }); console.log(JSON.stringify({ c, verdict: s.verdict, why: s.why, detail: s.detail, rung: s.rung, filler: s.filler, sentence: s.sentence })); }
+const r = await O.readFrame("How many legs does a spider have?", { fetchImpl: fetch }); console.log("frame:", JSON.stringify(r)?.slice(0, 300));
+for (const c of ["Spiders have eight legs.", "A spider has eight legs."]) { const s = O.supportOf(c, page, { forWhom: "How many legs does a spider have?", reading: r }); console.log(JSON.stringify({ withFrame: c, verdict: s.verdict, why: s.why, detail: s.detail, rung: s.rung })); }

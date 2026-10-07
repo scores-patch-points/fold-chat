@@ -1,0 +1,506 @@
+[
+ {
+  "ask": "Who is the king of the UK?",
+  "hits": [
+   "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+   "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+   "https://en.wikipedia.org/wiki/Succession_to_the_British_throne"
+  ],
+  "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+  "readOk": true,
+  "textLen": 24000,
+  "claims": [
+   "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as the head of state, with their powers regulated by the British constitution.",
+   "The term may also refer to the role of the royal family within the United Kingdom's broader political structure.",
+   "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II."
+  ],
+  "index": {
+   "title": "Monarchy of the United Kingdom",
+   "blocks": 1495,
+   "notes": 132,
+   "withUrl": 88,
+   "hosts": 41
+  },
+  "perClaim": [
+   {
+    "claim": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as the head of state, with their powers regulated by the British constitution.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "The term may also refer to the role of the royal family within the United Kingdom's broader political structure.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   }
+  ],
+  "public": {
+   "ms": 319,
+   "trails": [
+    {
+     "claim": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used b",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "The term may also refer to the role of the royal family within the United Kingdom's broader politica",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his ",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    }
+   ],
+   "appended": 0
+  }
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "hits": [
+   "https://en.wikipedia.org/wiki/Eiffel_Tower",
+   "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+   "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory"
+  ],
+  "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+  "readOk": true,
+  "textLen": 24000,
+  "claims": [
+   "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.",
+   "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+   "Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was constructed as the centrepiece of the 1889 World's Fair, and to crown the centennial anniversary of the French Revolution."
+  ],
+  "index": {
+   "title": "Eiffel Tower",
+   "blocks": 1482,
+   "notes": 131,
+   "withUrl": 97,
+   "hosts": 58
+  },
+  "perClaim": [
+   {
+    "claim": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.",
+    "located": false,
+    "marks": null,
+    "refsUnderSentence": [],
+    "reads": []
+   },
+   {
+    "claim": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was constructed as the centrepiece of the 1889 World's Fair, and to crown the centennial anniversary of the French Revolution.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   }
+  ],
+  "public": {
+   "ms": 198,
+   "trails": [
+    {
+     "claim": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars",
+     "status": "unlocated",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 ",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was cons",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    }
+   ],
+   "appended": 0
+  }
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "hits": [
+   "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+   "https://en.wikipedia.org/wiki/Question",
+   "https://en.wikipedia.org/wiki/Canberra"
+  ],
+  "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+  "readOk": true,
+  "textLen": 1055,
+  "claims": [
+   "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory.",
+   "One of these, Canberra, is also the national capital.",
+   "Section 125 of the Constitution of Australia specified that the seat of the national government, that is, the national capital, would be in its own territory within New South Wales, at least 100 miles (161 km) from Sydney."
+  ],
+  "index": {
+   "title": "List of Australian capital cities",
+   "blocks": 262,
+   "notes": 3,
+   "withUrl": 3,
+   "hosts": 2
+  },
+  "perClaim": [
+   {
+    "claim": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "One of these, Canberra, is also the national capital.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "Section 125 of the Constitution of Australia specified that the seat of the national government, that is, the national capital, would be in its own territory within New South Wales, at least 100 miles (161 km) from Sydney.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   }
+  ],
+  "public": {
+   "ms": 97,
+   "trails": [
+    {
+     "claim": "There are eight capital cities in Australia, each of which functions as the seat of government for i",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "One of these, Canberra, is also the national capital.",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "Section 125 of the Constitution of Australia specified that the seat of the national government, tha",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    }
+   ],
+   "appended": 0
+  }
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "hits": [
+   null
+  ],
+  "url": "https://en.wikipedia.org/wiki/Spider_anatomy",
+  "readOk": true,
+  "textLen": 14342,
+  "claims": [
+   "The anatomy of spiders includes many characteristics shared with other arachnids.",
+   "These characteristics include bodies divided into two tagmata (sections or segments), eight jointed legs, no wings or antennae, the presence of chelicerae and pedipalps, simple eyes, and an exoskeleton, which is periodically shed.",
+   "Spiders also have several adaptations that distinguish them from other arachnids."
+  ],
+  "index": {
+   "title": "Spider anatomy",
+   "blocks": 167,
+   "notes": 17,
+   "withUrl": 9,
+   "hosts": 7
+  },
+  "perClaim": [
+   {
+    "claim": "The anatomy of spiders includes many characteristics shared with other arachnids.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "These characteristics include bodies divided into two tagmata (sections or segments), eight jointed legs, no wings or antennae, the presence of chelicerae and pedipalps, simple eyes, and an exoskeleton, which is periodically shed.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   },
+   {
+    "claim": "Spiders also have several adaptations that distinguish them from other arachnids.",
+    "located": true,
+    "marks": [],
+    "refsUnderSentence": [],
+    "bodyFallback": null,
+    "reads": []
+   }
+  ],
+  "public": {
+   "ms": 168,
+   "trails": [
+    {
+     "claim": "The anatomy of spiders includes many characteristics shared with other arachnids.",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "These characteristics include bodies divided into two tagmata (sections or segments), eight jointed ",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    },
+    {
+     "claim": "Spiders also have several adaptations that distinguish them from other arachnids.",
+     "status": "no-reference",
+     "refs": 0,
+     "tried": []
+    }
+   ],
+   "appended": 0
+  }
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "hits": [
+   "https://en.wikipedia.org/wiki/Marie_Curie",
+   "https://en.wikipedia.org/wiki/%C3%88ve_Curie",
+   "https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie"
+  ],
+  "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+  "readOk": true,
+  "textLen": 24000,
+  "claims": [
+   "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+   "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\".",
+   "She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium, by the isolation of radium and the study of the nature and compounds of this remarkable element\"."
+  ],
+  "index": {
+   "title": "Marie Curie",
+   "blocks": 857,
+   "notes": 129,
+   "withUrl": 113,
+   "hosts": 60
+  },
+  "perClaim": [
+   {
+    "claim": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+    "located": true,
+    "marks": [
+     null,
+     1,
+     null
+    ],
+    "refsUnderSentence": [
+     {
+      "n": null,
+      "host": "",
+      "url": null,
+      "archived": null,
+      "label": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ"
+     },
+     {
+      "n": 1,
+      "host": "archive.nytimes.com",
+      "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+      "archived": null,
+      "label": "Mme. Curie is dead – Martyr to Science"
+     },
+     {
+      "n": null,
+      "host": "",
+      "url": null,
+      "archived": null,
+      "label": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ"
+     }
+    ],
+    "reads": [
+     {
+      "n": null,
+      "host": "",
+      "url": null,
+      "archived": null,
+      "skip": "no page (book/print)"
+     },
+     {
+      "n": 1,
+      "host": "archive.nytimes.com",
+      "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+      "archived": null,
+      "ms": 197,
+      "ok": true,
+      "via": "direct",
+      "len": 13858,
+      "verdict": "undecidable",
+      "why": "cross-language",
+      "detail": "4",
+      "supportClaimUsed": "(née Skłodowska; 7 November 1867 – 4 July 1934),",
+      "pageSentence": "",
+      "verdictFullSentence": "undecidable/figure"
+     },
+     {
+      "n": null,
+      "host": "",
+      "url": null,
+      "archived": null,
+      "skip": "no page (book/print)"
+     }
+    ]
+   },
+   {
+    "claim": "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\".",
+    "located": true,
+    "marks": [
+     3
+    ],
+    "refsUnderSentence": [
+     {
+      "n": 3,
+      "host": "nobelprize.org",
+      "url": "http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+      "archived": "https://web.archive.org/web/20081017213248/http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+      "label": "The Nobel Prize in Physics 1903"
+     }
+    ],
+    "reads": [
+     {
+      "n": 3,
+      "host": "nobelprize.org",
+      "url": "http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+      "archived": "https://web.archive.org/web/20081017213248/http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+      "ms": 609,
+      "ok": true,
+      "via": "direct",
+      "len": 1478,
+      "verdict": "undecidable",
+      "why": "terms",
+      "detail": "shar, husband",
+      "supportClaimUsed": "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactiv",
+      "pageSentence": "",
+      "verdictFullSentence": "undecidable/terms"
+     }
+    ]
+   },
+   {
+    "claim": "She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium, by the isolation of radium and the study of the nature and compounds of this remarkable element\".",
+    "located": true,
+    "marks": [
+     4
+    ],
+    "refsUnderSentence": [
+     {
+      "n": 4,
+      "host": "nobelprize.org",
+      "url": "http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+      "archived": "https://web.archive.org/web/20081019170636/http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+      "label": "The Nobel Prize in Chemistry 1911"
+     }
+    ],
+    "reads": [
+     {
+      "n": 4,
+      "host": "nobelprize.org",
+      "url": "http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+      "archived": "https://web.archive.org/web/20081019170636/http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+      "ms": 570,
+      "ok": true,
+      "via": "direct",
+      "len": 1210,
+      "verdict": "same",
+      "detail": "",
+      "supportClaimUsed": "She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium, by the isolation of ",
+      "pageSentence": "The Nobel Prize in Chemistry 1911 was awarded to Marie Curie, née Skłodowska \"in recognition of her services to the advancement of chemistry",
+      "verdictFullSentence": "same"
+     }
+    ]
+   }
+  ],
+  "public": {
+   "ms": 300,
+   "trails": [
+    {
+     "claim": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Mari",
+     "status": "unsupported",
+     "refs": 3,
+     "tried": [
+      {
+       "n": null,
+       "host": "",
+       "read": false,
+       "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+      },
+      {
+       "n": null,
+       "host": "",
+       "read": false,
+       "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+      },
+      {
+       "n": 1,
+       "host": "archive.nytimes.com",
+       "read": true,
+       "verdict": "undecidable",
+       "why": "the page was read; this claim makes no difference to it (cross-language)"
+      }
+     ]
+    },
+    {
+     "claim": "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint research",
+     "status": "unsupported",
+     "refs": 1,
+     "tried": [
+      {
+       "n": 3,
+       "host": "nobelprize.org",
+       "read": true,
+       "verdict": "undecidable",
+       "why": "the page was read; this claim makes no difference to it (terms)"
+      }
+     ]
+    },
+    {
+     "claim": "She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium, ",
+     "status": "origin",
+     "refs": 1,
+     "tried": [
+      {
+       "n": 4,
+       "host": "nobelprize.org",
+       "read": true,
+       "verdict": "same"
+      }
+     ]
+    }
+   ],
+   "appended": 1
+  }
+ }
+]

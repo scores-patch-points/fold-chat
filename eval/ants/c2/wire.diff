@@ -1,0 +1,134 @@
+--- a/server.mjs	2026-10-06 16:05:03
++++ b/server.mjs	2026-10-06 16:05:04
+@@ -36,6 +36,7 @@
+ import os from "node:os";
+ import path from "node:path";
+ import { fileURLToPath, pathToFileURL } from "node:url";
++import { createVoicesHost } from "./fold-chat-voiceshost.mjs";
+ 
+ export const DEFAULT_PORT = 8814;
+ export const DEFAULT_HOST = "127.0.0.1";
+@@ -174,6 +175,7 @@
+ export async function createFoldServer({ port = DEFAULT_PORT, host = DEFAULT_HOST, root = HERE, heimdall, heimdallOptions = {}, env = process.env, log = () => {}, onListening, mountWaitMs = 15000 } = {}) {
+   const rootDir = path.resolve(root);
+   const realRoot = fs.realpathSync(rootDir);
++  const voicesHost = createVoicesHost({ root: rootDir });   // fold-chat-voiceshost.mjs: no model, no network; reads voice/thinkers-profile.json and the canon files (sha256-checked)
+   let hm = null;
+   let mountError = null;
+   let settled = heimdall === false;   // false from listen until the mount settles (either way)
+@@ -214,6 +216,11 @@
+       res.setHeader("content-security-policy", "frame-ancestors 'self'");
+       res.setHeader("x-frame-options", "SAMEORIGIN");
+       if (!hostAllowed(req.headers.host, server.address()?.port, env)) return send(res, 421, "misdirected request");
++      // 2b. voices on this question (fold-chat-voices.js): GET only, behind the same loopback Host wall; the question is read from ?q=, never from the path; the answer is JSON data, never HTML.
++      if (req.method === "GET" && /^\/fold\/api\/voices(\?|$)/.test(req.url)) {
++        const q = new URL(req.url, "http://localhost").searchParams.get("q") || "";
++        return sendJson(res, 200, voicesHost.ask(q.slice(0, 300)));
++      }
+       await serveStatic(req, res, rootDir, realRoot);
+     } catch (e) {
+       log(`request: ${e?.message || e}`);
+--- a/fold-chat.js	2026-10-06 16:05:03
++++ b/fold-chat.js	2026-10-06 16:05:04
+@@ -46,6 +46,7 @@
+ import { pre as watchPre, post as watchPost, wantLine, batonReply, inspectReply, keepOnTopic, withoutAppAnswered } from "./fold-chat-watch.js";
+ // WHERE THE ANSWER CAME FROM, said mechanically: a second model call POINTS at a source sentence; the app verifies it, snips it and narrates around it (docs/VOICE.md)
+ import { provenanceFor, provenanceEnabled } from "./fold-chat-provenance.js";
++import { voicesEnabled, askVoices, voicesParts } from "./fold-chat-voiceswire.js";
+ import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
+ import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
+ import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
+\ No newline at end of file
+@@ -988,7 +989,7 @@
+     E.threadCol.innerHTML = "";
+     const msgs = s?.messages || [];
+     setView(!msgs.length);
+-    for (let i = 0; i < msgs.length; i++) appendMsg(s, msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, notices: msgs[i].notices, void: msgs[i].void, model: s?.model, cwd: msgs[i].cwd, authored: msgs[i].authored, snips: msgs[i].snips, answerTurn: msgs[i].answerTurn, provenance: msgs[i].provenance });
++    for (let i = 0; i < msgs.length; i++) appendMsg(s, msgs[i].role, msgs[i].content, { sealed: msgs[i].sealed, index: i, grounding: msgs[i].grounding, notices: msgs[i].notices, void: msgs[i].void, model: s?.model, cwd: msgs[i].cwd, authored: msgs[i].authored, snips: msgs[i].snips, answerTurn: msgs[i].answerTurn, provenance: msgs[i].provenance, voices: msgs[i].voices });
+     // A turn still running in this chat: hang its live row back on the thread
+     // (the row is the run's own node, so what it streamed while we were away is
+     // still in it) and re-point the stage line at it.
+\ No newline at end of file
+@@ -1302,6 +1303,21 @@
+       } else box.append(box.childNodes.length ? " " : "", el("span", "prov-app", part.text));
+     }
+     if (prov.verified === 0) box.classList.add("prov-none");
++    body.append(box);
++  }
++
++  // VOICES ON THIS QUESTION (fold-chat-voices.js): several thinkers' OWN verbatim sentences under the answer, each framed by the app. No model wrote any of it (voicesParts is the stored record, templates only).
++  function renderVoices(body, stored) {
++    const parts = voicesParts(stored);
++    if (!parts.length) return;
++    const box = el("div", "voices");
++    box.setAttribute("role", "note");
++    for (const p of parts) {
++      if (p.kind === "line") box.append(el("div", "voices-line", p.text));
++      else if (p.kind === "frame") box.append(el("div", "voices-frame", p.text));
++      else if (p.kind === "quote") box.append(el("q", "voices-q", p.text));
++      else if (p.kind === "cite" && p.text) box.append(el("div", "voices-cite", p.text));
++    }
+     body.append(box);
+   }
+ 
+\ No newline at end of file
+@@ -1463,6 +1479,7 @@
+       // the one "how this was answered" line sits right under the answer; the
+       // (hover-only) actions come last
+       renderProvenance(body, meta.provenance);
++      renderVoices(body, meta.voices);
+       if (showDisclosure && meta.grounding && meta.grounding.code) renderCodeDisclosure(body, meta.grounding, meta);
+       else if (showDisclosure && meta.grounding && meta.grounding.generate) renderGenerateDisclosure(body, meta.grounding, meta);
+       else if (showDisclosure && meta.grounding) renderDisclosure(body, meta.grounding, meta);
+\ No newline at end of file
+@@ -2383,6 +2400,13 @@
+         discourseWatch = { relation: aw.relation, want: aw.want, flags: aw.flags.map((f) => f.flag), baton: aw.baton, ...(aw.detail ? { detail: aw.detail } : {}), ...(aw.appAnswered ? { appAnswered: true } : {}) };
+         if (aw.flags.length) feedPush(lineEvent(tt, "Discourse check", { tone: "warn", note: aw.flags.map((f) => f.flag.replace(/_/g, " ")).join(", ") + " \u2014 this turn read the conversation differently from how it answered" }));
+       } catch (e) { /* the watcher is an aid, never a reason to lose a turn */ }
++      // VOICES ON THIS QUESTION — default OFF (eval/ants/C2-RESULTS.md: every quote is the canon's own, but only about a third bear on the question). The server finds each candidate thinker's own sentence;
++      // the page checks it against the module's templates and draws it. Silence on any failure.
++      let voices = null;
++      if (voicesEnabled() && !strand && !slotTurn && !modelBarred && text.trim() && (kind === "research" || kind === "chat" || kind === "advice")) {
++        try { voices = await askVoices({ question, signal: ac.signal }); } catch (e) { if (ac.signal.aborted) throw e; }
++        if (voices) feedPush(lineEvent(tt, "Found voices that bear on this", { tone: "info", note: `${voices.voices.length} verbatim sentence${voices.voices.length === 1 ? "" : "s"} from their own canon \u2014 no model wrote any of it` }));
++      }
+       if (!provenance && srcRecall && srcRecall.provenance) provenance = srcRecall.provenance;   // the same source line, drawn again under this turn
+       if (aloneBarred) { const at = follow.mode === "cold-gap" ? { notice: coldFollowUpNotice() } : recall ? { notice: { kind: "alone", text: recall.text } } : srcRecall ? { notice: { kind: "alone", text: srcRecall.text } } : aloneTurn(noLookup ? "nolookup" : kind); if (at.notice) notices.push(at.notice); }
+       if (threadTurn && text.trim()) notices.push(threadNotice(threadTurn));
+\ No newline at end of file
+@@ -2565,7 +2589,7 @@
+       const storedSnips = strand ? strand.snips.map(storeSnip) : null;
+       const slotStored = slotTurn ? storeAnswerTurn(slotTurn) : null;   // plain JSON: survives a reload and the session merge as message.answerTurn
+       if (strand) { const chk = verifySnips(storedSnips, webPassages); if (!chk.ok) console.error("[fold-chat] a stored snip is not in its page — a bug:", chk.bad.map((b) => b.text.slice(0, 60))); }
+-      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, model: m.id, ...(pivotRes ? { pivot: storePivot(pivotRes) } : {}), ...(discourseWatch ? { watch: discourseWatch } : {}), ...(provenance ? { provenance } : {}), ...(strand ? { authored: "sources", ...(slotTurn ? { answerTurn: slotStored } : { snips: storedSnips }) } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
++      s.messages.push({ role: "assistant", content: text, at: now(), mode: "chat", answerMode, grounding: record, model: m.id, ...(pivotRes ? { pivot: storePivot(pivotRes) } : {}), ...(discourseWatch ? { watch: discourseWatch } : {}), ...(provenance ? { provenance } : {}), ...(voices ? { voices } : {}), ...(strand ? { authored: "sources", ...(slotTurn ? { answerTurn: slotStored } : { snips: storedSnips }) } : {}), ...(fellBack ? { fellBackFrom: fellBack.fellBackFrom, answerMode: "snips" } : {}), ...(notices.length ? { notices } : {}) });
+       s.sealed = !!m.sealed;
+       s.updated = now();
+       maybeName(s);
+\ No newline at end of file
+@@ -2581,7 +2605,7 @@
+       if (!isLive()) s.unseen = true;
+       save("fold-chat:sessions", sessions);
+       row.wrap.remove();
+-      if (isLive()) appendMsg(s, "assistant", text, { sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored, provenance });
++      if (isLive()) appendMsg(s, "assistant", text, { sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored, provenance, voices });
+     } catch (err) {
+       // A stop is a stop; ANYTHING else that died is stored as a typed, retry-able note on its own
+       // message (failTurn) — whether or not this chat is the open one.
+\ No newline at end of file
+--- a/index.html	2026-10-06 16:05:03
++++ b/index.html	2026-10-06 16:05:04
+@@ -420,6 +420,12 @@
+   .prov-app { color: var(--dim); }
+   .prov-q { font-style: italic; color: var(--ink2); quotes: none; }
+   .prov-q::before { content: "\201C"; } .prov-q::after { content: "\201D"; }
++  .voices { margin: 10px 0 2px; padding: 8px 12px; border-left: 2px solid var(--line); color: var(--ink2); font-size: var(--fs-sm); line-height: 1.55; max-width: 62ch; }
++  .voices-line { color: var(--dim); margin-bottom: 6px; }
++  .voices-frame { color: var(--dim); margin-top: 8px; }
++  .voices-q { display: block; font-style: italic; color: var(--ink2); quotes: none; }
++  .voices-q::before { content: "\201C"; } .voices-q::after { content: "\201D"; }
++  .voices-cite { color: var(--dim); font-size: var(--fs-xs, 0.85em); }
+   .prov-open { margin-left: 4px; font: var(--fs-xs)/1 var(--mono); color: var(--dim); text-decoration: none; }
+   .prov-open:hover { text-decoration: underline; }
+   .prov-none { border-left-color: var(--warn, #b7791f); }
+\ No newline at end of file

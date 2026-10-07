@@ -1,0 +1,199 @@
+{
+ "corpus": [
+  {
+   "id": "head-of-state",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "Emmanuel Macron has served as the president of France since 14 May 2017 ( Élysée (official French presidency website) )",
+   "gateRung": "consequence",
+   "gateHost": "ottawapress.org"
+  },
+  {
+   "id": "capital",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "Canberra, Australia’s small capital city",
+   "gateRung": "consequence",
+   "gateHost": "youtooproject.com"
+  },
+  {
+   "id": "height-everest",
+   "todayPlusGate": "magicalnepal.com",
+   "cls": "unlisted_passes_text",
+   "gateSentence": "The official Mount Everest height in feet is 29,031.7 ft , which equals 8,848.86 meters.",
+   "gateRung": "consequence",
+   "gateHost": "magicalnepal.com"
+  },
+  {
+   "id": "death-curie",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "Answer: Marie Curie died on 4 July 1934, in Savoy, France.",
+   "gateRung": "consequence",
+   "gateHost": "nobelprize.org"
+  },
+  {
+   "id": "count-senate",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "U.S. Senate - 100 Senators, Elections, Powers & Current Composition | VoteAtlas",
+   "gateRung": "bound",
+   "gateHost": "voteatlas.com"
+  },
+  {
+   "id": "definition-tsunami",
+   "todayPlusGate": null,
+   "cls": null
+  },
+  {
+   "id": "founding-un",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "Founding of the United Nations—San Francisco 1945.",
+   "gateRung": "bound",
+   "gateHost": "cfr.org"
+  },
+  {
+   "id": "award-einstein",
+   "todayPlusGate": "nobelprize.org",
+   "cls": "reach",
+   "gateSentence": "The Nobel Prize in Physics 1921 was awarded to Albert Einstein \"for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect\"",
+   "gateRung": "consequence",
+   "gateHost": "nobelprize.org"
+  },
+  {
+   "id": "event-apollo11",
+   "todayPlusGate": "nasa.gov",
+   "cls": "reach",
+   "gateSentence": "Watch highlights from the Apollo 11 mission including the launch on July 16, 1969, the landing of the lunar module, Neil Armstrong’s first steps on the Moon, splashdown, and more.",
+   "gateRung": "bound",
+   "gateHost": "nasa.gov"
+  },
+  {
+   "id": "distance-moon",
+   "todayPlusGate": "spaceplace.nasa.gov",
+   "cls": "reach",
+   "gateSentence": "The Moon is an average of 238,855 miles away from Earth, which is about 30 Earths away.",
+   "gateRung": "consequence",
+   "gateHost": "spaceplace.nasa.gov"
+  },
+  {
+   "id": "museum-monalisa",
+   "todayPlusGate": null,
+   "cls": null,
+   "gateSentence": "The Louvre displays the \"Mona Lisa\" in the middle of the room surrounded by a protective glass case, which is temperature and humidity-controlled.",
+   "gateRung": "consequence",
+   "gateHost": "grunge.com"
+  },
+  {
+   "id": "count-bones",
+   "todayPlusGate": "ubiehealth.com",
+   "cls": "unlisted_passes_text",
+   "gateSentence": "Adults typically have 206 bones, while babies are born with about 270.",
+   "gateRung": "bound",
+   "gateHost": "ubiehealth.com"
+  },
+  {
+   "id": "founding-harvard",
+   "todayPlusGate": "harvard.edu",
+   "cls": "reach",
+   "gateSentence": "On October 28, 1636, Harvard, the first college in the American colonies, was founded.",
+   "gateRung": "bound",
+   "gateHost": "harvard.edu"
+  },
+  {
+   "id": "height-eiffel",
+   "todayPlusGate": "eiffeltowertravel.com",
+   "cls": "unlisted_passes_text",
+   "gateSentence": "The Eiffel Tower's total height of 330 metres includes the broadcast antenna added to its summit.",
+   "gateRung": "consequence",
+   "gateHost": "eiffeltowertravel.com"
+  }
+ ],
+ "five": [
+  {
+   "ask": "Who is the king of the UK?",
+   "nogate": "bbc.com",
+   "gate": "bbc.com",
+   "tried": [
+    "undecidable royal.uk",
+    "undecidable britannica.com",
+    "different commonslibrary.parliament.uk",
+    "undecidable bbc.com",
+    "undecidable people.com",
+    "same bbc.com",
+    "undecidable calendar-uk.co.uk",
+    "undecidable historic-uk.com"
+   ]
+  },
+  {
+   "ask": "How tall is the Eiffel Tower?",
+   "nogate": "eiffeltowertravel.com",
+   "gate": "eiffeltowertravel.com",
+   "tried": [
+    "undecidable toureiffel.paris",
+    "undecidable worldatlas.com",
+    "different britannica.com",
+    "same eiffeltowertravel.com",
+    "same eiffel-tower.tours",
+    "different geographyworlds.com",
+    "same place-du-trocadero.fr",
+    "different thecollector.com"
+   ]
+  },
+  {
+   "ask": "What is the capital of Australia?",
+   "nogate": "mappr.co",
+   "gate": "mappr.co",
+   "tried": [
+    "same mappr.co",
+    "same britannica.com",
+    "same britannica.com",
+    "different insideaustraliatravel.com",
+    "same worldatlas.com",
+    "same mapsofworld.com",
+    "same countryaah.com",
+    "same dailypost.com.au"
+   ]
+  },
+  {
+   "ask": "How many legs does a spider have?",
+   "nogate": "worldatlas.com",
+   "gate": "worldatlas.com",
+   "tried": [
+    "same worldatlas.com",
+    "different animalwised.com",
+    "different spiderpedia.com",
+    "different worldatlas.com",
+    "same spiderzoon.com",
+    "same animalmedia.org",
+    "different spideridentifications.com"
+   ]
+  },
+  {
+   "ask": "When did Marie Curie die?",
+   "nogate": "britannica.com",
+   "gate": "nobelprize.org",
+   "tried": [
+    "same britannica.com",
+    "same britannica.com",
+    "different biography.com",
+    "same nobelprize.org",
+    "undecidable grunge.com",
+    "undecidable time.com"
+   ]
+  }
+ ],
+ "todayPlusGateTotals": {
+  "origins": 7,
+  "reach": 4,
+  "forbidden": 0,
+  "wrongFA": 0,
+  "unlistedPass": 3
+ },
+ "coldReadMs": {
+  "n": 126,
+  "p50": 866,
+  "over6000": 10
+ }
+}

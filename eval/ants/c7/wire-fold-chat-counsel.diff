@@ -1,0 +1,36 @@
+--- a/fold-chat-counsel.js
++++ b/fold-chat-counsel.js
+@@ -161,12 +161,13 @@
+ 
+ // ─────────────── the draft: Pythia, from the thinker's own sentences only ───────────────
+ 
+-export function draftMessages({ question, giver, work, material }) {
++export function draftMessages({ question, giver, work, material, context = "" }) {
+   const list = material.map((m) => `- ${m.text.replace(/\s+/g, " ")}`).join("\n");
+   const system = `You help say how ${giver} would answer a question, using ONLY the passages below, which are ${giver}'s own words from ${work}. `
+     + `Write 2 to 4 short sentences. Each sentence must state ONE thing that ${giver} says or holds in the passages, in plain words, and must begin with "${giver}". `
+     + "Do not use quotation marks. Do not add anything the passages do not say. If the passages do not address the question, reply with exactly: NOTHING";
+-  return [{ role: "system", content: system }, { role: "user", content: `PASSAGES\n${list}\n\nQUESTION\n${String(question ?? "").trim()}` }];
++  const ctx = String(context ?? "").trim();   // the shared ethos block's Atmosphere, as a fact about what the QUESTION refers to (fold-chat-ethos.js lane "counsel"); never the thinker's words
++  return [{ role: "system", content: system }, { role: "user", content: `PASSAGES\n${list}\n\n${ctx ? `WHAT THE QUESTION REFERS TO (not ${giver}'s words)\n${ctx}\n\n` : ""}QUESTION\n${String(question ?? "").trim()}` }];
+ }
+ 
+ /** The draft's reply as ASSERTIONS: its sentences, cleaned (list marks, quotation marks and any preamble line removed), at most `max`, without duplicates. */
+@@ -250,7 +251,7 @@
+ const isAbort = (e) => !!e && (e.name === "AbortError" || /abort|stopped/i.test(String(e.message || "")));
+ const abortError = () => Object.assign(new Error("aborted"), { name: "AbortError" });
+ 
+-export async function counselFor({ question, thinker, draft, point, fw = FWDEFAULT, limits = {} }) {
++export async function counselFor({ question, thinker, draft, point, fw = FWDEFAULT, limits = {}, context = "" }) {
+   const L = { ...COUNSEL, ...limits };
+   const signal = limits.signal || null;
+   const giver = String(thinker?.giver || thinker?.handle || "the thinker"), work = String(thinker?.work || "their work");
+@@ -280,7 +281,7 @@
+ 
+   // 2. the draft (Pythia)
+   let reply = "";
+-  try { reply = await ask(draft, "draft", draftMessages({ question, giver, work, material })); }
++  try { reply = await ask(draft, "draft", draftMessages({ question, giver, work, material, context })); }
+   catch (e) { if (isAbort(e)) throw e; return done([], { why: "draft_failed:" + String(e?.message || e).slice(0, 60) }); }
+   // 3. assertions
+   const texts = splitAssertions(reply, { max: L.maxAssertions, giver });

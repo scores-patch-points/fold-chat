@@ -1,0 +1,12 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -2150,7 +2150,7 @@
+         if (termsS) {
+           const exS = exchangesOf(s.messages.slice(0, askAt));
+           const continuesS = continuesThread({ follow, terms: termsS, lastExchange: exS[exS.length - 1] || null });
+-          promptHistory = salientHistory(promptHistory, { continues: continuesS });
++          promptHistory = salientHistory(promptHistory, { continues: continuesS, fw: fwS });
+           promptSummary = salientSummary(s.summary, { continues: continuesS, terms: termsS, exchanges: exS, flowOf: exchangeFlow, empty: FOLD.emptySummary() });
+           if (fromWeb && !webPassages.some((p) => p.recipe)) {
+             const sal = salientSources(webPassages, termsS);
+\ No newline at end of file

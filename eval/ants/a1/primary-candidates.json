@@ -1,0 +1,270 @@
+[
+ {
+  "ask": "king",
+  "u": "https://www.royal.uk/the-king",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/figure-binding",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 3894
+  }
+ },
+ {
+  "ask": "king",
+  "u": "https://www.royal.uk/",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/no-overlap",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 4157
+  }
+ },
+ {
+  "ask": "king",
+  "u": "https://www.royal.uk/the-royal-family",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 3745
+  }
+ },
+ {
+  "ask": "king",
+  "u": "https://www.gov.uk/government/organisations/royal-household",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 3720
+  }
+ },
+ {
+  "ask": "eiffel",
+  "u": "https://www.toureiffel.paris/en/the-monument/key-figures",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 465,
+   "verdict": "undecidable/figure",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "eiffel",
+  "u": "https://www.toureiffel.paris/en/the-monument",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 290,
+   "verdict": "undecidable/figure",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "eiffel",
+  "u": "https://www.toureiffel.paris/en/the-monument/tower-numbers",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 3725
+  }
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.australia.gov.au/states-and-territories",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/no-overlap",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 1076,
+   "verdict": "undecidable/no-overlap",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.aph.gov.au/About_Parliament/House_of_Representatives/Powers_practice_and_procedure/Practice7/HTML/Chapter1",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 4743
+  }
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.nca.gov.au/",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "different",
+   "sentence": "The Regatta Point building houses the Canberra and Region Visitors Centre, the National Capital Exhibition, Walter café "
+  },
+  "browser": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "ms": 4132
+  }
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.australia.gov.au/about-australia",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/no-overlap",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 258,
+   "verdict": "undecidable/no-overlap",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "spider",
+  "u": "https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/spider-myths/myth-eight-legs-always-means-spider",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/terms",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 2222,
+   "verdict": "undecidable/terms",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "spider",
+  "u": "https://www.britannica.com/animal/spider-arachnid",
+  "node": {
+   "ok": false,
+   "via": null
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 482,
+   "verdict": "different",
+   "sentence": "Insects have six legs, while spiders have eight."
+  }
+ },
+ {
+  "ask": "spider",
+  "u": "https://www.nhm.ac.uk/discover/spiders.html",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/terms",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 1023,
+   "verdict": "undecidable/terms",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "curie",
+  "u": "https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "same",
+   "sentence": "Answer: Marie Curie died on 4 July 1934, in Savoy, France."
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 348,
+   "verdict": "same",
+   "sentence": "Answer: Marie Curie died on 4 July 1934, in Savoy, France."
+  }
+ },
+ {
+  "ask": "curie",
+  "u": "https://www.nobelprize.org/prizes/physics/1903/marie-curie/biographical/",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/figure-binding",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "the fold's relay",
+   "ms": 264,
+   "verdict": "undecidable/figure-binding",
+   "sentence": ""
+  }
+ },
+ {
+  "ask": "curie",
+  "u": "https://www.nps.gov/people/manhattan-project-pioneers-marie-curie.htm",
+  "node": {
+   "ok": true,
+   "via": "direct",
+   "verdict": "undecidable/figure",
+   "sentence": ""
+  },
+  "browser": {
+   "ok": true,
+   "via": "direct",
+   "ms": 163,
+   "verdict": "undecidable/figure",
+   "sentence": ""
+  }
+ }
+]

@@ -1,0 +1,1928 @@
+{
+ "at": "2026-10-06T20:41:44.782Z",
+ "framed": false,
+ "framesRead": 0,
+ "summary": {
+  "min3 (the real module)": {
+   "trueAccepted": 11,
+   "trueTotal": 14,
+   "falseAccepts": [],
+   "decoyTotal": 56,
+   "trueMissed": [
+    "height-everest:undecidable/idle",
+    "founding-harvard:undecidable/unread-structure",
+    "height-eiffel:undecidable/idle"
+   ]
+  },
+  "min2-all (A1 copy)": {
+   "trueAccepted": 13,
+   "trueTotal": 14,
+   "falseAccepts": [],
+   "decoyTotal": 56,
+   "trueMissed": [
+    "founding-harvard:undecidable/unread-structure"
+   ]
+  },
+  "minSlot (Fix 1)": {
+   "trueAccepted": 13,
+   "trueTotal": 14,
+   "falseAccepts": [],
+   "decoyTotal": 56,
+   "trueMissed": [
+    "founding-harvard:undecidable/unread-structure"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "head-of-state",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Emmanuel Macron is the president of France.",
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Emmanuel Macron is the president of France.",
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Emmanuel Macron is the president of France.",
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Emmanuel Macron is not the president of France any longer in this alternative-history novel; Marine Le Pen is.",
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Emmanuel Macron is not the president of France any longer in this alternative-history novel; Marine Le Pen is.",
+   "framed": false
+  },
+  {
+   "id": "head-of-state",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Emmanuel Macron is not the president of France any longer in this alternative-history novel; Marine Le Pen is.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Canberra is the capital of Australia.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Canberra is the capital of Australia.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Canberra is the capital of Australia.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Many people think Sydney is the capital of Australia, but it is not; Canberra is, only since 1913.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Many people think Sydney is the capital of Australia, but it is not; Canberra is, only since 1913.",
+   "framed": false
+  },
+  {
+   "id": "capital",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Many people think Sydney is the capital of Australia, but it is not; Canberra is, only since 1913.",
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "idle",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Mount Everest is 8,848.86 metres tall, as announced by China and Nepal in 2020, making it the highest mountain above sea level.",
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Mount Everest is 8,848.86 metres tall, as announced by China and Nepal in 2020, making it the highest mountain above sea level.",
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "idle",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Mount Everest is not 8,848.86 metres tall by every measure; some surveys using the sea floor give far more.",
+   "framed": false
+  },
+  {
+   "id": "height-everest",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Mount Everest is not 8,848.86 metres tall by every measure; some surveys using the sea floor give far more.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Marie Curie died on 4 July 1934 at a sanatorium in Passy, France, of aplastic anaemia probably caused by radiation.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Marie Curie died on 4 July 1934 at a sanatorium in Passy, France, of aplastic anaemia probably caused by radiation.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Marie Curie died on 4 July 1934 at a sanatorium in Passy, France, of aplastic anaemia probably caused by radiation.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Marie Curie did not die on 4 July 1934 as the legend says in this fictional account; she lived to 1950.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Marie Curie did not die on 4 July 1934 as the legend says in this fictional account; she lived to 1950.",
+   "framed": false
+  },
+  {
+   "id": "death-curie",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Marie Curie did not die on 4 July 1934 as the legend says in this fictional account; she lived to 1950.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United States Senate has 100 senators, two from each of the fifty states, each serving a six-year term.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United States Senate has 100 senators, two from each of the fifty states, each serving a six-year term.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United States Senate has 100 senators, two from each of the fifty states, each serving a six-year term.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United States Senate does not have 100 senators during a vacancy period; fewer are seated.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United States Senate does not have 100 senators during a vacancy period; fewer are seated.",
+   "framed": false
+  },
+  {
+   "id": "count-senate",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United States Senate does not have 100 senators during a vacancy period; fewer are seated.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "A tsunami is a series of waves caused by the displacement of a large volume of water, generally in an ocean or a large lake, often by an earthquake.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "A tsunami is a series of waves caused by the displacement of a large volume of water, generally in an ocean or a large lake, often by an earthquake.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "A tsunami is a series of waves caused by the displacement of a large volume of water, generally in an ocean or a large lake, often by an earthquake.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "terms",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "A tsunami is not a series of waves caused by the displacement of a large volume of water in the film version.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "A tsunami is not a series of waves caused by the displacement of a large volume of water in the film version.",
+   "framed": false
+  },
+  {
+   "id": "definition-tsunami",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "A tsunami is not a series of waves caused by the displacement of a large volume of water in the film version.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United Nations was founded on 24 October 1945, when its Charter came into force after ratification by the major powers.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United Nations was founded on 24 October 1945, when its Charter came into force after ratification by the major powers.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The United Nations was founded on 24 October 1945, when its Charter came into force after ratification by the major powers.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United Nations was not founded on 24 October 1945 but on 26 June 1945 when the Charter was signed.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United Nations was not founded on 24 October 1945 but on 26 June 1945 when the Charter was signed.",
+   "framed": false
+  },
+  {
+   "id": "founding-un",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The United Nations was not founded on 24 October 1945 but on 26 June 1945 when the Charter was signed.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Albert Einstein won the 1921 Nobel Prize in Physics for his services to theoretical physics and the photoelectric effect.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Albert Einstein won the 1921 Nobel Prize in Physics for his services to theoretical physics and the photoelectric effect.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Albert Einstein won the 1921 Nobel Prize in Physics for his services to theoretical physics and the photoelectric effect.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "cross-language",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Albert Einstein did not win the 1921 Nobel Prize in Physics for relativity; that theory was never cited.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Albert Einstein did not win the 1921 Nobel Prize in Physics for relativity; that theory was never cited.",
+   "framed": false
+  },
+  {
+   "id": "award-einstein",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Albert Einstein did not win the 1921 Nobel Prize in Physics for relativity; that theory was never cited.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Apollo 11 landed on the Moon on 20 July 1969, and Neil Armstrong became the first person to walk on its surface.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Apollo 11 landed on the Moon on 20 July 1969, and Neil Armstrong became the first person to walk on its surface.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "Apollo 11 landed on the Moon on 20 July 1969, and Neil Armstrong became the first person to walk on its surface.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Apollo 11 did not land on the Moon on 20 July 1969 in this conspiracy video; the claim is a hoax.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Apollo 11 did not land on the Moon on 20 July 1969 in this conspiracy video; the claim is a hoax.",
+   "framed": false
+  },
+  {
+   "id": "event-apollo11",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Apollo 11 did not land on the Moon on 20 July 1969 in this conspiracy video; the claim is a hoax.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Moon is about 384,400 kilometres from Earth on average, which light covers in roughly 1.3 seconds.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Moon is about 384,400 kilometres from Earth on average, which light covers in roughly 1.3 seconds.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Moon is about 384,400 kilometres from Earth on average, which light covers in roughly 1.3 seconds.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Moon is not about 384,400 kilometres from Earth at perigee; it comes closer, near 363,000 kilometres.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Moon is not about 384,400 kilometres from Earth at perigee; it comes closer, near 363,000 kilometres.",
+   "framed": false
+  },
+  {
+   "id": "distance-moon",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Moon is not about 384,400 kilometres from Earth at perigee; it comes closer, near 363,000 kilometres.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Mona Lisa is on display at the Louvre in Paris, in the Salle des Etats on the first floor of the Denon wing.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Mona Lisa is on display at the Louvre in Paris, in the Salle des Etats on the first floor of the Denon wing.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Mona Lisa is on display at the Louvre in Paris, in the Salle des Etats on the first floor of the Denon wing.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "name-binding",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "name-binding",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "name-binding",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Mona Lisa is not on display at the Louvre during its closures; it is kept in a vault.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Mona Lisa is not on display at the Louvre during its closures; it is kept in a vault.",
+   "framed": false
+  },
+  {
+   "id": "museum-monalisa",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Mona Lisa is not on display at the Louvre during its closures; it is kept in a vault.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "An adult human has 206 bones, whereas a newborn baby has about 270 that fuse together during growth.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "An adult human has 206 bones, whereas a newborn baby has about 270 that fuse together during growth.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "An adult human has 206 bones, whereas a newborn baby has about 270 that fuse together during growth.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "An adult human does not have 206 bones in every case; some people are born with extra ribs.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "An adult human does not have 206 bones in every case; some people are born with extra ribs.",
+   "framed": false
+  },
+  {
+   "id": "count-bones",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "An adult human does not have 206 bones in every case; some people are born with extra ribs.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was founded in 1636, making it the oldest institution of higher learning in the United States.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was founded in 1636, making it the oldest institution of higher learning in the United States.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was founded in 1636, making it the oldest institution of higher learning in the United States.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was not founded in 1636 by John Harvard; he arrived a year later.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was not founded in 1636 by John Harvard; he arrived a year later.",
+   "framed": false
+  },
+  {
+   "id": "founding-harvard",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "Harvard University was not founded in 1636 by John Harvard; he arrived a year later.",
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "true",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "idle",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "true",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Eiffel Tower is 330 metres tall, antennas included, and was the tallest structure in the world until 1930.",
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "true",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "same",
+   "why": null,
+   "sentence": "The Eiffel Tower is 330 metres tall, antennas included, and was the tallest structure in the world until 1930.",
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "wf",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "wf",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "wf",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "oe",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "oe",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "oe",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "mn",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "mn",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "mn",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "figure",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "ng",
+   "arm": "min3 (the real module)",
+   "verdict": "undecidable",
+   "why": "idle",
+   "sentence": null,
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "ng",
+   "arm": "min2-all (A1 copy)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Eiffel Tower is not 330 metres tall at its main platform; it is far lower there.",
+   "framed": false
+  },
+  {
+   "id": "height-eiffel",
+   "kind": "ng",
+   "arm": "minSlot (Fix 1)",
+   "verdict": "undecidable",
+   "why": "unread-structure",
+   "sentence": "The Eiffel Tower is not 330 metres tall at its main platform; it is far lower there.",
+   "framed": false
+  }
+ ]
+}

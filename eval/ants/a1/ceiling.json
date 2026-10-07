@@ -1,0 +1,926 @@
+[
+ {
+  "ask": "king",
+  "page": "Monarchy_of_the_United_Kingdom",
+  "blocks": 1495,
+  "notes": 132,
+  "sentencesWithAtoms": 8,
+  "citedSentences": 0,
+  "citedWithUrl": 0,
+  "reads": [],
+  "sample": [
+   {
+    "sentence": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.\n",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nKing Charles III\n",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nKing Charles III with Prime Minister Keir Starmer and Deputy Prime Minister Angela Rayner, 2025",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "For the current British king, see Charles III.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nThe coat of arms of Charles III in the United Kingdom.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nKing Charles III Charitable Fund",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "king",
+  "page": "Charles_III",
+  "blocks": 1689,
+  "notes": 431,
+  "sentencesWithAtoms": 19,
+  "citedSentences": 4,
+  "citedWithUrl": 3,
+  "reads": [
+   {
+    "n": 154,
+    "url": "https://apnews.com/article/british-politics-king-charles-iii-queen-elizabeth-ii-entertainment-london-3de1a8b0b71935a6ab53b6e2be561dc4",
+    "host": "apnews.com",
+    "underSentence": "In November 2022, the King and Queen hosted the South African president, Cyril Ramaphosa, during the first off",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 217,
+    "url": "https://www.wildlifetrusts.org/news/kings-charity-donate-ps195m-good-causes",
+    "host": "wildlifetrusts.org",
+    "underSentence": "King Charles III Charitable Fund has donated over £73 million to various causes since 1979.",
+    "ok": true,
+    "via": "direct",
+    "len": 6574,
+    "v_claim": "undecidable/figure",
+    "s_claim": "",
+    "v_spoken": "different",
+    "s_spoken": "HM King Charles III (The Prince of Wales as he was then) founded Duchy Organic in 1990, aiming to create what he called ",
+    "v_underSentence": "undecidable/figure"
+   },
+   {
+    "n": 408,
+    "url": "https://www.newspapers.com/clip/119946285/the-journal-herald",
+    "host": "newspapers.com",
+    "underSentence": "There had been speculation throughout Elizabeth II's reign as to what regnal name Charles would choose upon hi",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "\n\n\nKing Charles III's voice",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nCharles III (Charles Philip Arthur George; born 14 November 1948) is King of the United Kingdom and 14 other Commonwealth realms.\n",
+    "marks": [
+     null
+    ],
+    "refs": [
+     {
+      "n": null,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ a b The 14 other realms are Antigua and Barbuda , Australia , The Bahamas , Belize , Can"
+     }
+    ]
+   },
+   {
+    "sentence": "In November 2022, the King and Queen hosted the South African president, Cyril Ramaphosa, during the first official state visit to the United Kingdom of Charles III's reign.",
+    "marks": [
+     154
+    ],
+    "refs": [
+     {
+      "n": 154,
+      "url": "https://apnews.com/article/british-politics-king-charles-iii-queen-elizabeth-ii-entertainment-london-3de1a8b0b71935a6ab53b6e2be561dc4",
+      "archived": "https://web.archive.org/web/20230325082032/https://apnews.com/article/british-politics-king-charles-iii-queen-elizabeth-ii-entertainment-london-3de1a8b0b71935a6ab53b6e2be561dc4",
+      "host": "apnews.com",
+      "text": "Kirka, Danica (22 November 2022). \"King Charles III welcomes S. African leader for state v"
+     }
+    ]
+   },
+   {
+    "sentence": "King Charles III Charitable Fund has donated over £73 million to various causes since 1979.",
+    "marks": [
+     217
+    ],
+    "refs": [
+     {
+      "n": 217,
+      "url": "https://www.wildlifetrusts.org/news/kings-charity-donate-ps195m-good-causes",
+      "archived": null,
+      "host": "wildlifetrusts.org",
+      "text": "\"King's Charity to donate £1.95M to good causes\" . The Wildlife Trust. 31 January 2023 . R"
+     }
+    ]
+   },
+   {
+    "sentence": "\nMain articles: The King's Foundation § Cash for honours allegations and other donations, and King Charles III Charitable Fund § Qatari donations",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nTwo of Charles's charities, the Prince's Foundation and the Prince of Wales's Charitable Fund (later renamed the King's Foundation and King Charles III Charitable Fund), came under scrutiny in 2021 a",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "eiffel",
+  "page": "Eiffel_Tower",
+  "blocks": 1482,
+  "notes": 131,
+  "sentencesWithAtoms": 10,
+  "citedSentences": 2,
+  "citedWithUrl": 2,
+  "reads": [
+   {
+    "n": 9,
+    "url": "https://www.reuters.com/world/europe/eiffel-tower-grows-six-metres-after-new-antenna-attached-2022-03-15/",
+    "host": "reuters.com",
+    "underSentence": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest struc",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 69,
+    "url": "http://www.eiffel-tower.com/images/PDF/about_the_Eiffel_Tower.pdf",
+    "host": "eiffel-tower.com",
+    "underSentence": "Work carried out in 2000 added a further 5.3 m (17 ft), giving a total height of 324 m (1,063 ft).",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "330 m (1,083 ft)",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.",
+    "marks": [
+     9
+    ],
+    "refs": [
+     {
+      "n": 9,
+      "url": "https://www.reuters.com/world/europe/eiffel-tower-grows-six-metres-after-new-antenna-attached-2022-03-15/",
+      "archived": null,
+      "host": "reuters.com",
+      "text": "\"Eiffel Tower grows six metres after new antenna attached\" . Reuters . 15 March 2022 . Ret"
+     }
+    ]
+   },
+   {
+    "sentence": "Additionally, a cubic box surrounding the tower (324 m × 125 m × 125 m) would contain 6,200 tonnes of air, weighing almost as much as the iron itself.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "Work carried out in 2000 added a further 5.3 m (17 ft), giving a total height of 324 m (1,063 ft).",
+    "marks": [
+     69
+    ],
+    "refs": [
+     {
+      "n": 69,
+      "url": "http://www.eiffel-tower.com/images/PDF/about_the_Eiffel_Tower.pdf",
+      "archived": null,
+      "host": "eiffel-tower.com",
+      "text": "SETE. \"All you need to know about the Eiffel Tower\" (PDF) . Official Eiffel Tower website "
+     }
+    ]
+   },
+   {
+    "sentence": "\n330 m (1,080 ft)\n",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\n330 m (1,080 ft)\n",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "australia",
+  "page": "List_of_Australian_capital_cities",
+  "blocks": 262,
+  "notes": 3,
+  "sentencesWithAtoms": 2,
+  "citedSentences": 0,
+  "citedWithUrl": 0,
+  "reads": [],
+  "sample": [
+   {
+    "sentence": "One of these, Canberra, is also the national capital.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "In 1927, the national capital was finally ready and the national government relocated from its former seat in Melbourne to Canberra within the Australian Capital Territory (or the Federal Capital Terr",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "australia",
+  "page": "Canberra",
+  "blocks": 1104,
+  "notes": 437,
+  "sentencesWithAtoms": 22,
+  "citedSentences": 10,
+  "citedWithUrl": 8,
+  "reads": [
+   {
+    "n": 71,
+    "url": "http://aso.gov.au/titles/historical/naming-federal-capital/clip3/",
+    "host": "aso.gov.au",
+    "underSentence": "At midday on 12 March 1913, Lady Denman, the wife of Governor-General Lord Denman, announced that the city wou",
+    "ok": true,
+    "via": "direct",
+    "len": 3499,
+    "v_claim": "different",
+    "s_claim": "Thanks to the generosity of the rights holders, we are able to offer Lady Denman names Canberra from the historical Nami",
+    "v_spoken": "same",
+    "s_spoken": "Lady Denman, the wife of the governor-general, officially announces the name of Australia’s capital city as Canberra.",
+    "v_underSentence": "undecidable/name"
+   },
+   {
+    "n": 74,
+    "url": "https://ghostarchive.org/varchive/youtube/20211028/Px7vFz9HIK0",
+    "host": "ghostarchive.org",
+    "underSentence": "At midday on 12 March 1913, Lady Denman, the wife of Governor-General Lord Denman, announced that the city wou",
+    "ok": true,
+    "via": "direct",
+    "len": 157,
+    "v_claim": "undecidable/name",
+    "s_claim": "",
+    "v_spoken": "undecidable/name",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/no-overlap"
+   },
+   {
+    "n": 180,
+    "url": "http://www.abc.net.au/local/stories/2010/04/09/2868553.htm",
+    "host": "abc.net.au",
+    "underSentence": "There have been persistent calls for constraints on development to be liberalised, but also voices in support ",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 182,
+    "url": "https://doi.org/10.1186%2Fs42055-020-00032-3",
+    "host": "doi.org",
+    "underSentence": "There have been persistent calls for constraints on development to be liberalised, but also voices in support ",
+    "ok": true,
+    "via": "direct",
+    "len": 286,
+    "v_claim": "undecidable/no-overlap",
+    "s_claim": "",
+    "v_spoken": "undecidable/no-overlap",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/no-overlap"
+   },
+   {
+    "n": 208,
+    "url": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=315&Itemid=284",
+    "host": "nationalcapital.gov.au",
+    "underSentence": "In the administrative sphere, most frequently this is through the actions of the National Capital Authority wh",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 209,
+    "url": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=312&Itemid=281",
+    "host": "nationalcapital.gov.au",
+    "underSentence": "In the administrative sphere, most frequently this is through the actions of the National Capital Authority wh",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 210,
+    "url": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=314&Itemid=283",
+    "host": "nationalcapital.gov.au",
+    "underSentence": "In the administrative sphere, most frequently this is through the actions of the National Capital Authority wh",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 232,
+    "url": "https://australianpropertyupdate.com.au/apu/softer-but-still-resilient-housing-market-in-2026",
+    "host": "australianpropertyupdate.com.au",
+    "underSentence": "The median house price in Canberra as of December 2025 was $893,907, lower than Sydney, Brisbane, Perth and Ad",
+    "ok": true,
+    "via": "direct",
+    "len": 5950,
+    "v_claim": "undecidable/name",
+    "s_claim": "",
+    "v_spoken": "undecidable/name",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/unread-structure"
+   },
+   {
+    "n": 233,
+    "url": "https://www.abc.net.au/news/2025-07-24/rental-price-growth-slows-in-australian-capital-cities/105564548",
+    "host": "abc.net.au",
+    "underSentence": "Median weekly rents in Canberra in June 2025 of $677 were similarly about midway in comparison with other stat",
+    "ok": true,
+    "via": "direct",
+    "len": 6568,
+    "v_claim": "different",
+    "s_claim": "Its research also showed the annual change in Melbourne, Canberra and Sydney dwelling rents came in below their pre-COVI",
+    "v_spoken": "undecidable/name",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/figure"
+   },
+   {
+    "n": 242,
+    "url": "http://www.tradewatch.org.au/AUSFTA/Article43.html",
+    "host": "tradewatch.org.au",
+    "underSentence": "A growing number of software vendors have based themselves in Canberra, to capitalise on the concentration of ",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 243,
+    "url": "http://www.theaustralian.com.au/australian-it/hp-bids-for-tower-software/story-e6frgamo-1111115951854",
+    "host": "theaustralian.com.au",
+    "underSentence": "A growing number of software vendors have based themselves in Canberra, to capitalise on the concentration of ",
+    "ok": true,
+    "via": "direct",
+    "len": 1747,
+    "v_claim": "undecidable/no-overlap",
+    "s_claim": "",
+    "v_spoken": "undecidable/name",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/no-overlap"
+   },
+   {
+    "n": 248,
+    "url": "http://www.abs.gov.au/Ausstats/abs@.nsf/0/812343b3e6694d5dca256d3c0001f4c9?OpenDocument",
+    "host": "abs.gov.au",
+    "underSentence": "Between 1996 and 2001, 61.9% of the population either moved to or from Canberra, which was the second highest ",
+    "ok": true,
+    "via": "direct",
+    "len": 6554,
+    "v_claim": "undecidable/terms",
+    "s_claim": "",
+    "v_spoken": "same",
+    "s_spoken": "On the other hand, net internal migration losses mainly occurred in the rural inland and remote areas of Australia and i",
+    "v_underSentence": "undecidable/figure"
+   },
+   {
+    "n": 334,
+    "url": "https://www.abc.net.au/news/2020-03-04/canberra-capitals-win-ninth-wnbl-championship/12026930",
+    "host": "abc.net.au",
+    "underSentence": "The city also has a successful basketball team, the Canberra Capitals, which has won nine national women's bas",
+    "ok": true,
+    "via": "direct",
+    "len": 3309,
+    "v_claim": "different",
+    "s_claim": "The Canberra Capitals have won their ninth Women&#x27;s National Basketball League championship after completing a stunn",
+    "v_spoken": "undecidable/name",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/figure"
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "\nCanberra (/ˈkænbrə/ ⓘ KAN-brə; Ngunawal: Kanbarra) is the capital city of Australia and the largest population centre in the Australian Capital Territory.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "The capital city was founded and formally named as Canberra in 1913.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "At midday on 12 March 1913, Lady Denman, the wife of Governor-General Lord Denman, announced that the city would be named \"Canberra\" at a ceremony at Kurrajong Hill, which has since become Capital Hil",
+    "marks": [
+     70,
+     71,
+     72,
+     73,
+     74,
+     75
+    ],
+    "refs": [
+     {
+      "n": 70,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Gillespie 1991 , p. 303."
+     },
+     {
+      "n": 71,
+      "url": "http://aso.gov.au/titles/historical/naming-federal-capital/clip3/",
+      "archived": "https://web.archive.org/web/20140217062840/http://aso.gov.au/titles/historical/naming-federal-capital/clip3/",
+      "host": "aso.gov.au",
+      "text": "\"Naming the Federal Capital of Australia\" , Australian Screen , National Film & Sound Arch"
+     },
+     {
+      "n": 72,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Fitzgerald 1987 , p. 103."
+     },
+     {
+      "n": 73,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Australian Bureau of Statistics 1963 ."
+     },
+     {
+      "n": 74,
+      "url": "https://ghostarchive.org/varchive/youtube/20211028/Px7vFz9HIK0",
+      "archived": null,
+      "host": "ghostarchive.org",
+      "text": "\"View Naming the Federal Capital of Australia\" . YouTube . 12 March 1913. Archived from th"
+     },
+     {
+      "n": 75,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Fitzgerald 1987 , p. 105."
+     }
+    ]
+   },
+   {
+    "sentence": "From 1920 to 1957, three bodies — successively the Federal Capital Advisory Committee, the Federal Capital Commission, and the National Capital Planning and Development Committee — continued to plan t",
+    "marks": [
+     91,
+     92
+    ],
+    "refs": [
+     {
+      "n": 91,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Fitzgerald 1987 , p. 115."
+     },
+     {
+      "n": 92,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Fitzgerald 1987 , p. 128."
+     }
+    ]
+   },
+   {
+    "sentence": "The Canberra Times described it as \"a signal event ... in the history of this, the world's youngest capital city\".",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "In 1967 the then National Capital Development Commission adopted the \"Y Plan\" which laid out future urban development in Canberra around a series of central shopping and commercial area known as the '",
+    "marks": [
+     178,
+     178
+    ],
+    "refs": [
+     {
+      "n": 178,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ a b Sparke 1988 , pp. 154–155."
+     },
+     {
+      "n": 178,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ a b Sparke 1988 , pp. 154–155."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "ask": "australia",
+  "page": "Australian_Capital_Territory",
+  "blocks": 1113,
+  "notes": 188,
+  "sentencesWithAtoms": 8,
+  "citedSentences": 4,
+  "citedWithUrl": 4,
+  "reads": [
+   {
+    "n": 32,
+    "url": "http://foundingdocs.gov.au/item.asp?dID=110",
+    "host": "foundingdocs.gov.au",
+    "underSentence": "The Seat of Government Act 1908 was passed in 1908, which repealed the 1904 Act and specified a capital in the",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 36,
+    "url": "https://search.worldcat.org/oclc/27587510",
+    "host": "search.worldcat.org",
+    "underSentence": "\nThe territory was transferred to the Commonwealth by New South Wales on 1 January 1911, two years before the ",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 86,
+    "url": "https://police.act.gov.au/crime",
+    "host": "police.act.gov.au",
+    "underSentence": "Canberra had the lowest rate of crime of any capital city in Australia as of February 2019.\n",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 100,
+    "url": "https://hockeyone.com.au/teams/canberra-chill/women/",
+    "host": "hockeyone.com.au",
+    "underSentence": "\nThe territory is home to a number of major professional sports league franchise teams including the ACT Brumb",
+    "ok": true,
+    "via": "direct",
+    "len": 1169,
+    "v_claim": "undecidable/terms",
+    "s_claim": "",
+    "v_spoken": "undecidable/name-binding",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/name"
+   },
+   {
+    "n": 101,
+    "url": "https://hockeyone.com.au/teams/canberra-chill/men/",
+    "host": "hockeyone.com.au",
+    "underSentence": "\nThe territory is home to a number of major professional sports league franchise teams including the ACT Brumb",
+    "ok": true,
+    "via": "direct",
+    "len": 1169,
+    "v_claim": "undecidable/terms",
+    "s_claim": "",
+    "v_spoken": "undecidable/name-binding",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/name"
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "Canberra, the capital city of Australia, is situated within the territory and is the territory's primate city.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "Following discussion and exploration of various sites within New South Wales, the Seat of Government Act 1908 was passed in 1908, and specified a capital in the Yass-Canberra region.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "The territory was transferred to the federal government by New South Wales on 1 January 1911, and on 12 March 1913, the city of Canberra was officially proclaimed as the nation’s capital.\n",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "The Seat of Government Act 1908 was passed in 1908, which repealed the 1904 Act and specified a capital in the Yass-Canberra region.",
+    "marks": [
+     22,
+     32
+    ],
+    "refs": [
+     {
+      "n": 22,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "Fitzgerald, Alan (1987). Canberra in two centuries: A pictorial history . Clareville Press"
+     },
+     {
+      "n": 32,
+      "url": "http://foundingdocs.gov.au/item.asp?dID=110",
+      "archived": "https://web.archive.org/web/20091017025122/http://foundingdocs.gov.au/item.asp?dID=110",
+      "host": "foundingdocs.gov.au",
+      "text": "\"Seat of Government Act 1908 (Cth)\" . National Archives of Australia . Archived from the o"
+     }
+    ]
+   },
+   {
+    "sentence": "\nThe territory was transferred to the Commonwealth by New South Wales on 1 January 1911, two years before the naming of Canberra as the national capital on 20 March 1913.\n",
+    "marks": [
+     36
+    ],
+    "refs": [
+     {
+      "n": 36,
+      "url": "https://search.worldcat.org/oclc/27587510",
+      "archived": null,
+      "host": "search.worldcat.org",
+      "text": "Fitzgerald, Alan John. (1987). Canberra in two centuries : a pictorial history . Torrens, "
+     }
+    ]
+   },
+   {
+    "sentence": "From 1938 to 1957, the National Capital Planning and Development Committee continued to plan the further expansion of Canberra.",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "spider",
+  "page": "Spider_anatomy",
+  "blocks": 167,
+  "notes": 17,
+  "sentencesWithAtoms": 3,
+  "citedSentences": 0,
+  "citedWithUrl": 0,
+  "reads": [],
+  "sample": [
+   {
+    "sentence": "\nBasic characteristics of arachnids include four pairs of legs (1) and a body divided into two segments: the cephalothorax (2) and the abdomen (3).",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "These characteristics include bodies divided into two tagmata (sections or segments), eight jointed legs, no wings or antennae, the presence of chelicerae and pedipalps, simple eyes, and an exoskeleto",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nSpiders typically have eight walking legs (insects have six).",
+    "marks": [],
+    "refs": []
+   }
+  ]
+ },
+ {
+  "ask": "spider",
+  "page": "Spider",
+  "blocks": 599,
+  "notes": 152,
+  "sentencesWithAtoms": 6,
+  "citedSentences": 3,
+  "citedWithUrl": 2,
+  "reads": [
+   {
+    "n": 39,
+    "url": "http://jeb.biologists.org/cgi/reprint/36/2/423.pdf",
+    "host": "jeb.biologists.org",
+    "underSentence": "Spiders can generate pressures up to eight times their resting level to extend their legs, and jumping spiders",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   },
+   {
+    "n": 95,
+    "url": "http://palaeontology.palass-pubs.org/pdf/Vol%2039/Pages%20605-614.pdf",
+    "host": "palaeontology.palass-pubs.org",
+    "underSentence": "The oldest known exclusively terrestrial arachnid is the trigonotarbid Palaeotarbus jerami, estimated to be fr",
+    "ok": false,
+    "via": null,
+    "err": "unreachable",
+    "len": 0
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "\nImage of a spider leg: 1–coxa; 2–trochanter; 3–femur; 4–patella; 5–tibia; 6–metatarsus; 7–tarsus; 8–claws",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nEach of the eight legs of a spider consists of seven distinct parts.",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "Spiders can generate pressures up to eight times their resting level to extend their legs, and jumping spiders can jump up to 50 times their own length by suddenly increasing the blood pressure in the",
+    "marks": [
+     39,
+     13
+    ],
+    "refs": [
+     {
+      "n": 39,
+      "url": "http://jeb.biologists.org/cgi/reprint/36/2/423.pdf",
+      "archived": null,
+      "host": "jeb.biologists.org",
+      "text": "Parry, D.A. & Brown, R.H.J. (1959). \"The Hydraulic Mechanism of the Spider Leg\" (PDF) . Jo"
+     },
+     {
+      "n": 13,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ a b c d e f g h i j k l m n o p q r s t u v w x y z aa ab ac ad ae af ag ah ai aj Rupper"
+     }
+    ]
+   },
+   {
+    "sentence": "The largest and heaviest spiders occur among tarantulas, which can have body lengths up to 90 mm (3.5 in) and leg spans up to 250 mm (9.8 in).\n",
+    "marks": [
+     56
+    ],
+    "refs": [
+     {
+      "n": 56,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Levi, Herbert W. and Levi, Lorna R. (2001) Spiders and their Kin , Golden Press, pp. 20,"
+     }
+    ]
+   },
+   {
+    "sentence": "Ant-mimicking spiders face several challenges: they generally develop slimmer abdomens and false \"waists\" in the cephalothorax to mimic the three distinct regions (tagmata) of an ant's body; they wave",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "The oldest known exclusively terrestrial arachnid is the trigonotarbid Palaeotarbus jerami, estimated to be from 420 million years ago in the late Silurian period, and had a triangular cephalothorax a",
+    "marks": [
+     95,
+     96
+    ],
+    "refs": [
+     {
+      "n": 95,
+      "url": "http://palaeontology.palass-pubs.org/pdf/Vol%2039/Pages%20605-614.pdf",
+      "archived": "https://web.archive.org/web/20081216214632/http://palaeontology.palass-pubs.org/pdf/Vol%2039/Pages%20605-614.pdf",
+      "host": "palaeontology.palass-pubs.org",
+      "text": "Dunlop, J.A. (1996). \"A trigonotarbid arachnid from the Upper Silurian of Shropshire\" (PDF"
+     },
+     {
+      "n": 96,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "G W Krantz and D E Walter (2009). A Manual of Acarology . Texas Tech University Press. p. "
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "ask": "curie",
+  "page": "Marie_Curie",
+  "blocks": 857,
+  "notes": 129,
+  "sentencesWithAtoms": 3,
+  "citedSentences": 2,
+  "citedWithUrl": 2,
+  "reads": [
+   {
+    "n": 1,
+    "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+    "host": "archive.nytimes.com",
+    "underSentence": "\nMaria Salomea Skłodowska Curie  (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie,",
+    "ok": true,
+    "via": "direct",
+    "len": 13858,
+    "v_claim": "undecidable/figure",
+    "s_claim": "",
+    "v_spoken": "undecidable/figure",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/figure"
+   },
+   {
+    "n": 46,
+    "url": "https://www.ipsb.nina.gov.pl/a/biografia/maria-salomea-sklodowska-curie-1867-1934-fizyczka-profesor",
+    "host": "ipsb.nina.gov.pl",
+    "underSentence": "A few months later, on 4 July 1934, she died aged 66 at the Sancellemoz sanatorium in Passy, Haute-Savoie, fro",
+    "ok": true,
+    "via": "direct",
+    "len": 18927,
+    "v_claim": "undecidable/cross-language",
+    "s_claim": "",
+    "v_spoken": "undecidable/cross-language",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/unread-structure"
+   },
+   {
+    "n": 73,
+    "url": "https://nationalstemcellfoundation.org/glossary/aplastic-anemia/#:~:text=Marie%20Curie%2C%20famous%20for%20her,radiation%20were%20not%20then%20known",
+    "host": "nationalstemcellfoundation.org",
+    "underSentence": "A few months later, on 4 July 1934, she died aged 66 at the Sancellemoz sanatorium in Passy, Haute-Savoie, fro",
+    "ok": true,
+    "via": "direct",
+    "len": 2650,
+    "v_claim": "undecidable/figure",
+    "s_claim": "",
+    "v_spoken": "undecidable/figure",
+    "s_spoken": "",
+    "v_underSentence": "undecidable/unread-structure"
+   }
+  ],
+  "sample": [
+   {
+    "sentence": "4 July 1934(1934-07-04) (aged 66)",
+    "marks": [],
+    "refs": []
+   },
+   {
+    "sentence": "\nMaria Salomea Skłodowska Curie  (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+    "marks": [
+     null,
+     1,
+     null
+    ],
+    "refs": [
+     {
+      "n": null,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ"
+     },
+     {
+      "n": 1,
+      "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+      "archived": null,
+      "host": "archive.nytimes.com",
+      "text": "\"Mme. Curie is dead – Martyr to Science\" . The New York Times ."
+     },
+     {
+      "n": null,
+      "url": null,
+      "archived": null,
+      "host": "",
+      "text": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ"
+     }
+    ]
+   },
+   {
+    "sentence": "A few months later, on 4 July 1934, she died aged 66 at the Sancellemoz sanatorium in Passy, Haute-Savoie, from aplastic anaemia believed to have been contracted from her long-term exposure to radiati",
+    "marks": [
+     46,
+     73
+    ],
+    "refs": [
+     {
+      "n": 46,
+      "url": "https://www.ipsb.nina.gov.pl/a/biografia/maria-salomea-sklodowska-curie-1867-1934-fizyczka-profesor",
+      "archived": null,
+      "host": "ipsb.nina.gov.pl",
+      "text": "Estreicher, Tadeusz (1938). \"Curie, Maria ze Skłodowskich\" . Polski słownik biograficzny, "
+     },
+     {
+      "n": 73,
+      "url": "https://nationalstemcellfoundation.org/glossary/aplastic-anemia/#:~:text=Marie%20Curie%2C%20famous%20for%20her,radiation%20were%20not%20then%20known",
+      "archived": "https://web.archive.org/web/20220527215049/https://nationalstemcellfoundation.org/glossary/aplastic-anemia/#:~:text=Marie%20Curie%2C%20famous%20for%20her,radiation%20were%20not%20then%20known",
+      "host": "nationalstemcellfoundation.org",
+      "text": "^ Marie Curie profile Archived 27 May 2022 at the Wayback Machine , National Stem Cell Fou"
+     }
+    ]
+   }
+  ]
+ }
+]

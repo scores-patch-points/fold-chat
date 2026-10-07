@@ -1,0 +1,725 @@
+[
+ {
+  "u": "https://apnews.com/article/british-politics-king-charles-iii-queen-elizabeth-ii-entertainment-london-3de1a8b0b71935a6ab53b6e2be561dc4",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 104
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3737
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 24000,
+   "ms": 799
+  }
+ },
+ {
+  "u": "https://www.wildlifetrusts.org/news/kings-charity-donate-ps195m-good-causes",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 168
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 6574,
+   "ms": 185
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3746
+  }
+ },
+ {
+  "u": "https://www.newspapers.com/clip/119946285/the-journal-herald",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 237
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3774
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3664
+  }
+ },
+ {
+  "u": "https://www.reuters.com/world/europe/eiffel-tower-grows-six-metres-after-new-antenna-attached-2022-03-15/",
+  "nodeFetch": {
+   "status": 401,
+   "ms": 195
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3909
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3761
+  }
+ },
+ {
+  "u": "http://www.eiffel-tower.com/images/PDF/about_the_Eiffel_Tower.pdf",
+  "nodeFetch": {
+   "err": "AbortError",
+   "ms": 8018
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10318
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 4472,
+   "ms": 6595
+  }
+ },
+ {
+  "u": "http://aso.gov.au/titles/historical/naming-federal-capital/clip3/",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1722
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 3499,
+   "ms": 3261
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 3784,
+   "ms": 2123
+  }
+ },
+ {
+  "u": "https://ghostarchive.org/varchive/youtube/20211028/Px7vFz9HIK0",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1736
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 157,
+   "ms": 1558
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 241,
+   "ms": 726
+  }
+ },
+ {
+  "u": "http://www.abc.net.au/local/stories/2010/04/09/2868553.htm",
+  "nodeFetch": {
+   "status": 404,
+   "ms": 2169
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 8666
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4192
+  }
+ },
+ {
+  "u": "https://doi.org/10.1186%2Fs42055-020-00032-3",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 2349
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 286,
+   "ms": 1005
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 24000,
+   "ms": 2386
+  }
+ },
+ {
+  "u": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=315&Itemid=284",
+  "nodeFetch": {
+   "err": "AbortError",
+   "ms": 8275
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10751
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10126
+  }
+ },
+ {
+  "u": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=312&Itemid=281",
+  "nodeFetch": {
+   "err": "AbortError",
+   "ms": 8002
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10416
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10554
+  }
+ },
+ {
+  "u": "http://www.nationalcapital.gov.au/index.php?option=com_content&view=article&id=314&Itemid=283",
+  "nodeFetch": {
+   "err": "AbortError",
+   "ms": 8107
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 9898
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 10007
+  }
+ },
+ {
+  "u": "https://australianpropertyupdate.com.au/apu/softer-but-still-resilient-housing-market-in-2026",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 222
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 5950,
+   "ms": 380
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 12138,
+   "ms": 944
+  }
+ },
+ {
+  "u": "https://www.abc.net.au/news/2025-07-24/rental-price-growth-slows-in-australian-capital-cities/105564548",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 816
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 6568,
+   "ms": 570
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3935
+  }
+ },
+ {
+  "u": "http://www.tradewatch.org.au/AUSFTA/Article43.html",
+  "nodeFetch": {
+   "err": "ENOTFOUND",
+   "ms": 9
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4190
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3592
+  }
+ },
+ {
+  "u": "http://www.theaustralian.com.au/australian-it/hp-bids-for-tower-software/story-e6frgamo-1111115951854",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 3068
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 1747,
+   "ms": 1776
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3700
+  }
+ },
+ {
+  "u": "http://www.abs.gov.au/Ausstats/abs@.nsf/0/812343b3e6694d5dca256d3c0001f4c9?OpenDocument",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1086
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 6554,
+   "ms": 398
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 115,
+   "ms": 595
+  }
+ },
+ {
+  "u": "https://www.abc.net.au/news/2020-03-04/canberra-capitals-win-ninth-wnbl-championship/12026930",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 603
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 3309,
+   "ms": 247
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3669
+  }
+ },
+ {
+  "u": "http://foundingdocs.gov.au/item.asp?dID=110",
+  "nodeFetch": {
+   "status": 404,
+   "ms": 1089
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 7289
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4099
+  }
+ },
+ {
+  "u": "https://search.worldcat.org/oclc/27587510",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 694
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4246
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3837
+  }
+ },
+ {
+  "u": "https://police.act.gov.au/crime",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 237
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4484
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4187
+  }
+ },
+ {
+  "u": "https://hockeyone.com.au/teams/canberra-chill/women/",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1127
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 1169,
+   "ms": 1433
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4543
+  }
+ },
+ {
+  "u": "https://hockeyone.com.au/teams/canberra-chill/men/",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1134
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 1169,
+   "ms": 1568
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4085
+  }
+ },
+ {
+  "u": "http://jeb.biologists.org/cgi/reprint/36/2/423.pdf",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 232
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3926
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3908
+  }
+ },
+ {
+  "u": "http://palaeontology.palass-pubs.org/pdf/Vol%2039/Pages%20605-614.pdf",
+  "nodeFetch": {
+   "err": "ENOTFOUND",
+   "ms": 4
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4030
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3652
+  }
+ },
+ {
+  "u": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 171
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 13858,
+   "ms": 693
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 13858,
+   "ms": 280
+  }
+ },
+ {
+  "u": "https://www.ipsb.nina.gov.pl/a/biografia/maria-salomea-sklodowska-curie-1867-1934-fizyczka-profesor",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 2897
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 18927,
+   "ms": 2068
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 19121,
+   "ms": 2274
+  }
+ },
+ {
+  "u": "https://nationalstemcellfoundation.org/glossary/aplastic-anemia/#:~:text=Marie%20Curie%2C%20famous%20for%20her,radiation%20were%20not%20then%20known",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 207
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 2650,
+   "ms": 618
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 2591,
+   "ms": 826
+  }
+ },
+ {
+  "u": "http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 703
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 1478,
+   "ms": 496
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 975,
+   "ms": 189
+  }
+ },
+ {
+  "u": "https://web.archive.org/web/20081017213248/http://nobelprize.org/nobel_prizes/physics/laureates/1903/index.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 5222
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 45,
+   "ms": 187
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 1866
+  }
+ },
+ {
+  "u": "http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 1029
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 1210,
+   "ms": 172
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 701,
+   "ms": 158
+  }
+ },
+ {
+  "u": "https://web.archive.org/web/20081019170636/http://nobelprize.org/nobel_prizes/chemistry/laureates/1911/index.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 4693
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 45,
+   "ms": 331
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3701
+  }
+ },
+ {
+  "u": "https://doi.org/10.1155%2F1965%2F17894",
+  "nodeFetch": {
+   "status": 403,
+   "ms": 236
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4525
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3722
+  }
+ },
+ {
+  "u": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 550
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 2911,
+   "ms": 167
+  },
+  "browserRead": {
+   "ok": true,
+   "via": "the fold's relay",
+   "len": 2911,
+   "ms": 453
+  }
+ },
+ {
+  "u": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+  "nodeFetch": {
+   "status": 404,
+   "ms": 646
+  },
+  "nodeRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4028
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 4366
+  }
+ },
+ {
+  "u": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+  "nodeFetch": {
+   "status": 200,
+   "ms": 2010
+  },
+  "nodeRead": {
+   "ok": true,
+   "via": "direct",
+   "len": 3158,
+   "ms": 451
+  },
+  "browserRead": {
+   "ok": false,
+   "via": null,
+   "err": "unreachable",
+   "len": 0,
+   "ms": 3725
+  }
+ }
+]

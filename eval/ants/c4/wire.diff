@@ -1,0 +1,113 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -46,6 +46,7 @@
+ import { pre as watchPre, post as watchPost, wantLine, batonReply, inspectReply, keepOnTopic, withoutAppAnswered } from "./fold-chat-watch.js";
+ // WHERE THE ANSWER CAME FROM, said mechanically: a second model call POINTS at a source sentence; the app verifies it, snips it and narrates around it (docs/VOICE.md)
+ import { provenanceFor, provenanceEnabled } from "./fold-chat-provenance.js";
++import { makeBudget, presetFor, guardFetch } from "./fold-chat-budget.js";   // the per-ask request budget (eval/ants/C4-RESULTS.md)
+ import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
+ import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
+ import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
+\ No newline at end of file
+@@ -1998,6 +1999,12 @@
+     const probeTerm = wantWeb && (kind === "research" || kind === "chat") ? senseTerm(question) : null;
+     // The turn this is NOT a source of the answer, only of the list of senses: audited, time-boxed, never fatal.
+     const noSources = () => wantWeb && !webPassages.length;
++    // THE ASK'S REQUEST BUDGET (fold-chat-budget.js): every outbound call of this turn asks it first; the answer's own needs come before corroboration, corroboration before
++    // following an encyclopedia to its footnotes. A refusal is typed (BudgetRefused) and never looks like a network failure; what was refused rides the record.
++    const budget = makeBudget({ preset: presetFor({ effort, wantWeb }), config: { timeModels: false }, now: Date.now });   // ms is the clock of the network kinds; a small local model's own latency is not fan-out (C4-RESULTS.md, post-hoc run live-p)
++    const budgeted = (tier) => guardFetch(budget, withSignal(outbound.auditedFetch("web search", runId), ac.signal), { tier });
++    // the first two pages read are the answer's, the third is corroboration, a fourth is not asked for (it would eat the footnote reads' page)
++    const readTier = (info, b) => (info.kind === "web" ? (b.count("web") < 2 ? "answer" : "corroborate") : b.count("pages") < 2 ? "answer" : b.count("pages") < 3 ? "corroborate" : null);
+     if (wantWeb) {
+       if (question) {
+         say(`turn · ${kindWord} · searching the web…`);
+\ No newline at end of file
+@@ -2009,11 +2016,12 @@
+         try {
+           if (searchQ !== question) feedPush(lineEvent(tt, follow.kind === "carried" ? "Followed on from the last answer" : "Followed on from the conversation", { tone: "info", note: `searching for \u201c${searchQ.slice(0, 90)}\u201d` }));
+           const nEnt = web.queriesFor(searchQ).length;
+-          const readFor = { fast: 2, balanced: Math.min(6, Math.max(3, nEnt)), deep: 6 }[effort] || 3;
++          const readFor = Math.min({ fast: 2, balanced: Math.min(6, Math.max(3, nEnt)), deep: 6 }[effort] || 3, budget.config.pages.answer + budget.config.pages.corroborate);   // the budget is the ceiling
+           // The search is cancellable: its fetches carry this turn's signal, and the
+           // await itself yields the moment Stop is pressed (or the chat deleted).
+-          if (probeTerm) sensesProbe = raceAbort(Promise.race([web.search("wikipedia", probeTerm, 0, { fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal) }), new Promise((r) => setTimeout(() => r(null), 7000))]), ac.signal).catch(() => null);
+-          const w = await raceAbort(web.searchWeb(searchQ, { onStep, effort, read: readFor, memo: pageMemo, fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal) }), ac.signal);
++          if (probeTerm) sensesProbe = raceAbort(Promise.race([web.search("wikipedia", probeTerm, 0, { fetchImpl: budgeted("corroborate") }), new Promise((r) => setTimeout(() => r(null), 7000))]), ac.signal).catch(() => null);
++          const w = await raceAbort(web.searchWeb(searchQ, { onStep, effort, read: readFor, memo: pageMemo, fetchImpl: budgeted(readTier) }), ac.signal);
++          budget.done("answer");   // the search/read step is over: what it did not spend is released to corroboration and origin
+           webPassages = w.passages || [];
+           surfedUrls = webPassages.map((p) => String(p.url || p.source || "")).filter(Boolean);
+           // THE WATCHER, fed the content that was surfed: for a source-ask, pages that do not bear on the thread's topic are set aside before anything is shown (never an empty hand).
+\ No newline at end of file
+@@ -2061,7 +2069,7 @@
+     let slotTurn = null;
+     if (slotTurnWanted({ kind, wantWeb, liveHit, answerMode, enabled: slotPipelineOn() })) {
+       say(`turn \u00b7 ${kindWord} \u00b7 checking whether this has one fact for an answer\u2026`);
+-      const slotFetch = withSignal(outbound.auditedFetch("web search", runId), ac.signal);   // every outbound call of the slot turn is logged, and Stop cancels it
++      const slotFetch = budgeted("corroborate");   // every outbound call of the slot turn is logged, Stop cancels it, and the falsifier searches are corroboration: the budget bounds them
+       const slotRes = await raceAbort(runSlotTurn({ question, lang: lang0, webPassages, searchQ, now: new Date(), fetchImpl: slotFetch, signal: ac.signal, memo: pageMemo, onStatus: (t) => say(`turn \u00b7 ${kindWord} \u00b7 ${t}`) }), ac.signal);
+       if (slotRes.aborted || ac.signal.aborted) throw abortError();   // Stop: no card, no answer — the same stopped turn as any other
+       if (slotRes.handoff) feedPush(lineEvent(tt, "Handling this the usual way", { tone: "info", note: slotRes.handoff.why }));
+\ No newline at end of file
+@@ -2071,9 +2079,10 @@
+     // sentences the answer would rest on, to the pages the article's own footnotes name (or a page already read that says the same), read and checked
+     // to carry the claim by identity-by-consequence, the path kept. The originals join the passages; the encyclopedia page stays but is never cited.
+     if (!slotTurn && wantWeb && webPassages.some((p) => p && !p.snippetOnly && isTertiary(p.url || p.source))) {
++      budget.done("corroborate");   // following the footnotes gets what corroboration did not use, and never more than the budget holds
+       say(`turn \u00b7 ${kindWord} \u00b7 following the encyclopedia's references to the pages they name\u2026`);
+       try {
+-        const { trails } = await raceAbort(originatePassages(webPassages, searchQ, { fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal), memo: pageMemo, signal: ac.signal }), ac.signal);
++        const { trails } = await raceAbort(originatePassages(webPassages, searchQ, { fetchImpl: budgeted("origin"), memo: pageMemo, signal: ac.signal }), ac.signal);
+         const seenTrail = new Set();
+         for (const t of trails) {
+           const k = t.url + "|" + t.trail.status + "|" + (t.trail.origin ? t.trail.origin.url : "");
+\ No newline at end of file
+@@ -2110,10 +2119,14 @@
+       feedPush(lineEvent(tt, "Followed the conversation", { tone: "ok", note: `no search \u2014 answering from your earlier turn ${threadTurn.turn}` }));
+     } else if (follow.mode === "cold-gap") feedPush(lineEvent(tt, "Nothing earlier to follow", { tone: "info", note: "no search, and the model is not asked" }));
+     const modelBarred = !!(plan || strand || aloneBarred);
++    let modelCalls = 0;
+     let doorRefusal = null;   // set when Gary refuses the composed turn below: the model is then not asked (the turn falls back like any refused call)
+     const callModel = (msgs, opts) => {
+       if (modelBarred) throw new Error("the model is barred on this turn (it never speaks alone)");
+       if (doorRefusal) throw doorRefusal;
++      // the model is a request too: the first call is the answer's; a pointer or corroboration call is refused when the budget has no room (provenanceFor reports a typed call_failed)
++      const sp = budget.spend("models", modelCalls++ === 0 ? "answer" : "corroborate");
++      if (!sp.ok) throw new Error("the ask's budget has no model call left (" + sp.why + ")");
+       return client.chat(m.id, msgs, opts);
+     };
+     // COMPUTE: the value comes from the evaluator, never the model (II.9); the model only phrases it.
+\ No newline at end of file
+--- a/fold-chat-web.js
++++ b/fold-chat-web.js
+@@ -330,7 +330,7 @@
+     if (out.ok) {
+       memo.pages.set(url, { at: Date.now(), val: out });
+       while (memo.pages.size > MEMO_MAX_PAGES) memo.pages.delete(memo.pages.keys().next().value);
+-    } else if (out.error === "unreachable" && host) memo.dead.set(host, Date.now() + DEAD_HOST_MS);
++    } else if (out.error === "unreachable" && host && !out.refused) memo.dead.set(host, Date.now() + DEAD_HOST_MS);   // a read the ask's BUDGET refused (fold-chat-budget.js) says nothing about the host: never mark it dead
+   }
+   return out;
+ }
+@@ -355,8 +355,10 @@
+     }
+     return chunks.join("").slice(0, MAX_RAW);
+   };
++  let refused = false;   // some door was shut by the ask's request budget, not by the site
+   const attempt = async (target, via, ctl, ms = timeoutMs) => {
+-    const r = await fetchT(fetchImpl, target, ms, null, ctl ? ctl.signal : null);
++    let r;
++    try { r = await fetchT(fetchImpl, target, ms, null, ctl ? ctl.signal : null); } catch (e) { if (e && e.name === "BudgetRefused") refused = true; throw e; }
+     if (!r.ok) throw new Error("HTTP " + r.status);
+     const raw = await readCapped(r);
+     let text = stripTags(raw);
+@@ -420,7 +422,7 @@
+   if (viaProxy) return viaProxy;
+   const viaReader = await firstOf(TEXT_READERS.map((rd) => (ctl) => attempt(rd(url), "a text reader", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS))));
+   if (viaReader) return viaReader;
+-  return { ok: false, text: "", title: "", via: null, url, error: "unreachable" };
++  return { ok: false, text: "", title: "", via: null, url, error: "unreachable", ...(refused ? { refused: true } : {}) };
+ }
+ 
+ // The relay's web search answers in ~2 s when its upstreams are well and 15–18 s when they

@@ -45,7 +45,7 @@ export async function say(page, text, timeout = 240000) {
     const s = Object.values(JSON.parse(localStorage.getItem("fold-chat:sessions") || "{}")).sort((a, b) => new Date(b.updated) - new Date(a.updated))[0] || {};
     const ms = s.messages || []; const m = [...ms].reverse().find((x) => x.role === "assistant");
     const shown = (() => { const el = [...document.querySelectorAll(".msg.assistant")].slice(-1)[0]; return el ? (el.querySelector(".body")?.innerText || "").trim() : null; })();
-    return { spoken: m?.content ?? null, shown, pivot: m?.pivot ?? null, notices: (m?.notices || []).map((n) => ({ kind: n.kind, text: String(n.text || "").slice(0, 220) })), reads: (m?.grounding?.web || []).filter((w) => w.read).map((w) => String(w.read).replace(/^https?:\/\/(www\.)?/, "").slice(0, 70)), read: (m?.grounding?.web || []).filter((w) => w.read).length, kind: m?.grounding?.kind ?? null, raws: (window.__raw || []).slice(before), nMessages: ms.length, authored: m?.authored ?? null };
+    return { spoken: m?.content ?? null, shown, pivot: m?.pivot ?? null, notices: (m?.notices || []).map((n) => ({ kind: n.kind, text: String(n.text || "").slice(0, 220) })), reads: (m?.grounding?.web || []).filter((w) => w.read).map((w) => String(w.read).replace(/^https?:\/\/(www\.)?/, "").slice(0, 70)), read: (m?.grounding?.web || []).filter((w) => w.read).length, kind: m?.grounding?.kind ?? null, raws: (window.__raw || []).slice(before), nMessages: ms.length, authored: m?.authored ?? null, provenance: m?.provenance ?? null };
   }, before);
 }
 

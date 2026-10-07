@@ -23,6 +23,7 @@
 // elliptical or meta (a typed gap, not a guess).
 
 import { casedRuns, resolveQuestion, searchQueries, scriptOf } from "./fold-chat-mind.js";
+import { isSourceAsk } from "./fold-chat-sourceask.js";
 
 export const THREAD = Object.freeze({
   ellipticalMaxWords: 8,   // "i want a chewier one" is 5; a nine-word ask names enough on its own
@@ -88,7 +89,7 @@ export function isElliptical(question) {
 }
 
 const asText = (m) => String(m?.content ?? "").replace(/\s+/g, " ").trim();
-const isFollowLike = (q) => isMeta(q) || isElliptical(q) || /^continue\.?$/i.test(String(q).trim());
+const isFollowLike = (q) => isMeta(q) || isElliptical(q) || isSourceAsk(q) || /^continue\.?$/i.test(String(q).trim());   // a source-ask ("find a primary source") has no topic of its own: it is never the topic a later ask follows
 
 /** The earlier turns this ask can follow: the last answer that WROTE something (a gap or a failure is nothing to follow),
  *  the ask that produced it, and the topic of the nearest earlier ask that stood on its own. `priorMessages` are the

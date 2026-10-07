@@ -1,0 +1,21 @@
+{
+  "schema": "C3Battery@1",
+  "authored": "2026-10-06 by ant C3, Addendum A of C3-PREREG.md, BEFORE any scorer ran on this set",
+  "note": "counterfactual control: truth in the world is decoupled from the label. 'fictional' entities cannot be known to any model.",
+  "pairs": [
+    {"id":101,"claim":"The Karst tunnel carries 4,200 vehicles a day.","sentence":"On an average weekday about 4,200 vehicles use the Karst tunnel.","label":"E","type":"fictional paraphrase"},
+    {"id":102,"claim":"The Karst tunnel carries 4,200 vehicles a day.","sentence":"The Karst tunnel carries 2,500 vehicles a day.","label":"C","type":"fictional figure differs"},
+    {"id":103,"claim":"Mount Everest is 5,000 metres tall.","sentence":"Mount Everest stands 5,000 meters above sea level.","label":"E","type":"false-in-world claim, supported by the sentence"},
+    {"id":104,"claim":"Mount Everest is 8,849 metres tall.","sentence":"Mount Everest stands 5,000 meters above sea level.","label":"C","type":"true-in-world claim, contradicted by the sentence"},
+    {"id":105,"claim":"Vellmar acquired Karst.","sentence":"Karst acquired Vellmar.","label":"C","type":"fictional role swap"},
+    {"id":106,"claim":"Vellmar acquired Karst in 2019.","sentence":"Karst was acquired by Vellmar in 2019.","label":"E","type":"fictional passive"},
+    {"id":107,"claim":"The Karst bridge is open to trucks.","sentence":"The Karst bridge is closed to trucks.","label":"C","type":"fictional polarity (antonym)"},
+    {"id":108,"claim":"Spiders have six legs.","sentence":"Spiders, like all arachnids, have six legs.","label":"E","type":"false-in-world claim, supported by the sentence"},
+    {"id":109,"claim":"Water boils at 100 degrees Celsius at sea level.","sentence":"Water does not boil at 100 degrees Celsius at sea level.","label":"C","type":"true-in-world claim, negated by the sentence"},
+    {"id":110,"claim":"The Karst tunnel is shorter than the Vellmar bridge.","sentence":"The Vellmar bridge is longer than the Karst tunnel.","label":"E","type":"fictional antonym comparative"},
+    {"id":111,"claim":"Dr Orsk is the director of the Karst institute.","sentence":"Dr Pell is the director of the Karst institute; Dr Orsk retired in 2021.","label":"C","type":"fictional tense / office holder"},
+    {"id":112,"claim":"The Karst tunnel carries 4,200 vehicles a day.","sentence":"The Vellmar bridge carries 4,200 vehicles a day.","label":"T","type":"fictional other referent"},
+    {"id":113,"claim":"Vellmar acquired Karst in 2019.","sentence":"Vellmar acquired Orsk in 2019.","label":"T","type":"fictional other object"},
+    {"id":114,"claim":"The Karst bridge is open to trucks.","sentence":"Some residents claim the Karst bridge is open to trucks.","label":"T","type":"fictional reported, not asserted"}
+  ]
+}

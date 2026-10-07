@@ -1,0 +1,124 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -29,7 +29,8 @@
+ // the thread), and the felt shape of the recent answers for a DECLARED experiencer.
+ import { door as garyDoor, noteWindows } from "./fold-chat-gary.js";
+ import { planTurn, cuesFor, actOf } from "./fold-chat-flow.js";
+-import { readFelt } from "./fold-chat-pathos.js";
++import { ethosFor, laneOf } from "./fold-chat-ethos.js";   // C7: ONE ethos/pathos/voice grounding for every model-voiced path (docs/ETHOS-PATHOS-PATHS.md)
++import { buildIndex } from "./fold-chat-voice.js";
+ import { hintsFor } from "./fold-chat-hints.js";
+ import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
+ import { applyCarry } from "./fold-chat-carry.js";
+\ No newline at end of file
+@@ -357,6 +358,17 @@
+   return pop;
+ }
+ 
++// THE VOICE KIT (docs/VOICE.md; fold-chat-ethos.js): the ingested canon's index and verbatim bank, fetched once, never required. Any failure is a null kit and the aside stays silent.
++let _voiceKit;
++async function voiceKit() {
++  if (_voiceKit !== undefined) return _voiceKit;
++  try {
++    const [i, b] = await Promise.all([fetch("./voice/voice-index.json").then((r) => r.json()), fetch("./voice/voice-bank.json").then((r) => r.json())]);
++    _voiceKit = { index: buildIndex(i.archons, functionWordsOf("en")), bank: b };
++  } catch { _voiceKit = null; }
++  return _voiceKit;
++}
++
+ export function mount(root, opts = {}) {
+   // Where heimdall is. The stored override / opts.bridge is preferred (except an old stored standalone-bridge port, which never
+   // shadows the embedded heimdall serving this very page); on boot the surface probes the same-origin /heimdall first, then the
+\ No newline at end of file
+@@ -1367,7 +1379,7 @@
+   // System notes about a turn (an identity claim the fold withdrew, a model
+   // refusal it replaced, an agent that produced no code): each its OWN element,
+   // labelled as the fold's — never part of what the model wrote.
+-  const NOTICE_LABEL = { "language-gap": "not checkable", identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", thread: "from this chat", carry: "read as", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
++  const NOTICE_LABEL = { voice: "from the ingested canon", "language-gap": "not checkable", identity: "withdrawn claim", refusal: "model declined", agent: "agent", fold: "fold note", stopped: "stopped", error: "turn failed", declined: "model declined", thread: "from this chat", carry: "read as", empty: "no answer", attribution: "attribution removed", language: "language", computed: "computed" };
+   // A note whose turn wrote nothing (a failure, an empty stream, a stop) carries a retry: `onRetry` re-runs the ask.
+   function renderNotices(body, notices, onRetry = null, onRefuse = null) {
+     for (const n of notices || []) {
+\ No newline at end of file
+@@ -2114,12 +2126,18 @@
+     // reply hears about the conversation rides as plain facts (Terry Gross's flow reading, fold-chat-flow.js; the pathos archons' felt
+     // shape of the recent answers, fold-chat-pathos.js) — only on a turn the model may write, and each fact is read by Gary first. A fold
+     // Gary REFUSES is withheld, not shipped; a prompt too big for the window the model is loaded at is shrunk, never cut in the middle.
+-    let flowInfo = null, feltInfo = null;
++    let flowInfo = null, feltInfo = null, eth = null;
+     let messages = [];
+     garyDoor.drain();   // this turn's decisions start empty (a stopped or failed earlier turn leaves none behind)
+     if (!modelBarred) {
+-      const conversational = kind === "research" || kind === "chat" || kind === "advice" || !!threadTurn;
+-      feltInfo = conversational ? readFelt(s.messages.slice(0, askAt), { convo: id, memo: s.pathos }) : null;
++      // ONE GROUNDING FOR EVERY MODEL-VOICED LANE (fold-chat-ethos.js): chat = Atmosphere/Lens (already in summary.flow) + the four-input pathos read + a rare verbatim aside; writing = the Atmosphere as one fact;
++      // none (compute / transform / code / smalltalk / self) = nothing. It replaces the direct readFelt call; `feltInfo` keeps its old shape so cuesFor is untouched.
++      const lane = laneOf({ kind, threadTurn: !!threadTurn, modelBarred: false });
++      const nAns = s.messages.filter((x) => x.role === "assistant").length + 1;
++      eth = lane === "none" ? null : ethosFor({ lane, kind, session: s, messagesBefore: s.messages.slice(0, askAt), question, convo: id, memo: s.pathos,
++        voice: { ...(await voiceKit()), exchangeIndex: nAns, sinceLast: s.voice ? nAns - s.voice.at : Infinity, used: s.voice?.used || [] } });
++      const conversational = lane === "chat";
++      feltInfo = conversational && eth?.parts.pathos ? { ...eth.parts.pathos, memo: eth.memo } : null;
+       if (feltInfo && !feltInfo.gap) s.pathos = feltInfo.memo;
+       flowInfo = conversational ? cuesFor({ act: follow.act || actOf(question), felt: feltInfo?.felt || null, pathosCue: feltInfo?.cue || null, door: garyDoor }) : null;
+       const materialInView = modelSpeaksAlone(kind) ? undefined : webPassages.length + (threadTurn ? 1 : 0) + (computed && computed.ok ? 1 : 0) + materialOf(s).length;
+\ No newline at end of file
+@@ -2148,7 +2166,7 @@
+         }
+       }
+       const composed = garyDoor.composeTurn({
+-        basePrompt: turnBase, cues: flowInfo?.cues || [], summary: promptSummary, history: promptHistory, question, sourceBlock, recencyWindow,
++        basePrompt: turnBase, cues: [...(flowInfo?.cues || []), ...(eth?.cues || [])], summary: promptSummary, history: promptHistory, question, sourceBlock, recencyWindow,
+         shrinkSource: fromWeb ? (maxChars) => sourcesPrompt(promptPassages.map((p) => ({ ...p, text: String(p.text || "").slice(0, maxChars) }))) + (webPassages.some((p) => p.recipe) ? "\n\n" + CARD_PROMPT : "") : null,
+       }, { model: m.id, maxTokens: 1024, material: materialInView });
+       messages = composed.messages;
+\ No newline at end of file
+@@ -2369,7 +2387,9 @@
+       if (!provenance && srcRecall) provenance = srcRecall.provenance;   // the same source line, drawn again under this turn
+       if (aloneBarred) { const at = follow.mode === "cold-gap" ? { notice: coldFollowUpNotice() } : recall ? { notice: { kind: "alone", text: recall.text } } : srcRecall ? { notice: { kind: "alone", text: srcRecall.text } } : aloneTurn(noLookup ? "nolookup" : kind); if (at.notice) notices.push(at.notice); }
+       if (threadTurn && text.trim()) notices.push(threadNotice(threadTurn));
+-      { const cn = carryNotice(follow, s.messages.filter((x) => x.role === "assistant").length + 1); if (cn) notices.push(cn); }   // what the pronoun was read as: the person may refuse it (fold-chat-minds.js)
++      { const cn = carryNotice(follow, s.messages.filter((x) => x.role === "assistant").length + 1); if (cn) notices.push(cn); }
++      // THE VOICE OF CONTENT (docs/VOICE.md, stages 1-2): ONE rare aside — the app's fixed frame around an ingested voice's verbatim sentence, address and sha256 in `audit`. Never on a Sources-only or slot turn, never a model's words.
++      if (eth?.aside && !strand && !slotTurn && text.trim()) { notices.push({ kind: "voice", text: eth.aside.text, audit: eth.aside.audit }); s.voice = { at: s.messages.filter((x) => x.role === "assistant").length + 1, used: [...(s.voice?.used || []), eth.aside.audit.handle] }; }   // what the pronoun was read as: the person may refuse it (fold-chat-minds.js)
+       if (!text.trim() && !notices.length && !skipModel && !liveDrop) notices.push(emptyNotice({ tokens: out.tokens, model: m.id }));
+       const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
+       const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
+\ No newline at end of file
+@@ -2661,7 +2681,10 @@
+       //   sandbox  runs what came back and measures it
+       //   janus    rules on the measured facts (/api/reason) — the engine decides
+       const lane = agentLane();
++      let readNames = [];   // the surfaces khora read from the ask: the agent's referents for the Atmosphere
+       const result = await runAgent({
++        // THE SAME PATHOS OVER THE ROUNDS (fold-chat-ethos.js, N9): the condition steers the loop (escalate when repairs undo each other); the code model's prompt is never touched.
++        ethos: (rs) => { const e = ethosFor({ lane: "agent", rounds: rs, task, names: readNames, convo: runId, memo: s.pathosRun || null }); s.pathosRun = e.memo; const p = e.parts.pathos; return { condition: p?.condition ?? null, run: p?.run ?? null, gap: p?.gap ?? null, inputs: p?.inputs ?? null }; },
+         task, base: resume ? { code: resume.code, kind: resume.kind } : null, verification, signal: ac.signal, maxRounds: agentRounds(), sessionId: resume ? null : s.codeSessionId || null,
+         actPipeline: lane === "khora" ? "khora" : "penelope",
+         slowAfterMs: 75000,
+\ No newline at end of file
+@@ -2673,7 +2696,7 @@
+           return { sessionId: null, text: out.text, ms: Date.now() - t0, lane: "sealed-remote", executed: false, model: out.model, audit: out.sent,
+             activity: [...out.tried.map((t) => ({ tool: "remote", status: "failed", title: `${t.model}: ${t.error}` })), { tool: "remote", status: "done", title: out.model + " · sealed-external" }] };
+         } : null,
+-        read: (t) => client.read(t, { base: bridge, source: "agent-task", sessionId: s.codeSessionId || null, signal: ac.signal }),
++        read: async (t) => { const r = await client.read(t, { base: bridge, source: "agent-task", sessionId: s.codeSessionId || null, signal: ac.signal }); readNames = (r?.referents || []).flatMap((x) => x.surfaces || []); return r; },
+         derive: (spec, o) => client.reason(spec, { base: bridge, signal: o?.signal || ac.signal }),
+         dispatch: async (prompt, o) => {
+           let out;
+\ No newline at end of file
+@@ -2705,6 +2728,13 @@
+       const agentNotices = result.stopped ? [{ kind: "stopped", text: art ? "Stopped \u2014 the agent was cut short." : "Stopped before the agent produced any code." }]
+         : art ? [] : [{ kind: "agent", text: `the agent produced no code${result.error ? " — " + result.error : ""}` }];
+       const lastRound = result.rounds[result.rounds.length - 1] || null;
++      // A NATURAL BREAK (the run just ended): the same rare aside the chat gets, spoken by the app, never inside a prompt.
++      try {
++        const nAns = s.messages.filter((x) => x.role === "assistant").length + 1;
++        const e = ethosFor({ lane: "agent", rounds: result.rounds.map((r) => ({ n: r.n, findings: r.findings, maker: r.maker })), task, names: readNames, convo: runId, memo: s.pathosRun || null, naturalBreak: true,
++          voice: { ...(await voiceKit()), exchangeIndex: nAns, sinceLast: s.voice ? nAns - s.voice.at : Infinity, used: s.voice?.used || [] } });
++        if (e.aside) { agentNotices.push({ kind: "voice", text: e.aside.text, audit: e.aside.audit }); s.voice = { at: nAns, used: [...(s.voice?.used || []), e.aside.audit.handle] }; }
++      } catch { /* an aid, never a reason to lose a run */ }
+       const codeRec = {
+         code: true, cwd, lane: lastRound?.lane || "penelope-code-agent", events: result.events, ms: result.ms,
+         outcome: result.ok ? "held" : result.stopped ? "stopped" : result.exhausted ? "exhausted" : "failed",
+\ No newline at end of file

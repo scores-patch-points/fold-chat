@@ -1,0 +1,3353 @@
+[
+ {
+  "ask": "Who is the king of the UK?",
+  "a1": {
+   "calls": [
+    {
+     "question": "Who is the king of the UK?",
+     "t0": 1791314497753,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "len": 1003,
+       "head": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as",
+       "text": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as the head of state, with their powers regulated by the British constitution.\nThe monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.\nIn the 16th century, English and Scottish monarchs played a central role in what became the religious English Reformation and Scottish Reformation, and the English king became King of Ireland.\nThe sovereign has a similar relationship to the devolved governments of Scotland, Wales, and Northern Ireland as to the government of the UK.\nThe Crown Proceedings Act 1947 allows civil lawsuits against the Crown in its public capacity (that is, lawsuits against the government), but not lawsuits against the monarch personally.\nHenry accordingly became the first Angevin king of England and the first monarch of the Plantagenet dynasty in 1154.",
+       "title": "",
+       "ref": "Wikipedia — Monarchy of the United Kingdom",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+       "len": 1327,
+       "head": "The Kid Who Would Be King is a 2019 urban fantasy action-adventure film written and directed by Joe Cornish.\nIt was also the second to last film to be released ",
+       "text": "The Kid Who Would Be King is a 2019 urban fantasy action-adventure film written and directed by Joe Cornish.\nIt was also the second to last film to be released by 20th Century Fox (after Alita: Battle Angel) before The Walt Disney Company took over of the studio as part of their acquisition of 21st Century Fox on 20 March 2019.\nAlex is a twelve-year-old boy, who is a Year 7 student in a London suburb.\nThe Kid Who Would Be King grossed $16.8 million in the United States and Canada, and $15.4 million in other territories, for a total worldwide gross of $32.1 million, against a production budget of $59 million.\nOn review aggregator Rotten Tomatoes, the film has a 90% rating based on 193 reviews, with an average rating of 6.9/10.\nOn Metacritic, the film has a weighted average score of 66 out of 100, based on 34 critics.\nAudiences polled by CinemaScore gave the film an average grade of \"B+\" on an A+ to F scale, while those at PostTrak gave it an overall positive score of 71% and a \"definite recommend\" of 46%.\nList of films featuring eclipses\nThe Dark Is Rising Sequence (1965–1977), a series novels by Susan Cooper about children in modern England who are supernaturally tasked to continue King Arthur's mission.\nCamelot 3000 (1982–1985), a comic book about King Arthur and his knights being reborn in the space age.",
+       "title": "",
+       "ref": "Wikipedia — The Kid Who Would Be King",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+       "len": 1819,
+       "head": "Paul King (born 20 November 1960) is a British-Irish singer, musician, VJ and TV presenter.\nKing was the lead vocalist of the eponymous 1980s new wave band King",
+       "text": "Paul King (born 20 November 1960) is a British-Irish singer, musician, VJ and TV presenter.\nKing was the lead vocalist of the eponymous 1980s new wave band King and has released five albums in his musical career.\nKing's line up of the band – which also contained record producer Paul Sampson – released an album The Label and three singles Confused Action, Plans For Today and Nightmares in the early 1980s on the back of Coventry's vibrant 2 Tone ska scene.\nAfter the demise of the Reluctant Stereotypes, King formed the Raw Screens who perfected their act and style to what King and his manager Perry Haines called 'multi-tone', and then in 1983 relaunched the group as self-named 1980s band King.\nThe band lasted just a couple of years, though both of their albums, Steps in Time and Bitter Sweet, went Gold, and they had two Top 10 singles with \"Love & Pride\" and \"Alone Without You\".\nHe is mostly remembered for the programmes MTV's Greatest Hits, 120 Minutes and XPO, later renamed First Look.\nIn 1998, a joint King & Paul King 18-track collection, entitled The Best of King – Love & Pride, was eventually released, with hit singles, stand-out tracks, B-sides and remixes.\n1980 - The Label (Reluctant Stereotypes album)\nFeb 1985 – Steps in Time (King's debut album – UK No. 6)\nNov 1985 – Bitter Sweet (King's second album – UK No. 16)\n1998 – The Best of King – Love & Pride (King and Paul King's joint collection)\nJuly 1984 \"Soul On My Boots\" (UK No. 158)\n8 October 1984 – \"Won't You Hold My Hand Now\" (UK no. 112)\nJan 1985 – \"Love & Pride\" (re-release – UK No. 2, US No. 55)\nMar 1985 – \"Won't You Hold My Hand Now\" (re-release – UK No. 24)\nAug 1985 – \"Alone Without You\" (UK No. 8)\nOct 1985 – \"The Taste of Your Tears\" (UK No. 11)\nJan 1986 – \"Torture\" (UK No. 23)\nMay 1987 – \"I Know\" (Paul King solo – UK No. 59)",
+       "title": "",
+       "ref": "Wikipedia — Paul King (VJ)",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 5079,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The monarchy of the United Kingdom, or simply the British monarchy, is the form of government used by the United Kingdom by which a hereditary monarch reigns as the head of state, with their powers regulated by the British constitution.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "Wikipedia — Monarchy of the United Kingdom#0-236"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "Wikipedia — Monarchy of the United Kingdom#237-364"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "claim": "In the 16th century, English and Scottish monarchs played a central role in what became the religious English Reformation and Scottish Reformation, and the English king became King of Ireland.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Monarchy of the United Kingdom",
+         "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+         "edition": "en",
+         "revid": 1376660273,
+         "address": "Wikipedia — Monarchy of the United Kingdom#365-557"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+       "claim": "The Kid Who Would Be King is a 2019 urban fantasy action-adventure film written and directed by Joe Cornish.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "The Kid Who Would Be King",
+         "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+         "edition": "en",
+         "revid": 1373185071,
+         "address": "Wikipedia — The Kid Who Would Be King#0-108"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+       "claim": "It was also the second to last film to be released by 20th Century Fox (after Alita: Battle Angel) before The Walt Disney Company took over of the studio as part of their acquisition of 21st Century Fox on 20 March 2019.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "The Kid Who Would Be King",
+         "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+         "edition": "en",
+         "revid": 1373185071,
+         "address": "Wikipedia — The Kid Who Would Be King#109-329"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+       "claim": "Alex is a twelve-year-old boy, who is a Year 7 student in a London suburb.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "The Kid Who Would Be King",
+         "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+         "edition": "en",
+         "revid": 1373185071,
+         "address": "Wikipedia — The Kid Who Would Be King#330-404"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+       "claim": "Paul King (born 20 November 1960) is a British-Irish singer, musician, VJ and TV presenter.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Paul King (VJ)",
+         "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+         "edition": "en",
+         "revid": 1357332352,
+         "address": "Wikipedia — Paul King (VJ)#0-91"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+       "claim": "King was the lead vocalist of the eponymous 1980s new wave band King and has released five albums in his musical career.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Paul King (VJ)",
+         "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+         "edition": "en",
+         "revid": 1357332352,
+         "address": "Wikipedia — Paul King (VJ)#92-212"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+       "claim": "King's line up of the band – which also contained record producer Paul Sampson – released an album The Label and three singles Confused Action, Plans For Today and Nightmares in the early 1980s on the back of Coventry's vibrant 2 Tone ska scene.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Paul King (VJ)",
+         "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+         "edition": "en",
+         "revid": 1357332352,
+         "address": "Wikipedia — Paul King (VJ)#213-458"
+        },
+        "refs": [
+         {
+          "n": 1,
+          "id": "backbeat-1",
+          "url": "http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178",
+          "archived": null,
+          "label": "Look: Backbeat: Reluctant Stereotypes 'the nearly men' of Coventry's Ska scene",
+          "host": "coventrytelegraph.net"
+         },
+         {
+          "n": 2,
+          "id": "trouser-2",
+          "url": "http://www.trouserpress.com/entry.php?a=king",
+          "archived": null,
+          "label": "Paul King",
+          "host": "trouserpress.com"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 1,
+          "id": "backbeat-1",
+          "label": "Look: Backbeat: Reluctant Stereotypes 'the nearly men' of Coventry's Ska scene",
+          "url": "http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Look: Backbeat: Reluctant Stereotypes &#x27;the nearly men&#x27; of Coventry&#x27;s Ska scene | Coventry Live",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "NUL",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "what the claim is about is absent from this page"
+          },
+          "why": "the page was read; this claim makes no difference to it (name)"
+         },
+         {
+          "kind": "reference",
+          "n": 2,
+          "id": "trouser-2",
+          "label": "Paul King",
+          "url": "http://www.trouserpress.com/entry.php?a=king",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/The_Kid_Who_Would_Be_King",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Paul_King_(VJ)",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 2
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "The king of the UK is King Charles III.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.”",
+   "quotes": [
+    {
+     "text": "“The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II.”",
+     "host": "en.wikipedia.org",
+     "index": 0
+    }
+   ],
+   "pointers": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+     "host": "en.wikipedia.org"
+    }
+   ]
+  },
+  "net": [
+   {
+    "t": 1791314493172,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=Who%20is%20the%20king%20of%20the%20UK%3F"
+   },
+   {
+    "t": 1791314493641,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=king%20of%20the%20UK"
+   },
+   {
+    "t": 1791314494576,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=Who%20is%20the%20king%20of%20the%20UK%3F"
+   },
+   {
+    "t": 1791314497128,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=Who%20is%20the%20king%20of%20the%20UK%3F"
+   },
+   {
+    "t": 1791314497441,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=The%20Kid%20Who%20Would%20Be%20King"
+   },
+   {
+    "t": 1791314497441,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Paul%20King%20(VJ)"
+   },
+   {
+    "t": 1791314497441,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Monarchy%20of%20the%20United%20Kingdom"
+   },
+   {
+    "t": 1791314497878,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=King%20(new%20wave%20band)"
+   },
+   {
+    "t": 1791314497878,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=The%20Man%20Who%20Would%20Be%20King%20(film)"
+   },
+   {
+    "t": 1791314497958,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=king%7Cking%20of%20the%20UK%7CUK&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791314498818,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Monarchy%20of%20the%20United%20Kingdom&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Paul%20King%20(VJ)&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499382,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=The%20Kid%20Who%20Would%20Be%20King&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314499828,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://www.trouserpress.com/entry.php?a=king"
+   },
+   {
+    "t": 1791314499831,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500217,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/http://www.trouserpress.com/entry.php?a=king"
+   },
+   {
+    "t": 1791314500218,
+    "kind": "resp",
+    "status": 500,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=http%3A%2F%2Fwww.trouserpress.com%2Fentry.php%3Fa%3Dking"
+   },
+   {
+    "t": 1791314500218,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/http://www.trouserpress.com/entry.php?a=king"
+   },
+   {
+    "t": 1791314500218,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=http%3A%2F%2Fwww.trouserpress.com%2Fentry.php%3Fa%3Dking"
+   },
+   {
+    "t": 1791314500230,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500230,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=http%3A%2F%2Fwww.coventrytelegraph.net%2Fwhats-on%2Fmusic-nightlife-news%2Flook-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500230,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/http://www.coventrytelegraph.net/whats-on/music-nightlife-news/look-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500230,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=http%3A%2F%2Fwww.coventrytelegraph.net%2Fwhats-on%2Fmusic-nightlife-news%2Flook-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500480,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=http%3A%2F%2Fwww.coventrytelegraph.net%2Fwhats-on%2Fmusic-nightlife-news%2Flook-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314500480,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=http%3A%2F%2Fwww.coventrytelegraph.net%2Fwhats-on%2Fmusic-nightlife-news%2Flook-backbeat-reluctant-stereotypes-the-7863178"
+   },
+   {
+    "t": 1791314502562,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=http%3A%2F%2Fwww.trouserpress.com%2Fentry.php%3Fa%3Dking"
+   },
+   {
+    "t": 1791314502610,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=http%3A%2F%2Fwww.trouserpress.com%2Fentry.php%3Fa%3Dking"
+   },
+   {
+    "t": 1791314503032,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=http%3A%2F%2Fwww.trouserpress.com%2Fentry.php%3Fa%3Dking"
+   },
+   {
+    "t": 1791314503032,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/http://www.trouserpress.com/entry.php?a=king"
+   }
+  ]
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "a1": {
+   "calls": [
+    {
+     "question": "How tall is the Eiffel Tower?",
+     "t0": 1791314548426,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "len": 2925,
+       "head": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.\nIt is named after the engineer Gustave Ei",
+       "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.\nIt is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.\nThe tower received 5,889,000 visitors in 2022.\nThe Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015.\nThe tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.\nIts base is square, measuring 125 metres (410 ft) on each side.\nDuring its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930.\nDue to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft).\nThe top level's upper platform is 276 m (906 ft) above the ground—the highest public observation deck in the European Union.\nEiffel was to receive all income from the commercial exploitation of the tower during the exhibition and for the next 20 years.\nPrior to the Eiffel Tower's construction, no structure had ever been constructed to a height of 300 m, or even 200 m for that matter, and many people believed it was impossible.\nA petition called \"Artists against the Eiffel Tower\" was sent to the Minister of Works and Commissioner for the Exposition, Adolphe Alphand, and it was published by Le Temps on 14 February 1887:\nThe main structural work was completed at the end of March 1889 and, on 31 March, Eiffel celebrated by leading a group of government officials, accompanied by representatives of the press, to the top of the tower.\nAt 2:35 pm, Eiffel hoisted a large Tricolour to the accompaniment of a 25-gun salute fired at the first level.\nEdison signed the guestbook with this message on September 10, 1889: To M Eiffel the Engineer the brave builder of so gigantic and original specimen of modern Engineering from one who has the greatest respect and admiration for all Engineers including the Great Engineer the Bon Dieu, Thomas Edison.\nOriginally commissioned as a temporary structure for the 1889 Exposition Universelle, Eiffel was slated for dismantling in 1909, at which point ownership would have reverted to the City of Paris.\nOn 19 October 1901, Alberto Santos-Dumont, flying his No.6 airship, won a 100,000-franc prize offered by Henri Deutsch de la Meurthe for the first person to make a flight from St. Cloud to the Eiffel Tower and back in less than half an hour.\nFrom 1910, the astronomical clocks of the Paris Observatory sent the time to sea daily through the Eiffel Tower within a radius of 5 000 km.\nIn 1964, the Eiffel Tower was officially declared to be a historical monument by the Minister of Cultural Affairs, André Malraux.",
+       "title": "",
+       "ref": "Wikipedia — Eiffel Tower",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+       "len": 2985,
+       "head": "Alexandre Gustave Eiffel ( EYE-fəl; French: [alɛksɑ̃dʁ ɡystav ɛfɛl]; né Bonickhausen dit Eiffel; 15 December 1832 – 27 December 1923) was a French civil enginee",
+       "text": "Alexandre Gustave Eiffel ( EYE-fəl; French: [alɛksɑ̃dʁ ɡystav ɛfɛl]; né Bonickhausen dit Eiffel; 15 December 1832 – 27 December 1923) was a French civil engineer.\nHe is best known for the Eiffel Tower, designed by his company and built for the 1889 Universal Exposition in Paris, and his contribution to building the Statue of Liberty (Liberty Enlightening the World) in New York.\nAlthough the family always used the name Eiffel, Gustave's name was registered at birth as Bonickhausen dit Eiffel, and was not formally changed to Eiffel until 1880.\nThe business was successful enough for Catherine Eiffel to sell it in 1843 and retire on the proceeds.\nHowever, shortly afterwards Nepveu's company went bankrupt, Nepveu found Eiffel a job designing a 22-metre (72 ft) sheet iron bridge for the Saint Germaine railway.\nEiffel was initially given the responsibility of assembling the metalwork and eventually took over the management of the entire project from Nepveu, who resigned in March 1860.\nAt the end of 1866 Eiffel managed to borrow enough cash to set up his own workshops at 48 Rue Fouquet in Levallois-Perret.\nThe price quoted by Eiffel was FF.965,000, far below the nearest competitor and so he was given the job, although since his company was less experienced than his rivals the Portuguese authorities appointed a committee to report on Eiffel et Cie's suitability.\nIn 1879 the partnership with Seyrig was dissolved, and the company was renamed the Compagnie des Établissements Eiffel.\nIn 1886 Eiffel also designed the dome for the Astronomical Observatory in Nice.\nThis had been patented by Eiffel in 1881.\nThe design was exhibited at the Exhibition of Decorative Arts in the autumn of 1884, and on 30 March 1885, Eiffel read a paper on the project to the Société des Ingénieurs Civils.\nAfter some debate about the exact site for the tower, a contract was signed on 8 January 1887.\nThe main structural work was completed at the end of March 1889, and, on 31 March, Eiffel celebrated by leading a group of government officials, accompanied by representatives of the press, to the top of the tower.\nAt 2:35, Eiffel hoisted a large tricolour, to the accompaniment of a 25-gun salute fired from the lower level.\nIn 1887, Eiffel became involved with the French effort to construct a canal across the Panama Isthmus.\nEiffel had been working on the project for little more than a year when the company suspended payments of interest on 14 December 1888, and shortly afterwards was put into liquidation.\nOn 9 February 1893, Eiffel was found guilty on the charge of misuse of funds and was fined 20,000 francs and sentenced to two years in prison, although he was acquitted on appeal.\nThe name was changed to the Anciens Etablissements Eiffel in 1937.\nHe then built a laboratory on the Champ de Mars at the foot of the tower in 1905, building his first wind tunnel there in 1909.\nIn 1913, Eiffel was awarded the Samuel P. Langley Medal for Aerodromics by the Smithsonian Institution.",
+       "title": "",
+       "ref": "Wikipedia — Gustave Eiffel",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+       "len": 786,
+       "head": "The Amazon Tall Tower Observatory or ATTO is a scientific research facility in the Amazon rainforest of Brazil.\nThis includes a 325-metre-tall (1,066 ft) tower ",
+       "text": "The Amazon Tall Tower Observatory or ATTO is a scientific research facility in the Amazon rainforest of Brazil.\nThis includes a 325-metre-tall (1,066 ft) tower that extends far above the forest canopy and two 80-metre (260 ft) towers that allow researchers to collect samples from the soil surface to above the forest canopy.\nThe tall research tower is one metre taller than the Eiffel Tower and is currently the tallest structure in South America.\nThe nearest large urban area is the city of Manaus in the state Amazonas, about 150 kilometres (93 mi) southwest of the ATTO site.\nHow do volatile organic compounds emitted from vegetation and soils affect atmospheric chemistry and the formation of aerosols and clouds?\nBuilding of the tall tower began in 2014 and was completed in 2015.",
+       "title": "",
+       "ref": "Wikipedia — Amazon Tall Tower Observatory",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 1978,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.",
+       "trail": {
+        "status": "unlocated",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower#0-118"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "the sentence cannot be addressed in the article's own text"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower#119-227"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "claim": "The tower received 5,889,000 visitors in 2022.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Eiffel Tower",
+         "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+         "edition": "en",
+         "revid": 1376706466,
+         "address": "Wikipedia — Eiffel Tower#228-274"
+        },
+        "refs": [
+         {
+          "n": 6,
+          "id": "6",
+          "url": null,
+          "archived": null,
+          "label": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visit",
+          "host": ""
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": 6,
+          "id": "6",
+          "label": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visit",
+          "note": "^ Tourism Statistics, \"Visit Paris Region\" site of the Paris Ile de France Visitors Bureau, retrieved 22 March 2022.",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "ground",
+         "kind": "refusal",
+         "says": "the pages it points to could not be read: no witness reached"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+       "claim": "Alexandre Gustave Eiffel ( EYE-fəl; French: [alɛksɑ̃dʁ ɡystav ɛfɛl]; né Bonickhausen dit Eiffel; 15 December 1832 – 27 December 1923) was a French civil engineer.",
+       "trail": {
+        "status": "unlocated",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Gustave Eiffel",
+         "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+         "edition": "en",
+         "revid": 1375170953,
+         "address": "Wikipedia — Gustave Eiffel#0-162"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "the sentence cannot be addressed in the article's own text"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+       "claim": "He is best known for the Eiffel Tower, designed by his company and built for the 1889 Universal Exposition in Paris, and his contribution to building the Statue of Liberty (Liberty Enlightening the World) in New York.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Gustave Eiffel",
+         "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+         "edition": "en",
+         "revid": 1375170953,
+         "address": "Wikipedia — Gustave Eiffel#163-380"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+       "claim": "Although the family always used the name Eiffel, Gustave's name was registered at birth as Bonickhausen dit Eiffel, and was not formally changed to Eiffel until 1880.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Gustave Eiffel",
+         "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+         "edition": "en",
+         "revid": 1375170953,
+         "address": "Wikipedia — Gustave Eiffel#381-547"
+        },
+        "refs": [
+         {
+          "n": 1,
+          "id": "autogenerated249-1",
+          "url": null,
+          "archived": null,
+          "label": "^ a b État-civil de la Côte-d'Or, Dijon, Registres d'état civil 1832, p. 249",
+          "host": ""
+         },
+         {
+          "n": 2,
+          "id": "autogenerated1-2",
+          "url": null,
+          "archived": null,
+          "label": "^ a b Harvie 2006 p. 1",
+          "host": ""
+         },
+         {
+          "n": 5,
+          "id": "Google_Books_2016-5",
+          "url": "https://books.google.com/books?id=oS8LgSgLHpQC&q=eiffel+Bonickhausen&pg=PA159",
+          "archived": null,
+          "label": "Follow the Leader",
+          "host": "books.google.com"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": 1,
+          "id": "autogenerated249-1",
+          "label": "^ a b État-civil de la Côte-d'Or, Dijon, Registres d'état civil 1832, p. 249",
+          "note": "^ a b État-civil de la Côte-d'Or, Dijon, Registres d'état civil 1832, p. 249",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "reference",
+          "n": 2,
+          "id": "autogenerated1-2",
+          "label": "^ a b Harvie 2006 p. 1",
+          "note": "^ a b Harvie 2006 p. 1",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "read",
+          "n": 5,
+          "id": "Google_Books_2016-5",
+          "label": "Follow the Leader",
+          "url": "https://books.google.com/books?id=oS8LgSgLHpQC&q=eiffel+Bonickhausen&pg=PA159",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Follow the Leader: The One Thing Great Leaders Have that Great Followers Want - Emmanuel Gobillot - Google Books",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "EVA",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "a comparison or a negation no gate reads: no null, no verdict"
+          },
+          "why": "the page was read; this claim makes no difference to it (unread-structure)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+       "claim": "The Amazon Tall Tower Observatory or ATTO is a scientific research facility in the Amazon rainforest of Brazil.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Amazon Tall Tower Observatory",
+         "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+         "edition": "en",
+         "revid": 1312822448,
+         "address": "Wikipedia — Amazon Tall Tower Observatory#0-111"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+       "claim": "This includes a 325-metre-tall (1,066 ft) tower that extends far above the forest canopy and two 80-metre (260 ft) towers that allow researchers to collect samples from the soil surface to above the forest canopy.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Amazon Tall Tower Observatory",
+         "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+         "edition": "en",
+         "revid": 1312822448,
+         "address": "Wikipedia — Amazon Tall Tower Observatory#112-325"
+        },
+        "refs": [
+         {
+          "n": 1,
+          "id": "Brazil_builds-1",
+          "url": "https://www.bbc.com/news/world-latin-america-29199728",
+          "archived": null,
+          "label": "Brazil builds giant Amazon observation tower",
+          "host": "bbc.com"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 1,
+          "id": "Brazil_builds-1",
+          "label": "Brazil builds giant Amazon observation tower",
+          "url": "https://www.bbc.com/news/world-latin-america-29199728",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Brazil builds giant Amazon observation tower - BBC News",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "SEG",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "the page's figure, unit or date is not the claim's: a boundary differs"
+          },
+          "why": "the page was read; this claim makes no difference to it (figure)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+       "claim": "The tall research tower is one metre taller than the Eiffel Tower and is currently the tallest structure in South America.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Amazon Tall Tower Observatory",
+         "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+         "edition": "en",
+         "revid": 1312822448,
+         "address": "Wikipedia — Amazon Tall Tower Observatory#326-448"
+        },
+        "refs": [
+         {
+          "n": 3,
+          "id": "3",
+          "url": "https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html",
+          "archived": null,
+          "label": "Amazon Tall Tower Observatory gives scientists the big picture of the rainforest",
+          "host": "independent.co.uk"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 3,
+          "id": "3",
+          "label": "Amazon Tall Tower Observatory gives scientists the big picture of the rainforest",
+          "url": "https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Amazon Tall Tower Observatory gives scientists the big picture of the rainforest | The Independent | The Independent",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "EVA",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "a comparison or a negation no gate reads: no null, no verdict"
+          },
+          "why": "the page was read; this claim makes no difference to it (unread-structure)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Gustave_Eiffel",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 1
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Amazon_Tall_Tower_Observatory",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 2
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "The Eiffel Tower is 330 meters (1,083 ft) tall.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.”",
+   "quotes": [
+    {
+     "text": "“The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.”",
+     "host": "en.wikipedia.org",
+     "index": 0
+    }
+   ],
+   "pointers": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+     "host": "en.wikipedia.org"
+    }
+   ]
+  },
+  "net": [
+   {
+    "t": 1791314545417,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20tall%20is%20the%20Eiffel%20Tower%3F"
+   },
+   {
+    "t": 1791314547524,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20tall%20is%20the%20Eiffel%20Tower%3F"
+   },
+   {
+    "t": 1791314547895,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=How%20tall%20is%20the%20Eiffel%20Tower%3F"
+   },
+   {
+    "t": 1791314548233,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Eiffel%20Tower"
+   },
+   {
+    "t": 1791314548233,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Amazon%20Tall%20Tower%20Observatory"
+   },
+   {
+    "t": 1791314548249,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Gustave%20Eiffel"
+   },
+   {
+    "t": 1791314548598,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Eiffel%20(film)"
+   },
+   {
+    "t": 1791314548598,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Gehrenberg%20Tower"
+   },
+   {
+    "t": 1791314548725,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Amazon%20Tall%20Tower%20Observatory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314548742,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Gustave%20Eiffel&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549147,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549309,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Amazon%20Tall%20Tower%20Observatory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549309,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Amazon%20Tall%20Tower%20Observatory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549310,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Gustave%20Eiffel&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549311,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Gustave%20Eiffel&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549311,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549313,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Eiffel%20Tower&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314549927,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://books.google.com/books?id=oS8LgSgLHpQC&q=eiffel+Bonickhausen&pg=PA159"
+   },
+   {
+    "t": 1791314549927,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.bbc.com/news/world-latin-america-29199728"
+   },
+   {
+    "t": 1791314549928,
+    "kind": "resp",
+    "status": 403,
+    "url": "https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314549928,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550094,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://books.google.com/books?id=oS8LgSgLHpQC&q=eiffel+Bonickhausen&pg=PA159"
+   },
+   {
+    "t": 1791314550094,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.bbc.com/news/world-latin-america-29199728"
+   },
+   {
+    "t": 1791314550098,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fbooks.google.com%2Fbooks%3Fid%3DoS8LgSgLHpQC%26q%3Deiffel%2BBonickhausen%26pg%3DPA159"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-latin-america-29199728"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-latin-america-29199728"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://books.google.com/books?id=oS8LgSgLHpQC&q=eiffel+Bonickhausen&pg=PA159"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.bbc.com/news/world-latin-america-29199728"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fbooks.google.com%2Fbooks%3Fid%3DoS8LgSgLHpQC%26q%3Deiffel%2BBonickhausen%26pg%3DPA159"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-latin-america-29199728"
+   },
+   {
+    "t": 1791314550099,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bbc.com%2Fnews%2Fworld-latin-america-29199728"
+   },
+   {
+    "t": 1791314550349,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550607,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fbooks.google.com%2Fbooks%3Fid%3DoS8LgSgLHpQC%26q%3Deiffel%2BBonickhausen%26pg%3DPA159"
+   },
+   {
+    "t": 1791314550608,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.independent.co.uk%2Fnews%2Fworld%2Famericas%2Fthe-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550608,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.independent.co.uk/news/world/americas/the-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550608,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.independent.co.uk%2Fnews%2Fworld%2Famericas%2Fthe-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550608,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.independent.co.uk%2Fnews%2Fworld%2Famericas%2Fthe-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   },
+   {
+    "t": 1791314550608,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fbooks.google.com%2Fbooks%3Fid%3DoS8LgSgLHpQC%26q%3Deiffel%2BBonickhausen%26pg%3DPA159"
+   },
+   {
+    "t": 1791314550866,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.independent.co.uk%2Fnews%2Fworld%2Famericas%2Fthe-amazon-tower-that-gives-scientists-the-big-picture-of-the-rainforest-10255811.html"
+   }
+  ]
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "a1": {
+   "calls": [
+    {
+     "question": "What is the capital of Australia?",
+     "t0": 1791314608306,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "len": 1953,
+       "head": "The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, is an internal territory of Australia.\nOn 1 January 1901, the self-go",
+       "text": "The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, is an internal territory of Australia.\nOn 1 January 1901, the self-governing Australian colonies federated to form the Commonwealth of Australia.\nWith 475,600 residents, the territory is the second-smallest mainland state or territory by population.\nThe first land grant in the region was made to Joshua John Moore in 1823, and European settlement in the area began in 1824 with the construction of a homestead by his stockmen on what is now the Acton Peninsula.\nThe current policy is for these leases to be extended for another 99-year period on expiry, subject to payment of an administrative fee.\nThe committee was replaced in 1925 by the Federal Capital Commission.\nIn 1934, the Supreme Court of the Australian Capital Territory was established.\nFrom 1938 to 1957, the National Capital Planning and Development Committee continued to plan the further expansion of Canberra.\nThe enactment on 6 December 1988 of the Australian Capital Territory (Self-Government) Act 1988 established the framework for self-government.\nThe first election for the 17-member Australian Capital Territory Legislative Assembly was held on 4 March 1989.\nThe territory is 2,358 km2 (910 mi2) in area, slightly smaller than Luxembourg.\nJanuary is the hottest month with an average high of 27.7 °C.\nJuly is the coldest month when the average high drops to 11.2 °C (52.2 °F).\nAverage annual rainfall in the territory is 629mm and there is an average of 108 rain days annually.\nThe wettest month is October, with an average rainfall of 65.3mm, and the driest month is June, with an average of 39.6mm.\nUnlike the states of Australia which have their own constitutions, territories are governed under a Commonwealth statute—for the ACT, the Australian Capital Territory (Self-Government) Act 1988.\nCanberra had the lowest rate of crime of any capital city in Australia as of February 2019.",
+       "title": "",
+       "ref": "Wikipedia — Australian Capital Territory",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "len": 1055,
+       "head": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory. One of these, Canberra, is also the n",
+       "text": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory. One of these, Canberra, is also the national capital. Section 125 of the Constitution of Australia specified that the seat of the national government, that is, the national capital, would be in its own territory within New South Wales, at least 100 miles (161 km) from Sydney. The Constitution specified that until this national capital was ready, the Parliament would sit in Melbourne. In 1927, the national capital was finally ready and the national government relocated from its former seat in Melbourne to Canberra within the Australian Capital Territory (or the Federal Capital Territory as it was known at the time).\nIn each state and internal territory, the capital is also the jurisdiction's most populous city. The Australian external territory of Norfolk Island has its official capital at Kingston, although this acts merely as the administrative centre of government; its de facto capital is Burnt Pine.\n== References ==",
+       "title": "",
+       "ref": "Wikipedia — List of Australian capital cities",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "len": 2990,
+       "head": "Capital punishment in Australia has been abolished in all jurisdictions since 1985.\nVictoria did so in 1975, South Australia in 1976, and Western Australia in 1",
+       "text": "Capital punishment in Australia has been abolished in all jurisdictions since 1985.\nVictoria did so in 1975, South Australia in 1976, and Western Australia in 1984.\nIn 2010, the Commonwealth Parliament passed legislation prohibiting the re-establishment of capital punishment by any state or territory.\n25 women were executed in Australia between 1789 and 1951.\nThe first executions carried out under European law in Australia took place in Western Australia in 1629, when Dutch authorities hanged the mutineers of the Batavia.\nDuring the 19th century, these crimes saw about 80 people hanged each year throughout Australia.\nAustralian states and territories had laws against homosexuality during the colonial era, and nineteenth-century colonial parliaments retained provisions which made homosexual activity a capital offence until 1861.\nMost jurisdictions removed capital punishment as a sentence for homosexual activity, although in Victoria it remained as such when committed while also inflicting bodily harm or to a person younger than the age of fourteen until 1949.\nThese executions occurred between 1830 and 1863, suggesting that the previously cited figure of seven for all of Australia is a significant undercount.\n4 that \"[a] person is not liable to the punishment of death for any offence\".\nWhile capital punishment in the military was abolished by the Death Penalty Abolition Act 1973, the provisions for the death penalty in the Defence Act 1903 were not formally removed until the passage of the Defence Force Re-organization Act 1975.\nNo executions were carried out in the Australian Capital Territory (ACT) between its creation in 1911 and the abolition of capital punishment.\nIn Western Australia, the first legal executions were under Dutch VOC law on 2 October 1629 on Long Island, Houtman Abrolhos (near Geraldton), when Jeronimus Corneliszoon and six others were hanged as party to the murders of 125 men, women and children.\nBridget Larkin was the first woman to be executed in Western Australia, for the murder of John Hurford, in 1855.\nIn Australia, capital punishment was banned on a state-by-state basis through the 20th century.\nA 2005 Bulletin poll showed that most Australians supported capital punishment.\nOn occasion the issue of capital punishment is published in the media or is subject to media and public support and scrutiny.\nIn 2014 another public opinion survey was conducted by Roy Morgan Research where responders were given the question: \"If a person is convicted of a terrorist act in Australia which kills someone should the penalty be death?\"\nThe poll showed a small majority of Australians (52.5%) favoured the death penalty for deadly terrorist acts in Australia while 47.5% did not.\nTrends & Issues in Crime and Criminal Justice No. 3: Capital punishment Archived 3 March 2016 at the Wayback Machine from the Australian Institute of Criminology\nPurdue, Brian Legal Executions in Western Australia, Foundation Press, Victoria Park, WA, 1993.",
+       "title": "",
+       "ref": "Wikipedia — Capital punishment in Australia",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 12191,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, is an internal territory of Australia.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#0-129"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "On 1 January 1901, the self-governing Australian colonies federated to form the Commonwealth of Australia.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#130-236"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "claim": "With 475,600 residents, the territory is the second-smallest mainland state or territory by population.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Australian Capital Territory",
+         "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+         "edition": "en",
+         "revid": 1373117258,
+         "address": "Wikipedia — Australian Capital Territory#237-340"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "There are eight capital cities in Australia, each of which functions as the seat of government for its state or territory.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#0-122"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "One of these, Canberra, is also the national capital.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#123-176"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "claim": "Section 125 of the Constitution of Australia specified that the seat of the national government, that is, the national capital, would be in its own territory within New South Wales, at least 100 miles (161 km) from Sydney.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "List of Australian capital cities",
+         "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+         "edition": "en",
+         "revid": 1377528032,
+         "address": "Wikipedia — List of Australian capital cities#177-399"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "Capital punishment in Australia has been abolished in all jurisdictions since 1985.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Capital punishment in Australia",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": "en",
+         "revid": 1377297910,
+         "address": "Wikipedia — Capital punishment in Australia#0-83"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "Victoria did so in 1975, South Australia in 1976, and Western Australia in 1984.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Capital punishment in Australia",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": "en",
+         "revid": 1377297910,
+         "address": "Wikipedia — Capital punishment in Australia#84-164"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "claim": "In 2010, the Commonwealth Parliament passed legislation prohibiting the re-establishment of capital punishment by any state or territory.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "",
+         "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+         "edition": null
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Australian_Capital_Territory",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Capital_punishment_in_Australia",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "Canberra is the capital of Australia.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “One of these, Canberra, is also the national capital.”",
+   "quotes": [
+    {
+     "text": "“One of these, Canberra, is also the national capital.”",
+     "host": "en.wikipedia.org",
+     "index": 1
+    }
+   ],
+   "pointers": [
+    {
+     "url": "https://en.wikipedia.org/wiki/List_of_Australian_capital_cities",
+     "host": "en.wikipedia.org"
+    }
+   ]
+  },
+  "net": [
+   {
+    "t": 1791314604962,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=What%20is%20the%20capital%20of%20Australia%3F"
+   },
+   {
+    "t": 1791314605315,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=capital%20of%20Australia"
+   },
+   {
+    "t": 1791314606955,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=What%20is%20the%20capital%20of%20Australia%3F"
+   },
+   {
+    "t": 1791314607090,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Australian%20Capital%20Territory"
+   },
+   {
+    "t": 1791314607090,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Capital%20punishment%20in%20Australia"
+   },
+   {
+    "t": 1791314607199,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=List%20of%20Australian%20capital%20cities"
+   },
+   {
+    "t": 1791314607290,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Chief%20Minister%20of%20the%20Australian%20Capital%20Territory"
+   },
+   {
+    "t": 1791314607558,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791314607580,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791314607662,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.australia.com/en-us/places/australian-capital-territory.html"
+   },
+   {
+    "t": 1791314607672,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791314608075,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791314608346,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791314608346,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.australia.com%2Fen-us%2Fplaces%2Faustralian-capital-territory.html"
+   },
+   {
+    "t": 1791314608450,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=capital%7Ccapital%20of%20Australia%7CAustralia&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791314608617,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608636,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608663,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608663,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608663,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Australian%20Capital%20Territory&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608772,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608773,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=List%20of%20Australian%20capital%20cities&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608774,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314608774,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Capital%20punishment%20in%20Australia&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314609139,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314609148,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314609174,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314609174,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314609398,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314612632,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314612632,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314612766,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314612787,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314616639,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314616666,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314616690,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314616708,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314616958,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314620140,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314620140,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314620203,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://web.archive.org/web/20220109001428/https://www.smh.com.au/national/death-penalty-dead-and-buried-20100311-q0xd.html"
+   },
+   {
+    "t": 1791314620582,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20220109001428%2Fhttps%3A%2F%2Fwww.smh.com.au%2Fnational%2Fdeath-penalty-dead-and-buried-20100311-q0xd.html"
+   }
+  ]
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "a1": {
+   "calls": [
+    {
+     "question": "How many legs does a spider have?",
+     "t0": 1791314654296,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+       "len": 650,
+       "head": "Spider fighting or spider derby is a sport involving spiders that occurs in different forms in several areas of the world.\nFemale spiders will kill a rival if t",
+       "text": "Spider fighting or spider derby is a sport involving spiders that occurs in different forms in several areas of the world.\nFemale spiders will kill a rival if the loser does not quickly flee or receive the aid of a human handler.\nHow a fight ends is agreed upon beforehand.\nThis form of spider fighting is said to have been around as far back as the 16th century.\nCapturing, admiring, nurturing, and staging fights among these spiders is a popular activity among many young people.\nIn 2002, a fight between three inmates over the theft of a pet spider resulted in life-threatening skull injuries to one inmate and additional charges to the other two.",
+       "title": "",
+       "ref": "Wikipedia — Spider fighting",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+       "len": 1386,
+       "head": "The brown recluse (Loxosceles reclusa, Sicariidae, formerly placed in a family \"Loxoscelidae\") is a recluse spider with necrotic venom.\nThe spider has also rece",
+       "text": "The brown recluse (Loxosceles reclusa, Sicariidae, formerly placed in a family \"Loxoscelidae\") is a recluse spider with necrotic venom.\nThe spider has also received numerous sensationalized media reports of bites occurring where these spiders are absent (and no specimens were found), such as a 2014 report from Thailand, where a man was claimed to have died from a brown recluse bite.\n\"Once a leg is lost, a recluse spider does not regenerate a new one with subsequent molts\", unlike the huntsman spider, which does regenerate autotomized legs.\nIn 2001, more than 2,000 brown recluse spiders were removed from a heavily infested home in Kansas, yet the four residents who had lived there for years were never harmed by the spiders, despite many encounters with them.\nStoecker, Vetter & Dyer (2017) suggested the mnemonic \"NOT RECLUSE\", shown below, as a memory device to help laymen and medical professionals more objectively screen and diagnose potential cases of loxoscelism.\nMisdiagnosis of MRSA as spider bites is extremely common (nearly 30% of patients with MRSA reported that they initially suspected a spider bite), and can have fatal consequences.\nThe hobo spider and the yellow sac spider have also been reported to cause necrotic bites.\nHowever, dapsone may be effective in treating many \"spider bites\" because many such cases are actually misdiagnosed microbial infections.",
+       "title": "",
+       "ref": "Wikipedia — Brown recluse spider",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider",
+       "len": 1605,
+       "head": "Spiders (order Araneae) are air-breathing arthropods that have eight limbs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude si",
+       "text": "Spiders (order Araneae) are air-breathing arthropods that have eight limbs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.\nAs of January 2026, 53,680 spider species in 139 families have been recorded by taxonomists.\nHowever, there has been debate among scientists about how families should be classified, with over 20 different classifications proposed since 1900.\nSpider-like arachnids with silk-producing spigots (Uraraneida) appeared in the Devonian period, about 386 million years ago, but these animals apparently lacked spinnerets.\nTrue spiders have been found in Carboniferous rocks from 318 to 299 million years ago and are very similar to the most primitive surviving suborder, the Mesothelae.\nThe word spider derives from Proto-Germanic *spin-þron-, literally 'spinner' (a reference to how spiders make their webs), from the Proto-Indo-European root *(s)pen- 'to draw, stretch, spin'.\nThe blood of many spiders that have book lungs contains the respiratory pigment hemocyanin to make oxygen transport more efficient.\nAn adult Araneus may have up to 1,000 such chemosensitive setae, most on the tarsi of the first pair of legs.\nEach of the eight legs of a spider consists of seven distinct parts.\nSpiders can generate pressures up to eight times their resting level to extend their legs, and jumping spiders can jump up to 50 times their own length by suddenly increasing the blood pressure in the third or fourth pair of legs.\nSome spiders have a cribellum, a modified spinneret with up to 40,000 spigots, each of which produces a single very fine fiber.",
+       "title": "",
+       "ref": "Wikipedia — Spider",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 4408,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+       "claim": "Spider fighting or spider derby is a sport involving spiders that occurs in different forms in several areas of the world.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider fighting",
+         "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+         "edition": "en",
+         "revid": 1377597837,
+         "address": "Wikipedia — Spider fighting#0-122"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+       "claim": "Female spiders will kill a rival if the loser does not quickly flee or receive the aid of a human handler.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider fighting",
+         "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+         "edition": "en",
+         "revid": 1377597837,
+         "address": "Wikipedia — Spider fighting#123-229"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+       "claim": "How a fight ends is agreed upon beforehand.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider fighting",
+         "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+         "edition": "en",
+         "revid": 1377597837,
+         "address": "Wikipedia — Spider fighting#230-273"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+       "claim": "The brown recluse (Loxosceles reclusa, Sicariidae, formerly placed in a family \"Loxoscelidae\") is a recluse spider with necrotic venom.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Brown recluse spider",
+         "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+         "edition": "en",
+         "revid": 1371735369,
+         "address": "Wikipedia — Brown recluse spider#0-135"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+       "claim": "The spider has also received numerous sensationalized media reports of bites occurring where these spiders are absent (and no specimens were found), such as a 2014 report from Thailand, where a man was claimed to have died from a brown recluse bite.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Brown recluse spider",
+         "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+         "edition": "en",
+         "revid": 1371735369,
+         "address": "Wikipedia — Brown recluse spider#136-385"
+        },
+        "refs": [
+         {
+          "n": 16,
+          "id": "16",
+          "url": "https://www.bangkokpost.com/thailand/politics/422905/1st-thai-death-from-recluse-spider",
+          "archived": null,
+          "label": "1st Thai death from recluse spider",
+          "host": "bangkokpost.com"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 16,
+          "id": "16",
+          "label": "1st Thai death from recluse spider",
+          "url": "https://www.bangkokpost.com/thailand/politics/422905/1st-thai-death-from-recluse-spider",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Bangkok Post - 1st Thai death from recluse spider",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "EVA",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "a comparison or a negation no gate reads: no null, no verdict"
+          },
+          "why": "the page was read; this claim makes no difference to it (unread-structure)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+       "claim": "\"Once a leg is lost, a recluse spider does not regenerate a new one with subsequent molts\", unlike the huntsman spider, which does regenerate autotomized legs.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Brown recluse spider",
+         "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+         "edition": "en",
+         "revid": 1371735369,
+         "address": "Wikipedia — Brown recluse spider#386-545"
+        },
+        "refs": [
+         {
+          "n": 19,
+          "id": "Vetter-2015-19",
+          "url": "https://www.cornellpress.cornell.edu/book/9780801479854/the-brown-recluse-spider/#bookTabs=1",
+          "archived": null,
+          "label": "The Brown Recluse Spider",
+          "host": "cornellpress.cornell.edu"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 19,
+          "id": "Vetter-2015-19",
+          "label": "The Brown Recluse Spider",
+          "url": "https://www.cornellpress.cornell.edu/book/9780801479854/the-brown-recluse-spider/#bookTabs=1",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "The Brown Recluse Spider by Richard S. Vetter | Paperback | Cornell University Press",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "EVA",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "a comparison or a negation no gate reads: no null, no verdict"
+          },
+          "why": "the page was read; this claim makes no difference to it (unread-structure)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider",
+       "claim": "Spiders (order Araneae) are air-breathing arthropods that have eight limbs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider",
+         "url": "https://en.wikipedia.org/wiki/Spider",
+         "edition": "en",
+         "revid": 1377148305,
+         "address": "Wikipedia — Spider#0-163"
+        },
+        "refs": [
+         {
+          "n": 2,
+          "id": "2",
+          "url": "https://doi.org/10.1007%2F978-1-4020-6359-6_4320",
+          "archived": null,
+          "label": "10.1007/978-1-4020-6359-6_4320",
+          "host": "doi.org"
+         },
+         {
+          "n": 3,
+          "id": "SeldenAndShear2009-3",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869",
+          "archived": null,
+          "label": "Fossil evidence for the origin of spider spinnerets",
+          "host": "ncbi.nlm.nih.gov"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 2,
+          "id": "2",
+          "label": "10.1007/978-1-4020-6359-6_4320",
+          "url": "https://doi.org/10.1007%2F978-1-4020-6359-6_4320",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Spiders (Arachnida: Araneae) | Springer Nature Link",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "DEF",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "the page words it with other terms: not shown to be the same meaning"
+          },
+          "why": "the page was read; this claim makes no difference to it (terms)"
+         },
+         {
+          "kind": "reference",
+          "n": 3,
+          "id": "SeldenAndShear2009-3",
+          "label": "Fossil evidence for the origin of spider spinnerets",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider",
+       "claim": "As of January 2026, 53,680 spider species in 139 families have been recorded by taxonomists.",
+       "trail": {
+        "status": "unread",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider",
+         "url": "https://en.wikipedia.org/wiki/Spider",
+         "edition": "en",
+         "revid": 1377148305,
+         "address": "Wikipedia — Spider#164-256"
+        },
+        "refs": [
+         {
+          "n": 1,
+          "id": "WSC_stats-1",
+          "url": "http://www.wsc.nmbe.ch",
+          "archived": null,
+          "label": "World Spider Catalog Version 26",
+          "host": "wsc.nmbe.ch"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": 1,
+          "id": "WSC_stats-1",
+          "label": "World Spider Catalog Version 26",
+          "url": "http://www.wsc.nmbe.ch",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "ground",
+         "kind": "refusal",
+         "says": "the pages it points to could not be read: no witness reached"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider",
+       "claim": "However, there has been debate among scientists about how families should be classified, with over 20 different classifications proposed since 1900.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Spider",
+         "url": "https://en.wikipedia.org/wiki/Spider",
+         "edition": "en",
+         "revid": 1377148305,
+         "address": "Wikipedia — Spider#257-405"
+        },
+        "refs": [
+         {
+          "n": 6,
+          "id": "Bioofspiders-6",
+          "url": null,
+          "archived": "https://archive.org/details/biologyofspiders00foel_0",
+          "label": "Foelix, Rainer F. (1996). Biology of Spiders . New York: Oxford University Press",
+          "host": ""
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 6,
+          "id": "Bioofspiders-6",
+          "label": "Foelix, Rainer F. (1996). Biology of Spiders . New York: Oxford University Press",
+          "url": "https://archive.org/details/biologyofspiders00foel_0",
+          "of": "https://archive.org/details/biologyofspiders00foel_0",
+          "via": "the fold's relay",
+          "title": "Biology of spiders : Rainer F. Foelix : Free Download, Borrow, and Streaming : Internet Archive",
+          "copy": true,
+          "asOf": null,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "NUL",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "what the claim is about is absent from this page"
+          },
+          "why": "the page was read; this claim makes no difference to it (no-overlap)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider_fighting",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Brown_recluse_spider",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 2
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Spider",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 4
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "A spider has eight legs.",
+   "parts": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “Spiders (order Araneae) are air-breathing arthropods that have eight limbs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.”",
+   "quotes": [
+    {
+     "text": "“Spiders (order Araneae) are air-breathing arthropods that have eight limbs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.”",
+     "host": "en.wikipedia.org",
+     "index": 0
+    }
+   ],
+   "pointers": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Spider",
+     "host": "en.wikipedia.org"
+    }
+   ]
+  },
+  "net": [
+   {
+    "t": 1791314651115,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20many%20legs%20does%20a%20spider%20have%3F"
+   },
+   {
+    "t": 1791314653350,
+    "kind": "resp",
+    "status": 502,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=How%20many%20legs%20does%20a%20spider%20have%3F"
+   },
+   {
+    "t": 1791314653766,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srlimit=20&sroffset=0&srsearch=How%20many%20legs%20does%20a%20spider%20have%3F"
+   },
+   {
+    "t": 1791314653928,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Brown%20recluse%20spider"
+   },
+   {
+    "t": 1791314653928,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Spider"
+   },
+   {
+    "t": 1791314654028,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Spider%20fighting"
+   },
+   {
+    "t": 1791314654099,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Woodlouse%20spider"
+   },
+   {
+    "t": 1791314654114,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Spider%20anatomy"
+   },
+   {
+    "t": 1791314654501,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&titles=legs%7Clegs%20does%20a%20spider%7Cspider&redirects=1&prop=pageprops&ppprop=disambiguation&format=json&origin=*"
+   },
+   {
+    "t": 1791314654723,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20fighting&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654723,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Brown%20recluse%20spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654724,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654724,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654766,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Brown%20recluse%20spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654769,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20fighting&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654769,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider%20fighting&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654769,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Brown%20recluse%20spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654805,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Spider&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314654905,
+    "kind": "resp",
+    "status": 302,
+    "url": "https://doi.org/10.1007%2F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314654930,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869"
+   },
+   {
+    "t": 1791314654944,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869"
+   },
+   {
+    "t": 1791314655017,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869"
+   },
+   {
+    "t": 1791314655030,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314655044,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.cornellpress.cornell.edu/book/9780801479854/the-brown-recluse-spider/"
+   },
+   {
+    "t": 1791314655088,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.cornellpress.cornell.edu/book/9780801479854/the-brown-recluse-spider/"
+   },
+   {
+    "t": 1791314655118,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.cornellpress.cornell.edu%2Fbook%2F9780801479854%2Fthe-brown-recluse-spider%2F%23bookTabs%3D1"
+   },
+   {
+    "t": 1791314655118,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.cornellpress.cornell.edu/book/9780801479854/the-brown-recluse-spider/"
+   },
+   {
+    "t": 1791314655154,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://www.wsc.nmbe.ch/"
+   },
+   {
+    "t": 1791314655154,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314655168,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314655168,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://link.springer.com/10.1007/978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314655180,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/http://www.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314655182,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://doi.org/10.1007%2F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314655183,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/http://www.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314655203,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://doi.org/10.1007%2F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314655204,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=http%3A%2F%2Fwww.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314655204,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fdoi.org%2F10.1007%252F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314655691,
+    "kind": "resp",
+    "status": 526,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=http%3A%2F%2Fwww.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314656126,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.cornellpress.cornell.edu%2Fbook%2F9780801479854%2Fthe-brown-recluse-spider%2F%23bookTabs%3D1"
+   },
+   {
+    "t": 1791314656199,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.cornellpress.cornell.edu%2Fbook%2F9780801479854%2Fthe-brown-recluse-spider%2F%23bookTabs%3D1"
+   },
+   {
+    "t": 1791314656199,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.cornellpress.cornell.edu%2Fbook%2F9780801479854%2Fthe-brown-recluse-spider%2F%23bookTabs%3D1"
+   },
+   {
+    "t": 1791314656207,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://archive.org/details/biologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314656216,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://archive.org/details/biologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314656236,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Farchive.org%2Fdetails%2Fbiologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314656239,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://archive.org/details/biologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314656974,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fdoi.org%2F10.1007%252F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314657099,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fdoi.org%2F10.1007%252F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314657099,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fdoi.org%2F10.1007%252F978-1-4020-6359-6_4320"
+   },
+   {
+    "t": 1791314657408,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.bangkokpost.com/thailand/politics/422905/1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314657421,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.bangkokpost.com/thailand/politics/422905/1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314657449,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.bangkokpost.com/thailand/politics/422905/1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314657450,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.bangkokpost.com%2Fthailand%2Fpolitics%2F422905%2F1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314658006,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.bangkokpost.com%2Fthailand%2Fpolitics%2F422905%2F1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314658056,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.bangkokpost.com%2Fthailand%2Fpolitics%2F422905%2F1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314658056,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.bangkokpost.com%2Fthailand%2Fpolitics%2F422905%2F1st-thai-death-from-recluse-spider"
+   },
+   {
+    "t": 1791314658433,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314658433,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314658543,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2634869"
+   },
+   {
+    "t": 1791314658552,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2634869"
+   },
+   {
+    "t": 1791314658563,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Farchive.org%2Fdetails%2Fbiologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314658619,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=http%3A%2F%2Fwww.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314658619,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=http%3A%2F%2Fwww.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314658708,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Farchive.org%2Fdetails%2Fbiologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314658708,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Farchive.org%2Fdetails%2Fbiologyofspiders00foel_0"
+   },
+   {
+    "t": 1791314658708,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/http://www.wsc.nmbe.ch"
+   },
+   {
+    "t": 1791314658709,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=http%3A%2F%2Fwww.wsc.nmbe.ch"
+   }
+  ]
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "a1": {
+   "calls": [
+    {
+     "question": "When did Marie Curie die?",
+     "t0": 1791314688209,
+     "passages": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "len": 2977,
+       "head": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and c",
+       "text": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.\nIn 1891, Curie followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work.\nIn 1895, Curie married Pierre, with whom she conducted pioneering research on radioactivity—a term she coined.\nShe founded the Curie Institute in Paris in 1920, and the Curie Institute in Warsaw in 1932; both remain major medical research centres.\nCurie died in 1934, aged 66, at the Sancellemoz sanatorium in Passy, Haute-Savoie, France, of aplastic anaemia likely from exposure to radiation in the course of her scientific research and in the course of her radiological work at field hospitals during the First World War.\nIn addition to her Nobel Prizes, she received numerous other honours and tributes; in 1995, she became the first woman to be entombed on her own merits in the Paris Panthéon, and Poland declared 2011 the Year of Marie Curie during the International Year of Chemistry.\nShe died of tuberculosis in May 1878, when Maria was ten years old.\nIn December 1903 the Royal Swedish Academy of Sciences awarded Pierre Curie, Marie Curie, and Henri Becquerel the Nobel Prize in Physics, \"in recognition of the extraordinary services they have rendered by their joint researches on the radiation phenomena discovered by Professor Henri Becquerel.\"\nIn December 1904, Curie gave birth to their second daughter, Ève.\nOn 19 April 1906, Pierre Curie died in a road accident.\nOn 13 May 1906 the physics department of the University of Paris decided to retain the chair that had been created for her late husband and offer it to Marie.\nThe initiative for creating the Radium Institute had come in 1909 from Pierre Paul Émile Roux, director of the Pasteur Institute, who had been disappointed that the University of Paris was not giving Curie a proper laboratory and had suggested that she move to the Pasteur Institute.\nOnly then, with the threat of Curie leaving, did the University of Paris relent, and eventually the Curie Pavilion became a joint initiative of the University of Paris and the Pasteur Institute.\nIn 1910 Curie succeeded in isolating radium; she also defined an international standard for radioactive emissions that was eventually named for her and Pierre: the curie.\nHer daughter later remarked on the French press's hypocrisy in portraying Curie as an unworthy foreigner when she was nominated for a French honour, but portraying her as a French heroine when she received foreign honours such as her Nobel Prizes.\nIn 1911, it was revealed that Curie was involved in a year-long affair with physicist Paul Langevin, a former student of Pierre Curie's, a married man who was estranged from his wife.\nCurie (then in her mid-40s) was five years older than Langevin and was misrepresented in the tabloids as a foreign Jewish home-wrecker.",
+       "title": "",
+       "ref": "Wikipedia — Marie Curie - Wikipedia",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://www.biography.com/scientists/marie-curie",
+       "len": 1924,
+       "head": "Scientist Marie Curie was the first woman to win a Nobel Prize and is known for her research on radioactivity.\nFULL NAME: Marie Salomea Skodowska-CurieBORN: Nov",
+       "text": "Scientist Marie Curie was the first woman to win a Nobel Prize and is known for her research on radioactivity.\nFULL NAME: Marie Salomea Skodowska-CurieBORN: November 7, 1867BIRTHPLACE: Warsaw, PolandDEATH: July 4, 1934SPOUSE: Pierre Curie (m.\n1895-1906)CHILDREN: Irène Joliot-Curie, Ève CurieASTROLOGICAL SIGN: Cancer\nMarya Sklodowska, later Marie Curie, was born on November 7, 1867, in Warsaw (modern-day Poland).\nWhen she was only 11, Curie lost her mother, Bronislawa, to tuberculosis and her oldest sister to typhus.\nIn 1891, Curie finally made her way to Paris and enrolled at Sorbonne University, a famed research institution in Paris.\nCurie completed her master’s degree in physics in 1893 and earned another degree in mathematics the following year.\nMarie married French physicist Pierre Curie on July 26, 1895.\nIn 1897, Marie and Pierre welcomed a daughter, Irène.\nWhen World War I broke out in 1914, Curie devoted her time and resources to help the cause.\nCurie died on July 4, 1934, of aplastic anemia, believed to be caused by prolonged exposure to radiation.\nIn 1995, Marie and Pierre’s remains were interred in the Panthéon in Paris, the final resting place of France’s greatest minds.\nIn 2025, the European Central Bank announced a proposed redesign of its banknotes may feature Curie, as well as Maria Callas, Ludwig van Beethoven, Miguel de Cervantes, and Leonardo da Vinci.\nIn 1937, Ève Curie wrote the first of many biographies devoted to her famous mother, Madame Curie.\nThe work was adapted for the big screen as the aptly titled Madame Curie in 1943.\nThe story of the Nobel laureate was back on the big screen decades later in 2017 with Marie Curie: The Courage of Knowledge, featuring Polish actress Karolina Gruszka.\nIn 2018, Amazon announced the development of another biopic of Curie, with British actress Rosamund Pike in the starring role.\nMarie Curie: 7 Facts About the Groundbreaking Scientist",
+       "title": "",
+       "ref": "Biography — How Scientist Marie Curie Broke Barriers as the First Woman to Win a Nobel Prize",
+       "snippetOnly": false
+      },
+      {
+       "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/",
+       "len": 529,
+       "head": "Ninety years ago, on 4 July 1934, Marie Skłodowska-Curie, the only woman to receive the Nobel Prize twice, died at the age of just 67 from malignant anaemia.\nSh",
+       "text": "Ninety years ago, on 4 July 1934, Marie Skłodowska-Curie, the only woman to receive the Nobel Prize twice, died at the age of just 67 from malignant anaemia.\nShe met Pierre Curie, Professor in the School of Physics in 1894 and in the following year they were married.\nFollowing her husband’s tragic death in a 1906 accident, Marie was appointed to Pierre’s seat at the Sorbonne, making her the university’s first female professor.\nOn 4 July 1934, at the Sancellemoz Sanatorium in Passy, France at the age of 66, Marie Curie died.",
+       "title": "",
+       "ref": "Research in Poland — The 90th anniversary of the death of Marie Curie - Research in Poland",
+       "snippetOnly": false
+      }
+     ],
+     "ms": 5338,
+     "trails": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#0-167"
+        },
+        "refs": [
+         {
+          "n": null,
+          "id": "1",
+          "url": null,
+          "archived": null,
+          "label": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "host": ""
+         },
+         {
+          "n": 1,
+          "id": "2",
+          "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+          "archived": null,
+          "label": "Mme. Curie is dead – Martyr to Science",
+          "host": "archive.nytimes.com"
+         },
+         {
+          "n": null,
+          "id": "4",
+          "url": null,
+          "archived": null,
+          "label": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "host": ""
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "reference",
+          "n": null,
+          "id": "1",
+          "label": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "note": "^ Polish: [ˈmarja salɔˈmɛa skwɔˈdɔfska kiˈri] ⓘ",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "reference",
+          "n": null,
+          "id": "4",
+          "label": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "note": "^ / ˈ k j ʊər i / KURE -ee ; [ 2 ] French: [maʁi kyʁi] ⓘ",
+          "url": null,
+          "read": false,
+          "why": "a note with no page to fetch (a book, a print source, or an explanation)"
+         },
+         {
+          "kind": "read",
+          "n": 1,
+          "id": "2",
+          "label": "Mme. Curie is dead – Martyr to Science",
+          "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "Mme. Curie Is Dead - Martyr to Science - NYTimes.com",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "SIG",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "not settled"
+          },
+          "why": "the page was read; this claim makes no difference to it (cross-language)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "In 1891, Curie followed her elder sister Bronisława to study in Paris, where she earned her higher degrees and conducted her subsequent scientific work.",
+       "trail": {
+        "status": "no-reference",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#168-320"
+        },
+        "refs": [],
+        "path": [],
+        "tried": [],
+        "origin": null,
+        "fails": {
+         "op": "SIG",
+         "grain": "figure",
+         "kind": "refusal",
+         "says": "nobody marked it: no footnote stands under this sentence"
+        }
+       }
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "claim": "In 1895, Curie married Pierre, with whom she conducted pioneering research on radioactivity—a term she coined.",
+       "trail": {
+        "status": "unsupported",
+        "found": {
+         "kind": "wikipedia",
+         "title": "Marie Curie",
+         "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+         "edition": "en",
+         "revid": 1378672573,
+         "address": "Wikipedia — Marie Curie - Wikipedia#321-431"
+        },
+        "refs": [
+         {
+          "n": 6,
+          "id": "8",
+          "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "archived": "https://web.archive.org/web/20151101075508/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "label": "the original",
+          "host": "www2.lbl.gov"
+         },
+         {
+          "n": 7,
+          "id": "9",
+          "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "archived": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "label": "the original",
+          "host": "nobelprize.org"
+         }
+        ],
+        "path": [],
+        "tried": [
+         {
+          "kind": "read",
+          "n": 6,
+          "id": "8",
+          "label": "the original",
+          "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html",
+          "of": null,
+          "via": "the fold's relay",
+          "title": "The Discovery of Radioactivity",
+          "copy": false,
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "SEG",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "the page's figure, unit or date is not the claim's: a boundary differs"
+          },
+          "why": "the page was read; this claim makes no difference to it (figure)"
+         },
+         {
+          "kind": "reference",
+          "n": 7,
+          "id": "9",
+          "label": "the original",
+          "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "read": false,
+          "fails": {
+           "op": "SIG",
+           "grain": "ground",
+           "kind": "refusal",
+           "says": "the pages it points to could not be read: no witness reached"
+          },
+          "why": "the page could not be read"
+         },
+         {
+          "kind": "read",
+          "n": 7,
+          "id": "9",
+          "label": "the original",
+          "url": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "of": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html",
+          "via": "the fold's relay",
+          "title": "Marie Curie and the radioactivity, The 1903 Nobel Prize in Physics",
+          "copy": true,
+          "asOf": "2018-07-30",
+          "read": true,
+          "supports": false,
+          "verdict": "undecidable",
+          "fails": {
+           "op": "NUL",
+           "grain": "figure",
+           "kind": "gap",
+           "says": "what the claim is about is absent from this page"
+          },
+          "why": "the page was read; this claim makes no difference to it (name-binding)"
+         }
+        ],
+        "origin": null,
+        "fails": {
+         "op": "INS",
+         "grain": "figure",
+         "kind": "gap",
+         "says": "the cited instance is not what it is cited as: the page read does not carry the claim"
+        }
+       }
+      }
+     ],
+     "after": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Marie_Curie",
+       "origin": false,
+       "tertiary": true,
+       "origins": 0,
+       "pointers": 3
+      },
+      {
+       "url": "https://www.biography.com/scientists/marie-curie",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      },
+      {
+       "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/",
+       "origin": false,
+       "tertiary": false,
+       "origins": 0,
+       "pointers": 0
+      }
+     ]
+    }
+   ]
+  },
+  "prov": {
+   "spoken": "Marie Curie died on July 4, 1934, at the age of 66.",
+   "parts": "I got this from The 90th anniversary of the death of Marie Curie - Research in Poland (researchinpoland.org). It says: “On 4 July 1934, at the Sancellemoz Sanatorium in Passy, France at the age of 66, Marie Curie died.”",
+   "quotes": [
+    {
+     "text": "“On 4 July 1934, at the Sancellemoz Sanatorium in Passy, France at the age of 66, Marie Curie died.”",
+     "host": "researchinpoland.org",
+     "index": 0
+    }
+   ],
+   "pointers": [
+    {
+     "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/",
+     "host": "researchinpoland.org"
+    }
+   ]
+  },
+  "net": [
+   {
+    "t": 1791314686097,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/search?scope=web&q=When%20did%20Marie%20Curie%20die%3F"
+   },
+   {
+    "t": 1791314686224,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791314686258,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791314686313,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.biography.com/scientists/marie-curie"
+   },
+   {
+    "t": 1791314686339,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791314686372,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791314686637,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&exlimit=1&redirects=1&format=json&origin=*&titles=Marie%20Curie"
+   },
+   {
+    "t": 1791314686637,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791314686637,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.biography.com%2Fscientists%2Fmarie-curie"
+   },
+   {
+    "t": 1791314686698,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791314686725,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791314686742,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/"
+   },
+   {
+    "t": 1791314686743,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791314686833,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791314686891,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://www.nps.gov/people/manhattan-project-pioneers-marie-curie.htm"
+   },
+   {
+    "t": 1791314687171,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314687180,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314687180,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://institut-curie.org/legacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314687181,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314687450,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791314687633,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791314687633,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fresearchinpoland.org%2Fnews%2Fthe-90th-anniversary-of-the-death-of-marie-curie%2F"
+   },
+   {
+    "t": 1791314687909,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314688248,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314688248,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Finstitut-curie.org%2Flegacy-marie-curie-perpetuating-spirit-pioneer"
+   },
+   {
+    "t": 1791314688391,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314688433,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314688433,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://en.wikipedia.org/w/api.php?action=parse&page=Marie%20Curie&prop=text%7Crevid&format=json&formatversion=2&disableeditsection=1&disablelimitreport=1&redirects=1&origin=*"
+   },
+   {
+    "t": 1791314688658,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791314688672,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791314688679,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791314688679,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791314688688,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791314688696,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/bday/1107.html?pagewanted=all"
+   },
+   {
+    "t": 1791314688700,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791314688700,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/http://www2.lbl.gov/abc/wallchart/chapters/03/4.html"
+   },
+   {
+    "t": 1791314688757,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791314688871,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791314688871,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Farchive.nytimes.com%2Fwww.nytimes.com%2Flearning%2Fgeneral%2Fonthisday%2Fbday%2F1107.html%3Fpagewanted%3Dall"
+   },
+   {
+    "t": 1791314689175,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791314689200,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791314689200,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=http%3A%2F%2Fwww2.lbl.gov%2Fabc%2Fwallchart%2Fchapters%2F03%2F4.html"
+   },
+   {
+    "t": 1791314689306,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314689320,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314689346,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314689347,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314689967,
+    "kind": "resp",
+    "status": 404,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314692824,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314692824,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314692914,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://r.jina.ai/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314692928,
+    "kind": "resp",
+    "status": 429,
+    "url": "https://api.microlink.io/?meta=false&text=true&url=https%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314693153,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314693159,
+    "kind": "fail",
+    "err": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "https://thingproxy.freeboard.io/fetch/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314693180,
+    "kind": "resp",
+    "status": 401,
+    "url": "https://corsproxy.io/?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314693183,
+    "kind": "fail",
+    "err": "net::ERR_FAILED",
+    "url": "https://cors.eu.org/https://web.archive.org/web/20180730115737/https://www.nobelprize.org/educational/nobelprize_info/curie-edu.html"
+   },
+   {
+    "t": 1791314693492,
+    "kind": "resp",
+    "status": 200,
+    "url": "https://holodeck-proxy.prometheoid.workers.dev/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314693589,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.allorigins.win/raw?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   },
+   {
+    "t": 1791314693589,
+    "kind": "fail",
+    "err": "net::ERR_ABORTED",
+    "url": "https://api.codetabs.com/v1/proxy?quest=https%3A%2F%2Fweb.archive.org%2Fweb%2F20180730115737%2Fhttps%3A%2F%2Fwww.nobelprize.org%2Feducational%2Fnobelprize_info%2Fcurie-edu.html"
+   }
+  ]
+ }
+]

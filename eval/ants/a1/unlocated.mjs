@@ -1,0 +1,11 @@
+import * as O from "../../../fold-chat-origin.js";
+const idx = await O.wikiIndex("https://en.wikipedia.org/wiki/Eiffel_Tower", { fetchImpl: fetch });
+const claim = "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.";
+const b = idx.blocks.find((x) => /lattice tower on the Champ de Mars/.test(x.text));
+console.log("BLOCK:", JSON.stringify(b.text.slice(0, 260)), "\nmarks:", JSON.stringify(b.marks.slice(0, 4)));
+console.log("CLAIM:", JSON.stringify(claim));
+const short = "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.";
+const b2 = idx.blocks.find((x) => x.text.includes("named after the engineer")); console.log("2nd claim located:", O.noteMarksFor(idx.blocks, short), "block marks:", b2 && JSON.stringify(b2.marks.map(m=>m.n)));
+const h = "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.";
+const m = O.noteMarksFor(idx.blocks, h); console.log("height sentence marks:", JSON.stringify(m));
+const note = m && m[0] && idx.notes.get(m[0].id); console.log("note:", note && note.url);

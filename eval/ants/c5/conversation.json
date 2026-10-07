@@ -1,0 +1,17 @@
+{
+  "note": "C5 scripted 12-turn conversation. Written BEFORE any run. `pages` = the sources a search would plausibly return (real Wikipedia text in pages.json; order = search rank, last one is a deliberate near-miss/distractor as in the real capture). `needle` = a verbatim sentence fragment of the topic page that the answer needs. `markers` = words of the PREVIOUS topic that must not reach the prompt (outside the source block) after a topic switch.",
+  "turns": [
+    { "n": 1,  "ask": "How tall is the Eiffel Tower?", "role": "opening (topic A: Eiffel Tower)", "pages": ["Eiffel Tower", "Gustave Eiffel", "Paris"], "needle": "330 metres (1,083 ft) tall" },
+    { "n": 2,  "ask": "Who designed it?", "role": "follow-up depending on the previous answer (pronoun 'it' = the tower)", "dependent": true, "pages": ["Eiffel Tower", "Gustave Eiffel", "Paris"], "needle": "whose company designed and built the tower", "referent": "Eiffel Tower", "expect": "Gustave Eiffel (his company)" },
+    { "n": 3,  "ask": "Thanks!", "role": "chit-chat", "chitchat": true },
+    { "n": 4,  "ask": "What does photosynthesis release as a byproduct?", "role": "TOPIC SWITCH 1 (Eiffel -> photosynthesis)", "switch": true, "pages": ["Photosynthesis", "Chloroplast", "Oxygen"], "needle": "releases oxygen as a byproduct", "markers": ["eiffel", "tower", "gustave", "paris"] },
+    { "n": 5,  "ask": "Why?", "role": "pronoun-only follow-up (about the previous answer; thread turn, no search)", "dependent": true, "thread": true, "referent": "photosynthesis", "expect": "an explanation drawn from the previous answer about oxygen/water splitting; not another topic" },
+    { "n": 6,  "ask": "When did Marie Curie win her first Nobel Prize?", "role": "TOPIC SWITCH 2 (photosynthesis -> Marie Curie)", "switch": true, "pages": ["Marie Curie", "Pierre Curie", "Curie (unit)"], "needle": "1903 Nobel Prize in Physics", "markers": ["photosynthesis", "oxygen", "chloroplast", "eiffel"] },
+    { "n": 7,  "ask": "Where was she born?", "role": "follow-up depending on the previous answer (pronoun 'she' = Marie Curie)", "dependent": true, "pages": ["Marie Curie", "Pierre Curie", "Curie (unit)"], "needle": "born in Warsaw", "referent": "Marie Curie", "expect": "Warsaw" },
+    { "n": 8,  "ask": "How are you?", "role": "chit-chat", "chitchat": true },
+    { "n": 9,  "ask": "How long is the Great Wall of China?", "role": "TOPIC SWITCH 3 (Curie -> Great Wall)", "switch": true, "pages": ["Great Wall of China", "Hadrian's Wall", "Great Wall Motors"], "needle": "21,196.18 km", "markers": ["curie", "nobel", "warsaw", "photosynthesis"] },
+    { "n": 10, "ask": "Which dynasty built the best-known sections of the Great Wall?", "role": "standalone, same topic", "pages": ["Great Wall of China", "Hadrian's Wall", "Great Wall Motors"], "needle": "built by the Ming dynasty" },
+    { "n": 11, "ask": "Why was the Great Wall of China built?", "role": "standalone, same topic", "pages": ["Great Wall of China", "Hadrian's Wall", "Great Wall Motors"], "needle": "protection against various nomadic groups" },
+    { "n": 12, "ask": "Is the Great Wall of China a UNESCO World Heritage Site?", "role": "standalone, same topic", "pages": ["Great Wall of China", "Hadrian's Wall", "Great Wall Motors"], "needle": "UNESCO World Heritage Site" }
+  ]
+}

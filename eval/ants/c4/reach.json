@@ -1,0 +1,106 @@
+[
+ {
+  "gated": false,
+  "ask": "eiffel",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 16,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": false,
+  "ask": "canberra",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 8,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": false,
+  "ask": "wall",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 12,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": false,
+  "ask": "austen",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 10,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": true,
+  "ask": "eiffel",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 6,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": true,
+  "ask": "canberra",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 8,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": true,
+  "ask": "wall",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 10,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ },
+ {
+  "gated": true,
+  "ask": "austen",
+  "answerOk": true,
+  "followed": 0,
+  "onlyPoints": 10,
+  "couldNot": 0,
+  "provenanceTiers": [
+   "en.wikipedia.org:index"
+  ],
+  "provVerified": 1,
+  "originHosts": []
+ }
+]

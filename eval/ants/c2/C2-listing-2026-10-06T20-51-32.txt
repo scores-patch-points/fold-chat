@@ -1,0 +1,530 @@
+
+######## ARM STRICT ########
+
+[S:Q1] Is there a God?   (B1: undetermined; candidates ramakrishna, ise, vivekananda, grotius, huginn)   3 voice(s)   first 27515.7 ms, warm median 30.48 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q1:ramakrishna>
+    Here is what Sri Ramakrishna's canon records that bears on this:
+    QUOTE: “Therefore Hinduism asks the devotees to look on God as the ideal father, the ideal mother, the ideal husband, the ideal son, or the ideal friend.”
+    SOURCE: The Gospel of Sri Ramakrishna (Sri Sri Ramakrishna Kathamrita), recorded by M, trans. Swami Nikhilananda | section: SRI RAMAKRISHNA AS A PRIEST | eo-teachings/sources/gospel-sri-ramakrishna-nikhilananda.txt chars 69071-69218
+    CONTEXT: …whom comes the fulfilment of desire. Yet, as long as a man is bound by his human limitations, he cannot but worship God through human forms. He must use human symbols.  ⟦Therefore Hinduism asks the devotees to look on God as the ideal father, the ideal mother, the ideal husband, the ideal son, or the ideal friend.⟧  But the name ultimately leads to the Nameless, the form to the Formless, the word to the Silence, the emotion to the serene realization of Peace in ExistenceKnowledge-B…
+  <S:Q1:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “In the second place, the idea of a creator God does not explain the anomaly, but simply expresses the cruel fiat of an all-powerful being.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Volume I | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 26837-26976
+    CONTEXT: …ast to hold that those who are miserable in this life will be happy in a future one. Why should a man be miserable even here in the reign of a just and merciful God?  ⟦In the second place, the idea of a creator God does not explain the anomaly, but simply expresses the cruel fiat of an all-powerful being.⟧  There must have been causes, then, before his birth, to make a man miserable or happy and those were his past actions. Are not all the tendencies of the mind and the…
+  <S:Q1:ise>
+    Here is what W. G. Aston wrote that bears on this:
+    QUOTE: “Amongst Kami who are not human beings I need hardly mention Thunder [in Japanese Naru kami or the Sounding God].”
+    SOURCE: Shinto (The Way of the Gods) | section: GENERAL FEATURES — PERSONIFICATION. 9 | eo-teachings/sources/aston-shinto-1905.txt chars 24783-24914
+    CONTEXT: … who, although not accepted by the nation generally, are treated as gods, each of his several dignity, in a single province, village, or family  ⟦Amongst Kami who are not human beings I need hardly mention Thunder [in Japanese Naru kami or the Sounding God].⟧  There are also the Dragon, the Echo [called in Japanese Ko-dama or the Tree Spirit], and the Fox, who are Kami by reason of their uncanny and …
+
+[S:Q2] What is justice?   (B1: undetermined; candidates xunzi, grotius, mozi, aletheia, solon)   3 voice(s)   first 1899.0 ms, warm median 0.84 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q2:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “From a sense of this natural justice, Cain knowing himself guilty of his brother's blood said, "whosoever finds me shall kill me."”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER II. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 107727-107859
+    CONTEXT: …nion is thus expressed by Seneca the father; "it is but a just retaliation for any one to suffer in his own person the evil which he intended to inflict upon another."  ⟦From a sense of this natural justice, Cain knowing himself guilty of his brother's blood said, "whosoever finds me shall kill me."⟧  But as in those early times, when men were few, and aggressions rare, there was less occasion for examples, God restrained by an express commandment the impulse of …
+  <S:Q2:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “Therefore, famine and dearth cannot be prepared against unless there are stored grains in the granaries, and justice cannot be maintained against the unjust unless there are ready weapons in the armoury.”
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: THE SEVEN CAUSES OF ANXIETY | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 45137-45371
+    CONTEXT: …xtremes of disasters. Yet the people were not frozen or starved. Why was this so? The reason lies in diligent production and thrifty consumption.  ⟦Therefore, famine and dearth cannot be prepared against unless there are stored grains in the granaries, and justice cannot be maintained against the unjust unless there are ready weapons in the armoury.⟧  One cannot defend himself unless the inner and the outer city walls are in repair, and one cannot meet emergencies unless his ideas are well’ t…
+  <S:Q2:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “Therefore the civilizing influence of teachers and laws, the guidance of the rules of proper conduct (Li) and justice ( Yi) is absolutely necessary.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: I THE NATUEE OE MAN IS EVIL | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 507473-507624
+    CONTEXT: … inevitably results in strife and rapacity, together with violations of etiquette and confusion in the proper way of doing things, and reverts to a state of violence.  ⟦Therefore the civilizing influence of teachers and laws, the guidance of the rules of proper conduct (Li) and justice ( Yi) is absolutely necessary.⟧  Thereupon courtesy results ; public and private etiquette is observed; and good government is the con- sequence. By this line of reasoning it is evident that the natu…
+
+[S:Q3] How should I treat my enemies?   (B1: undetermined; candidates grotius, solon, xunzi, mahavira, laozi)   3 voice(s)   first 1251.8 ms, warm median 0.68 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q3:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “For not only the people of that day, but their posterity also had a right to a share of those possessions: so that to abandon them would be treating themselves like enemies."”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER VI. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 787923-788099
+    CONTEXT: …hat "the Romans were the fair and just owners of what they had gained by the right of conquest, nor ought they to be so weak as to abandon the fruits of their valour.  ⟦For not only the people of that day, but their posterity also had a right to a share of those possessions: so that to abandon them would be treating themselves like enemies."⟧  VIII. and IX. One great point, which the law of nations designed to establish, was that the effects or possessions of one enemy should be considered by another, as …
+  <S:Q3:solon>
+    Here is what Solon's canon records that bears on this:
+    QUOTE: “With some of the Egyptians crocodiles are sacred ; with others not, but they treat them as enemies.”
+    SOURCE: Herodotus, The Histories, Book I (Clio), the meeting of Solon and Croesus at Sardis | section: 66-68] CUSTOMS OF THE EGYPTIANS I09 | eo-teachings/sources/herodotus-cary-histories-1904.txt chars 386694-386809
+    CONTEXT: … the trochilus enters its mouth and swallows the leeches : the crocodile is so well pleased with this service that it never hurts the trochilus.  ⟦With some of the Egyptians crocodiles are sacred ; with others not, but they treat them as enemies.⟧  Those who dwell about Thebes and Lake Moeris consider them to be very sacred ; and they each of them train up a crocodile, which is taught to …
+  <S:Q3:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “They are pleased with him because he treats enemies as friends ; if he appears to want to make them his subordinates, then the feudal nobles will leave him.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: KINGLY GOVERNMENT | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 210653-210811
+    CONTEXT: …ill be pleased with him. They make friends with .him because he does not seek territory ; if he appears to want territory, the feudal princes would be distant to him.  ⟦They are pleased with him because he treats enemies as friends ; if he appears to want to make them his subordinates, then the feudal nobles will leave him.⟧  Hence he makes it plain that his motives are not to gain territory ; he makes them believe in his way (Tao) of treating enemies as friends. ■ If the empire is without…
+
+[S:Q4] Is suffering necessary?   (B1: undetermined; candidates grotius, mahavira, vivekananda, ramakrishna, solon)   1 voice(s)   first 8008.8 ms, warm median 2769.34 ms
+  LINE: One voice bears on this. This is its own sentence, quoted exactly; I have not paraphrased it and I am not saying it settles the question.
+  <S:Q4:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “Almost penniless and suffering from his protracted toil, Grotius seemed destined to neglect and oblivion, yet from his exile he wrote to his brother: "It is not necessary to ask anything for me.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: INTRODUCTION | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 40381-40578
+    CONTEXT: …andsomely bound copy, but failed to exercise the grace customary with monarchs by according a gratification. At Rome, the treatise was proscribed in the index in 1627.  ⟦Almost penniless and suffering from his protracted toil, Grotius seemed destined to neglect and oblivion, yet from his exile he wrote to his brother: "It is not necessary to ask anything for me.⟧  If my country can do without me, I can do without her. The world is large enough...." Invited to enter the service of France by Richelieu, Grotius would not accept …
+  (no voice from mahavira: no_sentence_carries_enough_of_the_question)
+  (no voice from vivekananda: no_sentence_carries_enough_of_the_question)
+  (no voice from ramakrishna: no_sentence_carries_enough_of_the_question)
+  (no voice from solon: no_sentence_carries_enough_of_the_question)
+
+[S:Q5] Can a person change?   (B1: undetermined; candidates grotius, zhengming, xunzi, vivekananda, laozi)   2 voice(s)   first 15244.0 ms, warm median 5883.88 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q5:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “Indeed it was because I could not bear its frightened appearance, as if it were an innocent person going to the place of death, that therefore I changed it for a sheep."”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: & 3E IS | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 928084-928284
+    CONTEXT: …ical, and the particle 452 THE WORKS OF MENCIUS -tit, m, & 3E IS £t H Jt 81 '> M Ifn how should I grudge one ox.  ⟦Indeed it was because I could not bear its frightened appearance, as if it were an innocent person going to the place of death, that therefore I changed it for a sheep."⟧  7. Meiicius pursued, "Let not Your Majesty deem it strange that the people should think you were grudg- ing the animal. When you changed a larg…
+  <S:Q5:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “Such a man will, by his very presence, change even the most wicked persons into saints.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter XV. The Real And The Apparent Man | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 1482661-1482749
+    CONTEXT: … benediction to all; his hands do only good works; his mind can only think good thoughts; his presence is a blessing wherever he goes. He is himself a living blessing.  ⟦Such a man will, by his very presence, change even the most wicked persons into saints.⟧  Even if he does not speak, his very presence will be a blessing to mankind. Can such men do any evil; can they do wicked deeds? There is, you must remember, all the d…
+  (no voice from grotius: no_sentence_carries_enough_of_the_question)
+  (no voice from xunzi: no_sentence_carries_enough_of_the_question)
+  (no voice from laozi: no_sentence_carries_enough_of_the_question)
+
+[S:Q6] What is a good ruler?   (B1: undetermined; candidates mozi, xunzi, zhengming, laozi, sima)   3 voice(s)   first 752.8 ms, warm median 0.57 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q6:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “The object of this chap- ter, say commentators, is to stimulate rulers to do good in sincerity, with a view, that is, to the good of others.”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: CHAPTER XVII. Mencius said, "Words which are | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 1392651-1392816
+    CONTEXT: …he words which are most truly obnoxious to the name of inauspicious, are those which throw into the shade men of talents and virtue." CH. 13.  ⟦The object of this chap- ter, say commentators, is to stimulate rulers to do good in sincerity, with a view, that is, to the good of others.⟧  I confess it is to me very enigmati- cal. Paul's sentiment, — "Scarcely for a righteous man will one die, yet peradventure for a good man some w…
+  <S:Q6:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “When the ruler is surrounded with praises and flatteries and insulated against good counsels, then the country is in danger.”
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: BEFEIENDING THE LEARNED | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 15215-15358
+    CONTEXT: …tions and keep silence, the ministers near at hand would be speech- less and those far away could only sigh, and the people would become bitter.  ⟦When the ruler is surrounded with praises and flatteries and insulated against good counsels, then the country is in danger.⟧  Was it not because they would not employ the scholars, that Chieh^ and Chow^ lost their empire and their lives ? Thus it is said : To offer th…
+  <S:Q6:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “If government decrees are timely,® the people will he united, the worthy and the good, will serve the ruler ; it will he the rule of a Sage-King.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: KINGLY GOVERNMENT | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 226473-226620
+    CONTEXT: … season, then the six kinds of domestic animals will develop and increase ; if killing^ and saving alive are at the proper season, then grass and trees will fionrish.  ⟦If government decrees are timely,® the people will he united, the worthy and the good, will serve the ruler ; it will he the rule of a Sage-King.⟧  When shruhs and trees are in hloom and leaf, the axe must not enter the forest, people must not exit short the life of the trees or' shruhs when young, not stop their…
+
+[S:Q7] Is it wrong to lie?   (B1: undetermined; candidates mozi, xunzi, george-eliot, nagarjuna, zhengming)   1 voice(s)   first 917.9 ms, warm median 975.73 ms
+  LINE: One voice bears on this. This is its own sentence, quoted exactly; I have not paraphrased it and I am not saying it settles the question.
+  <S:Q7:george-eliot>
+    Here is what George Eliot wrote that bears on this:
+    QUOTE: “She was blind, you see, to many things obvious to others—likely to tread in the wrong places, as Celia had warned her; yet her blindness to whatever did not lie in her own pure purpose carried her safely by the side of precipices where vision would have been perilous with fear.”
+    SOURCE: Middlemarch, Finale (English original) | section: CHAPTER XXXVII. | live_priors/01-literature-books/gutenberg/pg145_Middlemarch-George-Eliot.txt chars 804942-805223
+    CONTEXT: …but an uneasy conscience.” There was a peculiar fascination for Dorothea in this division of property intended for herself, and always regarded by her as excessive.  ⟦She was blind, you see, to many things obvious to others—likely to tread in the wrong places, as Celia had warned her; yet her blindness to whatever did not lie in her own pure purpose carried her safely by the side of precipices where vision would have been perilous with fear.⟧  The thoughts which had gathered vividness in the solitude of her boudoir occupied her incessantly through the day on which Mr. Casaubon had sent his letter to Will.…
+  (no voice from mozi: no_sentence_carries_enough_of_the_question)
+  (no voice from xunzi: no_sentence_carries_enough_of_the_question)
+  (no voice from nagarjuna: no_sentence_carries_enough_of_the_question)
+  (no voice from zhengming: no_sentence_carries_enough_of_the_question)
+
+[S:Q8] What happens after death?   (B1: undetermined; candidates solon, scheherazade, grotius, arokin, ramakrishna)   3 voice(s)   first 3663.4 ms, warm median 3549.53 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q8:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “Indeed, it may some times happen that there is no other way for a person to save himself, than by designedly doing an act, by which the death of an aggressor must inevitably ensue.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER I. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 201517-201700
+    CONTEXT: …ourselves, does not permit it. Thomas Aquinas, if taken in a right sense, has justly observed, that in actual self-defence no man can be said to be purposely killed.  ⟦Indeed, it may some times happen that there is no other way for a person to save himself, than by designedly doing an act, by which the death of an aggressor must inevitably ensue.⟧  Yet here the death of any one was not the primary object intended, but employed as the only means of security, which the moment supplied. Still it is better for the pa…
+  <S:Q8:ramakrishna>
+    Here is what Sri Ramakrishna's canon records that bears on this:
+    QUOTE: “I cannot cure my own illness, and you ask me to tell you what happens after death!”
+    SOURCE: The Gospel of Sri Ramakrishna (Sri Sri Ramakrishna Kathamrita), recorded by M, trans. Swami Nikhilananda | section: ABOUT REBIRTH | eo-teachings/sources/gospel-sri-ramakrishna-nikhilananda.txt chars 2383207-2383290
+    CONTEXT: … of death and was reborn as a deer." VAISHNAVA: "I could believe in rebirth only if an eye-witness told me about it." MASTER: "I don't know about that, my dear sir.  ⟦I cannot cure my own illness, and you ask me to tell you what happens after death!⟧  "What you are talking about only shows your petty mind. Try to cultivate love of God. You are born as a human being only to attain divine love. You have come to the o…
+  <S:Q8:arokin>
+    Here is what the Yoruba court historians' canon records that bears on this:
+    QUOTE: “It has happened within the experience of the chiefs that whilst one is toiling and saving, some brothers are idle and dissolute, and yet at his death, the idle and dissolute will step in and squander all he has saved, leaving his children to welter in poverty and want.”
+    SOURCE: The History of the Yorubas, from the Earliest Times to the Beginning of the British Protectorate | section: 326 THE HISTORY OF THE YORUBAS | eo-teachings/sources/johnson-history-of-the-yorubas-1921.txt chars 1049344-1049661
+    CONTEXT: … the turn of the eldest son comes, then he gets whatever may remain of what was once his father's, but in most cases, he gets nothing at all.  ⟦It has happened within the experience of the chiefs that whilst one is toiling and saving, some brothers are idle and dissolute, and yet at his death, the idle and dissolute will step in and squander all he has saved, leaving his children to welter in poverty and want.⟧  At a deliberative council held in the year 1858 it was proposed to alter this custom. For whom is a man toiling and saving? The answer comes…
+  (no voice from solon: no_sentence_carries_enough_of_the_question)
+  (no voice from scheherazade: no_sentence_carries_enough_of_the_question)
+
+[S:Q9] What is the self?   (B1: undetermined; candidates vasana, vivekananda, nagarjuna, mahavira, kanada)   3 voice(s)   first 4260.3 ms, warm median 3.95 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q9:nagarjuna>
+    Here is what Nagarjuna's canon records that bears on this:
+    QUOTE: “One has to meditate on Siinyatd as the absence of self-hood, on the absence of substantiality in all the dharmas, on Sunyata as even the emptiness of the unconditioned.”
+    SOURCE: Prasannapada, Candrakirti's commentary on Nagarjuna's Mulamadhyamakakarika, Chapter I ("Buddhapalita's Comment Vindicated from the Standpoint of Formal Logic") | section: INTRODUCTION | eo-teachings/sources/nagarjuna-stcherbatsky-nirvana.txt chars 27142-27312
+    CONTEXT: …ynonymous with Sunyata. One, however, acquires insight into Stiny ata not merely by avowing it enthusiastically, nor by logcmachy, but by meditation on 5 iinyata.  ⟦One has to meditate on Siinyatd as the absence of self-hood, on the absence of substantiality in all the dharmas, on Sunyata as even the emptiness of the unconditioned.⟧  Finally one has to abardon Sunyata itself as a mere raft to cross the ocean of ignorance. This meditation will, however, be ineffective unless one has cultivated cert…
+  <S:Q9:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “Instead of the sacrifice of pouring oblations into the fire, perform this one great sacrifice day and night — the sacrifice of your little self.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter VII. Freedom | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 201196-201342
+    CONTEXT: …l unto Him and be at rest. Let us be at peace, perfect peace, with ourselves, and give up our whole body and mind and everything as an eternal sacrifice unto the Lord.  ⟦Instead of the sacrifice of pouring oblations into the fire, perform this one great sacrifice day and night — the sacrifice of your little self.⟧  “In search of wealth in this world, Thou art the only wealth I have found; I sacrifice myself unto Thee. In search of some one to be loved, Thou art the only one belov…
+  <S:Q9:vasana>
+    Here is what Vyasa's canon records that bears on this:
+    QUOTE: “For the very nature of this Self is the know- ledge (bodha) thrown upon the thinking-substance precisely as shining is [the nature] of the sun.”
+    SOURCE: Yogabhashya on Patanjali's Yoga Sutra 1.4 | section: BOOK FIEST | eo-teachings/sources/yoga-sutras-woods.txt chars 136710-136876
+    CONTEXT: …other, is always undergoing an experience, [but there is] no [experience] when [the Self] is deprived of the knowledge from the thinking-substance.  ⟦For the very nature of this Self is the know- ledge (bodha) thrown upon the thinking-substance precisely as shining is [the nature] of the sun.⟧  Moreover this [knowledge of the thinking-substance] does not occur in that kind of mind which consists of subliminal-impressions (samskara) only. An…
+
+[S:Q10] Why obey the law?   (B1: undetermined; candidates grotius, xunzi, mahavira, vivekananda, laozi)   3 voice(s)   first 1980.0 ms, warm median 0.35 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q10:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “For the best counsels or precepts, if they lay us under no obligation to obey them, cannot come under the denomination of law or right.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER I. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 68297-68434
+    CONTEXT: …rd Right, which has the same meaning as Law taken in its most extensive sense, to denote a rule of moral action, obliging us to do what is proper. We say OBLIGING us.  ⟦For the best counsels or precepts, if they lay us under no obligation to obey them, cannot come under the denomination of law or right.⟧  Now as to permission,[2] it is no act of the law, but only the silence of the law, it however prohibits any one from impeding another in doing what the law permits. Bu…
+  <S:Q10:mahavira>
+    Here is what Mahavira's canon records that bears on this:
+    QUOTE: “Many men who thought this Law to be the highest good and conducive to their spiritual welfare, obeyed their preceptors, ceased from works, and have crossed the great flood (of worldly existence).”
+    SOURCE: the Syadvada, as expounded in Hermann Jacobi's introduction to Jaina Sutras, part II (Sacred Books of the East vol. 45) | section: BOOK I, LECTURE 2, CHAPTER 3. 257 | eo-teachings/sources/jaina-sutras-sbe45-jacobi.txt chars 488436-488634
+    CONTEXT: …t by the Gnhatvika, the sage who knew everything in the whole world, has either not been learned or not been truly practised (by creatures now in dis- tress). (31)  ⟦Many men who thought this Law to be the highest good and conducive to their spiritual welfare, obeyed their preceptors, ceased from works, and have crossed the great flood (of worldly existence).⟧  (32) Thus I say. THIRD CHAPTER. If a monk who abstains from actions, suffers pain (for acts done) through ignorance, that Karman will 1 Samprasdaraka? * Khan…
+  <S:Q10:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “It is only when “being” or existence gets moulded into name and form that it obeys the law of causation, and is said to be under law; because all law has its essence in causation.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter VII. Freedom | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 187592-187774
+    CONTEXT: …enses is not bound by the law of causation, as there is no mental association of things in the region beyond the senses, and no causation without association of ideas.  ⟦It is only when “being” or existence gets moulded into name and form that it obeys the law of causation, and is said to be under law; because all law has its essence in causation.⟧  Therefore we see at once that there cannot be any such thing as free will; the very words are a contradiction, because will is what we know, and everything that we kno…
+  (no voice from xunzi: no_sentence_carries_enough_of_the_question)
+
+[S:Q11] Is war ever just?   (B1: undetermined; candidates grotius, arokin, whitman, solon, huginn)   3 voice(s)   first 419.1 ms, warm median 0.52 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q11:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “I. After examining the sources of right, the first and most general question that occurs, is whether any war is just, or if it is ever lawful to make war.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER II. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 91516-91672
+    CONTEXT: … negative Opinions--Answer to the Arguments taken from Scripture for the affirmative--The opinions of the primitive Christians on the subject examined.  ⟦I. After examining the sources of right, the first and most general question that occurs, is whether any war is just, or if it is ever lawful to make war.⟧  But this question like many others that follow, must in the first place be compared with the rights of nature. Cicero in the third book of his Bounds of Good and Evil,…
+  <S:Q11:solon>
+    Here is what Solon's canon records that bears on this:
+    QUOTE: “How- ever, matters turned out well with me, and prospered ; and now, when the war has come round and reached you, at length you remember Gelon.”
+    SOURCE: Herodotus, The Histories, Book I (Clio), the meeting of Solon and Croesus at Sardis | section: 152-155] GELON 415 | eo-teachings/sources/herodotus-cary-histories-1904.txt chars 1360580-1360747
+    CONTEXT: …id you come to assist me, nor to avenge the death of Dorieus. So that as far as you are concerned, all this country is subject to barbarians.  ⟦How- ever, matters turned out well with me, and prospered ; and now, when the war has come round and reached you, at length you remember Gelon.⟧  But though I met with disgraceful treatment from you, I shall not imitate your example, but am ready to assist you, furnishing two hundred trire…
+  <S:Q11:arokin>
+    Here is what the Yoruba court historians' canon records that bears on this:
+    QUOTE: “Moreover, the war chiefs had long been ashamed of the Balogun as their commander-in-chief, because he was so given up to liquor and was scarcely ever found sober all the time they were at Ikirun.”
+    SOURCE: The History of the Yorubas, from the Earliest Times to the Beginning of the British Protectorate | section: THE END OF THE WAR 629 | eo-teachings/sources/johnson-history-of-the-yorubas-1921.txt chars 1940617-1940846
+    CONTEXT: …d if they did, there was sure to be a civil war. No one committed greater wrongs than the Balogun's slaves, and the Agbakin his chief adviser.  ⟦Moreover, the war chiefs had long been ashamed of the Balogun as their commander-in-chief, because he was so given up to liquor and was scarcely ever found sober all the time they were at Ikirun.⟧  They once approached him there to remonstrate with him for it, and his reply to them was, " Does my drink cost you anything ? Am I not buyin…
+  (no voice from whitman: no_sentence_carries_enough_of_the_question)
+
+[S:Q12] What is virtue?   (B1: undetermined; candidates zhengming, xunzi, mozi, mahavira, laozi)   3 voice(s)   first 308.8 ms, warm median 0.45 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:Q12:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “HU "what creatures get at their birth is called their virtue"; bufc this is a mere play pn the common sound of different words.”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: BOOK II. WEI CHANG | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 31155-31305
+    CONTEXT: …o administer, good government. 1. THE rNTLtTEKCE OF VERTUE EN A HITLER. $& is explained by ;$, and the old commentators say |jj ^ Kl 4 13 2.  ⟦HU "what creatures get at their birth is called their virtue"; bufc this is a mere play pn the common sound of different words.⟧  Chu Hsl makes it = ff '£ ffS *f ^ J*r *C>, "the practice of truth and acquisition thereof ia the heart." His view of the comparison is tha…
+  <S:Q12:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “I want to have my name as a righteous ruler established in the world and draw the other feudal lords to me with my virtue.””
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: THE WOEKS OF MOTSE | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 231609-231754
+    CONTEXT: …ss over (their conduct) with arguments, saying : (I wage war) not because I am still discontented with my gold and jade, my children and my land.  ⟦I want to have my name as a righteous ruler established in the world and draw the other feudal lords to me with my virtue.”⟧  Motse said : If there were some one who would establish his righteous name for justice in the world and draw the feudal lords to him with his …
+  <S:Q12:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “When he has firmly grasped virtue, he will be able to fix his mind without dis- traction ; when he has fixed his mind, he will be able to respond to the situation.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: AN BNCOUEAGEMENT TO STUDY | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 62173-62339
+    CONTEXT: …change him ; the coxmtry cannot move him. His life will be according to this, and his death will be according to it. This is what is meant by fiirmly grasping virtue.  ⟦When he has firmly grasped virtue, he will be able to fix his mind without dis- traction ; when he has fixed his mind, he will be able to respond to the situation.⟧  When he can fix his mind and can respond to the situation, he can be classed as a perfect man. Heaven exhibits its brilliance ; Earth exhibits its vastness ; the supe…
+
+[S:C1] What is the capital of France?   (B1: undetermined; candidates grotius, sima, arokin, scheherazade, vivekananda)   0 voice(s)   first 3678.6 ms, warm median 5458.17 ms
+  (no voice from grotius: no_sentence_carries_enough_of_the_question)
+  (no voice from sima: no_sentence_carries_enough_of_the_question)
+  (no voice from arokin: no_sentence_carries_enough_of_the_question)
+  (no voice from scheherazade: no_sentence_carries_enough_of_the_question)
+  (no voice from vivekananda: no_sentence_carries_enough_of_the_question)
+
+[S:C2] How do I reset my router password?   (B1: undetermined; candidates -)   0 voice(s)   first 0.0 ms, warm median 0.00 ms
+
+[S:C3] Who won the 1998 World Cup?   (B1: undetermined; candidates ramakrishna, scheherazade, vivekananda, kairos, laozi)   0 voice(s)   first 921.4 ms, warm median 2116.74 ms
+  (no voice from ramakrishna: no_sentence_passes_the_filters)
+  (no voice from scheherazade: no_sentence_carries_enough_of_the_question)
+  (no voice from vivekananda: no_sentence_passes_the_filters)
+  (no voice from kairos: no_sentence_carries_enough_of_the_question)
+  (no voice from laozi: no_sentence_carries_enough_of_the_question)
+
+[S:C4] What is the boiling point of water?   (B1: undetermined; candidates ramakrishna, kanada, scheherazade, mahavira, ise)   3 voice(s)   first 3090.5 ms, warm median 0.98 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <S:C4:kanada>
+    Here is what Kanada's canon records that bears on this:
+    QUOTE: “And here only particles of water boiling in a cauldron should be observed to be the simile.—6.”
+    SOURCE: Vaisheshika Sutras 1.2.3 | section: KANADA SÜTRAS V, 2,1. 163 | eo-teachings/sources/vaisheshika-sutras-sinha.txt chars 534305-534400
+    CONTEXT: …se of strong wind ; in the same way as the rays of fire, bestirred by air, carry up particles of water boiling in a cauldron. The word ‘cha’ conveys the sense of ‘as.’  ⟦And here only particles of water boiling in a cauldron should be observed to be the simile.—6.⟧  Note: Upaskára compares the two processes of evaporation and ebullitiou of water Cause of circulation of water in trees. Uposkára.—W ater peured at the root, goes …
+  <S:C4:scheherazade>
+    Here is what Scheherazade's canon records that bears on this:
+    QUOTE: “The devotional fervour often rises to the boiling- point of fanaticism.”
+    SOURCE: A Plain and Literal Translation of the Arabian Nights' Entertainments, now entituled The Book of the Thousand Nights and a Night, Vol. I | section: ASSISTED ME IN THIS TRANSLATION | eo-teachings/sources/burton-arabian-nights-vol1-1900.txt chars 24790-24871
+    CONTEXT: …d crassness are but the shades of a picture which would otherwise be all lights. The general tone of The Nights is exceptionally high and pure.  ⟦The devotional fervour often rises to the boiling- point of fanaticism.⟧  The pathos is sweet, deep and genuine ; tender, simple and true, utterly unlike much of our modern tinsel. Its life, strong, splendid and multitu…
+  <S:C4:ramakrishna>
+    Here is what Sri Ramakrishna's canon records that bears on this:
+    QUOTE: “Pointing to Dr. Sarkar, Sri Ramakrishna said to the devotees, with a smile: "When a thing is boiled, it becomes soft.”
+    SOURCE: The Gospel of Sri Ramakrishna (Sri Sri Ramakrishna Kathamrita), recorded by M, trans. Swami Nikhilananda | section: ABSENT-MINDEDNESS OF WORLDLY PEOPLE | eo-teachings/sources/gospel-sri-ramakrishna-nikhilananda.txt chars 2576129-2576247
+    CONTEXT: …ing that there was an ocean of difference between absentmindedness due to the contemplation of God, and absent-mindedness due to preoccupation with worldly thoughts?  ⟦Pointing to Dr. Sarkar, Sri Ramakrishna said to the devotees, with a smile: "When a thing is boiled, it becomes soft.⟧  At first he was very hard. Now he is softening from inside." DR. SARKAR: "When a thing is boiled, it begins to soften from the outside. I am afraid that won't happen …
+
+[S:C5] How many ounces are in a pound?   (B1: undetermined; candidates george-eliot, sima, xunzi, scheherazade, laozi)   0 voice(s)   first 1439.2 ms, warm median 1328.68 ms
+  (no voice from george-eliot: no_sentence_carries_enough_of_the_question)
+  (no voice from sima: no_sentence_carries_enough_of_the_question)
+  (no voice from xunzi: no_sentence_carries_enough_of_the_question)
+  (no voice from scheherazade: no_sentence_carries_enough_of_the_question)
+  (no voice from laozi: no_sentence_carries_the_question)
+
+[S:C6] asdf qwerty zxcv   (B1: undetermined; candidates -)   0 voice(s)   first 0.0 ms, warm median 0.00 ms
+
+######## ARM LOOSE ########
+
+[L:Q1] Is there a God?   (B1: undetermined; candidates ramakrishna, ise, vivekananda, grotius, huginn)   3 voice(s)   first 10079.4 ms, warm median 10.41 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q1:ramakrishna>
+    Here is what Sri Ramakrishna's canon records that bears on this:
+    QUOTE: “Therefore Hinduism asks the devotees to look on God as the ideal father, the ideal mother, the ideal husband, the ideal son, or the ideal friend.”
+    SOURCE: The Gospel of Sri Ramakrishna (Sri Sri Ramakrishna Kathamrita), recorded by M, trans. Swami Nikhilananda | section: SRI RAMAKRISHNA AS A PRIEST | eo-teachings/sources/gospel-sri-ramakrishna-nikhilananda.txt chars 69071-69218
+    CONTEXT: …whom comes the fulfilment of desire. Yet, as long as a man is bound by his human limitations, he cannot but worship God through human forms. He must use human symbols.  ⟦Therefore Hinduism asks the devotees to look on God as the ideal father, the ideal mother, the ideal husband, the ideal son, or the ideal friend.⟧  But the name ultimately leads to the Nameless, the form to the Formless, the word to the Silence, the emotion to the serene realization of Peace in ExistenceKnowledge-B…
+  <L:Q1:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “In the second place, the idea of a creator God does not explain the anomaly, but simply expresses the cruel fiat of an all-powerful being.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Volume I | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 26837-26976
+    CONTEXT: …ast to hold that those who are miserable in this life will be happy in a future one. Why should a man be miserable even here in the reign of a just and merciful God?  ⟦In the second place, the idea of a creator God does not explain the anomaly, but simply expresses the cruel fiat of an all-powerful being.⟧  There must have been causes, then, before his birth, to make a man miserable or happy and those were his past actions. Are not all the tendencies of the mind and the…
+  <L:Q1:ise>
+    Here is what W. G. Aston wrote that bears on this:
+    QUOTE: “Amongst Kami who are not human beings I need hardly mention Thunder [in Japanese Naru kami or the Sounding God].”
+    SOURCE: Shinto (The Way of the Gods) | section: GENERAL FEATURES — PERSONIFICATION. 9 | eo-teachings/sources/aston-shinto-1905.txt chars 24783-24914
+    CONTEXT: … who, although not accepted by the nation generally, are treated as gods, each of his several dignity, in a single province, village, or family  ⟦Amongst Kami who are not human beings I need hardly mention Thunder [in Japanese Naru kami or the Sounding God].⟧  There are also the Dragon, the Echo [called in Japanese Ko-dama or the Tree Spirit], and the Fox, who are Kami by reason of their uncanny and …
+
+[L:Q2] What is justice?   (B1: undetermined; candidates xunzi, grotius, mozi, aletheia, solon)   3 voice(s)   first 768.4 ms, warm median 0.94 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q2:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “From a sense of this natural justice, Cain knowing himself guilty of his brother's blood said, "whosoever finds me shall kill me."”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER II. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 107727-107859
+    CONTEXT: …nion is thus expressed by Seneca the father; "it is but a just retaliation for any one to suffer in his own person the evil which he intended to inflict upon another."  ⟦From a sense of this natural justice, Cain knowing himself guilty of his brother's blood said, "whosoever finds me shall kill me."⟧  But as in those early times, when men were few, and aggressions rare, there was less occasion for examples, God restrained by an express commandment the impulse of …
+  <L:Q2:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “Therefore, famine and dearth cannot be prepared against unless there are stored grains in the granaries, and justice cannot be maintained against the unjust unless there are ready weapons in the armoury.”
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: THE SEVEN CAUSES OF ANXIETY | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 45137-45371
+    CONTEXT: …xtremes of disasters. Yet the people were not frozen or starved. Why was this so? The reason lies in diligent production and thrifty consumption.  ⟦Therefore, famine and dearth cannot be prepared against unless there are stored grains in the granaries, and justice cannot be maintained against the unjust unless there are ready weapons in the armoury.⟧  One cannot defend himself unless the inner and the outer city walls are in repair, and one cannot meet emergencies unless his ideas are well’ t…
+  <L:Q2:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “Therefore the civilizing influence of teachers and laws, the guidance of the rules of proper conduct (Li) and justice ( Yi) is absolutely necessary.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: I THE NATUEE OE MAN IS EVIL | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 507473-507624
+    CONTEXT: … inevitably results in strife and rapacity, together with violations of etiquette and confusion in the proper way of doing things, and reverts to a state of violence.  ⟦Therefore the civilizing influence of teachers and laws, the guidance of the rules of proper conduct (Li) and justice ( Yi) is absolutely necessary.⟧  Thereupon courtesy results ; public and private etiquette is observed; and good government is the con- sequence. By this line of reasoning it is evident that the natu…
+
+[L:Q3] How should I treat my enemies?   (B1: undetermined; candidates grotius, solon, xunzi, mahavira, laozi)   3 voice(s)   first 467.7 ms, warm median 0.84 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q3:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “For not only the people of that day, but their posterity also had a right to a share of those possessions: so that to abandon them would be treating themselves like enemies."”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER VI. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 787923-788099
+    CONTEXT: …hat "the Romans were the fair and just owners of what they had gained by the right of conquest, nor ought they to be so weak as to abandon the fruits of their valour.  ⟦For not only the people of that day, but their posterity also had a right to a share of those possessions: so that to abandon them would be treating themselves like enemies."⟧  VIII. and IX. One great point, which the law of nations designed to establish, was that the effects or possessions of one enemy should be considered by another, as …
+  <L:Q3:solon>
+    Here is what Solon's canon records that bears on this:
+    QUOTE: “With some of the Egyptians crocodiles are sacred ; with others not, but they treat them as enemies.”
+    SOURCE: Herodotus, The Histories, Book I (Clio), the meeting of Solon and Croesus at Sardis | section: 66-68] CUSTOMS OF THE EGYPTIANS I09 | eo-teachings/sources/herodotus-cary-histories-1904.txt chars 386694-386809
+    CONTEXT: … the trochilus enters its mouth and swallows the leeches : the crocodile is so well pleased with this service that it never hurts the trochilus.  ⟦With some of the Egyptians crocodiles are sacred ; with others not, but they treat them as enemies.⟧  Those who dwell about Thebes and Lake Moeris consider them to be very sacred ; and they each of them train up a crocodile, which is taught to …
+  <L:Q3:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “They are pleased with him because he treats enemies as friends ; if he appears to want to make them his subordinates, then the feudal nobles will leave him.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: KINGLY GOVERNMENT | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 210653-210811
+    CONTEXT: …ill be pleased with him. They make friends with .him because he does not seek territory ; if he appears to want territory, the feudal princes would be distant to him.  ⟦They are pleased with him because he treats enemies as friends ; if he appears to want to make them his subordinates, then the feudal nobles will leave him.⟧  Hence he makes it plain that his motives are not to gain territory ; he makes them believe in his way (Tao) of treating enemies as friends. ■ If the empire is without…
+
+[L:Q4] Is suffering necessary?   (B1: undetermined; candidates grotius, mahavira, vivekananda, ramakrishna, solon)   3 voice(s)   first 5723.8 ms, warm median 2.59 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q4:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “Almost penniless and suffering from his protracted toil, Grotius seemed destined to neglect and oblivion, yet from his exile he wrote to his brother: "It is not necessary to ask anything for me.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: INTRODUCTION | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 40381-40578
+    CONTEXT: …andsomely bound copy, but failed to exercise the grace customary with monarchs by according a gratification. At Rome, the treatise was proscribed in the index in 1627.  ⟦Almost penniless and suffering from his protracted toil, Grotius seemed destined to neglect and oblivion, yet from his exile he wrote to his brother: "It is not necessary to ask anything for me.⟧  If my country can do without me, I can do without her. The world is large enough...." Invited to enter the service of France by Richelieu, Grotius would not accept …
+  <L:Q4:mahavira>
+    Here is what Mahavira's canon records that bears on this:
+    QUOTE: “I have heard of the places in hell, and of the destination of the sinner, where the fools who do cruel deeds will suffer violently.”
+    SOURCE: the Syadvada, as expounded in Hermann Jacobi's introduction to Jaina Sutras, part II (Sacred Books of the East vol. 45) | section: LECTURE V. 21 | eo-teachings/sources/jaina-sutras-sbe45-jacobi.txt chars 111769-111902
+    CONTEXT: …ers dust (both on and in its body). (10) Then he suffers ill and is attacked by disease ; and he is in dread of the next world when he reflects on his deeds. (11)  ⟦I have heard of the places in hell, and of the destination of the sinner, where the fools who do cruel deeds will suffer violently.⟧  (12) 1 K4lik4a, doubtful as regards the time when they will be enjoyed. * T.e. I shall do as people generally do, viz. enjoy pleasures. 5 Viz. By his acts and thoug…
+  <L:Q4:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “This ritual is Karma; it is necessary in every religion, because most of us cannot understand abstract spiritual things until we grow much spiritually.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter V. We Help Ourselves, Not The World | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 141935-142088
+    CONTEXT: … of wonderful things, and so on; ritual gives to that philosophy a still more concrete form, so that every one may grasp it — ritual is in fact concretised philosophy.  ⟦This ritual is Karma; it is necessary in every religion, because most of us cannot understand abstract spiritual things until we grow much spiritually.⟧  It is easy for men to think that they can understand anything; but when it comes to practical experience, they find that abstract ideas are often very hard to comprehe…
+
+[L:Q5] Can a person change?   (B1: undetermined; candidates grotius, zhengming, xunzi, vivekananda, laozi)   3 voice(s)   first 1401.8 ms, warm median 1.23 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q5:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “Indeed it was because I could not bear its frightened appearance, as if it were an innocent person going to the place of death, that therefore I changed it for a sheep."”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: & 3E IS | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 928084-928284
+    CONTEXT: …ical, and the particle 452 THE WORKS OF MENCIUS -tit, m, & 3E IS £t H Jt 81 '> M Ifn how should I grudge one ox.  ⟦Indeed it was because I could not bear its frightened appearance, as if it were an innocent person going to the place of death, that therefore I changed it for a sheep."⟧  7. Meiicius pursued, "Let not Your Majesty deem it strange that the people should think you were grudg- ing the animal. When you changed a larg…
+  <L:Q5:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “Others think the distinction is made, because as it is difficult to know the person of the thief, there is less probability of recovering the goods.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER I. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 212470-212620
+    CONTEXT: …n arises from the difficulty of discerning by night, whether an aggressor comes with an intent to murder or steal, and therefore he ought to be treated as an assassin.  ⟦Others think the distinction is made, because as it is difficult to know the person of the thief, there is less probability of recovering the goods.⟧  In neither case do the framers of laws seem to have considered the question in its proper light. Their evident intention is to prohibit the killing of any one, merely…
+  <L:Q5:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “For if a person thoroughly investigates the knowledge and capacities of the small-minded man, it will be seen that he has more than appears, and that he could do what the superior man does.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: ON HONOUR AND SHAME | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 91592-91784
+    CONTEXT: …es not know that he himself is no whit difierent from that other man. Thus the superior man looks at things rightly, but the small-minded man looks at things wrongly.  ⟦For if a person thoroughly investigates the knowledge and capacities of the small-minded man, it will be seen that he has more than appears, and that he could do what the superior man does.⟧  For example, the man of Yueh 2 is satisfied with Yueh ; the man of Ts'u ^ is satisfied with Ts‘u; the superior man is satisfied with central China. ^ This is not beca…
+
+[L:Q6] What is a good ruler?   (B1: undetermined; candidates mozi, xunzi, zhengming, laozi, sima)   3 voice(s)   first 140.3 ms, warm median 1.18 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q6:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “The object of this chap- ter, say commentators, is to stimulate rulers to do good in sincerity, with a view, that is, to the good of others.”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: CHAPTER XVII. Mencius said, "Words which are | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 1392651-1392816
+    CONTEXT: …he words which are most truly obnoxious to the name of inauspicious, are those which throw into the shade men of talents and virtue." CH. 13.  ⟦The object of this chap- ter, say commentators, is to stimulate rulers to do good in sincerity, with a view, that is, to the good of others.⟧  I confess it is to me very enigmati- cal. Paul's sentiment, — "Scarcely for a righteous man will one die, yet peradventure for a good man some w…
+  <L:Q6:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “When the ruler is surrounded with praises and flatteries and insulated against good counsels, then the country is in danger.”
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: BEFEIENDING THE LEARNED | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 15215-15358
+    CONTEXT: …tions and keep silence, the ministers near at hand would be speech- less and those far away could only sigh, and the people would become bitter.  ⟦When the ruler is surrounded with praises and flatteries and insulated against good counsels, then the country is in danger.⟧  Was it not because they would not employ the scholars, that Chieh^ and Chow^ lost their empire and their lives ? Thus it is said : To offer th…
+  <L:Q6:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “If government decrees are timely,® the people will he united, the worthy and the good, will serve the ruler ; it will he the rule of a Sage-King.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: KINGLY GOVERNMENT | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 226473-226620
+    CONTEXT: … season, then the six kinds of domestic animals will develop and increase ; if killing^ and saving alive are at the proper season, then grass and trees will fionrish.  ⟦If government decrees are timely,® the people will he united, the worthy and the good, will serve the ruler ; it will he the rule of a Sage-King.⟧  When shruhs and trees are in hloom and leaf, the axe must not enter the forest, people must not exit short the life of the trees or' shruhs when young, not stop their…
+
+[L:Q7] Is it wrong to lie?   (B1: undetermined; candidates mozi, xunzi, george-eliot, nagarjuna, zhengming)   3 voice(s)   first 831.1 ms, warm median 1.96 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q7:george-eliot>
+    Here is what George Eliot wrote that bears on this:
+    QUOTE: “She was blind, you see, to many things obvious to others—likely to tread in the wrong places, as Celia had warned her; yet her blindness to whatever did not lie in her own pure purpose carried her safely by the side of precipices where vision would have been perilous with fear.”
+    SOURCE: Middlemarch, Finale (English original) | section: CHAPTER XXXVII. | live_priors/01-literature-books/gutenberg/pg145_Middlemarch-George-Eliot.txt chars 804942-805223
+    CONTEXT: …but an uneasy conscience.” There was a peculiar fascination for Dorothea in this division of property intended for herself, and always regarded by her as excessive.  ⟦She was blind, you see, to many things obvious to others—likely to tread in the wrong places, as Celia had warned her; yet her blindness to whatever did not lie in her own pure purpose carried her safely by the side of precipices where vision would have been perilous with fear.⟧  The thoughts which had gathered vividness in the solitude of her boudoir occupied her incessantly through the day on which Mr. Casaubon had sent his letter to Will.…
+  <L:Q7:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “Tlien lie will Lave to admit that bis taste is impaired and that he cannot tell the difference between sweet and bitter.”
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: WILL OF HEAVEN (III) | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 316483-316624
+    CONTEXT: …e a man when served with a little bitter says it is bitter, but WILL OF HEAVEN (III) 159 when served witli mucli bitter says it is sweet.  ⟦Tlien lie will Lave to admit that bis taste is impaired and that he cannot tell the difference between sweet and bitter.⟧  In the government of the present lords, the murderer of an individual is imprisoned by the state. This ^ . . . But the murderer of many men of …
+  <L:Q7:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “The slutlent (»f (’hinese must ever be grateful to Dr. Rteolo for the production of this laliorioUb work, which will lie of great help to those who follOM" him.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: PROBSTHAIN & CO., ORIENTAL PUBLISHERS | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 578747-578909
+    CONTEXT: …The (‘ovor, paper, printing, and general arrangoinent ifl excellent. The iinbHHherK dcacrvn ev<<j*y praise. The issue of the I-Li hi 2 volumes is nu event in sinology.  ⟦The slutlent (»f (’hinese must ever be grateful to Dr. Rteolo for the production of this laliorioUb work, which will lie of great help to those who follOM" him.⟧  Hirth Anniversary Volume, Presented to Priedrich Hirtli, Profesaor of (IbiueaG, Oohimbia University, New York, in Honour of liis Seveuity-liflh Birthday, by his Fr…
+
+[L:Q8] What happens after death?   (B1: undetermined; candidates solon, scheherazade, grotius, arokin, ramakrishna)   3 voice(s)   first 982.1 ms, warm median 0.91 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q8:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “Indeed, it may some times happen that there is no other way for a person to save himself, than by designedly doing an act, by which the death of an aggressor must inevitably ensue.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER I. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 201517-201700
+    CONTEXT: …ourselves, does not permit it. Thomas Aquinas, if taken in a right sense, has justly observed, that in actual self-defence no man can be said to be purposely killed.  ⟦Indeed, it may some times happen that there is no other way for a person to save himself, than by designedly doing an act, by which the death of an aggressor must inevitably ensue.⟧  Yet here the death of any one was not the primary object intended, but employed as the only means of security, which the moment supplied. Still it is better for the pa…
+  <L:Q8:scheherazade>
+    Here is what Scheherazade's canon records that bears on this:
+    QUOTE: “Thus the merchant learnt family discipline from his Cock and he and his wife lived together the happiest of lives until death.”
+    SOURCE: A Plain and Literal Translation of the Arabian Nights' Entertainments, now entituled The Book of the Thousand Nights and a Night, Vol. I | section: YOU L • | eo-teachings/sources/burton-arabian-nights-vol1-1900.txt chars 116862-117009
+    CONTEXT: …the room submissive as a wife should be. Her parents and all the company rejoiced and sadness and mourning were changed into joy and glad- ness.  ⟦Thus the merchant learnt family discipline from his Cock and he and his wife lived together the happiest of lives until death.⟧  And thou also, O my daughter ! continued the Wazir, 4i Unless thou turn from this matter I will do by thee what that trader did to his wife."…
+  <L:Q8:solon>
+    Here is what Solon's canon records that bears on this:
+    QUOTE: “But poetry is not history, for history means investi- gation ; and poetry is inspiration, not investigation, and the beginnings of prose presaged the death of the epos.”
+    SOURCE: Herodotus, The Histories, Book I (Clio), the meeting of Solon and Croesus at Sardis | section: X HERODOTUS | eo-teachings/sources/herodotus-cary-histories-1904.txt chars 19310-19504
+    CONTEXT: …terary work. Before him the epopee had served as history, and the eldest Muse of the nine was commissioned to tell of the glories of the past.  ⟦But poetry is not history, for history means investi- gation ; and poetry is inspiration, not investigation, and the beginnings of prose presaged the death of the epos.⟧  The earliest writers of prose were called logographers ( Xofyoypd<f)ot or XoyoTTOcot), '^ writers of accounts." When Logos comes in, Mythos retreats…
+
+[L:Q9] What is the self?   (B1: undetermined; candidates vasana, vivekananda, nagarjuna, mahavira, kanada)   3 voice(s)   first 18943.1 ms, warm median 3.65 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q9:nagarjuna>
+    Here is what Nagarjuna's canon records that bears on this:
+    QUOTE: “One has to meditate on Siinyatd as the absence of self-hood, on the absence of substantiality in all the dharmas, on Sunyata as even the emptiness of the unconditioned.”
+    SOURCE: Prasannapada, Candrakirti's commentary on Nagarjuna's Mulamadhyamakakarika, Chapter I ("Buddhapalita's Comment Vindicated from the Standpoint of Formal Logic") | section: INTRODUCTION | eo-teachings/sources/nagarjuna-stcherbatsky-nirvana.txt chars 27142-27312
+    CONTEXT: …ynonymous with Sunyata. One, however, acquires insight into Stiny ata not merely by avowing it enthusiastically, nor by logcmachy, but by meditation on 5 iinyata.  ⟦One has to meditate on Siinyatd as the absence of self-hood, on the absence of substantiality in all the dharmas, on Sunyata as even the emptiness of the unconditioned.⟧  Finally one has to abardon Sunyata itself as a mere raft to cross the ocean of ignorance. This meditation will, however, be ineffective unless one has cultivated cert…
+  <L:Q9:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “Instead of the sacrifice of pouring oblations into the fire, perform this one great sacrifice day and night — the sacrifice of your little self.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter VII. Freedom | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 201196-201342
+    CONTEXT: …l unto Him and be at rest. Let us be at peace, perfect peace, with ourselves, and give up our whole body and mind and everything as an eternal sacrifice unto the Lord.  ⟦Instead of the sacrifice of pouring oblations into the fire, perform this one great sacrifice day and night — the sacrifice of your little self.⟧  “In search of wealth in this world, Thou art the only wealth I have found; I sacrifice myself unto Thee. In search of some one to be loved, Thou art the only one belov…
+  <L:Q9:vasana>
+    Here is what Vyasa's canon records that bears on this:
+    QUOTE: “For the very nature of this Self is the know- ledge (bodha) thrown upon the thinking-substance precisely as shining is [the nature] of the sun.”
+    SOURCE: Yogabhashya on Patanjali's Yoga Sutra 1.4 | section: BOOK FIEST | eo-teachings/sources/yoga-sutras-woods.txt chars 136710-136876
+    CONTEXT: …other, is always undergoing an experience, [but there is] no [experience] when [the Self] is deprived of the knowledge from the thinking-substance.  ⟦For the very nature of this Self is the know- ledge (bodha) thrown upon the thinking-substance precisely as shining is [the nature] of the sun.⟧  Moreover this [knowledge of the thinking-substance] does not occur in that kind of mind which consists of subliminal-impressions (samskara) only. An…
+
+[L:Q10] Why obey the law?   (B1: undetermined; candidates grotius, xunzi, mahavira, vivekananda, laozi)   3 voice(s)   first 461.3 ms, warm median 4.67 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q10:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “For the best counsels or precepts, if they lay us under no obligation to obey them, cannot come under the denomination of law or right.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER I. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 68297-68434
+    CONTEXT: …rd Right, which has the same meaning as Law taken in its most extensive sense, to denote a rule of moral action, obliging us to do what is proper. We say OBLIGING us.  ⟦For the best counsels or precepts, if they lay us under no obligation to obey them, cannot come under the denomination of law or right.⟧  Now as to permission,[2] it is no act of the law, but only the silence of the law, it however prohibits any one from impeding another in doing what the law permits. Bu…
+  <L:Q10:mahavira>
+    Here is what Mahavira's canon records that bears on this:
+    QUOTE: “Many men who thought this Law to be the highest good and conducive to their spiritual welfare, obeyed their preceptors, ceased from works, and have crossed the great flood (of worldly existence).”
+    SOURCE: the Syadvada, as expounded in Hermann Jacobi's introduction to Jaina Sutras, part II (Sacred Books of the East vol. 45) | section: BOOK I, LECTURE 2, CHAPTER 3. 257 | eo-teachings/sources/jaina-sutras-sbe45-jacobi.txt chars 488436-488634
+    CONTEXT: …t by the Gnhatvika, the sage who knew everything in the whole world, has either not been learned or not been truly practised (by creatures now in dis- tress). (31)  ⟦Many men who thought this Law to be the highest good and conducive to their spiritual welfare, obeyed their preceptors, ceased from works, and have crossed the great flood (of worldly existence).⟧  (32) Thus I say. THIRD CHAPTER. If a monk who abstains from actions, suffers pain (for acts done) through ignorance, that Karman will 1 Samprasdaraka? * Khan…
+  <L:Q10:vivekananda>
+    Here is what Swami Vivekananda wrote that bears on this:
+    QUOTE: “It is only when “being” or existence gets moulded into name and form that it obeys the law of causation, and is said to be under law; because all law has its essence in causation.”
+    SOURCE: The Complete Works of Swami Vivekananda (Mayavati Memorial Edition, 9 volumes) — Raja-Yoga, Chapter I (Introductory) | section: Chapter VII. Freedom | eo-teachings/sources/vivekananda-complete-works-9vol.txt chars 187592-187774
+    CONTEXT: …enses is not bound by the law of causation, as there is no mental association of things in the region beyond the senses, and no causation without association of ideas.  ⟦It is only when “being” or existence gets moulded into name and form that it obeys the law of causation, and is said to be under law; because all law has its essence in causation.⟧  Therefore we see at once that there cannot be any such thing as free will; the very words are a contradiction, because will is what we know, and everything that we kno…
+  (no voice from xunzi: no_sentence_passes_the_filters)
+
+[L:Q11] Is war ever just?   (B1: undetermined; candidates grotius, arokin, whitman, solon, huginn)   3 voice(s)   first 797.4 ms, warm median 8.46 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q11:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “I. After examining the sources of right, the first and most general question that occurs, is whether any war is just, or if it is ever lawful to make war.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER II. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 91516-91672
+    CONTEXT: … negative Opinions--Answer to the Arguments taken from Scripture for the affirmative--The opinions of the primitive Christians on the subject examined.  ⟦I. After examining the sources of right, the first and most general question that occurs, is whether any war is just, or if it is ever lawful to make war.⟧  But this question like many others that follow, must in the first place be compared with the rights of nature. Cicero in the third book of his Bounds of Good and Evil,…
+  <L:Q11:solon>
+    Here is what Solon's canon records that bears on this:
+    QUOTE: “How- ever, matters turned out well with me, and prospered ; and now, when the war has come round and reached you, at length you remember Gelon.”
+    SOURCE: Herodotus, The Histories, Book I (Clio), the meeting of Solon and Croesus at Sardis | section: 152-155] GELON 415 | eo-teachings/sources/herodotus-cary-histories-1904.txt chars 1360580-1360747
+    CONTEXT: …id you come to assist me, nor to avenge the death of Dorieus. So that as far as you are concerned, all this country is subject to barbarians.  ⟦How- ever, matters turned out well with me, and prospered ; and now, when the war has come round and reached you, at length you remember Gelon.⟧  But though I met with disgraceful treatment from you, I shall not imitate your example, but am ready to assist you, furnishing two hundred trire…
+  <L:Q11:arokin>
+    Here is what the Yoruba court historians' canon records that bears on this:
+    QUOTE: “Moreover, the war chiefs had long been ashamed of the Balogun as their commander-in-chief, because he was so given up to liquor and was scarcely ever found sober all the time they were at Ikirun.”
+    SOURCE: The History of the Yorubas, from the Earliest Times to the Beginning of the British Protectorate | section: THE END OF THE WAR 629 | eo-teachings/sources/johnson-history-of-the-yorubas-1921.txt chars 1940617-1940846
+    CONTEXT: …d if they did, there was sure to be a civil war. No one committed greater wrongs than the Balogun's slaves, and the Agbakin his chief adviser.  ⟦Moreover, the war chiefs had long been ashamed of the Balogun as their commander-in-chief, because he was so given up to liquor and was scarcely ever found sober all the time they were at Ikirun.⟧  They once approached him there to remonstrate with him for it, and his reply to them was, " Does my drink cost you anything ? Am I not buyin…
+  (no voice from whitman: no_sentence_passes_the_filters)
+
+[L:Q12] What is virtue?   (B1: undetermined; candidates zhengming, xunzi, mozi, mahavira, laozi)   3 voice(s)   first 766.5 ms, warm median 1.76 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:Q12:zhengming>
+    Here is what Confucius' canon records that bears on this:
+    QUOTE: “HU "what creatures get at their birth is called their virtue"; bufc this is a mere play pn the common sound of different words.”
+    SOURCE: Confucian Analects, Book XIII, Chapter III | section: BOOK II. WEI CHANG | eo-teachings/sources/confucius-four-books-legge-1900.txt chars 31155-31305
+    CONTEXT: …o administer, good government. 1. THE rNTLtTEKCE OF VERTUE EN A HITLER. $& is explained by ;$, and the old commentators say |jj ^ Kl 4 13 2.  ⟦HU "what creatures get at their birth is called their virtue"; bufc this is a mere play pn the common sound of different words.⟧  Chu Hsl makes it = ff '£ ffS *f ^ J*r *C>, "the practice of truth and acquisition thereof ia the heart." His view of the comparison is tha…
+  <L:Q12:mozi>
+    Here is what Mozi wrote that bears on this:
+    QUOTE: “I want to have my name as a righteous ruler established in the world and draw the other feudal lords to me with my virtue.””
+    SOURCE: The Works of Motse (Mozi), Book IX, "Anti-Fatalism (I)" (Fei Ming) — the doctrine of the Three Tests (san biao) | section: THE WOEKS OF MOTSE | eo-teachings/sources/mozi-mei-works-of-motse-1929.txt chars 231609-231754
+    CONTEXT: …ss over (their conduct) with arguments, saying : (I wage war) not because I am still discontented with my gold and jade, my children and my land.  ⟦I want to have my name as a righteous ruler established in the world and draw the other feudal lords to me with my virtue.”⟧  Motse said : If there were some one who would establish his righteous name for justice in the world and draw the feudal lords to him with his …
+  <L:Q12:xunzi>
+    Here is what Xunzi wrote that bears on this:
+    QUOTE: “When he has firmly grasped virtue, he will be able to fix his mind without dis- traction ; when he has fixed his mind, he will be able to respond to the situation.”
+    SOURCE: The Works of Hsüntze, Book XXII: On the Rectification of Terms | section: AN BNCOUEAGEMENT TO STUDY | eo-teachings/sources/dubs-works-of-hsuntze-1928.txt chars 62173-62339
+    CONTEXT: …change him ; the coxmtry cannot move him. His life will be according to this, and his death will be according to it. This is what is meant by fiirmly grasping virtue.  ⟦When he has firmly grasped virtue, he will be able to fix his mind without dis- traction ; when he has fixed his mind, he will be able to respond to the situation.⟧  When he can fix his mind and can respond to the situation, he can be classed as a perfect man. Heaven exhibits its brilliance ; Earth exhibits its vastness ; the supe…
+
+[L:C1] What is the capital of France?   (B1: undetermined; candidates grotius, sima, arokin, scheherazade, vivekananda)   3 voice(s)   first 2040.5 ms, warm median 1.67 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:C1:grotius>
+    Here is what Hugo Grotius wrote that bears on this:
+    QUOTE: “In the other case, the price of labour is weighed, as it were, against the money, and the party who bestows it, is entitled to an equivalent share in the capital.”
+    SOURCE: De Jure Belli ac Pacis (On the Rights of War and Peace), Book I, Chapter I, Section III | section: CHAPTER XII. | eo-teachings/sources/grotius-rights-of-war-and-peace.txt chars 378093-378257
+    CONTEXT: …rincipal is not compared as a balance against the labor, but it is lent upon terms proportioned to the risk of losing it, or the probable gains to be derived from it.  ⟦In the other case, the price of labour is weighed, as it were, against the money, and the party who bestows it, is entitled to an equivalent share in the capital.⟧  What has been said of labour may be applied to voyages, and all other hazardous undertakings. For it is contrary to the very nature of partnerships for any one to s…
+  <L:C1:sima>
+    Here is what Sima Qian's canon records that bears on this:
+    QUOTE: “Among all the strange places which they visited, the most curious was the Country of Gentlemen, where they landed and proceeded at once to the capital city.”
+    SOURCE: Records of the Grand Historian (Shiji), biography of Laozi, as translated in Herbert Giles's A History of Chinese Literature | section: THE LIEH KUO CHUAN 31$ | eo-teachings/sources/giles-history-chinese-literature-1901.txt chars 479086-479245
+    CONTEXT: …ibes how a young graduate, named T'ang, disgusted with the establishment of examinations and degrees for women, set out with a small party on a voyage of exploration.  ⟦Among all the strange places which they visited, the most curious was the Country of Gentlemen, where they landed and proceeded at once to the capital city.⟧  "There, over the city gate, T"ang and his companions read the following legend : — ' Virtue is maris only jewel/' " They then entered the city, which they found t…
+  <L:C1:arokin>
+    Here is what the Yoruba court historians' canon records that bears on this:
+    QUOTE: “His Majesty thereupon returned to the capital, and then he was poUtely told that rio Yoruba King must survive a defeat.”
+    SOURCE: The History of the Yorubas, from the Earliest Times to the Beginning of the British Protectorate | section: 196 THE HISTORY OF THE YORUBAS | eo-teachings/sources/johnson-history-of-the-yorubas-1921.txt chars 667349-667488
+    CONTEXT: … till the Oyo Mesi sent word to him that he should not think of removing the seat of government to I wo, or else why did he remain there ?  ⟦His Majesty thereupon returned to the capital, and then he was poUtely told that rio Yoruba King must survive a defeat.⟧  He thereupon committed suicide. The Bagorun of this reign was the same Asamu. Chapter VII THE RISE OF THE FULANIS TO POWER § I. The Spr…
+
+[L:C2] How do I reset my router password?   (B1: undetermined; candidates -)   0 voice(s)   first 0.0 ms, warm median 0.00 ms
+
+[L:C3] Who won the 1998 World Cup?   (B1: undetermined; candidates ramakrishna, scheherazade, vivekananda, kairos, laozi)   0 voice(s)   first 13550.0 ms, warm median 8299.54 ms
+  (no voice from ramakrishna: no_sentence_passes_the_filters)
+  (no voice from scheherazade: no_sentence_passes_the_filters)
+  (no voice from vivekananda: no_sentence_passes_the_filters)
+  (no voice from kairos: no_sentence_passes_the_filters)
+  (no voice from laozi: no_sentence_passes_the_filters)
+
+[L:C4] What is the boiling point of water?   (B1: undetermined; candidates ramakrishna, kanada, scheherazade, mahavira, ise)   3 voice(s)   first 2053.6 ms, warm median 2.28 ms
+  LINE: Several voices bear on this. These are their own sentences, quoted exactly; I have not paraphrased any of them and I am not saying which is right.
+  <L:C4:kanada>
+    Here is what Kanada's canon records that bears on this:
+    QUOTE: “And here only particles of water boiling in a cauldron should be observed to be the simile.—6.”
+    SOURCE: Vaisheshika Sutras 1.2.3 | section: KANADA SÜTRAS V, 2,1. 163 | eo-teachings/sources/vaisheshika-sutras-sinha.txt chars 534305-534400
+    CONTEXT: …se of strong wind ; in the same way as the rays of fire, bestirred by air, carry up particles of water boiling in a cauldron. The word ‘cha’ conveys the sense of ‘as.’  ⟦And here only particles of water boiling in a cauldron should be observed to be the simile.—6.⟧  Note: Upaskára compares the two processes of evaporation and ebullitiou of water Cause of circulation of water in trees. Uposkára.—W ater peured at the root, goes …
+  <L:C4:scheherazade>
+    Here is what Scheherazade's canon records that bears on this:
+    QUOTE: “The devotional fervour often rises to the boiling- point of fanaticism.”
+    SOURCE: A Plain and Literal Translation of the Arabian Nights' Entertainments, now entituled The Book of the Thousand Nights and a Night, Vol. I | section: ASSISTED ME IN THIS TRANSLATION | eo-teachings/sources/burton-arabian-nights-vol1-1900.txt chars 24790-24871
+    CONTEXT: …d crassness are but the shades of a picture which would otherwise be all lights. The general tone of The Nights is exceptionally high and pure.  ⟦The devotional fervour often rises to the boiling- point of fanaticism.⟧  The pathos is sweet, deep and genuine ; tender, simple and true, utterly unlike much of our modern tinsel. Its life, strong, splendid and multitu…
+  <L:C4:ramakrishna>
+    Here is what Sri Ramakrishna's canon records that bears on this:
+    QUOTE: “Pointing to Dr. Sarkar, Sri Ramakrishna said to the devotees, with a smile: "When a thing is boiled, it becomes soft.”
+    SOURCE: The Gospel of Sri Ramakrishna (Sri Sri Ramakrishna Kathamrita), recorded by M, trans. Swami Nikhilananda | section: ABSENT-MINDEDNESS OF WORLDLY PEOPLE | eo-teachings/sources/gospel-sri-ramakrishna-nikhilananda.txt chars 2576129-2576247
+    CONTEXT: …ing that there was an ocean of difference between absentmindedness due to the contemplation of God, and absent-mindedness due to preoccupation with worldly thoughts?  ⟦Pointing to Dr. Sarkar, Sri Ramakrishna said to the devotees, with a smile: "When a thing is boiled, it becomes soft.⟧  At first he was very hard. Now he is softening from inside." DR. SARKAR: "When a thing is boiled, it begins to soften from the outside. I am afraid that won't happen …
+
+[L:C5] How many ounces are in a pound?   (B1: undetermined; candidates george-eliot, sima, xunzi, scheherazade, laozi)   1 voice(s)   first 937.5 ms, warm median 254.06 ms
+  LINE: One voice bears on this. This is its own sentence, quoted exactly; I have not paraphrased it and I am not saying it settles the question.
+  <L:C5:george-eliot>
+    Here is what George Eliot wrote that bears on this:
+    QUOTE: “Mr. Garth told me what happened on the night of Featherstone’s death—how you refused to burn the will; and he said that you had some heart-prickings on that subject, because you had been the innocent means of hindering Fred from getting his ten thousand pounds.”
+    SOURCE: Middlemarch, Finale (English original) | section: CHAPTER LII. | live_priors/01-literature-books/gutenberg/pg145_Middlemarch-George-Eliot.txt chars 1115076-1115341
+    CONTEXT: …hich your father took me into confidence; by the way, it was that very evening on which I once before fulfilled a mission from Fred, just after he had gone to college.  ⟦Mr. Garth told me what happened on the night of Featherstone’s death—how you refused to burn the will; and he said that you had some heart-prickings on that subject, because you had been the innocent means of hindering Fred from getting his ten thousand pounds.⟧  I have kept that in mind, and I have heard something that may relieve you on that score—may show you that no sin-offering is demanded from you there.” Mr. Farebroth…
+  (no voice from sima: no_sentence_passes_the_filters)
+  (no voice from xunzi: no_sentence_passes_the_filters)
+  (no voice from scheherazade: no_sentence_passes_the_filters)
+  (no voice from laozi: no_sentence_carries_the_question)
+
+[L:C6] asdf qwerty zxcv   (B1: undetermined; candidates -)   0 voice(s)   first 0.0 ms, warm median 0.00 ms

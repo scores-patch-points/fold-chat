@@ -1,0 +1,325 @@
+{
+ "schema": "PrimaryCorpus@1",
+ "written": "2026-10-06",
+ "note": "hostsOk and say are the ORACLE's (independent of fold-chat-primary.js); forbid.wikiLike is a catch-all for unknown wiki/-pedia mirrors (wikiLike is deliberately conservative: any host containing wiki or pedia)",
+ "forbid": {
+  "note": "hosts that must NOT count as a primary page: Wikipedia in every language and its sister projects, wiki mirrors/forks, other encyclopedias (an encyclopedia is a pointer, not a citation), content farms / Q&A aggregators / reference-answer farms / SEO listicle sites",
+  "hosts": [
+   "(^|\\.)wikipedia\\.org$",
+   "(^|\\.)wikimedia\\.org$",
+   "(^|\\.)wikidata\\.org$",
+   "(^|\\.)wikiwand\\.com$",
+   "(^|\\.)wikitia\\.com$",
+   "(^|\\.)dbpedia\\.org$",
+   "(^|\\.)wikispecies\\.org$",
+   "(^|\\.)wiktionary\\.org$",
+   "(^|\\.)wikibooks\\.org$",
+   "(^|\\.)wikiquote\\.org$",
+   "(^|\\.)wikivoyage\\.org$",
+   "(^|\\.)fandom\\.com$",
+   "(^|\\.)miraheze\\.org$",
+   "(^|\\.)justapedia\\.org$",
+   "(^|\\.)grokipedia\\.com$",
+   "(^|\\.)alchetron\\.com$",
+   "(^|\\.)kiddle\\.co$",
+   "(^|\\.)everybodywiki\\.com$",
+   "(^|\\.)infogalactic\\.com$",
+   "(^|\\.)citizendium\\.org$",
+   "(^|\\.)britannica\\.com$",
+   "(^|\\.)encyclopedia\\.com$",
+   "(^|\\.)newworldencyclopedia\\.org$",
+   "(^|\\.)worldhistory\\.org$",
+   "(^|\\.)encyclopedia\\.pub$",
+   "(^|\\.)thefamouspeople\\.com$",
+   "(^|\\.)famousbirthdays\\.com$",
+   "(^|\\.)answers\\.com$",
+   "(^|\\.)reference\\.com$",
+   "(^|\\.)quora\\.com$",
+   "(^|\\.)ask\\.com$",
+   "(^|\\.)brainly\\.com$",
+   "(^|\\.)ehow\\.com$",
+   "(^|\\.)wikihow\\.com$",
+   "(^|\\.)howstuffworks\\.com$",
+   "(^|\\.)slideshare\\.net$",
+   "(^|\\.)scribd\\.com$",
+   "(^|\\.)reddit\\.com$",
+   "(^|\\.)yahoo\\.com$",
+   "(^|\\.)medium\\.com$",
+   "(^|\\.)pinterest\\.com$",
+   "(^|\\.)facebook\\.com$",
+   "(^|\\.)youtube\\.com$",
+   "(^|\\.)tiktok\\.com$",
+   "(^|\\.)lifestyleasia\\.com$",
+   "(^|\\.)wikitree\\.com$",
+   "(^|\\.)prabook\\.com$",
+   "(^|\\.)peoplepill\\.com$",
+   "(^|\\.)wikibrief\\.org$",
+   "(^|\\.)wikizero\\.com$",
+   "(^|\\.)wiki2\\.org$",
+   "(^|\\.)en-academic\\.com$",
+   "(^|\\.)dictionary\\.com$",
+   "(^|\\.)thefreedictionary\\.com$",
+   "(^|\\.)wordsense\\.eu$",
+   "(^|\\.)blog\\.ca$"
+  ],
+  "wikiLike": "(wiki|pedia)"
+ },
+ "claims": [
+  {
+   "id": "head-of-state",
+   "shape": "head of state",
+   "claim": "Emmanuel Macron is the president of France.",
+   "question": "Who is the president of France?",
+   "hostsOk": [
+    "(^|\\.)elysee\\.fr$",
+    "(^|\\.)gouvernement\\.fr$",
+    "(^|\\.)diplomatie\\.gouv\\.fr$",
+    "(^|\\.)france\\.fr$",
+    "(^|\\.)service-public\\.fr$",
+    "(^|\\.)vie-publique\\.fr$",
+    "(^|\\.)assemblee-nationale\\.fr$"
+   ],
+   "say": [
+    "macron",
+    "pr[ée]sident"
+   ],
+   "claimLean": "Emmanuel Macron is the president of France."
+  },
+  {
+   "id": "capital",
+   "shape": "capital",
+   "claim": "Canberra is the capital city of Australia.",
+   "question": "What is the capital of Australia?",
+   "hostsOk": [
+    "\\.gov\\.au$",
+    "(^|\\.)canberra\\.com\\.au$",
+    "(^|\\.)visitcanberra\\.com\\.au$",
+    "(^|\\.)nca\\.gov\\.au$"
+   ],
+   "say": [
+    "canberra",
+    "capital"
+   ],
+   "claimLean": "Canberra is the capital of Australia."
+  },
+  {
+   "id": "height-everest",
+   "shape": "height",
+   "claim": "Mount Everest's elevation is 8,848.86 metres (29,031.7 ft) above sea level.",
+   "question": "How tall is Mount Everest?",
+   "hostsOk": [
+    "\\.gov(\\.[a-z]{2})?$",
+    "(^|\\.)nationalgeographic\\.com$",
+    "(^|\\.)news\\.cn$",
+    "(^|\\.)xinhuanet\\.com$",
+    "(^|\\.)nature\\.com$",
+    "(^|\\.)cgtn\\.com$"
+   ],
+   "say": [
+    "everest",
+    "8,?848"
+   ],
+   "claimLean": "Mount Everest is 8,848.86 metres tall."
+  },
+  {
+   "id": "death-curie",
+   "shape": "death date",
+   "claim": "Marie Curie died on 4 July 1934 at the Sancellemoz sanatorium in Passy, France.",
+   "question": "When did Marie Curie die?",
+   "hostsOk": [
+    "(^|\\.)nobelprize\\.org$",
+    "(^|\\.)curie\\.fr$",
+    "(^|\\.)aip\\.org$",
+    "\\.nih\\.gov$",
+    "\\.edu$",
+    "(^|\\.)iaea\\.org$",
+    "(^|\\.)nlm\\.nih\\.gov$"
+   ],
+   "say": [
+    "curie",
+    "1934"
+   ],
+   "claimLean": "Marie Curie died on 4 July 1934."
+  },
+  {
+   "id": "count-senate",
+   "shape": "count",
+   "claim": "The United States Senate is composed of 100 senators, two for each of the 50 states.",
+   "question": "How many senators are there in the US Senate?",
+   "hostsOk": [
+    "(^|\\.)senate\\.gov$",
+    "(^|\\.)congress\\.gov$",
+    "(^|\\.)usa\\.gov$",
+    "(^|\\.)archives\\.gov$",
+    "(^|\\.)loc\\.gov$",
+    "(^|\\.)house\\.gov$"
+   ],
+   "say": [
+    "senat",
+    "100"
+   ],
+   "claimLean": "The United States Senate has 100 senators."
+  },
+  {
+   "id": "definition-tsunami",
+   "shape": "definition",
+   "claim": "A tsunami is a series of waves caused by the displacement of a large volume of water, generally in an ocean or a large lake.",
+   "question": "What is a tsunami?",
+   "hostsOk": [
+    "\\.gov$",
+    "(^|\\.)unesco\\.org$",
+    "\\.edu$",
+    "(^|\\.)un\\.org$",
+    "(^|\\.)ioc\\.unesco\\.org$"
+   ],
+   "say": [
+    "tsunami",
+    "wave"
+   ],
+   "claimLean": "A tsunami is a series of waves caused by the displacement of a large volume of water."
+  },
+  {
+   "id": "founding-un",
+   "shape": "founding date",
+   "claim": "The United Nations was founded on 24 October 1945, when its Charter came into force.",
+   "question": "When was the United Nations founded?",
+   "hostsOk": [
+    "(^|\\.)un\\.org$",
+    "(^|\\.)history\\.state\\.gov$",
+    "(^|\\.)archives\\.gov$",
+    "(^|\\.)unric\\.org$",
+    "(^|\\.)unesco\\.org$"
+   ],
+   "say": [
+    "united nations",
+    "1945"
+   ],
+   "claimLean": "The United Nations was founded on 24 October 1945."
+  },
+  {
+   "id": "award-einstein",
+   "shape": "award",
+   "claim": "Albert Einstein was awarded the 1921 Nobel Prize in Physics for his services to theoretical physics and the photoelectric effect.",
+   "question": "When did Einstein win the Nobel Prize?",
+   "hostsOk": [
+    "(^|\\.)nobelprize\\.org$",
+    "(^|\\.)nobelprizemuseum\\.se$",
+    "(^|\\.)aip\\.org$",
+    "\\.edu$",
+    "(^|\\.)ias\\.edu$",
+    "(^|\\.)caltech\\.edu$"
+   ],
+   "say": [
+    "einstein",
+    "1921"
+   ],
+   "claimLean": "Albert Einstein won the 1921 Nobel Prize in Physics."
+  },
+  {
+   "id": "event-apollo11",
+   "shape": "event date",
+   "claim": "Apollo 11 landed the first humans on the Moon on 20 July 1969.",
+   "question": "When did Apollo 11 land on the Moon?",
+   "hostsOk": [
+    "(^|\\.)nasa\\.gov$",
+    "(^|\\.)si\\.edu$",
+    "(^|\\.)archives\\.gov$",
+    "(^|\\.)history\\.nasa\\.gov$"
+   ],
+   "say": [
+    "apollo 11",
+    "(july 20|20 july)",
+    "1969"
+   ],
+   "claimLean": "Apollo 11 landed on the Moon on 20 July 1969."
+  },
+  {
+   "id": "distance-moon",
+   "shape": "measure",
+   "claim": "The Moon orbits Earth at an average distance of about 384,400 kilometres (238,855 miles).",
+   "question": "How far is the Moon from Earth?",
+   "hostsOk": [
+    "(^|\\.)nasa\\.gov$",
+    "(^|\\.)esa\\.int$",
+    "(^|\\.)noaa\\.gov$",
+    "(^|\\.)si\\.edu$",
+    "\\.edu$"
+   ],
+   "say": [
+    "moon",
+    "(384[ ,.]?4|238[ ,.]?8)"
+   ],
+   "claimLean": "The Moon is about 384,400 kilometres from Earth."
+  },
+  {
+   "id": "museum-monalisa",
+   "shape": "museum holding",
+   "claim": "The Mona Lisa, painted by Leonardo da Vinci, is on permanent display at the Louvre Museum in Paris.",
+   "question": "Where is the Mona Lisa kept?",
+   "hostsOk": [
+    "(^|\\.)louvre\\.fr$",
+    "(^|\\.)collections\\.louvre\\.fr$",
+    "(^|\\.)louvre\\.com$"
+   ],
+   "say": [
+    "(mona lisa|joconde|la gioconda)",
+    "louvre"
+   ],
+   "claimLean": "The Mona Lisa is on display at the Louvre."
+  },
+  {
+   "id": "count-bones",
+   "shape": "count",
+   "claim": "The adult human skeleton has 206 bones.",
+   "question": "How many bones does an adult human have?",
+   "hostsOk": [
+    "\\.nih\\.gov$",
+    "(^|\\.)nhs\\.uk$",
+    "(^|\\.)hopkinsmedicine\\.org$",
+    "(^|\\.)mayoclinic\\.org$",
+    "(^|\\.)clevelandclinic\\.org$",
+    "\\.edu$",
+    "(^|\\.)cdc\\.gov$",
+    "(^|\\.)medlineplus\\.gov$"
+   ],
+   "say": [
+    "206",
+    "bone"
+   ],
+   "claimLean": "An adult human has 206 bones."
+  },
+  {
+   "id": "founding-harvard",
+   "shape": "founding date",
+   "claim": "Harvard University was founded in 1636 as Harvard College, the oldest institution of higher learning in the United States.",
+   "question": "When was Harvard founded?",
+   "hostsOk": [
+    "(^|\\.)harvard\\.edu$",
+    "(^|\\.)harvardmagazine\\.com$"
+   ],
+   "say": [
+    "harvard",
+    "1636"
+   ],
+   "claimLean": "Harvard University was founded in 1636."
+  },
+  {
+   "id": "height-eiffel",
+   "shape": "height",
+   "claim": "The Eiffel Tower is 330 metres tall, about the same height as an 81-storey building.",
+   "question": "How tall is the Eiffel Tower?",
+   "hostsOk": [
+    "(^|\\.)toureiffel\\.paris$",
+    "(^|\\.)paris\\.fr$",
+    "(^|\\.)france\\.fr$",
+    "(^|\\.)parisinfo\\.com$",
+    "(^|\\.)sete\\.paris$"
+   ],
+   "say": [
+    "eiffel",
+    "330"
+   ],
+   "claimLean": "The Eiffel Tower is 330 metres tall."
+  }
+ ]
+}

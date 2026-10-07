@@ -1,0 +1,29 @@
+{
+ "_note": "B3 (an LLM) reading the printed listing of run 2026-10-06T19-22-34, written after the run and before scoring. F = the quote itself says it / directly entails it; W = topically related, consistent, but the quote does not say it; X = unsupported, contradicted, mis-referenced or only shares words. Context of the Whitman and Solon quotes was read in the canon file.",
+ "labels": {
+  "M:0:laozi#1": {"v":"W","note":"quote: the grandest forms of active force come from Tao, their only source. Not 'all things'."},
+  "M:0:ramakrishna#0": {"v":"F"}, "M:0:ramakrishna#1": {"v":"F"}, "M:0:ramakrishna#2": {"v":"F"}, "M:0:ramakrishna#3": {"v":"F"},
+  "M:0:mozi#0": {"v":"F"}, "M:0:mozi#1": {"v":"F"}, "M:0:mozi#2": {"v":"F"},
+  "M:1:xunzi#0": {"v":"F","note":"garbled scan, supports"},
+  "M:1:xunzi#2": {"v":"X","note":"vacuous tautology ('to understand the rules, understand the rules'); quote says rules and justice are used to reform men's nature"},
+  "M:1:xunzi#3": {"v":"F"},
+  "M:2:zhengming#0": {"v":"W","note":"quote lists benevolence, righteousness as the nobility of Heaven; says nothing of 'must cultivate', nothing on enemies"},
+  "M:3:mahavira#2": {"v":"F"},
+  "M:3:vivekananda#1": {"v":"F","note":"faithful, off-topic for suffering-as-necessary"},
+  "M:3:vasana#0": {"v":"X","note":"circular nonsense assertion; quote says the result of the latent deposit of karma is pleasure and pain"},
+  "M:3:vasana#1": {"v":"F","note":"faithful, off-topic (suffer = corruption of usage)"},
+  "M:3:vasana#2": {"v":"F","note":"faithful, off-topic (aspects suffer antagonisms)"},
+  "M:4:xunzi#0": {"v":"F"},
+  "M:4:zhengming#0": {"v":"W","note":"quote: change of feelings changes wishes; assertion reverses the direction; not about a person changing"},
+  "M:5:mahavira#2": {"v":"F","note":"faithful, not about lying"},
+  "M:5:xunzi#0": {"v":"W","note":"quote: superior man looks at things rightly, small man wrongly; not 'distinguishes right from wrong'; not about lying"},
+  "M:5:xunzi#2": {"v":"F","note":"not about lying"},
+  "M:5:xunzi#3": {"v":"F","note":"not about lying"},
+  "M:5:mozi#1": {"v":"F","note":"not about lying"},
+  "M:5:mozi#2": {"v":"F","note":"not about lying"},
+  "M:6:zhengming#2": {"v":"F"},
+  "M:6:zhengming#3": {"v":"F"},
+  "M:7:whitman#0": {"v":"X","note":"in Song of Myself 50 'It' is the unnamed 'that in me', not death; the assertion makes Whitman say death is eternal life"},
+  "M:7:solon#0": {"v":"X","note":"Herodotus Bk II, the customs of the Egyptians; not Solon's words, not about the soul after death"}
+ }
+}

@@ -1,0 +1,306 @@
+[
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "King Charles III is the king of the UK.",
+  "hits": 8,
+  "read": 6,
+  "same": 1,
+  "rows": [
+   {
+    "url": "https://www.royal.uk/the-king",
+    "ok": false,
+    "via": null,
+    "verdict": null,
+    "sentence": null
+   },
+   {
+    "url": "https://www.britannica.com/biography/Charles-III-king-of-the-United-Kingdom",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/name",
+    "sentence": null
+   },
+   {
+    "url": "https://commonslibrary.parliament.uk/the-kings-style-and-titles-in-the-uk-and-the-commonwealth/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "In each, King Charles III has a distinct title, albeit with common elements."
+   },
+   {
+    "url": "https://www.bbc.com/news/articles/cwy7e4q779wo",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/name",
+    "sentence": null
+   },
+   {
+    "url": "https://people.com/person/king-charles-iii/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/name",
+    "sentence": null
+   },
+   {
+    "url": "https://www.bbc.com/news/articles/c867plj4vgqo",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "King Charles III became the UK's monarch on 8 September 2022, making him the oldest person to succeed to the B"
+   },
+   {
+    "url": "https://www.calendar-uk.co.uk/frequently-asked-questions/who-is-the-king-of-the-uk",
+    "ok": false,
+    "via": null,
+    "verdict": null,
+    "sentence": null
+   },
+   {
+    "url": "https://www.historic-uk.com/HistoryUK/KingsQueensofBritain/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/name",
+    "sentence": null
+   }
+  ]
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "The Eiffel Tower is 330 meters (1,083 ft) tall.",
+  "hits": 8,
+  "read": 8,
+  "same": 0,
+  "rows": [
+   {
+    "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/figure",
+    "sentence": null
+   },
+   {
+    "url": "https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/figure",
+    "sentence": null
+   },
+   {
+    "url": "https://www.britannica.com/topic/Eiffel-Tower-Paris-France",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   },
+   {
+    "url": "https://eiffeltowertravel.com/height-and-facts",
+    "ok": true,
+    "via": "direct",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   },
+   {
+    "url": "https://eiffel-tower.tours/blog/how-tall-is-the-eiffel-tower/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   },
+   {
+    "url": "https://geographyworlds.com/blog/eiffel-tower-paris-landmark-guide/",
+    "ok": true,
+    "via": "direct",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   },
+   {
+    "url": "https://place-du-trocadero.fr/en/eiffel-tower-height/",
+    "ok": true,
+    "via": "direct",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   },
+   {
+    "url": "https://www.thecollector.com/how-tall-is-the-eiffel-tower-facts/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/idle",
+    "sentence": null
+   }
+  ]
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "Canberra is the capital of Australia.",
+  "hits": 8,
+  "read": 8,
+  "same": 4,
+  "rows": [
+   {
+    "url": "https://www.mappr.co/capital-cities/australia/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "Canberra was chosen as the capital of Australia after a long debate about whether Sydney or Melbourne should b"
+   },
+   {
+    "url": "https://www.britannica.com/place/Australia",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/unread-structure",
+    "sentence": "The capital of Australia is Canberra, located in the southeast between the larger cities of Sydney and Melbour"
+   },
+   {
+    "url": "https://www.britannica.com/place/Canberra",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "Canberra is the federal capital of Australia."
+   },
+   {
+    "url": "https://www.insideaustraliatravel.com/faqs/australia-capital-city",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "Canberra also appears on guided touring routes such as AAT Kings Southern Capitals Meets Bush Tour, which link"
+   },
+   {
+    "url": "https://www.worldatlas.com/articles/what-is-the-capital-of-australia.html",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "Canberra is the capital of the Federation of Australia and has been in place since 1913."
+   },
+   {
+    "url": "https://www.mapsofworld.com/answers/world/what-is-the-capital-of-australia/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "Australia used to have different places as its capital before Canberra became the main one."
+   },
+   {
+    "url": "https://www.countryaah.com/australia-faqs/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "While Canberra is the current capital of Australia, historically, other cities have served as the administrati"
+   },
+   {
+    "url": "https://dailypost.com.au/what-is-the-capital-of-australia/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/no-overlap",
+    "sentence": null
+   }
+  ]
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "A spider has eight legs.",
+  "hits": 7,
+  "read": 7,
+  "same": 2,
+  "rows": [
+   {
+    "url": "https://www.worldatlas.com/animals/how-many-legs-does-a-spider-have.html",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/unread-structure",
+    "sentence": "Even though the exact evolutionary, body-sculpting factors are not known, the function of a spider's eight leg"
+   },
+   {
+    "url": "https://www.animalwised.com/how-many-legs-does-a-spider-have-4501.html",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "In the following article from AnimalWised, you will learn all about spider legs, their number, structure, as w"
+   },
+   {
+    "url": "https://www.spiderpedia.com/how-many-legs-do-spiders-have/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "Does Having Eight Legs Prove an Animal Is a Spider?"
+   },
+   {
+    "url": "https://www.worldatlas.com/articles/how-many-legs-does-a-spider-have.html",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "Spiders are capable of generating pressure up to eight times their resting level, and can jump up to 50 times "
+   },
+   {
+    "url": "https://spiderzoon.com/how-many-legs-does-a-spider-have/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/unread-structure",
+    "sentence": "You might spot a spider with fewer than eight legs, but that doesn’t mean it was born that way."
+   },
+   {
+    "url": "https://animalmedia.org/how-many-legs-do-spiders-have/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "The spider is an arachnid, which means that it has eight legs."
+   },
+   {
+    "url": "https://spideridentifications.com/spider-facts/parts-of-a-spider",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "And the pedipalps of a mature male spider are so swollen that beginners regularly count ten legs — there are s"
+   }
+  ]
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "claim": "Marie Curie died on 4 July 1934.",
+  "hits": 6,
+  "read": 6,
+  "same": 1,
+  "rows": [
+   {
+    "url": "https://www.britannica.com/question/How-did-Marie-Curie-die",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/unread-structure",
+    "sentence": "Marie Curie died on July 4, 1934, as a result of aplastic anemia caused by radiation exposure from her scienti"
+   },
+   {
+    "url": "https://www.britannica.com/biography/Marie-Curie",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/unread-structure",
+    "sentence": "Marie Curie died on July 4, 1934, as a result of aplastic anemia caused by radiation exposure from her scienti"
+   },
+   {
+    "url": "https://www.biography.com/scientists/marie-curie",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "different",
+    "sentence": "FULL NAME: Marie Salomea Skodowska-CurieBORN: November 7, 1867BIRTHPLACE: Warsaw, PolandDEATH: July 4, 1934SPO"
+   },
+   {
+    "url": "https://www.nobelprize.org/prizes/physics/1903/marie-curie/questions-and-answers/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "same",
+    "sentence": "Answer: Marie Curie died on 4 July 1934, in Savoy, France."
+   },
+   {
+    "url": "https://www.grunge.com/466723/the-tragic-death-of-marie-curie/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/figure",
+    "sentence": null
+   },
+   {
+    "url": "https://time.com/archive/6778805/science-death-of-mme-curie/",
+    "ok": true,
+    "via": "the fold's relay",
+    "verdict": "undecidable/figure",
+    "sentence": null
+   }
+  ]
+ }
+]

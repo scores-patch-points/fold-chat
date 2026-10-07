@@ -1,0 +1,164 @@
+--- a/fold-chat-origin.js
++++ b/fold-chat-origin.js
+@@ -65,6 +65,8 @@
+   maxAttempts: 3,          // footnotes tried per claim (each is one page read)
+   maxHtmlChars: 4_000_000, // an article's parse HTML beyond this is not read
+   minAtoms: 3,             // EARNED: a claim whose consequence is fewer than this many names/figures/terms is idle — undecidable, never "same"
++  minAtomsSlot: 2,         // ... except a SLOT claim (a figure AND a name: "The Eiffel Tower is 330 metres tall"), whose figure and name each carry weight; the figure/name gates below still decide (C1: wrong-figure and other-tower decoys stay rejected)
++  corroborateReads: 8,     // search hits read for the ANSWER's own atomic claim (the first that carries it, in search order, is the origin)
+   turnBoxMs: 12000,        // all the following-up of one turn; past it the rows keep their pointers and the turn goes on
+   readMs: 6000,            // one page read, original or archived copy
+   noteChars: 240,          // a footnote's own words kept for display
+@@ -152,10 +154,19 @@
+ 
+ // ── finding a sentence in the article's prose ────────────────────────────────────────────────────────────────────────────────────────
+ /** `s` folded for matching (diacritics, case, whitespace runs) with a map from each folded char back to its index in `s`. */
++// A pronunciation is in the parse HTML (/ˈaɪfəl/ ⓘ, [tuʁ ɛfɛl] ⓘ) and not in the plain-text extract the chat quotes: it is not the sentence's words, so it is not matched.
++// Only a /…/ or […] that holds IPA characters, and the ⓘ glyph, are skipped — a bracketed figure or a slash in "and/or" stays.
++const IPA_SEGMENT = /\/[^\/\n]{1,80}\/|\[[^\]\n]{1,80}\]/g, IPA_CHAR = /[\u0250-\u02ff\u1d00-\u1dbf]/, SPEAKER = "\u24d8";
++function pronounced(s) {
++  const skip = new Set();
++  for (const m of s.matchAll(IPA_SEGMENT)) if (IPA_CHAR.test(m[0])) for (let k = m.index; k < m.index + m[0].length; k++) skip.add(k);
++  for (let i = s.indexOf(SPEAKER); i >= 0; i = s.indexOf(SPEAKER, i + 1)) skip.add(i);
++  return skip;
++}
+ function folded(s) {
+-  const out = [], map = [];
++  const out = [], map = [], skip = pronounced(s);
+   for (let i = 0; i < s.length; i++) {
+-    const c = s[i];
++    const c = skip.has(i) ? " " : s[i];
+     if (/[\s ]/.test(c)) { if (out.length && out[out.length - 1] !== " ") { out.push(" "); map.push(i); } continue; }
+     for (const ch of c.normalize("NFKD").replace(/\p{M}+/gu, "").toLowerCase()) { out.push(ch); map.push(i); }
+   }
+@@ -336,11 +347,20 @@
+   const first = supportByConsequence(claim, page, forWhom);
+   if (first.verdict === "same") return first;
+   const b = supportByFrame(claim, page, reading);
+-  if (b && b.verdict === "same") return { verdict: "same", address: b.address, sentence: b.sentence, atoms: [], identity: IDENTITY(forWhom, "bound"), rung: "bound", filler: b.filler };
++  // the bound rung reads the slot's filler only ("time" = the YEAR: "20 July 1969" and "launch on July 16, 1969" both fill it with 1969): the page's sentence must still
++  // carry every figure the claim states (C1, post-hoc: Apollo 11's "launch on July 16, 1969" and "San Francisco 1945" were accepted for "20 July 1969" / "24 October 1945")
++  if (b && b.verdict === "same" && figuresCovered(claim, b.sentence)) return { verdict: "same", address: b.address, sentence: b.sentence, atoms: [], identity: IDENTITY(forWhom, "bound"), rung: "bound", filler: b.filler };
+   if (b && b.verdict === "different") return { verdict: "different", address: b.address, sentence: b.sentence, atoms: [], why: b.why, detail: "the page binds the ask's frame with another " + b.why, identity: IDENTITY(forWhom, "bound"), rung: "bound", filler: b.filler };
+   const m = supportBySynonyms(claim, page, meaning, forWhom);
+   if (m) return m;
+   return first;
++}
++
++/** Every number the claim states (digits, thousands separators and a decimal point ignored) stands in `sentence`. */
++export function figuresCovered(claim, sentence) {
++  const nums = (t) => (String(t ?? "").replace(/(\d)[,\u00a0 ](?=\d{3}\b)/g, "$1").match(/\d+(?:\.\d+)?/g) || []);
++  const have = new Set(nums(sentence));
++  return nums(claim).every((n) => have.has(n));
+ }
+ 
+ /** RUNG 3 (gated: only when a caller hands in a ledger — see fold-chat-meaning.js for why it is OFF by default). The claim failed rung 1 ONLY on content
+@@ -380,7 +400,8 @@
+   const c = consequenceOf(claim, pg);
+   if (!c.atoms.length) return { verdict: "undecidable", why: c.why || "no-material", detail: c.detail || "", address: null, sentence: null, atoms: [] };
+   const idle = c.atoms.filter((x) => !x.startsWith("holon:")).length;
+-  if (idle < ORIGIN.minAtoms) return { verdict: "undecidable", why: "idle", detail: `${idle} of ${ORIGIN.minAtoms} atoms: too little for a page to be the same for anyone`, address: c.address, sentence: null, atoms: c.atoms, identity: IDENTITY(forWhom) };
++  const slot = c.atoms.some((x) => x.startsWith("fig:")) && c.atoms.some((x) => x.startsWith("name:"));
++  if (idle < (slot ? ORIGIN.minAtomsSlot : ORIGIN.minAtoms)) return { verdict: "undecidable", why: "idle", detail: `${idle} of ${slot ? ORIGIN.minAtomsSlot : ORIGIN.minAtoms} atoms: too little for a page to be the same for anyone`, address: c.address, sentence: null, atoms: c.atoms, identity: IDENTITY(forWhom) };
+   const m = /#(\d+)-(\d+)$/.exec(c.address || "");
+   const sentence = m ? pg[0].text.slice(Number(m[1]), Number(m[2])) : null;
+   if (!sentence) return { verdict: "undecidable", why: "unaddressed", detail: "", address: c.address, sentence: null, atoms: c.atoms };
+@@ -545,7 +566,7 @@
+  *  The footnotes did not lead anywhere, but the turn's own search read other pages; one of them saying the same thing is an origin. */
+ export function corroboration(sentence, passages, { forWhom = null, reading = null, meaning = null } = {}) {
+   for (const p of Array.isArray(passages) ? passages : []) {
+-    if (!p || typeof p.text !== "string" || !p.text.trim() || !absolute(p.url) || tertiaryOf(p.url) || p.snippetOnly) continue;
++    if (!p || typeof p.text !== "string" || !p.text.trim() || !absolute(p.url) || !admitHost(p.url) || p.snippetOnly) continue;   // C1: the same host gate as the search route (A Britannica page already read was an origin: 3 of 14 claims)
+     const sup = supportOf(String(sentence ?? ""), p, { forWhom, reading, meaning });
+     if (sup.verdict !== "same") continue;
+     return { url: p.url, title: p.title || "", host: hostOf(p.url), via: p.via || null, sentence: sup.sentence, address: sup.address, atoms: sup.atoms, identity: sup.identity, rung: sup.rung || "consequence", synonyms: sup.synonyms || null, passage: p };
+@@ -553,16 +574,68 @@
+   return null;
+ }
+ 
++// ── the ANSWER's own claim, asked of the search's pages ───────────────────────────────────────────────────────────────────────────────
++// A lead seldom cites, and the pages a turn happened to read are few (A1, 2026-10-06: 0 non-encyclopedia pages in 4 of 5 turns). So the answer's atomic claim
++// ("Canberra is the capital of Australia.") is asked of the top search hits themselves — but never of a page that is only another index of the same facts.
++// Hosts that are not witnesses: copies of the encyclopedia, other encyclopedias, content farms, Q&A, social. Declared, not measured (II.11): the author's table
++// (the same classes fold-chat-primary.js drops); `admit` replaces it.
++export const NOT_A_WITNESS = Object.freeze([
++  /(^|\.)(wikiwand\.com|dbpedia\.org|alchetron\.com|kiddle\.co|wikimili\.com|everybodywiki\.com|wikizero\.[a-z]+|wiki2\.org|wikitrans\.net|infogalactic\.com|justapedia\.org|wikiless\.[a-z.]+|wikimedia\.org|wikidata\.org|fandom\.com|wikia\.(com|org)|miraheze\.org|grokipedia\.com|wikitia\.com)$/i,
++  /(^|\.)wik[a-z0-9-]*\.[a-z.]+$/i, /(^|\.)[a-z0-9-]*pedia\.[a-z.]+$/i,
++  /(^|\.)(britannica\.com|encyclopedia\.com|newworldencyclopedia\.org|citizendium\.org|worldhistory\.org|encyclopedia\.pub|thefamouspeople\.com|famousbirthdays\.com|infoplease\.com|thefreedictionary\.com|dictionary\.com|merriam-webster\.com)$/i,
++  /(^|\.)(answers\.com|reference\.com|ask\.com|ehow\.com|wikihow\.com|buzzle\.com|ranker\.com|factretriever\.com|factslides\.com|thefactsite\.com|brainly\.[a-z.]+|chegg\.com|coursehero\.com|study\.com|bartleby\.com|enotes\.com|sparknotes\.com|geeksforgeeks\.org)$/i,
++  /(^|\.)(quora\.com|reddit\.com|answers\.yahoo\.com|stackexchange\.com|stackoverflow\.com|medium\.com|substack\.com|blogspot\.[a-z.]+|wordpress\.com|tumblr\.com)$/i,
++  /(^|\.)(facebook\.com|twitter\.com|x\.com|instagram\.com|pinterest\.[a-z.]+|tiktok\.com|linkedin\.com|youtube\.com)$/i,
++]);
++/** May this URL's page stand as a witness? (absolute, not an encyclopedia/pointer host, not a copy/farm/Q&A/social host) */
++export const admitHost = (url) => { const h = hostOf(url); return !!h && absolute(url) && !tertiaryOf(url) && !NOT_A_WITNESS.some((re) => re.test(h)); };
++
++/** `claim` asked of the first `max` admissible `hits` ({ url, title, text?, via? }; a hit that already carries its text is not read again).
++ *  Pages are read at once and judged IN SEARCH ORDER; the first that `supportOf` calls `same` is the origin.
++ *  → { origin: <as corroboration()>, tried: [{ url, host, read, verdict, why? }] } | { origin: null, tried }. Never throws. */
++export async function corroborateAnswer(claim, hits, { read = readText, fetchImpl = globalThis.fetch, memo = null, timeoutMs = ORIGIN.readMs, signal = null, max = ORIGIN.corroborateReads, admit = admitHost, forWhom = null, reading = null, meaning = null } = {}) {
++  const tried = [];
++  try {
++    const seen = new Set(), list = [];
++    for (const h of Array.isArray(hits) ? hits : []) {
++      if (!h || !absolute(h.url) || !admit(h.url)) continue;
++      const k = pageKey(h.url); if (seen.has(k)) continue; seen.add(k); list.push(h);
++      if (list.length >= max) break;
++    }
++    const pages = await Promise.all(list.map(async (h) => {
++      if (typeof h.text === "string" && h.text.trim() && !h.snippetOnly) return { ok: true, text: h.text, title: h.title || "", url: h.url, via: h.via || null };
++      if (signal && signal.aborted) return null;
++      try { return await read(h.url, { fetchImpl, memo, timeoutMs }); } catch { return null; }
++    }));
++    let origin = null;
++    list.forEach((h, i) => {
++      const rd = pages[i], host = hostOf(h.url);
++      if (!rd || !rd.ok || !rd.text) { tried.push({ url: h.url, host, read: false, verdict: null }); return; }
++      const page = { url: rd.url || h.url, title: rd.title || h.title || "", text: rd.text };
++      const sup = supportOf(String(claim ?? ""), page, { forWhom, reading, meaning });
++      tried.push({ url: h.url, host, read: true, verdict: sup.verdict, ...(sup.why ? { why: sup.why } : {}) });
++      if (!origin && sup.verdict === "same") origin = { url: page.url, title: page.title, host: hostOf(page.url), via: rd.via || null, sentence: sup.sentence, address: sup.address, atoms: sup.atoms, identity: sup.identity, rung: sup.rung || "consequence", synonyms: sup.synonyms || null, passage: { ref: "Origin", title: page.title, url: page.url, text: rd.text, via: rd.via || null } };
++    });
++    return { origin, tried };
++  } catch { return { origin: null, tried }; }
++}
++
+ /** ONE sentence of an encyclopedia passage → its Trail (see the head of this file). Follows the article's own footnotes first; when none
+- *  leads to a page that carries the claim, the pages already read (`alongside`) are asked instead. Never throws. */
++ *  leads to a page that carries the claim, the pages already read (`alongside`) are asked instead; and last, the ANSWER's atomic claim (`answerClaim`, else the
++ *  sentence) is asked of the search's top pages (`hits`, see `corroborateAnswer`). Never throws. */
+ export async function followClaim(opts = {}) {
+   const trail = await followFootnotes(opts);
+   if (trail.status === "origin") return trail;
+-  const o = corroboration(opts.sentence, opts.alongside, { forWhom: opts.forWhom, reading: opts.reading, meaning: opts.meaning });
++  let o = corroboration(opts.sentence, opts.alongside, { forWhom: opts.forWhom, reading: opts.reading, meaning: opts.meaning });
++  let viaSearch = false;
++  if (!o && Array.isArray(opts.hits) && opts.hits.length) {
++    const r = await corroborateAnswer(opts.answerClaim || opts.sentence, opts.hits, { read: opts.read, fetchImpl: opts.fetchImpl, memo: opts.memo, signal: opts.signal, forWhom: opts.forWhom, reading: opts.reading, meaning: opts.meaning, admit: opts.admit, max: opts.maxHits });
++    if (r.origin) { o = r.origin; viaSearch = true; }
++  }
+   const at = trail.found || (opts.passage && opts.passage.url ? { kind: "wikipedia", title: opts.passage.title || "", url: opts.passage.url, edition: null } : null);
+   if (!o || !at) return trail;
+   const found = { kind: "found-in", title: at.title, url: at.url, edition: at.edition, address: holonAddress(opts.passage, opts.sentence) };
+-  return { ...trail, found: trail.found || at, status: "origin", pattern: { attests: 1, independent: 1, hosts: [o.host], basis: "a page already read; distinct hosts (declared proxy for upstream)", also: [] }, origin: { ...o, copy: false }, path: [found, { kind: "alongside", url: o.url }, { kind: "read", url: o.url, via: o.via, title: o.title, copy: false, supports: true }] };
++  return { ...trail, found: trail.found || at, status: "origin", pattern: { attests: 1, independent: 1, hosts: [o.host], basis: (viaSearch ? "a page found by searching the answer's claim; " : "a page already read; ") + "distinct hosts (declared proxy for upstream)", also: [] }, origin: { ...o, copy: false }, path: [found, { kind: "alongside", url: o.url }, { kind: "read", url: o.url, via: o.via, title: o.title, copy: false, supports: true }] };
+ }
+ 
+ // ── what is stored and shown ───────────────────────────────────────────────────────────────────────────────────────────────────────────
+@@ -587,7 +660,7 @@
+  *  only WHAT IS CITED does. The turn gains one trace line per row followed (first person, plain words) and, for an answer with no
+  *  origin read, a standing "not checked" line. `passages` = the pages the turn already read (an origin may be one of them).
+  *  Never throws; a turn with no encyclopedia row comes back as it was. */
+-export async function originateTurn(turn, { passages = [], fetchImpl = globalThis.fetch, memo = null, signal = null, read = readText, boxMs = ORIGIN.turnBoxMs, forWhom = null, reading, meaning = null } = {}) {
++export async function originateTurn(turn, { passages = [], fetchImpl = globalThis.fetch, memo = null, signal = null, read = readText, boxMs = ORIGIN.turnBoxMs, forWhom = null, reading, meaning = null, hits = [] } = {}) {
+   try {
+     if (!turn || typeof turn !== "object" || turn.handoff || turn.aborted) return turn;
+     const rows = rowsOf(turn).filter((r) => r.source && isTertiary(r.source.url) && typeof r.sentence === "string" && r.sentence.trim());
+@@ -601,7 +674,7 @@
+       const k = memoKey(r);
+       if (trails.has(k)) return;
+       const own = asArr(passages).find((p) => p && p.url === r.source.url);
+-      const pending = followClaim({ sentence: r.sentence, passage: { url: r.source.url, title: r.source.title, ref: r.source.ref, text: own ? own.text : "" }, fetchImpl, memo, read, signal, alongside, forWhom: forWhom || turn.said || null, reading: frameRead, meaning });
++      const pending = followClaim({ sentence: r.sentence, passage: { url: r.source.url, title: r.source.title, ref: r.source.ref, text: own ? own.text : "" }, fetchImpl, memo, read, signal, alongside, hits, answerClaim: turn.answer && turn.answer.row === r && typeof turn.answer.text === "string" && turn.answer.text.trim() ? turn.answer.text : undefined, forWhom: forWhom || turn.said || null, reading: frameRead, meaning });
+       trails.set(k, pending);
+       trails.set(k, await aWhile(pending, boxMs, { status: "unread", found: { kind: "wikipedia", title: r.source.title || "", url: r.source.url, edition: null }, refs: [], path: [], tried: [], origin: null }));
+     }));

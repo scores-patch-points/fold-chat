@@ -1,0 +1,159 @@
+[
+ {
+  "ask": "king",
+  "u": "https://www.royal.uk/the-king",
+  "ok": false,
+  "via": null,
+  "pageSentences": [],
+  "variants": [
+   {
+    "c": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II."
+   },
+   {
+    "c": "King Charles III is the king of the UK."
+   },
+   {
+    "c": "The King of the United Kingdom is Charles III."
+   }
+  ]
+ },
+ {
+  "ask": "king",
+  "u": "https://www.royal.uk/",
+  "ok": false,
+  "via": null,
+  "pageSentences": [],
+  "variants": [
+   {
+    "c": "The monarch since 8 September 2022 is King Charles III, who ascended the throne on the death of his mother, Queen Elizabeth II."
+   },
+   {
+    "c": "King Charles III is the king of the UK."
+   },
+   {
+    "c": "The King of the United Kingdom is Charles III."
+   }
+  ]
+ },
+ {
+  "ask": "eiffel",
+  "u": "https://www.toureiffel.paris/en/the-monument/key-figures",
+  "ok": true,
+  "via": "the fold's relay",
+  "pageSentences": [],
+  "variants": [
+   {
+    "c": "The tower is 330 metres (1,083 ft) tall, about the same height as an 8",
+    "v": "undecidable/figure",
+    "sentence": ""
+   },
+   {
+    "c": "The Eiffel Tower is 330 meters (1,083 ft) tall.",
+    "v": "undecidable/figure",
+    "sentence": ""
+   },
+   {
+    "c": "The Eiffel Tower is 330 metres tall.",
+    "v": "undecidable/figure",
+    "sentence": ""
+   }
+  ]
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.australia.gov.au/states-and-territories",
+  "ok": true,
+  "via": "the fold's relay",
+  "pageSentences": [],
+  "variants": [
+   {
+    "c": "One of these, Canberra, is also the national capital.",
+    "v": "undecidable/no-overlap",
+    "sentence": ""
+   },
+   {
+    "c": "Canberra is the capital of Australia.",
+    "v": "undecidable/no-overlap",
+    "sentence": ""
+   },
+   {
+    "c": "The capital of Australia is Canberra.",
+    "v": "undecidable/no-overlap",
+    "sentence": ""
+   }
+  ]
+ },
+ {
+  "ask": "australia",
+  "u": "https://www.nca.gov.au/",
+  "ok": false,
+  "via": null,
+  "pageSentences": [],
+  "variants": [
+   {
+    "c": "One of these, Canberra, is also the national capital."
+   },
+   {
+    "c": "Canberra is the capital of Australia."
+   },
+   {
+    "c": "The capital of Australia is Canberra."
+   }
+  ]
+ },
+ {
+  "ask": "spider",
+  "u": "https://www.britannica.com/animal/spider-arachnid",
+  "ok": true,
+  "via": "the fold's relay",
+  "pageSentences": [
+   "Spiders, belonging to the order Araneae, are arachnids distinguished by having eight legs, unlike insects, which have six.",
+   "Spiders, belonging to the order Araneae, are arachnids distinguished by having eight legs, unlike insects, which have six.",
+   "Insects have six legs, while spiders have eight."
+  ],
+  "variants": [
+   {
+    "c": "Spiders typically have eight walking legs (insects have six).",
+    "v": "different",
+    "sentence": "Insects have six legs, while spiders have eight."
+   },
+   {
+    "c": "A spider has eight legs.",
+    "v": "same",
+    "sentence": "Insects have six legs, while spiders have eight."
+   },
+   {
+    "c": "Spiders have eight legs.",
+    "v": "different",
+    "sentence": "Insects have six legs, while spiders have eight."
+   }
+  ]
+ },
+ {
+  "ask": "spider",
+  "u": "https://www.nhm.ac.uk/discover/spiders.html",
+  "ok": true,
+  "via": "the fold's relay",
+  "pageSentences": [
+   "How well do you know our eight-legged friends?",
+   "Every autumn there are reports of false widow spiders becoming uninvited eight-legged houseguests across the UK."
+  ],
+  "variants": [
+   {
+    "c": "Spiders typically have eight walking legs (insects have six).",
+    "v": "undecidable/terms",
+    "sentence": ""
+   },
+   {
+    "c": "A spider has eight legs.",
+    "v": "undecidable/terms",
+    "sentence": ""
+   },
+   {
+    "c": "Spiders have eight legs.",
+    "v": "undecidable/terms",
+    "sentence": ""
+   }
+  ]
+ }
+]

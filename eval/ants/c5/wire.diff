@@ -1,0 +1,54 @@
+--- a/fold-chat-salience.js
++++ b/fold-chat-salience.js
+@@ -27,6 +27,7 @@
+   relativeFloor: 0.4,       // a page must score at least this fraction of the best page to be shown
+   neighbours: 1,            // sentences of context on each side of a matched one, while the budget lasts
+   historyExchanges: 2,      // earlier exchanges carried verbatim when the ask continues the thread
++  historyChars: 900,        // ...but never more than this many characters of them (the newest exchange is always kept): Amendment 4 S4 found the history outweighing the excerpts
+   summaryExchanges: 3,      // older exchanges that bear on the ask, named in the discourse summary
+ });
+ 
+@@ -130,11 +131,28 @@
+   return [...terms].some((t) => last.has(t));
+ }
+ 
+-/** The earlier messages the model may see: the last `n` exchanges verbatim when the ask continues the thread, else none. */
+-export function salientHistory(history, { continues = false, n = SALIENCE.historyExchanges } = {}) {
++/**
++ * The earlier messages the model may see: when the ask continues the thread, the newest EXCHANGE (an ask the fold replied to, with its reply) verbatim, and up to
++ * `n - 1` earlier ones, else none. An earlier exchange rides only if it shares a content stem with the exchange after it (given `fw`, the closed class): a topic
++ * change inside the window ends the thread there. The oldest are dropped while the whole exceeds `maxChars` (the newest is never dropped). An exchange is a user
++ * message immediately followed by its assistant reply: a user message with no reply (chit-chat the fold answered with a fixed line, which the model history omits)
++ * is not one, and a reply whose ask fell outside the window is never carried alone. (C5, 2026-10-06: slicing the last 2n MESSAGES let "How are you?" shift the
++ * window, and the older of the last two exchanges was often the topic BEFORE the switch.) `fw` null = no prior: the last `n` exchanges, as before.
++ */
++export function salientHistory(history, { continues = false, n = SALIENCE.historyExchanges, maxChars = SALIENCE.historyChars, fw = null } = {}) {
+   if (!continues) return [];
+   const list = Array.isArray(history) ? history : [];
+-  return list.slice(-Math.max(0, n) * 2);
++  const exchanges = [];
++  for (let i = 0; i + 1 < list.length; i++) if (list[i]?.role === "user" && list[i + 1]?.role === "assistant") { exchanges.push([list[i], list[i + 1]]); i++; }
++  const stems = (e) => termsOf(`${e[0].content ?? ""} ${e[1].content ?? ""}`, fw) || new Set();
++  const kept = [];
++  for (let i = exchanges.length - 1; i >= 0 && kept.length < Math.max(0, n); i--) {
++    if (kept.length && fw) { const later = stems(kept[0]); if (![...stems(exchanges[i])].some((t) => later.has(t))) break; }
++    kept.unshift(exchanges[i]);
++  }
++  const size = (xs) => xs.reduce((t, e) => t + String(e[0].content ?? "").length + String(e[1].content ?? "").length, 0);
++  while (kept.length > 1 && size(kept) > maxChars) kept.shift();
++  return kept.flat();
+ }
+ 
+ /**
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -2150,7 +2150,7 @@
+         if (termsS) {
+           const exS = exchangesOf(s.messages.slice(0, askAt));
+           const continuesS = continuesThread({ follow, terms: termsS, lastExchange: exS[exS.length - 1] || null });
+-          promptHistory = salientHistory(promptHistory, { continues: continuesS });
++          promptHistory = salientHistory(promptHistory, { continues: continuesS, fw: fwS });
+           promptSummary = salientSummary(s.summary, { continues: continuesS, terms: termsS, exchanges: exS, flowOf: exchangeFlow, empty: FOLD.emptySummary() });
+           if (fromWeb && !webPassages.some((p) => p.recipe)) {
+             const sal = salientSources(webPassages, termsS);
+\ No newline at end of file

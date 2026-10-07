@@ -1,0 +1,45 @@
+--- a/fold-chat.js
++++ b/fold-chat.js	2026-10-06 14:13:46
+@@ -44,6 +44,7 @@
+ import { lookupWarranted } from "./fold-chat-self.js";
+ // WHERE THE ANSWER CAME FROM, said mechanically: a second model call POINTS at a source sentence; the app verifies it, snips it and narrates around it (docs/VOICE.md)
+ import { provenanceFor, provenanceEnabled } from "./fold-chat-provenance.js";
++import { findPrimary, mergeProvenance } from "./fold-chat-primary.js";
+ import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
+ import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
+ import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
+\ No newline at end of file
+@@ -2341,11 +2342,28 @@
+         say(`turn \u00b7 ${kindWord} \u00b7 asking the model to point at its source\u2026`);
+         feedPush(lineEvent(tt, "Asked the model where it got that", { tone: "info", note: "a second call, only to point at a sentence in the pages I read \u2014 I check it and write the line myself" }));
+         try {
+-          const pr = await provenanceFor({
+-            answer: text, passages: webPassages, fw: functionWordsOf(lang0 === "unknown" ? "en" : lang0),
+-            preferRefs: pivotRes ? usedRefs({ pivot: pivotRes }) : null,
+-            point: async (msgs) => (await callModel(msgs, { base: bridge, privacy: "sealed-external", audit: { run: runId, purpose: "provenance-pointer" }, signal: ac.signal, temperature: 0, maxTokens: 220 })).text,
++          const fwP = functionWordsOf(lang0 === "unknown" ? "en" : lang0);
++          const pointModel = async (msgs) => (await callModel(msgs, { base: bridge, privacy: "sealed-external", audit: { run: runId, purpose: "provenance-pointer" }, signal: ac.signal, temperature: 0, maxTokens: 220 })).text;
++          let pr = await provenanceFor({
++            answer: text, passages: webPassages, fw: fwP,
++            preferRefs: pivotRes ? usedRefs({ pivot: pivotRes }) : null,
++            point: pointModel,
+           });
++          // Only an encyclopedia verified it ("unconfirmed"): go and find a PRIMARY page that says the same (fold-chat-primary.js). Search, read and model are the chat's own, injected.
++          const lead = pr.pointers.find((p) => p && p.ok);
++          if (lead && lead.tier === "index") {
++            say(`turn \u00b7 ${kindWord} \u00b7 looking for a primary page that says the same\u2026`);
++            const fetchImpl = withSignal(outbound.auditedFetch("web search", runId), ac.signal);
++            const idxPassage = pr.ps[lead.index];
++            const found = await findPrimary({
++              claim: pr.claim, sentence: String(idxPassage.text).slice(lead.start, lead.end), indexHost: lead.host, indexText: idxPassage.text, indexUrl: null, fw: fwP,
++              search: async (q) => (await web.search("web", q, 0, { fetchImpl })).results,
++              readPage: (u) => web.readText(u, { memo: pageMemo, fetchImpl }),
++              point: pointModel,
++            });
++            feedPush(lineEvent(tt, found.passages.length ? "Verified it on a primary page" : "No primary page said it", { tone: found.passages.length ? "ok" : "info", note: found.trail.map((t) => `${t.host || "search"}: ${t.verdict}${t.why ? " (" + t.why + ")" : ""}`).join(" \u00b7 ").slice(0, 400) }));
++            pr = mergeProvenance(pr, found, { indexHost: lead.host });
++          }
+           provenance = pr.stored;
+           feedPush(lineEvent(tt, pr.stored && pr.stored.verified ? "Verified where it came from" : "Could not verify a source sentence", { tone: pr.stored && pr.stored.verified ? "ok" : "warn", note: pr.stored && pr.stored.verified ? `${pr.stored.verified} source${pr.stored.verified === 1 ? "" : "s"} \u00b7 ${pr.stored.pointers.map((p) => p.host).join(", ")} \u00b7 ${pr.calls} model call${pr.calls === 1 ? "" : "s"}` : String(pr.stored?.why || "none") }));
+         } catch (e) { if (ac.signal.aborted) throw e; feedPush(lineEvent(tt, "The source check failed", { tone: "warn", note: String(e?.message || e).slice(0, 90) })); }
+\ No newline at end of file

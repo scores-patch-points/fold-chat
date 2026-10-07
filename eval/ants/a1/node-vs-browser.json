@@ -1,0 +1,314 @@
+[
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "The monarchy of the United Kingdom, or simply the British monarchy, is",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "The monarch since 8 September 2022 is King Charles III, who ascended t",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "In the 16th century, English and Scottish monarchs played a central ro",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "The Kid Who Would Be King is a 2019 urban fantasy action-adventure fil",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "It was also the second to last film to be released by 20th Century Fox",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "Alex is a twelve-year-old boy, who is a Year 7 student in a London sub",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "Paul King (born 20 November 1960) is a British-Irish singer, musician,",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "King was the lead vocalist of the eponymous 1980s new wave band King a",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "Who is the king of the UK?",
+  "claim": "King's line up of the band – which also contained record producer Paul",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "coventrytelegraph.net:undecidable;trouserpress.com:UNREAD",
+  "browserTried": "coventrytelegraph.net:undecidable;trouserpress.com:UNREAD"
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a latt",
+  "browser": "unlocated",
+  "node": "unlocated",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "It is named after the engineer Gustave Eiffel, whose company designed ",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "The tower received 5,889,000 visitors in 2022.",
+  "browser": "unread",
+  "node": "unread",
+  "nodeTried": "-:UNREAD",
+  "browserTried": "-:UNREAD"
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "Alexandre Gustave Eiffel ( EYE-fəl; French: [alɛksɑ̃dʁ ɡystav ɛfɛl]; n",
+  "browser": "unlocated",
+  "node": "unlocated",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "He is best known for the Eiffel Tower, designed by his company and bui",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "Although the family always used the name Eiffel, Gustave's name was re",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "-:UNREAD;-:UNREAD;books.google.com:undecidable",
+  "browserTried": "-:UNREAD;-:UNREAD;books.google.com:undecidable"
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "The Amazon Tall Tower Observatory or ATTO is a scientific research fac",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "This includes a 325-metre-tall (1,066 ft) tower that extends far above",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "bbc.com:undecidable",
+  "browserTried": "bbc.com:undecidable"
+ },
+ {
+  "ask": "How tall is the Eiffel Tower?",
+  "claim": "The tall research tower is one metre taller than the Eiffel Tower and ",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "independent.co.uk:undecidable",
+  "browserTried": "independent.co.uk:undecidable"
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "The Australian Capital Territory (ACT), known as the Federal Capital T",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "On 1 January 1901, the self-governing Australian colonies federated to",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "With 475,600 residents, the territory is the second-smallest mainland ",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "There are eight capital cities in Australia, each of which functions a",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "One of these, Canberra, is also the national capital.",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "Section 125 of the Constitution of Australia specified that the seat o",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "Capital punishment in Australia has been abolished in all jurisdiction",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "Victoria did so in 1975, South Australia in 1976, and Western Australi",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "What is the capital of Australia?",
+  "claim": "In 2010, the Commonwealth Parliament passed legislation prohibiting th",
+  "browser": "unread",
+  "node": "unsupported",
+  "nodeTried": "smh.com.au:UNREAD;web.archive.org:undecidable",
+  "browserTried": ""
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "Spider fighting or spider derby is a sport involving spiders that occu",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "Female spiders will kill a rival if the loser does not quickly flee or",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "How a fight ends is agreed upon beforehand.",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "The brown recluse (Loxosceles reclusa, Sicariidae, formerly placed in ",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "The spider has also received numerous sensationalized media reports of",
+  "browser": "unsupported",
+  "node": "unread",
+  "nodeTried": "",
+  "browserTried": "bangkokpost.com:undecidable"
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "\"Once a leg is lost, a recluse spider does not regenerate a new one wi",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "cornellpress.cornell.edu:undecidable",
+  "browserTried": "cornellpress.cornell.edu:undecidable"
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "Spiders (order Araneae) are air-breathing arthropods that have eight l",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "doi.org:undecidable;ncbi.nlm.nih.gov:undecidable",
+  "browserTried": "doi.org:undecidable;ncbi.nlm.nih.gov:UNREAD"
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "As of January 2026, 53,680 spider species in 139 families have been re",
+  "browser": "unread",
+  "node": "unread",
+  "nodeTried": "wsc.nmbe.ch:UNREAD",
+  "browserTried": "wsc.nmbe.ch:UNREAD"
+ },
+ {
+  "ask": "How many legs does a spider have?",
+  "claim": "However, there has been debate among scientists about how families sho",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "archive.org:undecidable",
+  "browserTried": "archive.org:undecidable"
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "claim": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 Ju",
+  "browser": "unsupported",
+  "node": "unsupported",
+  "nodeTried": "-:UNREAD;-:UNREAD;archive.nytimes.com:undecidable",
+  "browserTried": "-:UNREAD;-:UNREAD;archive.nytimes.com:undecidable"
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "claim": "In 1891, Curie followed her elder sister Bronisława to study in Paris,",
+  "browser": "no-reference",
+  "node": "no-reference",
+  "nodeTried": "",
+  "browserTried": ""
+ },
+ {
+  "ask": "When did Marie Curie die?",
+  "claim": "In 1895, Curie married Pierre, with whom she conducted pioneering rese",
+  "browser": "unsupported",
+  "node": "unread",
+  "nodeTried": "",
+  "browserTried": "www2.lbl.gov:undecidable;nobelprize.org:UNREAD;web.archive.org:undecidable"
+ }
+]

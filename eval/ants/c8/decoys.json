@@ -1,0 +1,40 @@
+{
+ "schema": "C8Decoys@1",
+ "written": "2026-10-06, before any run of primary-v2.mjs. 20 decoys; each must be REJECTED against the claim it attacks, in both wordings (claim, claimLean of primary-corpus.json).",
+ "decoys": [
+  {"id":"W1","cat":"wrong_figure","claimId":"height-eiffel","sentence":"The Eiffel Tower is 324 metres tall.","host":"toureiffel.paris","title":"The Eiffel Tower - history"},
+  {"id":"W2","cat":"wrong_figure","claimId":"distance-moon","sentence":"The Moon is about 238,855 kilometres from Earth.","host":"nasa.gov","title":"Earth's Moon"},
+  {"id":"W3","cat":"wrong_figure","claimId":"award-einstein","sentence":"Albert Einstein won the 1922 Nobel Prize in Physics.","host":"nobelprize.org","title":"Albert Einstein - Facts"},
+  {"id":"W4","cat":"wrong_figure","claimId":"count-bones","sentence":"An adult human has 213 bones.","host":"nih.gov","title":"Skeletal system"},
+  {"id":"W5","cat":"wrong_figure","claimId":"event-apollo11","sentence":"Apollo 17 spent 11 days in space and landed on the Moon on 20 July 1969.","host":"nasa.gov","title":"Apollo missions"},
+  {"id":"W6","cat":"wrong_figure","claimId":"distance-moon","sentence":"The Moon is about 363,300 kilometres (225,700 miles) from Earth.","host":"nasa.gov","title":"Earth's Moon"},
+  {"id":"E1","cat":"wrong_entity","claimId":"height-eiffel","sentence":"The Canton Tower is 330 metres tall.","host":"toureiffel.paris","title":"Tall towers"},
+  {"id":"E2","cat":"wrong_entity","claimId":"count-senate","sentence":"The Roman Senate had 100 senators.","host":"senate.gov","title":"The Roman Senate"},
+  {"id":"E3","cat":"wrong_entity","claimId":"death-curie","sentence":"Pierre Curie died on 4 July 1934.","host":"nobelprize.org","title":"Pierre Curie - Biographical"},
+  {"id":"E4","cat":"wrong_entity","claimId":"founding-harvard","sentence":"Harvard, Massachusetts was founded in 1636.","host":"harvard.edu","title":"Towns near Boston"},
+  {"id":"E5","cat":"wrong_entity","claimId":"height-eiffel","heading":"Canton Tower","sentence":"It is 330 metres tall.","host":"toureiffel.paris","title":"Tall towers"},
+  {"id":"E6","cat":"wrong_entity","claimId":"head-of-state","sentence":"Emmanuel Macron is the president of Germany.","host":"elysee.fr","title":"Heads of state"},
+  {"id":"N1","cat":"negation","claimId":"head-of-state","sentence":"Emmanuel Macron is not the president of France.","host":"elysee.fr","title":"The President"},
+  {"id":"N2","cat":"negation","claimId":"height-everest","sentence":"Mount Everest is not 8,848.86 metres tall.","host":"nasa.gov","title":"Mount Everest"},
+  {"id":"N3","cat":"negation","claimId":"capital","sentence":"Canberra is not the capital of Australia, contrary to popular belief.","host":"nca.gov.au","title":"Canberra"},
+  {"id":"N4","cat":"negation","claimId":"count-bones","sentence":"An adult human does not have 206 bones.","host":"nih.gov","title":"Skeletal system"},
+  {"id":"O1","cat":"outdated_holder","claimId":"head-of-state","sentence":"Nicolas Sarkozy is the president of France.","host":"elysee.fr","title":"The President"},
+  {"id":"O2","cat":"outdated_holder","claimId":"head-of-state","sentence":"Francois Hollande is the president of France.","host":"elysee.fr","title":"The President"},
+  {"id":"O3","cat":"outdated_holder","claimId":"capital","sentence":"Melbourne is the capital of Australia.","host":"nca.gov.au","title":"Australia"},
+  {"id":"O4","cat":"outdated_holder","claimId":"count-senate","sentence":"The United States Senate has 96 senators.","host":"senate.gov","title":"United States Senate"}
+ ],
+ "knownLimit": [
+  {"id":"K1","claimId":"founding-un","sentence":"The United Nations Educational, Scientific and Cultural Organization was founded on 24 October 1945.","note":"different body, same words: no stem gate can tell"},
+  {"id":"K2","claimId":"head-of-state","sentence":"Emmanuel Macron was the president of France.","note":"tense is not read"}
+ ],
+ "mirrors": [
+  {"id":"M1","host":"www.britannica.com","claimId":"capital"},
+  {"id":"M2","host":"www.wikiwand.com","claimId":"height-eiffel"},
+  {"id":"M3","host":"dbpedia.org","claimId":"count-senate"},
+  {"id":"M4","host":"eiffel.fandom.com","claimId":"height-eiffel"},
+  {"id":"M5","host":"www.quora.com","claimId":"count-bones"},
+  {"id":"M6","host":"en.everybodypedia.org","claimId":"death-curie"},
+  {"id":"M7","host":"www.geeksforgeeks.org","claimId":"count-bones"},
+  {"id":"M8","host":"grokipedia.com","claimId":"award-einstein"}
+ ]
+}

@@ -1,0 +1,21 @@
+--- a/fold-chat-carry.js
++++ b/fold-chat-carry.js
+@@ -55,6 +55,9 @@
+  * carryOf(session) → { text, lines, entities, basis, active } — `text` is struck of addresses and is what the mouth may see;
+  * `lines` keep their [turn:N] addresses for the record. Empty (text "") when nothing resolves to a referent yet; `basis` says why.
+  */
++// lensBlock's `basis` is an OBJECT ({ notes, voids, records }), atmosphereBlock's a string; joining them printed "[object Object]" (measured, eval/ants/c7/audit-output.txt)
++const basisText = (b) => (typeof b === "string" ? b : b && typeof b === "object" ? Object.entries(b).map(([k, v]) => `${k}: ${v}`).join("; ") : "");
++
+ export function carryOf(session, { question = null, level = 2 } = {}) {
+   const index = indexOfReferents(session?.referents);
+   const transcript = transcriptOf(session?.messages);
+@@ -71,7 +74,7 @@
+     text: blocks.map((b) => b.text).join("\n\n"),
+     lines: [...atmosphere.lines, ...(lens?.lines || [])],
+     entities,
+-    basis: [atmosphere.basis, lens?.basis].filter(Boolean).join(" · "),
++    basis: [basisText(atmosphere.basis), basisText(lens?.basis)].filter(Boolean).join(" · "),
+     active: [...active.ids].map((id) => index.represent(id)),
+   };
+ }

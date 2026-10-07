@@ -29,6 +29,7 @@
 import { classifySpeech, cueBundle, bannedHits, CONVERSATION_FLOW_RULES, SPEECH_ACT } from "./vendor/khora/native/the-fold/earned-cast.js";
 import { turnPlan, topicOf, THREAD } from "./fold-chat-thread.js";
 import { casedRuns, scriptOf } from "./fold-chat-mind.js";
+import { isSourceAsk } from "./fold-chat-sourceask.js";
 
 export { SPEECH_ACT };
 
@@ -72,6 +73,16 @@ export function planTurn(question, priorMessages, opts = {}) {
     return plan.thread?.has
       ? { ...plan, act, kind: "move", mode: "thread", search: null, modelMay: true, reason: "move-with-thread" }
       : { ...plan, act, kind: "move", mode: "cold-gap", search: null, modelMay: false, reason: "move-cold" };
+  }
+  // "find a primary source" / "where did you get that?" names no topic of its own: it is about the LAST ANSWER's topic. Planned standalone it
+  // searched its own words (measured 2026-10-06: teacher guides to primary sources came back as the answer). With an earlier answer it is
+  // searched as the ask that answer was answering; with nothing earlier it is the cold gap. (fold-chat-sourceask.js)
+  if (plan.mode === "web" && plan.kind !== "retry" && isSourceAsk(question)) {
+    const th = plan.thread;
+    if (!th?.has) return { ...plan, act, kind: "source-ask", mode: "cold-gap", search: null, modelMay: false, reason: "source-ask-cold" };
+    const q = th.topicAsk || th.ask;   // the nearest ask that stood on its own (a source-ask before this one is not a topic)
+    return q ? { ...plan, act, kind: "source-ask", mode: "web", search: q, query: q, modelMay: false, reason: "source-ask-of-last-answer" }
+             : { ...plan, act, kind: "source-ask", mode: "cold-gap", search: null, modelMay: false, reason: "source-ask-cold" };
   }
   return { ...plan, act };
 }

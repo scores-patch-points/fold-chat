@@ -1,0 +1,11 @@
+--- a/fold-chat-salience.js
++++ b/fold-chat-salience.js
+@@ -155,7 +155,7 @@
+ 
+ /** THE SWITCH (pre-registered A/B for S4). localStorage "fold-chat:salience": "off" turns it off, "on" turns it on; absent = `SALIENCE_DEFAULT`. Never throws. */
+ export const SALIENCE_KEY = "fold-chat:salience";
+-export const SALIENCE_DEFAULT = false;   // OFF until it stands: S4 (30% < 50%) and S5 (2 of 3 follow-ups fell back to the sources) failed — eval/pivot/PREREG.md Amendment 4 RESULTS
++export const SALIENCE_DEFAULT = true;    // ON after C5 (eval/ants/C5-RESULTS.md) — ONLY apply after the live re-run with the Pivot (the S5 withheld-draft cause is still undiagnosed); localStorage "fold-chat:salience" = "off" still turns it off
+ export function salienceEnabled(storage = (typeof localStorage !== "undefined" ? localStorage : null)) {
+   try { const v = storage?.getItem?.(SALIENCE_KEY); return v === "on" ? true : v === "off" ? false : SALIENCE_DEFAULT; } catch { return SALIENCE_DEFAULT; }
+ }

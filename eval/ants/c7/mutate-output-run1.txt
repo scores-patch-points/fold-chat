@@ -1,0 +1,32 @@
+killed   [N5] N5 directive gate deleted
+killed   [N3] N3 score gate deleted (facts)
+killed   [N5] N5 apparatus-name gate deleted
+killed   [N5] N5 vendored apparatus ban deleted
+killed   [N1] N1 speaks-as gate deleted
+killed   [N1] N1 holder-name gate deleted
+killed   [N2] N2 quote re-verification deleted
+killed   [N2] N2 verbatim checker always true
+SURVIVED [N1] N1 frame check deleted
+SURVIVED [N3] N3 frame score gate deleted
+SURVIVED [N8] N8 lane none enforced nowhere
+killed   [N8] N8 laneOf ignores modelBarred/slot/strand
+killed   [N9] N9 agent cuePathos on
+killed   [N9] N9 agent cueAtmosphere on
+killed   [N9] N9 agent natural-break rule deleted
+killed   [lane] writing lane pathos cue on
+killed   [lane] counsel lane aside on
+killed   [N4] N4 pathos gate always off
+killed   [N6] N6 unverified-maker gate deleted
+killed   [N6] N6 too-few-rounds gate deleted
+killed   [N6] strain: cycles not counted
+killed   [N6] repeats not counted
+killed   [N10] N10 curve gap not said
+killed   [N10] N10 paradigm gap not said
+killed   [N10] N10 curve input status claims measured
+SURVIVED [N7] N7 purity: a clock reaches the module
+killed   [N7] N7 purity: input mutated
+SURVIVED [N5] N5 cues not vetted
+killed   [N6] N6 experiencer label trusted (chat): readFelt replaced
+killed   [N10] address struck: carry basis bug left in
+
+25/30 mutants killed; survivors: N1 frame check deleted | N3 frame score gate deleted | N8 lane none enforced nowhere | N7 purity: a clock reaches the module | N5 cues not vetted

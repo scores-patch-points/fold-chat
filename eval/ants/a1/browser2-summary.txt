@@ -1,0 +1,59 @@
+
+===== Who is the king of the UK? ms 614 
+ spoken: King Charles III is the king of the UK. 
+ parts: I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “In 1917 King George V changed the r
+  PASSAGE https://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom 1003 
+  PASSAGE https://simple.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom 1650 
+  PASSAGE https://www.bbc.com/news/articles/c867plj4vgqo 2913 
+  * no-reference | The monarchy of the United Kingdom, or simply the British monarchy, is the form of governm | refs 0  | tried: 
+  * no-reference | The monarch since 8 September 2022 is King Charles III, who ascended the throne on the dea | refs 0  | tried: 
+  * no-reference | In the 16th century, English and Scottish monarchs played a central role in what became th | refs 0  | tried: 
+  * no-reference | The Monarch of the United Kingdom is the head of state of United Kingdom and formal head o | refs 0  | tried: 
+  * no-reference | The current monarch is Charles III who has reigned since 2022. | refs 0  | tried: 
+  * no-reference | The king is currently the head of the UK and 15 other nations known as the Commonwealth re | refs 0  | tried: 
+
+===== How tall is the Eiffel Tower? ms 656 
+ spoken: The Eiffel Tower is about 1,083 feet tall. 
+ parts: I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “The tower is 330 metres (1,083 ft) 
+  PASSAGE https://en.wikipedia.org/wiki/Eiffel_Tower 2925 
+  PASSAGE https://www.toureiffel.paris/en/the-monument/key-figures 2585 
+  PASSAGE https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller 1651 
+  * unlocated | The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Cha | refs 0  | tried: 
+  * no-reference | It is named after the engineer Gustave Eiffel, whose company designed and built the tower  | refs 0  | tried: 
+  * unread | The tower received 5,889,000 visitors in 2022. | refs 1 - | tried: -:UNREAD(a note with no page to fetch (a book, a print)
+
+===== What is the capital of Australia? ms 12134 
+ spoken: Canberra is the capital of Australia. 
+ parts: I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “One of these, Canberra, is also the
+  PASSAGE https://en.wikipedia.org/wiki/Australian_Capital_Territory 1953 
+  PASSAGE https://en.wikipedia.org/wiki/List_of_Australian_capital_cities 1055 
+  PASSAGE https://en.wikipedia.org/wiki/Capital_punishment_in_Australia 2990 
+  * no-reference | The Australian Capital Territory (ACT), known as the Federal Capital Territory until 1938, | refs 0  | tried: 
+  * no-reference | On 1 January 1901, the self-governing Australian colonies federated to form the Commonweal | refs 0  | tried: 
+  * no-reference | With 475,600 residents, the territory is the second-smallest mainland state or territory b | refs 0  | tried: 
+  * no-reference | There are eight capital cities in Australia, each of which functions as the seat of govern | refs 0  | tried: 
+  * no-reference | One of these, Canberra, is also the national capital. | refs 0  | tried: 
+  * no-reference | Section 125 of the Constitution of Australia specified that the seat of the national gover | refs 0  | tried: 
+  * no-reference | Capital punishment in Australia has been abolished in all jurisdictions since 1985. | refs 0  | tried: 
+  * no-reference | Victoria did so in 1975, South Australia in 1976, and Western Australia in 1984. | refs 0  | tried: 
+  * unread | In 2010, the Commonwealth Parliament passed legislation prohibiting the re-establishment o | refs 0  | tried: 
+
+===== How many legs does a spider have? ms 4206 
+ spoken: Spiders typically have eight walking legs. 
+ parts: I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says: “Spiders typically have eight walkin
+  PASSAGE https://www.burkemuseum.org/collections-and-research/biology/arachnology-and-entomology/sp 1010 
+  PASSAGE https://en.wikipedia.org/wiki/Spider_anatomy 590 
+  PASSAGE https://www.albatt.com/blogs/2021/1/3/hca0xtv8glwv6g1jnok1ta9tedkta7 291 
+  * no-reference | The anatomy of spiders includes many characteristics shared with other arachnids. | refs 0  | tried: 
+  * unread | Many species of spiders exhibit a great deal of sexual dimorphism. | refs 1 doi.org | tried: doi.org:UNREAD(the page could not be read)
+  * no-reference | Spiders typically have eight walking legs (insects have six). | refs 0  | tried: 
+
+===== When did Marie Curie die? ms 8975 
+ spoken: Marie Curie died on July 4, 1934. 
+ parts: I got this from The 90th anniversary of the death of Marie Curie - Research in Poland (researchinpoland.org). It says: “On 4 July 1934, at the Sancellemoz Sanatorium in Passy, France at the age of 66,
+  PASSAGE https://en.wikipedia.org/wiki/Marie_Curie 2977 
+  PASSAGE https://www.biography.com/scientists/marie-curie 1924 
+  PASSAGE https://researchinpoland.org/news/the-90th-anniversary-of-the-death-of-marie-curie/ 529 
+  * unsupported | Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better kno | refs 3 -,archive.nytimes.com,- | tried: -:UNREAD(a note with no page to fetch (a book, a print); -:UNREAD(a note with no page to fetch (a book, a print); archive.nytimes.com:undecidable(the page was read; this claim makes no differ)
+  * no-reference | In 1891, Curie followed her elder sister Bronisława to study in Paris, where she earned he | refs 0  | tried: 
+  * unsupported | In 1895, Curie married Pierre, with whom she conducted pioneering research on radioactivit | refs 2 www2.lbl.gov,nobelprize.org | tried: www2.lbl.gov:undecidable(the page was read; this claim makes no differ); nobelprize.org:UNREAD(the page could not be read); web.archive.org:undecidable(the page was read; this claim makes no differ)

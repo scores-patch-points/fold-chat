@@ -1,0 +1,43 @@
+{
+  "schema": "C3Battery@1",
+  "authored": "2026-10-06, by ant C3, BEFORE any scorer or door call was run on these pairs",
+  "labels": {
+    "E": "the sentence, taken as the page states it, says what the claim says (entails)",
+    "T": "same topic, does NOT say the claim (and does not contradict it): other fact, other referent, reported not asserted",
+    "C": "the sentence says something incompatible with the claim",
+    "U": "unrelated: shares words at most"
+  },
+  "note": "loose=true marks labels a careful reader could dispute (context needed or loose paraphrase); every number is reported with and without them",
+  "pairs": [
+    {"id":1,"claim":"Hamlet was written by William Shakespeare.","sentence":"Hamlet is a tragedy by William Shakespeare, believed to have been written between 1599 and 1601.","label":"E","type":"active/passive paraphrase"},
+    {"id":2,"claim":"Mount Everest is 8,849 metres tall.","sentence":"Mount Everest stands 8,849 meters above sea level.","label":"E","type":"metres/meters spelling"},
+    {"id":3,"claim":"Spiders have eight legs.","sentence":"All spiders have eight legs, which distinguishes them from insects.","label":"E","type":"plain restatement"},
+    {"id":4,"claim":"Spiders have six legs.","sentence":"Spiders have eight legs, unlike insects, which have six.","label":"C","type":"number word swap (six/eight), both words present"},
+    {"id":5,"claim":"Queen Elizabeth II is the monarch of the United Kingdom.","sentence":"King Charles III is the monarch of the United Kingdom, having acceded in 2022.","label":"C","type":"tense / office holder"},
+    {"id":6,"claim":"King Charles III is the monarch of the United Kingdom.","sentence":"Queen Elizabeth II was the monarch of the United Kingdom from 1952 until her death in 2022.","label":"T","type":"tense / office holder, other term"},
+    {"id":7,"claim":"The Great Wall of China is visible from space with the naked eye.","sentence":"The Great Wall of China is not visible to the naked eye from low Earth orbit.","label":"C","type":"polarity"},
+    {"id":8,"claim":"Marie Curie was born in 1867.","sentence":"Marie Curie was born on 7 November 1867 in Warsaw.","label":"E","type":"more specific restatement"},
+    {"id":9,"claim":"Marie Curie was born in 1876.","sentence":"Marie Curie was born on 7 November 1867 in Warsaw.","label":"C","type":"digits transposed"},
+    {"id":10,"claim":"The adult human body has 206 bones.","sentence":"An adult skeleton has 206 bones.","label":"E","type":"'human' absent from the sentence (page context supplies it)","loose":true},
+    {"id":11,"claim":"The adult human body has 206 bones.","sentence":"Newborn babies have about 300 bones, many of which fuse as they grow.","label":"T","type":"same topic, other age class"},
+    {"id":12,"claim":"Brutus stabbed Caesar.","sentence":"Caesar stabbed Brutus.","label":"C","type":"roles swapped, identical tokens"},
+    {"id":13,"claim":"Brutus stabbed Caesar.","sentence":"Caesar was stabbed by Brutus and other senators in 44 BC.","label":"E","type":"passive"},
+    {"id":14,"claim":"K2 is taller than Everest.","sentence":"Everest is taller than K2, at 8,849 metres against 8,611.","label":"C","type":"comparative direction swapped"},
+    {"id":15,"claim":"K2 is shorter than Everest.","sentence":"Everest is taller than K2, at 8,849 metres against 8,611.","label":"E","type":"antonym comparative, arguments swapped"},
+    {"id":16,"claim":"Paris is the capital of France.","sentence":"Paris Hilton is an American media personality and businesswoman.","label":"U","type":"name overlap, different referent"},
+    {"id":17,"claim":"Paris is the capital of France.","sentence":"France's capital is Paris, its largest city.","label":"E","type":"argument order"},
+    {"id":18,"claim":"The Earth orbits the Sun.","sentence":"The Moon orbits the Earth once every 27.3 days.","label":"T","type":"same verb, other referents"},
+    {"id":19,"claim":"Vaccines cause autism.","sentence":"Large studies have found no link between vaccines and autism.","label":"C","type":"polarity by 'no link'"},
+    {"id":20,"claim":"The Earth is flat.","sentence":"Some people claim that the Earth is flat.","label":"T","type":"reported, not asserted"},
+    {"id":21,"claim":"Light travels at about 300,000 kilometres per second.","sentence":"The speed of light in vacuum is 299,792 kilometres per second.","label":"E","type":"approximate figure"},
+    {"id":22,"claim":"Water boils at 100 degrees Celsius at sea level.","sentence":"Water boils at 212 degrees Fahrenheit at sea level.","label":"E","type":"unit conversion"},
+    {"id":23,"claim":"Water boils at 100 degrees Celsius at sea level.","sentence":"Water freezes at 0 degrees Celsius at sea level.","label":"T","type":"same frame, other fact"},
+    {"id":24,"claim":"The Concorde is in service.","sentence":"The Concorde was retired from service in 2003.","label":"C","type":"tense"},
+    {"id":25,"claim":"The Concorde was retired in 2003.","sentence":"Concorde made its final commercial flight in 2003, ending 27 years of service.","label":"E","type":"paraphrase, no shared verb","loose":true},
+    {"id":26,"claim":"All swans are white.","sentence":"Black swans are native to Australia.","label":"C","type":"quantifier"},
+    {"id":27,"claim":"Honey never spoils.","sentence":"The Pacific is the largest and deepest of Earth's oceans.","label":"U","type":"no overlap"},
+    {"id":28,"claim":"He deposited his savings at the bank.","sentence":"The river bank eroded after the spring flood.","label":"U","type":"polysemy"},
+    {"id":29,"claim":"12 people have walked on the Moon.","sentence":"Twelve astronauts walked on the lunar surface between 1969 and 1972.","label":"E","type":"numeral vs number word, synonyms"},
+    {"id":30,"claim":"Napoleon died on Saint Helena.","sentence":"Napoleon was exiled to Elba in 1814 before returning to France.","label":"T","type":"same person, other event"}
+  ]
+}

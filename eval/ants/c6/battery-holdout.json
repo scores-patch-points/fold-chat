@@ -1,0 +1,75 @@
+{
+ "written": "2026-10-06, AFTER run 1 of battery.json and BEFORE run 2 and before any holdout page was fetched. Fresh pairs. Labels from knowledge of the URL. [Restored from results-holdout.json after an accidental truncation; same fields as the file the runs read.]",
+ "items": [
+  {
+   "id": "H1",
+   "label": "own",
+   "person": "Charles Darwin",
+   "url": "https://www.gutenberg.org/cache/epub/1228/pg1228.txt",
+   "kind": "Gutenberg, On the Origin of Species"
+  },
+  {
+   "id": "H2",
+   "label": "own",
+   "person": "Thomas Paine",
+   "url": "https://www.gutenberg.org/cache/epub/147/pg147.txt",
+   "kind": "Gutenberg, Common Sense"
+  },
+  {
+   "id": "H3",
+   "label": "own",
+   "person": "Benjamin Franklin",
+   "url": "https://www.gutenberg.org/cache/epub/148/pg148.txt",
+   "kind": "Gutenberg, Autobiography"
+  },
+  {
+   "id": "H4",
+   "label": "own",
+   "person": "Winston Churchill",
+   "url": "https://winstonchurchill.org/resources/speeches/1940-the-finest-hour/we-shall-fight-on-the-beaches/",
+   "kind": "speech on the Churchill Centre site"
+  },
+  {
+   "id": "H5",
+   "label": "own",
+   "person": "Martin Luther King Jr.",
+   "url": "https://www.americanrhetoric.com/speeches/mlkihaveadream.htm",
+   "kind": "speech on a speech archive (.com host)"
+  },
+  {
+   "id": "H6",
+   "label": "not_own",
+   "person": "Abraham Lincoln",
+   "url": "https://www.history.com/topics/american-civil-war/gettysburg-address",
+   "kind": "article ABOUT a speech, quoting it"
+  },
+  {
+   "id": "H7",
+   "label": "not_own",
+   "person": "Albert Einstein",
+   "url": "https://www.biography.com/scholars-educators/albert-einstein",
+   "kind": "commercial biography page"
+  },
+  {
+   "id": "H8",
+   "label": "not_own",
+   "person": "Friedrich Nietzsche",
+   "url": "https://iep.utm.edu/nietzsch/",
+   "kind": "scholarly encyclopedia on .edu"
+  },
+  {
+   "id": "H9",
+   "label": "not_own",
+   "person": "Albert Einstein",
+   "url": "https://www.quotefancy.com/albert-einstein-quotes",
+   "kind": "quote farm"
+  },
+  {
+   "id": "H10",
+   "label": "not_own",
+   "person": "Alfred Russel Wallace",
+   "url": "https://www.gutenberg.org/cache/epub/1228/pg1228.txt",
+   "kind": "CROSS-PERSON: Darwin's Origin offered as Wallace's voice (the text names Wallace)"
+  }
+ ]
+}
