@@ -410,7 +410,8 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
           const pages = (j && j.query && j.query.pages) || {};
           const pg = pages[Object.keys(pages)[0]];
           const text = pg && typeof pg.extract === "string" ? cleanText(pg.extract) : "";
-          if (text.length >= 200) return { ok: true, text: text.slice(0, 24000), title: (pg.title || title) + " - Wikipedia", via: "direct", url };
+          if (text.length >= 200 && !looksDisambiguation(text)) return { ok: true, text: text.slice(0, 24000), title: (pg.title || title) + " - Wikipedia", via: "direct", url };
+          // a DISAMBIGUATION extract falls through to the HTML path, where looksDisambiguation drops it as a source
         }
       } catch (e) {}
     } }

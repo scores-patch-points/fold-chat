@@ -82,14 +82,22 @@ function judge(claim, cs, cfigs, cnames, sent, around) {
   // a name is present when its HEAD token is ("Joe Biden" is present where the source says "Biden"); a wholly different
   // name is still missing, so a rival is never silently accepted
   const namesMissing = cnames.filter((n) => { const nw = words(n).filter((w) => w.length > 1 && !FW.has(w)); if (!nw.length) return false; const head = nw[nw.length - 1]; return !(hay.includes(head) || nw.every((w) => hay.includes(w))); });
+  // SUBJECT/FILLER: a claim's FIRST name is its subject; it must sit at the START of the matched region, not merely
+  // appear somewhere — else a page that says "Biden won … defeating incumbent Donald Trump" would clear "Trump won".
+  let subjectMissing = false;
+  if (cnames.length) {
+    const subj = words(cnames[0]).filter((w) => w.length > 1 && !FW.has(w));
+    const head = subj[subj.length - 1];
+    if (head && run.text) { const stoks = words(sent); const hi = stoks.indexOf(head), ri = stoks.indexOf(fold(run.text).split(" ")[0]); if (hi >= 0 && ri >= 0 && hi > ri + 2) subjectMissing = true; }
+  }
   const polarity = !flipsPolarity(claim, sent, cs, [...ss]);
   const about = overlap >= FALSIFY.ABOUT_OVERLAP && shared.length >= 2;
   const close = run.n >= FALSIFY.RUN || (overlap >= FALSIFY.STATE_OVERLAP && shared.length >= Math.min(FALSIFY.STATE_MIN_SHARED, cs.length));
   let verdict = "silent", why = "";
   if (about && !polarity) { verdict = "contradicts"; why = "same subject, opposite polarity"; }
   else if (about && clash.length) { verdict = "contradicts"; why = `gives ${clash[0].w.raw} where the claim says ${clash[0].c.raw}`; }
-  else if (close && !missing.length && !namesMissing.length) { verdict = "states"; why = run.n >= FALSIFY.RUN ? `shares the run \u201c${run.text}\u201d` : `${shared.length} of ${cs.length} content words`; }
-  else if (close) { verdict = "near"; why = missing.length ? `the figure ${missing[0].raw} is not in it` : `the name ${namesMissing[0]} is not near it`; }
+  else if (close && !missing.length && !namesMissing.length && !subjectMissing) { verdict = "states"; why = run.n >= FALSIFY.RUN ? `shares the run \u201c${run.text}\u201d` : `${shared.length} of ${cs.length} content words`; }
+  else if (close) { verdict = "near"; why = subjectMissing ? `the claim's subject ${cnames[0]} is only the source's object` : missing.length ? `the figure ${missing[0].raw} is not in it` : `the name ${namesMissing[0]} is not near it`; }
   return { verdict, why, overlap, shared: shared.length, runN: run.n, run: run.text, score: run.n * 2 + shared.length + (verdict === "states" ? 100 : verdict === "contradicts" ? 50 : 0) };
 }
 

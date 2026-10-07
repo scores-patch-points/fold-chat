@@ -49,3 +49,12 @@ test("clausesOf never splits a bare list", () => {
   assert.deepEqual(clausesOf("He won Michigan and Wisconsin."), ["He won Michigan and Wisconsin."]);
   assert.equal(clausesOf("Biden won the election and Trump disputed the result.").length, 2);
 });
+
+test("CONTROL: a false claim whose subject is the page's OBJECT is not cleared (Trump-won vs a page that says Biden won)", () => {
+  const c = one("Donald Trump won the 2020 United States presidential election.", "Joe Biden won the 2020 United States presidential election, defeating incumbent Donald Trump.");
+  assert.notEqual(c.verdict, "held"); assert.notEqual(c.verdict, "corroborated");
+});
+test("CONTROL: the same page still HOLDS the true claim about its subject", () => {
+  const c = one("Joe Biden won the 2020 presidential election.", "Joe Biden won the 2020 United States presidential election, defeating incumbent Donald Trump.");
+  assert.ok(c.verdict === "held" || c.verdict === "corroborated", c.verdict);
+});
