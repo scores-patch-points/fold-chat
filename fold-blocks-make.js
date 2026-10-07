@@ -73,6 +73,43 @@ export function guessKind(ask) {
   return "website";
 }
 
+/** monologue(ask, {kind}) — the fold's INTERNAL THINKING, made visible: what it
+ *  reads the ask as, how it would satisfy that, and whether the shape can
+ *  POSSIBLY satisfy it (or whether the ask names a thing the shape cannot
+ *  compute). Returns { kind, satisfiable, why, lines:[{say, why, bad}] }. Pure. */
+export function monologue(ask, { kind = null } = {}) {
+  const q = String(ask || "").toLowerCase();
+  const words = [...new Set((q.match(/[a-z]+/g) || []))];
+  const k = KINDS.includes(kind) ? kind : guessKind(ask);
+  const lines = [];
+  const matched = words.filter((w) => new RegExp(`\\b${w}\\b`).test(q)).slice(0, 8);
+  lines.push({ say: `Reading the ask: “${String(ask).trim()}”.`, why: matched.length ? `words seen: ${matched.join(", ")}` : null });
+  lines.push({ say: `I take it as a ${k}.`, why: k === "widget" ? "a small calculator-like thing" : k === "document" ? "a written document" : "a page of blocks" });
+  const steps = (PLANS[k] || []).map((s) => s.goal);
+  lines.push({ say: `To satisfy a ${k}, I must produce:`, why: steps.join("; ") });
+
+  if (k === "widget") {
+    const fnames = Object.keys(FORMULAS);
+    lines.push({ say: `A widget computes exactly ONE formula from a fixed catalog.`, why: `the catalog: ${fnames.join(", ")}` });
+    const wantsTimer = /\b(countdown|timer|stopwatch|clock)\b/.test(q);
+    if (wantsTimer) {
+      lines.push({ say: `A countdown timer is not in the catalog — nothing there counts down or ticks.`, bad: true });
+      lines.push({ say: `So this CANNOT be satisfied as a widget. What would satisfy it: a timer block that decrements and shows the remaining time. That block is not built.`, bad: true });
+      return { kind: k, satisfiable: false, why: "a countdown timer is not a catalog formula, and no timer block exists — a widget would have to borrow a wrong formula", lines };
+    }
+    const hit = fnames.filter((n) => q.includes(n.split("_")[0]));
+    if (!hit.length) {
+      lines.push({ say: `No catalog formula matches this ask by name. A widget could only borrow a wrong one.`, bad: true });
+      return { kind: k, satisfiable: false, why: "no catalog formula matches the ask", lines };
+    }
+    lines.push({ say: `Closest catalog formula: ${hit[0]}. If the model picks anything else, it is filling the shape, not the ask.`, why: null });
+    return { kind: k, satisfiable: true, why: null, lines };
+  }
+  if (k === "document") lines.push({ say: `A document is satisfied by its own writing: a title, an opening, three sections.`, why: "no formula; the words are the thing" });
+  if (k === "website") lines.push({ say: `A website is satisfied by its offer: three records, one theme, the page top to bottom.`, why: "no formula; the blocks are the thing" });
+  return { kind: k, satisfiable: true, why: null, lines };
+}
+
 function prompt(step, ask, kernel, i, total) {
   const hints = typeof step.hints === "function" ? step.hints(kernel) : step.hints;
   return [

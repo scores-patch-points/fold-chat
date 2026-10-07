@@ -7,7 +7,7 @@
 import * as client from "./fold-chat-client.js";
 import { render } from "./fold-blocks.js";
 import { createKernel } from "./fold-blocks-kernel.js";
-import { make, followUp, guessKind } from "./fold-blocks-make.js";
+import { make, followUp, guessKind, monologue } from "./fold-blocks-make.js";
 import { editorFor, editEOT, editableParts } from "./fold-blocks-edit.js";
 import { createMemory, contentWords } from "./fold-blocks-weave.js";
 import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, extendEssay } from "./fold-chat-longform.js";
@@ -81,6 +81,11 @@ const CODE_CSS = `
 .fs-chg{padding:8px 10px;border-bottom:1px solid var(--line)}
 .fs-chg-h{display:flex;gap:8px;align-items:center;font:var(--fs-xs) var(--mono);color:var(--mut);margin-bottom:4px}
 .fs-diff{margin:0;padding:8px;background:var(--side2);border-radius:var(--r-sm);font:var(--fs-xs)/1.45 var(--mono);white-space:pre;overflow:auto}
+.fs-think{padding:5px 10px;margin:2px 0 2px 10px;border-left:2px solid var(--line2);color:var(--ink2);font:var(--fs-sm)/1.5 var(--sans)}
+.fs-think .t{color:var(--ink)}
+.fs-think .w{color:var(--mut);font:var(--fs-xs)/1.45 var(--mono);margin-top:1px}
+.fs-think.bad{border-left-color:var(--bad)}
+.fs-think.bad .t{color:var(--bad)}
 `;
 
 export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {} }) {
@@ -127,6 +132,18 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const lk = cur.artifact ? cur.artifact.kind : (!kernel ? longKind(text) : null);
     push({ kind: "ask", by: "you", text: "", ask: text, ok: true });
     if (first && cur.title === "New fold") cur.title = text.slice(0, 48);
+    // THE MONOLOGUE: the fold says what it reads the ask as, how it would satisfy
+    // it, and whether that shape can possibly satisfy it — BEFORE it acts. If it
+    // cannot, it stops with a typed gap instead of building the wrong thing.
+    if (!lk && !cur.codebase) {
+      const mono = monologue(text);
+      for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
+      paint();
+      if (!mono.satisfiable) {
+        push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] });
+        running = null; live = null; paint(); renderList(); return;
+      }
+    }
     live = { label: first ? "reading the ask" : "following up", units: [] }; paint();
     try {
       if (lk) {
@@ -200,6 +217,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const started = !!(kernel || cur.artifact || cur.codebase);
     const entries = cur.log.map((e, i) => {
       if (e.kind === "ask") return `<div class="fs-ask">${esc(e.ask)}</div>`;
+      if (e.kind === "think") return `<div class="fs-think${e.ok === false ? " bad" : ""}"><span class="fs-by fold">fold</span> <span class="t">${esc(e.text)}</span>${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}</div>`;
       const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
       const drawn = (e.units || []).filter((u) => u.by === "mouth").length;
       return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span><b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
