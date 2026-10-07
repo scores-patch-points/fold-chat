@@ -27,7 +27,7 @@ function panel() {
   const box = el("div", "position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(860px,92vw);max-height:86vh;display:flex;flex-direction:column;background:var(--panel,#f6f1e7);color:var(--fg,#2b2118);border:1px solid var(--line,#d8ccb6);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace");
   const start = location.hostname;
   box.appendChild(el("div", "display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line,#d8ccb6)",
-    `<b style="color:var(--acc,#8a5a2b)">⚙ Agentic run</b><span style="color:var(--dim,#7a6b58);font-size:12px">a coding run, not a chat — the real loop, streamed</span><span style="flex:1"></span><button data-close style="background:none;border:1px solid var(--line,#d8ccb6);border-radius:8px;color:inherit;font:inherit;padding:4px 10px;cursor:pointer">close</button>`));
+    `<b style="color:var(--acc,#8a5a2b)">⚙ Agent</b><span style="color:var(--dim,#7a6b58);font-size:12px">a coding run, not a chat — the real loop, streamed</span><span style="flex:1"></span><button data-close style="background:none;border:1px solid var(--line,#d8ccb6);border-radius:8px;color:inherit;font:inherit;padding:4px 10px;cursor:pointer">close</button>`));
   const runs = el("div", "display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px 6px");
   const out = el("pre", "flex:1;margin:0 14px 14px;padding:12px;background:#100d09;color:#e8dcc6;border:1px solid var(--line,#d8ccb6);border-radius:8px;overflow:auto;font-size:12.5px;white-space:pre-wrap");
   out.textContent = SURFACE ? "▮ choose a run above" : "no local agentic surface (run: node penelope/gym/agentic-server.mjs)";
@@ -64,14 +64,21 @@ function panel() {
 export function mountAgentic() {
   const p = panel();
   document.body.appendChild(p.el);
+  const bind = (row) => {
+    row.onclick = () => p.open();
+  };
+  // the static entry in index.html (always visible, in the same Chats list)
+  const stat = document.getElementById("agStart");
+  if (stat) bind(stat);
+  // and keep a row pinned if the app rebuilds the list without one
   const pin = () => {
     const list = document.getElementById("chats");
-    if (!list || list.querySelector(":scope > .ag-row")) return;
+    if (!list || list.querySelector(":scope > .ag-row") || stat) return;
     const row = el("div", "display:flex;gap:8px;align-items:center;padding:7px 10px;margin:2px 6px;border:1px dashed var(--line,#d8ccb6);border-radius:8px;cursor:pointer;color:var(--acc,#8a5a2b)",
-      '<span aria-hidden="true">⚙</span><span>Agentic run</span><span style="flex:1"></span><span style="color:var(--dim,#7a6b58);font-size:11px">not a chat</span>');
+      '<span aria-hidden="true">⚙</span><span>Agent</span><span style="flex:1"></span><span style="color:var(--dim,#7a6b58);font-size:11px">not a chat</span>');
     row.className = "ag-row";
-    row.title = "Start a coding run (not a chat)";
-    row.onclick = () => p.open();
+    row.title = "Start an agent (not a chat)";
+    bind(row);
     list.prepend(row);
   };
   // wait for the app to render the Chats list, then keep the row pinned across re-renders
