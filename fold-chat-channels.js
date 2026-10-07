@@ -21,12 +21,15 @@
 
 import { checkable } from "./fold-chat-discourse.js";
 import { searchAttempts, searchSummary } from "./fold-chat-gaps.js";
+import { styleSafeMessages } from "./fold-chat-histkind.js";
+import { genVoidLabel, genVoidText } from "./fold-chat-genvoid.js";
 
 const OPEN = "a broader web/records/news search";
 const ATTACH = "attach the document you are working from";
 /** Prefix that marks a sources-authored turn in the history the model reads. */
 export const SOURCES_NOTE = "[Passages quoted from sources — not written by you:] ";
-export const VOID_KINDS = Object.freeze(["unreached", "unsupported", "partial", "live", "model"]);
+// "generate" (fold-chat-genvoid.js): a WRITING request the fold could not honour (the essay was not written, and why), drawn as its own mark.
+export const VOID_KINDS = Object.freeze(["unreached", "unsupported", "partial", "live", "model", "generate"]);
 
 const domainOfUrl = (u) => { try { return new URL(String(u)).hostname.replace(/^www\./, ""); } catch { return null; } };
 // A passage ref reads "Source — Title"; the title is what a person recognises.
@@ -79,6 +82,7 @@ export function voidLabel(v) {
   if (!v) return "";
   if (v.kind === "unreached") return "no source was reached";
   if (v.kind === "live") return "live data \u2014 nothing reachable";
+  if (v.kind === "generate") return genVoidLabel(v);
   if (v.kind === "model") return "from the model, no sources";
   if (v.kind === "unsupported") return "nothing retrieved supports this";
   if (v.kind === "partial") {
@@ -94,6 +98,7 @@ export function voidLabel(v) {
 export function voidText(v) {
   if (!v) return "";
   if (v.kind === "legacy") return String(v.text || "");
+  if (v.kind === "generate") return genVoidText(v);
   if (v.kind === "live") return "\u27C2 void \u2014 live data \u2014 nothing reachable; " + String(v.note || "").replace(/\s+/g, " ").trim();
   if (v.kind === "model") return "\u27C2 void \u2014 from the model, no sources; " + String(v.note || "").replace(/\s+/g, " ").trim();
   const parts = [];
@@ -199,7 +204,7 @@ export function migrateMessage(m) {
   if (rec && creative) {
     // A typed gap the APP authored for a turn with no answer (live / model / unreached-with-attempts)
     // is the turn itself, not a claim-score on a creative piece: it is never migrated away.
-    const appGap = rec.void && typeof rec.void === "object" && (rec.void.kind === "live" || rec.void.kind === "model" || Array.isArray(rec.void.attempts));
+    const appGap = rec.void && typeof rec.void === "object" && (rec.void.kind === "live" || rec.void.kind === "model" || rec.void.kind === "generate" || Array.isArray(rec.void.attempts));
     if (rec.void && !appGap) { delete rec.void; changed = true; }
     if (!rec.creative) { rec.creative = true; changed = true; }
   }
@@ -233,9 +238,11 @@ export function modelText(m) {
  *  carrying only what its author wrote. An assistant turn that wrote nothing
  *  (a refusal the fold replaced, an agent that produced no code) is omitted —
  *  never padded with a system string. */
-export function modelHistory(messages) {
+export function modelHistory(messages, { styleSafe = null } = {}) {
   const out = [];
-  for (const m of messages || []) {
+  // (G3) a creative exchange (a song, a poem) is not conversation for a factual turn: fold-chat-histkind.js stands one plain line in for it. Off unless asked.
+  const src = styleSafe ? styleSafeMessages(messages, styleSafe) : messages;
+  for (const m of src || []) {
     if (!m || m.role === "system") continue;
     const content = modelText(m);
     if (m.role === "assistant" && !content.trim()) continue;

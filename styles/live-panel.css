@@ -1,0 +1,200 @@
+/* live-panel.css — the live reading panel, its stage, and the Working line, legible in light and dark.
+   Loads after index.html's inline <style>, so same-specificity rules here win; !important only where JS writes inline styles.
+   ONE SYSTEM: a calm panel, a stage that is one step darker than it, and PAPER (ink on near-white) for anything that is a
+   page or a card, in both themes. Marks are weight or a tint of at most 15%: no underlines on words, no highlighter fields.
+   Contrast of every pair below: eval/ants/design/A-contrast.md (npm-free script beside it). */
+
+:root {
+  --lv-panel: #f4f5f8; --lv-stage: #e8ebf0; --lv-chip: #e4e7ed; --lv-grid: rgba(22, 24, 29, .06);
+  --lv-ink: #16181d; --lv-ink2: #353a45; --lv-mut: #4a505c;
+  --lv-line: #cfd4dd;               /* hairlines (decorative) */
+  --lv-edge: #727987;               /* control borders and graph edges (>= 3:1) */
+  --lv-acc: #1d4ed8; --lv-on-acc: #ffffff; --lv-ag: #0b6b62; --lv-warn: #8a4a05; --lv-ok: #146c37; --lv-bad: #b42318;
+  /* paper: the page or card the stage shows. Same in both themes, so a site's own light type always sits on it. */
+  --lv-paper: #ffffff; --lv-p-edge: #aeb4c0; --lv-p-ink: #1b1d22; --lv-p-ink2: #3a3f4a; --lv-p-mut: #4f5561;
+  --lv-p-acc: var(--lv-acc); --lv-p-ag: var(--lv-ag); --lv-p-warn: var(--lv-warn); --lv-p-ok: var(--lv-ok); --lv-p-bad: var(--lv-bad);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lv-panel: #1d1e23; --lv-stage: #121316; --lv-chip: #2a2c33; --lv-grid: rgba(255, 255, 255, .05);
+    --lv-ink: #f1f2f5; --lv-ink2: #cdd0d8; --lv-mut: #a4a9b4; --lv-line: #30333b; --lv-edge: #7d8391;
+    --lv-acc: #8ab4ff; --lv-on-acc: #0b1220; --lv-ag: #5eead4; --lv-warn: #fbbf24; --lv-ok: #4ade80; --lv-bad: #f87171;
+    --lv-paper: #f4f4f1; --lv-p-edge: #aeb4c0; --lv-p-ink: #17181c; --lv-p-ink2: #383c46; --lv-p-mut: #4d535e;
+    --lv-p-acc: #1d4ed8; --lv-p-ag: #0b6b62; --lv-p-warn: #8a4a05; --lv-p-ok: #146c37; --lv-p-bad: #b42318;
+  }
+}
+:root[data-theme="dark"] {
+  --lv-panel: #1d1e23; --lv-stage: #121316; --lv-chip: #2a2c33; --lv-grid: rgba(255, 255, 255, .05);
+  --lv-ink: #f1f2f5; --lv-ink2: #cdd0d8; --lv-mut: #a4a9b4; --lv-line: #30333b; --lv-edge: #7d8391;
+  --lv-acc: #8ab4ff; --lv-on-acc: #0b1220; --lv-ag: #5eead4; --lv-warn: #fbbf24; --lv-ok: #4ade80; --lv-bad: #f87171;
+  --lv-paper: #f4f4f1; --lv-p-edge: #aeb4c0; --lv-p-ink: #17181c; --lv-p-ink2: #383c46; --lv-p-mut: #4d535e;
+  --lv-p-acc: #1d4ed8; --lv-p-ag: #0b6b62; --lv-p-warn: #8a4a05; --lv-p-ok: #146c37; --lv-p-bad: #b42318;
+}
+
+/* THE PANEL: re-point the app tokens inside it, so every existing rule (rows, ledgers, chunks) inherits the one palette */
+.pv-rp.pv-live {
+  --ink: var(--lv-ink); --ink2: var(--lv-ink2); --mut: var(--lv-mut); --dim: var(--lv-mut);
+  --line: var(--lv-line); --line2: var(--lv-edge); --link: var(--lv-acc); --ag: var(--lv-ag);
+  --ok: var(--lv-ok); --warn: var(--lv-warn); --bad: var(--lv-bad);
+  --side: var(--lv-panel); --side2: var(--lv-chip); --acc-soft: var(--lv-chip);
+  --ok-soft: color-mix(in srgb, var(--lv-ok) 14%, transparent); --ag-soft: color-mix(in srgb, var(--lv-ag) 14%, transparent);
+  background: var(--lv-panel) !important; border-color: transparent; color: var(--lv-ink);
+}
+/* PAPER: inside a card the same tokens flip to ink-on-paper (matters in dark, where the stage is dark and the card is not) */
+.pv-rp.pv-live :is(.sheet, .scan, .pv-clip, .pv-node, .chunk .w, .ph-gr .node, .ph-eva .sd, .ph-eva .swap) {
+  --ink: var(--lv-p-ink); --ink2: var(--lv-p-ink2); --mut: var(--lv-p-mut); --dim: var(--lv-p-mut);
+  --link: var(--lv-p-acc); --ag: var(--lv-p-ag); --ok: var(--lv-p-ok); --warn: var(--lv-p-warn); --bad: var(--lv-p-bad); --line: var(--lv-p-edge);
+  color: var(--lv-p-ink);
+}
+.pv-rp.pv-live :is(.sheet, .scan, .pv-node, .chunk .w, .ph-gr .node, .ph-eva .sd, .ph-eva .swap) { background: var(--lv-paper); border-color: var(--lv-p-edge); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); }
+
+/* HEADER: the phase in plain words, a clear show/hide */
+.pv-live .pv-rp-h { padding: 8px 8px 4px 12px; gap: 8px; }
+.pv-live .pv-rp-g { background: var(--lv-chip); box-shadow: none; color: var(--lv-ink); }
+.pv-live .pv-rp-say { font-size: 14.5px; font-weight: 600; line-height: 1.3; color: var(--lv-ink); }
+.pv-live .pv-tog { margin-left: auto; min-height: 32px; padding: 0 10px; font-size: 13px; font-weight: 600; color: var(--lv-acc); }
+.pv-live .pv-tog:hover { background: var(--lv-chip); }
+.pv-live.quiet .pv-rp-say { color: var(--lv-ink2); font-weight: 500; }
+
+/* THE NINE LEVELS: grey = still to come, tinted = done, solid accent = now (three states, none of them a white blob) */
+.pv-live .pv-levels { gap: 4px; padding: 0 2px; }
+.pv-live .pv-lv { height: 26px; font-size: 13px; color: var(--lv-mut); background: var(--lv-chip); border: 1px solid transparent; }
+.pv-live .pv-lv.done { color: var(--lv-ink); background: color-mix(in srgb, var(--lv-acc) 16%, var(--lv-panel)); border-color: color-mix(in srgb, var(--lv-acc) 40%, transparent); }
+.pv-live .pv-lv.on { color: var(--lv-on-acc); background: var(--lv-acc); border-color: var(--lv-acc); font-weight: 700; }
+
+/* THE STAGE: one calm well; frames cut, they do not ghost (the leaving frame and its header are gone at once) */
+.pv-live .pv-ph-host { background: var(--lv-stage); border: 0; border-radius: var(--r-md); }
+.pv-live .pv-ph.leave { display: none !important; }
+.pv-live .pv-ph-k { padding: 8px 14px; gap: 8px; font-size: 12.5px; color: var(--lv-mut); border-bottom: 1px solid var(--lv-line); background: transparent; }
+.pv-live .pv-ph-k b { font: 700 12.5px/1.2 var(--sans); color: var(--lv-ink); }
+.pv-live .pv-ph-k .g { color: var(--lv-mut) !important; }
+.pv-live .pv-ph-k .q { color: var(--lv-ink2); font-size: 12.5px; }
+.pv-live .pv-ph-b { background: transparent; padding: 12px 14px; }
+.pv-live .pv-ph-b .none { color: var(--lv-mut); font-size: 13.5px; }
+
+/* the query's own words: weight, never an underline or a field */
+.pv-live .pv-k-w { box-shadow: none; text-decoration: none; font-weight: 650; }
+.pv-live .pv-clip mark, .pv-live .pv-picked, .pv-live .pv-ph-b mark { background: transparent !important; box-shadow: none !important; padding: 0; color: inherit; }
+.pv-live .pv-w.ul, .pv-live .pv-w.askw.lit { box-shadow: none; }
+.pv-live .pv-w.lit { background: color-mix(in srgb, var(--lv-p-acc) 14%, transparent); }
+.pv-live .pv-w.askw.lit { background: color-mix(in srgb, var(--lv-p-ok) 15%, transparent); }
+.pv-live .pv-ph-b.ph-eva .pv-run { background: none; box-shadow: none; font-weight: 650; }
+
+/* 2 SIG: the rows are text on the stage; the ones passed over are dimmed by colour (still >= 4.5:1), not by opacity or strike-through */
+.pv-live .pv-ph-b.ph-sig .row { font-size: 13.5px; padding: 8px 0; }
+.pv-live .pv-ph-b.ph-sig .row.off { opacity: 1; color: var(--lv-mut); }
+.pv-live .pv-ph-b.ph-sig .row.off b { text-decoration: none; font-weight: 500; }
+.pv-live .pv-ph-b.ph-sig .t .d, .pv-live .pv-ph-b.ph-sig .st { font-size: 12.5px; color: var(--lv-mut); }
+
+/* 3 INS: a page is a sheet of paper; a page being read is one sheet whose matching lines are set in a heavier weight */
+.pv-live .pv-ph-b.ph-ins { gap: 10px; }
+.pv-live .pv-ph-b.ph-ins > * { flex: none; }   /* a clamped card must not be squeezed into the stage: it keeps its height and the stage crops, never a card mid-line */
+.pv-live .pv-ph-b.ph-ins .sheet, .pv-live .pv-ph-b.ph-ins .scan { border: 1px solid var(--lv-p-edge); border-radius: 8px; padding: 10px 14px; }
+.pv-live .pv-ph-b.ph-ins .h { font-size: 15px; font-weight: 600; border-bottom: 1px solid var(--lv-line); padding-bottom: 4px; color: var(--lv-p-ink); }
+.pv-live .pv-ph-b.ph-ins .p { font-size: 14.5px; line-height: 1.55; color: var(--lv-p-ink); }
+.pv-live .pv-ph-b.ph-ins .s, .pv-live .pv-ph-b.ph-ins .scan .sf, .pv-live .pv-ph-b.ph-ins .scan .sh span { font-size: 12.5px; color: var(--lv-p-mut); }
+.pv-live .pv-ph-b.ph-ins .scan .sh > .pv-fav { margin-left: 0; }
+.pv-live .pv-ph-b.ph-ins .scan .sh { color: var(--lv-p-ink); border-bottom-color: var(--lv-line); flex-wrap: wrap; row-gap: 2px; }
+.pv-live .pv-ph-b.ph-ins .scan .ln { font-size: 14px; padding: 2px 0 2px 8px; color: var(--lv-p-ink); }
+.pv-live .pv-ph-b.ph-ins .scan .ln.skim { opacity: 1; font-size: 13px; color: var(--lv-p-mut); }
+.pv-live .pv-ph-b.ph-ins .scan .ln.hit { background: none; font-weight: 500; box-shadow: inset 3px 0 0 var(--lv-p-ag); }
+
+/* 4 SEG: word boxes are small paper tags; subject / verb / object differ by border and label colour, the verb by fill */
+.pv-live .pv-ph-b.ph-seg, .pv-live .pv-ph-b.ph-gr { background-color: transparent; background-image: linear-gradient(var(--lv-grid) 1px, transparent 1px), linear-gradient(90deg, var(--lv-grid) 1px, transparent 1px); background-size: 20px 20px; }
+.pv-live .pv-ph-b.ph-seg .line { justify-content: flex-start; gap: 8px 10px; }   /* index.html spreads them space-between: at 375px a lone box strands at the far edge */
+.pv-live .pv-ph-b.ph-seg .chunk .w { font-size: 14.5px; border: 1.5px solid var(--lv-p-edge); border-radius: 6px; padding: 4px 9px; }
+.pv-live .pv-ph-b.ph-seg .chunk .l { font: 700 11px/1 var(--mono); color: var(--lv-mut); }
+.pv-live .pv-ph-b.ph-seg .c-s .w { border: 2px solid var(--lv-p-ag); } .pv-live .pv-ph-b.ph-seg .c-s .l { color: var(--lv-ag); }
+.pv-live .pv-ph-b.ph-seg .c-v .w { border: 2px solid var(--lv-p-acc); background: color-mix(in srgb, var(--lv-p-acc) 13%, var(--lv-paper)); font-style: italic; padding: 3.5px 8px; } .pv-live .pv-ph-b.ph-seg .c-v .l { color: var(--lv-acc); }
+.pv-live .pv-ph-b.ph-seg .c-o .w { border: 2px solid var(--lv-p-warn); } .pv-live .pv-ph-b.ph-seg .c-o .l { color: var(--lv-warn); }
+.pv-live .pv-ph-b.ph-seg .drop { text-decoration: none; color: var(--lv-mut); font-size: 12.5px; }
+
+/* 5 CON / 6 SYN: nodes are paper cards, edges are plain lines, the lit path is the accent; the writing strip is a quiet panel (no black stage) */
+.pv-live .pv-ph-SYN, .pv-live .pv-ph-b.ph-gr.ph-syn, .pv-live .pv-ph-b.ph-syn2 { background-color: transparent; }
+.pv-live .pv-ph-SYN .pv-ph-k { background: transparent; border-color: var(--lv-line); color: var(--lv-mut); } .pv-live .pv-ph-SYN .pv-ph-k b { color: var(--lv-ink); } .pv-live .pv-ph-SYN .pv-ph-k .q { color: var(--lv-ink2); }
+.pv-live .pv-ph-b.ph-gr .node { font-size: 14px; line-height: 1.3; padding: 6px 9px; border: 1.5px solid var(--lv-p-edge); border-radius: 8px; }
+.pv-live .pv-ph-b.ph-gr .node .m { font-size: 11px; color: var(--lv-p-ag); }
+.pv-live .pv-ph-b.ph-gr .node.merged, .pv-live .pv-ph-b.ph-gr.ph-syn .node.lit { border: 2px solid var(--lv-p-ag); box-shadow: none; color: var(--lv-p-ink); }
+.pv-live .pv-ph-b.ph-gr.ph-syn .node { background: var(--lv-paper); color: var(--lv-p-mut); border: 1.5px solid var(--lv-p-edge); }
+.pv-live .pv-ph-b.ph-gr .e, .pv-live .pv-ph-b.ph-gr.ph-syn .e { stroke: var(--lv-edge); stroke-width: 1.5; }
+.pv-live .pv-ph-b.ph-gr.ph-syn .e.on { stroke: var(--lv-ag); stroke-width: 2.5; }
+.pv-live .pv-ph-b.ph-gr .verb { font-size: 13.5px; color: var(--lv-acc); background: var(--lv-chip); padding: 1px 6px; }
+.pv-live .pv-ph-b.ph-gr .wr, .pv-live .pv-ph-b.ph-syn2 .wr { background: var(--lv-panel); border-top: 1px solid var(--lv-line); }
+.pv-live .pv-ph-b.ph-gr .wr .k, .pv-live .pv-ph-b.ph-syn2 .wr .k, .pv-live .pv-ph-b.ph-syn2 .oh { font-size: 11px; color: var(--lv-mut); }
+.pv-live .pv-ph-b.ph-gr .wr .s, .pv-live .pv-ph-b.ph-syn2 .wr .s { font-size: 15px; color: var(--lv-ink); }
+.pv-live .pv-ph-b.ph-gr .wr .caret, .pv-live .pv-ph-b.ph-syn2 .wr .caret { background: var(--lv-ag); }
+.pv-live .pv-ph-b.ph-syn2 .step { color: var(--lv-mut); }
+.pv-live .pv-ph-b.ph-syn2 .no { border-color: var(--lv-edge); font-size: 12.5px; }
+.pv-live .pv-ph-b.ph-syn2 .pl { border-color: var(--lv-edge); color: var(--lv-ink2); font-size: 14px; white-space: normal; text-overflow: clip; overflow-wrap: anywhere; line-height: 1.25; }
+.pv-live .pv-ph-b.ph-syn2 .pl i { font-size: 11.5px; color: var(--lv-ag); }
+.pv-live .pv-ph-b.ph-syn2 .vb { color: var(--lv-mut); }
+.pv-live .pv-ph-b.ph-syn2 .step.on .no { background: var(--lv-ag); border-color: var(--lv-ag); color: var(--lv-stage); }
+.pv-live .pv-ph-b.ph-syn2 .step.on .pl, .pv-live .pv-ph-b.ph-syn2 .pl.on { color: var(--lv-ink); border-color: var(--lv-ag); box-shadow: none; }
+.pv-live .pv-ph-b.ph-syn2 .step.on .vb { color: var(--lv-ink); }
+
+/* 7 DEF / 8 EVA / 9 REC: small mono labels up to 11px, verdict colours from the one palette */
+.pv-live .pv-ph-b.ph-def .hd, .pv-live .pv-ph-b.ph-eva .k, .pv-live .pv-ph-b.ph-rec .mx .grp { font-size: 11px !important; }
+.pv-live .pv-ph-b.ph-def .led, .pv-live .pv-ph-b.ph-rec .mx { font-size: 13px; }
+.pv-live .pv-ph-b.ph-eva .sd { border: 1px solid var(--lv-p-edge); font-size: 14px; } .pv-live .pv-ph-b.ph-eva .sd.sr { background: var(--lv-paper); }
+.pv-live .pv-ph-b.ph-eva .ticks, .pv-live .pv-ph-b.ph-eva .swap .v, .pv-live .pv-ph-b.ph-rec .mx .v, .pv-live .pv-ph-b.ph-rec .note { font-size: 12.5px; }
+
+/* GRAPH STAGE (replay, full view): word boxes keep their JS positions; only type and tint change */
+.pv-live .pv-gstage { --pv-line: var(--lv-edge); }
+.pv-live .pv-edge-l { stroke: var(--lv-edge); } .pv-live .pv-edge-l.ask { stroke: var(--lv-ok); }
+.pv-live .pv-tok { color: var(--lv-ink); }
+.pv-live .pv-tok .l { font-size: 10px; line-height: 1.2; color: var(--lv-mut); }
+.pv-live .pv-gstage.tags .pv-t-aux, .pv-live .pv-gstage.tags .pv-t-verb, .pv-live .pv-gstage.roles .pv-tok[data-role=v] { background: color-mix(in srgb, var(--lv-acc) 14%, transparent); }
+.pv-live .pv-gstage.tags .pv-t-name, .pv-live .pv-gstage.roles .pv-tok[data-role=s] { background: color-mix(in srgb, var(--lv-ag) 14%, transparent); }
+.pv-live .pv-gstage.tags .pv-t-num, .pv-live .pv-gstage.roles .pv-tok[data-role=o] { background: color-mix(in srgb, var(--lv-warn) 14%, transparent); }
+.pv-live .pv-tok.ent { box-shadow: none; background: color-mix(in srgb, var(--lv-ink) 9%, transparent); font-weight: 600; }
+.pv-live .pv-tok.salient, .pv-live .pv-tok.hit, .pv-live .pv-tok.used { box-shadow: none; font-weight: 650; background: color-mix(in srgb, var(--lv-acc) 14%, transparent) !important; }
+.pv-live .pv-node { box-shadow: none; } .pv-live .pv-node .id { background: var(--lv-paper); color: var(--lv-p-mut); }
+.pv-live .pv-gstage.reason .pv-node.ask, .pv-live .pv-gstage.syn .pv-node.merged, .pv-live .pv-gstage.writing .pv-node.used { box-shadow: none; border-color: var(--lv-p-ag); }
+.pv-live .pv-gcap { font-size: 12.5px; color: var(--lv-mut); }
+.pv-live .pv-rowlab { font-size: 12px; color: var(--lv-mut); }
+.pv-live .pv-rowlab .lang { font-size: 10.5px; color: var(--lv-acc); border-color: var(--lv-acc); }
+
+/* THE FOOT and the REPLAY BAR: sentences at 13px, controls you can hit */
+.pv-live .pv-ph-foot .f { font: 13px/1.45 var(--sans); color: var(--lv-ink2); padding: 6px 4px 2px; }
+.pv-live .pv-ph-foot .do b { color: var(--lv-ink); }
+.pv-live .pv-ph-foot .eot { font: 12.5px/1.4 var(--mono); color: var(--lv-mut); }
+.pv-player .pv-tape-bar { gap: 6px 8px; }
+.pv-player .pv-tape-bar .pv-btn { min-height: 32px; min-width: 36px; border: 1px solid var(--lv-edge); background: var(--lv-panel); color: var(--lv-ink); font-size: 13px; }
+.pv-player .pv-tape-bar .pv-btn:hover { background: var(--lv-chip); }
+.pv-player .pv-clock { font-size: 12.5px; color: var(--lv-mut); }
+.pv-player .pv-speed { background: var(--lv-chip); }
+.pv-player .pv-speed button { min-height: 28px; padding: 0 11px; font-size: 12.5px; color: var(--lv-ink2); }
+.pv-player .pv-speed button.on { background: var(--lv-acc); color: var(--lv-on-acc); box-shadow: none; font-weight: 700; }
+.pv-player .pv-tscrub input[type=range] { accent-color: var(--lv-acc); min-height: 24px; }
+.pv-player .pv-tick { font-size: 12px; color: var(--lv-mut); } .pv-player .pv-tick.deep { color: var(--lv-ink); }
+
+/* NARROW (a phone, or a column squeezed by the sidebar): a taller stage, two papers at most, type that does not shrink */
+@container (max-width: 560px) {
+  .pv-live .pv-lv { height: 26px; font-size: 13px; }
+  .pv-live .pv-rp-say { font-size: 14.5px; }
+  .pv-live-on > .pv-rp .pv-ph-host { height: 290px; }
+  .pv-live .pv-ph-b { padding: 10px 12px; }
+  .pv-live .pv-ph-b.ph-nul .bigq { font-size: 21px; }
+  .pv-live .pv-ph-b.ph-ins .scan .sh > span:not(.pv-fav) { margin-left: 0; flex-basis: 100%; }
+  .pv-live .pv-ph-b.ph-ins .sheet:nth-last-child(n+3) { display: none; }
+  .pv-live .pv-ph-b.ph-ins .sheet .p, .pv-live .pv-ph-b.ph-ins .sheet .h { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 4; }
+  .pv-live .pv-ph-b.ph-ins .sheet .h { -webkit-line-clamp: 1; }
+  .pv-live .pv-ph-b.ph-ins .scan .ln.hit { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; -webkit-line-clamp: 3; }
+  .pv-live .pv-ph-b.ph-seg .chunk .w, .pv-live .pv-ph-b.ph-gr .node { font-size: 14px; }
+  .pv-live .pv-ph-b.ph-syn2 .vb::before, .pv-live .pv-ph-b.ph-syn2 .vb::after { content: none; }
+  .pv-live .pv-ph-b.ph-syn2 .outline { padding: 12px 12px; } .pv-live .pv-ph-b.ph-syn2 .wr { padding: 10px 12px; }
+  .pv-live .pv-ph-b.ph-rec .mx .q { white-space: normal; }
+  .pv-live .pv-ph-foot .f { font-size: 13px; }
+}
+
+/* THE WORKING LINE: a sentence in the app's type, then the controls on their own row as real 32px buttons */
+.cc-run .cc-live { font: 14px/1.5 var(--sans); color: var(--lv-ink); }
+.cc-run .cc-live .cc-g { color: var(--lv-ag); }
+.cc-run .cc-live-v { font-weight: 600; color: var(--lv-ink); }
+.cc-run .cc-live-m { font-size: 12.5px; color: var(--lv-mut); }
+/* no Stop beside the answer (user, 2026-10-07): the composer's send button already becomes Stop for the whole turn, and Esc stops it too */
+.cc-run .cc-live .cc-stop { display: none !important; }
+.cc-run .cc-live .cc-views { display: flex; width: fit-content; max-width: 100%; margin: 6px 0 0; padding: 2px; gap: 2px; background: var(--lv-chip); border: 1px solid var(--lv-edge); border-radius: 999px; }
+.cc-run .cc-live .cc-vw { min-height: 32px; min-width: 52px; padding: 0 14px !important; font-size: 13px; border-radius: 999px; text-decoration: none !important; color: var(--lv-ink2) !important; }
+.cc-run .cc-live .cc-vw:hover { background: color-mix(in srgb, var(--lv-ink) 8%, transparent); color: var(--lv-ink) !important; }
+.cc-run .cc-live .cc-vw[aria-pressed="true"] { background: var(--lv-acc); color: var(--lv-on-acc) !important; font-weight: 700; }

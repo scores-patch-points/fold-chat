@@ -14,6 +14,7 @@
 
 import { impressionOf } from "./fold-chat-impression.js";
 import { declaredBlocksFromHtml, looksBlocked } from "./fold-chat-strand.js";
+import { looksDisambiguation } from "./fold-chat-senses.js";
 import { searchDirect } from "./fold-chat-engines.js";
 import { isExtension } from "./fold-chat-exit.js";
 import { contactsOfRaw } from "./fold-chat-tip.js";
@@ -313,8 +314,27 @@ export const MEMO_MAX_PAGES = 40;
 // reachable at all answers in a second or two (measured: 100 ms–2 s), and the public
 // proxies' failures took 8 s each to arrive.
 export const GATEWAY_BUDGET_MS = 3500;
+export const DOOR_TTL_MS = 10 * 60 * 1000;   // E2: how long a door that has never answered is left alone
+const DOORS = new Map();
+const doorUp = (key) => { try { if (localStorage.getItem("fold-chat:e2doors") === "off") return true; } catch {} const d = DOORS.get(key); if (!d) return true; if (Date.now() - d.at > DOOR_TTL_MS) { DOORS.delete(key); return true; } return !(d.fail >= d.limit && d.ok === 0); };
+const doorSaw = (key, ok, limit) => { const d = DOORS.get(key) || { ok: 0, fail: 0, at: Date.now(), limit }; if (ok) d.ok++; else d.fail++; d.at = Date.now(); DOORS.set(key, d); };
+export const _doors = DOORS;
+export const WEB_GRACE_MS = 2000;   // E2: once another source has answered with a usable list, how much longer the open web may keep the turn waiting
+export const READ_GRACE_MS = 1500;   // E2: once enough pages are read, how long reads still in flight may keep the turn waiting
+export const DIRECT_BUDGET_MS = 1500;   // E2: the browser's own read of a page; past it the relay chain is tried
 const hostKey = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const WIKI_RE = /^https?:\/\/([a-z-]+)\.wikipedia\.org\/wiki\/([^?#]+)/i;
+
+/** A response that is not text (an image, a font or a download served to a page request, read as UTF-8, comes back as replacement characters and control bytes).
+ *  It is turned away like a blocked page: quoting `��%q&k…` as a source is worse than having no source. */
+export function looksBinary(s) {
+  const t = String(s || "").slice(0, 4000);
+  if (t.length < 40) return false;
+  if (t.includes("\u0000")) return true;
+  let bad = 0;
+  for (const ch of t) { const c = ch.codePointAt(0); if (c === 0xfffd || (c < 32 && c !== 9 && c !== 10 && c !== 13) || (c >= 0x7f && c < 0xa0)) bad++; }
+  return bad / t.length > 0.05;
+}
 
 export async function readText(url, { fetchImpl = fetch, timeoutMs = 8000, memo = null, direct = false } = {}) {
   const now = Date.now();
@@ -359,6 +379,7 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
     const r = await fetchT(fetchImpl, target, ms, null, ctl ? ctl.signal : null);
     if (!r.ok) throw new Error("HTTP " + r.status);
     const raw = await readCapped(r);
+    if (looksBinary(raw)) throw new Error("not text");
     let text = stripTags(raw);
     const recipe = /ld\+json/i.test(raw) ? recipeDataFromHtml(raw) : null;
     // how the page's own creator says to reach them (kept only when the page offered something; used only if the person clicks 'Tip the creator')
@@ -370,6 +391,7 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
     if (/^\s*\{/.test(raw)) { try { const j = JSON.parse(raw); text = stripTags((j.data && (j.data.text || j.data.content)) || ""); } catch (e) {} }
     else if (raw.includes("Markdown Content:")) text = raw.split("Markdown Content:").slice(1).join("Markdown Content:").trim();
     if (looksBlocked(text)) throw new Error("blocked");
+    if (looksDisambiguation(text)) throw new Error("disambiguation");   // a list of senses is a pointer, never a source
     if (text.length < 40) throw new Error("too short");
     if (text.length > 24000) text = text.slice(0, 24000);
     return { ok: true, text, title: titleOf(raw) || oneLine(text.split("\n")[0]).slice(0, 80), via, url, ...(recipe ? { recipe } : {}), ...(declared.length ? { declared } : {}), ...(contacts ? { contacts } : {}) };
@@ -392,7 +414,8 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
         }
       } catch (e) {}
     } }
-  try { return await attempt(url, "direct", null); } catch (e) {}
+  const dKey = "direct:" + hostKey(url);
+  if (direct || doorUp(dKey)) { try { const v = await attempt(url, "direct", null, (() => { try { return localStorage.getItem("fold-chat:e2cap") === "off" ? timeoutMs : Math.min(timeoutMs, DIRECT_BUDGET_MS); } catch { return Math.min(timeoutMs, DIRECT_BUDGET_MS); } })()); doorSaw(dKey, true, 1); return v; } catch (e) { if (!(e && e.name === "AbortError")) doorSaw(dKey, false, 1); } }   // E2: a CORS-closed host answers only to be refused (5-7 s measured); the relay chain follows as before
   // AN EXTENSION'S OWN FETCH IS THE DOOR: it has host permissions, so a refusal here is the site's own,
   // and no proxy or text reader (each a third party that would learn the address) could change it.
   if (direct) return { ok: false, text: "", title: "", via: null, url, error: "refused", direct: true };
@@ -416,7 +439,7 @@ async function readTextUncached(url, { fetchImpl = fetch, timeoutMs = 8000, dire
       }
     });
   };
-  const viaProxy = await firstOf(CORS_PROXIES.map((p, i) => (ctl) => attempt(p(url), i === 0 ? "the fold's relay" : "a public proxy", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS))));
+  const viaProxy = await firstOf(CORS_PROXIES.map((p, i) => ({ p, i })).filter(({ i }) => i === 0 || doorUp("proxy:" + i)).map(({ p, i }) => (ctl) => attempt(p(url), i === 0 ? "the fold's relay" : "a public proxy", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS)).then((v) => { if (i) doorSaw("proxy:" + i, true, 6); return v; }, (e) => { if (i && !(e && e.name === "AbortError")) doorSaw("proxy:" + i, false, 6); throw e; })));
   if (viaProxy) return viaProxy;
   const viaReader = await firstOf(TEXT_READERS.map((rd) => (ctl) => attempt(rd(url), "a text reader", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS))));
   if (viaReader) return viaReader;
@@ -702,6 +725,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   // search PER ENTITY, because a bag-of-words query to them returns whatever
   // page happens to mention all the names (measured: "Snowden disclosures").
   const settled = [];
+  let firstApiAt = null;
   const runScope = async (q, s, state = null) => {
     step({ phase: "searching", scope: s, q });
     try {
@@ -711,6 +735,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
       step({ phase: "found", scope: s, q, engine: out.engine, n: out.results.length });
       const list = out.results.map((r) => ({ ...r, _q: q })).slice(0, Math.max(perScope, read + EXTRA_CANDIDATES));
       settled.push(list);
+      if (s !== "web" && firstApiAt == null && list.length >= 3) firstApiAt = Date.now();
       return { ok: true, list };
     } catch (e) {
       if (state && state.webClosed) return { ok: false, list: [] };
@@ -735,7 +760,8 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
   const webRun = scopes.includes("web") ? runScope(query, "web", state) : Promise.resolve({ ok: true, list: [] });
   const apiRun = runApi(upfront);
   let timer = null;
-  const webOrLate = new Promise((res) => { timer = setTimeout(() => res(null), webBudgetMs); });
+  const wg = (() => { try { return localStorage.getItem("fold-chat:e2webgrace") === "off" ? Infinity : WEB_GRACE_MS; } catch { return WEB_GRACE_MS; } })();
+  const webOrLate = new Promise((res) => { timer = setTimeout(() => res(null), webBudgetMs); const iv = setInterval(() => { if (firstApiAt != null && Date.now() - firstApiAt > wg) { clearInterval(iv); res(null); } }, 50); setTimeout(() => clearInterval(iv), webBudgetMs + 100); });
   const webGot = await Promise.race([webRun, webOrLate]);
   clearTimeout(timer);
   let web = webGot;
@@ -751,7 +777,18 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
       step({ phase: "failed", scope: "web", q: query, why: `slow (over ${Math.round(webBudgetMs / 1000)} s) — went on without it` });
     } else {
       step({ phase: "waiting", scope: "web", why: "nothing else answered — waiting for the web" });
-      web = await webRun;
+      // HARD CAP (E2 L10b): even when nothing else answered, do not wait on the web forever — the turn's own clock is
+      // the answer tier's 2 x ms. Past it, give up with a typed line so the person is never left on a silent counter.
+      const hardMs = (() => { try { return localStorage.getItem("fold-chat:e2webhard") === "off" ? Infinity : Math.max(webBudgetMs * 2, 20000); } catch { return Math.max(webBudgetMs * 2, 20000); } })();
+      let hard = null;
+      web = await Promise.race([webRun, new Promise((res) => { hard = Number.isFinite(hardMs) ? setTimeout(() => res(null), hardMs) : null; })]);
+      if (hard) clearTimeout(hard);
+      if (!web) {
+        state.webClosed = true;
+        web = { ok: false, list: [] };
+        trace.push({ scope: "web", q: query, ok: false, why: `no answer in ${Math.round(hardMs / 1000)} s — gave up so the turn can go on` });
+        step({ phase: "failed", scope: "web", q: query, why: `still nothing after ${Math.round(hardMs / 1000)} s — gave up` });
+      }
     }
   }
   await apiRun;
@@ -856,22 +893,29 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
       const r = chosen[i];
       step({ phase: "reading", url: r.url, site: r.source, title: r.title });
       const rd = await readText(r.url, { fetchImpl, timeoutMs: 8000, memo, direct });
-      step({ phase: rd.ok ? "read" : "unread", url: r.url, site: r.source, title: r.title, via: rd.via, chars: rd.ok ? rd.text.length : 0, kept: rd.ok ? impressionOf(rd.text, query, { budget: IMPRESSION_BUDGET }).shadow.kept : 0 });
+      step({ phase: rd.ok ? "read" : "unread", url: r.url, site: r.source, title: r.title, via: rd.via, chars: rd.ok ? rd.text.length : 0, text: rd.ok ? String(rd.text).replace(/\s+/g, " ").slice(0, 1400) : "", kept: rd.ok ? impressionOf(rd.text, query, { budget: IMPRESSION_BUDGET }).shadow.kept : 0 });
       reads.push({ r, rd, i });
       if (rd.ok) okReads++;
     }
   };
-  await Promise.all(Array.from({ length: Math.min(CONC, chosen.length) }, worker));
+  { const all = Promise.all(Array.from({ length: Math.min(CONC, chosen.length) }, worker));
+    const graceMs = (() => { try { return localStorage.getItem("fold-chat:e2grace") === "off" ? Infinity : READ_GRACE_MS; } catch { return READ_GRACE_MS; } })();
+    let release = null; const enough = new Promise((res) => { release = res; });
+    const poll = setInterval(() => { if (okReads >= want) { clearInterval(poll); setTimeout(release, graceMs === Infinity ? 0 : graceMs); } }, 50);
+    if (graceMs === Infinity) { clearInterval(poll); await all; } else { await Promise.race([all, enough]); clearInterval(poll); } }   // E2: enough pages read, do not wait for stragglers
   reads.sort((x, y) => x.i - y.i);
-  // KEEP THE DIFFERENCE, NOT THE PAGE. A read page (up to 24k chars) is reduced
-  // to its IMPRESSION — the sentences that differ the ask — and a SHADOW (original
-  // length, fingerprint, byte ranges). The full text is not carried on.
-  const passages = [];
+  // KEEP THE DIFFERENCE, NOT THE PAGE — for the model and the record. A read page (up to 24k chars) is reduced
+  // to its IMPRESSION — the sentences that differ the ask — and a SHADOW (original length, fingerprint, byte
+  // ranges). The full page stays in THIS TURN's memory only (`pages`, and `page` on each passage, non-enumerable so
+  // it is never stored or sent): the REC loop recalls a failing claim against it and takes a NEW impression for that
+  // claim (fold-chat-falsify-answer.js reImpress) before it searches again.
+  const passages = [], pages = [];
   for (const { r, rd } of reads) {
     if (rd.ok) {
       const e = impressionOf(rd.text, query, { budget: IMPRESSION_BUDGET });
       const kept = { chars: e.shadow.chars, kept: e.shadow.kept, hash: e.shadow.hash };
-      if (passages.length < want) { passages.push({ ref: r.source + " — " + r.title, source: r.url, text: e.text, via: rd.via, url: r.url, shadow: e.shadow, ...(rd.recipe ? { recipe: rd.recipe } : {}), ...(rd.declared ? { declared: rd.declared } : {}), ...(rd.contacts ? { contacts: rd.contacts } : {}) }); trace.push({ read: r.url, via: rd.via, ...kept }); }
+      pages.push({ ref: r.source + " \u2014 " + r.title, url: r.url, text: rd.text, shadow: e.shadow, used: passages.length < want });
+      if (passages.length < want) { const p = { ref: r.source + " — " + r.title, source: r.url, text: e.text, via: rd.via, url: r.url, shadow: e.shadow, ...(rd.recipe ? { recipe: rd.recipe } : {}), ...(rd.declared ? { declared: rd.declared } : {}), ...(rd.contacts ? { contacts: rd.contacts } : {}) }; Object.defineProperty(p, "page", { value: rd.text, enumerable: false }); passages.push(p); trace.push({ read: r.url, via: rd.via, ...kept }); }
       else trace.push({ read: r.url, via: rd.via, ...kept, skipped: true });
     } else trace.push({ read: r.url, via: null, ok: false });
   }
@@ -887,7 +931,7 @@ export async function searchWeb(query, { scopes = EFFORT.balanced.scopes, read =
       step({ phase: "snippet", url: r.url, site: r.source, title: r.title });
     }
   }
-  return { results, passages, trace };
+  return { results, passages, trace, pages };
 }
 
 // ── the slot-ask pipeline's two reads (fold-chat-answerwire.js hands them to fold-chat-answerturn.js as deps) ─────────────────────────

@@ -1,7 +1,7 @@
 // fold-chat-senses.test.mjs — one bare word that names several things: say so (an app-authored line).
 import test from "node:test";
 import assert from "node:assert/strict";
-import { senseTerm, disambiguationOf, sensesLine } from "./fold-chat-senses.js";
+import { senseTerm, disambiguationOf, sensesLine, looksDisambiguation } from "./fold-chat-senses.js";
 
 // What Wikipedia's search returned for the bare term (measured 2026-10-05, trimmed).
 const MERCURY = [
@@ -47,4 +47,14 @@ test("sensesLine: non-English asks get a language-neutral line; the list is capp
   assert.equal(d.senses.length, 2); assert.equal(d.more, true);
   assert.equal(sensesLine(d, { english: false }), "Mercury · Freddie Mercury, Mercury (element) …");
   assert.equal(sensesLine(null), "");
+});
+
+test("looksDisambiguation: a list of senses is detected; a real article (even with a hatnote) is not", () => {
+  assert.equal(looksDisambiguation("President may refer to: President of the United States, President of Russia"), true);
+  assert.equal(looksDisambiguation("Mercury most commonly refers to: Mercury (planet), Mercury (element)"), true);
+  assert.equal(looksDisambiguation("Topics referred to by the same term. This disambiguation page lists articles associated with the title President."), true);
+  // controls: a real article, and an article whose HATNOTE merely links to a disambiguation page
+  assert.equal(looksDisambiguation("Mercury is the first planet from the Sun and the smallest in the Solar System."), false);
+  assert.equal(looksDisambiguation("For other uses, see Mercury (disambiguation). Mercury is the first planet from the Sun."), false);
+  assert.equal(looksDisambiguation("The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France."), false);
 });

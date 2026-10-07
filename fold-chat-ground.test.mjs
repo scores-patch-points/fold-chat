@@ -321,3 +321,22 @@ test("the cited span stays inside the sentence that carries the evidence", () =>
   assert.ok(e.ref);
   assert.match(excerpt(e.sourceText, e.span).quote, /8,848\.86/);
 });
+
+// REGRESSION (2026-10-07, "who wrote pride and prejudice?"): the model wrote the right answer and the Pivot dropped it as `ungrounded:name` ("English"). Three
+// passages were read; the film pages lack "English" (a hard name failure), the novel page says it ("a novel by English author Jane Austen") but not the
+// ask's own word "written". attribute reported the FIRST failure of any passage, so the frame-word rescue (which only runs for `terms`) never ran.
+test("attribute: the failure reported is the one from the passage that got furthest, not a name miss in an unrelated page", async () => {
+  const { attribute } = await import("./fold-chat-ground.js");
+  const mats = [
+    { ref: "Wikipedia — Pride and Prejudice", source: "https://en.wikipedia.org/wiki/Pride_and_Prejudice", text: "Pride and Prejudice is a novel by English author Jane Austen.\nThe Bennet family meets the charming militia officer George Wickham." },
+    { ref: "Wikipedia — Pride & Prejudice (2005 film)", source: "https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)", text: "Pride & Prejudice is a 2005 period romance film directed by Joe Wright, based on Jane Austen's 1813 novel of the same name.\nShe had sole discretion at first, and wrote approximately ten drafts." },
+  ];
+  const r = attribute("Pride and Prejudice was written by English author Jane Austen.", mats)[0];
+  assert.equal(r.ref, null);
+  assert.equal(r.why, "terms");           // the page that says it is missing only the word "written": a content-terms failure the caller can rescue
+  assert.notEqual(r.why, "name");
+  // and a name NO passage has is still a hard name failure (the fabricated name is never rescued)
+  const bad = attribute("Pride and Prejudice was written by Charles Dickens.", mats)[0];
+  assert.equal(bad.ref, null);
+  assert.equal(bad.why, "name");
+});

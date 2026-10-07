@@ -28,6 +28,7 @@
 import { selfAsk } from "./fold-chat-self.js";
 import { evaluate } from "./fold-chat-compute.js";
 import { transformShape, codeShape, composeShape, adviceShape } from "./fold-chat-kinds.js";
+import { outputKind } from "./fold-chat-outputtype.js";
 export { skipsSearch, noClaimsLabel, KIND_PROMPT } from "./fold-chat-kinds.js";
 
 export const SMALLTALK_RE = /^(hi|hey|hello|yo|sup|good\s?(morning|afternoon|evening)|how are you|how's it going|how is it going|thanks|thank you|bye|goodbye|good night|see you)\b/i;
@@ -60,7 +61,12 @@ export function classifyTurn(question, opts = {}) {
   if (transformShape(q, { hasMaterial: !!opts.hasMaterial })) return "transform";
   if (codeShape(q)) return "code";
   if (composeShape(q)) return "compose";
-  if (GENERATE_RE.test(q)) return "generate";
+  // What was the person asked to PRODUCE? fold-chat-outputtype.js reads the verb, the noun and what stands between them (question frames,
+  // reported requests, "write down", capability questions are not requests), in en/es/fr/ru/de. GENERATE_RE (kept, exported) is only the
+  // fallback if that reading throws: it matched "how do I write an essay" and "make sure you note…" and missed every non-English ask.
+  let produced = null;
+  try { produced = outputKind(q, { hasMaterial: !!opts.hasMaterial }); } catch { produced = GENERATE_RE.test(q) ? "generate" : null; }
+  if (produced) return produced;
   if (adviceShape(q)) return "advice";
   if (RESEARCH_RE.test(q)) return "research";
   if (DEMAND_RE.test(q)) return "research";
@@ -80,6 +86,11 @@ export function classifyTurn(question, opts = {}) {
 // ("Certainly, I'd be happy to help you write…") instead of writing. So on a
 // generate turn the base prompt IS the writer, and the persona stands down.
 export const GENERATE_NUDGE = "You are a writer working ONLY from the sources provided in this context. The person asked you to WRITE or PRODUCE something. Write it now, in full, in this reply. Ground every fact in the sources you were given — never invent a date, name, figure, or event, and never write from memory. If the sources do not cover part of the piece, say plainly what is missing instead of filling it in. Do not ask them what topics to cover, do not ask for more detail, and do not offer to help later — deliver the complete piece. Never reply that you cannot write.";
+
+// THE CREATIVE WRITER (2026-10-07): a poem, a story, a tagline, a joke needs no outside facts. GENERATE_NUDGE ("working ONLY from the sources provided … say what
+// is missing") is the wrong brief for it — with no sources a small model answers it with "the sources do not cover…". fold-chat-outputtype.js says when a
+// request needs no sources (`needsSources: false`); the surface hands the model THIS brief for those and GENERATE_NUDGE for the grounded ones.
+export const GENERATE_CREATIVE_NUDGE = "You are a writer. The person asked you to WRITE something creative that needs no outside facts. Write it now, in full, in this reply. Invent freely: images, characters, voice. Do not state a real person, date, figure or event as fact. Do not ask what to cover, do not ask for more detail, do not offer to help later, and never reply that you cannot write.";
 
 // Which turns carry a grounding record — every turn that makes a claim or a
 // written artifact, i.e. everything but a greeting. The fold is always grounded

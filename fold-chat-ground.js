@@ -291,6 +291,9 @@ const COMMON_CAP = new Set(["The", "A", "An", "In", "On", "At", "Of", "For", "To
   // sentence openers of the other languages we answer in: interrogatives and articles are not names
   "Qué", "Cuál", "Cuáles", "Cómo", "Cuándo", "Dónde", "Quién", "Por", "El", "La", "Los", "Las", "Un", "Una", "Es", "Según", "Quel", "Quelle", "Quels", "Quelles", "Comment", "Quand", "Où", "Qui", "Quoi", "Pourquoi", "Le", "Les", "Une", "Des", "Du", "Selon", "Wie", "Was", "Wer", "Wann", "What", "Whose", "Whom", "Based", "Note", "Así", "Entonces", "Donc", "Dann", "Wo", "Warum", "Welche", "Welcher", "Welches", "Der", "Die", "Das", "Ein", "Eine", "Es", "Laut", "Qual", "Quais", "Quem", "Quando", "Onde", "Porque", "Como", "O", "Os", "As", "Um", "Uma", "Segundo", "Quale", "Dove", "Perché", "Il", "Lo", "Gli", "Wat", "Waar", "Wanneer", "Waarom", "Het", "Een"]);
 
+// openers that start a sentence capitalised but name nothing ("According to…", "However,…")
+for (const w of ["According", "However", "Although", "Because", "While", "After", "Before", "Since", "During", "If", "Yet", "Also", "Some", "Many", "Most", "Other", "Others", "Such", "Each", "Every", "Both", "Several", "Overall", "Instead", "Meanwhile", "Furthermore", "Moreover", "Additionally", "Despite", "Unlike", "Like", "Following", "Through", "Within", "Without", "Between", "Today", "Here", "There", "Their", "They", "We", "Our", "His", "Her", "She", "He", "Yes", "No", "Not"]) COMMON_CAP.add(w);
+
 /** The names a sentence commits to: runs of >= 2 capitalized words, bare
  *  acronyms, and LONE proper nouns (a capitalized word that is not a common
  *  opener). This is what lets "founded in 1795" be checked against a passage
@@ -670,13 +673,17 @@ export function attribute(answer, material = []) {
     }
     if (!cands.length) return miss("no-overlap");
     cands.sort((x, y) => y.score - x.score);
-    let firstFail = null, ok = null;
+    let firstFail = null, nearFail = null, ok = null;
     for (const c of cands.slice(0, 8)) {
       const v = verify(a, c.m, c.i);
       if (v.ok) { ok = { ...c, v }; break; }
       if (!firstFail) firstFail = v;
+      // the failure of the passage that got FURTHEST: its names and figures held and only content terms were missing. Reporting the first failure of
+      // ANY passage lets a film page's missing "English" mask the novel page that says it ("a novel by English author Jane Austen"), and the
+      // caller's frame-word rescue (the ask's own "wrote" is not on the page) only runs for a `terms` failure.
+      if (!nearFail && (v.why === "terms" || v.why === "terms-elsewhere" || v.why === "thin")) nearFail = v;
     }
-    if (!ok) return miss(firstFail.why, firstFail.detail, 0);
+    if (!ok) { const f = nearFail || firstFail; return miss(f.why, f.detail, 0); }
     // the cited span: the best run of the claim inside the window's best sentence, else the evidence's own extent
     const { m, i } = ok;
     const lo = Math.max(0, i - 1), hi = Math.min(m.nS - 1, i + 1);

@@ -8,11 +8,11 @@ export const FOLDVIEW_CSS = `
 :root[data-theme="dark"] .fv { --fv-a:#2dd4bf; --fv-b:#a5b4fc; --fv-c:#facc15; --fv-d:#f9a8d4; --fv-ok:#4ade80; --fv-bad:#fb923c; }
 .fv-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; padding:7px 10px; background: var(--side2, #f1f1f4); border-bottom:1px solid var(--line, #e2e2e8); }
 .fv-title { font-weight:700; } .fv-sp { flex:1; }
-.fv-chip { font-size:11.5px; font-weight:700; padding:0 9px; border-radius:999px; border:1px solid currentColor; }
+.fv-chip { font-size:11.5px; font-weight:700; padding:0 9px; border-radius:999px; border:1px solid currentColor; white-space:nowrap; }
 .fv-run { color: var(--fv-a); } .fv-ok { color: var(--fv-ok); } .fv-bad { color: var(--fv-bad); } .fv-mut { color: var(--mut, #6b6b78); }
 .fv-live .fv-run::before { content:"● "; animation: fvpulse 1.1s ease-in-out infinite; } @keyframes fvpulse { 50% { opacity:.25 } }
-.fv-tabs { display:flex; gap:2px; }
-.fv-tab { font: inherit; border:0; background:transparent; color: var(--mut, #6b6b78); padding:3px 11px; border-radius:8px; cursor:pointer; }
+.fv-tabs { display:flex; gap:2px; flex-wrap:wrap; }
+.fv-tab { font: inherit; border:0; background:transparent; color: var(--mut, #6b6b78); padding:3px 11px; border-radius:8px; cursor:pointer; white-space:nowrap; }
 .fv-tab:hover { color: var(--ink, #16161a); } .fv-tab.on { background: var(--bg, #fff); color: var(--ink, #16161a); font-weight:700; box-shadow: 0 0 0 1px var(--line, #e2e2e8); }
 .fv-body { max-height: 440px; overflow:auto; padding: 8px 10px 10px; }
 .fv-empty, .fv-dim, .fv-cap { color: var(--mut, #6b6b78); } .fv-empty { padding: 18px 4px; text-align:center; } .fv-cap { font-size:12px; }

@@ -268,7 +268,11 @@ export function mountFold(host, fold, { renderArtifact = null, tab = "live", liv
   // ── Live ──
   function paintLive() {
     body.textContent = "";
-    if (!fold.versions.length) { body.append(el("div", "fv-empty", fold.status === "running" ? "Waiting for the first draft… the Actions tab shows what's happening." : "No draft was produced.")); return; }
+    if (!fold.versions.length) {
+      const why = fold.status === "failed" ? [...fold.log].reverse().find((x) => x.ok === false && x.detail) : null;
+      body.append(el("div", "fv-empty", fold.status === "running" ? "Waiting for the first draft… the Actions tab shows what's happening." : "No draft was produced." + (why ? " " + why.detail + (/fetch|network|load failed|bridge/i.test(why.detail) ? " Check that the Fold server is running and try again." : "") : " The Actions tab shows what happened.")));
+      return;
+    }
     const v = versionOf();
     const cf = frames()[cursorAt()];
     if (!v) { body.append(el("div", "fv-empty", cf && cf.kind !== "start" ? `Being written — ${frameWords(cf)}. The Folded tab shows the code exactly as it stood at this point.` : "Nothing had been written yet at this point.")); return; }

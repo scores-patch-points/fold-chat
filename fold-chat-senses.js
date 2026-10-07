@@ -44,6 +44,17 @@ export function senseTerm(question) {
 const DISAMBIG_SNIPPET = /\b(?:may (?:also )?refer to|(?:most )?(?:commonly|often) refers? to|can refer to|refers? to (?:several|multiple|more than)|look up [\s\S]{0,60} in wiktionary|disambiguation)\b/i;
 const isDisambigTitle = (t) => /\(disambiguation\)\s*$/i.test(String(t ?? ""));
 
+// A DISAMBIGUATION PAGE is a list of senses, never a source. The banner ("X may refer to…", "Topics referred to by the
+// same term") sits in the page's own opening, so only the first ~500 chars are tested — an article that merely contains
+// the word "disambiguation" in a hatnote is not caught.
+const DISAMBIG_LEAD = /\b(?:may (?:also )?refer to|(?:most )?(?:commonly|often) refers? to|can refer to|refers? to (?:several|multiple|more than)|topics? referred to by the same term|this disambiguation page|is a disambiguation page|set index article)\b/i;
+
+/** Does this page text read as a DISAMBIGUATION page? If so it is a pointer, never ground. */
+export function looksDisambiguation(text) {
+  const head = String(text ?? "").replace(/\s+/g, " ").slice(0, 500);
+  return DISAMBIG_LEAD.test(head);
+}
+
 /** From the Wikipedia results for the bare `term`: { term, senses:[{label, url}], page:{title,url} } or null.
  *  results: [{ title, url, snippet }]. */
 export function disambiguationOf(term, results, { max = 5 } = {}) {

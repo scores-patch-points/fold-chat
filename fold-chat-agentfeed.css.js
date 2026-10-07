@@ -105,6 +105,8 @@ html[data-theme="dark"] .cc-run { --cc-ok: #4ade80; --cc-bad: #f87171; --cc-warn
 .cc-live-t { min-width: 0; overflow-wrap: anywhere; }
 .cc-live-v { font-weight: 600; }
 .cc-live-m { color: var(--cc-dim); font-variant-numeric: tabular-nums; }
+.cc-vw { margin-left: 1.2ch; padding: 0 .5ch !important; border-radius: 4px; font-size: .9em; line-height: 1.4; color: var(--cc-dim) !important; opacity: .7; }
+.cc-vw:hover { opacity: 1; color: var(--cc-fg, currentColor) !important; }
 .cc-stop { color: var(--cc-dim) !important; text-decoration: underline; text-decoration-color: var(--cc-line); text-underline-offset: 3px; margin-left: 1ch; }
 .cc-stop:hover { color: var(--cc-bad) !important; text-decoration-color: currentColor; } .cc-stop:disabled { opacity: .5; cursor: default; }
 .cc-hint { grid-column: 2; color: var(--cc-dim); font-style: italic; min-width: 0; overflow-wrap: anywhere; }

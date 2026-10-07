@@ -23,7 +23,9 @@
 // elliptical or meta (a typed gap, not a guess).
 
 import { casedRuns, resolveQuestion, searchQueries, scriptOf } from "./fold-chat-mind.js";
+import { resolveCast, pronounOf } from "./fold-chat-casts.js";
 import { isSourceAsk } from "./fold-chat-sourceask.js";
+import { anaphoraOf } from "./fold-chat-anaphora.js";
 
 export const THREAD = Object.freeze({
   ellipticalMaxWords: 8,   // "i want a chewier one" is 5; a nine-word ask names enough on its own
@@ -131,30 +133,41 @@ export function topicOf(askText) {
  *    thread threadOf(prior) — `thread.has` says whether there is an earlier answer to follow
  *    reason why (for the feed and the tests)
  *  `referents`: the chat's referent record (fold-chat-mind.js); `hints`: the language priors (fold-chat-hints.js). */
-export function followUp(question, priorMessages, { referents = null, hints = null, rejected = null } = {}) {
+export function followUp(question, priorMessages, { referents = null, hints = null, rejected = null, lang = null, casts = null } = {}) {
   const said = String(question ?? "").trim();
   const thread = threadOf(priorMessages);
   const base = { said, query: said, kind: "standalone", thread, topic: "", carried: [], reason: "stands-alone" };
   if (!said) return base;
   if (isMeta(said)) return { ...base, kind: "meta", query: said, reason: thread.has ? "meta-with-thread" : "meta-cold" };
-  // 1. a VARIANT of the last topic ("a chewier one", "less sweet"): the person's own words + the topic they were on
+  // "go on" / "continue" / "keep going" ask for NEW material and stay on the old path exactly as before (fold-chat-nudge.test.mjs pins it): the Continue button
+  // is the model's own re-prompt, and a thread-only reply may not write new material. The gate below must not turn them into an elliptical search.
+  if (MORE_NUDGE_RE.test(said)) return base;
+  // THE ANAPHORA GATE (fold-chat-anaphora.js; G3, 2026-10-07). Nothing below may carry a referent, a query term or a passage into an ask that does not
+  // LEAN on the earlier turn: "why is the sky blue" after a turn about Mount McKinley was searched as "William McKinley Blue Room why is the sky blue",
+  // because the ethos `carryTriggers` prior for English lists "the" and "one". A self-contained ask (its own subject and predicate) stands alone — whatever
+  // words it shares with the last topic; an undecided language (no closed-class prior) stands alone and says so. Pure code, no model.
+  const gate = anaphoraOf(said, { lang, hints });
+  if (!gate.carry) return { ...base, gate, reason: gate.decided ? "stands-alone" : "stands-alone-undecided" };
+  // 1. a VARIANT of the last topic ("a chewier one", "less sweet"): the person's own words + the topic they were on.
+  //    But a PRONOUN ask ("say more about HIM losing the election") is a referent ask: the comparative branch must not
+  //    hijack it into a bag of words that never reaches resolveQuestion / the rejected set (RC1).
   const variant = () => {
-    if (!thread.topicAsk || !isElliptical(said)) return null;
+    if (!thread.topicAsk) return null;
     const topic = topicOf(thread.topicAsk);
     if (!topic) return null;
     const own = contentWords(said).filter((w) => !topic.split(" ").includes(w));
-    return { ...base, kind: "elliptical", query: [...own, topic].join(" ").trim(), topic, reason: "elliptical-topic" };
+    return { ...base, gate, kind: "elliptical", query: [...own, topic].join(" ").trim(), topic, reason: "elliptical-topic" };
   };
-  if (COMPARATIVE_RE.test(said)) { const v = variant(); if (v) return v; }
-  // 2. the pronoun path (resolveQuestion's own gate: a trigger form, no entity of its own, a record to carry from)
-  const r = resolveQuestion(said, referents, { hints, rejected });
+  if (COMPARATIVE_RE.test(said) && gate.kind !== "pronoun") { const v = variant(); if (v) return v; }
+  // 2. the referent path: the gate has said the ask points back, so the record's most active referents are carried (and the person can refuse them)
+  const r = casts ? resolveCast(said, casts, { rejected, pronoun: pronounOf(said, gate) }) : resolveQuestion(said, referents, { hints, rejected, gate });
   if (r.reason === "carried") {
     const q = searchQueries(r)[0] || said;
-    return { ...base, kind: "carried", query: q, carried: r.carried.map((c) => c.surface), reason: "carried-referent" };
+    return { ...base, gate, kind: "carried", query: q, carried: r.carried.map((c) => c.surface), reason: "carried-referent" };
   }
-  // 3. any other short ask that leans on the last topic ("another one", "what about a vegan one")
+  // 3. an elliptical ask with no referent to read it through: the earlier ask's topic words
   { const v = variant(); if (v) return v; }
-  return base;
+  return { ...base, gate, reason: "points-back-but-nothing-to-carry" };
 }
 
 /** What this turn does, decided before anything is searched or asked. Pure — the live turn and the tests both read it.

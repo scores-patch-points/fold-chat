@@ -284,3 +284,21 @@ test("a migration never deletes the typed gap of a turn that has no answer (live
   migrateMessage(old);
   assert.equal(old.grounding.void, undefined, "a creative turn's CLAIM void is still dropped, as before");
 });
+
+// ── G2: the void for a generated output (fold-chat-genvoid.js) ─────────────
+import { genVoid } from "./fold-chat-genvoid.js";
+test("a generate void is a typed gap: VOID_KINDS, label, one-line text, normVoid; and a migration never deletes it from a creative record", async () => {
+  const { VOID_KINDS } = await import("./fold-chat-channels.js");
+  assert.ok(VOID_KINDS.includes("generate"));
+  const g = genVoid({ outputType: { type: "essay", topic: "the telephone" }, webPassages: [], failure: { status: 0, message: "Failed to fetch" }, question: "write me an essay on this" });
+  assert.equal(voidLabel(g.void), "can't write the essay");
+  assert.match(voidText(g.void), /^⟂ void — I can't write the essay: /);
+  assert.equal(normVoid(g.void), g.void);
+  const m = { role: "assistant", content: "", grounding: { kind: "generate", creative: true, void: g.void } };
+  migrateMessage(m);
+  assert.equal(m.grounding.void.kind, "generate", "the gap IS the turn; a creative record keeps it");
+});
+test("a generate void never reaches the model: an assistant turn with no content is omitted from the history", () => {
+  const out = modelHistory([{ role: "user", content: "write me an essay on this" }, { role: "assistant", content: "", grounding: { kind: "generate", void: { kind: "generate", note: "I can't write the essay: x." } } }]);
+  assert.deepEqual(out, [{ role: "user", content: "write me an essay on this" }]);
+});

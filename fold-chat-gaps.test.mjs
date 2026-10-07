@@ -142,3 +142,23 @@ test("sourcesPrompt: labels are the fold's, never the model's; the model may not
   assert.match(p, /\[W1\] Wikipedia — Tokyo\nTokyo is big\./); assert.match(p, /\[W2\] x — y/);
   assert.match(p, /do not write them/); assert.match(p, /never name a website/); assert.match(p, /language the person wrote in/);
 });
+
+// ── G2: a writing request is never answered by quoting pages (fold-chat-genvoid.js) ─────────────
+import { genVoid } from "./fold-chat-genvoid.js";
+test("gapAnswerLine: a generate void's line is the app's sentence naming the thing; the other kinds are untouched", () => {
+  const g = genVoid({ outputType: { type: "essay", topic: "this" } });
+  assert.equal(gapAnswerLine(g.void), "No essay was written.");
+  assert.equal(gapAnswerLine(genVoid({ outputType: { type: "image", topic: "a dog" } }).void), "No image was made.");
+  assert.match(g.void.note, /^I can't write the essay: /, "the reason is the gap block's note, not the empty-answer line");
+  assert.match(gapAnswerLine({ kind: "unreached" }), /No answer was written/);
+  assert.equal(gapAnswerLine({ kind: "unsupported" }), "");
+});
+test("aloneTurn: with the output type, a barred writing request names it and carries the typed void; without it, the old note stands", async () => {
+  const { aloneTurn } = await import("./fold-chat-gaps.js");
+  const a = aloneTurn("generate", { outputType: { type: "essay", topic: "this" } });
+  assert.match(a.notice.text, /I can't write the essay/); assert.equal(a.void.kind, "generate"); assert.equal(a.void.reason, "no-topic");
+  const b = aloneTurn("compose", { outputType: { type: "cover letter", topic: "my job", needsSources: false, voidIfMissing: ["details"] } });
+  assert.match(b.notice.text, /cover letter/); assert.equal(b.void.reason, "own-text-missing");
+  const c = aloneTurn("generate"); assert.match(c.notice.text, /There are no sources for this kind of ask/); assert.equal(c.void, undefined);
+  assert.equal(aloneTurn("smalltalk", { outputType: { type: "essay" } }).notice.kind, "alone");
+});

@@ -27,7 +27,7 @@ test("EVERY SNIP IS VERIFIABLE: each snip's text occurs in the page text it came
   const { snips, dropped } = snipsOf(passages, "How tall is the Eiffel Tower?");
   assert.ok(snips.length >= 2, "something was quoted");
   assert.equal(dropped.length, 0);
-  for (const s of snips) assert.ok(passages[s.p].text.replace(/\s+/g, " ").includes(s.text.replace(/\s+/g, " ")), s.text.slice(0, 60));
+  for (const s of snips) { const shown = s.kind === "span" ? s.verbatim : s.text; assert.ok(passages[s.p].text.replace(/\s+/g, " ").includes(String(shown).replace(/\s+/g, " ")), String(s.text).slice(0, 60)); }
   assert.deepEqual(verifySnips(snips, passages), { ok: true, bad: [] });
 });
 
@@ -51,11 +51,14 @@ test("the answer to the ask is quoted: the sentence with the figure is in the st
 
 test("a Wikipedia article quotes its LEAD (the first sentences), verbatim, credited to the site", () => {
   const { snips } = snipsOf([PASSAGE()], "tell me about the Eiffel Tower");
-  assert.equal(snips[0].kind, "lead");
-  assert.match(snips[0].text, /^The Eiffel Tower is a wrought-iron lattice tower/);
-  assert.equal(snips[0].range.start, 0);
-  assert.equal(snips[0].site, "en.wikipedia.org");
-  assert.equal(creditText(snips[0]), "from en.wikipedia.org");
+  // P2 span-first: for a broad "tell me about" ask the smallest span that answers IS the lead sentence, shown as kind "span" (verbatim = the page's bytes).
+  const first = snips[0];
+  assert.ok(first.kind === "lead" || first.kind === "span", `first snip is the lead or the span over it (got ${first.kind})`);
+  const shown = first.kind === "span" ? first.verbatim : first.text;
+  assert.match(shown, /^The Eiffel Tower is a wrought-iron lattice tower/);
+  assert.equal(first.range.start, 0);
+  assert.equal(first.site, "en.wikipedia.org");
+  assert.equal(creditText(first), "from en.wikipedia.org");
 });
 
 test("a recipe the page declares is quoted whole as a recipe snip (the card's data), credited to its author", () => {

@@ -21,6 +21,7 @@ import { resolveTitlesWikipedia } from "./fold-chat-titles.js";
 import { wikiLead, referentPassages } from "./fold-chat-web.js";
 import { originateTurn, ORIGIN } from "./fold-chat-origin.js";
 
+import { answerSpan } from "./fold-chat-answerspan.js";
 /** Declared, not measured (Constitution II.11). Giver: the WIRE task of the answer-pipeline contract (2026-10-06). */
 export const WIRE = Object.freeze({
   giver: "the WIRE task of the answer-pipeline contract (2026-10-06); declared, not measured",
@@ -131,7 +132,7 @@ export async function runSlotTurn({ question, lang, webPassages, searchQ = null,
       try {
         const out = await originateTurn(turn, { passages: webPassages, fetchImpl: bound(fetchImpl, ob.signal), memo, signal: ob.signal, boxMs: ORIGIN.turnBoxMs });
         if (signal && signal.aborted) return { aborted: true, answer: null, contest: [], gap: null, trace: [] };
-        return out;
+        return withMinimal(out, question);
       } finally { ob.done(); }
     }
     return turn;
@@ -143,6 +144,25 @@ export async function runSlotTurn({ question, lang, webPassages, searchQ = null,
   } finally { box.done(); }
 }
 
+/** THE SMALLEST SPAN OF THE ANSWER'S OWN SENTENCE (fold-chat-answerspan.js): the slot answer keeps its source sentence verbatim (`answer.row.sentence`); the
+ *  card should show the clause that answers first ("Ethanol boils at 78.37 °C") and that sentence one tap away, not the whole sentence by default. The span is
+ *  cut from `row.sentence` alone (no previous sentence, so no pronoun is resolved from outside it): every word of it occurs in that sentence, which is
+ *  exactly what `contentAllowed` (fold-chat-strand.js answerTurnBacksContent) asks of a line that is not the realised one. null when nothing clears the threshold.
+ *  → { text (the mechanical final pass), verbatim (the sentence's own bytes), sentence, rewrite, why, confidence } */
+export function minimalOfTurn(turn, question) {
+  const row = turn && turn.answer && turn.answer.row;
+  if (!row || !isStr(row.sentence) || !row.sentence.trim() || !isStr(question)) return null;
+  const r = answerSpan(question, [{ text: row.sentence, ref: row.source && isStr(row.source.title) ? row.source.title : "" }]);
+  const s = r.spans[0];
+  if (!s) return null;
+  return { text: s.shown, verbatim: s.text, sentence: row.sentence, rewrite: s.rewrite || null, why: s.why, confidence: s.confidence };
+}
+
+/** The turn with its smallest span attached (`turn.minimal`), when it is an answer with a source sentence. Never throws: a turn is never lost to this. */
+function withMinimal(turn, question) {
+  try { const m = turn && turn.answer ? minimalOfTurn(turn, question) : null; return m ? { ...turn, minimal: m } : turn; } catch { return turn; }
+}
+
 /** Does this result end the turn mechanically? An answer, a contest, or a typed gap — and not a handoff, and not a stopped turn. */
 export function endsTurn(turn) {
   if (!turn || typeof turn !== "object" || turn.handoff || turn.aborted) return false;
@@ -151,6 +171,7 @@ export function endsTurn(turn) {
 
 /** message.content for a slot turn: the realised answer line when there is one, else '' (a gap or a contest is drawn by the card). */
 export function answerLine(turn) {
+  if (turn && turn.minimal && isStr(turn.minimal.text) && turn.minimal.text.trim()) return turn.minimal.text;        // the smallest span first (minimalOfTurn)
   return turn && turn.answer && isStr(turn.answer.text) ? turn.answer.text : "";
 }
 

@@ -147,3 +147,15 @@ test("resolveEffort: a re-run keeps the original turn's effort unless the contro
   assert.equal(resolveEffort({ original: "nonsense", composer: "fast" }), "fast");
   assert.equal(resolveEffort({}), "balanced");
 });
+
+// a response that is not text is turned away (a binary file read as UTF-8 was once quoted as a source for "bats in the dark")
+test("looksBinary: replacement characters and control bytes are not text; prose, markup and short strings are", async () => {
+  const { looksBinary } = await import("./fold-chat-web.js");
+  const junk = "\ufffd\ufffd%q&k\u0001\u0002\ufffd".repeat(30);
+  assert.equal(looksBinary(junk), true);
+  assert.equal(looksBinary("a\u0000b".repeat(30)), true);
+  assert.equal(looksBinary("Bats are mammals of the order Chiroptera. They navigate in the dark by echolocation, and most species eat insects.".repeat(3)), false);
+  assert.equal(looksBinary("<html><body><p>Héllo — wörld, “quoted” text with accents and symbols ©</p></body></html>".repeat(2)), false);
+  assert.equal(looksBinary("\ufffd"), false);   // too short to judge
+  assert.equal(looksBinary(""), false);
+});

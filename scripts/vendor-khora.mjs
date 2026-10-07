@@ -81,6 +81,12 @@ export const ENTRIES = [
   // DOES A CITED SPAN STILL NAME ITS BYTES (span-drift.js): exact / shifted / moved / gone over `ref#start-end`, ambiguity said, never rewritten.
   // Pure; closes over record-log.js's resolveAddress. A pure function of its inputs, for the chat's citation check.
   "the-fold/span-drift.js",
+  // THE READING'S OWN HYPERLEXICON (fold-chat-meaning.js): the relation reader (end1 —label→ end2, the vocabulary MEASURED from the text it reads,
+  // never listed), the surfaces it stands on, the lemmatizer, and the assertion ledger. A word's meaning in a reading is the slots it fills.
+  "adapters/text/relations.js",
+  "adapters/text/surfaces.js",
+  "adapters/text/morphology.js",
+  "organs/hyperlexicon.js",
 ];
 
 const NODE_IMPORT = /(?:^|\n)\s*(?:import\s+(?:[^"'\n;]*?\sfrom\s+)?|export\s+[^"'\n;]*?\sfrom\s+)["']node:[^"']+["']/;

@@ -11,6 +11,10 @@
 //   2. otherwise the sentences `impressionOf` (fold-chat-impression.js) already picks as differing the
 //      ask — adjacent sentences merged into one passage, an ellipsis wherever text was skipped.
 //   3. strung together in source-rank order (the order the passages were read), de-duplicated.
+//   0. (when `limits.minimal`) FIRST, the smallest span that answers the ask (fold-chat-answerspan.js `answerSpan`: a figure with its subject, a date, a name, a
+//      definition — never the whole group); it is a snip of kind "span" whose `text` is the mechanical final pass (named rules) and whose `verbatim` is the page's own bytes.
+//      Every other snip of the turn is then `more: true` (drawn behind "more from this page"). When nothing clears the threshold, `minimalGap` is the typed gap
+//      ("no sentence in what was read states this") and the groups are drawn as before.
 //
 // EVERY SNIP IS VERIFIABLE: `verifySnip` checks that a snip's words occur in the page text it came from
 // (whitespace-normalised, never reworded). A snip that does not verify is a bug and is DROPPED, never
@@ -26,6 +30,7 @@ import { snipOfPassage } from "./fold-chat-snip.js";
 import { contactOfPassage } from "./fold-chat-tip.js";
 import { junkOf, wallOf } from "./fold-chat-junk.js";
 import { maskNavRegion } from "./fold-chat-region.js";
+import { answerSpan, verifyRewrite } from "./fold-chat-answerspan.js";
 
 export const STRAND = Object.freeze({
   perPassageChars: 700,    // how much of one source a strand quotes (impression budget)
@@ -34,6 +39,7 @@ export const STRAND = Object.freeze({
   maxItems: 12,            // Q&A pairs / how-to steps quoted from one declared block
   leadChars: 600,          // a Wikipedia lead
   minSnipWords: 8,         // a prose passage shorter than this (a caption, a heading) is not worth quoting alone
+  minimal: true,           // THE SMALLEST SPAN FIRST (fold-chat-answerspan.js): the clause that answers, its sentence one tap away; the groups below are "more from this page"
 });
 
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -106,7 +112,7 @@ function recipeText(r) {
 }
 
 function snipFrom(p, pi, base) {
-  return {
+  const snip = {
     n: "S" + (pi + 1), p: pi,
     source: p.url || p.source || null, title: titleOf(p), site: siteOf(p),
     shadow: p.shadow ? { hash: p.shadow.hash || null, chars: p.shadow.chars || null } : null,
@@ -114,7 +120,12 @@ function snipFrom(p, pi, base) {
     ...((c) => (c ? { contact: c } : {}))(contactOfPassage(p)),   // for the tip control only: how the creator's own page says to reach them
     ...base,
   };
+  // AN ENCYCLOPEDIA IS A POINTER, NEVER A CITATION (fold-chat-origin.js): what is quoted from an encyclopedia page whose references were not
+  // followed to a page that carries it is shown as a POINTER — its words, the pages it points at, the path — and never as the source.
+  if (p.tertiary && (snip.kind === "lead" || snip.kind === "passage")) return { ...snip, kind: "pointer", credit: "", pointers: asArrP(p.pointers), via: (asArrP(p.trails).find((t) => t && t.found) || null) };
+  return snip;
 }
+const asArrP = (a) => (Array.isArray(a) ? a : []);
 
 /** Passage-text groups: the sentences impressionOf keeps, with adjacent ones merged (nothing but whitespace
  *  between them) and the ellipsis flags set where text was skipped. Ranges are in `text` coordinates.
@@ -186,6 +197,7 @@ export function snipsOf(passages, question, { limits = STRAND } = {}) {
     return true;
   };
   const gap = (p, pi, kind, reason) => gaps.push({ kind: "gap", gap: kind, reason, p: pi, source: p?.url || p?.source || null, site: siteOf(p) });
+  const minimal = limits.minimal === false ? null : answerSpan(question, list);
   list.forEach((p, pi) => {
     const text = String(p?.text ?? "");
     const hasDeclared = !!p?.recipe || (Array.isArray(p?.declared) && p.declared.length);
@@ -194,6 +206,13 @@ export function snipsOf(passages, question, { limits = STRAND } = {}) {
       if (looksBlocked(text, { status: p?.status || 0, title: p?.title || "" }) || (w.blocked && w.kind === "http")) { gap(p, pi, "blocked", w.reason || "the page is a block, gate or expiry notice, not the content asked for"); return; }
     } else if (looksBlocked(text) && !p?.recipe && !(Array.isArray(p?.declared) && p.declared.length)) return;
     const before = snips.length, junkBefore = junk.length;
+    // 0. an encyclopedia page whose references led to pages that carry the claim shows NONE of its own words: the originals are its snips
+    if (p?.tertiary && asArrP(p.origins).length) return;
+    // 0b. an origin page: the sentence(s) the claim rests on, by address (each a holon that reads back as its own bytes)
+    if (asArrP(p?.holons).length) {
+      for (const h of p.holons) add(p, pi, snipFrom(p, pi, { kind: "passage", text: norm(text.slice(h.start, h.end)), credit: siteOf(p), range: { start: h.start, end: h.end }, via: h.via || null, address: h.address || null }));
+      if (p.origin) return;     // a page read ONLY to be an origin has nothing else to quote
+    }
     // 1. a structured block the page declares
     const rc = snipOfPassage(p);
     if (rc) {
@@ -224,7 +243,20 @@ export function snipsOf(passages, question, { limits = STRAND } = {}) {
     }
     if (snips.length === before && text.trim()) gap(p, pi, junk.length > junkBefore || !groups.length ? "junk" : "none", junk.length > junkBefore ? "everything this page offered was the site talking about itself (menus, banners, notices), not its content" : "no passage on this page differs the ask");
   });
-  return { snips, dropped, junk, gaps };
+  // THE SMALLEST SPAN FIRST. The span is checked like every other snip (verifySnip: the page's own bytes, and the rewrite re-derived by its named rules);
+  // one that fails is dropped, never shown. The groups quoted above become "more from this page" (`more: true`); with no span they stay the answer.
+  let minimalGap = null;
+  if (minimal && list.length) {
+    const sp = minimal.spans.find((x) => !list[x.passageIndex]?.tertiary && !asArrP(list[x.passageIndex]?.holons).length) || null;       // an encyclopedia is a pointer, never the span; an ORIGIN page's addressed sentence is already the snip, never superseded
+    const p = sp && list[sp.passageIndex];
+    const lead = sp && p ? snipFrom(p, sp.passageIndex, {
+      kind: "span", text: norm(sp.shown), verbatim: sp.text, credit: siteOf(p), range: { start: sp.start, end: sp.end }, ellipsisBefore: sp.start > 0, ellipsisAfter: true,
+      context: { text: sp.sentence.text, start: sp.sentence.start, end: sp.sentence.end }, rewrite: sp.rewrite || null, atom: sp.atom || null, why: sp.why, confidence: sp.confidence, agreement: sp.agreement || 0, ...(sp.item ? { item: sp.item } : {}),
+    }) : null;
+    if (lead && verifySnip(lead, p)) { for (const s of snips) s.more = true; snips.unshift({ ...lead, more: false }); }
+    else { if (lead) dropped.push(lead); minimalGap = minimal.gap || { kind: "no-span", reason: "no sentence in what was read states this", text: "no sentence in what was read states this" }; }
+  }
+  return { snips, dropped, junk, gaps, ...(minimalGap ? { minimalGap } : {}) };
 }
 
 /** The plain concatenation of the verbatim snip text — what `message.content` holds for a sources-only turn
@@ -239,6 +271,16 @@ export function verifySnip(snip, passage) {
   if (!snip || !passage) return false;
   const hay = norm(passage.text);
   const has = (x) => { const n = norm(x); return !!n && hay.includes(n); };
+  if (snip.kind === "span") {
+    // the span's own words are the page's bytes (a page text, or the declared item it came from); what is SHOWN is either those bytes or their
+    // re-derivation by the named rewrite rules (verifyRewrite), never anything else
+    const v = norm(snip.verbatim);
+    if (!v) return false;
+    const item = snip.item ? (Array.isArray(passage.declared) ? passage.declared : [])[snip.item.block]?.items?.[snip.item.item] : null;
+    if (!(snip.item ? typeof item === "string" && norm(item).includes(v) : hay.includes(v))) return false;
+    if (norm(snip.text) === v) return true;
+    return !!snip.rewrite && verifyRewrite(snip.rewrite, passage).ok && norm(snip.rewrite.text) === norm(snip.text);
+  }
   if (snip.kind === "recipe") {
     const r = passage.recipe; if (!r) return false;
     const c = snip.card || {};
@@ -265,6 +307,7 @@ export function verifySnips(snips, passages) {
 /** The credit line under a snip: "from en.wikipedia.org" — app-authored, never the model's. */
 export function creditText(s) {
   if (!s) return "";
+  if (s.kind === "pointer") return `a pointer, not a source \u00b7 found on ${s.site || "an encyclopedia"}`;
   const who = s.credit && s.credit !== s.site ? s.credit : "";
   return who ? `${who} · ${s.site || "source"}` : `from ${s.site || s.title || "the source"}`;
 }
@@ -272,8 +315,8 @@ export function creditText(s) {
 // ── the stored shape ───────────────────────────────────────────────────────
 /** A snip as stored on the message: plain data, small. (The recipe card is kept whole — it is the card's own data.) */
 export function storeSnip(s) {
-  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name, contact } = s;
-  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
+  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name, contact, via, pointers, address, verbatim, rewrite, context, atom, why, confidence, agreement, more, item } = s;
+  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(kind === "span" ? { verbatim, rewrite, context, atom, why, confidence, agreement, ...(item ? { item } : {}) } : {}), ...(more ? { more: true } : {}), ...(via ? { via } : {}), ...(pointers ? { pointers } : {}), ...(address ? { address } : {}), ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
 }
 
 /** A slot answer's content is allowed only as the turn's own answer line: the turn carries an answer whose source sentence (`answer.row`,
@@ -285,7 +328,9 @@ function answerTurnBacksContent(msg) {
   const row = a && a.row;
   if (!a || !row || typeof row.sentence !== "string" || !row.sentence.trim() || !row.source || !(row.source.url || row.source.title)) return false;
   const norm = (t) => String(t ?? "").replace(/\s+/g, " ").trim();
-  if (norm(a.text) !== norm(msg.content)) return false;
+  // the content is the realised line, or the smallest span of the same source sentence (fold-chat-answerwire.js minimalOfTurn): the word check below holds for both
+  const mini = msg.answerTurn.minimal && norm(msg.answerTurn.minimal.text);
+  if (norm(a.text) !== norm(msg.content) && !(mini && mini === norm(msg.content))) return false;
   const words = (t) => (String(t ?? "").normalize("NFKD").replace(/\p{M}+/gu, "").toLocaleLowerCase("und").match(/[\p{L}\p{N}]+/gu) || []);
   const held = new Set(words(row.sentence));
   return words(msg.content).every((w) => held.has(w));

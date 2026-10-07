@@ -121,10 +121,15 @@ export function salientSources(passages, terms, opts = {}) {
 
 /**
  * Does this ask CONTINUE the thread? A follow-up the turn plan already read as such (carried / elliptical / meta / retry / move) does. A standalone ask
- * does only if it shares a content stem with the previous exchange (the person's last question and the fold's last answer). Otherwise it is a NEW topic.
+ * does not when the plan carries the anaphora verdict (`follow.gate`, G3); a plan without one continues only if the ask shares a content stem with the
+ * previous exchange (the person's last question and the fold's last answer). Otherwise it is a NEW topic.
  */
 export function continuesThread({ follow = null, terms = null, lastExchange = null } = {}) {
   if (follow && follow.kind && follow.kind !== "standalone") return true;
+  // THE ANAPHORA GATE (fold-chat-anaphora.js, G3): when the turn plan carries a verdict, the verdict is final. A SHARED WORD is not a thread — "why is the
+  // sky blue" shares "blue" with a turn about the Blue Room, and was handed that turn's history and summary. Only a plan with no verdict (an older caller)
+  // falls through to the shared-stem test below.
+  if (follow && follow.gate) return false;
   if (!terms || !lastExchange) return false;
   const last = stemsOfText(`${lastExchange.ask || ""} ${lastExchange.said || ""}`);
   return [...terms].some((t) => last.has(t));

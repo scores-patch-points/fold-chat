@@ -43,11 +43,17 @@ export const ALONE_KINDS = Object.freeze([]);
 export const modelSpeaksAlone = (kind) => ALONE_KINDS.includes(kind);
 
 import { SELF_LINE, NO_LOOKUP_LINE } from "./fold-chat-self.js";
+import { genVoid, genVoidLine } from "./fold-chat-genvoid.js";
 export const SMALLTALK_LINE = "Ask me something and I'll show you what the sources say.";
 const KIND_WORDS = { generate: "creative writing", compose: "personal writing", code: "a programming question", transform: "a transformation of your own text", compute: "a calculation", advice: "advice" };
 
 /** The app-authored turn for a kind the model may not answer alone: { notice } and/or a computed card on the record. */
-export function aloneTurn(kind) {
+export function aloneTurn(kind, { outputType = null, hasMaterial = false, question = "" } = {}) {
+  // A WRITING request the model may not answer alone: the gap names the thing asked for and what would unblock it (fold-chat-genvoid.js), drawn as record.void.
+  if (outputType && (kind === "generate" || kind === "compose")) {
+    const g = genVoid({ outputType, webPassages: [], hasMaterial, barred: "alone", question });
+    if (!g.ok) return { notice: { kind: "no-sources", text: g.notice.text }, void: g.void };
+  }
   if (kind === "smalltalk") return { notice: { kind: "alone", text: SMALLTALK_LINE } };
   if (kind === "self") return { notice: { kind: "alone", text: SELF_LINE } };          // the fold's own words about itself (fold-chat-self.js)
   if (kind === "nolookup") return { notice: { kind: "alone", text: NO_LOOKUP_LINE } };   // the ask had nothing to look up, so nothing was searched
@@ -221,6 +227,7 @@ export function noModelFallbackNotice(why, { from = "facing" } = {}) {
 /** A gap drawn as the whole of a turn (no answer text) — the line the facing page shows where the answer would be. */
 export function gapAnswerLine(v) {
   if (!v) return "";
+  if (v.kind === "generate") return genVoidLine(v);     // "No essay was written." — the reason ("I can't write the essay: …") is the gap block's own note (fold-chat-genvoid.js)
   if (v.kind === "unreached") return "No answer was written: no source could be read to write one from.";
   if (v.kind === "live") return "No answer was written: this needs live data and none was reachable.";
   return "";

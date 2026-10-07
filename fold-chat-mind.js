@@ -151,7 +151,7 @@ export function casedRuns(text, script = scriptOf(text), { minLength = 2, functi
     // a possessive is not part of a name ("Tolkien's" → "Tolkien"; Latin-script possessive, harmless elsewhere)
     const run = kept.join(" ").replace(/['’]s$/iu, "").replace(/[\s.'’-]+$/u, "");
     // A sentence-initial single capitalised WORD is a sentence opener, not a name.
-    const atStart = m.index === 0 || /[.!?¿¡]\s*$/u.test(s.slice(0, m.index));
+    const atStart = m.index === 0 || /[.!?¿¡]\s*$|\n\s*$/u.test(s.slice(0, m.index));   // a line break opens a sentence too: every line of a poem begins with a capital ("With", "But" were admitted as referents — G3)
     let surface = run, shed = false;
     if (atStart && fw) { const parts = run.split(/\s+/); while (parts.length > 1 && fw.has(fold(parts[0]))) { parts.shift(); shed = true; } if (parts.length === 1 && fw.has(fold(parts[0]))) continue; surface = parts.join(" "); }
     // a lone capitalised word left AFTER a shed opener ("The French" → "French") is no longer sentence-initial
@@ -214,7 +214,8 @@ export function admitReferents(record, turn, { hints = null } = {}) {
     const head = t.split(/[,，、]/u)[0].trim();
     if (head && head !== t) upsert(rec, head, { weight: 1, role: "title-head" });
   }
-  for (const [text, role] of [[a, "answer"], [q, "question"]]) {
+  // a CREATIVE answer (a song, a poem) is invention, not a statement about the world: it names no referent (its capitalised lines were becoming ones). The question and the titles still do.
+  for (const [text, role] of [[turn?.creative ? "" : a, "answer"], [q, "question"]]) {
     for (const r of casedRuns(text, scriptOf(text))) {
       const inTitle = titleSet.some((t) => mentions(t, r.surface) || mentions(r.surface, t));
       upsert(rec, r.surface, { weight: 2 + (inTitle ? 1 : 0), role });
@@ -222,7 +223,7 @@ export function admitReferents(record, turn, { hints = null } = {}) {
   }
   // Caseless scripts: a stretch of the answer/question that a source title also contains IS a name
   // (the title is the authority); take the longest common stretch of word-like segments.
-  for (const [text, role] of [[a, "answer"], [q, "question"]]) {
+  for (const [text, role] of [[turn?.creative ? "" : a, "answer"], [q, "question"]]) {
     const script = scriptOf(text);
     if (capitalisationIsSignificant(script) || script === "Other") continue;
     for (const t of titleSet) {
@@ -299,17 +300,23 @@ export function activated(question, record) {
  * The carry is APPENDED to the question as 'about: A; B' for the search, and `resolved`
  * is that string — the surface shows `carried` to the person; it never rewrites `said`.
  */
-export function resolveQuestion(question, record, { hints = null, rejected = null } = {}) {
+export function resolveQuestion(question, record, { hints = null, rejected = null, gate = null } = {}) {
   const said = String(question ?? "").trim();
   const script = scriptOf(said), segs = segments(said, script);
   const base = { said, resolved: said, carried: [], script, segments: segs.length };
   if (!said || !(record?.entities || []).length) return { ...base, reason: "no-record" };
-  if (activated(said, record).length) return { ...base, reason: "names-its-own" };
-  if (casedRuns(said, script).length) return { ...base, reason: "has-own-entity" };
-  if (segs.length >= DECLARED.selfSufficientSegments) return { ...base, reason: "self-sufficient" };
+  // THE ANAPHORA GATE (fold-chat-anaphora.js, G3): when the caller hands the verdict, IT decides whether the ask leans on the last answer — not the
+  // ethos `carryTriggers` prior (which lists "the" and "one": every ask with an article was read as pointing back). A self-contained ask carries nothing;
+  // an anaphoric one carries even where the language has no trigger list (es, fr), and even beside an entity of its own ("what happened to him after Waterloo").
+  if (gate && gate.carry === false) return { ...base, reason: "gate-standalone" };
+  const forced = !!(gate && gate.carry === true);
+  if (!forced && activated(said, record).length) return { ...base, reason: "names-its-own" };
+  if (forced && activated(said, record).length && gate.kind !== "pronoun") return { ...base, reason: "names-its-own" };
+  if (!forced && casedRuns(said, script).length) return { ...base, reason: "has-own-entity" };
+  if (!forced && segs.length >= DECLARED.selfSufficientSegments) return { ...base, reason: "self-sufficient" };
   const forms = (arr) => (Array.isArray(arr) ? arr : []).map(fold);
   const triggers = new Set([...forms(hints?.carryTriggers), ...forms(hints?.personalPronouns)]);
-  const hit = segs.some((x) => triggers.has(fold(x.text)));
+  const hit = forced || segs.some((x) => triggers.has(fold(x.text)));
   if (!hit) return { ...base, reason: "no-trigger" };
   // a referent the person has refused to have carried into this thread (fold-chat-minds.js rejectedSurfaces) is never carried again
   const refused = new Set((Array.isArray(rejected) ? rejected : []).map((x) => fold(x).trim()));

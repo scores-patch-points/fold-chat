@@ -4,7 +4,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { classifyTurn, checkable, recordable, wantsWeb, GENERATE_NUDGE, generationArtifact } from "./fold-chat-discourse.js";
+import { classifyTurn, checkable, recordable, wantsWeb, GENERATE_NUDGE, GENERATE_CREATIVE_NUDGE, generationArtifact } from "./fold-chat-discourse.js";
 
 test("greetings classify as smalltalk", () => {
   for (const q of ["hi", "hey", "Hello", "good morning", "how are you", "thanks!", "bye"]) {
@@ -107,4 +107,24 @@ test("a demand for proof or a comparison is research, so it searches", () => {
   // A greeting is still smalltalk; a bare nudge is still chat.
   assert.equal(classifyTurn("hi"), "smalltalk");
   assert.equal(classifyTurn("well?"), "chat");
+});
+test("what is asked to be PRODUCED is read by fold-chat-outputtype.js: no false 'generate', no missed one (G1, 2026-10-07)", () => {
+  // a question ABOUT writing, a reported request, a particle, a declaration are not requests (each used to be "generate")
+  for (const q of ["how do I write an essay", "make sure you note that I'm allergic to nuts", "is it ok to write in first person in an essay", "why did he write the letter", "how to write a cover letter", "she asked me to write her a letter", "I will draft the report tomorrow"]) {
+    assert.notEqual(classifyTurn(q), "generate", q);
+    assert.notEqual(classifyTurn(q), "compose", q);
+  }
+  // typos, a bare noun phrase, "I need …", and the languages the old regex never read were all missed
+  for (const q of ["wrtie an esay on teh telephone", "essay on the Roman Empire", "I need an essay on climate change for my class", "now a poem about it", "escribe un ensayo sobre los delfines", "écris un poème sur la mer", "напиши эссе о дельфинах", "schreibe einen aufsatz über delfine", "gimme a haiku about rain", "tell me a joke"]) assert.equal(classifyTurn(q), "generate", q);
+  // a summary / list / table of a NAMED thing has to be read: it is a lookup shaped like a piece of writing, so it is researched and checked
+  assert.equal(classifyTurn("summarize the French Revolution"), "research");
+  assert.equal(classifyTurn("list five causes of the Great Depression"), "research");
+  assert.equal(classifyTurn("make a table of the planets and their moons"), "research");
+});
+
+test("the creative writer's brief invents freely and never asks; the grounded one stays grounded", () => {
+  assert.match(GENERATE_CREATIVE_NUDGE, /Write it now/);
+  assert.match(GENERATE_CREATIVE_NUDGE, /needs no outside facts/);
+  assert.doesNotMatch(GENERATE_CREATIVE_NUDGE, /ONLY from the sources/, "a poem is not written from sources");
+  assert.match(GENERATE_NUDGE, /ONLY from the sources/);
 });

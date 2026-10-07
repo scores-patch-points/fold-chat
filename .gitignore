@@ -87,3 +87,29 @@ __pycache__/
 /experiments/*/out/
 /experiments/*/vendor/
 !/experiments/specimen-assembly/vendor/
+
+# --- ant / eval RUN OUTPUT (2026-10-06): measurement dumps, not source. The PREREG/RESULTS/README .md, the .mjs harnesses and the small input batteries stay tracked. ---
+eval/ants/**/superseded*/
+eval/ants/**/*-20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]T*.json
+eval/ants/**/*results*.json
+eval/ants/**/*raw*.json
+eval/ants/**/live*.json
+eval/ants/**/real-*.json
+eval/ants/**/dryrun*.json
+eval/ants/**/before-*.json
+eval/ants/**/*-run[0-9]*.json
+eval/ants/**/browser-run*.json
+eval/ants/**/*.log
+eval/ants/**/*-output.txt
+eval/ants/marks.jsonl
+eval/pivot/followups-live*.json
+# editor / merge leftovers and stray files made by a mistyped CLI
+*.orig
+/results-*-output.txt
+/--*
+
+# ant E2 raw per-turn captures (11 MB)
+eval/ants/e2/out/
+
+# ant D1 recorded wire for the discourse replay (30 MB); regenerate with the harness in eval/ants/d1/
+eval/ants/d1/corpus/store.json

@@ -124,7 +124,7 @@ const SIGN = { ok: "✓ ", bad: "✗ ", stop: "■ ", warn: "", info: "" };
  * step used to show is kept behind that step's "details" button, and behind one
  * "show technical details" button in the footer.
  */
-export function createFeed(host, { live = false, onStop = null, onRetry = null, onAuditOpen = null, canGoOnline = null } = {}) {
+export function createFeed(host, { live = false, onStop = null, onRetry = null, onAuditOpen = null, canGoOnline = null, viewSwitch = false } = {}) {
   ensureStyle();
   const root = el("div", "cc-run" + (live ? " cc-live-on" : ""));
   root.dataset.feed = "agent";
@@ -141,6 +141,18 @@ export function createFeed(host, { live = false, onStop = null, onRetry = null, 
   const stop = el("button", "cc-stop", "Stop"); stop.type = "button"; stop.title = "Stop after the current step (Esc)";
   const hint = el("div", "cc-hint"); hint.hidden = true;
   liveT.append(liveV, "… ", liveM, stop);
+  // THE TURN VIEW (the person's choice, kept between turns): quiet = this line only; live = the reading drawn as it happens; full = every step.
+  // ONE tiny control that cycles on a tap (a glyph, not three words).
+  if (viewSwitch) {
+    const root0 = document.documentElement, KEY = "fold-chat:turnView";
+    const MODES = [["quiet", "\u25cb", "Just the status line"], ["live", "\u25d1", "The reading, drawn as it happens"], ["full", "\u25a3", "The whole screen of its processing"]];
+    const cur = () => { let v = root0.dataset.tv; if (!v) { try { v = localStorage.getItem(KEY); } catch {} } return MODES.some((m) => m[0] === v) ? v : "live"; };
+    const b = el("button", "cc-vw"); b.type = "button";
+    const paint = () => { const m = MODES.find((x) => x[0] === cur()); b.textContent = m[1]; b.title = m[2] + " \u00b7 tap to change"; b.setAttribute("aria-label", "View: " + m[0] + ". Tap to change."); };
+    b.onclick = () => { const k = (MODES.findIndex((x) => x[0] === cur()) + 1) % MODES.length; root0.dataset.tv = MODES[k][0]; try { localStorage.setItem(KEY, MODES[k][0]); } catch {} document.querySelectorAll(".cc-vw").forEach((x) => x.dispatchEvent(new Event("tv"))); try { dispatchEvent(new Event("fold:tv")); } catch {} };
+    b.addEventListener("tv", paint); root0.dataset.tv = cur(); paint();
+    liveT.append(b);
+  }
   liveBox.append(spin, liveT, hint);
   const foot = el("div", "cc-foot"); foot.hidden = true;
   const footLine = el("div", "cc-fl");
