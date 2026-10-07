@@ -15,7 +15,10 @@ import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, s
 
 const KEY = "fold-chat:folds@1";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
+const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+// THE OPERATORS (organs/cube.mjs): every act is one, and the log carries which.
+const OPG = Object.freeze({ NUL: "∅", SIG: "○", INS: "●", SEG: "｜", CON: "⋈", SYN: "△", DEF: "⊢", EVA: "⊨", REC: "↬" });
+const opg = (e) => (e && e.op && OPG[e.op] ? `<span class="fs-op" title="${esc(e.op)}">${OPG[e.op]}</span>` : "");const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
 /** An ask that makes a thing (a page, a widget, a document) rather than asks a question. Declared words; when unsure: no. */
 export function isMakeAsk(text) {
   const q = String(text || "").toLowerCase();
@@ -86,6 +89,7 @@ const CODE_CSS = `
 .fs-think .w{color:var(--mut);font:var(--fs-xs)/1.45 var(--mono);margin-top:1px}
 .fs-think.bad{border-left-color:var(--bad)}
 .fs-think.bad .t{color:var(--bad)}
+.fs-op{display:inline-block;width:1.1em;text-align:center;color:var(--acc-deep);font-weight:700;margin-right:2px}
 `;
 
 export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {} }) {
@@ -124,13 +128,46 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   }
   const push = (e) => { cur.log.push({ at: Date.now(), ...e }); cur.updated = Date.now(); save(); };
 
+  function stripFence(s) { const m = String(s || "").match(/```[a-zA-Z]*\n([\s\S]*?)```/); return (m ? m[1] : String(s || "")).trim(); }
+  // A BEHAVIOUR (a timer, a game, an animation) is not a value the block kit can
+  // compute — the fold writes it as ONE self-contained page (SYN), RUNS it and
+  // OBSERVES what it does (EVA), records the finding (REC), and re-opens (NUL)
+  // with the finding as the atom until it holds. The loop is the agent.
+  async function buildApp(text, draw, signal, finding = null) {
+    const fix = finding ? `\n\nYour previous page FAILED when it was run: ${finding}. Write a version without that failure.` : "";
+    const out = await draw([
+      { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose." },
+      { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${fix}` },
+    ], { maxTokens: 2200, signal });
+    const html = stripFence(out);
+    return /<\s*(!doctype|html|body|div|button|script|canvas|svg|input|main|section)/i.test(html) ? html : null;
+  }
+
+  // EVA by observation: run the page in a hidden sandboxed frame and SEE what it
+  // does — errors on its own surface, whether it rendered, and whether anything
+  // changed over time (a behaviour is only real if it moves).
+  function observePage(html, { ms = 1200, timeout = 7000 } = {}) {
+    return new Promise((resolve) => {
+      const frame = document.createElement("iframe");
+      frame.setAttribute("sandbox", "allow-scripts");
+      frame.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;height:600px;border:0";
+      const inject = `<script>(function(){var e=[];window.onerror=function(m){e.push(String(m));};function snap(){try{return String((document.body&&document.body.innerText)||"");}catch(x){return "";}}window.addEventListener("load",function(){var a=snap();setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:a,t1:snap(),nodes:document.getElementsByTagName("*").length,tags:(document.body&&document.body.innerHTML||"").length},"*");}catch(x){}},${ms});});setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:snap(),t1:snap(),nodes:document.getElementsByTagName("*").length},"*");}catch(x){}},${ms + 800});})();<\/script>`;
+      const srcdoc = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, (m) => m + inject) : /<body[^>]*>/i.test(html) ? html.replace(/<body[^>]*>/i, (m) => m + inject) : inject + html;
+      const done = (d) => { window.removeEventListener("message", onMsg); clearTimeout(to); try { frame.remove(); } catch { /* gone */ } resolve(d); };
+      const onMsg = (ev) => { if (ev.source !== frame.contentWindow) return; const d = ev.data || {}; if (d.__observe) done(d); };
+      window.addEventListener("message", onMsg);
+      const to = setTimeout(() => done({ err: ["observation timed out"], t0: "", t1: "", nodes: 0 }), timeout);
+      frame.srcdoc = srcdoc; document.body.appendChild(frame);
+    });
+  }
+
   async function runAsk(text) {
     if (!cur || running) return;
     const ac = new AbortController(); running = ac;
     if (!kernel && cur.log.some((e) => e.kind === "assembly" && e.ok && e.text)) kernel = rebuild(cur);
     const first = !kernel || !cur.log.some((e) => e.kind === "assembly" && e.ok && e.text);
     const lk = cur.artifact ? cur.artifact.kind : (!kernel ? longKind(text) : null);
-    push({ kind: "ask", by: "you", text: "", ask: text, ok: true });
+    push({ kind: "ask", by: "you", text: "", ask: text, ok: true, op: "NUL" });
     if (first && cur.title === "New fold") cur.title = text.slice(0, 48);
     // THE MONOLOGUE: the fold says what it reads the ask as, how it would satisfy
     // it, and whether that shape can possibly satisfy it — BEFORE it acts. If it
@@ -139,6 +176,31 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       const mono = monologue(text);
       for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
       paint();
+      if (mono.code) {
+        const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
+        let finding = null, html = null;
+        for (let round = 1; round <= 3; round += 1) {
+          live = { label: round === 1 ? "writing a small page" : "rewriting with what I saw", units: [] };
+          push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "Writing the page (SYN)." : `Re-opening the void (NUL) with the finding, and writing again (SYN) — round ${round}.` });
+          paint();
+          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding); } catch (e) { html = null; }
+          if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
+          cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
+          push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
+          paint();
+          const obs = await observePage(html);
+          finding = obs.err && obs.err.length ? `the page threw: ${obs.err[0]}`
+            : (obs.nodes < 4 ? "the page rendered nothing"
+              : (behaviour && String(obs.t0).trim() === String(obs.t1).trim() ? "nothing changes over time — the behaviour is not running" : null));
+          push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding });
+          paint();
+          if (!finding) { toast("Held — observed running."); break; }
+          push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
+          paint();
+          if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
+        }
+        running = null; live = null; paint(); renderList(); return;
+      }
       if (!mono.satisfiable) {
         push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] });
         running = null; live = null; paint(); renderList(); return;
@@ -217,10 +279,10 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const started = !!(kernel || cur.artifact || cur.codebase);
     const entries = cur.log.map((e, i) => {
       if (e.kind === "ask") return `<div class="fs-ask">${esc(e.ask)}</div>`;
-      if (e.kind === "think") return `<div class="fs-think${e.ok === false ? " bad" : ""}"><span class="fs-by fold">fold</span> <span class="t">${esc(e.text)}</span>${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}</div>`;
+      if (e.kind === "think") return `<div class="fs-think${e.ok === false ? " bad" : ""}">${opg(e)}<span class="fs-by fold">fold</span> <span class="t">${esc(e.text)}</span>${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}</div>`;
       const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
       const drawn = (e.units || []).filter((u) => u.by === "mouth").length;
-      return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span><b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
+      return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span>${opg(e)}<b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
     }).join("");
     const liveHtml = (live ? `<div class="fs-step live open"><div class="fs-step-h"><span class="fs-by model">model</span><b>${esc(live.label)}</b><span>working…</span></div><div class="fs-units">${live.units.map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "…")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span></div>`).join("")}</div></div>` : "") + queue.map((q) => `<div class="fs-ask" style="opacity:.6">${esc(q)}<span class="fs-note"> · queued</span></div>`).join("");
     const parts = kernel ? editableParts(kernel) : [];

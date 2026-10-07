@@ -90,11 +90,11 @@ export function monologue(ask, { kind = null } = {}) {
 
   if (k === "widget") {
     lines.push({ say: `A widget computes ONE value from a few inputs, by an expression the model writes — there is no catalog to pick from.`, why: null });
-    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow)\b/.exec(q);
+    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/.exec(q);
     if (behaviour) {
-      lines.push({ say: `"${behaviour[1]}" is a behaviour over time, not a value computed from inputs. An expression cannot satisfy it.`, bad: true });
-      lines.push({ say: `What would satisfy it: a block that runs over time (a timer). That block is not built.`, bad: true });
-      return { kind: k, satisfiable: false, why: `this asks for a behaviour over time ("${behaviour[1]}"), not a value computed from inputs — no such block exists`, lines };
+      lines.push({ say: `"${behaviour[1]}" is a behaviour over time, not a value computed from inputs — a widget is the wrong shape for it.`, why: null });
+      lines.push({ say: `So I will not force it into a widget. I will build it as ONE small self-contained page (HTML + JS) and run it here.`, why: null });
+      return { kind: k, code: true, satisfiable: true, why: null, lines };
     }
     lines.push({ say: `To satisfy it: the inputs, and one expression giving the answer from them.`, why: null });
     return { kind: k, satisfiable: true, why: null, lines };
