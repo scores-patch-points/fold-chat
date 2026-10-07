@@ -134,3 +134,22 @@ test("sameLanguage: related-family replies count as the same; a Portuguese reply
   const es = "¿Cuál es la capital de Francia?";
   assert.equal(sameLanguage(es, "A capital da França é Paris, que também é a maior cidade do país e fica no norte.").same, false);
 });
+
+test("2026-10-07 E2E: short Cyrillic asks are ru/uk/bg, not 'bg for everything' (declared clues beat thin treebank priors)", () => {
+  assert.equal(detectLang("Кто президент?").lang, "ru");
+  assert.equal(detectLang("Хто президент?").lang, "uk");
+  assert.equal(detectLang("Кой е президентът?").lang, "bg");
+  assert.equal(detectLang("Что случилось?").lang, "ru");
+});
+
+test("2026-10-07 E2E: Spanish ¿¡ IS evidence — a bare '¿Y él?' / '¿Dónde nació?' is Spanish even after an English thread (marks count as function words, beat the prior)", () => {
+  assert.equal(detectLang("¿Y él?", { prior: "en" }).lang, "es");
+  assert.equal(detectLang("¿Dónde nació?", { prior: "en" }).lang, "es");
+  assert.equal(detectLang("¿Y él?").confident, true);
+});
+
+test("2026-10-07 E2E: a decisive own word flips the thread, never inherits over it", () => {
+  assert.equal(detectLang("Wer war Marie Curie?", { prior: "en" }).lang, "de");
+  assert.equal(detectLang("Why did he die poor?", { prior: "de" }).lang, "en");
+  assert.equal(detectLang("Pourquoi est-ce arrivé ?").lang, "fr");
+});
