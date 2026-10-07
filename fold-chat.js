@@ -3431,6 +3431,20 @@ export function mount(root, opts = {}) {
   const folds = mountFolds({ main: E.main, list: $("folds"), newBtn: $("foldsNew"), railBtn: $("railFolds"), toast,
     getModelId: () => { const mm = selectedModel(); return mm && !mm.none ? mm.id : null; } });
   for (const id of ["chats", "projects", "topNew", "chatsNew"]) $(id)?.addEventListener("click", () => folds.isOpen() && folds.close(), true);
+  // ADD A CODEBASE: choose a folder → the agent's workspace (fold-chat-workspace.js),
+  // shown in the fold as a worktree with each file viewable as a projection or a log.
+  { const btn = $("foldsCodebase"); if (btn) {
+    const inp = document.createElement("input");
+    inp.type = "file"; inp.multiple = true; inp.webkitdirectory = true; inp.setAttribute("webkitdirectory", ""); inp.style.display = "none";
+    inp.addEventListener("change", async () => {
+      const files = {};
+      for (const f of inp.files) { const p = String(f.webkitRelativePath || f.name).replace(/^[^/]+\//, ""); if (!p || f.size > 400000) continue; try { files[p] = await f.text(); } catch { /* skip unreadable */ } }
+      if (Object.keys(files).length) folds.setCodebase(files);
+      inp.value = "";
+    });
+    document.body.appendChild(inp);
+    btn.onclick = () => inp.click();
+  } }
   E.railSearch.onclick = async () => {
     const q = await askDialog({ title: "Search chats", value: search, placeholder: "Search titles", okLabel: "Search" });
     if (q == null) return;

@@ -11,11 +11,11 @@ import { make, followUp, guessKind } from "./fold-blocks-make.js";
 import { editorFor, editEOT, editableParts } from "./fold-blocks-edit.js";
 import { createMemory, contentWords } from "./fold-blocks-weave.js";
 import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, extendEssay } from "./fold-chat-longform.js";
+import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, snapshot as wsSnapshot } from "./fold-chat-workspace.js";
 
 const KEY = "fold-chat:folds@1";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
+const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
 /** An ask that makes a thing (a page, a widget, a document) rather than asks a question. Declared words; when unsure: no. */
 export function isMakeAsk(text) {
   const q = String(text || "").toLowerCase();
@@ -70,8 +70,21 @@ const CSS = `
 @media (max-width:1180px){.foldspace{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}.fs-sess{border-right:0}.foldspace[data-view="session"] .fs-canvas{display:none}.foldspace[data-view="canvas"] .fs-sess{display:none}.fs-vt{display:inline-flex!important}}
 .fs-vt{display:none}`;
 
+const CODE_CSS = `
+.fs-code{display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);height:100%;min-height:0}
+.fs-tree{overflow:auto;border-right:1px solid var(--line);padding:6px;display:flex;flex-direction:column;gap:1px}
+.fs-tbtn{text-align:left;font:var(--fs-xs)/1.4 var(--mono);color:var(--ink2);background:none;border:0;border-radius:var(--r-sm);padding:4px 7px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fs-tbtn:hover{background:var(--side2)}.fs-tbtn.on{background:var(--side2);color:var(--ink);font-weight:600}
+.fs-cview{display:flex;flex-direction:column;min-width:0;min-height:0}
+.fs-ch{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid var(--line);font:600 var(--fs-sm) var(--mono);color:var(--ink2)}
+.fs-file{flex:1;overflow:auto;margin:0;padding:12px;font:var(--fs-sm)/1.5 var(--mono);white-space:pre;color:var(--ink)}
+.fs-chg{padding:8px 10px;border-bottom:1px solid var(--line)}
+.fs-chg-h{display:flex;gap:8px;align-items:center;font:var(--fs-xs) var(--mono);color:var(--mut);margin-bottom:4px}
+.fs-diff{margin:0;padding:8px;background:var(--side2);border-radius:var(--r-sm);font:var(--fs-xs)/1.45 var(--mono);white-space:pre;overflow:auto}
+`;
+
 export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {} }) {
-  if (!document.getElementById("fold-folds-style")) { const st = document.createElement("style"); st.id = "fold-folds-style"; st.textContent = CSS; document.head.append(st); }
+  if (!document.getElementById("fold-folds-style")) { const st = document.createElement("style"); st.id = "fold-folds-style"; st.textContent = CSS + CODE_CSS; document.head.append(st); }
   let folds = []; try { folds = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { folds = []; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(folds.map((f) => ({ ...f, log: f.log.slice(-400) })))); } catch {} };
   const memory = createMemory();
@@ -184,7 +197,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const hadFocus = !!oldTa && document.activeElement === oldTa, selA = oldTa?.selectionStart ?? 0, selB = oldTa?.selectionEnd ?? 0;
     const hasArt = kernel && kernel.names().some((n) => n.type === "app" || n.type !== "room");
     const html = cur.artifact?.html || (hasArt ? render(kernel.model()) : "");
-    const started = !!(kernel || cur.artifact);
+    const started = !!(kernel || cur.artifact || cur.codebase);
     const entries = cur.log.map((e, i) => {
       if (e.kind === "ask") return `<div class="fs-ask">${esc(e.ask)}</div>`;
       const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
@@ -194,6 +207,22 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const liveHtml = (live ? `<div class="fs-step live open"><div class="fs-step-h"><span class="fs-by model">model</span><b>${esc(live.label)}</b><span>working…</span></div><div class="fs-units">${live.units.map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "…")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span></div>`).join("")}</div></div>` : "") + queue.map((q) => `<div class="fs-ask" style="opacity:.6">${esc(q)}<span class="fs-note"> · queued</span></div>`).join("");
     const parts = kernel ? editableParts(kernel) : [];
     const edHtml = ed ? `<div class="fs-ed"><b style="font:600 var(--fs-sm) var(--mono)">${esc(ed.name)} · ${esc(ed.type)}</b>${ed.fields.map((f) => `<label>${esc(f.key)}${f.options ? `<select data-f="${esc(f.key)}">${f.options.map((o) => `<option value="${esc(o)}"${o === ed.values[f.key] ? " selected" : ""}>${esc(o || "(default)")}</option>`).join("")}</select>` : `<input data-f="${esc(f.key)}" value="${esc(ed.values[f.key] ?? "")}">`}</label>`).join("")}${ed.room ? `<label>records of ${esc(ed.room.name)} (${esc(ed.room.fields.join(" | "))})<textarea data-rows="1" rows="4">${esc(ed.rows || "")}</textarea></label>` : ""}${edErr.map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}<div class="row" style="display:flex;gap:6px"><button type="button" class="fs-btn on" data-apply="1">Check and apply</button><button type="button" class="fs-btn" data-edclose="1">Close</button></div></div>` : "";
+    // THE CODEBASE: a worktree on the left, one file on the right, seen as a
+    // PROJECTION (the bytes now) or as the LOG of changes that produced it.
+    let codeView = "";
+    if (cur.codebase && tab === "code") {
+      const names = Object.keys(cur.codebase.files).sort();
+      const tgt = cur.codeTarget || names[0];
+      const content = tgt ? String(cur.codebase.files[tgt] ?? "") : "";
+      const changes = (cur.codeChanges || []).filter((c) => c.path === tgt);
+      const mode = cur.codeMode || "projection";
+      const body = mode === "log"
+        ? (changes.length
+          ? changes.map((c, i) => { const d = diffLines(c.before, c.after); const st = diffStat(d); return `<div class="fs-chg"><div class="fs-chg-h"><span class="fs-by ${esc(c.by)}">${esc(c.by)}</span><b>${esc(c.label || c.op)}</b>${i === 0 ? "" : `<span>+${st.added} −${st.removed}</span>`}</div><pre class="fs-diff">${d.filter((h) => h.op !== "ctx" && h.op !== "same").map((h) => (h.op === "add" ? "+ " : h.op === "del" ? "- " : "  ") + esc(h.text)).join("\n")}</pre></div>`; }).join("")
+          : `<div class="fs-empty">No changes recorded for ${esc(tgt || "this file")} yet.</div>`)
+        : `<pre class="fs-file">${esc(content)}</pre>`;
+      codeView = `<div class="fs-code"><div class="fs-tree">${names.map((p) => `<button type="button" class="fs-tbtn${p === tgt ? " on" : ""}" data-cf="${esc(p)}">${esc(p)}</button>`).join("")}</div><div class="fs-cview"><div class="fs-ch"><b>${esc(tgt || "")}</b><span class="fs-sp"></span><button type="button" class="fs-btn${mode === "projection" ? " on" : ""}" data-cmode="projection">Projection</button><button type="button" class="fs-btn${mode === "log" ? " on" : ""}" data-cmode="log">Log (${changes.length})</button></div>${body}</div></div>`;
+    }
     if (!space.firstChild) space.innerHTML = `<div class="fs-sess"></div><div class="fs-canvas"></div>`;
     if (!space.dataset.view) space.dataset.view = "session";
     const sessEl = space.querySelector(".fs-sess"), canvasEl = space.querySelector(".fs-canvas");
@@ -201,9 +230,9 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       <div class="fs-log" aria-live="polite">${entries || `<div class="fs-empty">Describe what this fold should make: a website, a widget, a document, a sourced essay, or paste a URL to pull its tables and lists. Each part is built and checked one small piece at a time, and every step is kept here.</div>`}${liveHtml}</div>${edHtml}
       <div class="fs-comp">${sel && kernel ? `<div class="row"><span class="fs-sel">◎ ${esc(sel)}</span><button type="button" class="fs-tog" data-unsel="1">clear</button></div>` : ""}<div class="inrow"><textarea rows="2" aria-label="${started ? "Follow up on this fold" : "What should this fold make"}">${esc(keepComp)}</textarea>${running ? `<button type="button" class="fs-btn" data-stop="1">Stop</button>` : `<button type="button" class="fs-btn go" data-send="1">${started ? "Follow up" : "Make it"}</button>`}</div>
         ${!started ? `<div class="row">${["auto", "website", "widget", "document"].map((k) => `<button type="button" class="fs-btn${(cur.kindPick || "auto") === k ? " on" : ""}" data-kind="${k}">${k}</button>`).join("")}</div>` : ""}</div>`;
-    const ckey = [tab, editMode, html, parts.length, tab === "eot" ? cur.log.length : 0].join("|");
-    if (canvasEl.__key !== ckey) { canvasEl.__key = ckey; canvasEl.innerHTML = `<div class="fs-cbar"><button type="button" class="fs-btn fs-vt" data-view="session">← Session</button><button type="button" class="fs-btn${tab === "preview" ? " on" : ""}" data-tab="preview">Preview</button><button type="button" class="fs-btn${tab === "eot" ? " on" : ""}" data-tab="eot">EOT</button><span class="fs-sp"></span>${parts.length ? `<button type="button" class="fs-btn${editMode ? " on" : ""}" data-edit="1">${editMode ? "Editing · click a part" : "Edit"}</button>` : ""}${html ? `<button type="button" class="fs-btn" data-dl="1">Download HTML</button>` : ""}${(cur.artifact?.files || []).map((f, i) => `<button type="button" class="fs-btn" data-file="${i}">${esc(f.name)}</button>`).join("")}</div>
-        ${tab === "eot" ? `<pre class="fs-eot">${esc(cur.log.filter((e) => e.ok && e.text).map((e) => `# ${e.by} · ${e.label}\n${e.text}`).join("\n\n") || "(nothing set down yet)")}</pre>` : html ? `<div class="fs-frame"><iframe title="The fold's artifact" sandbox="allow-scripts allow-forms"></iframe></div>` : `<div class="fs-empty">The artifact appears here as its parts pass.</div>`}`;
+    const ckey = [tab, editMode, html, parts.length, tab === "eot" ? cur.log.length : 0, cur.codebase ? [cur.codeTarget, cur.codeMode, (cur.codeChanges || []).length].join(",") : ""].join("|");
+    if (canvasEl.__key !== ckey) { canvasEl.__key = ckey; canvasEl.innerHTML = `<div class="fs-cbar"><button type="button" class="fs-btn fs-vt" data-view="session">← Session</button><button type="button" class="fs-btn${tab === "preview" ? " on" : ""}" data-tab="preview">Preview</button><button type="button" class="fs-btn${tab === "eot" ? " on" : ""}" data-tab="eot">EOT</button>${cur.codebase ? `<button type="button" class="fs-btn${tab === "code" ? " on" : ""}" data-tab="code">Code</button>` : ""}<span class="fs-sp"></span>${parts.length ? `<button type="button" class="fs-btn${editMode ? " on" : ""}" data-edit="1">${editMode ? "Editing · click a part" : "Edit"}</button>` : ""}${html ? `<button type="button" class="fs-btn" data-dl="1">Download HTML</button>` : ""}${(cur.artifact?.files || []).map((f, i) => `<button type="button" class="fs-btn" data-file="${i}">${esc(f.name)}</button>`).join("")}</div>
+        ${tab === "code" && cur.codebase ? codeView : tab === "eot" ? `<pre class="fs-eot">${esc(cur.log.filter((e) => e.ok && e.text).map((e) => `# ${e.by} · ${e.label}\n${e.text}`).join("\n\n") || "(nothing set down yet)")}</pre>` : html ? `<div class="fs-frame"><iframe title="The fold's artifact" sandbox="allow-scripts allow-forms"></iframe></div>` : `<div class="fs-empty">The artifact appears here as its parts pass.</div>`}`;
       frame = canvasEl.querySelector("iframe"); if (frame) { frame.srcdoc = html; frameHtml = html; } }
     const log = space.querySelector(".fs-log"); log.scrollTop = log.scrollHeight;
     const ta = space.querySelector(".fs-comp textarea");
@@ -214,6 +243,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     space.querySelectorAll("[data-tog]").forEach((b) => (b.onclick = () => b.closest(".fs-step").classList.toggle("open")));
     space.querySelectorAll("[data-undo]").forEach((b) => (b.onclick = () => undo(+b.dataset.undo)));
     space.querySelectorAll("[data-tab]").forEach((b) => (b.onclick = () => { tab = b.dataset.tab; paint(); }));
+    space.querySelectorAll("[data-cf]").forEach((b) => (b.onclick = () => { cur.codeTarget = b.dataset.cf; paint(); }));
+    space.querySelectorAll("[data-cmode]").forEach((b) => (b.onclick = () => { cur.codeMode = b.dataset.cmode; paint(); }));
     space.querySelectorAll("[data-f]").forEach((x) => (x.oninput = x.onchange = () => { ed.values[x.dataset.f] = x.value; }));
     const rows = space.querySelector("[data-rows]"); if (rows) rows.oninput = () => { ed.rows = rows.value; };
     const on = (sel2, fn) => { const x = space.querySelector(sel2); if (x) x.onclick = fn; };
@@ -246,8 +277,23 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     return f.id;
   }
   function close() { space.hidden = true; main.classList.remove("folding"); onClose(); renderList(); }
+  // A CODEBASE: files loaded into a workspace (fold-chat-workspace.js). Seen two
+  // ways, per file — as a PROJECTION (the bytes now) and as the LOG (the changes
+  // that produced them). The file is a fold of its own change history.
+  function setCodebase(files = {}) {
+    const ws = createWorkspace(files);
+    if (!cur) create();
+    cur.codebase = ws;
+    cur.codeChanges = Object.keys(ws.files).sort().map((p) => ({ at: Date.now(), path: p, op: "add", before: "", after: ws.files[p], by: "you", label: "imported" }));
+    cur.codeTarget = Object.keys(ws.files).find((p) => /(^|\/)(index\.html|README\.md|package\.json)$/i.test(p)) || Object.keys(ws.files).sort()[0] || null;
+    cur.codeMode = "projection";
+    tab = "code";
+    push({ kind: "codebase", by: "you", label: `codebase · ${Object.keys(ws.files).length} files`, ok: true });
+    paint(); renderList();
+    return cur.id;
+  }
   if (newBtn) newBtn.onclick = () => create();
   if (railBtn) railBtn.onclick = () => (space.hidden ? (folds.length ? open([...folds].sort((a, b) => b.updated - a.updated)[0].id) : create()) : close());
   renderList();
-  return { create, open, close, isOpen: () => !space.hidden, list: () => folds.map((f) => ({ id: f.id, title: f.title, kind: f.kind })) };
+  return { create, setCodebase, open, close, isOpen: () => !space.hidden, list: () => folds.map((f) => ({ id: f.id, title: f.title, kind: f.kind })) };
 }
