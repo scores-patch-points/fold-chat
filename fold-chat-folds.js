@@ -111,7 +111,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       const msgs = sys && rest.length ? [{ ...rest[0], content: sys + "\n\n" + rest[0].content }, ...rest.slice(1)] : rest;
       const cut = new AbortController(); let acc = "", ended = false; const sig = signal || signal0; const fwd = () => cut.abort(); sig?.addEventListener("abort", fwd, { once: true });
       try {
-        const r = await client.chat(model, msgs, { maxTokens, signal: cut.signal, temperature: 0.2, allowDownload: true, totalTimeoutMs: 300000,
+        const r = await client.chat(model, msgs, { maxTokens, signal: cut.signal, temperature: 0.2, totalTimeoutMs: 300000,
           onToken: (t) => { acc += t; onToken?.(t); if (!ended && (stop === "line" ? /\S[^\n]*\n/.test(acc.replace(/^\s*```[^\n]*\n/, "")) : /(^|\n)\s*!EVA[^\n]*\n/i.test(acc))) { ended = true; cut.abort(); } } });
         return r.text;
       } catch (e) { if (ended) return acc; throw e; } finally { sig?.removeEventListener("abort", fwd); }
