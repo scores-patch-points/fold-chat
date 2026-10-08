@@ -3429,7 +3429,14 @@ export function mount(root, opts = {}) {
   { const chatsNew = $("chatsNew"); if (chatsNew) chatsNew.onclick = newChat; }   // the + beside the Chats header: the same handler (an empty current chat is reused)
   // FOLDS: the agent's artifact threads. A make-ask in the Agent engagement opens one; the rail and the sidebar list them.
   const folds = mountFolds({ main: E.main, list: $("folds"), newBtn: $("foldsNew"), railBtn: $("railFolds"), toast,
-    getModelId: () => { const mm = selectedModel(); return mm && !mm.none ? mm.id : null; } });
+    getModelId: () => { const mm = selectedModel(); return mm && !mm.none ? mm.id : null; },
+    // THE READING PIPELINE, handed to the fold: the app owns search + readers +
+    // memo, so a fold turn can GO FIND EXAMPLES before it builds. (Exit-gated
+    // fetch underneath; failures degrade to "no examples", never a wedge.)
+    research: async (q, { onStep } = {}) => {
+      try { return await web.searchWeb(q, { effort: "balanced", read: 3, memo: pageMemo, onStep }); }
+      catch { return { results: [], passages: [], trace: [] }; }
+    } });
   for (const id of ["chats", "projects", "topNew", "chatsNew"]) $(id)?.addEventListener("click", () => folds.isOpen() && folds.close(), true);
   // ADD A CODEBASE: choose a folder → the agent's workspace (fold-chat-workspace.js),
   // shown in the fold as a worktree with each file viewable as a projection or a log.

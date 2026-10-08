@@ -96,7 +96,7 @@ const CODE_CSS = `
 @keyframes fsblink{50%{opacity:0}}
 `;
 
-export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {} }) {
+export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {}, research = null }) {
   if (!document.getElementById("fold-folds-style")) { const st = document.createElement("style"); st.id = "fold-folds-style"; st.textContent = CSS + CODE_CSS; document.head.append(st); }
   let folds = []; try { folds = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { folds = []; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(folds.map((f) => ({ ...f, log: f.log.slice(-400) })))); } catch {} };
@@ -147,12 +147,14 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   // compute — the fold writes it as ONE self-contained page (SYN), RUNS it and
   // OBSERVES what it does (EVA), records the finding (REC), and re-opens (NUL)
   // with the finding as the atom until it holds. The loop is the agent.
-  async function buildApp(text, draw, signal, finding = null, prior = null, onToken = null) {
+  async function buildApp(text, draw, signal, finding = null, prior = null, onToken = null, material = null, outline = null) {
     const fix = finding ? `\n\nYour previous page FAILED when it was run: ${finding}. Write a version without that failure.` : "";
     const base = prior ? `\n\nHere is the current page. Change it as asked and keep everything else working:\n\`\`\`html\n${String(prior).slice(0, 8000)}\n\`\`\`` : "";
+    const plan = outline ? `\n\nA plan for the page (follow it):\n${String(outline).slice(0, 1400)}` : "";
+    const src = material && material.length ? `\n\nUse these REAL sources for the content; do not invent facts, and put each source's url on the page (a link or a small credit):\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${m.url}\n${String(m.text || "").slice(0, 900)}`).join("\n\n")}` : "";
     const out = await draw([
-      { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose." },
-      { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${base}${fix}` },
+      { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose. Use only facts from the sources you are given, when sources are given." },
+      { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${plan}${src}${base}${fix}` },
     ], { maxTokens: 2200, signal, onToken });
     const html = stripFence(out);
     return /<\s*(!doctype|html|body|div|button|script|canvas|svg|input|main|section)/i.test(html) ? html : null;
@@ -191,6 +193,94 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     return (r.what || r.satisfy) ? r : null;
   }
 
+  // THE PIPELINE — one turn, the whole movement, streamed, operator-tagged:
+  //   (1) what does the person want?      DEF — read the ask (induced)
+  //   (2) go find examples                SIG — web: engines → readers → passages
+  //   (3) does that change the want?      DEF — re-read against the material
+  //   (4) outline what we'd need          SEG — the pieces, from the material
+  //   (5) inventory the pieces we have    CON — sources / codebase / model; name lacks
+  //   (6) weave it together               SYN → EVA(observe) → REC → NUL (recursion)
+  async function runPipeline(text, ac) {
+    const draw = complete(ac.signal);
+    const slice = (s) => String(s ?? "");
+    // (1) WHAT DOES THE PERSON WANT?
+    let reading = null;
+    const itok = streamInto("(1) what does the person want?", "DEF");
+    const prev = (cur.artifact && cur.artifact.kind === "app") ? { title: cur.title, html: cur.artifact.html } : null;
+    try { reading = await readAsk(text, draw, ac.signal, itok, prev); } catch { reading = null; }
+    endStream();
+    const mono = monologue(text, reading);
+    for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", text: l.say, why: l.why, ok: !l.bad });
+    paint();
+    if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return; }
+    // (2) GO FIND EXAMPLES
+    let material = null;
+    if (typeof research === "function") {
+      const htok = streamInto("(2) going to find examples", "SIG");
+      try {
+        const w = await research(text, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
+        material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "" })).filter((m) => m.text).slice(0, 6);
+      } catch { material = null; }
+      endStream();
+      push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `found ${material.length} source(s): ${material.map((m) => m.source).join(", ")}` : "no examples found — I'll build from the model alone", ok: true });
+      paint();
+    }
+    // (3) DOES THIS CHANGE WHAT THEY WANT?
+    let want = reading;
+    if (material && material.length) {
+      const rtok = streamInto("(3) does this change what they want?", "DEF");
+      let reread = null;
+      try { reread = await readAsk(text, draw, ac.signal, rtok, null, material); } catch { reread = null; }
+      endStream();
+      if (reread && (reread.what || reread.satisfy)) { want = reread; push({ kind: "think", by: "fold", op: "DEF", text: `re-read against the material: ${reread.what || reread.satisfy}` }); }
+    }
+    // (4) OUTLINE WHAT WE'D NEED
+    const otok = streamInto("(4) outlining what's needed", "SEG");
+    let outline = "";
+    try {
+      outline = await draw([
+        { role: "system", content: "You plan a single self-contained web page. Be concrete and short; no preamble." },
+        { role: "user", content: `The ask: ${text}\n${want && want.satisfy ? `It is satisfied when: ${want.satisfy}\n` : ""}${material && material.length ? `Real sources:\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${slice(m.text).slice(0, 140)}`).join("\n")}\n` : ""}\nList the pieces the page needs, one per line — its sections and the facts to show (use the sources). Then one line: NEEDS: <what you lack, or "nothing">.` },
+      ], { maxTokens: 400, signal: ac.signal, onToken: otok });
+    } catch { /* no outline */ }
+    endStream();
+    // (5) INVENTORY THE PIECES
+    const haveL = [], missL = [];
+    if (material && material.length) haveL.push(`${material.length} source(s)`); else missL.push("sources");
+    if (cur.codebase) haveL.push("a codebase");
+    haveL.push("the in-tab model");
+    const needsLine = /^\s*NEEDS:\s*(.+)$/im.exec(outline || "");
+    if (needsLine && !/^\s*nothing\b/i.test(needsLine[1])) missL.push(needsLine[1].trim());
+    push({ kind: "think", by: "app", op: "CON", text: `have: ${haveL.join(", ")}${missL.length ? ` · lack: ${missL.join(", ")}` : ""}` });
+    paint();
+    // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
+    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
+    const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
+    let finding = null, html = null;
+    for (let round = 1; round <= 3; round += 1) {
+      live = { label: round === 1 ? "weaving it together" : "re-weaving with the finding", units: [] };
+      push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "(6) weaving it together." : `(REC↬) re-weaving with the finding — round ${round}.` });
+      paint();
+      const wtok = streamInto(round === 1 ? "weaving" : "re-weaving", "SYN");
+      try { html = await buildApp(text, draw, ac.signal, finding, prior, wtok, material, outline); } catch { html = null; }
+      endStream();
+      if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
+      cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
+      push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
+      paint();
+      const obs = await observePage(html);
+      finding = obs.err && obs.err.length ? `the page threw: ${obs.err[0]}`
+        : (obs.nodes < 4 ? "the page rendered nothing"
+          : (behaviour && String(obs.t0).trim() === String(obs.t1).trim() ? "nothing changes over time — the behaviour is not running" : null));
+      push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding });
+      paint();
+      if (!finding) { toast("Held — observed running."); break; }
+      push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
+      paint();
+      if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
+    }
+  }
+
   async function runAsk(text) {
     if (!cur || running) return;
     const ac = new AbortController(); running = ac;
@@ -203,50 +293,13 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // first call is the slow one — so paint the ask and a working line BEFORE the
     // await, never a blank screen until the model speaks.
     live = { label: "reading the ask", units: [] }; paint();
-    // THE MONOLOGUE: the fold says what it reads the ask as, how it would satisfy
-    // it, and whether that shape can possibly satisfy it — BEFORE it acts. If it
-    // cannot, it stops with a typed gap instead of building the wrong thing.
+    // THE PIPELINE: (1) what does the person want → (2) find examples → (3) does
+    // that change the want → (4) outline → (5) inventory → (6) weave; REC↬NUL at
+    // any point. One turn, the whole movement, streamed and operator-tagged.
     if (!lk && !cur.codebase) {
-      let reading = null;
-      const rtok = streamInto("thinking about the ask", "SIG");
-      const prev = (cur.artifact && cur.artifact.kind === "app") ? { title: cur.title, html: cur.artifact.html } : null;
-      try { reading = await readAsk(text, complete(ac.signal), ac.signal, rtok, prev); } catch { reading = null; }
-      endStream();
-      const mono = monologue(text, reading);
-      for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
-      paint();
-      if (mono.code) {
-        const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
-        let finding = null, html = null;
-        for (let round = 1; round <= 3; round += 1) {
-          live = { label: round === 1 ? "writing a small page" : "rewriting with what I saw", units: [] };
-          push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "Writing the page (SYN)." : `Re-opening the void (NUL) with the finding, and writing again (SYN) — round ${round}.` });
-          paint();
-          const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
-          const wtok = streamInto(round === 1 ? "writing the page" : "rewriting with the finding", "SYN");
-          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding, prior, wtok); } catch (e) { html = null; }
-          endStream();
-          if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
-          cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
-          push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
-          paint();
-          const obs = await observePage(html);
-          finding = obs.err && obs.err.length ? `the page threw: ${obs.err[0]}`
-            : (obs.nodes < 4 ? "the page rendered nothing"
-              : (behaviour && String(obs.t0).trim() === String(obs.t1).trim() ? "nothing changes over time — the behaviour is not running" : null));
-          push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding });
-          paint();
-          if (!finding) { toast("Held — observed running."); break; }
-          push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
-          paint();
-          if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
-        }
-        running = null; live = null; paint(); renderList(); return;
-      }
-      if (!mono.satisfiable) {
-        push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] });
-        running = null; live = null; paint(); renderList(); return;
-      }
+      await runPipeline(text, ac);
+      running = null; live = null; paint(); renderList();
+      return;
     }
     live = { label: first ? "reading the ask" : "following up", units: [] }; paint();
     try {
