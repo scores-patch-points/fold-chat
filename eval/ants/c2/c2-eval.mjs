@@ -14,7 +14,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url)), ROOT = path.resolve(H
 const profile = JSON.parse(fs.readFileSync(path.join(ROOT, "voice/thinkers-profile.json"), "utf8"));
 const model = decodeProfile(profile), thinkers = thinkerTable(profile), FW = functionWordsOf("en");
 const sha = (b) => crypto.createHash("sha256").update(b).digest("hex");
-const canonFile = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x));
+const canonFile = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x));
 
 const QUESTIONS = ["Is there a God?", "What is justice?", "How should I treat my enemies?", "Is suffering necessary?", "Can a person change?", "What is a good ruler?", "Is it wrong to lie?", "What happens after death?", "What is the self?", "Why obey the law?", "Is war ever just?", "What is virtue?"];
 const CONTROLS = ["What is the capital of France?", "How do I reset my router password?", "Who won the 1998 World Cup?", "What is the boiling point of water?", "How many ounces are in a pound?", "asdf qwerty zxcv"];

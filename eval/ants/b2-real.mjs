@@ -13,7 +13,7 @@ const handles = args.filter((a) => !a.startsWith("--"));
 const HANDLES = handles.length ? handles : ["ramakrishna", "vivekananda", "mozi"];
 const QUESTION = process.env.B2_QUESTION || "Is there a God?";
 const index = JSON.parse(fs.readFileSync(path.join(ROOT, "voice/voice-index.json"), "utf8"));
-const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x));
+const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x));
 const OLLAMA = process.env.OLLAMA_URL || "http://127.0.0.1:11434/api/chat", MODEL = process.env.B2_MODEL || "gemma2:2b";
 const chat = (temperature) => async (messages) => {
   const r = await fetch(OLLAMA, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ model: MODEL, messages, stream: false, options: { temperature, num_ctx: 4096 } }) });

@@ -2,7 +2,7 @@
 // scripts/build-thinkers.mjs — the thinker PROFILES (docs/VOICE.md, eval/ants/B1-PREREG.md): per-thinker word-level profiles of CONTENT STEMS, from each thinker's own verified English canon.
 //   node scripts/build-thinkers.mjs            → voice/thinkers-profile.json  (fit on the TRAIN units only; calibration is written into it by eval/ants/B1-eval.mjs --write)
 //   node scripts/build-thinkers.mjs --check    → re-verify every canon file's sha256 against the concern field's, and that the profile on disk is what this script would build
-// Roster = every concern field (ethos/derived-priors/concern-priors/concern-fields) whose source file (a) exists, (b) has the sha256 the field records (a different file is REFUSED), (c) is English
+// Roster = every concern field (Zenodotus/derived-priors/concern-priors/concern-fields) whose source file (a) exists, (b) has the sha256 the field records (a different file is REFUSED), (c) is English
 // (function-word share), (d) has at least MIN_CHARS characters of text. Handles sharing one source collapse to the first. Everything else is named in `gaps`, never silently dropped.
 // Deterministic, no model. Also exports loadCanon()/splitOf() so the evaluation uses the very same units and split.
 import fs from "node:fs";
@@ -14,14 +14,14 @@ import { sentencesWithOffsets } from "../fold-chat-impression.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const WORLD = path.resolve(ROOT, "..");
-export const FIELDS = path.join(WORLD, "ethos/derived-priors/concern-priors/concern-fields");
+export const FIELDS = path.join(WORLD, "Zenodotus/derived-priors/concern-priors/concern-fields");
 export const MIN_CHARS = 30000, UNIT_MIN = 40, UNIT_SPLIT = 150, RUN = 20, ENGLISH_MIN = 0.12;
 export const splitOf = (unitIndex) => { const b = Math.floor(unitIndex / RUN) % 5; return b <= 2 ? "train" : b === 3 ? "dev" : "test"; };
 // DECLARED (the user's to edit, docs/VOICE.md open decision 1): canons whose subject is a technical craft, not a view of how to live. They stay in the profile as DISTRACTOR classes — science text
 // belongs to them, so it is not mistaken for a thinker's view — but they are never offered as a voice (`speaks: false`).
 export const TECHNICAL = ["brahmagupta", "koopman", "liu-hui", "lovelace", "sockeye", "strunk-white", "synapse", "thrax", "xushen", "shizhen", "panini", "wigmore", "tala", "bharata", "brillat-savarin"];
 const sha = (b) => crypto.createHash("sha256").update(b).digest("hex");
-const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x));
+const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x));
 const EN = new Set("the of and to in is that it was he for as with his by be this which are from or at have not but they had you said all her she their there one would what we been were when who will more if no out so up".split(" "));
 const englishShare = (t) => { const w = t.slice(0, 300000).toLowerCase().match(/[a-z']+/g) || []; if (!w.length) return 0; let k = 0; for (const x of w) if (EN.has(x)) k++; return k / w.length; };
 

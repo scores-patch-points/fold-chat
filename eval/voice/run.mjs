@@ -15,7 +15,7 @@ const idx = JSON.parse(fs.readFileSync(path.join(ROOT, "voice/voice-index.json")
 const bank = JSON.parse(fs.readFileSync(path.join(ROOT, "voice/voice-bank.json"), "utf8"));
 const index = buildIndex(idx.archons, FW);
 const T = JSON.parse(fs.readFileSync(path.join(HERE, "threads.json"), "utf8")).threads;
-const canon = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x));
+const canon = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x));
 const files = {};
 const verify = (a) => { const p = canon(a.source.path); const buf = files[p] ??= fs.readFileSync(p); return crypto.createHash("sha256").update(buf).digest("hex") === a.source.sha256 && buf.toString("utf8").slice(a.source.start, a.source.end) === a.quote.text; };
 const exchanges = (turns, k) => turns.slice(0, k).map((t) => ({ ask: t.ask, said: t.authored === "sources" ? "" : t.spoken }));

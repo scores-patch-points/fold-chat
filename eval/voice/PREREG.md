@@ -6,7 +6,7 @@ from the ethos canon, with provenance (file, byte span, sha256), gated by the co
 (stage 4). Nothing is said that the code did not measure.
 
 Real inputs: the real page (heimdall, gemma2:2b, real web) drives 8 threads of 3 turns (`eval/voice/collect.mjs`): 5 REFLECTIVE (personal conflict, recognition, fear,
-trust, patience) and 3 LOOKUP (Eiffel Tower, photosynthesis, Marie Curie). Real archon data: `ethos/derived-priors/concern-priors/concern-fields/*.json` with each
+trust, patience) and 3 LOOKUP (Eiffel Tower, photosynthesis, Marie Curie). Real archon data: `Zenodotus/derived-priors/concern-priors/concern-fields/*.json` with each
 field's `source.sha256` checked against the canon file on disk; roster = the speakable archons whose canon is English (declared, to be edited by the user).
 
 ## Claims (a counterexample refutes each)

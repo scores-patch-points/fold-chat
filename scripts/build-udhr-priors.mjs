@@ -3,14 +3,14 @@
 // and no threshold separates the two, so the fix is COVERAGE: build a prior from every UDHR translation (an ~1850-token
 // verified sample of that language) and add it to fold-chat-lang-priors.js. The treebank-derived priors (the shipped
 // 40) are kept untouched; UDHR priors are added only for codes the fold does not already have.
-//   node scripts/build-udhr-priors.mjs [--corpus ../ethos/06-government-legal/un-udhr] [--out ../fold-chat-lang-priors.js]
+//   node scripts/build-udhr-priors.mjs [--corpus ../Zenodotus/06-government-legal/un-udhr] [--out ../fold-chat-lang-priors.js]
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const arg = (n, d) => (process.argv.includes(n) ? process.argv[process.argv.indexOf(n) + 1] : d);
-const CORPUS = path.resolve(arg("--corpus", path.join(HERE, "..", "..", "ethos", "06-government-legal", "un-udhr")));
+const CORPUS = path.resolve(arg("--corpus", path.join(HERE, "..", "..", "Zenodotus", "06-government-legal", "un-udhr")));
 const OUT = path.resolve(arg("--out", path.join(HERE, "..", "fold-chat-lang-priors.js")));
 const RHO = +arg("--rho", 0.25), KW = 500, K2 = 300, K3 = 900, FW = 120, ALPHA = 0.5;
 

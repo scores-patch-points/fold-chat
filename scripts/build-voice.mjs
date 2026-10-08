@@ -15,13 +15,13 @@ import { VOICE } from "../fold-chat-voice.js";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const WORLD = path.resolve(ROOT, "..");                      // /Users/mlacy/Documents/3.0
-const FIELDS = path.join(WORLD, "ethos/derived-priors/concern-priors/concern-fields");
+const FIELDS = path.join(WORLD, "Zenodotus/derived-priors/concern-priors/concern-fields");
 export const ROSTER = ["laozi", "whitman", "george-eliot", "zhengming", "mozi", "xunzi", "ramakrishna", "vivekananda", "solon", "mahavira", "nagarjuna", "vasana", "ise"];
 const CAP = 250;
 const FW = functionWordsOf("en");
 const stemOf = (t) => (ground.stemOf ? ground.stemOf(t) : t);
 const stemsOf = (text) => ground.tokenize(text).filter((t) => t.length >= VOICE.minStem && !FW.has(t)).map(stemOf);
-const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x));
+const canonPath = (p) => [path.join(WORLD, p), path.join(WORLD, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x));
 const sha = (b) => crypto.createHash("sha256").update(b).digest("hex");
 const check = process.argv.includes("--check");
 

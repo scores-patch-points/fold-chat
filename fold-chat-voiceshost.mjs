@@ -21,7 +21,7 @@ export function createVoicesHost({ root = HERE, world = path.resolve(HERE, "..")
   };
   const canonOf = (handle, th) => {
     if (canons.has(handle)) return canons.get(handle);
-    const p = th.source.path, file = [path.join(world, p), path.join(world, p.replace(/^live_priors\//, "ethos/"))].find((x) => exists(x));
+    const p = th.source.path, file = [path.join(world, p), path.join(world, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => exists(x));
     let rec = null;
     if (file) { const buf = readFile(file); rec = { text: buf.toString("utf8"), sha256: crypto.createHash("sha256").update(buf).digest("hex") }; }
     canons.set(handle, rec);

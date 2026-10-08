@@ -46,7 +46,7 @@ the person feels: it reads the CONVERSATION's record (experiencer declared by th
   **no referents for a single sentence**: e.g. `designed("Tower was", "by Leonardo da Vinci")`. It cannot build resolved ledger notes today.
 * The chat's pathos read has an **unmeasured curve** (no recursive reader on this pipeline), so `collapse` cannot fire; `stale` and `contested` are the live
   registers. `strain` is "report" (the chat holds no claim edges).
-* Ethos-side material that DOES exist, byte-addressed and deterministic: `ethos/derived-priors/concern-priors` (60 archons, term *dwellings* with spans, a
+* Ethos-side material that DOES exist, byte-addressed and deterministic: `Zenodotus/derived-priors/concern-priors` (60 archons, term *dwellings* with spans, a
   seeded null; 22 silent archons named as gaps), `socrates-priors` (every Socratic utterance typed by elenctic move), the archon manifests' verified quotes,
   `act-priors` (VerbNet → the nine acts). These are Pattern-grain terrain, not yet ledger notes.
 

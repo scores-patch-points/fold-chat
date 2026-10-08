@@ -2,7 +2,7 @@
 //
 // An ORGANIC, RARE aside: "This reminds me of something <holder> wrote about <topic>: “<their own words>”", chosen mechanically from ingested canon, with provenance
 // (file, byte span, sha256). Nothing is said that the code did not measure. What stage 2 measures is TERM-LEVEL resonance: the conversation's content stems against
-// an archon's concern-field dwellings (ethos/derived-priors/concern-priors: terms the canon returns to beyond its own seeded null), weighted by how few archons share
+// an archon's concern-field dwellings (Zenodotus/derived-priors/concern-priors: terms the canon returns to beyond its own seeded null), weighted by how few archons share
 // the term, judged against a SEEDED NULL (random roster vocabulary of the same size as the part of the conversation the roster can match). It is NOT paradigm matching (needs ethos ledger notes) and NOT curve matching
 // (needs a recursive reader); the aside never claims it was chosen for either.
 //

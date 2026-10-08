@@ -50,15 +50,15 @@ const canonWindows = (split, N, per, tag) => {
 
 // NEG-X: organic chat, e-mail, SMS, science / history Wikipedia — files split by index parity
 const NEGX_DIRS = [
-  ["ubuntu-irc", path.join(WORLD, "ethos/19-organic-community/ubuntu-irc/ubuntu"), 23],
-  ["enron", path.join(WORLD, "ethos/19-organic-community/enron"), 20],
-  ["nus-sms", path.join(WORLD, "ethos/19-organic-community/nus-sms/en"), 8],
+  ["ubuntu-irc", path.join(WORLD, "Zenodotus/19-organic-community/ubuntu-irc/ubuntu"), 23],
+  ["enron", path.join(WORLD, "Zenodotus/19-organic-community/enron"), 20],
+  ["nus-sms", path.join(WORLD, "Zenodotus/19-organic-community/nus-sms/en"), 8],
 ];
 const WIKI = "Cell_biology Chemistry DNA Entropy General_relativity Mathematics Neuroscience Quantum_mechanics Thermodynamics Industrial_Revolution Cold_War Ming_dynasty Mongol_Empire Byzantine_Empire".split(" ");
 const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)])).sort();
 const negxFiles = [];
 for (const [fam, dir, cap] of NEGX_DIRS) { const all = walk(dir).filter((f) => f.endsWith(".txt")); const step = Math.max(1, Math.floor(all.length / cap)); all.filter((_, i) => i % step === 0).slice(0, cap).forEach((f, i) => negxFiles.push({ fam, f, split: i % 2 === 0 ? "dev" : "test" })); }
-WIKI.forEach((n, i) => negxFiles.push({ fam: "wiki-science", f: path.join(WORLD, "ethos/02-encyclopedic/wikipedia", n + ".txt"), split: i % 2 === 0 ? "dev" : "test" }));
+WIKI.forEach((n, i) => negxFiles.push({ fam: "wiki-science", f: path.join(WORLD, "Zenodotus/02-encyclopedic/wikipedia", n + ".txt"), split: i % 2 === 0 ? "dev" : "test" }));
 const negxWindows = (split, N = 12, per = 100) => {
   const w = [];
   for (const { fam, f, split: sp } of negxFiles) {

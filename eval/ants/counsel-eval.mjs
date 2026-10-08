@@ -86,7 +86,7 @@ export const L2_BY_Q = {
 
 // ───────────────────────────── canon, read from disk (independent of the module) ─────────────────────────────
 const sha256 = (buf) => crypto.createHash("sha256").update(buf).digest("hex");
-export function canonPath(p, world = WORLD) { return [path.join(world, p), path.join(world, p.replace(/^live_priors\//, "ethos/"))].find((x) => fs.existsSync(x)); }
+export function canonPath(p, world = WORLD) { return [path.join(world, p), path.join(world, p.replace(/^live_priors\//, "Zenodotus/"))].find((x) => fs.existsSync(x)); }
 const CANON_CACHE = new Map();
 /** Reads a canon file and re-hashes it. { text, sha, shaOk, file } — shaOk false means the file is not the one the roster verified. */
 export function readCanon(source, { world = WORLD } = {}) {

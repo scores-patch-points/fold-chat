@@ -1,7 +1,7 @@
 # UDHR falsification — "languages have a general shape; the shape detector generalizes; embeddings won't beat it"
 
 Written 2026-10-07 BEFORE any run. Instrument: `eval/langid/udhr-falsify.mjs`. Corpus: the 516 UDHR
-translations already on disk (`ethos/06-government-legal/un-udhr/udhr-<code>.txt`; header
+translations already on disk (`Zenodotus/06-government-legal/un-udhr/udhr-<code>.txt`; header
 `Language: Name (code)`). Ground truth: the header's declared language. The fold detector:
 `detectLang` (fold-chat-lang.js) / `identify` (fold-chat-langid.js) — script → naive Bayes over trebank-derived
 priors + declared marks/clues. Embedding arm: local Ollama `nomic-embed-text` (a REQUIRED local service,

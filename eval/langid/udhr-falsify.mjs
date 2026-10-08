@@ -8,7 +8,7 @@ import { identify } from "../../fold-chat-langid.js";
 import { PRIORS } from "../../fold-chat-lang-priors.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const CORPUS = process.env.UDHR_CORPUS || "/Users/mlacy/Documents/3.0/ethos/06-government-legal/un-udhr";
+const CORPUS = process.env.UDHR_CORPUS || "/Users/mlacy/Documents/3.0/Zenodotus/06-government-legal/un-udhr";
 const OUT = join(HERE, "results");
 mkdirSync(OUT, { recursive: true });
 

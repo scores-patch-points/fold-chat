@@ -13,7 +13,7 @@ const SHELF = [
   {
     id: "war-and-peace", title: "War and Peace", author: "Leo Tolstoy", translator: "Louise and Aylmer Maude",
     match: /\bwar\s+(?:and|&)\s+peace\b/i,
-    url: "https://raw.githubusercontent.com/scores-patch-points/ethos/main/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt",
+    url: "https://raw.githubusercontent.com/scores-patch-points/Zenodotus/main/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt",
     home: "https://www.gutenberg.org/ebooks/2600", via: "ethos · Project Gutenberg 2600",
   },
 ];
