@@ -14,7 +14,7 @@ import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, e
 import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, snapshot as wsSnapshot } from "./fold-chat-workspace.js";
 // THE APP'S OWN FALSIFIER — the same organ the answer lane uses. A made page is
 // not trusted because it renders; its CLAIMS are falsified against the material
-// that was read, and a failing claim sends the turn back (REC↬NUL) to be corrected.
+// that was read, and a failing claim sends the turn back (REC→NUL) to be corrected.
 import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answer.js";
 // THE CUBE + THE GATE, woven in: every act lands on one of the 27 coherent
 // cells (cellOf), the turn is typed before any draw (gateTurn), and the turn's
@@ -51,11 +51,11 @@ function trail(keys, amount = 1) {
   saveTrails(t); return t;
 }
 // THE OPERATORS (organs/cube.mjs): every act is one, and the log carries which.
-const OPG = Object.freeze({ NUL: "∅", SIG: "○", INS: "●", SEG: "｜", CON: "⋈", SYN: "△", DEF: "⊢", EVA: "⊨", REC: "↬" });
+const OPG = Object.freeze({ NUL: "∅", SIG: "○", INS: "●", SEG: "｜", CON: "⋈", SYN: "△", DEF: "⊢", EVA: "⊨", REC: "◉" });
 const opg = (e) => (e && e.op && OPG[e.op] ? `<span class="fs-op" title="${esc(e.op)}">${OPG[e.op]}</span>` : "");const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
 // PLAIN LANGUAGE. This surface is read by a person, not a machine: every internal
 // operator and speaker is said in words a person would use, and the raw glyph,
-// the cube cell and the provenance are kept under "the working" for whoever wants
+// the cube cell and the provenance stay behind a disclosure for whoever wants
 // the machinery. (Legibility is the point; the log is still underneath it.)
 const STEP = Object.freeze({ NUL: "Starting", SIG: "Searching the web", INS: "Adding", SEG: "Planning the pieces", CON: "Checking what we have", SYN: "Building", DEF: "Understanding the ask", EVA: "Testing it", REC: "Fixing" });
 const WHO = Object.freeze({ fold: "The Fold", app: "The Fold", model: "The writer", mouth: "The writer", you: "You", library: "Library", hunt: "The web", box: "The box", gap: "Missing", wall: "Blocked" });
@@ -322,7 +322,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // FRESH FROM THE SPEC (lesson #25/#4), never handed its own failure: a busy
     // prompt that came back without a page is re-asked as ONE small, clean ask.
     if (!isHtml(html)) {
-      onToken?.("\n↬ re-asking fresh, smaller\n");
+      onToken?.("\n◉ re-asking fresh, smaller\n");
       try { out = await draw([
         { role: "system", content: "You write ONE complete, self-contained HTML document. Inline CSS and JavaScript only. Output only the HTML." },
         { role: "user", content: `Write a complete, working HTML page for: ${text}\n\nOutput only the HTML document, inside one fenced code block.` },
@@ -539,7 +539,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       }
       break;
     }
-    // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
+    // (6) WEAVE IT TOGETHER — and REC→NUL when the observation fails.
     let finding = atom.finding || null, html = null, held = false;
     // THE MEASURED RESIDUAL (the DMD observable): how far the page is from holding —
     // the real test's own output (observation errors + failing claims), never a text length.
@@ -621,7 +621,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     await runSpiral({
       atom: { text, finding: null }, grain: RUNGS[0], fuel: FUEL_TURN,
       step: async (cur, i) => {
-        if (i > 0) { rungNow = RUNGS[0]; push({ kind: "think", by: "fold", op: "REC", text: `↬ re-opening the whole turn (pass ${i + 1}) — the finding: ${slice(cur.atom.finding).slice(0, 90)}` }); paint(); }
+        if (i > 0) { rungNow = RUNGS[0]; push({ kind: "think", by: "fold", op: "REC", text: `◉ re-opening the whole turn (pass ${i + 1}) — the finding: ${slice(cur.atom.finding).slice(0, 90)}` }); paint(); }
         const r = await onePass(cur.atom);
         held = r.held;
         if (r.refused || r.held) return { done: true };
@@ -662,7 +662,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // await, never a blank screen until the model speaks.
     setLive(first ? "reading what you're asking for" : "reading your follow-up"); paint();
     // THE PIPELINE: (1) what does the person want → (2) find examples → (3) does
-    // that change the want → (4) outline → (5) inventory → (6) weave; REC↬NUL at
+    // that change the want → (4) outline → (5) inventory → (6) weave; REC→NUL at
     // any point. One turn, the whole movement, streamed and operator-tagged.
     if (!lk && !cur.codebase) {
       await runPipeline(text, ac);
@@ -737,13 +737,13 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       return bits.join(" · ");
     };
     // A ROW is one plain step on the turn's spine. The raw operator, the cube
-    // cell and the units are still there — under "the working", on purpose.
+    // cell and the units are still there — behind the disclosure, on purpose.
     const rowHtml = (e, i) => {
       if (e.kind === "think" && ("streaming" in e)) {
         // THE REASONING ITSELF — visible as it happens, kept open after it lands.
-        // A spinning ring + a ticking time while it works; a ✓/↻/✗ mark when it settles.
+        // A spinning ring + a ticking time while it works; a ✓/◉/✗ mark when it settles.
         const live0 = e.streaming;
-        const mark = live0 ? `<span class="fs-spin" aria-hidden="true"></span>` : (e.ok === false ? `<span class="fs-mark bad">✗</span>` : (e.op === "REC" ? `<span class="fs-mark warn">↻</span>` : `<span class="fs-mark ok">✓</span>`));
+        const mark = live0 ? `<span class="fs-spin" aria-hidden="true"></span>` : (e.ok === false ? `<span class="fs-mark bad">✗</span>` : (e.op === "REC" ? `<span class="fs-mark warn">◉</span>` : `<span class="fs-mark ok">✓</span>`));
         const time = live0 ? `<span class="fs-time" data-t0="${esc(e.at || 0)}">${secs(Date.now() - (e.at || Date.now()))}</span>` : "";
         const cap = live0 ? "thinking it through" : esc(stepWord(e).toLowerCase());
         return `<div class="fs-thinkblock${live0 ? " streaming" : ""}"><div class="fs-think-h" data-think="${i}">${mark}<span>${cap}</span>${time}</div><div class="fs-think-t">${esc(e.text || "")}</div></div>`;
@@ -765,7 +765,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       const hasUnits = !!(e.units && e.units.length);
       const tech = techOf(e);
       const detail = (hasUnits || tech) ? `<div class="fs-detail">${hasUnits ? `<div class="fs-units">${units}</div>` : ""}${tech ? `<div class="fs-tech">${esc(tech)}</div>` : ""}</div>` : "";
-      const toggle = (hasUnits || tech) ? `<button type="button" class="fs-more" data-detail="${i}">${hasUnits ? `${e.units.filter((u) => u.by === "mouth").length}/${e.units.length} parts` : "the working"}</button>` : "";
+      const detailLabel = hasUnits ? `${e.units.filter((u) => u.by === "mouth").length}/${e.units.length} parts` : "details";
+      const toggle = (hasUnits || tech) ? `<button type="button" class="fs-more" data-detail="${i}" aria-label="${esc(detailLabel)}" title="${esc(detailLabel)}"></button>` : "";
       const undoBtn = (e.inverse && e.ok && !e.undone && !running) ? `<button type="button" class="fs-undo" data-undo="${i}">Undo</button>` : "";
       return `<div class="fs-row ${cls}"><div class="fs-row-body"><div class="fs-line">${glyph}<span class="fs-verb">${esc(verb)}</span>${who}</div>${title}${body}${why}${errs}${notes}${srcWrap}${detail}${toggle}${undoBtn}</div></div>`;
     };
