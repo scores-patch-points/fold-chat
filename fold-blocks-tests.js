@@ -41,4 +41,9 @@ export const TESTS = [
     A.near(expr(k.model().blocks.m.props.expr).run({ price: 5 }), 10, 1e-9);
     A.ok(k.submit(`z : result\nz.label = Z\nz.expr = magic * 2\n!EVA z`).errors.some((e) => e.code === "dependency"), "an undeclared name is caught");
   }],
+  ["monologue: the mouth's OVER-CLAIMED needs do not gate — only the ask does", () => {
+    const m = monologue("make me a website about dolphins", { what: "a website about dolphins", satisfy: "it gives information about dolphins", needs: "live data feeds, images, and videos" });
+    A.ok(m.code && m.satisfiable, "a static page builds anyway, despite the model claiming needs");
+    A.ok(!monologue("make a widget that shows gas prices").satisfiable, "an ask that SHOWS external data still gaps");
+  }],
 ];

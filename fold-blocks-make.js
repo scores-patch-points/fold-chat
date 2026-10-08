@@ -26,8 +26,11 @@ export function monologue(ask, reading = null) {
   } else {
     lines.push({ say: `(no reading came back — I will build the most direct thing the words name.)`, why: null });
   }
-  const needsSource = (reading && /\b(data source|live|feed|api|real-?time|current|today)\b/i.test(reading.needs || "")) ||
-    /\b(show|shows|display|displays|list|lists|live|current|today'?s|latest)\b[^.]*\b(prices?|news|headlines|weather|scores?|schedule|stocks?|rates?|forecast|times?|hours|availability)\b/i.test(q);
+  // THE GATE IS THE APP'S, NOT THE MOUTH'S. A small model over-claims its needs
+  // ("a website about dolphins" -> "needs live data feeds, images, videos"), so
+  // the reading's NEEDS is shown but never gates. The void opens only when the
+  // ASK ITSELF is a request to SHOW external, live data this fold has no source for.
+  const needsSource = /\b(show|shows|display|displays|list|lists|live|current|today'?s|latest)\b[^.]*\b(prices?|news|headlines|weather|scores?|schedule|stocks?|rates?|forecast|times?|hours|availability)\b/i.test(q);
   if (needsSource) {
     lines.push({ say: `This needs a live source this fold does not have. I will not fake it.`, bad: true });
     return { satisfiable: false, code: false, why: "it needs a live data source this fold does not have", lines };
