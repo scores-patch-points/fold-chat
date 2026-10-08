@@ -163,12 +163,20 @@ export function eventsForStep(c, e) {
   return withVerb(c, evs);
 }
 
+/** The process line for a sources-only fallback. An untraceable model answer is NEVER labelled "no model
+ *  reachable": the model answered, its sentences just did not trace to what was read. Pure. */
+export function fallbackProcessLine(fellBack) {
+  if (fellBack?.reason === "untraceable") return "fell back · the model's answer could not be traced to what was read — drew the sources-only strand instead";
+  return `fell back · the model did not answer (${fellBack?.gate || "no model reachable"}) — drew the sources-only strand instead, no model`;
+}
+
 /** The collapsed one-line summary of a finished turn: "Answered in 12 s · read 3 sources". Pure. */
 export function summaryLine({ ms = 0, nSources = 0, mode = "facing", model = "", fellBack = false, gap = false, failed = false } = {}) {
   const secs = ms >= 1000 ? `${ms >= 10000 ? Math.round(ms / 1000) : (ms / 1000).toFixed(1)} s` : "under 1 s";
   const src = nSources ? `read ${plural(nSources, "source")}` : "no source reached";
   if (failed) return `Stopped after ${secs}`;
   if (gap) return `No answer in ${secs} · ${src}`;
+  if (fellBack === "untraceable") return `Answered from the sources in ${secs} · the model's answer was not traceable to the read pages · ${src}`;
   if (fellBack === "nomodel") return `Answered from the sources in ${secs} · no model reachable · ${src}`;
   if (fellBack) return `Answered from the sources in ${secs} · the model declined · ${src}`;
   if (mode === "snips") return `Answered in ${secs} · ${src} · no model`;

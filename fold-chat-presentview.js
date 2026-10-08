@@ -1026,8 +1026,10 @@ function applyEntry(P, en, ctx) {
     case "deep": tokenStage(P, en, ctx, { stage, eot, view, level }); break;
     case "writing": {
       level(5);
-      stage("SYN", "Writing the answer from this graph \u2014 it appears above");
-      if (ctx.g && ctx.g.stageEl.isConnected) ctx.g.cap.textContent = "the model is writing from this graph now \u2014 the answer streams in above, and every sentence of it will be checked next";
+      // by:"model" writes from the graph; by:"mechanical" (a Sources-only turn, no model) must not claim a model wrote it
+      const mech = en.by === "mechanical";
+      stage("SYN", mech ? "Drawing the answer from the sources \u2014 no model wrote this" : "Writing the answer from this graph \u2014 it appears above");
+      if (ctx.g && ctx.g.stageEl.isConnected) ctx.g.cap.textContent = mech ? "these are the sources' own passages, unchanged \u2014 no model wrote this answer" : "the model is writing from this graph now \u2014 the answer streams in above, and every sentence of it will be checked next";
       eot("SYN", `answer \u2190 ${plural(en.srcs || 0, "passage")}`);
       break;
     }
@@ -1599,7 +1601,7 @@ export function mountLive(body, { question = "", mdHtml = null } = {}) {
       for (const [k, sub, dwell] of [[3, 0, 1.8], [3, 1, 2.0], [3, 2, 2.2], [4, 0, 2.8], [5, 0, 2.2]]) { push("deep", { k, sub, key, ps: pick }, t); t += dwell; }
       srcs = all.length; readEnd = t;
     },
-    writing() { if (!closed) { writingAt = Math.max(now(), readEnd); push("writing", { srcs }, writingAt); readEnd = Math.max(readEnd, writingAt + 0.8); } },
+    writing(by = "model") { if (!closed) { writingAt = Math.max(now(), readEnd); push("writing", { srcs, by }, writingAt); readEnd = Math.max(readEnd, writingAt + 0.8); } },
     wrote(full, final = false) {
       if (closed) return;
       liveText = full;

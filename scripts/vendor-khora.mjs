@@ -78,6 +78,10 @@ export const ENTRIES = [
   "kernel/holder-scope.js",
   "kernel/theory-of-mind.js",
   "kernel/hindsight.js",
+  // THE MEASURED STOP (THE-STIGMERGIC-PIPELINE §5, Phase A): streaming DMD
+  // (causal, prefix-only) over the turn's trajectory decides when the fold has
+  // settled or cycles — the cap stays the floor, never the stop. fold-chat-dmd.js.
+  "kernel/rewrite-gate.js",
   // DOES A CITED SPAN STILL NAME ITS BYTES (span-drift.js): exact / shifted / moved / gone over `ref#start-end`, ambiguity said, never rewritten.
   // Pure; closes over record-log.js's resolveAddress. A pure function of its inputs, for the chat's citation check.
   "the-fold/span-drift.js",

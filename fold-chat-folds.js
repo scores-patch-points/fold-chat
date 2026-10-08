@@ -23,6 +23,9 @@ import { RUNGS, cellOf, cellLine, gateTurn, runSpiral } from "./fold-chat-cube.j
 // THE WEAVE, in the browser (an experiment): the page is stitched from what was
 // read — field first, mouth only the residue, every byte logged with provenance.
 import { createBuild, unitsFromOutline, snipFor, grounded } from "./fold-chat-build.js";
+// THE MEASURED STOP (THE-STIGMERGIC-PIPELINE §5): the turn's fuel is a FLOOR;
+// the stop is the DMD decay (or cycle) of the turn's own trajectory.
+import { createTurnGate, stopLine } from "./fold-chat-dmd.js";
 
 const KEY = "fold-chat:folds@1";
 // THE WEAVE EXPERIMENT: ?stitch=1 makes the make stitch the page from what was
@@ -50,6 +53,37 @@ function trail(keys, amount = 1) {
 // THE OPERATORS (organs/cube.mjs): every act is one, and the log carries which.
 const OPG = Object.freeze({ NUL: "∅", SIG: "○", INS: "●", SEG: "｜", CON: "⋈", SYN: "△", DEF: "⊢", EVA: "⊨", REC: "↬" });
 const opg = (e) => (e && e.op && OPG[e.op] ? `<span class="fs-op" title="${esc(e.op)}">${OPG[e.op]}</span>` : "");const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
+// PLAIN LANGUAGE. This surface is read by a person, not a machine: every internal
+// operator and speaker is said in words a person would use, and the raw glyph,
+// the cube cell and the provenance are kept under "the working" for whoever wants
+// the machinery. (Legibility is the point; the log is still underneath it.)
+const STEP = Object.freeze({ NUL: "Starting", SIG: "Searching the web", INS: "Adding", SEG: "Planning the pieces", CON: "Checking what we have", SYN: "Building", DEF: "Understanding the ask", EVA: "Testing it", REC: "Fixing" });
+const WHO = Object.freeze({ fold: "The Fold", app: "The Fold", model: "The writer", mouth: "The writer", you: "You", library: "Library", hunt: "The web", box: "The box", gap: "Missing", wall: "Blocked" });
+const KIND_WORD = Object.freeze({ app: "web page", essay: "sourced essay", extract: "parsed page", website: "website", widget: "widget", document: "document", codebase: "codebase" });
+const LANE_WORD = Object.freeze({ refuse: "a refusal", received: "a build from what you gave", refused: "a refusal", grounded: "a build over the sources", mechanical: "a build", shown: "a question for Chat" });
+const stepWord = (e) => (e && e.op && STEP[e.op]) || "Working";
+const whoWord = (by) => WHO[by] || (by ? String(by)[0].toUpperCase() + String(by).slice(1) : "The Fold");
+const hostOf = (u) => { try { return new URL(u).host.replace(/^www\./, ""); } catch { return String(u || "").replace(/^https?:\/\//, "").split(/[/?#]/)[0].replace(/^www\./, ""); } };
+/** A source as a chip: the domain you can trust-at-a-glance, the title on hover. */
+const sourceChip = (s) => {
+  const url = s.url || "";
+  const title = s.title || s.source || url;
+  const label = hostOf(url) || String(title).slice(0, 42);
+  return `<a class="fs-source" href="${esc(url || "#")}" target="_blank" rel="noreferrer" title="${esc(title)}">${esc(label)}</a>`;
+};
+// THE TRUST LEDGER: what was read, what the page claims, and whether it ran —
+// read back off the fold's own log, so it survives a reopen and is never a
+// separate shadow copy of the truth.
+function trustOf(f) {
+  const log = (f && f.log) || [];
+  let sources = null, claims = null, run = null;
+  for (const e of log) {
+    if (e.sources && e.sources.length) sources = e.sources;
+    if (e.claims) claims = e.claims;
+    if (e.run) run = e.run;
+  }
+  return { sources, claims, run };
+}
 /** An ask that makes a thing (a page, a widget, a document) rather than asks a question. Declared words; when unsure: no. */
 export function isMakeAsk(text) {
   const q = String(text || "").toLowerCase();
@@ -60,52 +94,125 @@ export function isMakeAsk(text) {
 const CSS = `
 .main.folding > :not(.topbar):not(.foldspace){display:none!important}
 .main.folding .topchat{display:none!important}
-.foldspace{flex:1;min-height:0;min-width:0;display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);border-top:1px solid var(--line)}
+.foldspace{flex:1;min-height:0;min-width:0;display:grid;grid-template-columns:minmax(320px,430px) minmax(0,1fr);border-top:1px solid var(--line);background:var(--bg);font-family:var(--sans)}
 .fs-sess,.fs-canvas{min-width:0}
-.fs-ask{overflow-wrap:anywhere}
-.fs-log>*{flex:none}.fs-step{align-self:stretch}.fs-step-h .fs-by{align-self:center;height:auto;line-height:1.2}
+
+/* ── the session: a person's log, not a machine's ─────────────────────────── */
 .fs-sess{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--bg)}
-.fs-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line)}
-.fs-head b{flex:1}
-.fs-head b{font-size:var(--fs-md);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fs-chip{font:600 var(--fs-xs)/1 var(--mono);color:var(--ag-deep);background:var(--ag-soft);border-radius:var(--r-pill);padding:4px 8px;white-space:nowrap}
+.fs-head{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.fs-head b{flex:1;min-width:0;font-size:var(--fs-md);font-weight:650;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fs-chip{font:600 var(--fs-xs)/1 var(--sans);color:var(--ag-deep);background:var(--ag-soft);border-radius:var(--r-pill);padding:4px 9px;white-space:nowrap}
 .fs-sp{flex:1}
-.fs-btn{height:32px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--line2);background:var(--bg);font-size:var(--fs-sm);white-space:nowrap}
+.fs-btn{height:32px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--line2);background:var(--bg);color:var(--ink);font:500 var(--fs-sm) var(--sans);white-space:nowrap;cursor:pointer}
 .fs-btn:hover{background:var(--side2)}.fs-btn.on{background:var(--link);border-color:var(--link);color:var(--on-link)}
-.fs-btn.go{background:var(--ag);border-color:var(--ag);color:#fff;font-weight:600}
-.fs-log{flex:1;min-height:0;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px;font:var(--fs-sm)/1.5 var(--mono)}
-.fs-ask{color:var(--ink);font-weight:600}.fs-ask::before{content:"› ";color:var(--ag)}
-.fs-step{border-left:2px solid var(--line2);padding:2px 0 2px 10px;display:flex;flex-direction:column;gap:4px}
-.fs-step.ok{border-color:var(--ok)}.fs-step.bad{border-color:var(--bad)}.fs-step.live{border-color:var(--ag)}
-.fs-step-h{display:flex;gap:8px;align-items:baseline;align-content:flex-start;flex-wrap:wrap}.fs-step-h>*{white-space:nowrap}.fs-step-h .fs-by{color:#fff}.fs-step-h b{color:var(--ink)}.fs-step-h span{color:var(--mut)}
-.fs-by{font:700 10.5px/1.2 var(--mono);color:#fff;border-radius:4px;padding:2px 5px;white-space:nowrap;display:inline-block}
-.fs-by.model,.fs-by.mouth{background:var(--ag)}.fs-by.app,.fs-by.box{background:#5f5f6b}.fs-by.you{background:var(--link)}.fs-by.library{background:#7c3aed}.fs-by.hunt{background:#a16207}.fs-by.gap,.fs-by.wall{background:var(--bad)}
-.fs-units{display:none;flex-direction:column;gap:2px;margin-top:2px}.fs-step.open .fs-units{display:flex}
-.fs-u{display:grid;grid-template-columns:minmax(80px,auto) minmax(0,1fr) auto;gap:6px;align-items:baseline;font-size:var(--fs-xs)}
-.fs-u .k{color:var(--mut)}.fs-u .v{color:var(--ink);font-family:var(--sans);overflow-wrap:anywhere}.fs-u .s{grid-column:2/4;color:var(--bad);font-family:var(--sans)}
-.fs-err{color:var(--bad);font-family:var(--sans)}.fs-note{color:var(--mut);font-family:var(--sans)}
-.fs-tog{border:0;background:none;color:var(--link);padding:0;font:inherit;cursor:pointer}
-.fs-undo{border:1px solid var(--line2);background:var(--bg);border-radius:var(--r-pill);font:var(--fs-xs) var(--sans);padding:2px 8px}
-.fs-comp{border-top:1px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:8px}
-.fs-comp textarea{border:1.5px solid var(--ag);border-radius:var(--r-lg);padding:10px 12px;font:var(--fs-md)/1.5 var(--mono);resize:none;background:var(--bg);color:var(--ink);min-height:58px}
-.fs-comp .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.fs-sel{font:var(--fs-xs)/1.4 var(--mono);color:var(--link);background:color-mix(in srgb,var(--link) 10%,var(--bg));border-radius:var(--r-pill);padding:3px 8px}
-.fs-status{font:var(--fs-xs)/1.4 var(--sans);color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fs-btn.go{background:var(--ag);border-color:var(--ag);color:#fff;font-weight:650}.fs-btn.go:hover{background:var(--ag-deep);border-color:var(--ag-deep)}
+.fs-btn:disabled{opacity:.5;cursor:default}
+
+.fs-log{flex:1;min-height:0;overflow:auto;padding:16px 14px 22px;display:flex;flex-direction:column;gap:16px;font:var(--fs-md)/1.55 var(--sans)}
+
+/* one turn = one ask and the work it set off */
+.fs-turn{display:flex;flex-direction:column;gap:10px}
+.fs-ask{align-self:flex-end;max-width:92%;background:var(--ag-soft);color:var(--ink);border-radius:var(--r-lg);padding:8px 12px;font-size:var(--fs-md);font-weight:550;overflow-wrap:anywhere;text-align:right}
+.fs-steps{display:flex;flex-direction:column;margin-left:5px;border-left:2px solid var(--line)}
+
+/* one step: a status dot on the spine, a plain verb, a plain line */
+.fs-row{position:relative;display:flex;gap:10px;align-items:flex-start;padding:7px 0 7px 18px}
+.fs-row::before{content:"";position:absolute;left:-6px;top:11px;width:10px;height:10px;border-radius:50%;background:var(--line2);box-shadow:0 0 0 3px var(--bg)}
+.fs-row.ok::before{background:var(--ok)}
+.fs-row.bad::before{background:var(--bad)}
+.fs-row.run::before{background:var(--ag);box-shadow:0 0 0 3px var(--bg),0 0 0 6px color-mix(in srgb,var(--ag) 22%,transparent);animation:fspulse 1.3s ease-in-out infinite}
+@keyframes fspulse{50%{opacity:.4}}
+.fs-row-body{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px}
+.fs-line{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fs-glyph{--g:var(--ag-deep);font:700 var(--fs-sm)/1 var(--mono);color:var(--g);width:1.5em;height:1.5em;flex:none;display:inline-flex;align-items:center;justify-content:center;position:relative;border-radius:50%}
+.fs-row.bad .fs-glyph{--g:var(--bad)}
+.fs-row.info .fs-glyph{--g:var(--mut)}
+.fs-glyph.g-ground{border-radius:0;padding-bottom:3px}
+.fs-glyph.g-ground::after{content:"";position:absolute;left:.22em;right:.22em;bottom:0;height:2px;border-radius:1px;background:var(--g)}
+.fs-glyph.g-figure{border:1.5px solid var(--g)}
+.fs-glyph.g-pattern{background:var(--g);color:var(--bg)}
+.fs-verb{font-weight:650;color:var(--ink);font-size:var(--fs-sm)}
+.fs-who{font:600 var(--fs-2xs)/1.2 var(--sans);color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.fs-text{color:var(--ink2);font-size:var(--fs-sm);overflow-wrap:anywhere}
+.fs-why{color:var(--mut);font-size:var(--fs-xs);overflow-wrap:anywhere}
+.fs-note{color:var(--mut);font-size:var(--fs-xs)}
+.fs-err{color:var(--bad);font-size:var(--fs-sm)}
+.fs-more{border:0;background:none;color:var(--link);padding:0;font:500 var(--fs-xs) var(--sans);cursor:pointer;align-self:flex-start}
+.fs-more::before{content:"▸ "}
+.fs-row.open .fs-more::before{content:"▾ "}
+.fs-detail{display:none;font:var(--fs-xs)/1.5 var(--mono);color:var(--mut);background:var(--side2);border-radius:var(--r-sm);padding:8px 10px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px}
+.fs-row.open .fs-detail{display:block}
+.fs-tech{color:var(--mut)}
+.fs-units{display:flex;flex-direction:column;gap:3px;margin-top:6px}
+.fs-u{display:grid;grid-template-columns:minmax(70px,auto) minmax(0,1fr) auto;gap:6px;align-items:baseline;font-size:var(--fs-xs)}
+.fs-u .k{color:var(--mut)}.fs-u .v{color:var(--ink);overflow-wrap:anywhere}.fs-u .s{grid-column:2/4;color:var(--bad)}
+.fs-undo{border:1px solid var(--line2);background:var(--bg);border-radius:var(--r-pill);font:var(--fs-xs) var(--sans);padding:2px 9px;cursor:pointer;color:var(--ink2)}
+.fs-undo:hover{border-color:var(--link);color:var(--link)}
+.fs-sel{font:var(--fs-xs)/1.4 var(--sans);color:var(--link);background:color-mix(in srgb,var(--link) 10%,var(--bg));border-radius:var(--r-pill);padding:3px 9px}
+
+/* THE REASONING ITSELF — shown as it happens, kept open when it lands. */
+.fs-thinkblock{border-left:2px solid var(--line2);margin:2px 0 2px 18px;padding:4px 0 4px 10px}
+.fs-thinkblock.streaming{border-color:var(--ag);background:color-mix(in srgb,var(--ag) 5%,transparent)}
+.fs-thinkblock .fs-think-h{display:flex;align-items:center;gap:7px;font:600 var(--fs-2xs)/1.3 var(--sans);color:var(--mut);text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+.fs-thinkblock .fs-think-h:hover{color:var(--ink)}
+.fs-thinkblock .fs-think-t{font:var(--fs-sm)/1.6 var(--sans);color:var(--ink2);white-space:pre-wrap;overflow-wrap:anywhere;margin-top:4px;font-style:italic}
+.fs-thinkblock.collapsed .fs-think-t{display:none}
+.fs-thinkblock.streaming .fs-think-t::after{content:"▍";color:var(--ag);animation:fspulse 1s steps(1) infinite;font-style:normal}
+.fs-time{font:600 var(--fs-2xs)/1.2 var(--mono);color:var(--mut);margin-left:auto;white-space:nowrap}
+.fs-row.streaming .fs-time{color:var(--ag-deep)}
+.fs-spin{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid color-mix(in srgb,var(--ag) 28%,transparent);border-top-color:var(--ag);animation:fsspin .8s linear infinite;flex:none}
+@keyframes fsspin{to{transform:rotate(360deg)}}
+.fs-mark{font:700 var(--fs-2xs)/1 var(--sans);width:1.5em;height:1.5em;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;flex:none}
+.fs-mark.ok{color:var(--ok);background:var(--ok-soft)}
+.fs-mark.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,var(--bg))}
+.fs-mark.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--bg))}
+
+/* trust — made visible, not buried */
+.fs-sources{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.fs-source{display:inline-flex;align-items:center;font:500 var(--fs-xs)/1 var(--sans);color:var(--ink2);background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 10px;text-decoration:none;max-width:100%}
+.fs-source:hover{border-color:var(--link);color:var(--link)}
+.fs-badge{display:inline-flex;align-items:center;gap:5px;font:600 var(--fs-xs)/1 var(--sans);border-radius:var(--r-pill);padding:4px 10px;white-space:nowrap}
+.fs-badge.ok{color:var(--ok);background:var(--ok-soft)}
+.fs-badge.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 13%,var(--bg))}
+.fs-badge.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--bg))}
+.fs-badge.mut{color:var(--mut);background:var(--side2)}
+.fs-badge.run{color:var(--ag);background:var(--ag-soft)}
+.fs-caveat{padding:7px 14px;background:var(--bg);border-bottom:1px solid var(--line);color:var(--warn);font-size:var(--fs-xs);overflow-wrap:anywhere}
+
+/* composer */
+.fs-comp{border-top:1px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.fs-comp textarea{border:1.5px solid var(--line2);border-radius:var(--r-lg);padding:10px 12px;font:var(--fs-md)/1.5 var(--sans);resize:none;background:var(--bg);color:var(--ink);min-height:52px}
+.fs-comp textarea:focus{outline:none;border-color:var(--ag)}
+.fs-comp .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 .fs-comp .inrow{display:flex;gap:8px;align-items:flex-end}.fs-comp .inrow textarea{flex:1;min-width:0}
+
+/* canvas */
 .fs-canvas{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--side2)}
+.fs-trust{display:flex;flex-wrap:wrap;align-items:center;gap:7px;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--line)}
 .fs-cbar{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border-bottom:1px solid var(--line);flex-wrap:wrap}
 .fs-frame{flex:1;min-height:0;padding:12px;display:flex}.fs-frame iframe{flex:1;border:0;border-radius:var(--r-md);background:#fff;box-shadow:var(--shadow)}
-.fs-eot{flex:1;min-height:0;overflow:auto;margin:12px;background:var(--bg);border-radius:var(--r-md);padding:12px;font:var(--fs-xs)/1.55 var(--mono);white-space:pre-wrap;color:var(--ink)}
-.fs-empty{margin:auto;max-width:420px;text-align:center;color:var(--mut);font-size:var(--fs-md);line-height:1.55;padding:24px}
+.fs-eot{flex:1;min-height:0;overflow:auto;margin:12px;background:var(--bg);border-radius:var(--r-md);padding:14px;font:var(--fs-xs)/1.6 var(--mono);white-space:pre-wrap;color:var(--ink)}
+.fs-empty{margin:auto;max-width:400px;text-align:center;color:var(--mut);font-size:var(--fs-md);line-height:1.6;padding:24px}
+.fs-empty b{color:var(--ink);font-weight:650;font-size:var(--fs-base)}
+.fs-starters{display:flex;flex-direction:column;gap:6px;margin-top:16px;text-align:left}
+.fs-starter{border:1px solid var(--line);background:var(--bg);border-radius:var(--r-md);padding:9px 12px;font:var(--fs-sm) var(--sans);color:var(--ink2);cursor:pointer;text-align:left}
+.fs-starter:hover{border-color:var(--ag);color:var(--ink)}
+
+/* the editor */
 .fs-ed{border-top:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:8px;max-height:46%;overflow:auto;background:var(--bg);font-family:var(--sans)}
 .fs-ed label{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-xs);font-weight:600;color:var(--ink2)}
 .fs-ed input,.fs-ed select,.fs-ed textarea{font:var(--fs-sm) var(--sans);border:1px solid var(--field-line);border-radius:var(--r-sm);padding:7px 9px;background:var(--bg);color:var(--ink)}
+
+/* the folds list, in the sidebar */
 .fd-item{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;text-align:left;padding:7px 10px;border-radius:var(--r-md);font-size:var(--fs-md);color:var(--ink2)}
-.fd-item:hover,.fd-item.on{background:var(--side2);color:var(--ink)}.fd-item .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fd-item .k{font:var(--fs-2xs)/1 var(--mono);color:var(--ag-deep)}
+.fd-item:hover,.fd-item.on{background:var(--side2);color:var(--ink)}.fd-item .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.fd-item .k{font:var(--fs-2xs)/1 var(--sans);color:var(--ag-deep)}
 @media (max-width:1180px){.foldspace{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}.fs-sess{border-right:0}.foldspace[data-view="session"] .fs-canvas{display:none}.foldspace[data-view="canvas"] .fs-sess{display:none}.fs-vt{display:inline-flex!important}}
 .fs-vt{display:none}`;
 
 const CODE_CSS = `
 .fs-code{display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);height:100%;min-height:0}
+.fs-by{font:700 10.5px/1.2 var(--mono);color:#fff;border-radius:4px;padding:2px 5px;white-space:nowrap;display:inline-block}
+.fs-by.model,.fs-by.mouth{background:var(--ag)}.fs-by.app,.fs-by.box{background:#5f5f6b}.fs-by.you{background:var(--link)}.fs-by.library{background:#7c3aed}.fs-by.hunt{background:#a16207}.fs-by.gap,.fs-by.wall{background:var(--bad)}
 .fs-tree{overflow:auto;border-right:1px solid var(--line);padding:6px;display:flex;flex-direction:column;gap:1px}
 .fs-tbtn{text-align:left;font:var(--fs-xs)/1.4 var(--mono);color:var(--ink2);background:none;border:0;border-radius:var(--r-sm);padding:4px 7px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fs-tbtn:hover{background:var(--side2)}.fs-tbtn.on{background:var(--side2);color:var(--ink);font-weight:600}
@@ -115,16 +222,19 @@ const CODE_CSS = `
 .fs-chg{padding:8px 10px;border-bottom:1px solid var(--line)}
 .fs-chg-h{display:flex;gap:8px;align-items:center;font:var(--fs-xs) var(--mono);color:var(--mut);margin-bottom:4px}
 .fs-diff{margin:0;padding:8px;background:var(--side2);border-radius:var(--r-sm);font:var(--fs-xs)/1.45 var(--mono);white-space:pre;overflow:auto}
-.fs-think{padding:5px 10px;margin:2px 0 2px 10px;border-left:2px solid var(--line2);color:var(--ink2);font:var(--fs-sm)/1.5 var(--sans)}
+.fs-think{padding:6px 10px;margin:2px 0 2px 10px;border-left:2px solid var(--line2);color:var(--ink2);font:var(--fs-sm)/1.5 var(--sans)}
+.fs-think-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.fs-think-h .fs-sp{flex:none}
+.fs-think-label{flex:1;min-width:0;color:var(--ink);font-weight:600}
 .fs-think .t{color:var(--ink)}
-.fs-think .w{color:var(--mut);font:var(--fs-xs)/1.45 var(--mono);margin-top:1px}
+.fs-think .w{color:var(--mut);font:var(--fs-xs)/1.45 var(--mono);margin-top:2px}
 .fs-think.bad{border-left-color:var(--bad)}
 .fs-think.bad .t{color:var(--bad)}
-.fs-op{display:inline-block;width:1.1em;text-align:center;color:var(--acc-deep);font-weight:700;margin-right:2px}
-.fs-cell{font:var(--fs-2xs,10px)/1 var(--mono);color:var(--acc-deep);background:color-mix(in srgb,var(--acc-deep) 10%,transparent);border-radius:var(--r-pill);padding:2px 6px;white-space:nowrap;margin-left:4px;vertical-align:middle}
+.fs-think.streaming{border-left-color:var(--acc-deep)}
+.fs-op{display:inline-block;width:1.1em;text-align:center;color:var(--acc-deep);font-weight:700}
 .fs-think .lbl{color:var(--mut);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.06em}
-.fs-think .st{margin-top:3px;white-space:pre-wrap;font:var(--fs-sm)/1.5 var(--mono);color:var(--ink2);max-height:260px;overflow:auto}
-.fs-think.streaming .st::after{content:"▮";color:var(--acc-deep);animation:fsblink 1s steps(1) infinite;margin-left:1px}
+.fs-st{margin-top:4px;white-space:pre-wrap;font:var(--fs-xs)/1.5 var(--mono);color:var(--mut);max-height:220px;overflow:auto;background:color-mix(in srgb,var(--ink) 4%,transparent);border-radius:var(--r-sm);padding:6px 8px}
+.fs-think.streaming .fs-st::after{content:"▮";color:var(--acc-deep);animation:fsblink 1s steps(1) infinite;margin-left:1px}
 @keyframes fsblink{50%{opacity:0}}
 `;
 
@@ -136,6 +246,16 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   const queue = [];
   let cur = null, kernel = null, running = null, live = null, sel = null, editMode = false, tab = "preview", ed = null, edErr = [];
   let rungNow = RUNGS[0]; // the rung the pipeline is standing on — each act lands on its cube cell
+  // THE LIVE CLOCK: the working row's elapsed time, ticked by one cheap interval
+  // while a turn is running, never re-rendered (paint already repaints enough).
+  let liveStart = 0;
+  const secs = (ms) => { const s = Math.max(0, Math.round(ms / 1000)); return s < 60 ? s + "s" : (Math.round(s / 60)) + "m"; };
+  const setLive = (label, units = []) => { live = { label, units }; liveStart = Date.now(); };
+  if (typeof setInterval === "function") setInterval(() => {
+    if (!running || space.hidden) return;
+    const now = Date.now();
+    space.querySelectorAll(".fs-time").forEach((el) => { const t0 = Number(el.dataset.t0 || 0); if (t0) el.textContent = secs(now - t0); });
+  }, 1000);
   const space = document.createElement("section"); space.className = "foldspace"; space.hidden = true; space.setAttribute("aria-label", "Fold");
   main.append(space);
 
@@ -145,7 +265,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     list.innerHTML = folds.length ? "" : `<div class="fs-note" style="padding:6px 10px;font-size:var(--fs-sm)">No folds yet</div>`;
     for (const f of [...folds].sort((a, b) => b.updated - a.updated)) {
       const b = document.createElement("button"); b.type = "button"; b.className = "fd-item" + (cur && cur.id === f.id && !space.hidden ? " on" : "");
-      b.innerHTML = `<span class="t">${esc(f.title)}</span><span class="k">${esc(f.kind || "")}</span><span class="k">${ago(f.updated)}</span>`;
+      b.innerHTML = `<span class="t">${esc(f.title)}</span>${f.kind ? `<span class="k">${esc(KIND_WORD[f.kind] || f.kind)}</span>` : ""}<span class="k">${ago(f.updated)}</span>`;
       b.onclick = () => open(f.id); list.append(b);
     }
   }
@@ -171,6 +291,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const c = cellOf(op || "SIG", rungNow);
     cur.log.push({ at: Date.now(), kind: "think", by: "fold", op: op || "SIG", label, text: "", streaming: true, ...(c && !c.gap ? { cell: c } : {}) });
     const idx = cur.log.length - 1;
+    liveStart = Date.now();
     paint();
     return (t) => { cur.log[idx].text += String(t ?? ""); if (!streamTimer) streamTimer = setTimeout(() => { streamTimer = null; paint(); }, 120); };
   };
@@ -182,18 +303,34 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   // OBSERVES what it does (EVA), records the finding (REC), and re-opens (NUL)
   // with the finding as the atom until it holds. The loop is the agent.
   async function buildApp(text, draw, signal, finding = null, prior = null, onToken = null, material = null, outline = null) {
+    // FITS THE WINDOW (Gary's law): the prompt is bounded so a small model's window
+    // is never blown by material + plan + prior, which is how a make came back
+    // empty ("the model returned no page") without the mouth ever being wrong.
     const fix = finding ? `\n\nYour previous page FAILED when it was run: ${finding}. Write a version without that failure.` : "";
-    const base = prior ? `\n\nHere is the current page. Change it as asked and keep everything else working:\n\`\`\`html\n${String(prior).slice(0, 8000)}\n\`\`\`` : "";
-    const plan = outline ? `\n\nA plan for the page (follow it):\n${String(outline).slice(0, 1400)}` : "";
-    const src = material && material.length ? `\n\nUse these REAL sources for the content; do not invent facts, and put each source's url on the page (a link or a small credit):\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${m.url}\n${String(m.text || "").slice(0, 900)}`).join("\n\n")}` : "";
-    const out = await draw([
-      { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose. Use only facts from the sources you are given, when sources are given." },
+    const base = prior ? `\n\nHere is the current page. Change it as asked and keep everything else working:\n\`\`\`html\n${String(prior).slice(0, 3000)}\n\`\`\`` : "";
+    const plan = outline ? `\n\nA plan for the page (follow it):\n${String(outline).slice(0, 900)}` : "";
+    const src = material && material.length ? `\n\nUse these REAL sources for the content; do not invent facts, and put each source's url on the page (a link or a small credit):\n${material.slice(0, 4).map((m, i) => `[${i + 1}] ${m.source} — ${m.url}\n${String(m.text || "").slice(0, 500)}`).join("\n\n")}` : "";
+    // A page is HTML if it CARRIES markup — not only the few tags the old test named.
+    const isHtml = (s) => /<\s*(!doctype|html|head|body|div|button|script|style|canvas|svg|input|main|section|article|header|footer|nav|h1|h2|h3|p|ul|ol|li|table|form)/i.test(s) || /^\s*<!doctype/i.test(s);
+    const sys = "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose. Use only facts from the sources you are given, when sources are given.";
+    let out = null;
+    try { out = await draw([
+      { role: "system", content: sys },
       { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${plan}${src}${base}${fix}` },
-    ], { maxTokens: 2200, signal, onToken });
-    const html = stripFence(out);
-    return /<\s*(!doctype|html|body|div|button|script|canvas|svg|input|main|section)/i.test(html) ? html : null;
+    ], { maxTokens: 2200, signal, onToken }); } catch { out = null; }
+    let html = stripFence(out);
+    // FRESH FROM THE SPEC (lesson #25/#4), never handed its own failure: a busy
+    // prompt that came back without a page is re-asked as ONE small, clean ask.
+    if (!isHtml(html)) {
+      onToken?.("\n↬ re-asking fresh, smaller\n");
+      try { out = await draw([
+        { role: "system", content: "You write ONE complete, self-contained HTML document. Inline CSS and JavaScript only. Output only the HTML." },
+        { role: "user", content: `Write a complete, working HTML page for: ${text}\n\nOutput only the HTML document, inside one fenced code block.` },
+      ], { maxTokens: 1800, signal, onToken }); } catch { out = null; }
+      html = stripFence(out);
+    }
+    return isHtml(html) ? html : null;
   }
-
   // EVA by observation: run the page in a hidden sandboxed frame and SEE what it
   // does — errors on its own surface, whether it rendered, and whether anything
   // changed over time (a behaviour is only real if it moves).
@@ -299,15 +436,26 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // of turn is this, and who may speak? A turn that cannot be stated is a wall;
     // `refuse` stops here, before the mouth is ever asked.
     const lane = gateTurn({ text, build: isMakeAsk(text) || !!cur.codebase, hasMaterial: false, satisfiable: true });
-    push({ kind: "think", by: "app", op: "NUL", text: `gate · ${lane.lane} — ${lane.why}` });
+    push({ kind: "think", by: "app", op: "NUL", say: `This is ${LANE_WORD[lane.lane] || lane.lane} — ${lane.why}` });
+    setLive("checking what this turn is");
     paint();
     if (lane.lane === "refuse") { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "refused", msg: lane.why }] }); return; }
-    // THE SPIRAL — the six stages, taken on a rung of the cube, RECURSIVE and
-    // bounded. A contradiction at (3) or a lack at (5) re-opens an earlier rung
-    // INSIDE one pass (grain → terrain → domain); a weave that does not hold
-    // re-opens the WHOLE turn (runSpiral) with its finding as the new atom. It
-    // keeps going — and the fuel stops it.
-    const FUEL_TURN = 3;
+    // KNOW WHEN TO QUIT: a fold MAKES. A question reaches here by mistake (a
+    // make-verb, a codebase, or an existing artifact is what earns a build), so
+    // the fold stops before it searches or draws — no page for "who is the
+    // president?". One act, zero draws, and it is done.
+    const wantsBuild = /\b(make|build|create|design|draft|write|generate|spin up|set up|mock up|prototype|implement|turn .* into|add|change|edit|redo)\b/i.test(text) || isMakeAsk(text) || !!cur.codebase || !!(cur.artifact && (cur.artifact.html || cur.artifact.doc));
+    if (!wantsBuild) {
+      push({ kind: "think", by: "app", op: "REC", say: `“${text.replace(/\s+/g, " ").trim().slice(0, 70)}” is a question, not a thing to make — I only build things here. Ask it in Chat instead.` });
+      paint();
+      return;
+    }
+    // THE SPIRAL — the six stages, taken on a rung of the cube, RECURSIVE. A
+    // contradiction at (3) or a lack at (5) re-opens an earlier rung INSIDE one
+    // pass (grain → terrain → domain); a weave that does not hold re-opens the
+    // WHOLE turn (runSpiral) with its finding as the new atom. FUEL_TURN is the
+    // FLOOR; the DMD gate of the turn's trajectory is the STOP (below).
+    const FUEL_TURN = 6;
     let visitedRungs = [], lastMaterial = null, held = false;
     // ONE PASS: (1) read the want → (2) hunt examples → (3) re-read → (4) outline
     // → (5) inventory → (6) weave. Returns { held, finding, refused }.
@@ -319,42 +467,46 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       visitedRungs.push(RUNGS[depth]);
       // (1) WHAT DOES THE PERSON WANT?  (re-read on a climb)
       let r1 = null;
-      const itok = streamInto(depth === 0 ? "(1) what does the person want?" : `(↬ ${RUNGS[depth]}) re-reading the want`, "DEF");
+      const itok = streamInto(depth === 0 ? "reading what you're asking for" : `reading it again through what I found`, "DEF");
       try { r1 = await readAsk(text, draw, ac.signal, itok, prev); } catch { r1 = null; }
       endStream();
       if (r1 && (r1.what || r1.satisfy)) reading = r1;
+      if (!reading) setLive("reading what you're asking for");
       const mono = monologue(text, reading);
-      for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", text: l.say, why: l.why, ok: !l.bad });
+      for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", say: l.say, why: l.why, ok: !l.bad });
       paint();
       if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return { refused: true }; }
       // (2) GO FIND EXAMPLES — on the current rung's subject
       material = null;
       if (typeof research === "function") {
-        const htok = streamInto(`(2) going to find examples — ${RUNGS[depth]}`, "SIG");
+        const htok = streamInto("going out to find how others built it", "SIG");
+        setLive(material && material.length ? "keeping the useful sources" : "looking for how others built it");
         try {
           const w = await research(subject, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
           material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "" })).filter((m) => m.text).slice(0, 6);
           material.sort((a, b) => pheromone("src:" + domainKey(b)) - pheromone("src:" + domainKey(a))); // follow the trail: ground that held before leads
         } catch { material = null; }
         endStream();
-        push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `found ${material.length} source(s) on the ${RUNGS[depth]}: ${material.map((m) => m.source).join(", ")}` : "no examples found — I'll build from the model alone", ok: true });
+        push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `kept ${material.length} usable source(s): ${material.map((m) => m.source).join(", ")}` : "nothing usable out there — I'll build from what I know", ok: true, ...(material && material.length ? { sources: material.map((m) => ({ title: m.source, url: m.url })) } : {}) });
         paint();
       }
       // (3) DOES THIS CHANGE WHAT THEY WANT?
       want = reading; let contradiction = null;
       if (material && material.length) {
-        const rtok = streamInto("(3) does this change what they want?", "DEF");
+        const rtok = streamInto("checking whether this changes the build", "DEF");
+        setLive("checking whether the sources change it");
         let reread = null;
         try { reread = await readAsk(text, draw, ac.signal, rtok, null, material); } catch { reread = null; }
         endStream();
         if (reread && (reread.what || reread.satisfy)) {
           want = reread;
-          push({ kind: "think", by: "fold", op: "DEF", text: `re-read against the material: ${reread.what || reread.satisfy}` });
+          push({ kind: "think", by: "fold", op: "DEF", text: `rereading it against the sources: ${reread.what || reread.satisfy}` });
           if (reading && reading.what && reread.what && overlapFrac(reading.what, reread.what) < 0.34) contradiction = reread.what;
         }
       }
       // (4) OUTLINE WHAT WE'D NEED
-      const otok = streamInto("(4) outlining what's needed", "SEG");
+      const otok = streamInto("sketching the shape it needs", "SEG");
+      setLive("sketching the shape it needs");
       outline = "";
       try {
         outline = await draw([
@@ -370,24 +522,28 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       haveL.push("the in-tab model");
       const needsLine = /^\s*NEEDS:\s*(.+)$/im.exec(outline || "");
       need = needsLine && !/^\s*nothing\b/i.test(needsLine[1]) ? needsLine[1].trim() : null;
-      push({ kind: "think", by: "app", op: "CON", text: `have: ${haveL.join(", ")}${lackL.length || need ? ` · lack: ${[...lackL, need].filter(Boolean).join(", ")}` : ""}` });
+      push({ kind: "think", by: "app", op: "CON", text: `I'm building from ${haveL.join(", ")}${lackL.length || need ? ` — and I'm short ${[...lackL, need].filter(Boolean).join(", ")}` : ""}` });
+      setLive(material && material.length ? "checking what I have" : "checking what I have — no sources yet");
       paint();
       // THE LOOP-BACK EDGES (bounded): a contradiction climbs to re-read the want;
       // a lack climbs to search the ground differently. Two climbs, then weave.
       if (depth < RUNGS.length - 1 && contradiction) {
         depth += 1; subject = refineSubject(text, want, RUNGS[depth]);
-        push({ kind: "think", by: "fold", op: "REC", text: `↬ the material contradicts the want (“${slice(contradiction).slice(0, 90)}”) — climbing to the ${RUNGS[depth]}: asking again.` });
+        push({ kind: "think", by: "fold", op: "REC", text: `What I found pushes against what you asked (“${slice(contradiction).slice(0, 90)}”) — I'll look again with that in mind.` });
         paint(); continue;
       }
       if (depth < RUNGS.length - 1 && need) {
         depth += 1; subject = `${refineSubject(text, want, RUNGS[depth])} ${need}`;
-        push({ kind: "think", by: "fold", op: "REC", text: `↬ lack “${slice(need).slice(0, 80)}” — climbing to the ${RUNGS[depth]}, hunting it.` });
+        push({ kind: "think", by: "fold", op: "REC", text: `I still lack ${slice(need).slice(0, 80)} — hunting for that one thing.` });
         paint(); continue;
       }
       break;
     }
     // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
     let finding = atom.finding || null, html = null, held = false;
+    // THE MEASURED RESIDUAL (the DMD observable): how far the page is from holding —
+    // the real test's own output (observation errors + failing claims), never a text length.
+    let residual = 1, obsErrors = 0, failedClaims = 0;
     // THE EXPERIMENT (the weave, ?stitch=1): before asking the mouth for a whole
     // page, STITCH it from what was read — field first (snipped by address), the
     // mouth only the residue, every byte gated and logged with its provenance.
@@ -399,7 +555,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           if (c.kind === "fill") push({ kind: "assembly", by, op: "SYN", label: `${c.unit} · ${c.source}`, text: String(c.code).slice(0, 400), ok: true, address: c.address || null });
           else if (c.kind === "refusal") push({ kind: "think", by: "app", op: "REC", text: `refused ${c.unit} from ${c.source}: ${c.reason}`, ok: false });
           else if (c.kind === "unfilled") push({ kind: "think", by: "app", op: "NUL", text: `unfilled ${c.unit}: ${c.reason}`, ok: false });
-          else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `stitch verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true });
+          else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `stitch verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true, ...(c.ok ? { run: { ok: true, finding: null } } : {}) });
         }
         push({ kind: "think", by: "app", op: "CON", text: `stitched ${st.artifact.units.length}/${st.artifact.order.length} units — ${st.artifact.provenance.map((p) => `${p.unit}←${p.source}`).join(", ")}`, ok: true });
         paint();
@@ -410,28 +566,30 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           toast("Held — stitched from the sources.");
           paint();
           lastMaterial = material;
-          return { held: true, finding: null, refused: false };
+          return { held: true, finding: null, refused: false, residual: 0 };
         }
         push({ kind: "think", by: "app", op: "REC", text: `the stitched page did not hold (${st.verdict?.reason || "incomplete"}) — drawing the whole page instead.`, ok: false });
         paint();
       }
     }
     for (let round = 1; round <= 3; round += 1) {
-      live = { label: round === 1 ? "weaving it together" : "re-weaving with the finding", units: [] };
-      push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "(6) weaving it together." : `(REC↬) re-weaving with the finding — round ${round}.` });
+      setLive(round === 1 ? "drawing it together" : "drawing it together again");
+      push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "Now I draw it together from the pieces." : `Round ${round}: drawing it again, the finding in mind.` });
       paint();
-      const wtok = streamInto(round === 1 ? "weaving" : "re-weaving", "SYN");
-      try { html = await buildApp(text, draw, ac.signal, finding, prior, wtok, material, outline); } catch { html = null; }
+      const wtok = streamInto(round === 1 ? "drawing it together" : "drawing it again", "SYN");
+      try { html = await buildApp(text, draw, ac.signal, finding, prior, wtok, material, outline); } catch (e) { html = null; push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "draw-failed", msg: String((e && e.message) || e).slice(0, 160) }] }); }
       endStream();
-      if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
+      if (!html) { residual = 1; push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
       cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
       push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
       paint();
+      setLive("running it to see how it behaves");
       const obs = await observePage(html);
       finding = obs.err && obs.err.length ? `the page threw: ${obs.err[0]}`
         : (obs.nodes < 4 ? "the page rendered nothing"
           : (behaviour && String(obs.t0).trim() === String(obs.t1).trim() ? "nothing changes over time — the behaviour is not running" : null));
-      push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding });
+      obsErrors = obs.err?.length || 0;
+      push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding, run: { ok: !finding, finding: finding || null, errors: obs.err?.length || 0, nodes: obs.nodes } });
       paint();
       // GATE THE CLAIMS (the app's falsifier): a page that renders is not yet a
       // page that holds — falsify what it asserts against the material that was read.
@@ -439,21 +597,27 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const gate = gatePage(html, material);
         if (gate && gate.failed.length) {
           finding = `the page asserts ${gate.failed.length} thing(s) the sources do not support: ${gate.failed.slice(0, 3).map((c) => `“${slice(c.s).slice(0, 90)}”`).join("; ")} — assert only what the sources hold`;
-          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed · ${gate.failed.length} failing`, why: finding, ok: false });
+          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed · ${gate.failed.length} failing`, why: finding, ok: false, claims: { backed: gate.summary.backed, total: gate.summary.claims, failed: gate.failed.length, examples: gate.failed.slice(0, 3).map((c) => c.s) } });
         } else if (gate) {
-          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed by the sources`, ok: true });
+          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed by the sources`, ok: true, claims: { backed: gate.summary.backed, total: gate.summary.claims, failed: 0, examples: [] } });
         }
+        failedClaims = gate ? gate.failed.length : 0;
         paint();
       }
+      residual = finding ? (1 + obsErrors + failedClaims) : 0;
       if (!finding) { held = true; toast("Held — the sources hold and it runs."); break; }
       push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
       paint();
     }
     lastMaterial = material;
-    return { held, finding, refused: false };
+    return { held, finding, refused: false, residual };
     }
     // THE RECURSION: one pass, then re-open the WHOLE turn while it does not
-    // hold — bounded by the fuel. It keeps going, and it stops.
+    // hold. The FUEL is the FLOOR; the STOP is the DMD decay/cycle of the turn's
+    // own trajectory (createTurnGate — streaming, causal, nothing from the
+    // future). A settled or cycling turn is released as a NUL, not run to the cap.
+    const turnGate = createTurnGate();
+    let dmdStop = null;
     await runSpiral({
       atom: { text, finding: null }, grain: RUNGS[0], fuel: FUEL_TURN,
       step: async (cur, i) => {
@@ -461,10 +625,19 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const r = await onePass(cur.atom);
         held = r.held;
         if (r.refused || r.held) return { done: true };
+        turnGate.observe({ held: false, finding: r.finding, residual: r.residual });
+        const d = turnGate.decide();
+        if (d.fire) {
+          dmdStop = d;
+          push({ kind: "think", by: "app", op: "REC", say: stopLine(d) });
+          paint();
+          return { done: true };
+        }
         return { recurse: { atom: { text, finding: r.finding }, grain: RUNGS[0], reason: `unheld: ${r.finding}` } };
       },
     });
-    if (!held) toast("Left open — the turn still does not hold after " + FUEL_TURN + " passes.");
+    if (!held && dmdStop) toast("Left open — the turn's own modes " + (dmdStop.reason === "oscillating" ? "cycle" : "have settled") + " (measured, not the cap).");
+    else if (!held) toast("Left open — the turn still does not hold after " + FUEL_TURN + " passes.");
     // LAY THE TRAIL: reinforce the path that held (the rungs climbed, the sources
     // read); sour the ground that gave nothing. The next turn follows the strongest.
     const srcKeys = (lastMaterial || []).map((m) => "src:" + domainKey(m)).filter((k) => k !== "src:");
@@ -487,7 +660,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // SHOW IT IMMEDIATELY. The first thing is a model call (the reading) and the
     // first call is the slow one — so paint the ask and a working line BEFORE the
     // await, never a blank screen until the model speaks.
-    live = { label: "reading the ask", units: [] }; paint();
+    setLive(first ? "reading what you're asking for" : "reading your follow-up"); paint();
     // THE PIPELINE: (1) what does the person want → (2) find examples → (3) does
     // that change the want → (4) outline → (5) inventory → (6) weave; REC↬NUL at
     // any point. One turn, the whole movement, streamed and operator-tagged.
@@ -496,11 +669,11 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       running = null; live = null; paint(); renderList();
       return;
     }
-    live = { label: first ? "reading the ask" : "following up", units: [] }; paint();
+    setLive(first ? "reading what you're asking for" : "reading your follow-up"); paint();
     try {
       if (lk) {
         const onStep = (e) => { const { artifact, ...rest } = e; push({ kind: "assembly", ...rest }); if (artifact) cur.artifact = { ...cur.artifact, ...artifact, kind: lk }; live.units = []; paint(); };
-        const onLive = (l) => { live.label = l; paint(); };
+        const onLive = (l) => { live.label = l; liveStart = Date.now(); paint(); };
         cur.kind = lk;
         const lit = /["\u201c']([^"\u201d']+)["\u201d']\s*(?:to|with|into|\u2192|->)\s*["\u201c']([^"\u201d']+)["\u201d']/i.exec(text);
         const addM = lk === "essay" && /\b(add|include|another|new)\b[^.]*?\bsection\b\s*(?:on|about|called|titled|for)?\s*[:"\u201c]?\s*(.+?)["\u201d]?\s*$/i.exec(text);
@@ -546,20 +719,70 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const hasArt = kernel && kernel.names().some((n) => n.type === "app" || n.type !== "room");
     const html = cur.artifact?.html || (hasArt ? render(kernel.model()) : "");
     const started = !!(kernel || cur.artifact || cur.codebase);
-    const entries = cur.log.map((e, i) => {
-      if (e.kind === "ask") return `<div class="fs-ask">${esc(e.ask)}</div>`;
-      if (e.kind === "think") {
-        const say = e.say ? `<span class="t">${esc(e.say)}</span>` : (e.label ? `<span class="lbl">${esc(e.label)}</span>` : "");
-        const body = e.text ? `<div class="st">${esc(e.text)}</div>` : "";
-        return `<div class="fs-think${e.ok === false ? " bad" : ""}${e.streaming ? " streaming" : ""}">${opg(e)}<span class="fs-by fold">fold</span> ${say}${e.cell ? `<span class="fs-cell" title="cube cell">${esc(cellLine(e.cell))}</span>` : ""}${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}${body}</div>`;
+    const tr = trustOf(cur);
+    // how is this fold doing, in one word?
+    let lastAskIdx = -1;
+    for (let i = cur.log.length - 1; i >= 0; i--) if (cur.log[i].kind === "ask") { lastAskIdx = i; break; }
+    const since = lastAskIdx < 0 ? cur.log : cur.log.slice(lastAskIdx);
+    const hasIssue = since.some((e) => e.ok === false);
+    let state = null;
+    if (running) state = { t: "Working…", c: "run" };
+    else if (started || cur.log.length) state = hasIssue ? { t: "Needs attention", c: "bad" } : (tr.run && tr.run.ok ? { t: "Ready", c: "ok" } : (cur.log.length ? { t: "In progress", c: "mut" } : null));
+    const rowCls = (e) => e.ok === false ? "bad" : e.streaming ? "run" : (e.kind !== "think" && e.ok ? "ok" : (e.kind === "think" ? "info" : ""));
+    const techOf = (e) => {
+      const bits = [];
+      if (e.op) bits.push(`${stepWord(e)} (${e.op}${OPG[e.op] ? " " + OPG[e.op] : ""})`);
+      if (e.by) bits.push(`spoken by ${whoWord(e.by)} (${e.by})`);
+      if (e.cell) bits.push(cellLine(e.cell));
+      return bits.join(" · ");
+    };
+    // A ROW is one plain step on the turn's spine. The raw operator, the cube
+    // cell and the units are still there — under "the working", on purpose.
+    const rowHtml = (e, i) => {
+      if (e.kind === "think" && ("streaming" in e)) {
+        // THE REASONING ITSELF — visible as it happens, kept open after it lands.
+        // A spinning ring + a ticking time while it works; a ✓/↻/✗ mark when it settles.
+        const live0 = e.streaming;
+        const mark = live0 ? `<span class="fs-spin" aria-hidden="true"></span>` : (e.ok === false ? `<span class="fs-mark bad">✗</span>` : (e.op === "REC" ? `<span class="fs-mark warn">↻</span>` : `<span class="fs-mark ok">✓</span>`));
+        const time = live0 ? `<span class="fs-time" data-t0="${esc(e.at || 0)}">${secs(Date.now() - (e.at || Date.now()))}</span>` : "";
+        const cap = live0 ? "thinking it through" : esc(stepWord(e).toLowerCase());
+        return `<div class="fs-thinkblock${live0 ? " streaming" : ""}"><div class="fs-think-h" data-think="${i}">${mark}<span>${cap}</span>${time}</div><div class="fs-think-t">${esc(e.text || "")}</div></div>`;
       }
-      const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
-      const drawn = (e.units || []).filter((u) => u.by === "mouth").length;
-      return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span>${opg(e)}${e.cell ? `<span class="fs-cell" title="cube cell">${esc(cellLine(e.cell))}</span>` : ""}<b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
-    }).join("");
-    const liveHtml = (live ? `<div class="fs-step live open"><div class="fs-step-h"><span class="fs-by model">model</span><b>${esc(live.label)}</b><span>working…</span></div><div class="fs-units">${live.units.map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "…")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span></div>`).join("")}</div></div>` : "") + queue.map((q) => `<div class="fs-ask" style="opacity:.6">${esc(q)}<span class="fs-note"> · queued</span></div>`).join("");
+      const cls = rowCls(e);
+      const grain = e.cell && e.cell.grain ? ` g-${e.cell.grain.toLowerCase()}` : "";
+      const glyph = (e.op && OPG[e.op]) ? `<span class="fs-glyph${grain}" title="${esc(e.cell ? cellLine(e.cell) : e.op)}">${esc(OPG[e.op])}</span>` : "";
+      const verb = e.kind === "codebase" ? "Codebase added" : stepWord(e);
+      const who = e.by ? `<span class="fs-who">${esc(whoWord(e.by))}</span>` : "";
+      const title = (e.kind !== "think" && e.label) ? `<span class="fs-text" style="font-weight:600">${esc(e.label)}</span>` : "";
+      const bodyTxt = e.say || (e.kind !== "think" ? "" : e.text) || "";
+      const body = bodyTxt ? `<div class="fs-text">${esc(bodyTxt)}</div>` : "";
+      const why = (e.why && e.why !== bodyTxt) ? `<div class="fs-why">${esc(e.why)}</div>` : "";
+      const errs = (e.errors || []).map((x) => `<div class="fs-err">${esc(x.msg || x.code || x)}</div>`).join("");
+      const notes = (e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("");
+      const srcs = (e.sources || []).map(sourceChip).join("");
+      const srcWrap = srcs ? `<div class="fs-sources"><span class="fs-who">read</span>${srcs}</div>` : "";
+      const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-who">${esc(whoWord(u.by))}</span>${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
+      const hasUnits = !!(e.units && e.units.length);
+      const tech = techOf(e);
+      const detail = (hasUnits || tech) ? `<div class="fs-detail">${hasUnits ? `<div class="fs-units">${units}</div>` : ""}${tech ? `<div class="fs-tech">${esc(tech)}</div>` : ""}</div>` : "";
+      const toggle = (hasUnits || tech) ? `<button type="button" class="fs-more" data-detail="${i}">${hasUnits ? `${e.units.filter((u) => u.by === "mouth").length}/${e.units.length} parts` : "the working"}</button>` : "";
+      const undoBtn = (e.inverse && e.ok && !e.undone && !running) ? `<button type="button" class="fs-undo" data-undo="${i}">Undo</button>` : "";
+      return `<div class="fs-row ${cls}"><div class="fs-row-body"><div class="fs-line">${glyph}<span class="fs-verb">${esc(verb)}</span>${who}</div>${title}${body}${why}${errs}${notes}${srcWrap}${detail}${toggle}${undoBtn}</div></div>`;
+    };
+    // GROUP the log into turns: one ask, then the work it set off. A turn is
+    // the unit a person reads; everything inside it is steps on a spine.
+    const turns = [];
+    for (const e of cur.log) {
+      if (e.kind === "ask") turns.push({ ask: e.ask, rows: [] });
+      else if (turns.length) turns[turns.length - 1].rows.push(e);
+      else turns.push({ ask: null, rows: [e] });
+    }
+    let gi = 0;
+    const turnsHtml = turns.map((t) => `<div class="fs-turn">${t.ask !== null ? `<div class="fs-ask">${esc(t.ask)}</div>` : ""}<div class="fs-steps">${t.rows.map((e) => rowHtml(e, gi++)).join("")}</div></div>`).join("");
+    const emptyState = `<div class="fs-empty"><b>What should this make?</b><div style="margin-top:6px">A page, a widget, a document, a sourced essay — or paste a URL to pull its tables and lists. Each piece is read, built and checked, and every step is kept where you can see it.</div><div class="fs-starters"><button type="button" class="fs-starter" data-starter="0">Build a tip calculator with 10%, 15% and 20% buttons</button><button type="button" class="fs-starter" data-starter="1">Build a countdown timer with Start, Pause and Reset</button><button type="button" class="fs-starter" data-starter="2">Build a one-page site for a small business</button></div></div>`;
+    const liveHtml = (live ? `<div class="fs-row run"><div class="fs-row-body"><div class="fs-line"><span class="fs-glyph">◐</span><span class="fs-verb">${esc(live.label)}</span><span class="fs-spin" data-live-spin aria-hidden="true"></span><span class="fs-time" data-t0="${liveStart || Date.now()}" data-live-time>0s</span><span class="fs-who">The Fold</span></div>${live.units.length ? `<div class="fs-units">${live.units.map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "…")}</span><span class="fs-who">${esc(whoWord(u.by))}</span></div>`).join("")}</div>` : ""}</div></div>` : "") + queue.map((q) => `<div class="fs-ask" style="opacity:.6">${esc(q)}<span class="fs-note" style="margin-left:8px">queued</span></div>`).join("");
     const parts = kernel ? editableParts(kernel) : [];
-    const edHtml = ed ? `<div class="fs-ed"><b style="font:600 var(--fs-sm) var(--mono)">${esc(ed.name)} · ${esc(ed.type)}</b>${ed.fields.map((f) => `<label>${esc(f.key)}${f.options ? `<select data-f="${esc(f.key)}">${f.options.map((o) => `<option value="${esc(o)}"${o === ed.values[f.key] ? " selected" : ""}>${esc(o || "(default)")}</option>`).join("")}</select>` : `<input data-f="${esc(f.key)}" value="${esc(ed.values[f.key] ?? "")}">`}</label>`).join("")}${ed.room ? `<label>records of ${esc(ed.room.name)} (${esc(ed.room.fields.join(" | "))})<textarea data-rows="1" rows="4">${esc(ed.rows || "")}</textarea></label>` : ""}${edErr.map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}<div class="row" style="display:flex;gap:6px"><button type="button" class="fs-btn on" data-apply="1">Check and apply</button><button type="button" class="fs-btn" data-edclose="1">Close</button></div></div>` : "";
+    const edHtml = ed ? `<div class="fs-ed"><b style="font:600 var(--fs-sm) var(--sans)">${esc(ed.name)} · ${esc(ed.type)}</b>${ed.fields.map((f) => `<label>${esc(f.key)}${f.options ? `<select data-f="${esc(f.key)}">${f.options.map((o) => `<option value="${esc(o)}"${o === ed.values[f.key] ? " selected" : ""}>${esc(o || "(default)")}</option>`).join("")}</select>` : `<input data-f="${esc(f.key)}" value="${esc(ed.values[f.key] ?? "")}">`}</label>`).join("")}${ed.room ? `<label>records of ${esc(ed.room.name)} (${esc(ed.room.fields.join(" | "))})<textarea data-rows="1" rows="4">${esc(ed.rows || "")}</textarea></label>` : ""}${edErr.map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}<div class="row" style="display:flex;gap:6px"><button type="button" class="fs-btn on" data-apply="1">Check and apply</button><button type="button" class="fs-btn" data-edclose="1">Close</button></div></div>` : "";
     // THE CODEBASE: a worktree on the left, one file on the right, seen as a
     // PROJECTION (the bytes now) or as the LOG of changes that produced it.
     let codeView = "";
@@ -579,21 +802,28 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     if (!space.firstChild) space.innerHTML = `<div class="fs-sess"></div><div class="fs-canvas"></div>`;
     if (!space.dataset.view) space.dataset.view = "session";
     const sessEl = space.querySelector(".fs-sess"), canvasEl = space.querySelector(".fs-canvas");
-    sessEl.innerHTML = `<div class="fs-head"><span class="fs-chip">fold</span><b>${esc(cur.title)}</b>${cur.kind ? `<span class="fs-chip">${esc(cur.kind)}</span>` : ""}<span class="fs-sp"></span><button type="button" class="fs-btn fs-vt" data-view="canvas">Preview →</button><button type="button" class="fs-btn" data-new="1" title="New fold">＋ New</button><button type="button" class="fs-btn" data-close="1" title="Back to chat">Chat</button></div>
-      <div class="fs-log" aria-live="polite">${entries || `<div class="fs-empty">Describe what this fold should make: a website, a widget, a document, a sourced essay, or paste a URL to pull its tables and lists. Each part is built and checked one small piece at a time, and every step is kept here.</div>`}${liveHtml}</div>${edHtml}
-      <div class="fs-comp">${sel && kernel ? `<div class="row"><span class="fs-sel">◎ ${esc(sel)}</span><button type="button" class="fs-tog" data-unsel="1">clear</button></div>` : ""}<div class="inrow"><textarea rows="2" aria-label="${started ? "Follow up on this fold" : "What should this fold make"}">${esc(keepComp)}</textarea>${running ? `<button type="button" class="fs-btn" data-stop="1">Stop</button>` : `<button type="button" class="fs-btn go" data-send="1">${started ? "Follow up" : "Make it"}</button>`}</div>
+    sessEl.innerHTML = `<div class="fs-head"><span class="fs-chip">${esc(KIND_WORD[cur.kind] || cur.kind || "agent")}</span><b>${esc(cur.title)}</b>${state ? `<span class="fs-badge ${state.c}">${state.t}</span>` : ""}<span class="fs-sp"></span><button type="button" class="fs-btn fs-vt" data-view="canvas">Preview →</button><button type="button" class="fs-btn" data-new="1" title="New fold">＋ New</button><button type="button" class="fs-btn" data-close="1" title="Back to chat">Chat</button></div>
+      <div class="fs-log" aria-live="polite">${turnsHtml || emptyState}${liveHtml}</div>${edHtml}
+      <div class="fs-comp">${sel && kernel ? `<div class="row"><span class="fs-sel">◎ ${esc(sel)}</span><button type="button" class="fs-more" data-unsel="1">clear</button></div>` : ""}<div class="inrow"><textarea rows="2" aria-label="${started ? "Follow up on this fold" : "What should this fold make"}">${esc(keepComp)}</textarea>${running ? `<button type="button" class="fs-btn" data-stop="1">Stop</button>` : `<button type="button" class="fs-btn go" data-send="1">${started ? "Send" : "Make it"}</button>`}</div>
         ${!started ? `<div class="row">${["auto", "website", "widget", "document"].map((k) => `<button type="button" class="fs-btn${(cur.kindPick || "auto") === k ? " on" : ""}" data-kind="${k}">${k}</button>`).join("")}</div>` : ""}</div>`;
-    const ckey = [tab, editMode, html, parts.length, tab === "eot" ? cur.log.length : 0, cur.codebase ? [cur.codeTarget, cur.codeMode, (cur.codeChanges || []).length].join(",") : ""].join("|");
-    if (canvasEl.__key !== ckey) { canvasEl.__key = ckey; canvasEl.innerHTML = `<div class="fs-cbar"><button type="button" class="fs-btn fs-vt" data-view="session">← Session</button><button type="button" class="fs-btn${tab === "preview" ? " on" : ""}" data-tab="preview">Preview</button><button type="button" class="fs-btn${tab === "eot" ? " on" : ""}" data-tab="eot">EOT</button>${cur.codebase ? `<button type="button" class="fs-btn${tab === "code" ? " on" : ""}" data-tab="code">Code</button>` : ""}<span class="fs-sp"></span>${parts.length ? `<button type="button" class="fs-btn${editMode ? " on" : ""}" data-edit="1">${editMode ? "Editing · click a part" : "Edit"}</button>` : ""}${html ? `<button type="button" class="fs-btn" data-dl="1">Download HTML</button>` : ""}${(cur.artifact?.files || []).map((f, i) => `<button type="button" class="fs-btn" data-file="${i}">${esc(f.name)}</button>`).join("")}</div>
-        ${tab === "code" && cur.codebase ? codeView : tab === "eot" ? `<pre class="fs-eot">${esc(cur.log.filter((e) => e.ok && e.text).map((e) => `# ${e.by} · ${e.label}\n${e.text}`).join("\n\n") || "(nothing set down yet)")}</pre>` : html ? `<div class="fs-frame"><iframe title="The fold's artifact" sandbox="allow-scripts allow-forms"></iframe></div>` : `<div class="fs-empty">The artifact appears here as its parts pass.</div>`}`;
-      frame = canvasEl.querySelector("iframe"); if (frame) { frame.srcdoc = html; frameHtml = html; } }
+    const trustSig = [tr.sources?.length || 0, tr.claims?.backed || 0, tr.claims?.failed || 0, tr.run?.ok ? 1 : 0].join(",");
+    const ckey = [tab, editMode, html, parts.length, tab === "eot" ? cur.log.length : 0, trustSig, cur.codebase ? [cur.codeTarget, cur.codeMode, (cur.codeChanges || []).length].join(",") : ""].join("|");
+    if (canvasEl.__key !== ckey) {
+      canvasEl.__key = ckey;
+      const trustBar = (tr.sources || tr.claims || tr.run) ? `
+        <div class="fs-trust">${tr.sources ? `<span class="fs-who">read from</span>${tr.sources.map(sourceChip).join("")}` : ""}<span class="fs-sp"></span>${tr.claims ? `<span class="fs-badge ${tr.claims.failed ? "warn" : "ok"}" title="the page's claims were checked against the sources">${tr.claims.failed ? `${tr.claims.failed} claim${tr.claims.failed === 1 ? "" : "s"} not supported` : `claims supported · ${tr.claims.backed}/${tr.claims.total}`}</span>` : ""}${tr.run ? `<span class="fs-badge ${tr.run.ok ? "ok" : "bad"}" title="the page was run in a sandbox">${tr.run.ok ? "runs & holds" : "did not hold"}</span>` : ""}</div>${tr.claims?.examples?.length ? `<div class="fs-caveat">The sources do not support: ${tr.claims.examples.map((x) => `“${esc(x)}”`).join("; ")}</div>` : ""}` : "";
+      canvasEl.innerHTML = `${trustBar}<div class="fs-cbar"><button type="button" class="fs-btn fs-vt" data-view="session">← Session</button><button type="button" class="fs-btn${tab === "preview" ? " on" : ""}" data-tab="preview">Preview</button><button type="button" class="fs-btn${tab === "eot" ? " on" : ""}" data-tab="eot">EOT</button>${cur.codebase ? `<button type="button" class="fs-btn${tab === "code" ? " on" : ""}" data-tab="code">Code</button>` : ""}<span class="fs-sp"></span>${parts.length ? `<button type="button" class="fs-btn${editMode ? " on" : ""}" data-edit="1">${editMode ? "Editing · click a part" : "Edit"}</button>` : ""}${html ? `<button type="button" class="fs-btn" data-dl="1">Download HTML</button>` : ""}${(cur.artifact?.files || []).map((f, i) => `<button type="button" class="fs-btn" data-file="${i}">${esc(f.name)}</button>`).join("")}</div>
+        ${tab === "code" && cur.codebase ? codeView : tab === "eot" ? `<pre class="fs-eot">${esc(cur.log.filter((e) => e.ok && e.text).map((e) => `# ${esc(whoWord(e.by))} · ${e.label}\n${e.text}`).join("\n\n") || "(nothing set down yet)")}</pre>` : html ? `<div class="fs-frame"><iframe title="The fold's artifact" sandbox="allow-scripts allow-forms"></iframe></div>` : `<div class="fs-empty">The artifact appears here as its parts pass.</div>`}`;
+      frame = canvasEl.querySelector("iframe"); if (frame) { frame.srcdoc = html; frameHtml = html; }
+    }
     const log = space.querySelector(".fs-log"); log.scrollTop = log.scrollHeight;
     const ta = space.querySelector(".fs-comp textarea");
     if (hadFocus) { ta.focus(); try { ta.setSelectionRange(selA, selB); } catch {} }
     ta.onkeydown = (ev) => { if (ev.key === "Enter" && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); send(); } };
     space.querySelectorAll("[data-view]").forEach((b) => (b.onclick = () => { space.dataset.view = b.dataset.view; paint(); }));
     space.querySelectorAll("[data-kind]").forEach((b) => (b.onclick = () => { cur.kindPick = b.dataset.kind === "auto" ? null : b.dataset.kind; paint(); }));
-    space.querySelectorAll("[data-tog]").forEach((b) => (b.onclick = () => b.closest(".fs-step").classList.toggle("open")));
+    space.querySelectorAll("[data-detail]").forEach((b) => (b.onclick = () => b.closest(".fs-row").classList.toggle("open")));
+    space.querySelectorAll("[data-think]").forEach((b) => (b.onclick = () => b.closest(".fs-thinkblock").classList.toggle("collapsed")));
     space.querySelectorAll("[data-undo]").forEach((b) => (b.onclick = () => undo(+b.dataset.undo)));
     space.querySelectorAll("[data-tab]").forEach((b) => (b.onclick = () => { tab = b.dataset.tab; paint(); }));
     space.querySelectorAll("[data-cf]").forEach((b) => (b.onclick = () => { cur.codeTarget = b.dataset.cf; paint(); }));
@@ -604,6 +834,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     on("[data-send]", send); on("[data-stop]", () => running?.abort()); on("[data-close]", close); on("[data-new]", () => create());
     on("[data-unsel]", () => { sel = null; paint(); }); on("[data-apply]", applyEdit); on("[data-edclose]", () => { ed = null; paint(); });
     on("[data-edit]", () => { editMode = !editMode; paint(); });
+    const STARTERS = ["Build a tip calculator with 10%, 15% and 20% buttons", "Build a countdown timer with Start, Pause and Reset", "Build a one-page site for a small business"];
+    space.querySelectorAll("[data-starter]").forEach((b) => (b.onclick = () => { const t = space.querySelector(".fs-comp textarea"); if (t) { t.value = STARTERS[+b.dataset.starter] || ""; send(); } }));
     space.querySelectorAll("[data-file]").forEach((b) => (b.onclick = () => { const f = cur.artifact.files[+b.dataset.file]; const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([f.text], { type: f.mime })); a.download = f.name; a.click(); }));
     on("[data-dl]", () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([frameHtml], { type: "text/html" })); a.download = (cur.title || "fold").replace(/[^\w-]+/g, "-").slice(0, 40) + ".html"; a.click(); });
   }

@@ -128,6 +128,106 @@ export function topicOf(askText) {
   return clipWords(w, THREAD.topicMaxWords).join(" ");
 }
 
+// A request about the CONVERSATION'S OWN ANSWERS ("compare your first answer", "quote the exact sentence you relied
+// on", "combine your four answers"): the ground is the earlier answer(s) they name, not a fresh web search. Measured
+// 2026-10-07 on the live app: planned standalone, these searched their own literal words and drifted to unrelated pages
+// ("compare…" → an election page; "quote the exact sentence…" → how-to-quote guides; "combine your four answers…" →
+// car-parts suppliers). This is the follow-up class eval/ants/D1 and G3 left open.
+const REF_VERB_RE = /\b(?:compare|contrast|reconcile|combine|merg(?:e|ed|es|ing)|synthesi[sz]e|summari[sz]e|recap|restate|quote|re-?use|list|gather|pull\s+together)\w*\b/iu;
+const REF_ORDINAL_RE = /\b(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|1st|2nd|3rd|4th|5th|6th|7th|8th|9th|10th|last|latest|final|previous|earlier|prior|preceding|above|foregoing)\b/iu;
+// A conversational anchor: what makes "compare … answers" a question about THIS chat, not the world
+// ("compare the answers of Plato and Aristotle" has none of these, so it searches as asked).
+const REF_ANCHOR_RE = /\b(?:you|your|yours|the\s+conversation|this\s+conversation|the\s+thread|the\s+chat|earlier|previous|prior|above|preceding|foregoing|last|same)\b/iu;
+// Second-person references: "what you said", "your last answer", "the exact sentence you relied on".
+const REF_YOU_RE = new RegExp("\\b(?:" +
+  "you\\s+(?:(?:just|already|earlier|previously|now|also|first|then)\\s+)?(?:said|wrote|stated|gave|mentioned|claimed|told|relied|based|grounded|cited|used|quoted|read|answered|summari[sz]ed)" +
+  "|your\\s+(?:(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last|latest|final|previous|earlier|prior|very|\\d+)\\s+)?(?:answers?|responses?|repl(?:y|ies)|words|wording|points?|claims?|sentences?|paragraphs?|turns?)" +
+  "|what\\s+you\\s+(?:said|wrote|answered|gave|claimed)" +
+  "|the\\s+exact\\s+(?:sentence|quote|wording|words|span|passage)" +
+  ")\\b", "iu");
+
+/** Does this ask refer to the CONVERSATION'S OWN earlier answer(s)? ("compare your first answer", "quote the exact
+ *  sentence you relied on", "combine your four answers"). A WORLD question that merely contains a ref-verb and the
+ *  noun "answers" ("compare the answers of Plato and Aristotle") is NOT one: it must name the person's own turns (a
+ *  second-person reference), an ordinal, or a conversational anchor. English cues, DECLARED, not measured (II.11). Pure. */
+export function isConversationRef(question) {
+  const s = String(question ?? "").trim();
+  if (!s || s.length > 220) return false;
+  if (REF_YOU_RE.test(s)) return true;
+  if (!REF_VERB_RE.test(s)) return false;
+  return REF_ORDINAL_RE.test(s) || REF_ANCHOR_RE.test(s);
+}
+
+const ORDINAL_INDEX = Object.freeze({ first: 1, "1st": 1, second: 2, "2nd": 2, third: 3, "3rd": 3, fourth: 4, "4th": 4, fifth: 5, "5th": 5, sixth: 6, "6th": 6, seventh: 7, "7th": 7, eighth: 8, "8th": 8, ninth: 9, "9th": 9, tenth: 10, "10th": 10 });
+const NUM_WORD = Object.freeze({ one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10 });
+/** Every earlier answer the ask names: a list of 1-based indices and/or "last", or [] for a plural ask (all of them). */
+function ordinalRefs(s) {
+  const out = [];
+  if (/\b(?:last|latest|final)\b/iu.test(s)) out.push("last");
+  for (const [k, n] of Object.entries(ORDINAL_INDEX)) if (new RegExp(`\\b${k}\\b`, "iu").test(s)) out.push(n);
+  if (!out.length && /\b(?:previous|earlier|prior|preceding|above|foregoing)\b/iu.test(s)) out.push("last");
+  return out;
+}
+
+/** The thread object a conversation-reference reply is grounded in: the earlier answers the ask names, as a list
+ *  (`answers`), their plain concatenation (`.answer`, what the reply is checked against) and the LAST referenced
+ *  exchange's index/turn. Understands a range ("the first three questions", "the last two answers"); a plural ask
+ *  with no ordinal ("combine your four answers") carries the most recent few (bounded). An ordinal with no such
+ *  answer returns `{ has:true, missing:true }` — a typed gap, never a silent carry of the wrong turns. */
+export function referencedThread(priorMessages, question) {
+  const msgs = Array.isArray(priorMessages) ? priorMessages : [];
+  const turns = [];
+  let ask = null;
+  for (let i = 0; i < msgs.length; i++) {
+    const m = msgs[i];
+    if (m?.role === "user" && asText(m)) ask = asText(m);
+    else if (m?.role === "assistant" && asText(m) && m.mode !== "agent") turns.push({ ask, answer: asText(m), answerIndex: i });
+  }
+  turns.forEach((t, i) => { t.turn = i + 1; });
+  if (!turns.length) return { has: false, answer: "", ask: null, answerIndex: -1, turn: 0, answers: [] };
+  const s = String(question ?? "").toLowerCase();
+  let pick = null;
+  // "the first three questions" / "the last two answers"
+  const range = s.match(/\b(first|last)\s+(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b/);
+  if (range) { const n = (NUM_WORD[range[2]] || parseInt(range[2], 10) || 0); const c = Math.min(n, turns.length); pick = range[1] === "first" ? turns.slice(0, c) : turns.slice(turns.length - c); }
+  if (!pick) {
+    const refs = ordinalRefs(s);
+    if (refs.length) {
+      const idx = new Set();
+      let missingAt = null;
+      for (const r of refs) { if (r === "last") idx.add(turns.length); else if (turns[r - 1]) idx.add(r); else missingAt = r; }
+      if (idx.size) pick = [...idx].sort((a, b) => a - b).map((i) => turns[i - 1]);
+      else if (missingAt) return { has: true, missing: true, missingAt, count: turns.length, answer: "", ask: null, answerIndex: -1, turn: 0, answers: [] };
+    }
+  }
+  if (!pick || !pick.length) pick = turns.slice(-6);
+  const last = pick[pick.length - 1];
+  return { has: true, answer: pick.map((t) => t.answer).join("\n\n"), ask: pick.map((t) => t.ask).filter(Boolean).join(" / "), answerIndex: last.answerIndex, turn: last.turn, answers: pick.map((t) => ({ ask: t.ask, answer: t.answer, turn: t.turn })), multiple: pick.length > 1 };
+}
+
+/** Does a reply ADDRESS the turn(s) it is grounded in? For a follow-up that names an earlier answer, the reply must
+ *  share at least one CONTENT term with that earlier turn — a supported sentence about the WRONG turn or the wrong
+ *  topic is not an answer. It does not fact-check (a topical-but-wrong sentence still stands); it catches the
+ *  wrong-turn/meta class. Applied only where the turn names an earlier answer, so a causal web answer is never
+ *  withheld. Returns { ok, overlap }. Pure. */
+export function addressesThread(text, thread) {
+  const spoken = contentWords(String(text || ""));
+  if (!spoken.length) return { ok: true, overlap: [] };
+  const answers = Array.isArray(thread?.answers) && thread.answers.length ? thread.answers : [{ ask: thread?.ask, answer: thread?.answer }];
+  const target = new Set();
+  for (const a of answers) { for (const w of contentWords(String(a?.answer || ""))) target.add(w); for (const w of contentWords(String(a?.ask || ""))) target.add(w); }
+  if (!target.size) return { ok: true, overlap: [] };
+  const overlap = [...new Set(spoken.filter((w) => target.has(w)))];
+  return { ok: overlap.length > 0, overlap };
+}
+
+/** The app-authored note when an ask names an answer that does not exist in the chat ("quote your ninth answer"): a
+ *  typed gap — no model, no search — never a silent carry of the wrong turns. */
+export function missingAnswerNotice(missing) {
+  const n = missing?.count || 0;
+  return { kind: "alone", text: `There ${n === 1 ? "is only 1 answer" : `are only ${n} answers`} in this chat, so there is no ${missing?.missingAt ?? "such"} answer to follow. Ask about one of them, or ask something new.` };
+}
+
 /** Read this ask in the light of the thread. Never rewrites what the person said (`said`); `query` is what to SEARCH.
  *    kind   "meta" | "carried" | "elliptical" | "standalone"
  *    thread threadOf(prior) — `thread.has` says whether there is an earlier answer to follow
@@ -186,6 +286,17 @@ export function turnPlan(question, priorMessages, opts = {}) {
     if (thread.has) return { ...base, kind: "meta", mode: "thread", search: null, modelMay: true, reason: "nudge-with-thread" };
     return { ...base, kind: "meta", mode: "cold-gap", search: null, modelMay: false, reason: "nudge-cold" };
   }
+  // A request about the conversation's OWN earlier answers ("compare your first answer", "quote the exact sentence
+  // you relied on", "combine your four answers"): follow the thread, do not search its literal words. Only when there
+  // IS an earlier answer; with none it falls through to the normal plan (a first-turn ask that mentions "the exact
+  // sentence" still searches).
+  if (isConversationRef(question)) {
+    const rt = referencedThread(priorMessages, question);
+    const said = String(question ?? "").trim();
+    if (rt.has && !rt.missing) return { said, query: said, kind: "conversation-ref", thread: rt, topic: "", carried: [], mode: "thread", search: null, modelMay: true, reason: "refers-to-earlier-answers" };
+    // the ask names an answer that does not exist ("quote your ninth answer"): a typed gap, never a wrong carry
+    if (rt.missing) return { said, query: said, kind: "conversation-ref", thread: threadOf(priorMessages), topic: "", carried: [], mode: "cold-gap", search: null, modelMay: false, reason: "refers-to-missing-answer", missing: rt };
+  }
   const f = followUp(question, priorMessages, opts);
   if (f.kind === "meta") {
     if (f.thread.has) return { ...f, mode: "thread", search: null, modelMay: true };
@@ -194,20 +305,30 @@ export function turnPlan(question, priorMessages, opts = {}) {
   return { ...f, mode: "web", search: f.query, modelMay: false };
 }
 
-/** The source block a thread-grounded reply is written from: the earlier turn, verbatim. Labels are for the fold's use. */
+/** The source block a thread-grounded reply is written from: the earlier turn(s), verbatim. A single exchange
+ *  (`ask`/`answer`) prints [T1]/[T2]; a conversation-reference with several (`answers`) prints one pair per referenced
+ *  turn. Labels are for the fold's use. */
 export function threadPrompt(thread, { maxChars = 4000 } = {}) {
   const t = thread || {};
-  return "The person is following up on this conversation, not asking for new facts. Answer ONLY from the earlier turn below: say again, shorten, simplify or explain what the earlier answer already says, in their language, in a few sentences. Add no fact, name, number or source that is not in it. If the earlier turn does not contain what they are asking, say so in one plain sentence. Never mention the labels [T1] [T2], and never claim a website or publication.\n\n"
-    + (t.ask ? `[T1] What the person asked earlier:\n${String(t.ask).slice(0, 1200)}\n\n` : "")
-    + `[T2] The answer given:\n${String(t.answer || "").slice(0, maxChars)}`;
+  const pairs = Array.isArray(t.answers) && t.answers.length ? t.answers : [{ ask: t.ask, answer: t.answer, turn: t.turn }];
+  const body = pairs.map((p, i) => {
+    const at = pairs.length > 1 && p.turn ? ` (turn ${p.turn})` : "";
+    return (p.ask ? `[T${2 * i + 1}] What the person asked earlier${at}:\n${String(p.ask).slice(0, 1200)}\n\n` : "")
+      + `[T${2 * i + 2}] The answer given${at}:\n${String(p.answer || "").slice(0, maxChars)}`;
+  }).join("\n\n");
+  return "The person is following up on this conversation, not asking for new facts. Answer ONLY from the earlier turn(s) below: say again, shorten, simplify or explain what the earlier answer already says, in their language, in a few sentences. Add no fact, name, number or source that is not in it. If the earlier turn does not contain what they are asking, say so in one plain sentence. Never mention the labels [T1] [T2], and never claim a website or publication.\n\n"
+    + body;
 }
 
-/** The app-authored label under a thread-grounded answer — it names the earlier turn it answers from. */
+/** The app-authored label under a thread-grounded answer — it names the earlier turn(s) it answers from. */
 export function threadNotice(thread) {
   const t = thread || {};
-  const q = t.ask ? String(t.ask).replace(/\s+/g, " ").trim() : "";
+  const many = Array.isArray(t.answers) && t.answers.length > 1;
+  // a single follow-up quotes the earlier ask; a multi-answer one names the turns instead (joining every ask reads badly)
+  const q = !many && t.ask ? String(t.ask).replace(/\s+/g, " ").trim() : "";
   const quote = q.length > THREAD.quoteChars ? q.slice(0, THREAD.quoteChars - 1).trimEnd() + "…" : q;
-  return { kind: "thread", turn: t.turn || null, askIndex: t.askIndex ?? null, answerIndex: t.answerIndex ?? null, text: `Answered from this conversation${t.turn ? `, turn ${t.turn}` : ""}${quote ? ` (your question: “${quote}”)` : ""}. No web source was used; the model wrote this from that earlier turn alone.` };
+  const where = many ? `your earlier answers (turns ${t.answers.map((a) => a.turn).join(", ")})` : (t.turn ? `turn ${t.turn}` : "");
+  return { kind: "thread", turn: t.turn || null, askIndex: t.askIndex ?? null, answerIndex: t.answerIndex ?? null, text: `Answered from this conversation${where ? ", " + where : ""}${quote ? ` (your question: “${quote}”)` : ""}. No web source was used; the model wrote this from ${many ? "those earlier turns" : "that earlier turn"} alone.` };
 }
 
 /** The app-authored note for a follow-up with nothing earlier to follow. No model, no search. */

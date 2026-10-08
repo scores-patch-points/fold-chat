@@ -258,6 +258,9 @@ let pageHooks = {};
 /** The window every in-tab model runs at: read off the pinned web-llm 0.2.85 prebuilt config (context_window_size is 4096 for each
  *  model in MODEL_CHOICES, checked 2026-10-05), so Gary can shrink a prompt to fit instead of the engine rejecting it. */
 export const PAGE_CONTEXT_TOKENS = 4096;
+/** A cached model that has not loaded in this long is stopped (a first-ever download is exempt — the engine's own
+ *  no-progress watchdog covers it). Declared, not measured; a cached load that hangs is pathological. */
+export const LOAD_TIMEOUT_MS = 60000;
 /** Register (or clear, with null) the page's engine. `confirmDownload({ id, name, sizeLabel, cached }) → Promise<boolean>` is
  *  asked ONCE before a model that is not on this device is fetched; with no answer function (or a "no") nothing is downloaded. */
 export function setPageEngine(engine, { confirmDownload = null } = {}) {
@@ -300,7 +303,7 @@ function pageError(e, model) {
   return out;
 }
 
-async function chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload }, finishAudit, auditId) {
+async function chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload, loadTimeoutMs = LOAD_TIMEOUT_MS }, finishAudit, auditId) {
   const eng = pageEngine;
   const fail = (e) => { const err = pageError(e, model); finishAudit({ ok: false, status: err.status, error: err.message }); return err; };
   const abortErr = () => Object.assign(new Error("aborted"), { name: "AbortError" });
@@ -334,10 +337,16 @@ async function chatPage(model, messages, { onToken, signal, temperature, maxToke
       }
     }
     // load() cannot be cancelled once it has begun (the weights keep caching for next time); Stop only releases THIS turn.
+    // A CACHED load is bounded: a load that has not settled in LOAD_TIMEOUT_MS is stopped, so a stalled engine can
+    // never hold the composer forever (a first-ever download is exempt — it may legitimately take minutes on a slow link).
     const loading = Promise.resolve().then(() => eng.load(canon));
     loading.catch(() => {});
     const released = new Promise((_, rej) => { signal?.addEventListener?.("abort", () => rej(abortErr()), { once: true }); });
-    try { await (signal ? Promise.race([loading, released]) : loading); } catch (e) { throw fail(e); }
+    const raced = [loading, released];
+    let loadTimer = null;
+    if (cached && loadTimeoutMs > 0) raced.push(new Promise((_, rej) => { loadTimer = setTimeout(() => rej(new PageEngineError("load-timeout", `the in-tab model ${canon} did not load within ${Math.round(loadTimeoutMs / 1000)}s and was stopped`, { reason: "load-timeout" })), loadTimeoutMs); }));
+    try { await Promise.race(raced); } catch (e) { if (loadTimer) clearTimeout(loadTimer); throw fail(e); }
+    if (loadTimer) clearTimeout(loadTimer);
   }
   // The hard total timeout covers the GENERATION only (a first load may legitimately take minutes on a slow link).
   const timeoutCtl = new AbortController();
@@ -388,7 +397,7 @@ const newAuditId = () => "aud_" + Date.now().toString(36) + Math.random().toStri
 let promptDoor = null;
 export function setPromptDoor(fn) { promptDoor = typeof fn === "function" ? fn : null; }
 
-export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null, allowDownload = false, confirmDownload = null } = {}) {
+export async function chat(model, messages, { base = null, privacy = null, onToken = null, signal = null, temperature = 0.7, maxTokens = 1024, fetchImpl = fetch, totalTimeoutMs = 180000, audit = null, allowDownload = false, confirmDownload = null, loadTimeoutMs = LOAD_TIMEOUT_MS } = {}) {
   const inTab = isPageModel(model);
   const url = bridgeBase(base) + "/v1/chat/completions";
   if (promptDoor) {
@@ -407,7 +416,7 @@ export async function chat(model, messages, { base = null, privacy = null, onTok
     let done = null;
     try { done = auditHook?.before({ auditId, model, messages, privacy: "in-tab", base: null, segments: audit?.segments || null, worlds: audit?.worlds || null, symmetry: audit?.symmetry || null, purpose: audit?.purpose || null, run: audit?.run || null, masking: audit?.masking || null }) || null; } catch { done = null; }
     const finish = (r) => { try { done?.(r); } catch {} };
-    return chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload }, finish, auditId);
+    return chatPage(model, messages, { onToken, signal, temperature, maxTokens, totalTimeoutMs, allowDownload, confirmDownload, loadTimeoutMs }, finish, auditId);
   }
   // Sealed by default for outside models: the Fold selects the privacy mode
   // and seals first. Raw spans never leave — only what the caller put in

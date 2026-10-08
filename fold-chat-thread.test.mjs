@@ -1,7 +1,7 @@
 // The conversation is a source: follow-ups resolve against the thread before any search (fold-chat-thread.js). Pure.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { isMeta, isElliptical, threadOf, topicOf, followUp, turnPlan, threadPrompt, threadNotice, coldFollowUpNotice } from "./fold-chat-thread.js";
+import { isMeta, isElliptical, threadOf, topicOf, followUp, turnPlan, threadPrompt, threadNotice, coldFollowUpNotice, isConversationRef, referencedThread, missingAnswerNotice, addressesThread } from "./fold-chat-thread.js";
 import { hintsFor } from "./fold-chat-hints.js";
 import { admitReferents, emptyReferents } from "./fold-chat-mind.js";
 import { looksBlocked } from "./fold-chat-web.js";
@@ -81,6 +81,101 @@ test("an agent turn or a gap with no text is nothing to follow", () => {
 test("topicOf keeps the nouns", () => {
   assert.equal(topicOf(COOKIE_ASK), "chocolate chip cookie recipe");
   assert.equal(topicOf("What is the best way to learn the guitar?"), "learn guitar");
+});
+
+// ── #1: a request about the conversation's OWN earlier answers is a follow-up, not a literal search ──
+const FOUR = [
+  { role: "user", content: "Who founded Nashville?" }, { role: "assistant", content: "James Robertson and John Donelson founded Nashville in 1779." },
+  { role: "user", content: "What is the population?" }, { role: "assistant", content: "Nashville's population is about 700,000." },
+  { role: "user", content: "Who is the mayor?" }, { role: "assistant", content: "The mayor is Freddie O'Connell." },
+  { role: "user", content: "What about the council?" }, { role: "assistant", content: "The Metro Council has 40 members." },
+];
+
+test("isConversationRef: asks about the conversation's own answers, not a fresh comparison", () => {
+  for (const q of [
+    "compare what you said in your first answer",
+    "In your second answer, quote the exact sentence you relied on and name its source.",
+    "combine your four answers into one paragraph, then list the parts that are not grounded",
+    "quote the exact sentence you relied on",
+    "summarize your last response",
+    "You just gave a rule. Does the same rule cover the Audit Committee?",
+    "In your last answer, which museum is it in?",
+  ]) assert.ok(isConversationRef(q), q);
+  for (const q of [
+    "compare the French and American revolutions",
+    "summarize the article about the Roman Empire",
+    "What is the capital of France?",
+    "Who founded the city of Nashville, and when?",
+    "list the parts of a cell",
+    "Compare the answers of Plato and Aristotle about justice.",
+  ]) assert.ok(!isConversationRef(q), q);
+});
+
+test("a conversation-reference follow-up is planned as a THREAD turn (no search), grounded in the answers it names", () => {
+  const p = turnPlan("compare what you said in your first answer with your last", FOUR);
+  assert.equal(p.mode, "thread"); assert.equal(p.search, null); assert.equal(p.modelMay, true); assert.equal(p.kind, "conversation-ref");
+  assert.equal(p.thread.has, true); assert.equal(p.thread.answers.length, 2);
+  assert.deepEqual(p.thread.answers.map((a) => a.turn), [1, 4]);
+  const pr = threadPrompt(p.thread);
+  assert.match(pr, /Answer ONLY from the earlier turn/); assert.ok(pr.includes("James Robertson")); assert.ok(pr.includes("40 members"));
+
+  const all = turnPlan("combine your four answers into one paragraph", FOUR);
+  assert.equal(all.mode, "thread"); assert.equal(all.thread.answers.length, 4);
+  assert.ok(all.thread.answer.includes("James Robertson") && all.thread.answer.includes("Freddie O'Connell"));
+
+  const second = turnPlan("quote the exact sentence you relied on in your second answer", FOUR);
+  assert.equal(second.mode, "thread"); assert.equal(second.thread.answers.length, 1); assert.equal(second.thread.turn, 2);
+  assert.ok(second.thread.answer.includes("700,000"));
+});
+
+test("FALSIFIER: a fresh comparison names its own entities, so it is still searched as asked", () => {
+  assert.equal(turnPlan("compare the French and American revolutions", FOUR).mode, "web");
+  assert.equal(followUp("compare the French and American revolutions", FOUR, { hints: EN }).kind, "standalone");
+  // with nothing earlier to refer to, it falls through to the normal plan (a first-turn ask still searches)
+  assert.equal(turnPlan("combine your four answers", []).mode, "web");
+});
+
+test("FALSIFY (long-chat trap 1): a WORLD question that merely says 'compare the answers of X and Y' is NOT hijacked to the thread", () => {
+  assert.equal(isConversationRef("Compare the answers of Plato and Aristotle about justice."), false);
+  assert.equal(turnPlan("Compare the answers of Plato and Aristotle about justice.", FOUR).mode, "web");
+});
+
+test("FALSIFY (long-chat trap 2): an ordinal with no such answer is a typed gap, not a silent carry of the wrong turns", () => {
+  const p = turnPlan("Quote your ninth answer.", FOUR);
+  assert.equal(p.mode, "cold-gap"); assert.equal(p.modelMay, false); assert.equal(p.search, null);
+  assert.equal(p.missing.missingAt, 9); assert.equal(p.missing.count, 4);
+  assert.match(missingAnswerNotice(p.missing).text, /only 4 answers.*no 9 answer/);
+  assert.equal(turnPlan("Quote your second answer.", FOUR).thread.turn, 2);   // a real ordinal still carries the right turn
+});
+
+test("FALSIFY (long-chat trap 3): a 'first three' / 'last two' range carries exactly those turns", () => {
+  const first3 = turnPlan("List the first three questions I asked you.", FOUR);
+  assert.equal(first3.mode, "thread"); assert.deepEqual(first3.thread.answers.map((a) => a.turn), [1, 2, 3]);
+  const last2 = turnPlan("Compare the last two of your answers.", FOUR);
+  assert.equal(last2.mode, "thread"); assert.deepEqual(last2.thread.answers.map((a) => a.turn), [3, 4]);
+});
+
+test("threadNotice names every referenced turn for a multi-answer follow-up", () => {
+  const n = threadNotice(turnPlan("combine your four answers", FOUR).thread);
+  assert.equal(n.kind, "thread");
+  assert.match(n.text, /^Answered from this conversation, your earlier answers \(turns 1, 2, 3, 4\)\./);
+  assert.match(n.text, /from those earlier turns alone\./);
+});
+
+test("THE ANSWER GATE: a reply grounded in a NAMED earlier answer must TALK ABOUT it, not just be supported", () => {
+  const second = referencedThread(FOUR, "Quote the exact sentence you relied on in your second answer.");
+  assert.deepEqual(second.answers.map((a) => a.turn), [2]);
+  // the wrong-TURN reply (about turn 4) does not address the referenced turn 2 — this is the T5 falsification
+  assert.equal(addressesThread("The Eiffel Tower opened on March 31, 1889.", second).ok, false);
+  // a reply about the referenced turn does
+  assert.equal(addressesThread("Nashville's population is about 700,000.", second).ok, true);
+  // meta-nonsense against a multi-answer thread does not address it — the T13/T14 falsification
+  const all = referencedThread(FOUR, "combine your four answers into one paragraph");
+  assert.equal(addressesThread("Compare what you said in your first answer with what you said in your third answer.", all).ok, false);
+  // a real synthesis does
+  assert.equal(addressesThread("Nashville was founded in 1779 and its population is about 700,000.", all).ok, true);
+  // an empty/wordless reply is not a relevance failure (nothing to judge)
+  assert.equal(addressesThread("", all).ok, true);
 });
 
 test("a bot-challenge page is blocked, not an answer; a blocked passage is never quoted as a snip", () => {

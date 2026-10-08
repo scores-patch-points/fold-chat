@@ -2,7 +2,7 @@
 // events (fold-chat-turnfeed.js) — pure, with a fake clock.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { newTurnTrace, startEvents, lineEvent, beginStep, endStep, noteEvent, doneEvents, eventsForStep, verbOf, summaryLine, storeEvents } from "./fold-chat-turnfeed.js";
+import { newTurnTrace, startEvents, lineEvent, beginStep, endStep, noteEvent, doneEvents, eventsForStep, verbOf, summaryLine, storeEvents, fallbackProcessLine } from "./fold-chat-turnfeed.js";
 
 const clock = () => { let t = 1000; const f = () => t; f.tick = (ms) => { t += ms; }; return f; };
 const mk = (q = "Who founded the city of Nashville, and when?") => { const now = clock(); return { now, c: newTurnTrace({ now, question: q }) }; };
@@ -131,6 +131,18 @@ test("summaryLine: one honest line per way a turn can end", () => {
   assert.equal(summaryLine({ ms: 2300, nSources: 1, mode: "snips" }), "Answered in 2.3 s · read 1 source · no model");
   assert.match(summaryLine({ ms: 5000, nSources: 2, fellBack: true }), /^Answered from the sources in 5\.0 s · the model declined · read 2 sources$/);
   assert.match(summaryLine({ ms: 800, gap: true }), /^No answer in under 1 s · no source reached$/);
+  // #3: an UNTRACEABLE model answer is never summarised as "no model reachable"
+  assert.match(summaryLine({ ms: 5000, nSources: 2, fellBack: "untraceable" }), /^Answered from the sources in 5\.0 s · the model's answer was not traceable to the read pages · read 2 sources$/);
+});
+
+test("fallbackProcessLine: the reason is named, and an untraceable answer is never called 'no model reachable'", () => {
+  const untraceable = fallbackProcessLine({ kind: "fold", reason: "untraceable", gate: "the model's words could not be traced to what was read" });
+  assert.match(untraceable, /could not be traced to what was read/);
+  assert.doesNotMatch(untraceable, /no model reachable/);
+  assert.doesNotMatch(untraceable, /model did not answer/);
+  // the genuine no-model fallback still says so
+  assert.match(fallbackProcessLine({ kind: "fold" }), /\(no model reachable\)/);
+  assert.match(fallbackProcessLine({ kind: "declined", gate: "the provider refused" }), /\(the provider refused\)/);
 });
 
 test("storeEvents bounds the trace and always keeps the closing line", () => {

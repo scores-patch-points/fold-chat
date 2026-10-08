@@ -83,6 +83,15 @@ test("a connective that pointed at a withheld sentence is shed; one that points 
   assert.equal(b.text, "Honesty usually protects trust. However, kindness matters too.");
 });
 
+test("THE GEAR: the conversation is material — a follow-up that quotes the earlier answer is witnessed by it", () => {
+  const convo = [{ ref: "earlier in this chat", source: "turn 1", text: "You asked: what is the capital of France? I answered: Paris is the capital of France and the Seine flows through it." }];
+  const pv = pivotText({ draft: "Paris is the capital of France and the Seine flows through it.", ask: "quote your first answer", material: convo, requireGrounding: true });
+  assert.ok(pv.units[0]?.support, "the earlier answer witnesses the quoted sentence (the gear)");
+  // control: the SAME sentence against UNRELATED material is not witnessed (so the test is not vacuous)
+  const ctl = pivotText({ draft: "Paris is the capital of France and the Seine flows through it.", ask: "quote your first answer", material: [{ ref: "S1", source: "x", text: "The Eiffel Tower is a wrought-iron lattice tower in Paris." }], requireGrounding: true });
+  assert.equal(ctl.units[0]?.support ?? null, null, "unrelated material does not witness it");
+});
+
 test("a sourced turn withholds a sentence no source witnesses; a judgment turn is labelled as one", () => {
   const draft = "The Eiffel Tower stands in Paris, France. It was designed by Leonardo da Vinci. It was completed in 1889.";
   const pv = pivotText({ draft, ask: "tell me about the eiffel tower", material: EIFFEL });

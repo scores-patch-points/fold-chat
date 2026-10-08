@@ -399,6 +399,24 @@ test("Stop while the download question is open (or the load is running) releases
   });
 });
 
+test("a CACHED model whose load hangs is stopped (a typed load-timeout), so the composer can never be held forever", async () => {
+  const eng = stubEngine({ loadedId: null, cached: true });
+  let loads = 0;
+  eng.load = () => { loads++; return new Promise(() => {}); };   // a cached load that never settles
+  await withEngine(eng, {}, async () => {
+    await assert.rejects(
+      client.chat("webllm:" + GEMMA, MSGS, { fetchImpl: noNetwork, loadTimeoutMs: 40 }),
+      (e) => e.kind === "load-timeout" && e.place === "tab" && /did not load within/.test(e.message),
+    );
+    assert.equal(loads, 1);
+  });
+  // a first-ever download (not cached) is NOT capped by this: a slow but real load still gets to finish
+  const fresh = stubEngine({ loadedId: null, cached: false });
+  await withEngine(fresh, { confirmDownload: async () => true }, async () => {
+    assert.equal((await client.chat("webllm:" + GEMMA, MSGS, { fetchImpl: noNetwork, loadTimeoutMs: 40 })).text, "ABC");
+  });
+});
+
 test("typed errors: no WebGPU, a loader that cannot fetch, a model that will not load, a generation that fails — each with words and a status the notices read", async () => {
   const cases = [
     [new PageEngineError("no-gpu", "no WebGPU", { reason: "no-webgpu" }), 501, /no WebGPU \(no-webgpu\).*WebGPU browser/],
