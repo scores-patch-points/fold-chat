@@ -16,8 +16,18 @@ import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, s
 // not trusted because it renders; its CLAIMS are falsified against the material
 // that was read, and a failing claim sends the turn back (REC↬NUL) to be corrected.
 import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answer.js";
+// THE CUBE + THE GATE, woven in: every act lands on one of the 27 coherent
+// cells (cellOf), the turn is typed before any draw (gateTurn), and the turn's
+// loop-back edges run as a bounded recursion (runSpiral).
+import { RUNGS, cellOf, cellLine, gateTurn, runSpiral } from "./fold-chat-cube.js";
+// THE WEAVE, in the browser (an experiment): the page is stitched from what was
+// read — field first, mouth only the residue, every byte logged with provenance.
+import { createBuild, unitsFromOutline, snipFor, grounded } from "./fold-chat-build.js";
 
 const KEY = "fold-chat:folds@1";
+// THE WEAVE EXPERIMENT: ?stitch=1 makes the make stitch the page from what was
+// read (field first, the mouth only the residue) instead of drawing it whole.
+const STITCH = (typeof location !== "undefined") && new URLSearchParams(location.search).get("stitch") === "1";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 // PHEROMONE TRAILS — the ant's memory over the log. A path that led to a held page
@@ -111,6 +121,7 @@ const CODE_CSS = `
 .fs-think.bad{border-left-color:var(--bad)}
 .fs-think.bad .t{color:var(--bad)}
 .fs-op{display:inline-block;width:1.1em;text-align:center;color:var(--acc-deep);font-weight:700;margin-right:2px}
+.fs-cell{font:var(--fs-2xs,10px)/1 var(--mono);color:var(--acc-deep);background:color-mix(in srgb,var(--acc-deep) 10%,transparent);border-radius:var(--r-pill);padding:2px 6px;white-space:nowrap;margin-left:4px;vertical-align:middle}
 .fs-think .lbl{color:var(--mut);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.06em}
 .fs-think .st{margin-top:3px;white-space:pre-wrap;font:var(--fs-sm)/1.5 var(--mono);color:var(--ink2);max-height:260px;overflow:auto}
 .fs-think.streaming .st::after{content:"▮";color:var(--acc-deep);animation:fsblink 1s steps(1) infinite;margin-left:1px}
@@ -124,6 +135,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   const memory = createMemory();
   const queue = [];
   let cur = null, kernel = null, running = null, live = null, sel = null, editMode = false, tab = "preview", ed = null, edErr = [];
+  let rungNow = RUNGS[0]; // the rung the pipeline is standing on — each act lands on its cube cell
   const space = document.createElement("section"); space.className = "foldspace"; space.hidden = true; space.setAttribute("aria-label", "Fold");
   main.append(space);
 
@@ -151,12 +163,13 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       } catch (e) { if (ended) return acc; throw e; } finally { sig?.removeEventListener("abort", fwd); }
     };
   }
-  const push = (e) => { cur.log.push({ at: Date.now(), ...e }); cur.updated = Date.now(); save(); };
+  const push = (e) => { const c = e.cell || (e.op ? cellOf(e.op, rungNow) : null); const entry = { at: Date.now(), ...e }; if (c && !c.gap) entry.cell = c; cur.log.push(entry); cur.updated = Date.now(); save(); };
   // STREAMING: the model's thinking, LIVE — a streaming entry grows as tokens
   // arrive (throttled repaint), then stays on the record as what it thought.
   let streamTimer = null;
   const streamInto = (label, op) => {
-    cur.log.push({ at: Date.now(), kind: "think", by: "fold", op: op || "SIG", label, text: "", streaming: true });
+    const c = cellOf(op || "SIG", rungNow);
+    cur.log.push({ at: Date.now(), kind: "think", by: "fold", op: op || "SIG", label, text: "", streaming: true, ...(c && !c.gap ? { cell: c } : {}) });
     const idx = cur.log.length - 1;
     paint();
     return (t) => { cur.log[idx].text += String(t ?? ""); if (!streamTimer) streamTimer = setTimeout(() => { streamTimer = null; paint(); }, 120); };
@@ -231,6 +244,34 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     let r; try { r = falsifyAnswer(sentences, material); } catch { return null; }
     return { summary: r.summary, failed: r.claims.filter((c) => FAILING.has(c.verdict)) };
   }
+  /** THE STITCH (the weave experiment): decompose the outline into units, fill
+   *  each from the FIELD (the passages that were read) by snip+address, ask the
+   *  MOUTH only for the residue, gate every byte, and project the page from the
+   *  log. Returns the build ({ artifact, verdict, log }) or null. */
+  async function tryStitch(text, material, outline, draw, ac) {
+    const units = unitsFromOutline(outline, { max: 8 });
+    if (!units.length) return null;
+    const model = getModelId?.();
+    return createBuild({
+      units,
+      field: (u) => snipFor(u, material),
+      gate: (u, code) => grounded(u, code, material),
+      draw: async (u) => {
+        const out = await draw([
+          { role: "system", content: "You write ONE short HTML fragment for ONE piece of a page — no <html> shell, no prose, no markdown. Use only the facts you are given." },
+          { role: "user", content: `The piece: ${u.name}\nWhat it is: ${u.spec || "(unspecified)"}\nFacts you may use (only these):\n${material.map((m) => `- ${String(m.text).slice(0, 300)}`).join("\n")}` },
+        ], { maxTokens: 400, signal: ac.signal });
+        return { code: stripFence(out), model };
+      },
+      assemble: (joined, order, us) => `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{font:16px/1.6 system-ui,sans-serif;max-width:820px;margin:2rem auto;padding:0 1rem;color:#17171a}h2{margin:1.4em 0 .4em}section{margin:0 0 1em}</style></head><body>${us.map((u) => u.code).join("\n")}</body></html>`,
+      test: async (code) => {
+        const obs = await observePage(code);
+        if (obs.err && obs.err.length) return { ok: false, reason: `the page threw: ${obs.err[0]}` };
+        if (obs.nodes < 4) return { ok: false, reason: "the page rendered nothing" };
+        return { ok: true, reason: `ran · ${obs.nodes} nodes` };
+      },
+    });
+  }
   /** Climb the cube: grain = the ask's own words; terrain = the ask in its want;
    *  domain = the kind of thing it is, broadly. Returns the refined SEARCH subject. */
   function refineSubject(text, want, rung) {
@@ -253,14 +294,28 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
     const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
     const overlapFrac = (a, b) => { const A = new Set(contentWords(a || "")), B = new Set(contentWords(b || "")); if (!A.size || !B.size) return 1; let n = 0; for (const w of A) if (B.has(w)) n += 1; return n / A.size; };
-    // THE SPIRAL: the six stages, taken on a rung of the cube. A contradiction at
-    // (3) loops back to re-read the want; a lack at (5) loops back to search the
-    // ground differently — the subject refined and the rung climbed
-    // (grain → terrain → domain). Bounded: two climbs, then it weaves with what it has.
-    const RUNGS = ["grain", "terrain", "domain"];
+    // THE GATE, WOVEN IN — before any draw. The chat's own judgment (the
+    // constitution's router, vendor/fold/reasoning-stages.mjs `route`): what kind
+    // of turn is this, and who may speak? A turn that cannot be stated is a wall;
+    // `refuse` stops here, before the mouth is ever asked.
+    const lane = gateTurn({ text, build: isMakeAsk(text) || !!cur.codebase, hasMaterial: false, satisfiable: true });
+    push({ kind: "think", by: "app", op: "NUL", text: `gate · ${lane.lane} — ${lane.why}` });
+    paint();
+    if (lane.lane === "refuse") { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "refused", msg: lane.why }] }); return; }
+    // THE SPIRAL — the six stages, taken on a rung of the cube, RECURSIVE and
+    // bounded. A contradiction at (3) or a lack at (5) re-opens an earlier rung
+    // INSIDE one pass (grain → terrain → domain); a weave that does not hold
+    // re-opens the WHOLE turn (runSpiral) with its finding as the new atom. It
+    // keeps going — and the fuel stops it.
+    const FUEL_TURN = 3;
+    let visitedRungs = [], lastMaterial = null, held = false;
+    // ONE PASS: (1) read the want → (2) hunt examples → (3) re-read → (4) outline
+    // → (5) inventory → (6) weave. Returns { held, finding, refused }.
+    async function onePass(atom) {
     let depth = 0, subject = text, reading = null, want = null, material = null, outline = "", need = null;
-    const visitedRungs = [];
+    visitedRungs = [];
     for (;;) {
+      rungNow = RUNGS[depth];
       visitedRungs.push(RUNGS[depth]);
       // (1) WHAT DOES THE PERSON WANT?  (re-read on a climb)
       let r1 = null;
@@ -271,7 +326,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       const mono = monologue(text, reading);
       for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", text: l.say, why: l.why, ok: !l.bad });
       paint();
-      if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return; }
+      if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return { refused: true }; }
       // (2) GO FIND EXAMPLES — on the current rung's subject
       material = null;
       if (typeof research === "function") {
@@ -332,7 +387,35 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       break;
     }
     // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
-    let finding = null, html = null, held = false;
+    let finding = atom.finding || null, html = null, held = false;
+    // THE EXPERIMENT (the weave, ?stitch=1): before asking the mouth for a whole
+    // page, STITCH it from what was read — field first (snipped by address), the
+    // mouth only the residue, every byte gated and logged with its provenance.
+    if (STITCH && !finding && material && material.length) {
+      const st = await tryStitch(text, material, outline, draw, ac);
+      if (st) {
+        for (const c of st.log) {
+          const by = c.source === "field" ? "library" : c.source === "hunt" ? "hunt" : "mouth";
+          if (c.kind === "fill") push({ kind: "assembly", by, op: "SYN", label: `${c.unit} · ${c.source}`, text: String(c.code).slice(0, 400), ok: true, address: c.address || null });
+          else if (c.kind === "refusal") push({ kind: "think", by: "app", op: "REC", text: `refused ${c.unit} from ${c.source}: ${c.reason}`, ok: false });
+          else if (c.kind === "unfilled") push({ kind: "think", by: "app", op: "NUL", text: `unfilled ${c.unit}: ${c.reason}`, ok: false });
+          else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `stitch verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true });
+        }
+        push({ kind: "think", by: "app", op: "CON", text: `stitched ${st.artifact.units.length}/${st.artifact.order.length} units — ${st.artifact.provenance.map((p) => `${p.unit}←${p.source}`).join(", ")}`, ok: true });
+        paint();
+        if (st.verdict?.ok && st.artifact.complete) {
+          html = st.artifact.code; held = true;
+          cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
+          push({ kind: "assembly", by: "app", op: "SYN", label: "the page (stitched from the sources)", text: html, ok: true });
+          toast("Held — stitched from the sources.");
+          paint();
+          lastMaterial = material;
+          return { held: true, finding: null, refused: false };
+        }
+        push({ kind: "think", by: "app", op: "REC", text: `the stitched page did not hold (${st.verdict?.reason || "incomplete"}) — drawing the whole page instead.`, ok: false });
+        paint();
+      }
+    }
     for (let round = 1; round <= 3; round += 1) {
       live = { label: round === 1 ? "weaving it together" : "re-weaving with the finding", units: [] };
       push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "(6) weaving it together." : `(REC↬) re-weaving with the finding — round ${round}.` });
@@ -365,11 +448,26 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       if (!finding) { held = true; toast("Held — the sources hold and it runs."); break; }
       push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
       paint();
-      if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
     }
+    lastMaterial = material;
+    return { held, finding, refused: false };
+    }
+    // THE RECURSION: one pass, then re-open the WHOLE turn while it does not
+    // hold — bounded by the fuel. It keeps going, and it stops.
+    await runSpiral({
+      atom: { text, finding: null }, grain: RUNGS[0], fuel: FUEL_TURN,
+      step: async (cur, i) => {
+        if (i > 0) { rungNow = RUNGS[0]; push({ kind: "think", by: "fold", op: "REC", text: `↬ re-opening the whole turn (pass ${i + 1}) — the finding: ${slice(cur.atom.finding).slice(0, 90)}` }); paint(); }
+        const r = await onePass(cur.atom);
+        held = r.held;
+        if (r.refused || r.held) return { done: true };
+        return { recurse: { atom: { text, finding: r.finding }, grain: RUNGS[0], reason: `unheld: ${r.finding}` } };
+      },
+    });
+    if (!held) toast("Left open — the turn still does not hold after " + FUEL_TURN + " passes.");
     // LAY THE TRAIL: reinforce the path that held (the rungs climbed, the sources
     // read); sour the ground that gave nothing. The next turn follows the strongest.
-    const srcKeys = (material || []).map((m) => "src:" + domainKey(m)).filter((k) => k !== "src:");
+    const srcKeys = (lastMaterial || []).map((m) => "src:" + domainKey(m)).filter((k) => k !== "src:");
     const keys = [...visitedRungs.map((r) => "rung:" + r), ...srcKeys];
     if (keys.length) {
       trail(keys, held ? 1 : -0.6);
@@ -453,11 +551,11 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       if (e.kind === "think") {
         const say = e.say ? `<span class="t">${esc(e.say)}</span>` : (e.label ? `<span class="lbl">${esc(e.label)}</span>` : "");
         const body = e.text ? `<div class="st">${esc(e.text)}</div>` : "";
-        return `<div class="fs-think${e.ok === false ? " bad" : ""}${e.streaming ? " streaming" : ""}">${opg(e)}<span class="fs-by fold">fold</span> ${say}${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}${body}</div>`;
+        return `<div class="fs-think${e.ok === false ? " bad" : ""}${e.streaming ? " streaming" : ""}">${opg(e)}<span class="fs-by fold">fold</span> ${say}${e.cell ? `<span class="fs-cell" title="cube cell">${esc(cellLine(e.cell))}</span>` : ""}${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}${body}</div>`;
       }
       const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
       const drawn = (e.units || []).filter((u) => u.by === "mouth").length;
-      return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span>${opg(e)}<b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
+      return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span>${opg(e)}${e.cell ? `<span class="fs-cell" title="cube cell">${esc(cellLine(e.cell))}</span>` : ""}<b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
     }).join("");
     const liveHtml = (live ? `<div class="fs-step live open"><div class="fs-step-h"><span class="fs-by model">model</span><b>${esc(live.label)}</b><span>working…</span></div><div class="fs-units">${live.units.map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "…")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span></div>`).join("")}</div></div>` : "") + queue.map((q) => `<div class="fs-ask" style="opacity:.6">${esc(q)}<span class="fs-note"> · queued</span></div>`).join("");
     const parts = kernel ? editableParts(kernel) : [];
