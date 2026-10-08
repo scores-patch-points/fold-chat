@@ -12,6 +12,10 @@ import { editorFor, editEOT, editableParts } from "./fold-blocks-edit.js";
 import { createMemory, contentWords } from "./fold-blocks-weave.js";
 import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, extendEssay } from "./fold-chat-longform.js";
 import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, snapshot as wsSnapshot } from "./fold-chat-workspace.js";
+// THE APP'S OWN FALSIFIER — the same organ the answer lane uses. A made page is
+// not trusted because it renders; its CLAIMS are falsified against the material
+// that was read, and a failing claim sends the turn back (REC↬NUL) to be corrected.
+import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answer.js";
 
 const KEY = "fold-chat:folds@1";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -193,6 +197,23 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     return (r.what || r.satisfy) ? r : null;
   }
 
+  /** The page's PROSE: strip script/style/comments/tags, decode the basics. */
+  function pageText(htmlValue) {
+    return String(htmlValue || "")
+      .replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<!--[\s\S]*?-->/g, " ").replace(/<[^>]+>/g, " ")
+      .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#0?39;/g, "'").replace(/&nbsp;/g, " ")
+      .replace(/\s+/g, " ").trim();
+  }
+  /** Falsify the page's claims against what was read — the app's own organ. Returns
+   *  the failing claims (unsupported / contested / weak); null when there is no material. */
+  function gatePage(htmlValue, material) {
+    if (!material || !material.length) return null;
+    const sentences = claimSentences(pageText(htmlValue)).map((s) => s.trim()).filter((s) => s.split(/\s+/).length >= 5).slice(0, 40);
+    if (!sentences.length) return null;
+    let r; try { r = falsifyAnswer(sentences, material); } catch { return null; }
+    return { summary: r.summary, failed: r.claims.filter((c) => FAILING.has(c.verdict)) };
+  }
   // THE PIPELINE — one turn, the whole movement, streamed, operator-tagged:
   //   (1) what does the person want?      DEF — read the ask (induced)
   //   (2) go find examples                SIG — web: engines → readers → passages
@@ -274,7 +295,19 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           : (behaviour && String(obs.t0).trim() === String(obs.t1).trim() ? "nothing changes over time — the behaviour is not running" : null));
       push({ kind: "assembly", by: "app", op: "EVA", label: finding ? "observed: " + finding : "observed: it runs and holds", text: `errors ${obs.err?.length || 0} · nodes ${obs.nodes} · changed ${String(obs.t0) !== String(obs.t1)}`, ok: !finding });
       paint();
-      if (!finding) { toast("Held — observed running."); break; }
+      // GATE THE CLAIMS (the app's falsifier): a page that renders is not yet a
+      // page that holds — falsify what it asserts against the material that was read.
+      if (!finding && material && material.length) {
+        const gate = gatePage(html, material);
+        if (gate && gate.failed.length) {
+          finding = `the page asserts ${gate.failed.length} thing(s) the sources do not support: ${gate.failed.slice(0, 3).map((c) => `“${slice(c.s).slice(0, 90)}”`).join("; ")} — assert only what the sources hold`;
+          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed · ${gate.failed.length} failing`, why: finding, ok: false });
+        } else if (gate) {
+          push({ kind: "think", by: "app", op: "EVA", text: `claims: ${gate.summary.backed}/${gate.summary.claims} backed by the sources`, ok: true });
+        }
+        paint();
+      }
+      if (!finding) { toast("Held — the sources hold and it runs."); break; }
       push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
       paint();
       if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
