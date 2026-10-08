@@ -90,6 +90,10 @@ const CODE_CSS = `
 .fs-think.bad{border-left-color:var(--bad)}
 .fs-think.bad .t{color:var(--bad)}
 .fs-op{display:inline-block;width:1.1em;text-align:center;color:var(--acc-deep);font-weight:700;margin-right:2px}
+.fs-think .lbl{color:var(--mut);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.06em}
+.fs-think .st{margin-top:3px;white-space:pre-wrap;font:var(--fs-sm)/1.5 var(--mono);color:var(--ink2);max-height:260px;overflow:auto}
+.fs-think.streaming .st::after{content:"▮";color:var(--acc-deep);animation:fsblink 1s steps(1) infinite;margin-left:1px}
+@keyframes fsblink{50%{opacity:0}}
 `;
 
 export function mountFolds({ main, list, newBtn = null, railBtn = null, getModelId, toast = () => {}, onOpen = () => {}, onClose = () => {} }) {
@@ -127,19 +131,29 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     };
   }
   const push = (e) => { cur.log.push({ at: Date.now(), ...e }); cur.updated = Date.now(); save(); };
+  // STREAMING: the model's thinking, LIVE — a streaming entry grows as tokens
+  // arrive (throttled repaint), then stays on the record as what it thought.
+  let streamTimer = null;
+  const streamInto = (label, op) => {
+    cur.log.push({ at: Date.now(), kind: "think", by: "fold", op: op || "SIG", label, text: "", streaming: true });
+    const idx = cur.log.length - 1;
+    paint();
+    return (t) => { cur.log[idx].text += String(t ?? ""); if (!streamTimer) streamTimer = setTimeout(() => { streamTimer = null; paint(); }, 120); };
+  };
+  const endStream = () => { const e = cur.log[cur.log.length - 1]; if (e && e.streaming) { e.streaming = false; paint(); } };
 
   function stripFence(s) { const m = String(s || "").match(/```[a-zA-Z]*\n([\s\S]*?)```/); return (m ? m[1] : String(s || "")).trim(); }
   // A BEHAVIOUR (a timer, a game, an animation) is not a value the block kit can
   // compute — the fold writes it as ONE self-contained page (SYN), RUNS it and
   // OBSERVES what it does (EVA), records the finding (REC), and re-opens (NUL)
   // with the finding as the atom until it holds. The loop is the agent.
-  async function buildApp(text, draw, signal, finding = null, prior = null) {
+  async function buildApp(text, draw, signal, finding = null, prior = null, onToken = null) {
     const fix = finding ? `\n\nYour previous page FAILED when it was run: ${finding}. Write a version without that failure.` : "";
     const base = prior ? `\n\nHere is the current page. Change it as asked and keep everything else working:\n\`\`\`html\n${String(prior).slice(0, 8000)}\n\`\`\`` : "";
     const out = await draw([
       { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose." },
       { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${base}${fix}` },
-    ], { maxTokens: 2200, signal });
+    ], { maxTokens: 2200, signal, onToken });
     const html = stripFence(out);
     return /<\s*(!doctype|html|body|div|button|script|canvas|svg|input|main|section)/i.test(html) ? html : null;
   }
@@ -166,11 +180,11 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   // say what the ask IS (action, object, deliverable, what it needs, what a thing
   // that satisfies it would do), as facts it can reason from. The app then routes
   // by that reading. Nothing here is a canned template.
-  async function readAsk(ask, draw, signal) {
+  async function readAsk(ask, draw, signal, onToken) {
     const out = await draw([
-      { role: "system", content: "You read an ask and say plainly what it is. Facts only; no advice, no preamble. There is no menu of categories — induce the kind from the ask itself." },
-      { role: "user", content: `The ask: "${ask}"\n\nAnswer in EXACTLY these lines and nothing else:\nWHAT: <what this ask is, in your own words — name the kind of thing it wants, induced from the ask, not chosen from a list>\nSATISFY: <one sentence: what a thing that satisfies this ask would actually DO>\nNEEDS: <what it needs that a self-contained page could not invent itself — inputs, or a live data source, or time to run, or nothing>` },
-    ], { maxTokens: 260, signal });
+      { role: "system", content: "You read an ask and think out loud about what it is and what it should become. Think briefly, like a person sizing up the job before starting. There is no menu of categories — induce the kind from the ask itself." },
+      { role: "user", content: `The ask: "${ask}"\n\nThink out loud in a few short lines, then end with exactly these labelled lines:\nWHAT: <what this ask is — the kind of thing it wants, induced from the ask, not chosen from a list>\nSATISFY: <one sentence: what a thing that satisfies this ask would actually DO>\nNEEDS: <what it needs that a self-contained page could not invent itself — inputs, or a live data source, or time to run, or nothing>` },
+    ], { maxTokens: 400, signal, onToken });
     const grab = (k) => { const m = new RegExp(`^\\s*${k}\\s*:\\s*(.+)$`, "im").exec(out); return m ? m[1].trim().replace(/^["']|["']$/g, "") : null; };
     const r = { what: grab("WHAT"), satisfy: grab("SATISFY"), needs: grab("NEEDS") };
     return (r.what || r.satisfy) ? r : null;
@@ -184,12 +198,18 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const lk = cur.artifact ? cur.artifact.kind : (!kernel ? longKind(text) : null);
     push({ kind: "ask", by: "you", text: "", ask: text, ok: true, op: "NUL" });
     if (first && cur.title === "New fold") cur.title = text.slice(0, 48);
+    // SHOW IT IMMEDIATELY. The first thing is a model call (the reading) and the
+    // first call is the slow one — so paint the ask and a working line BEFORE the
+    // await, never a blank screen until the model speaks.
+    live = { label: "reading the ask", units: [] }; paint();
     // THE MONOLOGUE: the fold says what it reads the ask as, how it would satisfy
     // it, and whether that shape can possibly satisfy it — BEFORE it acts. If it
     // cannot, it stops with a typed gap instead of building the wrong thing.
     if (!lk && !cur.codebase) {
       let reading = null;
-      try { reading = await readAsk(text, complete(ac.signal), ac.signal); } catch { reading = null; }
+      const rtok = streamInto("thinking about the ask", "SIG");
+      try { reading = await readAsk(text, complete(ac.signal), ac.signal, rtok); } catch { reading = null; }
+      endStream();
       const mono = monologue(text, reading);
       for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
       paint();
@@ -201,7 +221,9 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "Writing the page (SYN)." : `Re-opening the void (NUL) with the finding, and writing again (SYN) — round ${round}.` });
           paint();
           const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
-          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding, prior); } catch (e) { html = null; }
+          const wtok = streamInto(round === 1 ? "writing the page" : "rewriting with the finding", "SYN");
+          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding, prior, wtok); } catch (e) { html = null; }
+          endStream();
           if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
           cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
           push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
@@ -276,7 +298,11 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const started = !!(kernel || cur.artifact || cur.codebase);
     const entries = cur.log.map((e, i) => {
       if (e.kind === "ask") return `<div class="fs-ask">${esc(e.ask)}</div>`;
-      if (e.kind === "think") return `<div class="fs-think${e.ok === false ? " bad" : ""}">${opg(e)}<span class="fs-by fold">fold</span> <span class="t">${esc(e.text)}</span>${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}</div>`;
+      if (e.kind === "think") {
+        const say = e.say ? `<span class="t">${esc(e.say)}</span>` : (e.label ? `<span class="lbl">${esc(e.label)}</span>` : "");
+        const body = e.text ? `<div class="st">${esc(e.text)}</div>` : "";
+        return `<div class="fs-think${e.ok === false ? " bad" : ""}${e.streaming ? " streaming" : ""}">${opg(e)}<span class="fs-by fold">fold</span> ${say}${e.why ? `<div class="w">${esc(e.why)}</div>` : ""}${body}</div>`;
+      }
       const units = (e.units || []).map((u) => `<div class="fs-u"><span class="k">${esc(u.key)}</span><span class="v">${esc(u.value || "(empty)")}</span><span class="fs-by ${esc(u.by)}">${esc(u.by)}</span>${u.address ? `<span></span><span class="s" style="color:var(--mut)">${esc(u.address)}</span>` : ""}${(u.scars || []).map((s) => `<span></span><span class="s">✗ ${esc(s)}</span>`).join("")}</div>`).join("");
       const drawn = (e.units || []).filter((u) => u.by === "mouth").length;
       return `<div class="fs-step ${e.ok ? "ok" : "bad"}" data-i="${i}"><div class="fs-step-h"><span class="fs-by ${esc(e.by)}">${esc(e.by)}</span>${opg(e)}<b>${esc(e.label || e.kind)}</b><span>${e.ok ? (e.undone ? "set down · undone" : "set down") : "not set down"}</span>${e.units?.length ? `<span>${drawn}/${e.units.length} drawn</span><button type="button" class="fs-tog" data-tog="${i}">units</button>` : ""}${e.inverse && e.ok && !e.undone && !running ? `<button type="button" class="fs-undo" data-undo="${i}">undo</button>` : ""}</div>${(e.errors || []).map((x) => `<div class="fs-err">${esc(x.code)} · ${esc(x.msg)}</div>`).join("")}${(e.notes || []).map((n) => `<div class="fs-note">${esc(n)}</div>`).join("")}<div class="fs-units">${units}</div></div>`;
