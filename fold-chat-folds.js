@@ -7,7 +7,7 @@
 import * as client from "./fold-chat-client.js";
 import { render } from "./fold-blocks.js";
 import { createKernel } from "./fold-blocks-kernel.js";
-import { make, followUp, guessKind, monologue } from "./fold-blocks-make.js";
+import { monologue } from "./fold-blocks-make.js";
 import { editorFor, editEOT, editableParts } from "./fold-blocks-edit.js";
 import { createMemory, contentWords } from "./fold-blocks-weave.js";
 import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, extendEssay } from "./fold-chat-longform.js";
@@ -133,11 +133,12 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   // compute — the fold writes it as ONE self-contained page (SYN), RUNS it and
   // OBSERVES what it does (EVA), records the finding (REC), and re-opens (NUL)
   // with the finding as the atom until it holds. The loop is the agent.
-  async function buildApp(text, draw, signal, finding = null) {
+  async function buildApp(text, draw, signal, finding = null, prior = null) {
     const fix = finding ? `\n\nYour previous page FAILED when it was run: ${finding}. Write a version without that failure.` : "";
+    const base = prior ? `\n\nHere is the current page. Change it as asked and keep everything else working:\n\`\`\`html\n${String(prior).slice(0, 8000)}\n\`\`\`` : "";
     const out = await draw([
       { role: "system", content: "You write ONE complete, self-contained HTML document that actually works when opened in a browser. Inline CSS and JavaScript only; no external files; no prose." },
-      { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${fix}` },
+      { role: "user", content: `Build this, as one working page: ${text}\n\nOutput only the HTML document, inside a single fenced code block.${base}${fix}` },
     ], { maxTokens: 2200, signal });
     const html = stripFence(out);
     return /<\s*(!doctype|html|body|div|button|script|canvas|svg|input|main|section)/i.test(html) ? html : null;
@@ -161,6 +162,20 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     });
   }
 
+  // READ THE ASK — the fold's real thinking, not a lookup. The model is asked to
+  // say what the ask IS (action, object, deliverable, what it needs, what a thing
+  // that satisfies it would do), as facts it can reason from. The app then routes
+  // by that reading. Nothing here is a canned template.
+  async function readAsk(ask, draw, signal) {
+    const out = await draw([
+      { role: "system", content: "You read an ask and say plainly what it is. Facts only; no advice, no preamble. There is no menu of categories — induce the kind from the ask itself." },
+      { role: "user", content: `The ask: "${ask}"\n\nAnswer in EXACTLY these lines and nothing else:\nWHAT: <what this ask is, in your own words — name the kind of thing it wants, induced from the ask, not chosen from a list>\nSATISFY: <one sentence: what a thing that satisfies this ask would actually DO>\nNEEDS: <what it needs that a self-contained page could not invent itself — inputs, or a live data source, or time to run, or nothing>` },
+    ], { maxTokens: 260, signal });
+    const grab = (k) => { const m = new RegExp(`^\\s*${k}\\s*:\\s*(.+)$`, "im").exec(out); return m ? m[1].trim().replace(/^["']|["']$/g, "") : null; };
+    const r = { what: grab("WHAT"), satisfy: grab("SATISFY"), needs: grab("NEEDS") };
+    return (r.what || r.satisfy) ? r : null;
+  }
+
   async function runAsk(text) {
     if (!cur || running) return;
     const ac = new AbortController(); running = ac;
@@ -173,7 +188,9 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // it, and whether that shape can possibly satisfy it — BEFORE it acts. If it
     // cannot, it stops with a typed gap instead of building the wrong thing.
     if (!lk && !cur.codebase) {
-      const mono = monologue(text);
+      let reading = null;
+      try { reading = await readAsk(text, complete(ac.signal), ac.signal); } catch { reading = null; }
+      const mono = monologue(text, reading);
       for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
       paint();
       if (mono.code) {
@@ -183,7 +200,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           live = { label: round === 1 ? "writing a small page" : "rewriting with what I saw", units: [] };
           push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "Writing the page (SYN)." : `Re-opening the void (NUL) with the finding, and writing again (SYN) — round ${round}.` });
           paint();
-          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding); } catch (e) { html = null; }
+          const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
+          try { html = await buildApp(text, complete(ac.signal), ac.signal, finding, prior); } catch (e) { html = null; }
           if (!html) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "empty", msg: "the model returned no page" }] }); break; }
           cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
           push({ kind: "assembly", by: "model", op: "SYN", label: "the page", text: html, ok: true });
@@ -232,28 +250,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           await addSection(cur.artifact.doc, text.replace(/^(add|write|cover|include)\s+(a\s+)?(section\s+)?(on|about)?\s*/i, "").replace(/[.!]+$/, ""), { complete: cx, signal: ac.signal, onStep, onLive });
         } else { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "not changed", msg: lk === "essay" ? "Follow-ups here: make it longer, 1500 words, add 4 more sections, change \u201cx\u201d to \u201cy\u201d, or add a section on <topic>." : "Follow-ups here: change \u201cx\u201d to \u201cy\u201d, or paste another URL to parse." }] });
         }
-      } else if (first) {
-        const r = await make(text, { kind: cur.kindPick || null, complete: complete(ac.signal), memory, signal: ac.signal, onEvent: (e) => {
-          if (e.type === "plan") { cur.kind = e.kind; live.label = `${e.kind} · ${e.steps.length} assemblies`; }
-          if (e.type === "start") { live.label = `assembly ${e.i + 1} · ${e.id}`; live.units = []; }
-          if (e.type === "unit") live.units = [...live.units.filter((u) => u.key !== e.key), e];
-          if (e.type === "supplied") push({ kind: "assembly", by: "app", label: "supplied inputs", text: e.text, ok: true, notes: [e.note] });
-          if (e.type === "verdict") { push({ kind: "assembly", by: "model", label: e.units ? (live.label.split("· ").pop()) : "assembly", text: e.text || "", ok: e.ok, errors: e.errors || [], notes: e.notes || [], units: (e.units || []).map((u) => ({ key: u.key, value: u.value, by: u.by, address: u.address, scars: (u.attempts || []).filter((a) => a.why).map((a) => `“${a.value || ""}” · ${a.why}`) })) }); live.units = []; }
-          if (e.type === "frame") push({ kind: "assembly", by: "app", label: "frame", text: e.text, ok: e.ok, errors: e.errors || [] });
-          paint();
-        } });
-        kernel = r.kernel; cur.kind = r.kind;
-        toast(r.ok ? `Built: ${r.kind}` : "It did not hold. The record says where.");
-      } else {
-        const r = await followUp(kernel, text, { complete: complete(ac.signal), target: sel, signal: ac.signal, onEvent: (e) => {
-          if (e.type === "target") live.label = `${e.mode} · ${e.name} · ${e.how}`;
-          if (e.type === "verdict") push({ kind: "assembly", by: e.by || "model", label: `follow-up`, text: e.text || "", ok: e.ok, errors: e.errors || [], inverse: e.ok ? e.inverse : null });
-          if (e.type === "frame") push({ kind: "assembly", by: "app", label: "place it", text: e.text, ok: e.ok, errors: e.errors || [] });
-          paint();
-        } });
-        if (r.ok && r.mode === "add" && r.inverse) { const L = cur.log; L[L.length - 2].inverse = null; L[L.length - 1].inverse = r.inverse; save(); }
-        if (!r.ok) push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "not changed", msg: r.why || "the change could not be built as asked" }] });
-      }
+      } else { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "no path", msg: "this ask reached no builder" }] }); }
     } catch (e) { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "failed", msg: String(e?.message || e) }] }); }
     finally { const stopped = ac.signal.aborted; running = null; live = null; if (ed) openEditor(ed.name); paint(); renderList(); if (stopped) queue.length = 0; else if (queue.length) runAsk(queue.shift()); }
   }
@@ -351,7 +348,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   }
   function create(ask = null) {
     if (running) { toast("A fold is still working; stop it first."); return null; }
-    const f = { id: uid(), title: ask ? ask.slice(0, 48) : "New fold", kind: ask ? (longKind(ask) || guessKind(ask)) : null, created: Date.now(), updated: Date.now(), log: [] };
+    const f = { id: uid(), title: ask ? ask.slice(0, 48) : "New fold", kind: ask ? longKind(ask) : null, created: Date.now(), updated: Date.now(), log: [] };
     folds.push(f); save(); open(f.id);
     if (ask) runAsk(ask);
     return f.id;
