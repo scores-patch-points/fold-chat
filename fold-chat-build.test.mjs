@@ -2,7 +2,7 @@
 // refusal, resume, hunt-first order, the named gap, and the field snipper.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { materialize, createBuild, unitsFromOutline, snipFor, grounded, figuresIn, bytesOf, BUILD_LOG_SCHEMA } from "./fold-chat-build.js";
+import { materialize, createBuild, unitsFromOutline, snipFor, grounded, figuresIn, bytesOf, BUILD_LOG_SCHEMA, imageUrlsIn, assetFor } from "./fold-chat-build.js";
 
 const mk = (arr) => arr.map((c, i) => ({ seq: i, ...c }));
 const base = mk([
@@ -105,4 +105,39 @@ test("grounded: a DRAWN figure no passage holds fails; a field figure passes", (
 test("bytesOf: UTF-8 length without Buffer", () => {
   assert.equal(bytesOf("abc"), 3);
   assert.equal(bytesOf("é"), 2);
+});
+
+// ── the ask is checked ELSEWHERE (fold-chat-require.js): the ask folds into
+//    verbatim-verified atoms and the page is joined against them. This module
+//    no longer recognises any family of options (the removed percentage rule). ──
+
+// ── the asset field: an EXISTING image, never an invented URL ────────────────
+test("imageUrlsIn: only real image URLs in the material's own text", () => {
+  assert.deepEqual(imageUrlsIn("see https://x.example/a.png and https://y.example/not-a-page"), ["https://x.example/a.png"]);
+  assert.deepEqual(imageUrlsIn("no urls here"), []);
+});
+
+test("assetFor: an image-like unit takes an existing image from a passage ABOUT it", () => {
+  const material = [{ source: "a.example", text: "the hero image shows a dolphin in the bay", images: ["https://a.example/dolphin.jpg"] }];
+  const a = assetFor({ name: "hero image", spec: "a dolphin" }, material);
+  assert.match(a.code, /^<img src="https:\/\/a\.example\/dolphin\.jpg"/);
+  assert.equal(a.address, "a.example#img0");
+  assert.equal(assetFor({ name: "prices", spec: "the table" }, material), null);
+});
+
+test("F3 · assetFor: a TEXT unit named 'hero title' gets no image (a bare 'hero' is not an image)", () => {
+  const material = [{ source: "a.example", text: "hero title welcome", images: ["https://a.example/photo.jpg"] }];
+  assert.equal(assetFor({ name: "hero title", spec: "the headline" }, material), null);
+});
+
+test("F4 · assetFor: an image from an UNRELATED passage is refused (no cross-source picture)", () => {
+  const material = [
+    { source: "dolphins.example", text: "Dolphins are mammals.", images: ["https://dolphins.example/dolphin.jpg"] },
+    { source: "widgets.example", text: "A tip calculator computes gratuity.", images: [] },
+  ];
+  assert.equal(assetFor({ name: "hero image", spec: "a tip calculator" }, material), null);
+});
+
+test("assetFor: an image-like unit with no source image is a named gap, never a made-up URL", () => {
+  assert.equal(assetFor({ name: "hero image", spec: "a dolphin" }, [{ source: "a.example", text: "dolphins" }]), null);
 });

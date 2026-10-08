@@ -158,4 +158,49 @@ export function grounded(unit, code, material) {
   return { ok: true, reason: "every figure traces to a passage" };
 }
 
-export default { BUILD_LOG_SCHEMA, PROJECTION_SCHEMA, bytesOf, materialize, createBuild, unitsFromOutline, snipFor, figuresIn, grounded };
+/** askConstraints / foreignOptions / satisfiesAsk / optionValues were REMOVED
+ *  (2026-10-07). They graded a page against a rule the app authored — a family of
+ *  options it happened to recognise (a percentage) — which is a private
+ *  convention, not a judgment: measured, it passed a page with NONE of an ask's
+ *  named buttons. What the ask requires is now read FROM THE ASK and verified
+ *  against it (fold-chat-require.js); the product is measured against that by
+ *  what it observably shows. External in, external out. */
+
+const IMG_URL = /https?:\/\/[^\s"'<>)}\]]+?\.(?:png|jpe?g|gif|webp|avif|svg)(?:\?[^\s"'<>)}\]]*)?/gi;
+/** imageUrlsIn(s) — absolute image URLs already present in what was read (a
+ *  passage's own text or links). No invention: only URLs the material carries.
+ *  Pure. */
+export function imageUrlsIn(s) {
+  const out = [];
+  for (const m of String(s ?? "").matchAll(IMG_URL)) { if (!out.includes(m[0])) out.push(m[0]); }
+  return out;
+}
+
+// An IMAGE noun — never a bare layout word ("hero", "banner"), which a text unit
+// ("hero title") would match (measured: F3).
+const IMAGEISH = /\b(images?|photos?|photographs?|pictures?|logos?|illustrations?|graphics?|icons?|thumbnails?|avatars?)\b/i;
+/** assetFor(unit, material) — an EXISTING image for an image-like unit: the
+ *  first image URL carried by a passage that is ABOUT the same thing (the same
+ *  ≥2-word floor snipFor uses), as an <img> with provenance. A unit with no
+ *  relevant source image is null — a named gap, never a made-up URL, never
+ *  another source's picture. Pure. */
+export function assetFor(unit, material) {
+  const u = unit || {};
+  if (!IMAGEISH.test(`${u.name || ""} ${u.spec || ""}`)) return null;
+  const want = new Set([...words(u.name), ...words(u.spec)]);
+  const ms = Array.isArray(material) ? material : [];
+  for (let i = 0; i < ms.length; i += 1) {
+    const urls = [...imageUrlsIn(ms[i]?.text), ...(Array.isArray(ms[i]?.images) ? ms[i].images : [])].filter((x) => typeof x === "string" && /^https?:\/\//.test(x));
+    if (!urls.length) continue;
+    if (want.size) {
+      const have = words(ms[i]?.text);
+      let n = 0; for (const w of want) if (have.includes(w)) n += 1;
+      if (n < 2) continue; // the image is not this piece's
+    }
+    const alt = String(u.name || "image").replace(/["<>]/g, "").slice(0, 80);
+    return { code: `<img src="${urls[0]}" alt="${alt}" loading="lazy">`, address: `${ms[i].source || ms[i].url || "material"}#img${i}` };
+  }
+  return null;
+}
+
+export default { BUILD_LOG_SCHEMA, PROJECTION_SCHEMA, bytesOf, materialize, createBuild, unitsFromOutline, snipFor, figuresIn, grounded, imageUrlsIn, assetFor };

@@ -22,7 +22,11 @@ import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answ
 import { RUNGS, cellOf, cellLine, gateTurn, runSpiral } from "./fold-chat-cube.js";
 // THE WEAVE, in the browser (an experiment): the page is stitched from what was
 // read — field first, mouth only the residue, every byte logged with provenance.
-import { createBuild, unitsFromOutline, snipFor, grounded, askConstraints, assetFor, foreignOptions, satisfiesAsk } from "./fold-chat-build.js";
+import { createBuild, unitsFromOutline, snipFor, grounded, assetFor } from "./fold-chat-build.js";
+// THE ASK, FOLDED; THE PRODUCT, JOINED. EVA is a join over addressed atoms, not a
+// model holding the whole ask or the whole page: the ask folds into bounded spans,
+// each read locally into verbatim-verified atoms; the render is the other side.
+import { askSpans, atomsFrom, missingAtoms, unreadSpans, atomLine } from "./fold-chat-require.js";
 // THE MEASURED STOP (THE-STIGMERGIC-PIPELINE §5): the turn's fuel is a FLOOR;
 // the stop is the DMD decay (or cycle) of the turn's own trajectory.
 import { createTurnGate, stopLine } from "./fold-chat-dmd.js";
@@ -30,7 +34,7 @@ import { createTurnGate, stopLine } from "./fold-chat-dmd.js";
 // DMD gate reads the residual (experiment-recursion.mjs: the loop cannot close
 // itself); these close it — NEW GROUND (a search that adds nothing) and a
 // REPEATED STATE (the turn came back to where it was).
-import { createProgressGuard, novelGround, stateOf } from "./fold-chat-agentic.js";
+import { createProgressGuard, novelGround, stateOf, isConverging } from "./fold-chat-outside.js";
 
 const KEY = "fold-chat:folds@1";
 // THE WEAVE EXPERIMENT: ?stitch=1 makes the make stitch the page from what was
@@ -344,12 +348,12 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       const frame = document.createElement("iframe");
       frame.setAttribute("sandbox", "allow-scripts");
       frame.style.cssText = "position:fixed;left:-9999px;top:0;width:800px;height:600px;border:0";
-      const inject = `<script>(function(){var e=[];window.onerror=function(m){e.push(String(m));};function snap(){try{return String((document.body&&document.body.innerText)||"");}catch(x){return "";}}window.addEventListener("load",function(){var a=snap();setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:a,t1:snap(),nodes:document.getElementsByTagName("*").length,tags:(document.body&&document.body.innerHTML||"").length},"*");}catch(x){}},${ms});});setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:snap(),t1:snap(),nodes:document.getElementsByTagName("*").length},"*");}catch(x){}},${ms + 800});})();<\/script>`;
+      const inject = `<script>(function(){var e=[];window.onerror=function(m){e.push(String(m));};function snap(){try{return String((document.body&&document.body.innerText)||"");}catch(x){return "";}}function labs(){try{var q=document.querySelectorAll('button,a,[role=button],option,label');return Array.prototype.map.call(q,function(el){return (el.textContent||"").trim();}).slice(0,80);}catch(x){return [];}}window.addEventListener("load",function(){var a=snap();setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:a,t1:snap(),nodes:document.getElementsByTagName("*").length,tags:(document.body&&document.body.innerHTML||"").length,labels:labs()},"*");}catch(x){}},${ms});});setTimeout(function(){try{parent.postMessage({__observe:1,err:e,t0:snap(),t1:snap(),nodes:document.getElementsByTagName("*").length,labels:labs()},"*");}catch(x){}},${ms + 800});})();<\/script>`;
       const srcdoc = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, (m) => m + inject) : /<body[^>]*>/i.test(html) ? html.replace(/<body[^>]*>/i, (m) => m + inject) : inject + html;
       const done = (d) => { window.removeEventListener("message", onMsg); clearTimeout(to); try { frame.remove(); } catch { /* gone */ } resolve(d); };
       const onMsg = (ev) => { if (ev.source !== frame.contentWindow) return; const d = ev.data || {}; if (d.__observe) done(d); };
       window.addEventListener("message", onMsg);
-      const to = setTimeout(() => done({ err: ["observation timed out"], t0: "", t1: "", nodes: 0 }), timeout);
+      const to = setTimeout(() => done({ err: ["observation timed out"], t0: "", t1: "", nodes: 0, labels: [] }), timeout);
       frame.srcdoc = srcdoc; document.body.appendChild(frame);
     });
   }
@@ -367,6 +371,27 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     const grab = (k) => { const m = new RegExp(`^\\s*${k}\\s*:\\s*(.+)$`, "im").exec(out); return m ? m[1].trim().replace(/^["']|["']$/g, "") : null; };
     const r = { what: grab("WHAT"), satisfy: grab("SATISFY"), needs: grab("NEEDS") };
     return (r.what || r.satisfy) ? r : null;
+  }
+
+  // READ THE REQUIREMENTS — the ask FOLDED, not comprehended. The ask is cut into
+  // bounded spans; each span is read LOCALLY (the model never sees the whole ask,
+  // so an arbitrarily long ask still works); an atom is kept only if it is
+  // verbatim in its own span (fold-chat-require.js). The join that grades the
+  // product is mechanical. One model call per span, bounded width.
+  async function readAtoms(ask, draw, signal) {
+    const spans = askSpans(ask);
+    const atoms = [];
+    for (const span of spans) {
+      let out = "";
+      try {
+        out = await draw([
+          { role: "system", content: "You list what a piece of an ask requires the finished page to SHOW — only exact words, labels or numbers that appear in the text you are given. One per line. If it requires nothing showable, reply NONE." },
+          { role: "user", content: `Text:\n${span.text}\n\nList each exact label, word or number the finished page must show, one per line, copied from the text above.` },
+        ], { maxTokens: 150, signal });
+      } catch { out = ""; }
+      atoms.push(...atomsFrom(out, span));
+    }
+    return { spans, atoms };
   }
 
   /** The page's PROSE: strip script/style/comments/tags, decode the basics. */
@@ -390,18 +415,14 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
    *  each from the FIELD (the passages that were read) by snip+address, ask the
    *  MOUTH only for the residue, gate every byte, and project the page from the
    *  log. Returns the build ({ artifact, verdict, log }) or null. */
-  async function tryStitch(text, material, outline, draw, ac, ask = null) {
+  async function tryStitch(text, material, outline, draw, ac, atoms = []) {
     const units = unitsFromOutline(outline, { max: 8 });
     if (!units.length) return null;
     const model = getModelId?.();
     return createBuild({
       units,
       field: (u) => assetFor(u, material) || snipFor(u, material),
-      gate: (u, code) => {
-        const foreign = foreignOptions(code, ask);
-        if (foreign.length) return { ok: false, reason: `shows ${foreign.map((v) => v + "%").join(", ")} — not what the ask named` };
-        return grounded(u, code, material);
-      },
+      gate: (u, code) => grounded(u, code, material),
       draw: async (u) => {
         const out = await draw([
           { role: "system", content: "You write ONE short HTML fragment for ONE piece of a page — no <html> shell, no prose, no markdown. Use only the facts you are given." },
@@ -414,9 +435,10 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const obs = await observePage(code);
         if (obs.err && obs.err.length) return { ok: false, reason: `the page threw: ${obs.err[0]}` };
         if (obs.nodes < 4) return { ok: false, reason: "the page rendered nothing" };
-        const sa = satisfiesAsk(code, ask);
-        if (!sa.ok) return { ok: false, reason: `the page is not the ask: ${sa.reason}` };
-        return { ok: true, reason: `ran · ${obs.nodes} nodes · ${sa.reason}` };
+        // THE JOIN: the render is one side, the ask's atoms the other — mechanical.
+        const missing = missingAtoms(atoms, { labels: obs.labels, text: obs.t0 });
+        if (missing.length) return { ok: false, reason: `the page does not show ${atomLine(missing)} — the ask names them` };
+        return { ok: true, reason: `ran · ${obs.nodes} nodes · every required item shown` };
       },
     });
   }
@@ -468,13 +490,22 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // FLOOR; the DMD gate of the turn's trajectory is the STOP (below).
     const FUEL_TURN = 6;
     let visitedRungs = [], lastMaterial = null, held = false;
-    // THE OUTSIDE SIGNALS (across the whole turn): the ask's own constraints, the
-    // ground already read, a memo so the same subject is searched once, and the
-    // progress guard that stops a turn which returns to where it was.
-    const ask = askConstraints(text);
+    // THE OUTSIDE SIGNALS (across the whole turn): the ask folded into addressable
+    // requirement atoms, the ground already read, a memo so the same subject is
+    // searched once, and the progress guard that stops a turn returning to itself.
     const ground = new Set();
     const searchMemo = new Map();
     const progress = createProgressGuard();
+    // THE ASK, FOLDED (one bounded local read per span — the model never holds the
+    // whole ask). `required` is the join's ask-side; `unread` is the fold's own
+    // named ignorance, said once.
+    const folded = await readAtoms(text, draw, ac.signal);
+    const required = folded.atoms;
+    for (const span of unreadSpans(folded.spans, required)) {
+      push({ kind: "think", by: "app", op: "DEF", text: `no requirement read from “${span.text.trim().slice(0, 60)}” — that part of the ask is unchecked (a named gap).`, ok: true });
+    }
+    if (required.length) push({ kind: "think", by: "app", op: "DEF", text: `the ask requires: ${atomLine(required)}`, ok: true });
+    paint();
     // ONE PASS: (1) read the want → (2) hunt examples → (3) re-read → (4) outline
     // → (5) inventory → (6) weave. Returns { held, finding, refused }.
     async function onePass(atom) {
@@ -585,7 +616,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // page, STITCH it from what was read — field first (snipped by address), the
     // mouth only the residue, every byte gated and logged with its provenance.
     if (STITCH && !finding && material && material.length) {
-      const st = await tryStitch(text, material, outline, draw, ac, ask);
+      const st = await tryStitch(text, material, outline, draw, ac, required);
       if (st) {
         for (const c of st.log) {
           const by = c.source === "field" ? "library" : c.source === "hunt" ? "hunt" : "mouth";
@@ -641,13 +672,13 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         failedClaims = gate ? gate.failed.length : 0;
         paint();
       }
-      // THE ASK'S OWN CONSTRAINTS: a page can render, run and hold its claims and
-      // still not be what was asked — the source's own options are not the ask's.
+      // THE JOIN (the ask's atoms against what the page observably shows): a page
+      // can render, run and hold its claims and still not show what was asked.
       if (!finding) {
-        const sa = satisfiesAsk(html, ask);
-        if (!sa.ok) {
-          finding = `the page is not the ask: ${sa.reason}`;
-          push({ kind: "think", by: "app", op: "EVA", text: `not the ask: ${sa.reason}`, why: finding, ok: false });
+        const missing = missingAtoms(required, { labels: obs.labels, text: obs.t0 });
+        if (missing.length) {
+          finding = `the page does not show ${atomLine(missing)} — the ask names them`;
+          push({ kind: "think", by: "app", op: "EVA", text: `not the ask: missing ${atomLine(missing)}`, why: finding, ok: false });
           paint();
         }
       }
@@ -664,6 +695,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // own trajectory (createTurnGate — streaming, causal, nothing from the
     // future). A settled or cycling turn is released as a NUL, not run to the cap.
     const turnGate = createTurnGate();
+    const hist = [];   // the residual per pass, so a CONVERGING turn is left to the DMD
     let dmdStop = null, progressStop = null;
     await runSpiral({
       atom: { text, finding: null }, grain: RUNGS[0], fuel: FUEL_TURN,
@@ -672,22 +704,26 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const r = await onePass(cur.atom);
         held = r.held;
         if (r.refused || r.held) return { done: true };
-        // THE OUTSIDE SIGNAL: did this pass end where a pass already ended? A
-        // repeated state is a cycle the residual alone cannot see — stop, do not
-        // re-open. (This is what closes a loop the DMD gate cannot; the flat
-        // residual of experiment-recursion.mjs never fires the gate.)
-        const p = progress.note(r.sig);
-        if (p.stagnant) {
-          progressStop = { repeats: p.repeats };
-          push({ kind: "think", by: "app", op: "REC", say: `the turn came back to the same ground and the same opening (${p.repeats}×) — nothing outside it changed, so it cannot close itself; I stop here and release what it has.` });
-          paint();
-          return { done: true };
-        }
+        // THE DMD FIRST (the measured stop): observe, then let the gate decide.
+        hist.push(r.residual);
         turnGate.observe({ held: false, finding: r.finding, residual: r.residual });
         const d = turnGate.decide();
         if (d.fire) {
           dmdStop = d;
           push({ kind: "think", by: "app", op: "REC", say: stopLine(d) });
+          paint();
+          return { done: true };
+        }
+        // THE OUTSIDE SIGNAL, as a safety net the DMD cannot be trusted to supply
+        // (a flat residual never fires it — experiment-recursion.mjs). Stop when a
+        // pass adds NO new ground, a state repeats, ONCE the trajectory has had
+        // three points to show it is converging: a settling residual (each pass
+        // smaller than the last) is left to the DMD, which fires it honestly.
+        const converging = isConverging(hist);
+        const p = progress.note({ sig: r.sig, groundSize: ground.size });
+        if (p.stagnant && hist.length >= 3 && !converging) {
+          progressStop = { repeats: p.repeats, stale: p.stale };
+          push({ kind: "think", by: "app", op: "REC", say: `the turn came back to the same ground with nothing new (${p.repeats}×, ${p.stale} pass(es) without new ground) — nothing outside it changed, so it cannot close itself; I stop here and release what it has.` });
           paint();
           return { done: true };
         }
