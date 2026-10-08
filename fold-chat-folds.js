@@ -20,6 +20,23 @@ import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answ
 const KEY = "fold-chat:folds@1";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+// PHEROMONE TRAILS — the ant's memory over the log. A path that led to a held page
+// is reinforced; a path that soured is marked down; every deposit lets all trails
+// evaporate a little, so stale ground is forgotten. The hunt then follows the
+// strongest trail first. (Ant-swarm protocol: deposit · evaporate · follow.)
+const TRAIL_KEY = "fold-chat:trails@1";
+const EVAPORATE = 0.85;
+const loadTrails = () => { try { return JSON.parse(localStorage.getItem(TRAIL_KEY)) || {}; } catch { return {}; } };
+const saveTrails = (t) => { try { localStorage.setItem(TRAIL_KEY, JSON.stringify(t)); } catch {} };
+const pheromone = (k) => { try { return loadTrails()[k] || 0; } catch { return 0; } };
+const domainKey = (m) => String((m && (m.source || m.url)) || "").replace(/^https?:\/\//i, "").split(/[/?#:]/)[0].toLowerCase();
+/** Lay a batch of trails: evaporate once, then add. A negative amount sours the ground. */
+function trail(keys, amount = 1) {
+  const t = loadTrails();
+  for (const k of Object.keys(t)) { t[k] *= EVAPORATE; if (Math.abs(t[k]) < 0.05) delete t[k]; }
+  for (const k of keys) t[k] = (t[k] || 0) + amount;
+  saveTrails(t); return t;
+}
 // THE OPERATORS (organs/cube.mjs): every act is one, and the log carries which.
 const OPG = Object.freeze({ NUL: "∅", SIG: "○", INS: "●", SEG: "｜", CON: "⋈", SYN: "△", DEF: "⊢", EVA: "⊨", REC: "↬" });
 const opg = (e) => (e && e.op && OPG[e.op] ? `<span class="fs-op" title="${esc(e.op)}">${OPG[e.op]}</span>` : "");const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? Math.round(s / 60) + "m" : s < 86400 ? Math.round(s / 3600) + "h" : Math.round(s / 86400) + "d"; };
@@ -214,6 +231,14 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     let r; try { r = falsifyAnswer(sentences, material); } catch { return null; }
     return { summary: r.summary, failed: r.claims.filter((c) => FAILING.has(c.verdict)) };
   }
+  /** Climb the cube: grain = the ask's own words; terrain = the ask in its want;
+   *  domain = the kind of thing it is, broadly. Returns the refined SEARCH subject. */
+  function refineSubject(text, want, rung) {
+    const t = String(text || "").replace(/\s+/g, " ").trim();
+    if (rung === "terrain") { const w = want && (want.satisfy || want.what); return `${t}${w ? " — " + String(w).slice(0, 120) : ""}`; }
+    if (rung === "domain") return `${t} reference example`;
+    return t;
+  }
   // THE PIPELINE — one turn, the whole movement, streamed, operator-tagged:
   //   (1) what does the person want?      DEF — read the ask (induced)
   //   (2) go find examples                SIG — web: engines → readers → passages
@@ -224,60 +249,90 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   async function runPipeline(text, ac) {
     const draw = complete(ac.signal);
     const slice = (s) => String(s ?? "");
-    // (1) WHAT DOES THE PERSON WANT?
-    let reading = null;
-    const itok = streamInto("(1) what does the person want?", "DEF");
     const prev = (cur.artifact && cur.artifact.kind === "app") ? { title: cur.title, html: cur.artifact.html } : null;
-    try { reading = await readAsk(text, draw, ac.signal, itok, prev); } catch { reading = null; }
-    endStream();
-    const mono = monologue(text, reading);
-    for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", text: l.say, why: l.why, ok: !l.bad });
-    paint();
-    if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return; }
-    // (2) GO FIND EXAMPLES
-    let material = null;
-    if (typeof research === "function") {
-      const htok = streamInto("(2) going to find examples", "SIG");
-      try {
-        const w = await research(text, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
-        material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "" })).filter((m) => m.text).slice(0, 6);
-      } catch { material = null; }
-      endStream();
-      push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `found ${material.length} source(s): ${material.map((m) => m.source).join(", ")}` : "no examples found — I'll build from the model alone", ok: true });
-      paint();
-    }
-    // (3) DOES THIS CHANGE WHAT THEY WANT?
-    let want = reading;
-    if (material && material.length) {
-      const rtok = streamInto("(3) does this change what they want?", "DEF");
-      let reread = null;
-      try { reread = await readAsk(text, draw, ac.signal, rtok, null, material); } catch { reread = null; }
-      endStream();
-      if (reread && (reread.what || reread.satisfy)) { want = reread; push({ kind: "think", by: "fold", op: "DEF", text: `re-read against the material: ${reread.what || reread.satisfy}` }); }
-    }
-    // (4) OUTLINE WHAT WE'D NEED
-    const otok = streamInto("(4) outlining what's needed", "SEG");
-    let outline = "";
-    try {
-      outline = await draw([
-        { role: "system", content: "You plan a single self-contained web page. Be concrete and short; no preamble." },
-        { role: "user", content: `The ask: ${text}\n${want && want.satisfy ? `It is satisfied when: ${want.satisfy}\n` : ""}${material && material.length ? `Real sources:\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${slice(m.text).slice(0, 140)}`).join("\n")}\n` : ""}\nList the pieces the page needs, one per line — its sections and the facts to show (use the sources). Then one line: NEEDS: <what you lack, or "nothing">.` },
-      ], { maxTokens: 400, signal: ac.signal, onToken: otok });
-    } catch { /* no outline */ }
-    endStream();
-    // (5) INVENTORY THE PIECES
-    const haveL = [], missL = [];
-    if (material && material.length) haveL.push(`${material.length} source(s)`); else missL.push("sources");
-    if (cur.codebase) haveL.push("a codebase");
-    haveL.push("the in-tab model");
-    const needsLine = /^\s*NEEDS:\s*(.+)$/im.exec(outline || "");
-    if (needsLine && !/^\s*nothing\b/i.test(needsLine[1])) missL.push(needsLine[1].trim());
-    push({ kind: "think", by: "app", op: "CON", text: `have: ${haveL.join(", ")}${missL.length ? ` · lack: ${missL.join(", ")}` : ""}` });
-    paint();
-    // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
-    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
     const prior = (cur.artifact && cur.artifact.kind === "app") ? cur.artifact.html : null;
-    let finding = null, html = null;
+    const behaviour = /\b(countdown|timer|stopwatch|clock|animation|game|carousel|slideshow|chart|plot|canvas)\b/i.test(text);
+    const overlapFrac = (a, b) => { const A = new Set(contentWords(a || "")), B = new Set(contentWords(b || "")); if (!A.size || !B.size) return 1; let n = 0; for (const w of A) if (B.has(w)) n += 1; return n / A.size; };
+    // THE SPIRAL: the six stages, taken on a rung of the cube. A contradiction at
+    // (3) loops back to re-read the want; a lack at (5) loops back to search the
+    // ground differently — the subject refined and the rung climbed
+    // (grain → terrain → domain). Bounded: two climbs, then it weaves with what it has.
+    const RUNGS = ["grain", "terrain", "domain"];
+    let depth = 0, subject = text, reading = null, want = null, material = null, outline = "", need = null;
+    const visitedRungs = [];
+    for (;;) {
+      visitedRungs.push(RUNGS[depth]);
+      // (1) WHAT DOES THE PERSON WANT?  (re-read on a climb)
+      let r1 = null;
+      const itok = streamInto(depth === 0 ? "(1) what does the person want?" : `(↬ ${RUNGS[depth]}) re-reading the want`, "DEF");
+      try { r1 = await readAsk(text, draw, ac.signal, itok, prev); } catch { r1 = null; }
+      endStream();
+      if (r1 && (r1.what || r1.satisfy)) reading = r1;
+      const mono = monologue(text, reading);
+      for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", text: l.say, why: l.why, ok: !l.bad });
+      paint();
+      if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return; }
+      // (2) GO FIND EXAMPLES — on the current rung's subject
+      material = null;
+      if (typeof research === "function") {
+        const htok = streamInto(`(2) going to find examples — ${RUNGS[depth]}`, "SIG");
+        try {
+          const w = await research(subject, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
+          material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "" })).filter((m) => m.text).slice(0, 6);
+          material.sort((a, b) => pheromone("src:" + domainKey(b)) - pheromone("src:" + domainKey(a))); // follow the trail: ground that held before leads
+        } catch { material = null; }
+        endStream();
+        push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `found ${material.length} source(s) on the ${RUNGS[depth]}: ${material.map((m) => m.source).join(", ")}` : "no examples found — I'll build from the model alone", ok: true });
+        paint();
+      }
+      // (3) DOES THIS CHANGE WHAT THEY WANT?
+      want = reading; let contradiction = null;
+      if (material && material.length) {
+        const rtok = streamInto("(3) does this change what they want?", "DEF");
+        let reread = null;
+        try { reread = await readAsk(text, draw, ac.signal, rtok, null, material); } catch { reread = null; }
+        endStream();
+        if (reread && (reread.what || reread.satisfy)) {
+          want = reread;
+          push({ kind: "think", by: "fold", op: "DEF", text: `re-read against the material: ${reread.what || reread.satisfy}` });
+          if (reading && reading.what && reread.what && overlapFrac(reading.what, reread.what) < 0.34) contradiction = reread.what;
+        }
+      }
+      // (4) OUTLINE WHAT WE'D NEED
+      const otok = streamInto("(4) outlining what's needed", "SEG");
+      outline = "";
+      try {
+        outline = await draw([
+          { role: "system", content: "You plan a single self-contained web page. Be concrete and short; no preamble." },
+          { role: "user", content: `The ask: ${text}\n${want && want.satisfy ? `It is satisfied when: ${want.satisfy}\n` : ""}${material && material.length ? `Real sources:\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${slice(m.text).slice(0, 140)}`).join("\n")}\n` : ""}\nList the pieces the page needs, one per line — its sections and the facts to show (use the sources). Then one line: NEEDS: <what you lack, or "nothing">.` },
+        ], { maxTokens: 400, signal: ac.signal, onToken: otok });
+      } catch { /* no outline */ }
+      endStream();
+      // (5) INVENTORY THE PIECES
+      const haveL = [], lackL = [];
+      if (material && material.length) haveL.push(`${material.length} source(s)`); else lackL.push("sources");
+      if (cur.codebase) haveL.push("a codebase");
+      haveL.push("the in-tab model");
+      const needsLine = /^\s*NEEDS:\s*(.+)$/im.exec(outline || "");
+      need = needsLine && !/^\s*nothing\b/i.test(needsLine[1]) ? needsLine[1].trim() : null;
+      push({ kind: "think", by: "app", op: "CON", text: `have: ${haveL.join(", ")}${lackL.length || need ? ` · lack: ${[...lackL, need].filter(Boolean).join(", ")}` : ""}` });
+      paint();
+      // THE LOOP-BACK EDGES (bounded): a contradiction climbs to re-read the want;
+      // a lack climbs to search the ground differently. Two climbs, then weave.
+      if (depth < RUNGS.length - 1 && contradiction) {
+        depth += 1; subject = refineSubject(text, want, RUNGS[depth]);
+        push({ kind: "think", by: "fold", op: "REC", text: `↬ the material contradicts the want (“${slice(contradiction).slice(0, 90)}”) — climbing to the ${RUNGS[depth]}: asking again.` });
+        paint(); continue;
+      }
+      if (depth < RUNGS.length - 1 && need) {
+        depth += 1; subject = `${refineSubject(text, want, RUNGS[depth])} ${need}`;
+        push({ kind: "think", by: "fold", op: "REC", text: `↬ lack “${slice(need).slice(0, 80)}” — climbing to the ${RUNGS[depth]}, hunting it.` });
+        paint(); continue;
+      }
+      break;
+    }
+    // (6) WEAVE IT TOGETHER — and REC↬NUL when the observation fails.
+    let finding = null, html = null, held = false;
     for (let round = 1; round <= 3; round += 1) {
       live = { label: round === 1 ? "weaving it together" : "re-weaving with the finding", units: [] };
       push({ kind: "think", by: "fold", op: "SYN", text: round === 1 ? "(6) weaving it together." : `(REC↬) re-weaving with the finding — round ${round}.` });
@@ -307,10 +362,19 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         }
         paint();
       }
-      if (!finding) { toast("Held — the sources hold and it runs."); break; }
+      if (!finding) { held = true; toast("Held — the sources hold and it runs."); break; }
       push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
       paint();
       if (round === 3) toast("Left open — the observation still fails after 3 rounds.");
+    }
+    // LAY THE TRAIL: reinforce the path that held (the rungs climbed, the sources
+    // read); sour the ground that gave nothing. The next turn follows the strongest.
+    const srcKeys = (material || []).map((m) => "src:" + domainKey(m)).filter((k) => k !== "src:");
+    const keys = [...visitedRungs.map((r) => "rung:" + r), ...srcKeys];
+    if (keys.length) {
+      trail(keys, held ? 1 : -0.6);
+      push({ kind: "think", by: "app", op: "EVA", text: held ? `pheromone: reinforced ${keys.join(", ")}` : `pheromone: soured ${keys.join(", ")} — that ground gave nothing`, ok: held });
+      paint();
     }
   }
 
