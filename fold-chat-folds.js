@@ -22,10 +22,15 @@ import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answ
 import { RUNGS, cellOf, cellLine, gateTurn, runSpiral } from "./fold-chat-cube.js";
 // THE WEAVE, in the browser (an experiment): the page is stitched from what was
 // read — field first, mouth only the residue, every byte logged with provenance.
-import { createBuild, unitsFromOutline, snipFor, grounded } from "./fold-chat-build.js";
+import { createBuild, unitsFromOutline, snipFor, grounded, askConstraints, assetFor, foreignOptions, satisfiesAsk } from "./fold-chat-build.js";
 // THE MEASURED STOP (THE-STIGMERGIC-PIPELINE §5): the turn's fuel is a FLOOR;
 // the stop is the DMD decay (or cycle) of the turn's own trajectory.
 import { createTurnGate, stopLine } from "./fold-chat-dmd.js";
+// THE OUTSIDE INTERPRETER: the signals a turn's own residual cannot supply. The
+// DMD gate reads the residual (experiment-recursion.mjs: the loop cannot close
+// itself); these close it — NEW GROUND (a search that adds nothing) and a
+// REPEATED STATE (the turn came back to where it was).
+import { createProgressGuard, novelGround, stateOf } from "./fold-chat-agentic.js";
 
 const KEY = "fold-chat:folds@1";
 // THE WEAVE EXPERIMENT: ?stitch=1 makes the make stitch the page from what was
@@ -385,14 +390,18 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
    *  each from the FIELD (the passages that were read) by snip+address, ask the
    *  MOUTH only for the residue, gate every byte, and project the page from the
    *  log. Returns the build ({ artifact, verdict, log }) or null. */
-  async function tryStitch(text, material, outline, draw, ac) {
+  async function tryStitch(text, material, outline, draw, ac, ask = null) {
     const units = unitsFromOutline(outline, { max: 8 });
     if (!units.length) return null;
     const model = getModelId?.();
     return createBuild({
       units,
-      field: (u) => snipFor(u, material),
-      gate: (u, code) => grounded(u, code, material),
+      field: (u) => assetFor(u, material) || snipFor(u, material),
+      gate: (u, code) => {
+        const foreign = foreignOptions(code, ask);
+        if (foreign.length) return { ok: false, reason: `shows ${foreign.map((v) => v + "%").join(", ")} — not what the ask named` };
+        return grounded(u, code, material);
+      },
       draw: async (u) => {
         const out = await draw([
           { role: "system", content: "You write ONE short HTML fragment for ONE piece of a page — no <html> shell, no prose, no markdown. Use only the facts you are given." },
@@ -405,7 +414,9 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const obs = await observePage(code);
         if (obs.err && obs.err.length) return { ok: false, reason: `the page threw: ${obs.err[0]}` };
         if (obs.nodes < 4) return { ok: false, reason: "the page rendered nothing" };
-        return { ok: true, reason: `ran · ${obs.nodes} nodes` };
+        const sa = satisfiesAsk(code, ask);
+        if (!sa.ok) return { ok: false, reason: `the page is not the ask: ${sa.reason}` };
+        return { ok: true, reason: `ran · ${obs.nodes} nodes · ${sa.reason}` };
       },
     });
   }
@@ -457,10 +468,17 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // FLOOR; the DMD gate of the turn's trajectory is the STOP (below).
     const FUEL_TURN = 6;
     let visitedRungs = [], lastMaterial = null, held = false;
+    // THE OUTSIDE SIGNALS (across the whole turn): the ask's own constraints, the
+    // ground already read, a memo so the same subject is searched once, and the
+    // progress guard that stops a turn which returns to where it was.
+    const ask = askConstraints(text);
+    const ground = new Set();
+    const searchMemo = new Map();
+    const progress = createProgressGuard();
     // ONE PASS: (1) read the want → (2) hunt examples → (3) re-read → (4) outline
     // → (5) inventory → (6) weave. Returns { held, finding, refused }.
     async function onePass(atom) {
-    let depth = 0, subject = text, reading = null, want = null, material = null, outline = "", need = null;
+    let depth = 0, subject = text, reading = null, want = null, material = null, outline = "", need = null, novel = [];
     visitedRungs = [];
     for (;;) {
       rungNow = RUNGS[depth];
@@ -476,19 +494,32 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       for (const l of mono.lines) push({ kind: "think", by: "fold", op: "DEF", say: l.say, why: l.why, ok: !l.bad });
       paint();
       if (!mono.satisfiable) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "cannot satisfy", msg: mono.why }] }); return { refused: true }; }
-      // (2) GO FIND EXAMPLES — on the current rung's subject
+      // (2) GO FIND EXAMPLES — on the current rung's subject. A subject already
+      // searched this turn is NOT fetched again (the memo): the same ground
+      // cannot be new, so a repeat is not progress.
       material = null;
+      novel = [];
       if (typeof research === "function") {
-        const htok = streamInto("going out to find how others built it", "SIG");
-        setLive(material && material.length ? "keeping the useful sources" : "looking for how others built it");
-        try {
-          const w = await research(subject, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
-          material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "" })).filter((m) => m.text).slice(0, 6);
-          material.sort((a, b) => pheromone("src:" + domainKey(b)) - pheromone("src:" + domainKey(a))); // follow the trail: ground that held before leads
-        } catch { material = null; }
-        endStream();
-        push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `kept ${material.length} usable source(s): ${material.map((m) => m.source).join(", ")}` : "nothing usable out there — I'll build from what I know", ok: true, ...(material && material.length ? { sources: material.map((m) => ({ title: m.source, url: m.url })) } : {}) });
-        paint();
+        if (searchMemo.has(subject)) {
+          material = searchMemo.get(subject);
+          push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `same ground as before: ${material.map((m) => m.source).join(", ")} — no new source` : "the same search came back empty — no new ground", ok: false });
+          paint();
+        } else {
+          const htok = streamInto("going out to find how others built it", "SIG");
+          setLive("looking for how others built it");
+          try {
+            const w = await research(subject, { onStep: (s) => { if (s.phase === "searching") htok(`\nsearch ${s.scope}: ${s.q}`); else if (s.phase === "found") htok(`\n${s.engine} · ${s.n} result(s)`); else if (/snippet|reading|read/.test(s.phase)) htok(`\nread ${s.url || s.site || ""}`); } });
+            material = ((w && w.passages) || []).map((p) => ({ source: p.source || p.ref || p.domain || p.url, url: p.url, text: p.text || p.snippet || "", images: p.images || p.image || null })).filter((m) => m.text).slice(0, 6);
+            material.sort((a, b) => pheromone("src:" + domainKey(b)) - pheromone("src:" + domainKey(a))); // follow the trail: ground that held before leads
+          } catch { material = null; }
+          endStream();
+          searchMemo.set(subject, material);
+          const ng = novelGround(material, ground);
+          novel = ng.novel;
+          for (const k of ng.keys) ground.add(k);
+          push({ kind: "think", by: "app", op: "SIG", text: material && material.length ? `kept ${material.length} usable source(s): ${material.map((m) => m.source).join(", ")}` : "nothing usable out there — I'll build from what I know", ok: true, ...(material && material.length ? { sources: material.map((m) => ({ title: m.source, url: m.url })) } : {}) });
+          paint();
+        }
       }
       // (3) DOES THIS CHANGE WHAT THEY WANT?
       want = reading; let contradiction = null;
@@ -525,17 +556,23 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       push({ kind: "think", by: "app", op: "CON", text: `I'm building from ${haveL.join(", ")}${lackL.length || need ? ` — and I'm short ${[...lackL, need].filter(Boolean).join(", ")}` : ""}` });
       setLive(material && material.length ? "checking what I have" : "checking what I have — no sources yet");
       paint();
-      // THE LOOP-BACK EDGES (bounded): a contradiction climbs to re-read the want;
-      // a lack climbs to search the ground differently. Two climbs, then weave.
-      if (depth < RUNGS.length - 1 && contradiction) {
+      // THE LOOP-BACK EDGES (bounded, and only on NEW GROUND): a contradiction
+      // climbs to re-read the want; a lack climbs to search the ground differently.
+      // A climb that found NO NEW source cannot converge — the outside signal is
+      // absent — so it is not taken; the turn builds from what it has.
+      if (depth < RUNGS.length - 1 && contradiction && novel.length) {
         depth += 1; subject = refineSubject(text, want, RUNGS[depth]);
         push({ kind: "think", by: "fold", op: "REC", text: `What I found pushes against what you asked (“${slice(contradiction).slice(0, 90)}”) — I'll look again with that in mind.` });
         paint(); continue;
       }
-      if (depth < RUNGS.length - 1 && need) {
+      if (depth < RUNGS.length - 1 && need && novel.length) {
         depth += 1; subject = `${refineSubject(text, want, RUNGS[depth])} ${need}`;
         push({ kind: "think", by: "fold", op: "REC", text: `I still lack ${slice(need).slice(0, 80)} — hunting for that one thing.` });
         paint(); continue;
+      }
+      if (need && !novel.length && material && material.length) {
+        push({ kind: "think", by: "fold", op: "REC", text: `the searches kept returning the same ground — “${slice(need).slice(0, 70)}” is not something to fetch; I'll build it myself.` });
+        paint();
       }
       break;
     }
@@ -548,7 +585,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // page, STITCH it from what was read — field first (snipped by address), the
     // mouth only the residue, every byte gated and logged with its provenance.
     if (STITCH && !finding && material && material.length) {
-      const st = await tryStitch(text, material, outline, draw, ac);
+      const st = await tryStitch(text, material, outline, draw, ac, ask);
       if (st) {
         for (const c of st.log) {
           const by = c.source === "field" ? "library" : c.source === "hunt" ? "hunt" : "mouth";
@@ -604,20 +641,30 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         failedClaims = gate ? gate.failed.length : 0;
         paint();
       }
+      // THE ASK'S OWN CONSTRAINTS: a page can render, run and hold its claims and
+      // still not be what was asked — the source's own options are not the ask's.
+      if (!finding) {
+        const sa = satisfiesAsk(html, ask);
+        if (!sa.ok) {
+          finding = `the page is not the ask: ${sa.reason}`;
+          push({ kind: "think", by: "app", op: "EVA", text: `not the ask: ${sa.reason}`, why: finding, ok: false });
+          paint();
+        }
+      }
       residual = finding ? (1 + obsErrors + failedClaims) : 0;
       if (!finding) { held = true; toast("Held — the sources hold and it runs."); break; }
       push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "finding", msg: finding }] });
       paint();
     }
     lastMaterial = material;
-    return { held, finding, refused: false, residual };
+    return { held, finding, refused: false, residual, need, sig: stateOf({ ground: [...ground], need, finding, outline }) };
     }
     // THE RECURSION: one pass, then re-open the WHOLE turn while it does not
     // hold. The FUEL is the FLOOR; the STOP is the DMD decay/cycle of the turn's
     // own trajectory (createTurnGate — streaming, causal, nothing from the
     // future). A settled or cycling turn is released as a NUL, not run to the cap.
     const turnGate = createTurnGate();
-    let dmdStop = null;
+    let dmdStop = null, progressStop = null;
     await runSpiral({
       atom: { text, finding: null }, grain: RUNGS[0], fuel: FUEL_TURN,
       step: async (cur, i) => {
@@ -625,6 +672,17 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const r = await onePass(cur.atom);
         held = r.held;
         if (r.refused || r.held) return { done: true };
+        // THE OUTSIDE SIGNAL: did this pass end where a pass already ended? A
+        // repeated state is a cycle the residual alone cannot see — stop, do not
+        // re-open. (This is what closes a loop the DMD gate cannot; the flat
+        // residual of experiment-recursion.mjs never fires the gate.)
+        const p = progress.note(r.sig);
+        if (p.stagnant) {
+          progressStop = { repeats: p.repeats };
+          push({ kind: "think", by: "app", op: "REC", say: `the turn came back to the same ground and the same opening (${p.repeats}×) — nothing outside it changed, so it cannot close itself; I stop here and release what it has.` });
+          paint();
+          return { done: true };
+        }
         turnGate.observe({ held: false, finding: r.finding, residual: r.residual });
         const d = turnGate.decide();
         if (d.fire) {
@@ -636,7 +694,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         return { recurse: { atom: { text, finding: r.finding }, grain: RUNGS[0], reason: `unheld: ${r.finding}` } };
       },
     });
-    if (!held && dmdStop) toast("Left open — the turn's own modes " + (dmdStop.reason === "oscillating" ? "cycle" : "have settled") + " (measured, not the cap).");
+    if (!held && progressStop) toast("Left open — nothing new was found after " + progressStop.repeats + " tries; I stopped rather than loop.");
+    else if (!held && dmdStop) toast("Left open — the turn's own modes " + (dmdStop.reason === "oscillating" ? "cycle" : "have settled") + " (measured, not the cap).");
     else if (!held) toast("Left open — the turn still does not hold after " + FUEL_TURN + " passes.");
     // LAY THE TRAIL: reinforce the path that held (the rungs climbed, the sources
     // read); sour the ground that gave nothing. The next turn follows the strongest.
