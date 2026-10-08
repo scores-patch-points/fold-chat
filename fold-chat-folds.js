@@ -180,10 +180,11 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
   // say what the ask IS (action, object, deliverable, what it needs, what a thing
   // that satisfies it would do), as facts it can reason from. The app then routes
   // by that reading. Nothing here is a canned template.
-  async function readAsk(ask, draw, signal, onToken) {
+  async function readAsk(ask, draw, signal, onToken, prev = null) {
+    const ctx = prev ? `You already built this. The ask is a CHANGE to it.\n\nWhat exists now — title "${prev.title}":\n\`\`\`html\n${String(prev.html || "").slice(0, 1600)}\n\`\`\`\n\n` : "";
     const out = await draw([
       { role: "system", content: "You read an ask and think out loud about what it is and what it should become. Think briefly, like a person sizing up the job before starting. There is no menu of categories — induce the kind from the ask itself." },
-      { role: "user", content: `The ask: "${ask}"\n\nThink out loud in a few short lines, then end with exactly these labelled lines:\nWHAT: <what this ask is — the kind of thing it wants, induced from the ask, not chosen from a list>\nSATISFY: <one sentence: what a thing that satisfies this ask would actually DO>\nNEEDS: <what it needs that a self-contained page could not invent itself — inputs, or a live data source, or time to run, or nothing>` },
+      { role: "user", content: `${ctx}The ask: "${ask}"\n\nThink out loud in a few short lines, then end with exactly these labelled lines:\nWHAT: <what this ask is — the kind of thing it wants, induced from the ask, not chosen from a list>\nSATISFY: <one sentence: what a thing that satisfies this ask would actually DO>\nNEEDS: <what it needs that a self-contained page could not invent itself — inputs, or a live data source, or time to run, or nothing>` },
     ], { maxTokens: 400, signal, onToken });
     const grab = (k) => { const m = new RegExp(`^\\s*${k}\\s*:\\s*(.+)$`, "im").exec(out); return m ? m[1].trim().replace(/^["']|["']$/g, "") : null; };
     const r = { what: grab("WHAT"), satisfy: grab("SATISFY"), needs: grab("NEEDS") };
@@ -194,7 +195,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     if (!cur || running) return;
     const ac = new AbortController(); running = ac;
     if (!kernel && cur.log.some((e) => e.kind === "assembly" && e.ok && e.text)) kernel = rebuild(cur);
-    const first = !kernel || !cur.log.some((e) => e.kind === "assembly" && e.ok && e.text);
+    const first = !cur.artifact || !(cur.artifact.html || cur.artifact.doc);
     const lk = cur.artifact ? cur.artifact.kind : (!kernel ? longKind(text) : null);
     push({ kind: "ask", by: "you", text: "", ask: text, ok: true, op: "NUL" });
     if (first && cur.title === "New fold") cur.title = text.slice(0, 48);
@@ -208,7 +209,8 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     if (!lk && !cur.codebase) {
       let reading = null;
       const rtok = streamInto("thinking about the ask", "SIG");
-      try { reading = await readAsk(text, complete(ac.signal), ac.signal, rtok); } catch { reading = null; }
+      const prev = (cur.artifact && cur.artifact.kind === "app") ? { title: cur.title, html: cur.artifact.html } : null;
+      try { reading = await readAsk(text, complete(ac.signal), ac.signal, rtok, prev); } catch { reading = null; }
       endStream();
       const mono = monologue(text, reading);
       for (const l of mono.lines) push({ kind: "think", by: "fold", text: l.say, why: l.why, ok: !l.bad });
