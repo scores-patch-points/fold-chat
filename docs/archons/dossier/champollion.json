@@ -1,0 +1,36 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "champollion",
+  "organ": "khora/native/organs/language-training.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/champollion-linguistic-decipherment.json"
+  ],
+  "whatTheyArgued": "Jean-François Champollion (1790–1832), the decipherer of Egyptian hieroglyphs, read in the standard account and in his own Lettre à M. Dacier (1822): a language whose grammar is entirely unreceived is entered not by guessing its words but by finding a STRUCTURE ALREADY KNOWN IN ANOTHER SCRIPT and walking the parallel — the Rosetta stone's trilingual decree, Greek already readable, gave the grid; the proper names (Ptolemy, Cleopatra) gave the fixed points; and once the phonetic system was pinned, the grammar's own internal logic (the demotic and hieratic by-forms) let him read what no parallel covered. Two laws visible in his method: (1) the parallel fixes the KNOWN, never the unknown — Greek on the stone was not 'Greek content' but the grid of positions; (2) a name is a rigid pin, deciphered not by meaning but by its own recurrence within the known grid. He was wrong about which names first; the method, not the guess, is the inheritance.",
+  "scholarship": [
+    {
+      "ref": "Champollion, Lettre à M. Dacier relative à l'alphabet des hiéroglyphes phonétiques (1822), standard reading as transmitted in the on-disk corpus",
+      "url": null,
+      "supports": "the Cartesian grid method: decipherment proceeds from a known parallel plus fixed proper-name points, then the grammar's own logic extends beyond the parallel",
+      "disputes": "the historical account attributes early successes partly to Young and to phonetic-vs-ideographic missteps that the method corrected; our use of the method does not depend on the disputed priority"
+    }
+  ],
+  "ourUse": "language-training.js: for every language that holds a POS prior (the native grammar: pos-deu, pos-ell, pos-eng, pos-san, pos-*, 65+ held) and a Rosetta parallel (the UN-UDHR in hundreds of languages; the parallel-classics), the trainer runs the seam, emits the EOT, and scores the four good-enough gates (THE-GOOD-ENOUGH-BAR): EO-native clauses, cast-is-beings-not-vocabulary, claims-survive-the-byte, genre-within-language. The Rosetta does NOT teach content to the reader in a language-specific way — it is the grid: the same 30 articles in every language align at the article boundary, so a language's own seams can be checked article-by-article against what the parallel says should be there.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "rosetta-as-grid-not-content",
+      "kind": "re-scoped",
+      "ours": "the UDHR parallel provides content to verify (paragraph alignment, proposition presence).",
+      "theirs": "the Rosetta stone was a grid of POSITIONS and rigid proper-name pins, never content; Greek on the stone was not 'the meaning' but the coordinate system.",
+      "ourNewForm": "the Rosetta parallel is used ONLY as the coordinate grid (same boundary in every language), never as content the reader may copy procedurally."
+    },
+    {
+      "id": "names-as-pins",
+      "kind": "affirmed",
+      "ours": "proper names bind by recurrence and company within the known grid (the case-free cast; the seat before the verb).",
+      "theirs": "Ptolemy and Cleopatra pinned the phonetic system by their recurrence across the cartouche — names are fixed points, not dictionary lookups.",
+      "ourNewForm": "kept: a name is a pin found by position and recurrence, never by a wordlist — the same law English's case-free seat learned."
+    }
+  ]
+}
