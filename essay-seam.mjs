@@ -45,6 +45,43 @@ const negated = (sentence) => {
   return false;
 };
 
+/** NAME SIGNALS — mid-sentence capitalized tokens (proper beings recur in name
+ * form). NEVER the only signal (the case-free law forbids a capital gate): the
+ * name signal corroborates recurrence + company. Sentence-initial capitals and
+ * dialogue-line capitals are stripped first, so only true mid-prose names land. */
+export function nameSignals(sourceText) {
+  const body = String(sourceText ?? "").replace(/(?:^|[.!?…—])\s+(?:["“'’])?[A-Z]*/gu, " ⟦ ");
+  const out = new Set();
+  for (const m of body.matchAll(/\b[A-Z][\p{L}'’]*\b/gu)) {
+    const w = m[0].toLowerCase();
+    if (w.length >= 3) out.add(w);
+  }
+  return out;
+}
+
+/** SCREEN the box's beings (identity-at-a-point, mechanically). A subject is a
+ * being the telling may speak when it is a NAME (mid-sentence signal), or it
+ * folds a WIDE company (>= 8 others — the protagonists), or it both participates
+ * (appears as a patient somewhere) and keeps a modest company (>= 3). A miseated
+ * scene-word like `face` (company 4, never a name, never a patient) is dropped;
+ * a city like `petersburg` (a name AND a patient) stays — it is a real entity.
+ * Pure; the source is only for the name signal. */
+export function screenBeings(edges, { sourceText = null } = {}) {
+  const sig = sourceText ? nameSignals(sourceText) : new Set();
+  const company = new Map();
+  const patient = new Set();
+  for (const e of edges || []) {
+    for (const x of [e.s, e.o]) {
+      if (!x) continue;
+      if (!company.has(x)) company.set(x, new Set());
+      for (const y of [e.s, e.o]) if (y && y !== x) { company.get(x).add(y); company.get(y)?.add(x); }
+    }
+    if (e.o) patient.add(e.o);
+  }
+  const eligible = (x) => !!x && (sig.has(x) || (company.get(x)?.size ?? 0) >= 8 || ((company.get(x)?.size ?? 0) >= 3 && patient.has(x)));
+  return (edges || []).filter((e) => eligible(e.s));
+}
+
 /** Keep the scene's declared corpus extent visible. Do not pretend an 80K-char
  * experiment has read a whole book. Return only evidenced events and Janus vectors. */
 export function essayBoxFromRead({ sourceText, sourceFile, sourceId = sourceFile, excerptStart = 0, excerpt, read, induceKinds, topic = '' } = {}) {

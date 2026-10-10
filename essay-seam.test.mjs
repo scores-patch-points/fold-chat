@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { locateSentences, essayBoxFromRead, sealEssayDraft, verifyDraftClaims, boundEdgesFromRead, discloseUnsupported, rewriteParts, isBeing, cleanEdges, classifyEssay } from './essay-seam.mjs';
+import { locateSentences, essayBoxFromRead, sealEssayDraft, verifyDraftClaims, boundEdgesFromRead, discloseUnsupported, rewriteParts, isBeing, cleanEdges, classifyEssay, nameSignals, screenBeings } from './essay-seam.mjs';
 
 const sourceFile = '/only/authorized.txt';
 const source = 'Préface 🔬\nCHAPTER I\nPierre saw Natasha. Natasha greeted Pierre.\n';
@@ -292,4 +292,22 @@ test('relevance gate: a voice thought must share content with the span it cites'
   const l2 = classifyEssay({ draft: good.draft, read: good.read, claims: { claims: [] }, sourceAt: new Set([100]), witnesses });
   assert.equal(l2.counts.voice, 1);
   assert.equal(l2.sentences[0].prompted, true);
+});
+
+test('screenBeings: a miseated scene-word is not a being; a named resident or a wide company is', () => {
+  const src = 'The prince turned. He saw Anna, Pierre, and Andrew enter. The face was calm. In Petersburg, Anna waited.';
+  const sig = nameSignals(src);
+  assert.ok(sig.has('anna'), 'mid-sentence name signals');
+  assert.ok(sig.has('pierre') && sig.has('petersburg'), 'mid-sentence names');
+  assert.ok(!sig.has('face') && !sig.has('room'), 'lowercase scene-words never signal');
+  const edges = [
+    { s: 'face', v: 'kissed', o: 'anna', at: 1 },
+    { s: 'anna', v: 'kissed', o: 'prince', at: 2 },
+    { s: 'andrew', v: 'entered', o: 'hall', at: 3 },
+    { s: 'prince', v: 'turned', o: 'princess', at: 4 },
+    { s: 'prince', v: 'saw', o: 'pierre', at: 5 },
+  ];
+  const scr = screenBeings(edges, { sourceText: src });
+  assert.ok(scr.some((e) => e.s === 'anna') && scr.some((e) => e.s === 'prince') && scr.some((e) => e.s === 'andrew'));
+  assert.ok(!scr.some((e) => e.s === 'face'), 'the miseated scene-word is refused');
 });
