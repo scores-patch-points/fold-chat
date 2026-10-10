@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "panini",
+  "organ": "khora/native/organs/experiencer.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/panini.json"
+  ],
+  "whatTheyArgued": "Ashtadhyayi 1.4.54 in Vasu's 1891 translation (verbatim snip; OCR numbers it 64 but the page header reads Bk. I Ch. IV): the agent (karta) is whatever the speaker chooses to present as the independent, principal source of the action (svatantra). The next rule (1.4.55) adds the mover of that agent as hetu and also karta in the causative. Karaka is a grammatical role tied to a verb's action, selected by speaker's presentation. Vasu's illustrations are verb actions (Devadatta cooks, the pot cooks). The passage says nothing about beliefs, believing, or an 'experiencer' category.",
+  "scholarship": [
+    {
+      "ref": "Kaarakas as syntactico-semantic roles mediating between verb and case endings (search results; Itkonen's 'Remarks on Panini' 2014 and other pages could not be fetched)",
+      "url": "https://users.utu.fi/eitkonen/Remarks-on-Panini-2014.pdf",
+      "supports": "kāraka is usually glossed as a semantic or thematic role related to the action; Panini introduced the term at 1.4.23",
+      "disputes": "I could not retrieve any credible scholarly page in full (Itkonen PDF and SEP/IEP guesses 404ed). Scholarly debate about karaka as semantic vs. syntactic role (Kiparsky, Cardona, Staal) is known to me only in general, not read here."
+    }
+  ],
+  "ourUse": "experiencer.js: every verdict-producing organ should carry WHO is believing (who, read, revision), distinct from the giver of a fact. Header comment: 'the karaka grammar, which names the experiencer as its own case role: every belief carries who is undergoing it.'",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "experiencer-not-karaka",
+      "kind": "invented-attribution",
+      "ours": "Header: karaka grammar 'names the experiencer as its own case role'; credit: 'every belief carries who is undergoing it (Ashtadhyayi)'.",
+      "theirs": "The snip defines the agent (karta) of an action, chosen by the speaker. I found nothing in the text read that makes a role for 'one who undergoes/believes'. Nothing about belief."
+    },
+    {
+      "id": "agent-vs-believer",
+      "kind": "reinterpreted",
+      "ours": "The slot recorded is who is doing the BELIEVING (an organ, a curator process, a model).",
+      "theirs": "Karta is the grammatical agent of a verb; whether it covers a believer is not in the passage. The only supported link is the weak one that roles are named in the sentence."
+    },
+    {
+      "id": "speaker-choice-dropped",
+      "kind": "narrowed",
+      "ours": "Who/read/revision are declared facts about the pipeline.",
+      "theirs": "The rule makes the agent a matter of what the speaker chooses to present; our fields are not chosen presentation but declared provenance."
+    },
+    {
+      "id": "wrong-archon-in-header",
+      "kind": "misstated",
+      "ours": "The file's opening block is 'Vivekananda speaks' with a Vivekananda quotation and commentary in first person; the handle line says Panini.",
+      "theirs": "Vivekananda and Panini are different people; the header contradicts the handle. Neither is the source of the experiencer design, which the file credits to a user remark ('everything isn't just given by a source it is believed BY an experiencer')."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Grammarian of the Ashtadhyayi. Rule 1.4.54 defines the agent (karta) as what the speaker presents as the independent source of an action. experiencer.js borrows only the shape of naming a role in every statement: each belief records who holds it. The idea of a belief-holder slot is ours; Panini does not define a believer.'",
+    "compendium credit: 'Panini - the agent of an action is named, not implied (analogy; belief-holder slot ours).'",
+    "experiencer.js: replace the 'Vivekananda speaks' block (it contradicts 'Handle: Panini') with the Panini snip; remove 'names the experiencer as its own case role'."
+  ],
+  "tokenized": false
+}

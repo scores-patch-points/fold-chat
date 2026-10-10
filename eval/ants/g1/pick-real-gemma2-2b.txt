@@ -1,0 +1,13 @@
+write me something funny about my boss                 raw=["story",""] -> kept other
+write something about dolphins                         raw=["poem","story"] -> kept other
+write me something to read to my kids at bedtime       raw=["Story","story"] -> story
+write something for my sister's wedding                raw=["poem","Speech"] -> kept other
+write me something to post on instagram                raw=["script","Slogan"] -> kept other
+write me something that rhymes about summer            raw=["poem","poem"] -> poem
+write something in python that sorts a list            raw=["code","code"] -> kept other
+write me something to send to my landlord              raw=["email","letter"] -> kept other
+write something that translates this into French       raw=["translation","translation"] -> translation
+write me anything                                      raw=["Story","story"] -> story
+write something nice                                   raw=["poem","story"] -> kept other
+do me something about taxes                            raw=["outline","letter"] -> kept other
+{"model":"gemma2:2b","cases":12,"undecided":12,"picked":4,"droppedOffList":1,"droppedDisagreeOrEvidence":7,"pickedButOutsideAcceptable":[["write me anything","story","other"]]}

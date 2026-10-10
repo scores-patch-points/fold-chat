@@ -1,0 +1,45 @@
+{
+  "handle": "clark",
+  "organ": "khora/native/kernel/affordance-reference.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/clark.json"
+  ],
+  "whatTheyArgued": "Clark & Haviland (1977, read in extracted PDF text): under the given-new contract a listener who cannot find an antecedent can build an inferential bridge from something already known (their example is 'John is a Democrat. Bill is honest too.'), draw an implicature, add, or restructure. Grounding and common ground are Clark's later work (Clark & Schaefer 1989; Using Language 1996, not read).",
+  "scholarship": [
+    {
+      "ref": "Clark & Haviland, 'Comprehension and the given-new contract' (1977), Stanford-hosted PDF",
+      "url": "http://web.stanford.edu/~clark/1970s/Clark,%20H.H.%20_%20Haviland,%20S.E.%20_Comprehension%20and%20the%20given-new%20contract_%201977.pdf",
+      "supports": "bridging as one repair when no direct antecedent exists, the listener's inference, speaker's responsibility for the gap being bridgeable",
+      "disputes": "the text has no car/engine example (searched for 'engine'); the manifest attributes bridging to Clark 1975 and I did not read that"
+    }
+  ],
+  "ourUse": "affordance-reference.js: 'the engine' resolves only if a named giver has declared a car-affords-engine entry in the hyperlexicon ledger; never from co-occurrence.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "license-source",
+      "kind": "reinterpreted",
+      "ours": "Bridge licensed by a ledger entry a named giver declared.",
+      "theirs": "The listener infers the bridge from what is mutually known, defeasibly, with the speaker answerable for it. Ours is stricter and a different mechanism: no common-ground model exists in the code."
+    },
+    {
+      "id": "wrong-source",
+      "kind": "misstated",
+      "ours": "Compendium cites Using Language (1996) for bridging and car/engine.",
+      "theirs": "Bridging is Haviland & Clark 1974/1977 and Clark 1975; I could not verify the car/engine example in any Clark text I read, nor that Using Language gives it."
+    },
+    {
+      "id": "common-ground-claim",
+      "kind": "narrowed",
+      "ours": "Header says 'already in common ground'.",
+      "theirs": "Common ground in Clark is mutual belief built jointly in conversation; ours is one declared lexical affordance."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Psycholinguist; Clark & Haviland (1977) describe bridging: when no antecedent exists a listener infers a link from what they know. Ours is stricter: a named giver must declare the affordance; no common-ground model.' source: 'Haviland & Clark 1974; Clark & Haviland 1977'",
+    "do not claim the car/engine example is his unless located"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

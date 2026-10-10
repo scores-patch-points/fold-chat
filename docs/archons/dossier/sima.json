@@ -1,0 +1,26 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "sima",
+  "organ": "khora/native/organs/primary.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/sima.json"],
+  "whatTheyArgued": "The verified snip is the end of the Laozi biography from the Shiji as rendered by Giles (1901): Laozi leaves Chou, writes a book at the frontier for the warden Yin Hsi, and no one knows where he died. It is narrative, not a methods statement. Giles himself, in the surrounding text, says the Shiji note has been 'touched up' by other hands and that Sima Qian apparently never saw the book; that is Giles's 1901 judgment, not Sima's. Secondary scholarship credits Sima Qian and his father with using palace archives and earlier texts such as the Zuo zhuan, Guoyu and Zhanguo ce, and treats the Shiji as a weave of fact and legend with deliberate tensions (Durrant, Hardy); Nylan reads the work as a pious commemorative act rather than an objective record.",
+  "scholarship": [
+    { "ref": "Michael Nylan, 'Sima Qian: A True Historian?', Early China 23-24 (1998-99) (abstract page fetched and read)", "url": "https://www.cambridge.org/core/journals/early-china/article/abs/sima-qian-a-true-historian/EE17A46DADC6E5FF949C8F8C549D824C", "supports": "the standard picture of a scrupulous sifter of contradictory accounts exists and is what Nylan challenges", "disputes": "Nylan: the 'rationalistic spirit' reading is anachronistic; the Shiji has a religious/filial purpose" },
+    { "ref": "Search-result summaries on Shiji sources and Durrant's Cloudy Mirror (SUNY 1995) (listing only; book not read)", "url": "https://www.ebsco.com/research-starters/history/sima-qian", "supports": "use of palace archives and earlier texts; Shiji mixes fact and legend; Durrant and Hardy stress its inconsistencies", "disputes": "whether the inconsistencies are design or failure of method" }
+  ],
+  "ourUse": "primary.js takes a claim through a saved Wikipedia page to the primary sources the page cites, and judges the claim sentence by sentence against those; the encyclopedia is a stepping stone, never the record. Sima is the namesake for 'set aside the received account and consult the archive'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "snip-not-method", "kind": "decorative", "ours": "A Laozi-departure passage is the snip behind an organ about walking from a secondary account to its primary sources.", "theirs": "The passage shows Sima recording a tradition, and even our Giles source calls the biography embroidered. It does not show archival method." },
+    { "id": "archive-over-received", "kind": "narrowed", "ours": "compendium: his method was to 'prefer the archive over the received account'.", "theirs": "He relied on earlier received works (Zuo zhuan, Guoyu, Zhanguo ce), kept conflicting versions side by side, and included legend; Nylan questions the whole 'sifting rationalist' frame. Archive use is real but is one part of the method." },
+    { "id": "speaks-block", "kind": "misstated", "ours": "primary.js opens with 'Sima speaks:' then the snip, then a paragraph in the file ('It is a testament to the power of independent research...', 'the code's reliance on a single historical source creates a risk of bias') that sits under the author's name.", "theirs": "That paragraph is generated commentary, not Sima; the 'speaks' framing attaches it to him." },
+    { "id": "wikipedia-direction", "kind": "re-scoped", "ours": "Archive = whatever Wikipedia's citations point to, ranked by claim-word overlap.", "theirs": "Sima's archive was the imperial collection and his own travels and interviews; a modern encyclopedia's citation list is only our analogue." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'The Grand Historian of Han China, author of the Shiji. He and his father drew on palace archives and earlier texts and kept conflicting accounts in view; scholars dispute how far this was critical method (Durrant, Nylan). Here: go from a secondary account to the sources it cites.'",
+    "primary.js header: label the paragraph after the snip as generated gloss, not Sima's words; or drop it.",
+    "replace the snip with a Shiji passage where Sima states his method (e.g. the postface or a chapter-end 'Grand Historian says' remark); the current Laozi passage is not on disk with such text and I did not source one."
+  ]
+}

@@ -1,0 +1,36 @@
+--- a/fold-chat-web.js
++++ b/fold-chat-web.js
+@@ -313,6 +313,7 @@
+ // reachable at all answers in a second or two (measured: 100 ms–2 s), and the public
+ // proxies' failures took 8 s each to arrive.
+ export const GATEWAY_BUDGET_MS = 3500;
++export const WEB_GRACE_MS = 2000;   // E2: once another source has answered with a usable list, how much longer the open web may keep the turn waiting
+ export const READ_GRACE_MS = 1500;   // E2: once enough pages are read, how long reads still in flight may keep the turn waiting
+ export const DIRECT_BUDGET_MS = 1500;   // E2: the browser's own read of a page; past it the relay chain is tried
+ const hostKey = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
+@@ -716,6 +717,7 @@
+   // search PER ENTITY, because a bag-of-words query to them returns whatever
+   // page happens to mention all the names (measured: "Snowden disclosures").
+   const settled = [];
++  let firstApiAt = null;
+   const runScope = async (q, s, state = null) => {
+     step({ phase: "searching", scope: s, q });
+     try {
+@@ -725,6 +727,7 @@
+       step({ phase: "found", scope: s, q, engine: out.engine, n: out.results.length });
+       const list = out.results.map((r) => ({ ...r, _q: q })).slice(0, Math.max(perScope, read + EXTRA_CANDIDATES));
+       settled.push(list);
++      if (s !== "web" && firstApiAt == null && list.length >= 3) firstApiAt = Date.now();
+       return { ok: true, list };
+     } catch (e) {
+       if (state && state.webClosed) return { ok: false, list: [] };
+@@ -749,7 +752,8 @@
+   const webRun = scopes.includes("web") ? runScope(query, "web", state) : Promise.resolve({ ok: true, list: [] });
+   const apiRun = runApi(upfront);
+   let timer = null;
+-  const webOrLate = new Promise((res) => { timer = setTimeout(() => res(null), webBudgetMs); });
++  const wg = (() => { try { return localStorage.getItem("fold-chat:e2webgrace") === "off" ? Infinity : WEB_GRACE_MS; } catch { return WEB_GRACE_MS; } })();
++  const webOrLate = new Promise((res) => { timer = setTimeout(() => res(null), webBudgetMs); const iv = setInterval(() => { if (firstApiAt != null && Date.now() - firstApiAt > wg) { clearInterval(iv); res(null); } }, 50); setTimeout(() => clearInterval(iv), webBudgetMs + 100); });
+   const webGot = await Promise.race([webRun, webOrLate]);
+   clearTimeout(timer);
+   let web = webGot;

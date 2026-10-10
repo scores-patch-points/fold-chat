@@ -1,0 +1,216 @@
+{
+ "en": {
+  "eiffel": {
+   "elide": "And the height?",
+   "partial": "that tower in Paris",
+   "wrong": "the Leaning Tower of Pisa",
+   "sibling": "pisa",
+   "wrongKind": "sibling"
+  },
+  "everest": {
+   "elide": "And the height?",
+   "partial": "that mountain thing",
+   "wrong": "Mount Fuji",
+   "sibling": null,
+   "wrongKind": "sibling"
+  },
+  "telephone": {
+   "elide": "And the inventor?",
+   "partial": "the guy with the patent",
+   "wrong": "the telegraph",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "curie": {
+   "elide": "And her birthplace?",
+   "partial": "the radioactivity lady",
+   "wrong": "Albert Einstein",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "photo": {
+   "elide": "And the discoverer?",
+   "partial": "how plants make food",
+   "wrong": "cellular respiration",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "penicillin": {
+   "elide": "And the discoverer?",
+   "partial": "that mould antibiotic",
+   "wrong": "amoxicillin",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "greatwall": {
+   "elide": "And the dynasty?",
+   "partial": "the long wall in China",
+   "wrong": "the Berlin Wall",
+   "sibling": "berlinwall",
+   "wrongKind": "sibling"
+  },
+  "berlinwall": {
+   "elide": "And the fall date?",
+   "partial": "the wall that split the German city",
+   "wrong": "the Great Wall of China",
+   "sibling": "greatwall",
+   "wrongKind": "sibling"
+  },
+  "canberra": {
+   "elide": "And the population?",
+   "partial": "that Australian capital",
+   "wrong": "the capital of New Zealand",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "panama": {
+   "elide": "And the length?",
+   "partial": "the canal between the oceans",
+   "wrong": "the Suez Canal",
+   "sibling": "suez",
+   "wrongKind": "sibling"
+  },
+  "suez": {
+   "elide": "And the length?",
+   "partial": "the canal in Egypt",
+   "wrong": "the Panama Canal",
+   "sibling": "panama",
+   "wrongKind": "sibling"
+  },
+  "titanic": {
+   "elide": "And the death toll?",
+   "partial": "that ship that hit the iceberg",
+   "wrong": "the Lusitania",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "pluto": {
+   "elide": "And the discovery date?",
+   "partial": "the dwarf planet",
+   "wrong": "Neptune",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "austen": {
+   "elide": "And the publication year?",
+   "partial": "that Austen novel",
+   "wrong": "Sense and Sensibility",
+   "sibling": null,
+   "wrongKind": "pure"
+  },
+  "pisa": {
+   "elide": "And the height?",
+   "partial": "the leaning one in Italy",
+   "wrong": "the Eiffel Tower",
+   "sibling": "eiffel",
+   "wrongKind": "sibling"
+  }
+ },
+ "es": {
+  "garcia": {
+   "partial": "el escritor colombiano de Cien años de soledad",
+   "wrong": "Mario Vargas Llosa"
+  },
+  "colon": {
+   "partial": "el navegante genovés",
+   "wrong": "Américo Vespucio"
+  },
+  "teide": {
+   "partial": "ese volcán de Tenerife",
+   "wrong": "el Etna"
+  }
+ },
+ "fr": {
+  "montblanc": {
+   "partial": "ce sommet des Alpes",
+   "wrong": "le Cervin"
+  },
+  "pasteur": {
+   "partial": "l'inventeur du vaccin contre la rage",
+   "wrong": "Marie Curie"
+  },
+  "hugo": {
+   "partial": "l'auteur de Notre-Dame de Paris",
+   "wrong": "Émile Zola"
+  },
+  "eiffelfr": {
+   "partial": "cette tour de fer à Paris",
+   "wrong": "la tour de Pise"
+  }
+ },
+ "chit": {
+  "en": [
+   "thanks",
+   "ok cool",
+   "interesting",
+   "great, thank you",
+   "ok",
+   "hello again",
+   "nice"
+  ],
+  "es": [
+   "gracias",
+   "vale",
+   "interesante",
+   "ok, genial",
+   "muy bien"
+  ],
+  "fr": [
+   "merci",
+   "d'accord",
+   "intéressant",
+   "ok, super",
+   "très bien"
+  ]
+ },
+ "meta": {
+  "en": [
+   "why?",
+   "shorter",
+   "explain that",
+   "what?",
+   "i don't get it"
+  ],
+  "es": [
+   "¿por qué?",
+   "más corto",
+   "no entiendo",
+   "¿cómo?"
+  ],
+  "fr": [
+   "pourquoi ?",
+   "plus court",
+   "je ne comprends pas",
+   "comment ?"
+  ]
+ },
+ "templ": {
+  "en": {
+   "explicit": "What did you tell me about {name} earlier?",
+   "explicitPartial": "What did you say about {partial} earlier?",
+   "wrong": "What did you tell me about {wrong} earlier?",
+   "none": "What did you tell me earlier?",
+   "partial": "Sorry, what was the answer about {partial}?",
+   "return": "Going back to {name}: {q}",
+   "correction": "Actually, it was {fake}."
+  },
+  "es": {
+   "explicit": "¿Qué me dijiste sobre {name} antes?",
+   "explicitPartial": "¿Qué me dijiste sobre {partial} antes?",
+   "wrong": "¿Qué me dijiste sobre {wrong} antes?",
+   "none": "¿Qué me dijiste antes?",
+   "partial": "Perdona, ¿cuál era la respuesta sobre {partial}?",
+   "return": "Volviendo a {name}: {q}",
+   "correction": "En realidad fue {fake}."
+  },
+  "fr": {
+   "explicit": "Qu'est-ce que tu m'as dit sur {name} tout à l'heure ?",
+   "explicitPartial": "Qu'est-ce que tu m'as dit sur {partial} tout à l'heure ?",
+   "wrong": "Qu'est-ce que tu m'as dit sur {wrong} tout à l'heure ?",
+   "none": "Qu'est-ce que tu m'as dit tout à l'heure ?",
+   "partial": "Pardon, quelle était la réponse sur {partial} ?",
+   "return": "Pour revenir à {name} : {q}",
+   "correction": "En fait c'était {fake}."
+  }
+ }
+}

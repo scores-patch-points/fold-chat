@@ -1,0 +1,6114 @@
+{
+ "a-sheets": {
+  "375": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 712,
+      "x": 0,
+      "y": 100
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 46
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 712,
+     "lostPx": 100,
+     "lostPct": 12.3,
+     "contentW": 375
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 680,
+      "x": 0,
+      "y": 132
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 78
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 40
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 680,
+     "lostPx": 132,
+     "lostPct": 16.3,
+     "contentW": 375
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 648,
+      "x": 0,
+      "y": 164
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 72
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 648,
+     "lostPx": 164,
+     "lostPct": 20.2,
+     "contentW": 375
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 648,
+      "x": 0,
+      "y": 164
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 72
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 648,
+     "lostPx": 164,
+     "lostPct": 20.2,
+     "contentW": 375
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 616,
+      "x": 0,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 616,
+     "lostPx": 196,
+     "lostPct": 24.1,
+     "contentW": 375
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 767,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 767,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "detentTap": {
+     "fullTop": 78,
+     "afterTapTop": 406,
+     "half": true
+    },
+    "dragDown": {
+     "depthAfter": 1
+    }
+   },
+   "overflowX": false
+  },
+  "1200": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 700,
+      "x": 240,
+      "y": 100
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 46
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 700,
+     "lostPx": 100,
+     "lostPct": 12.5,
+     "contentW": 720
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 668,
+      "x": 240,
+      "y": 132
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 78
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 40
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 668,
+     "lostPx": 132,
+     "lostPct": 16.5,
+     "contentW": 720
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 636,
+      "x": 240,
+      "y": 164
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 72
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 636,
+     "lostPx": 164,
+     "lostPct": 20.5,
+     "contentW": 720
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 636,
+      "x": 240,
+      "y": 164
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 72
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 636,
+     "lostPx": 164,
+     "lostPct": 20.5,
+     "contentW": 720
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 720,
+      "h": 604,
+      "x": 240,
+      "y": 196
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 54,
+       "w": 720,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 720,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 696,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 704,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 712,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 604,
+     "lostPx": 196,
+     "lostPct": 24.5,
+     "contentW": 720
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 260,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 260,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "detentTap": {
+     "fullTop": 78,
+     "afterTapTop": 400,
+     "half": true
+    },
+    "dragDown": {
+     "depthAfter": 1
+    }
+   },
+   "overflowX": false
+  }
+ },
+ "b-push": {
+  "375": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 716,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 716,
+     "lostPx": 96,
+     "lostPct": 11.8,
+     "contentW": 375
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 767,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 767,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "edgeSwipe": {
+     "depthAfter": 1
+    },
+    "shortSwipeCancels": {
+     "depthAfter": 1
+    }
+   },
+   "overflowX": false
+  },
+  "1200": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 704,
+      "x": 0,
+      "y": 96
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 44
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spine",
+       "h": 44,
+       "w": 1200,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 704,
+     "lostPx": 96,
+     "lostPct": 12,
+     "contentW": 1200
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 260,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 260,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "edgeSwipe": {
+     "depthAfter": 1
+    },
+    "shortSwipeCancels": {
+     "depthAfter": 1
+    }
+   },
+   "overflowX": false
+  }
+ },
+ "c-zoom": {
+  "375": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 760,
+      "x": 0,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 760,
+     "lostPx": 52,
+     "lostPct": 6.4,
+     "contentW": 375
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 369,
+      "h": 754,
+      "x": 3,
+      "y": 55
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 369,
+       "top": 3
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 754,
+     "lostPx": 58,
+     "lostPct": 7.1,
+     "contentW": 369
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 363,
+      "h": 748,
+      "x": 6,
+      "y": 58
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 363,
+       "top": 6
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 64,
+     "lostPct": 7.9,
+     "contentW": 363
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 357,
+      "h": 742,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 357,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 742,
+     "lostPx": 70,
+     "lostPct": 8.6,
+     "contentW": 357
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 351,
+      "h": 736,
+      "x": 12,
+      "y": 64
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 351,
+       "top": 12
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 736,
+     "lostPx": 76,
+     "lostPct": 9.4,
+     "contentW": 351
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 345,
+      "h": 730,
+      "x": 15,
+      "y": 67
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 345,
+       "top": 15
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 730,
+     "lostPx": 82,
+     "lostPct": 10.1,
+     "contentW": 345
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 351,
+      "h": 736,
+      "x": 12,
+      "y": 64
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 351,
+       "top": 12
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 736,
+     "lostPx": 76,
+     "lostPct": 9.4,
+     "contentW": 351
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 357,
+      "h": 742,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 357,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 742,
+     "lostPx": 70,
+     "lostPct": 8.6,
+     "contentW": 357
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 363,
+      "h": 748,
+      "x": 6,
+      "y": 58
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 363,
+       "top": 6
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 64,
+     "lostPct": 7.9,
+     "contentW": 363
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 357,
+      "h": 742,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 357,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 742,
+     "lostPx": 70,
+     "lostPct": 8.6,
+     "contentW": 357
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 767,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 767,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "pinchIn": {
+     "depthAfter": 1
+    },
+    "ctrlWheel": {
+     "depthAfter": 0
+    },
+    "returnsToSameRect": {
+     "before": {
+      "x": 206,
+      "y": 240
+     },
+     "after": {
+      "x": 206,
+      "y": 240
+     }
+    }
+   },
+   "overflowX": false
+  },
+  "1200": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 1200,
+      "h": 748,
+      "x": 0,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 1200
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 1194,
+      "h": 742,
+      "x": 3,
+      "y": 55
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1194,
+       "top": 3
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 742,
+     "lostPx": 58,
+     "lostPct": 7.2,
+     "contentW": 1194
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1188,
+      "h": 736,
+      "x": 6,
+      "y": 58
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1188,
+       "top": 6
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 736,
+     "lostPx": 64,
+     "lostPct": 8,
+     "contentW": 1188
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1182,
+      "h": 730,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1182,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 730,
+     "lostPx": 70,
+     "lostPct": 8.8,
+     "contentW": 1182
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 1176,
+      "h": 724,
+      "x": 12,
+      "y": 64
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1176,
+       "top": 12
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 724,
+     "lostPx": 76,
+     "lostPct": 9.5,
+     "contentW": 1176
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1170,
+      "h": 718,
+      "x": 15,
+      "y": 67
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1170,
+       "top": 15
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 718,
+     "lostPx": 82,
+     "lostPct": 10.3,
+     "contentW": 1170
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 1176,
+      "h": 724,
+      "x": 12,
+      "y": 64
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1176,
+       "top": 12
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 724,
+     "lostPx": 76,
+     "lostPct": 9.5,
+     "contentW": 1176
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1182,
+      "h": 730,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1182,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 730,
+     "lostPx": 70,
+     "lostPct": 8.8,
+     "contentW": 1182
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 1188,
+      "h": 736,
+      "x": 6,
+      "y": 58
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1188,
+       "top": 6
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 736,
+     "lostPx": 64,
+     "lostPct": 8,
+     "contentW": 1188
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 1182,
+      "h": 730,
+      "x": 9,
+      "y": 61
+     },
+     "chrome": [
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 1182,
+       "top": 9
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "legend",
+       "h": 44,
+       "w": 57,
+       "top": 6
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 260,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 730,
+     "lostPx": 70,
+     "lostPct": 8.8,
+     "contentW": 1182
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 1200,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 1200,
+       "top": 736
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 260,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 260,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 260,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "pinchIn": {
+     "depthAfter": 1
+    },
+    "ctrlWheel": {
+     "depthAfter": 0
+    },
+    "returnsToSameRect": {
+     "before": {
+      "x": 541,
+      "y": 371
+     },
+     "after": {
+      "x": 541,
+      "y": 371
+     }
+    }
+   },
+   "overflowX": false
+  }
+ },
+ "d-split": {
+  "375": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 714,
+      "x": 0,
+      "y": 98
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 46
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 714,
+     "lostPx": 98,
+     "lostPct": 12.1,
+     "contentW": 375
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 682,
+      "x": 0,
+      "y": 130
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 78
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 40
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 682,
+     "lostPx": 130,
+     "lostPct": 16,
+     "contentW": 375
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 650,
+      "x": 0,
+      "y": 162
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 72
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 650,
+     "lostPx": 162,
+     "lostPct": 20,
+     "contentW": 375
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 650,
+      "x": 0,
+      "y": 162
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 110
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 72
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 650,
+     "lostPx": 162,
+     "lostPct": 20,
+     "contentW": 375
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 812,
+     "vw": 375,
+     "pill": {
+      "x": 12,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 375,
+      "h": 618,
+      "x": 0,
+      "y": 194
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 375,
+       "top": 142
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 756
+      },
+      {
+       "kind": "strip",
+       "h": 40,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 351,
+       "top": 40
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 359,
+       "top": 72
+      },
+      {
+       "kind": "strip",
+       "h": 32,
+       "w": 367,
+       "top": 104
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": true,
+     "layersNonInert": 1,
+     "chatScroll": 767,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 618,
+     "lostPx": 194,
+     "lostPct": 23.9,
+     "contentW": 375
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 812,
+     "vw": 375,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 375,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 375,
+       "top": 748
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 767,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 812,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 375
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 767,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 767,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "detentTap": {
+     "fullTop": 78,
+     "afterTapTop": 406,
+     "half": true
+    },
+    "dragDown": {
+     "depthAfter": 1
+    }
+   },
+   "overflowX": false
+  },
+  "1200": {
+   "steps": [
+    {
+     "name": "0 chat",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 2,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      }
+     ],
+     "focus": "BODY",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 843,
+     "live": "",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    },
+    {
+     "name": "1 evidence card",
+     "depth": 1,
+     "hash": "#/c~nose~1",
+     "histLen": 3,
+     "stateDepth": 1,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 74,
+      "h": 44
+     },
+     "content": {
+      "w": 819,
+      "h": 748,
+      "x": 341,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 819,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 74,
+       "top": 744
+      }
+     ],
+     "focus": "H2#t1",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 1: Claim 2: what states it. Escape goes back to the chat.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 819
+    },
+    {
+     "name": "2 passage (NHS)",
+     "depth": 2,
+     "hash": "#/c~nose~1/p~nose~1~8",
+     "histLen": 4,
+     "stateDepth": 2,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 174,
+      "h": 44
+     },
+     "content": {
+      "w": 579,
+      "h": 748,
+      "x": 621,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 579,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 174,
+       "top": 744
+      }
+     ],
+     "focus": "H2#t2",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 2: wikiHow: the passage. Escape goes back to Claim 2.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 579
+    },
+    {
+     "name": "3 page as kept",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 5,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 539,
+      "h": 748,
+      "x": 661,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 539,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t3",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 539
+    },
+    {
+     "name": "4 name -> other places",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 6,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 499,
+      "h": 748,
+      "x": 701,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 65,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 499,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 80,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 499
+    },
+    {
+     "name": "5 passage (wikiHow)",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 7,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 459,
+      "h": 748,
+      "x": 741,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 459,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 120,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t5",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 459
+    },
+    {
+     "name": "6 source site",
+     "depth": 6,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1/s~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 6,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 439,
+      "h": 748,
+      "x": 761,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 259,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 439,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 160,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t6",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 6: wikihow.com. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 439
+    },
+    {
+     "name": "Esc -> 5",
+     "depth": 5,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels/p~nose~1~1",
+     "histLen": 8,
+     "stateDepth": 5,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 216,
+      "h": 44
+     },
+     "content": {
+      "w": 459,
+      "h": 748,
+      "x": 741,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 459,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 216,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 120,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.btn",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 5: wikiHow: the passage. Escape goes back to blood vessels.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 459
+    },
+    {
+     "name": "history.back -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 499,
+      "h": 748,
+      "x": 701,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 65,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 499,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 80,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "DIV.ev",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 499
+    },
+    {
+     "name": "pill back -> 3",
+     "depth": 3,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8",
+     "histLen": 8,
+     "stateDepth": 3,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 181,
+      "h": 44
+     },
+     "content": {
+      "w": 539,
+      "h": 748,
+      "x": 661,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 539,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 181,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "BUTTON.nm",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 3: wikiHow: the page, as the fold kept it. Escape goes back to wikiHow.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 539
+    },
+    {
+     "name": "history.forward -> 4",
+     "depth": 4,
+     "hash": "#/c~nose~1/p~nose~1~8/g~nose~1~8/e~nose~blood%20vessels",
+     "histLen": 8,
+     "stateDepth": 4,
+     "vh": 800,
+     "vw": 1200,
+     "pill": {
+      "x": 352,
+      "bottomGap": 12,
+      "w": 218,
+      "h": 44
+     },
+     "content": {
+      "w": 499,
+      "h": 748,
+      "x": 701,
+      "y": 52
+     },
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      },
+      {
+       "kind": "head",
+       "h": 65,
+       "w": 279,
+       "top": 0
+      },
+      {
+       "kind": "head",
+       "h": 52,
+       "w": 499,
+       "top": 0
+      },
+      {
+       "kind": "ret",
+       "h": 44,
+       "w": 218,
+       "top": 744
+      },
+      {
+       "kind": "spines",
+       "h": 800,
+       "w": 80,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      },
+      {
+       "kind": "spine",
+       "h": 800,
+       "w": 40,
+       "top": 0
+      }
+     ],
+     "focus": "H2#t4",
+     "focusInTop": true,
+     "appInert": false,
+     "layersNonInert": 1,
+     "chatScroll": 843,
+     "live": "Layer 4: “blood vessels” in the other places. Escape goes back to wikiHow page.",
+     "bodyOverflow": false,
+     "contentH": 748,
+     "lostPx": 52,
+     "lostPct": 6.5,
+     "contentW": 499
+    },
+    {
+     "name": "pill Chat -> 0",
+     "depth": 0,
+     "hash": "#/",
+     "histLen": 8,
+     "stateDepth": 0,
+     "vh": 800,
+     "vw": 1200,
+     "pill": null,
+     "content": null,
+     "chrome": [
+      {
+       "kind": "app",
+       "h": 48,
+       "w": 339,
+       "top": 0
+      },
+      {
+       "kind": "app",
+       "h": 64,
+       "w": 339,
+       "top": 736
+      }
+     ],
+     "focus": "BUTTON.mark",
+     "focusInTop": false,
+     "appInert": false,
+     "layersNonInert": 0,
+     "chatScroll": 843,
+     "live": "Back in the chat.",
+     "bodyOverflow": false,
+     "contentH": 800,
+     "lostPx": 0,
+     "lostPct": 0,
+     "contentW": 1200
+    }
+   ],
+   "errors": [],
+   "chatScrollBefore": 843,
+   "pageScrollSet": 120,
+   "pageScrollAfter": 120,
+   "chatScrollAfter": 843,
+   "homeFocus": "BUTTON.mark",
+   "markPop": true,
+   "backWalk": {
+    "depthBefore": 3,
+    "depthAfter": 0,
+    "sameDocument": true,
+    "hash": "#/"
+   },
+   "cold": {
+    "depth": 5,
+    "histLen": 9,
+    "afterBack": 4
+   },
+   "keyboard": {
+    "openedDepth": 1,
+    "focusInTop": true,
+    "closedDepth": 0,
+    "focusBack": "BUTTON.mark"
+   },
+   "gestures": {
+    "spineJump": {
+     "depthAfter": 1
+    },
+    "chatTapReplacesStack": {
+     "depthAfterTap": 1,
+     "hash": "#/c~curie~0",
+     "backRestoresDepth": 3
+    }
+   },
+   "overflowX": false
+  }
+ }
+}

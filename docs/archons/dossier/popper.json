@@ -1,0 +1,57 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "popper",
+  "organ": "khora/native/organs/blindspot.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/popper-deferred.json"
+  ],
+  "whatTheyArgued": "Falsifiability is a demarcation criterion for THEORIES: a theory is scientific if it is logically incompatible with some possible observation; science advances by bold conjecture exposed to severe tests. The 'hazard of refutation' remark is in LScD ch. 10, sec. 85 (found via quote-aggregator search, not read in the book; wording there is 'scientific game', ours says 'game of science').",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Karl Popper'",
+      "url": "https://plato.stanford.edu/entries/popper/",
+      "supports": "falsifiability as demarcation of theories; logic vs methodology of falsification",
+      "disputes": "Lakatos denies isolated critical tests; Kuhn disputes the progress model; Duhem-Quine: auxiliaries blur what a failed test refutes. SEP page does not itself contain the 'hazard of refutation' sentence."
+    },
+    {
+      "ref": "Popper quote location (secondary aggregator search result, Goodreads/quote sites; not verified in the book)",
+      "url": "https://www.goodreads.com/work/quotes/59859",
+      "supports": "sentence sits in ch.10 sec.85 with wording 'scientific game'",
+      "disputes": "wording unverified against the printed text"
+    }
+  ],
+  "ourUse": "blindspot.js statically flags Python tests with no assertion, assert True, const==const, == on secrets, leaked resources, dead guards. Named Popper because a test that cannot fail proves nothing.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "theory-to-unit-test",
+      "kind": "re-scoped",
+      "ours": "'A test that cannot fail is not a test' applied to code unit tests lacking an assert.",
+      "theirs": "Popper's criterion concerns whether a THEORY forbids some observable outcome; a unit test is not a theory and Popper does not discuss software testing. The link is analogy (a check that cannot come out wrong carries no information), a fair one but ours."
+    },
+    {
+      "id": "unrelated-detectors",
+      "kind": "decorative",
+      "ours": "Secrets compared with ==, resources without `with`, dead guards are filed under the Popper handle.",
+      "theirs": "None of these concern falsifiability; timing-safe comparison and resource leaks have no Popperian content."
+    },
+    {
+      "id": "quote-wording",
+      "kind": "misstated",
+      "ours": "compendium work: 'do not take part in the game of science'.",
+      "theirs": "Wording found in secondary sources is 'scientific game' (LScD sec.85); our phrasing is unverified as verbatim. Also, 'a test that cannot fail is not a test' is our gloss presented in the same field as the quote."
+    },
+    {
+      "id": "syntactic-vs-logical",
+      "kind": "narrowed",
+      "ours": "Unfalsifiable = no assert statement present syntactically.",
+      "theirs": "Popperian unfalsifiability is logical incompatibility with observations; a test with an assert can still be unfalsifiable (tautological assert on a variable), and Popper's own point that refutation is judged in context (Duhem-Quine) is not modeled."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'A theory earns scientific standing only by forbidding some possible observation and surviving attempts to refute it (Popper 1934). By analogy, we flag code checks that could never come out wrong.' Drop the quoted sentence unless re-verified verbatim in the book ('scientific game', LScD sec.85).",
+    "blindspot.js header: say only the first detector (test that cannot fail) is the Popper analogy; the == / with / dead-guard detectors are Saltzer-family hygiene, not Popper."
+  ]
+}

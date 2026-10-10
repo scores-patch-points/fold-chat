@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>
+body { margin: 0; background: #f1f1f4; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: #141416; -webkit-font-smoothing: antialiased; }
+a { color: #1d4ed8; } a:hover { color: #1e40af; }
+</style>
+</helmet>
+
+<section style="padding: 48px; display: flex; flex-direction: column; gap: 20px;">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 820px;">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #5f5f6b;">Turn 3 · Agent makes things</div>
+    <div style="font-size: 26px; font-weight: 700;">When the result is a thing, the thing takes the stage</div>
+    <div style="font-size: 15px; color: #44444e; line-height: 1.55; text-wrap: pretty;">A website, a widget or a document opens in a canvas beside the thread. The thread stays for conversation; the canvas holds the current version, its history and the actions that fit its kind. Every kind shares one frame: tabs for preview and source, a version strip, and one primary export.</div>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+
+    <div id="3a" style="flex: none; width: 1180px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">3a</span><span style="font-size: 14px; font-weight: 600;">Website · split view, live preview, pages, point-to-edit</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: 380px minmax(0, 1fr); height: 680px;">
+        <div style="border-right: 1px solid #e4e4e9; display: flex; flex-direction: column; min-width: 0;">
+          <div style="flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 16px; overflow: hidden;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="width: 28px; height: 28px; border-radius: 50%; background: #f1f1f4; display: grid; place-items: center; font-size: 11px; font-weight: 700; flex: none;">You</span><span style="font-size: 14px; line-height: 1.5; padding-top: 4px;">A one-page site for my pottery studio: hero, classes with prices, a booking form.</span></div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="width: 28px; height: 28px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 13px/1 ui-monospace, Menlo, monospace; flex: none;">›</span>
+              <div style="display: flex; flex-direction: column; gap: 10px; border-left: 3px solid #0d7a70; padding-left: 12px; min-width: 0;">
+                <span style="font-size: 14px; line-height: 1.5;">Built a single page with three sections and a working form that checks dates.</span>
+                <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #0d7a70; border-radius: 10px; background: #e7f6f3;">
+                  <span style="width: 34px; height: 26px; border-radius: 4px; background: #fff; border: 1px solid #b7ded7; flex: none;"></span>
+                  <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0;"><span style="font-size: 14px; font-weight: 650;">Clay & Kiln · website</span><span style="font-size: 12.5px; color: #0f6a62;">v3 · open in canvas</span></div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;"><span style="width: 28px; height: 28px; border-radius: 50%; background: #f1f1f4; display: grid; place-items: center; font-size: 11px; font-weight: 700; flex: none;">You</span>
+              <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 2px;">
+                <span style="align-self: flex-start; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #1d4ed8; background: #eef2ff; border-radius: 999px; padding: 3px 9px;">◎ Hero heading</span>
+                <span style="font-size: 14px; line-height: 1.5;">Warmer, and mention weekend classes</span>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #44444e; padding-left: 38px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0d7a70;"></span>Editing the hero · v4</div>
+          </div>
+          <div style="padding: 12px; border-top: 1px solid #e4e4e9;">
+            <div style="border: 1.5px solid #0d7a70; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;"><span style="font-size: 12.5px; color: #1d4ed8; background: #eef2ff; border-radius: 999px; padding: 3px 9px;">◎ Pick an element</span></div>
+              <div style="font: 14px/1.5 ui-monospace, Menlo, monospace; color: #666673;">Change something on the page</div>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; min-width: 0; background: #f1f1f4;">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fff; border-bottom: 1px solid #e4e4e9; flex-wrap: wrap;">
+            <div style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px;"><span style="padding: 5px 12px; border-radius: 999px; background: #fff; font-size: 13.5px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08);">Preview</span><span style="padding: 5px 12px; font-size: 13.5px; color: #44444e;">Code</span><span style="padding: 5px 12px; font-size: 13.5px; color: #44444e;">Files · 4</span></div>
+            <div style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px;"><span style="padding: 5px 10px; border-radius: 999px; background: #fff; font-size: 13px; box-shadow: 0 1px 2px rgba(0,0,0,.08);">Desktop</span><span style="padding: 5px 10px; font-size: 13px; color: #44444e;">Tablet</span><span style="padding: 5px 10px; font-size: 13px; color: #44444e;">Phone</span></div>
+            <span style="flex: 1;"></span>
+            <span style="font-size: 13px; color: #44444e;">index.html ▾</span>
+            <button style="white-space: nowrap; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13.5px;">Download .zip</button>
+            <button style="white-space: nowrap; height: 34px; padding: 0 14px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 13.5px; font-weight: 600;">Publish</button>
+          </div>
+          <div style="flex: 1; padding: 18px; min-height: 0; display: flex;">
+            <div style="flex: 1; background: #fbf7f2; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06); overflow: hidden; display: flex; flex-direction: column;">
+              <div style="display: flex; justify-content: space-between; padding: 16px 28px; font-size: 13px; color: #6b4f3a;"><b>Clay & Kiln</b><span style="display: flex; gap: 18px;"><span>Classes</span><span>Studio</span><span>Book</span></span></div>
+              <div style="padding: 40px 28px 30px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center;">
+                <div style="display: flex; flex-direction: column; gap: 12px; outline: 2px dashed #1d4ed8; outline-offset: 6px; border-radius: 4px; position: relative;">
+                  <span style="position: absolute; top: -30px; left: -6px; font: 600 11.5px/1 -apple-system, system-ui, sans-serif; background: #1d4ed8; color: #fff; padding: 4px 7px; border-radius: 4px;">h1 · Hero heading</span>
+                  <span style="font: 600 34px/1.15 Georgia, serif; color: #3b2a1e;">Make something with your hands this weekend</span>
+                  <span style="font-size: 14px; color: #6b4f3a; line-height: 1.5;">Small wheel-throwing classes, Saturdays and Sundays.</span>
+                  <span style="align-self: flex-start; background: #a5532e; color: #fff; font-size: 13px; padding: 8px 14px; border-radius: 999px;">Book a class</span>
+                </div>
+                <div style="height: 200px; border-radius: 8px; background: repeating-linear-gradient(135deg, #eadfd2 0 8px, #f3ebe1 8px 16px); display: grid; place-items: center; font: 12px ui-monospace, Menlo, monospace; color: #8a7360;">studio photo</div>
+              </div>
+              <div style="padding: 0 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <div style="background: #fff; border-radius: 8px; padding: 12px; font-size: 13px; color: #3b2a1e; display: flex; flex-direction: column; gap: 4px;"><b>Intro to the wheel</b><span style="color: #6b4f3a;">£45 · 2 hrs</span></div>
+                <div style="background: #fff; border-radius: 8px; padding: 12px; font-size: 13px; color: #3b2a1e; display: flex; flex-direction: column; gap: 4px;"><b>Glazing basics</b><span style="color: #6b4f3a;">£35 · 90 min</span></div>
+                <div style="background: #fff; border-radius: 8px; padding: 12px; font-size: 13px; color: #3b2a1e; display: flex; flex-direction: column; gap: 4px;"><b>Four-week course</b><span style="color: #6b4f3a;">£160</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: #fff; border-top: 1px solid #e4e4e9; font-size: 13px; color: #44444e; flex-wrap: wrap;">
+            <span style="font-weight: 600; color: #141416;">Versions</span>
+            <span style="padding: 4px 10px; border-radius: 999px; border: 1px solid #e4e4e9;">v1 layout</span>
+            <span style="padding: 4px 10px; border-radius: 999px; border: 1px solid #e4e4e9;">v2 prices</span>
+            <span style="padding: 4px 10px; border-radius: 999px; background: #141416; color: #fff;">v3 form</span>
+            <span style="padding: 4px 10px; border-radius: 999px; border: 1px dashed #0d7a70; color: #0f6a62;">v4 writing…</span>
+            <span style="flex: 1;"></span>
+            <span>✓ form checks pass · no console errors</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3b" style="flex: none; width: 1180px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">3b</span><span style="font-size: 14px; font-weight: 600;">Widget · live and usable, settings the agent exposed, embed code</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) 320px; height: 520px;">
+        <div style="display: flex; flex-direction: column; min-width: 0; background: #f1f1f4;">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fff; border-bottom: 1px solid #e4e4e9;">
+            <span style="font-size: 14px; font-weight: 650;">Mortgage calculator</span><span style="font-size: 13px; color: #5f5f6b;">widget · v2</span>
+            <span style="flex: 1;"></span>
+            <div style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px;"><span style="padding: 5px 12px; border-radius: 999px; background: #fff; font-size: 13.5px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08);">Try it</span><span style="padding: 5px 12px; font-size: 13.5px; color: #44444e;">Code</span><span style="padding: 5px 12px; font-size: 13.5px; color: #44444e;">Tests · 6</span></div>
+          </div>
+          <div style="flex: 1; display: grid; place-items: center; padding: 24px;">
+            <div style="width: 380px; background: #fff; border-radius: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 10px 30px rgba(0,0,0,.08); padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #44444e;">Home price</span><span style="border: 1px solid #cfcfd7; border-radius: 8px; padding: 9px 11px; font-size: 15px;">£320,000</span></div>
+              <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #44444e;">Deposit · 15%</span><div style="height: 6px; border-radius: 3px; background: #e4e4e9; position: relative;"><div style="width: 30%; height: 6px; border-radius: 3px; background: #0d7a70;"></div><span style="position: absolute; left: 30%; top: -6px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: #fff; border: 2px solid #0d7a70;"></span></div></div>
+              <div style="display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 13px; color: #44444e;">Term</span><div style="display: flex; gap: 6px;"><span style="flex: 1; text-align: center; padding: 7px; border-radius: 8px; border: 1px solid #cfcfd7; font-size: 14px;">20 yrs</span><span style="flex: 1; text-align: center; padding: 7px; border-radius: 8px; background: #141416; color: #fff; font-size: 14px;">25 yrs</span><span style="flex: 1; text-align: center; padding: 7px; border-radius: 8px; border: 1px solid #cfcfd7; font-size: 14px;">30 yrs</span></div></div>
+              <div style="border-top: 1px solid #e4e4e9; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline;"><span style="font-size: 14px; color: #44444e;">Monthly</span><span style="font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums;">£1,487</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="border-left: 1px solid #e4e4e9; display: flex; flex-direction: column; min-width: 0;">
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
+            <div style="font-size: 13px; font-weight: 700; color: #44444e;">Settings the agent exposed</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px;"><span>Interest rate</span><span style="border: 1px solid #cfcfd7; border-radius: 6px; padding: 4px 8px; font-variant-numeric: tabular-nums;">4.6%</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px;"><span>Currency</span><span style="border: 1px solid #cfcfd7; border-radius: 6px; padding: 4px 8px;">GBP ▾</span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px;"><span>Accent</span><span style="display: flex; gap: 6px;"><span style="width: 20px; height: 20px; border-radius: 50%; background: #0d7a70; box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px #141416;"></span><span style="width: 20px; height: 20px; border-radius: 50%; background: #1d4ed8;"></span><span style="width: 20px; height: 20px; border-radius: 50%; background: #a5532e;"></span></span></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px;"><span>Show yearly total</span><span style="width: 34px; height: 20px; border-radius: 999px; background: #e4e4e9; position: relative;"><span style="position: absolute; left: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff;"></span></span></div>
+            <div style="font-size: 13px; color: #5f5f6b; line-height: 1.5;">Changing a setting updates the preview directly. No new agent run.</div>
+          </div>
+          <div style="padding: 16px; border-top: 1px solid #e4e4e9; display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-size: 13px; font-weight: 700; color: #44444e;">Embed</div>
+            <div style="background: #f1f1f4; border-radius: 8px; padding: 9px 10px; font: 12.5px/1.5 ui-monospace, Menlo, monospace; color: #141416; overflow-wrap: anywhere;">&lt;script src="mortgage.js"&gt;&lt;/script&gt;</div>
+            <div style="display: flex; gap: 8px;"><button style="flex: 1; height: 36px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 14px; font-weight: 600;">Copy embed</button><button style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Download</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3c" style="flex: none; width: 1180px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">3c</span><span style="font-size: 14px; font-weight: 600;">Document · pages, outline, sources cited, changes shown as tracked edits</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: 240px minmax(0, 1fr) 300px; height: 640px;">
+        <div style="border-right: 1px solid #e4e4e9; padding: 16px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 13px; font-weight: 700; color: #44444e; padding-bottom: 6px;">Outline</div>
+          <span style="font-size: 14px; padding: 6px 8px; border-radius: 6px;">1 Summary</span>
+          <span style="font-size: 14px; padding: 6px 8px; border-radius: 6px; background: #f1f1f4; font-weight: 600;">2 Findings</span>
+          <span style="font-size: 13.5px; padding: 4px 8px 4px 22px; color: #44444e;">2.1 Response times</span>
+          <span style="font-size: 13.5px; padding: 4px 8px 4px 22px; color: #44444e;">2.2 Staffing</span>
+          <span style="font-size: 14px; padding: 6px 8px; border-radius: 6px;">3 Recommendations</span>
+          <span style="font-size: 14px; padding: 6px 8px; border-radius: 6px;">Sources · 7</span>
+          <span style="flex: 1;"></span>
+          <div style="font-size: 13px; color: #5f5f6b; line-height: 1.5;">6 pages · 1,840 words · Letter</div>
+        </div>
+        <div style="background: #f1f1f4; padding: 24px; display: flex; justify-content: center; overflow: hidden;">
+          <div style="width: 520px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06); padding: 44px 48px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="font: 600 22px/1.25 Georgia, serif;">2 Findings</div>
+            <div style="font: 600 15px/1.3 Georgia, serif;">2.1 Response times</div>
+            <div style="font: 14.5px/1.7 Georgia, serif; color: #2a2a30;">Median response fell from 41 to 29 minutes after the rota change<span style="font: 600 11px/1 -apple-system, system-ui, sans-serif; color: #1d4ed8; background: #eef2ff; border-radius: 4px; padding: 2px 4px; margin-left: 3px; vertical-align: 2px;">S3</span>. <span style="background: #fde2e2; text-decoration: line-through; color: #8a1f1f;">The improvement was consistent across all sites.</span> <span style="background: #dcfce7; color: #14532d;">Two of the five sites saw no change, both with fewer than four staff on shift</span><span style="font: 600 11px/1 -apple-system, system-ui, sans-serif; color: #1d4ed8; background: #eef2ff; border-radius: 4px; padding: 2px 4px; margin-left: 3px; vertical-align: 2px;">S5</span>.</div>
+            <div style="font: 14.5px/1.7 Georgia, serif; color: #2a2a30;">Weekend coverage remains the largest gap, with response times roughly double the weekday figure.</div>
+            <div style="height: 120px; border-radius: 6px; background: repeating-linear-gradient(135deg, #ececf0 0 8px, #f6f6f8 8px 16px); display: grid; place-items: center; font: 12px ui-monospace, Menlo, monospace; color: #5f5f6b;">chart · response time by site</div>
+          </div>
+        </div>
+        <div style="border-left: 1px solid #e4e4e9; display: flex; flex-direction: column; min-width: 0;">
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+            <div style="font-size: 13px; font-weight: 700; color: #44444e;">This change · v5</div>
+            <div style="font-size: 14px; line-height: 1.55;">You asked to check the claim about all sites. Source S5 contradicts it, so I rewrote the sentence.</div>
+            <div style="display: flex; gap: 8px;"><button style="white-space: nowrap; height: 34px; padding: 0 14px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 13.5px; font-weight: 600;">Accept</button><button style="white-space: nowrap; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13.5px;">Reject</button></div>
+            <div style="border-top: 1px solid #e4e4e9; padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-size: 13px; font-weight: 700; color: #44444e;">S5 · Site audit, March</div>
+              <div style="font-size: 13.5px; line-height: 1.55; color: #2a2a30; background: #fdf0b0; border-radius: 6px; padding: 8px 10px;">“Sites C and E recorded no measurable change in median response.”</div>
+            </div>
+          </div>
+          <div style="padding: 16px; border-top: 1px solid #e4e4e9; display: flex; gap: 8px; flex-wrap: wrap;">
+            <button style="flex: 1; height: 36px; border-radius: 999px; border: 0; background: #141416; color: #fff; font-size: 14px; font-weight: 600;">Export PDF</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">.docx</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">.md</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3d" style="flex: none; width: 574px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">3d</span><span style="font-size: 14px; font-weight: 600;">Starting · pick what you're making</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 14px; color: #44444e; line-height: 1.5;">The kind sets the canvas, the checks the agent runs, and the export. The agent guesses it from your message if you skip this.</div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+          <div style="border: 1.5px solid #0d7a70; background: #e7f6f3; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Website</b><span style="font-size: 12.5px; color: #0f6a62;">pages · publish</span></div>
+          <div style="border: 1px solid #e4e4e9; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Widget</b><span style="font-size: 12.5px; color: #5f5f6b;">interactive · embed</span></div>
+          <div style="border: 1px solid #e4e4e9; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Document</b><span style="font-size: 12.5px; color: #5f5f6b;">pages · PDF</span></div>
+          <div style="border: 1px solid #e4e4e9; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Slides</b><span style="font-size: 12.5px; color: #5f5f6b;">deck · present</span></div>
+          <div style="border: 1px solid #e4e4e9; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Data</b><span style="font-size: 12.5px; color: #5f5f6b;">table · CSV</span></div>
+          <div style="border: 1px solid #e4e4e9; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 3px;"><b style="font-size: 14px;">Code change</b><span style="font-size: 12.5px; color: #5f5f6b;">your folder · diff</span></div>
+        </div>
+        <div style="border: 1.5px solid #0d7a70; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; font: 13.5px/1 ui-monospace, Menlo, monospace;"><span style="color: #0d7a70; font-weight: 700;">›</span><span style="color: #0d7a70; font-weight: 600;">agent</span><span style="background: #e7f6f3; color: #0f6a62; border-radius: 999px; padding: 4px 9px;">website</span></div>
+          <div style="font: 14px/1.5 ui-monospace, Menlo, monospace; color: #666673;">Describe the site</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3e" style="flex: none; width: 574px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">3e</span><span style="font-size: 14px; font-weight: 600;">In the thread · the artifact card</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 14px; color: #44444e; line-height: 1.5;">With the canvas closed, each version is a card in the thread. It opens the canvas at that version, so older work stays one click away.</div>
+        <div style="border: 1px solid #e4e4e9; border-radius: 12px; overflow: hidden;">
+          <div style="height: 150px; background: #fbf7f2; padding: 16px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #e4e4e9;">
+            <span style="font: 600 18px/1.2 Georgia, serif; color: #3b2a1e; max-width: 260px;">Make something with your hands this weekend</span>
+            <span style="align-self: flex-start; background: #a5532e; color: #fff; font-size: 11px; padding: 5px 10px; border-radius: 999px;">Book a class</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px;">
+            <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1;"><span style="font-size: 14.5px; font-weight: 650;">Clay & Kiln · website</span><span style="font-size: 13px; color: #44444e;">v4 · hero rewritten · ✓ checks pass</span></div>
+            <button style="white-space: nowrap; height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13.5px;">Compare v3</button>
+            <button style="white-space: nowrap; height: 34px; padding: 0 14px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 13.5px; font-weight: 600;">Open</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding: 48px; display: flex; flex-direction: column; gap: 20px;">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 760px;">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #5f5f6b;">Turn 2 · Replay</div>
+    <div style="font-size: 26px; font-weight: 700;">Replay skips idle time and reads plainly</div>
+    <div style="font-size: 15px; color: #44444e; line-height: 1.55;">Gaps where nothing new appears are squeezed to half a second and marked on the timeline. Step text is 15px sans, plain words first; the operator code moves to a small tag.</div>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+
+    <div id="2a" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">2a</span><span style="font-size: 14px; font-weight: 600;">Replay player</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; overflow: hidden;">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: #f1f1f4; border-bottom: 1px solid #e4e4e9;">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px #cfcfd7; display: grid; place-items: center; font-size: 14px;">●</span>
+          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1;">
+            <span style="font-size: 17px; font-weight: 650;">Keeping the part of Wikipedia that answers you</span>
+            <span style="font-size: 14px; color: #44444e;">Step 3 of 9 · 4 passages kept from 5 pages</span>
+          </div>
+          <span style="font: 600 11.5px/1 ui-monospace, Menlo, monospace; color: #5f5f6b; border: 1px solid #cfcfd7; border-radius: 999px; padding: 4px 8px;">INS</span>
+        </div>
+        <div style="padding: 20px 18px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="font-size: 13px; font-weight: 700; color: #44444e;">Kept from Wikipedia · Boiling</div>
+          <div style="font-size: 16px; line-height: 1.65; color: #141416; border: 1px solid #e4e4e9; border-radius: 10px; padding: 14px 16px;">The boiling point of water is <span style="background: #fdf0b0; padding: 0 2px;">100 °C (212 °F)</span> at sea level and at normal barometric pressure.</div>
+          <div style="font-size: 15px; color: #44444e; line-height: 1.55;">This sentence names the figure your question asks for, so it is kept. The next step checks it against the other sources.</div>
+        </div>
+        <div style="padding: 0 18px 6px;">
+          <div style="position: relative; height: 34px;">
+            <div style="position: absolute; left: 0; right: 0; top: 14px; height: 6px; border-radius: 3px; background: #e4e4e9;"></div>
+            <div style="position: absolute; left: 0; width: 38%; top: 14px; height: 6px; border-radius: 3px 0 0 3px; background: #141416;"></div>
+            <div style="position: absolute; left: 22%; width: 7%; top: 12px; height: 10px; border-radius: 3px; background: repeating-linear-gradient(135deg, #cfcfd7 0 3px, #fff 3px 6px); border: 1px solid #cfcfd7;"></div>
+            <div style="position: absolute; left: 61%; width: 11%; top: 12px; height: 10px; border-radius: 3px; background: repeating-linear-gradient(135deg, #cfcfd7 0 3px, #fff 3px 6px); border: 1px solid #cfcfd7;"></div>
+            <div style="position: absolute; left: 38%; top: 8px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: #fff; border: 2px solid #141416;"></div>
+          </div>
+          <div style="display: flex; gap: 18px; font-size: 13px; color: #5f5f6b; padding-bottom: 10px;">
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 8px; border-radius: 2px; border: 1px solid #cfcfd7; background: repeating-linear-gradient(135deg, #cfcfd7 0 3px, #fff 3px 6px);"></span>Waiting on search · 6.2s skipped</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 8px; border-radius: 2px; border: 1px solid #cfcfd7; background: repeating-linear-gradient(135deg, #cfcfd7 0 3px, #fff 3px 6px);"></span>Model loading · 9.8s skipped</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-top: 1px solid #e4e4e9; flex-wrap: wrap;">
+          <button style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #cfcfd7; background: #fff; font-size: 15px;">◂</button>
+          <button style="width: 40px; height: 40px; border-radius: 10px; border: 0; background: #141416; color: #fff; font-size: 14px;">❚❚</button>
+          <button style="width: 40px; height: 40px; border-radius: 10px; border: 1px solid #cfcfd7; background: #fff; font-size: 15px;">▸</button>
+          <span style="font: 14px/1 ui-monospace, Menlo, monospace; color: #44444e; font-variant-numeric: tabular-nums;">4.1s / 11.6s</span>
+          <span style="font-size: 13px; color: #5f5f6b;">(27.6s real)</span>
+          <div style="flex: 1;"></div>
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #141416;"><span style="width: 34px; height: 20px; border-radius: 999px; background: #141416; position: relative; display: inline-block;"><span style="position: absolute; right: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff;"></span></span>Skip idle</div>
+          <div style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px;">
+            <span style="padding: 6px 12px; border-radius: 999px; background: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08);">1×</span>
+            <span style="padding: 6px 12px; font-size: 14px; color: #44444e;">½×</span>
+            <span style="padding: 6px 12px; font-size: 14px; color: #44444e;">¼×</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section style="padding: 48px; display: flex; flex-direction: column; gap: 20px;">
+  <div style="display: flex; flex-direction: column; gap: 6px; max-width: 760px;">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #5f5f6b;">Turn 1 · Agent mode</div>
+    <div style="font-size: 26px; font-weight: 700;">Agent mode, from switch to outcome</div>
+    <div style="font-size: 15px; color: #44444e; line-height: 1.55;">Six states. Agent keeps the teal register so the change of engine is visible. Internal names (penelope, khora) stay in the record and never appear in the main surface.</div>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+
+    <div id="1a" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1a</span><span style="font-size: 14px; font-weight: 600;">Switched to Agent · bridge not found</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-height: 300px; justify-content: flex-end;">
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border: 1px solid #e4e4e9; border-radius: 12px; background: #fff;">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #a04a07; margin-top: 6px; flex: none;"></span>
+          <div style="display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0;">
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <span style="font-size: 15px; font-weight: 650;">Agent needs the local bridge</span>
+              <span style="font-size: 14px; color: #44444e; line-height: 1.5;">Nothing answered at localhost:8790. Start it on this machine, then check again.</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; background: #f1f1f4; border-radius: 8px; padding: 8px 10px; font: 14px/1.4 ui-monospace, Menlo, monospace;"><span style="color: #5f5f6b;">$</span><span style="flex: 1;">heimdall up</span><span style="font: 600 13px/1 -apple-system, system-ui, sans-serif; color: #1d4ed8;">Copy</span></div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #141416; color: #fff; font-size: 14px; font-weight: 600;">Check again</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Ask in Chat instead</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: none; font-size: 14px; color: #1d4ed8;">Setup guide</button>
+            </div>
+          </div>
+        </div>
+        <div style="border: 1.5px solid #0d7a70; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; background: #fff;">
+          <div style="display: flex; align-items: center; gap: 8px; font: 14px/1 ui-monospace, Menlo, monospace;"><span style="color: #0d7a70; font-weight: 700;">›</span><span style="color: #0d7a70; font-weight: 600;">agent</span><span style="color: #5f5f6b;">not connected</span></div>
+          <div style="font: 15px/1.5 ui-monospace, Menlo, monospace; color: #666673;">Describe what to build or change</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="flex: 1;"></div>
+            <span style="display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid #cfcfd7; border-radius: 999px; font-size: 14px;">Agent <span style="color: #5f5f6b;">⌃</span></span>
+            <span style="width: 40px; height: 40px; border-radius: 50%; background: #cfcfd7; color: #fff; display: grid; place-items: center; font-size: 16px;">↑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1b" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1b</span><span style="font-size: 14px; font-weight: 600;">Ready · says what the next turn will touch</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-height: 300px; justify-content: flex-end;">
+        <div style="display: flex; justify-content: center;"><div style="display: flex; align-items: center; gap: 10px; color: #5f5f6b; font-size: 13px; width: 100%;"><span style="flex: 1; height: 1px; background: #e4e4e9;"></span><span style="white-space: nowrap; border: 1px solid #e4e4e9; border-radius: 999px; padding: 3px 10px; background: #f1f1f4;">Chat → Agent · same thread</span><span style="flex: 1; height: 1px; background: #e4e4e9;"></span></div></div>
+        <div style="border: 1.5px solid #0d7a70; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; background: #fff;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font: 14px/1 ui-monospace, Menlo, monospace;">
+            <span style="color: #0d7a70; font-weight: 700;">›</span><span style="color: #0d7a70; font-weight: 600;">agent</span>
+            <span style="display: flex; align-items: center; gap: 6px; background: #e7f6f3; color: #0f6a62; border-radius: 999px; padding: 5px 10px;">~/projects/fold-chat</span>
+            <span style="color: #44444e;">qwen2.5-coder 7B · local</span>
+            <span style="flex: 1;"></span>
+            <span style="display: flex; align-items: center; gap: 6px; font: 13px/1 -apple-system, system-ui, sans-serif; color: #16793a;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #16793a;"></span>Bridge connected</span>
+          </div>
+          <div style="font: 15px/1.5 ui-monospace, Menlo, monospace; color: #141416;">Add a dark-mode toggle to the settings panel</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 13px; color: #5f5f6b;">Reads the folder on this machine · runs and tests the result · up to 4 rounds</span>
+            <div style="flex: 1;"></div>
+            <span style="display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid #cfcfd7; border-radius: 999px; font-size: 14px;">Agent <span style="color: #5f5f6b;">⌃</span></span>
+            <span style="width: 40px; height: 40px; border-radius: 50%; background: #0d7a70; color: #fff; display: grid; place-items: center; font-size: 16px;">↑</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1c</span><span style="font-size: 14px; font-weight: 600;">Running · one status line, the draft as it forms</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="width: 30px; height: 30px; border-radius: 50%; background: #f1f1f4; display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: none;">You</span><span style="font-size: 15px; padding-top: 5px;">Add a dark-mode toggle to the settings panel</span></div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 30px; height: 30px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 14px/1 ui-monospace, Menlo, monospace; flex: none;">›</span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; border-left: 3px solid #0d7a70; padding-left: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #0d7a70;"></span>
+              <span style="font-size: 15px; font-weight: 600;">Running the tests on draft 2</span>
+              <span style="font-size: 14px; color: #5f5f6b;">Round 2 of 4 · 0:31</span>
+              <span style="flex: 1;"></span>
+              <button style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13px;">Stop</button>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #44444e;">
+              <div style="display: flex; gap: 8px;"><span style="color: #16793a;">✓</span>Read 3 files in settings/</div>
+              <div style="display: flex; gap: 8px;"><span style="color: #c62828;">✗</span>Draft 1 failed: <span style="font-family: ui-monospace, Menlo, monospace; font-size: 13px;">theme is not defined</span></div>
+              <div style="display: flex; gap: 8px;"><span style="color: #16793a;">✓</span>Draft 2 written with the error fed back</div>
+            </div>
+            <div style="border: 1px solid #e4e4e9; border-radius: 10px; overflow: hidden;">
+              <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f1f1f4; font-size: 13px; color: #44444e;"><span style="font-family: ui-monospace, Menlo, monospace;">settings.js</span><span style="color: #5f5f6b;">draft 2 · +18 −2</span></div>
+              <div style="padding: 12px; font: 13.5px/1.6 ui-monospace, Menlo, monospace; color: #141416; display: flex; flex-direction: column; white-space: pre-wrap; overflow-wrap: anywhere;"><span style="color: #16793a;">+ const theme = store.get("theme") ?? "light";</span>
+<span style="color: #16793a;">+ toggle.onchange = () =&gt; setTheme(toggle.checked ? "dark" : "light");</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1d" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1d</span><span style="font-size: 14px; font-weight: 600;">Done · result first, story collapsed</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 30px; height: 30px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 14px/1 ui-monospace, Menlo, monospace; flex: none;">›</span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; border-left: 3px solid #0d7a70; padding-left: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span style="display: flex; align-items: center; gap: 6px; background: #e6f4ea; color: #16793a; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 650;">✓ Tests pass</span>
+              <span style="font-size: 14px; color: #44444e;">2 rounds · 48s · 1 file changed</span>
+            </div>
+            <div style="font-size: 15px; line-height: 1.6;">Added a dark-mode toggle to the settings panel. It saves the choice and applies it on load.</div>
+            <div style="border: 1px solid #e4e4e9; border-radius: 10px; overflow: hidden;">
+              <div style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #f1f1f4; font-size: 13px; color: #44444e;"><span style="font-family: ui-monospace, Menlo, monospace;">settings.js</span><span style="color: #5f5f6b;">+18 −2</span><span style="flex: 1;"></span><span style="color: #1d4ed8; font-weight: 600;">Copy</span><span style="color: #1d4ed8; font-weight: 600;">Open in folder</span></div>
+              <div style="padding: 12px; font: 13.5px/1.6 ui-monospace, Menlo, monospace; color: #141416; display: flex; flex-direction: column; white-space: pre-wrap; overflow-wrap: anywhere;"><span style="color: #16793a;">+ const theme = store.get("theme") ?? "light";</span>
+<span style="color: #16793a;">+ toggle.checked = theme === "dark";</span>
+<span style="color: #16793a;">+ toggle.onchange = () =&gt; setTheme(toggle.checked ? "dark" : "light");</span></div>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 14px; font-weight: 600;">Keep going</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Explain in Chat</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Run preview</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #44444e; padding-top: 4px; border-top: 1px solid #e4e4e9;"><span>▸</span><span style="font-weight: 600; color: #141416;">How it got here</span><span>read 3 files · draft 1 failed · draft 2 passed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1e" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1e</span><span style="font-size: 14px; font-weight: 600;">Failed · plain reason, three ways forward</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 30px; height: 30px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 14px/1 ui-monospace, Menlo, monospace; flex: none;">›</span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; border-left: 3px solid #c62828; padding-left: 14px;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-size: 15px; font-weight: 650;">Couldn’t reach the machine door</span>
+              <span style="font-size: 14px; color: #44444e; line-height: 1.55;">The bridge answered, but the coding service behind it (port 4098) did not. Nothing was changed in your folder.</span>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #141416; color: #fff; font-size: 14px; font-weight: 600;">Try again</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Ask in Chat instead</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: none; font-size: 14px; color: #1d4ed8;">How to start it</button>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #44444e; padding-top: 4px; border-top: 1px solid #e4e4e9;"><span>▸</span><span style="font-weight: 600; color: #141416;">Details</span><span style="font-family: ui-monospace, Menlo, monospace; font-size: 13px;">POST /api/code → 502 after 1.2s</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1f" style="flex: none; width: 760px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span style="font: 700 12px/1 ui-monospace, Menlo, monospace; background: #141416; color: #fff; padding: 4px 8px; border-radius: 6px;">1f</span><span style="font-size: 14px; font-weight: 600;">Stopped · keep the last draft</span></div>
+      <div style="background: #fff; border: 1px solid #cfcfd7; border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 30px; height: 30px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 14px/1 ui-monospace, Menlo, monospace; flex: none;">›</span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; border-left: 3px solid #cfcfd7; padding-left: 14px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span style="background: #f1f1f4; color: #44444e; border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 650;">Stopped</span>
+              <span style="font-size: 14px; color: #44444e;">during round 2 · draft 1 kept (tests failed)</span>
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 14px; font-weight: 600;">Resume from draft 1</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">View draft</button>
+              <button style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Start over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</x-dc>
+</body>
+</html>

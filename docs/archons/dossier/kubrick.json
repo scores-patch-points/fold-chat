@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "kubrick",
+  "organ": "khora/native/the-fold/earned-cast.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/kubrick.json"
+  ],
+  "whatTheyArgued": "Press reporting (/Film and related, read as search-result summaries and one page): Kubrick was exacting and demanded very many takes, with actors reporting dozens of takes per scene. That supports 'perfectionism', 'deliberate'. I did NOT verify from a source I read that he 'framed the whole before the first sentence' or any statement on composition; that part is unsupported in my reading.",
+  "scholarship": [
+    {
+      "ref": "/Film, first-take article contrasting Eastwood with Kubrick's 50-60 take scenes (read)",
+      "url": "https://slashfilm.com/975697/why-clint-eastwood-always-tries-to-use-the-first-take-as-a-director",
+      "supports": "many-take perfectionism",
+      "disputes": "journalism; says nothing on composition or precision of statement"
+    },
+    {
+      "ref": "Search results aggregating press anecdotes (Far Out Magazine etc.; summaries only)",
+      "url": "https://faroutmagazine.co.uk/stanley-kubrick-most-pointless-scene/",
+      "supports": "up to 100 takes anecdotes (Cruise on Eyes Wide Shut)",
+      "disputes": "anecdotal; not film scholarship"
+    }
+  ],
+  "ourUse": "earned-cast.js: cues kubrick on frame/map asks and assertions; fact 'frame the whole before the first sentence ... precision over speed'. output-voice.js 'precise' register frame 'Of <end1>: it <label> <end2>.' Compendium puts 'Precision over speed.' in quotation marks.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "process-to-prose",
+      "kind": "re-scoped",
+      "ours": "Precision as the structure of a reply: whole framed first.",
+      "theirs": "Reported precision is of repeated shooting and demand on performance; no source read says he planned the whole before the first shot, though that reputation is common."
+    },
+    {
+      "id": "quote-is-ours",
+      "kind": "misstated",
+      "ours": "''Precision over speed.'' in the compendium work field.",
+      "theirs": "Not a Kubrick quotation in any source read."
+    },
+    {
+      "id": "precise-frame",
+      "kind": "decorative",
+      "ours": "'Of X: it label Y.' register frame.",
+      "theirs": "No tie to his work."
+    },
+    {
+      "id": "unverified-composition",
+      "kind": "narrowed",
+      "ours": "Kubrick as 'director of composition'.",
+      "theirs": "Composition claim not verified by me; supported evidence is about takes."
+    }
+  ],
+  "fix": [
+    "compendium kubrick.work: 'Director known for exacting, many-take perfectionism (press accounts). Our precise register borrows the image for replies that lay out the whole before detail; the phrase and frame are ours.'",
+    "Source a film-studies text on composition before keeping 'director of composition', or drop it.",
+    "Remove the quoted 'Precision over speed.'"
+  ]
+}

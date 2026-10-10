@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "wigmore",
+  "organ": "khora/native/organs/testimony.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/wigmore-testimony.json"],
+  "whatTheyArgued": "Verified snip, Principles of Judicial Proof (1913), Part II intro no. 163 (adapted from his Treatise on Evidence, 1905, I section 478): any assertion offered as the basis of an inference that the thing asserted happened is testimony, in court or not; testimony has three necessary stages, Perception, Recollection, Communication; and the canons for weighing a witness correspond to those three. Separately, in his Treatise on Evidence section 1367 he called cross-examination the greatest legal engine for discovering truth (quoted in legal literature; I did not open the Treatise). He also built the chart method for mapping evidence and inferences (Goodwin; Twining).",
+  "scholarship": [
+    { "ref": "Search results on Wigmore: cross-examination quotation (Evidence 1367), Twining 'Theories of Evidence: Bentham and Wigmore' (1985), and the chart method (listing only; pages not opened)", "url": "https://www.austlii.edu.au/au/journals/MonashULawRw/1989/21.pdf", "supports": "chart method as his answer to a missing science of proof; cross-examination as his famous tool", "disputes": "Twining and others treat Wigmore's chart method as demanding and rarely used in practice; not verified here" },
+    { "ref": "Jean Goodwin, 'Wigmore's Chart Method', Informal Logic (fetch returned an unreadable scan; not read)", "url": "https://informallogic.ca/index.php/informal_logic/article/view/2278/1722", "supports": "nothing verified: the PDF could not be extracted", "disputes": "none read" }
+  ],
+  "ourUse": "testimony.js asks a small model one binary question twice (does the passage say the claim is true; then the same for a sibling-swapped twin, a name swapped for another name on the page) and derives the verdict mechanically from the pair; the model is never trusted on its own word.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "twice-attributed", "kind": "invented-attribution", "ours": "organ header and compendium: Wigmore 'charted testimony by asking the witness twice and reading the verdict from the pair'; 'cross-examination as asking the witness more than once'.", "theirs": "Nothing in the verified passage, nor in his famous cross-examination claim, describes asking twice or a swapped twin; the swap-control is the project's own perturbation test." },
+    { "id": "three-stages-unused", "kind": "narrowed", "ours": "The snip quoted at the top is the Perception/Recollection/Communication analysis, but testimony.js does not model those stages; grep finds them only in the header quote.", "theirs": "His point is that belief in testimony must be assessed at each of the three stages; we test one thing, whether a page's bytes state a sentence." },
+    { "id": "witness-is-a-model", "kind": "reinterpreted", "ours": "The 'witness' is a small language model reading a passage.", "theirs": "A witness is a person with perception and memory who can be cross-examined; a model reading a page has none of the three stages, and the page is the testimony, not the model." },
+    { "id": "speaks-block", "kind": "misstated", "ours": "header: 'My teaching advocates for the meticulous application of these principles...' under 'Wigmore speaks'.", "theirs": "A generated first-person paragraph set in his voice; not his words." },
+    { "id": "work-title-and-standing", "kind": "misstated", "ours": "compendium source: 'The Science of Judicial Proof (1913; 3rd ed. 1937)', pdStatus fair-use.", "theirs": "The verified snip is the 1913 Principles of Judicial Proof (public domain). The Science of Judicial Proof is the retitled 1937 edition; the 1913 date does not fit that title. Standing here is verified through the 1913 text only." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'American evidence scholar. The Principles of Judicial Proof (1913) analyses testimony as perception, recollection and communication, each to be weighed separately, and Wigmore called cross-examination the best engine for finding truth. Here: ask a small model the same yes/no about a claim and about a name-swapped control (project design, not Wigmore) and read the verdict from the pair.'",
+    "compendium source/pdStatus: cite 'Principles of Judicial Proof (1913), Part II no. 163' and set public-domain for that text.",
+    "testimony.js header: change 'charted testimony by asking the witness twice' to 'analysed testimony as perception, recollection, communication; the twin-question control is ours'; mark the first-person paragraph generated or drop it."
+  ]
+}

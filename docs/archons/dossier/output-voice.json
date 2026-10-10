@@ -1,0 +1,39 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "output-voice",
+  "organ": "khora/native/organs/output-voice.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Nominated name, no author's work claimed. The compendium assigns registers to Eastwood (economy), Kubrick (precision), Strunk & White (plain style) and Terry Gross (drawing the guest out). Only Strunk & White wrote a style doctrine; Eastwood, Kubrick and Gross are credited for reputations/methods per compendium entries, which I did not independently verify.",
+  "scholarship": [],
+  "ourUse": "A closed table REGISTERS of declared sentence frames; a regex on the prompt (e.g. /plain|simply|clearly|readable|explain/) picks the register. No readability grade or Strunk & White rule is computed, though the header says 'readability grade plus the classic style rules'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "sw-rules-not-implemented",
+      "kind": "decorative",
+      "ours": "plain register credited as 'readability plus the classic style rules: Strunk & White'.",
+      "theirs": "Strunk & White give rules of composition (omit needless words, etc.) applied to prose a writer composes. The code selects a fixed frame by keyword; no rule is applied or checked."
+    },
+    {
+      "id": "people-as-registers",
+      "kind": "reinterpreted",
+      "ours": "Eastwood = lean, Kubrick = precise, Gross = oral, as 'archons' that 'own' a register.",
+      "theirs": "These are reputations of a director, a director and an interviewer, not stated doctrines of sentence framing; the frames are ours (e.g. 'It is told that X —act→ Y')."
+    },
+    {
+      "id": "authority-smuggled",
+      "kind": "invented-attribution",
+      "ours": "credit line: 'lean by Eastwood, precise by Kubrick, plain by Strunk & White, oral by Terry Gross'.",
+      "theirs": "None of them selected or authorized these frames; the mapping is a project choice."
+    }
+  ],
+  "noBendReason": "Name 'output-voice / The Register' and the frame table are ours and claim no author's work; the bends concern the four borrowed credits.",
+  "fix": [
+    "compendium work: 'A register is a closed set of DECLARED frames, the only words beyond the claim's own (as compose.js TRANSITIONS are declared token origins). The prompt's cues pick the register; the words never do. Register names echo Eastwood, Kubrick, Strunk & White and Terry Gross by analogy; none of their methods is implemented.'",
+    "credit: 'The register (output-voice) — our name: a closed set of declared frames chosen by prompt cues, never an invented sentence.'",
+    "header: strike 'readability grade plus the classic style rules' or implement a check."
+  ],
+  "tokenized": false
+}

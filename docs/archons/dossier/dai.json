@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "dai",
+  "organ": "khora/native/organs/quotes.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/dai.json"
+  ],
+  "whatTheyArgued": "Dai Zhen (1724-1777) argued that philology and close study of classical language, institutions and terms are the necessary route to understanding the Way (comparing neglect of philology to crossing a river without a boat), and that this must ground, not replace, philosophical interpretation; in ethics he rejected the Neo-Confucian suppression of desire and feeling. Read via SEP only; no primary text (no PD translation found, manifest copyrighted_deferred).",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Dai Zhen'",
+      "url": "https://plato.stanford.edu/entries/dai-zhen/",
+      "supports": "philology as foundation for grasping the dao; evidential learning necessary but insufficient",
+      "disputes": "Scholars dispute how accurate his reading of Song-Ming thinkers was, whether his ethics is utilitarian or non-consequentialist, and how far evidential learning shaped his philosophy. The entry does not discuss verifying quotations to source."
+    }
+  ],
+  "ourUse": "quotes.js: every quotation is verified against the source bytes (verbatim / drifted-and-backported / unlocated and not printed as a quote), no model in the loop.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "quote-verification-unverified",
+      "kind": "invented-attribution",
+      "ours": "Compendium: 'no word is taken on another's say-so — a quotation is traced to and verified against its actual source, or it is not printed as a quotation.'",
+      "theirs": "I could not verify that Dai Zhen stated this rule; the scholarship I read credits him with philological grounding of interpretation, not a quotation-verification rule. It is kaozheng's general ethos at best."
+    },
+    {
+      "id": "narrowed",
+      "kind": "narrowed",
+      "ours": "Evidential research reduced to string containment of quotes.",
+      "theirs": "Dai's philology is about meaning of terms, institutions, glosses, and he held it insufficient alone; ours is a byte match."
+    },
+    {
+      "id": "pd-status-misstated",
+      "kind": "misstated",
+      "ours": "Compendium pdStatus 'public-domain' with source 'kaozheng corpus'.",
+      "theirs": "His works are old, but the project's manifest records no usable PD translation (copyrighted_deferred); the entry is not backed by a verified snip."
+    },
+    {
+      "id": "backport-ours",
+      "kind": "re-scoped",
+      "ours": "Drifted quotes are rewritten to source bytes (backport).",
+      "theirs": "Correcting a text against better witnesses is kaozheng practice in spirit, but this repair rule is ours and not his."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Evidential-research (kaozheng) scholar who grounded interpretation of the classics in philological study. Our quotes.js is in that spirit: a quotation is the source's bytes or is not printed as one. The rule itself is ours.'",
+    "pdStatus: 'deferred' (no verified PD translation); source: drop 'kaozheng corpus' unless a text is fetched.",
+    "quotes.js header: 'after the evidential-research ethos associated with Dai Zhen' not 'Dai Zhen's discipline'."
+  ],
+  "tokenized": false
+}

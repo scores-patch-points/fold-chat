@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "vonnegut",
+  "organ": "khora/native/organs/vonnegut.js; khora/native/organs/story-shapes.js",
+  "standing": "deferred",
+  "snips": ["eo-teachings/manifest/vonnegut.json", "eo-teachings/manifest/vonnegut-story-shapes.json"],
+  "whatTheyArgued": "Vonnegut's lecture 'Shapes of Stories' (published in copyrighted Palm Sunday, 1981; A Man Without a Country, 2005) plots the fortune of a story's protagonist over time and proposes that stories trace a small number of simple curves. No text of the lecture is on disk and none is quoted here; both manifests are copyrighted_deferred. What follows about the lecture is limited to what the project's own manifests and the compendium state (shapes named 'man in hole', 'boy meets girl', 'from bad to worse', 'which way is up'); I could not independently verify those names or Vonnegut's meaning of each from his text.",
+  "scholarship": [
+    { "ref": "Reagan, Mitchell, Kiley, Danforth & Dodds, 'The emotional arcs of stories are dominated by six basic shapes', EPJ Data Science 5:31 (2016) (abstract read via arxiv.org/abs/1606.07772; full text not retrievable)", "url": "https://arxiv.org/abs/1606.07772", "supports": "that story-shape theories can be tested computationally; the authors analysed 1,327 Project Gutenberg fictions and report six core emotional arcs as building blocks", "disputes": "Their result is six computed arcs measured on word sentiment, not Vonnegut's hand-drawn set. The abstract I read does not discuss Vonnegut; I did not verify how the paper relates its six arcs to his shapes. Vonnegut himself presented the lecture playfully; whether it is a serious theory is a reading choice." }
+  ],
+  "ourUse": "vonnegut.js: a 'fortune curve' per section computed from how many new grounded claims each section carries, then classified into man-in-hole / rags-to-riches / from-bad-to-worse / flatline / mixed, with basis strings beginning 'Vonnegut:'. story-shapes.js: 27 shapes derived from the project's own 3 domains x 3 modes x 3 grains cube, with Vonnegut's eight described as the 'reader-facing subset'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "fortune-to-conviction", "kind": "reinterpreted", "ours": "The y-axis is the reader's 'conviction': the count of new material claims a section adds.", "theirs": "Per the compendium itself, Vonnegut's curve is the protagonist's fortune (good or ill) over time. A count of new grounded claims is not fortune; it is our proxy." },
+    { "id": "rags-label", "kind": "invented-attribution", "ours": "vonnegut.js prints 'Vonnegut: rags-to-riches' as the basis for a steady climb.", "theirs": "'rags-to-riches' is not among the shape names the compendium lists for Vonnegut; I could not confirm the phrase in his lecture (text not on disk). The label is at best unverified." },
+    { "id": "which-way-is-up", "kind": "reinterpreted", "ours": "'Which way is up' = no shape because the piece 'argues nothing the material supports'.", "theirs": "The compendium glosses it as 'no shape'; our reading (no grounded claims) is our test of an essay, not a statement from Vonnegut about essays." },
+    { "id": "essay-scope", "kind": "re-scoped", "ours": "Applied to the argument arc of expository essays ('the surprising thesis digs a hole').", "theirs": "The lecture is about narrative fiction and folk tales; extending it to the conviction of an essay is ours." },
+    { "id": "twenty-seven", "kind": "decorative", "ours": "Compendium role '27-operator arc, taxonomically complete'; story-shapes.js calls Vonnegut's eight a 'subset' of 27.", "theirs": "The 27 cells come from the project's cube, not from Vonnegut. Naming each cell a 'story shape' is our taxonomy; the cell names are not his and his eight are not a derived subset of it." },
+    { "id": "curve-sentence", "kind": "misstated", "ours": "Compendium work ends 'A story is a curve of fortune, not a heap of events.'", "theirs": "That sentence is ours, written in a line that reads as the author's thesis; I could not confirm it as his." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Kurt Vonnegut's lecture \"Shapes of Stories\" plots a protagonist's fortune against time and names a handful of simple story curves (copyrighted; not reproduced). vonnegut.js borrows the idea of reading a text as a curve over time; its y-axis (new grounded claims per section) and the 27-cell table are the project's own, not his.'",
+    "vonnegut.js: replace 'Vonnegut: rags-to-riches' with a project label ('steady climb') unless the lecture text confirms the name; prefix basis strings 'after Vonnegut (reader-conviction proxy):'.",
+    "story-shapes.js header: drop 'Vonnegut's eight are the reader-facing subset' unless each of the eight is shown to appear in the 27 by derivation."
+  ]
+}

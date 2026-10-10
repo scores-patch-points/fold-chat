@@ -1,0 +1,2991 @@
+{
+ "q": "Why is the sky blue?",
+ "spoken": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.",
+ "shown": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.\n\nS\nspaceplace.nasa.gov\nopen ↗\nWhy Is the Sky Blue? | NASA Space Place - NASA Science for Kids\n… Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere . …\n▶ watch\ncopy\nretry\n⋯",
+ "flagText": [],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.",
+     "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "source": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "span": {
+      "start": 227,
+      "end": 245
+     },
+     "address": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids#227-245",
+     "score": 3,
+     "window": {
+      "from": 39,
+      "to": 333
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids#227-245"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids#227-245",
+    "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+    "span": {
+     "start": 227,
+     "end": 245
+    },
+    "text": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids#227-245",
+     "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "span": {
+      "start": 227,
+      "end": 245
+     },
+     "label": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "source": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "domain": "spaceplace.nasa.gov",
+     "text": "Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere .",
+     "before": "Blue light is scattered in all directions by the tiny molecules of air in",
+     "mark": "Earth's atmosphere",
+     "after": ".",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.",
+     "grounded": true,
+     "address": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids#227-245"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "Why is the sky blue?",
+    "engine": "DuckDuckGo",
+    "n": 9,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web"
+    ],
+    "skipped": [
+     "wikipedia",
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything"
+    },
+    "webDown": false
+   },
+   {
+    "read": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "via": "the fold's relay",
+    "chars": 3185,
+    "kept": 58,
+    "hash": "6ee35267"
+   },
+   {
+    "read": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "via": "the fold's relay",
+    "chars": 5477,
+    "kept": 145,
+    "hash": "db9b0cda"
+   },
+   {
+    "read": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "via": "the fold's relay",
+    "chars": 4822,
+    "kept": 321,
+    "hash": "c9935aef"
+   },
+   {
+    "read": "https://www.britannica.com/story/why-is-the-sky-blue",
+    "via": null,
+    "ok": false
+   },
+   {
+    "read": "https://kids.nationalgeographic.com/books/article/sky",
+    "via": "the fold's relay",
+    "chars": 1685,
+    "kept": 1685,
+    "hash": "af58468c",
+    "skipped": true
+   },
+   {
+    "scope": "web",
+    "q": "sky blue sunlight scattered Earth's atmosphere.",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "via": "the fold's relay",
+    "chars": 5232,
+    "kept": 216,
+    "hash": "86ef058a",
+    "lap": 1
+   },
+   {
+    "read": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "via": "the fold's relay",
+    "chars": 3185,
+    "kept": 264,
+    "hash": "6ee35267",
+    "lap": 1
+   },
+   {
+    "read": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+    "via": "the fold's relay",
+    "chars": 3678,
+    "kept": 274,
+    "hash": "1ccdfabb",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+    "via": "the fold's relay",
+    "chars": 4382,
+    "kept": 391,
+    "hash": "9ceb4ae6",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "sky blue sunlight scattered Earth's atmosphere.",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true,
+    "lap": 2
+   },
+   {
+    "read": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "via": "the fold's relay",
+    "chars": 5232,
+    "kept": 216,
+    "hash": "86ef058a",
+    "lap": 2
+   },
+   {
+    "read": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "via": "the fold's relay",
+    "chars": 3185,
+    "kept": 264,
+    "hash": "6ee35267",
+    "lap": 2
+   },
+   {
+    "read": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+    "via": "the fold's relay",
+    "chars": 3678,
+    "kept": 274,
+    "hash": "1ccdfabb",
+    "skipped": true,
+    "lap": 2
+   },
+   {
+    "read": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+    "via": "the fold's relay",
+    "chars": 4382,
+    "kept": 391,
+    "hash": "9ceb4ae6",
+    "skipped": true,
+    "lap": 2
+   }
+  ],
+  "passages": [
+   {
+    "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+    "source": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "text": "Click above to watch this video about why the sky is blue!"
+   },
+   {
+    "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+    "source": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to.\nBut why is the sky blue?"
+   },
+   {
+    "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+    "source": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue.\nViolet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm.\nRed has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths.\nWhy Is the Sky Red at Sunrise and Sunset?"
+   },
+   {
+    "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+    "source": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+    "text": "It's easy to see that the sky is blue.\nSunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air.\nBlue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere.\nBlue is scattered more than other colors because it travels as shorter, smaller waves."
+   },
+   {
+    "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+    "source": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions.\nThat means blue light is scattered across the sky more than red light.\nFor example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night.\nIn contrast, Venus has an atmosphere 90 times denser than Earth’s.\nWe now know that Earth’s sky isn’t blue because it reflects the colour of the oceans.\nThe sea is blue because water molecules absorb light with longer wavelengths, like red and orange.\nWhen sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us.\nThat’s because oxygen 100-200 kilometres above Earth lets off green light."
+   },
+   {
+    "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+    "source": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "text": "The length of each wave results in different colors when the wave is perceived by the human eye.\nViolet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm.\nRed has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths.\nHow Scientists Discovered Why the Sky Looks Blue\nIn 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color.\nSpace is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of."
+   },
+   {
+    "ref": "kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+    "source": "https://kids.nationalgeographic.com/books/article/sky",
+    "url": "https://kids.nationalgeographic.com/books/article/sky",
+    "text": "Slowly, over the next two billion years, oxygen in the atmosphere rose to its present levels, and the sky took on the blue hue on view today.\nBlue light is scattered more because of its short, choppy wavelength, making it the color we see the most.\nAt sunrise and sunset, when the sunlight must travel though a thicker chunk of atmosphere to reach our eyes, blue light is scattered completely out of our field of vision, and we’re typically left seeing brilliant red and orange colors.\nText adapted from the Nat Geo Kids book Why Not?, by Chrispin Boyer, boy running photograph by Juice Images Ltd / Getty"
+   },
+   {
+    "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+    "source": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions.\nBlue light is scattered more than other colors because it travels as shorter, smaller waves.\nThis is why we see a blue sky most of the time."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 1,
+      "contested": 0,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 0,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.",
+       "verdict": "weak",
+       "op": "INS",
+       "why": "close, but a figure or name is missing — a sentence that states all of it",
+       "query": "sky blue sunlight scattered Earth's atmosphere.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 1,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+       "kept": 330,
+       "chars": 3185,
+       "segments": 4,
+       "recalled": 35
+      },
+      {
+       "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+       "kept": 785,
+       "chars": 5477,
+       "segments": 8,
+       "recalled": 41
+      },
+      {
+       "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+       "kept": 665,
+       "chars": 4822,
+       "segments": 6,
+       "recalled": 32
+      },
+      {
+       "url": "https://kids.nationalgeographic.com/books/article/sky",
+       "kept": 602,
+       "chars": 1685,
+       "segments": 4,
+       "recalled": 11
+      }
+     ]
+    },
+    {
+     "lap": 2,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 0,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The sky is blue because of how sunlight is scattered by the Earth's atmosphere.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "sky blue sunlight scattered Earth's atmosphere.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 0,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+       "kept": 330,
+       "chars": 3185,
+       "segments": 4,
+       "recalled": 35
+      },
+      {
+       "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+       "kept": 785,
+       "chars": 5477,
+       "segments": 8,
+       "recalled": 41
+      },
+      {
+       "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+       "kept": 665,
+       "chars": 4822,
+       "segments": 6,
+       "recalled": 32
+      },
+      {
+       "url": "https://kids.nationalgeographic.com/books/article/sky",
+       "kept": 602,
+       "chars": 1685,
+       "segments": 4,
+       "recalled": 11
+      },
+      {
+       "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+       "kept": 584,
+       "chars": 5232,
+       "segments": 6,
+       "recalled": 42
+      },
+      {
+       "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+       "kept": 315,
+       "chars": 3678,
+       "segments": 4,
+       "recalled": 20
+      },
+      {
+       "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+       "kept": 387,
+       "chars": 4382,
+       "segments": 3,
+       "recalled": 20
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 0,
+    "weak": 0,
+    "contested": 1,
+    "unsupported": 0,
+    "backed": 0,
+    "swapsArmed": 0,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 15 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 739,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 605,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 520,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 328,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 137,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 15,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "Why is the sky blue?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 8
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “Why is the sky blue?”",
+    "at": 29
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Why is the sky blue?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 32,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 32
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:Why is the sky blue?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6040
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Why is the sky blue?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "9 results via DuckDuckGo",
+    "ms": 6076,
+    "at": 6108
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6108
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 6110
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+    "title": "Reading spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for…",
+    "tone": "run",
+    "at": 6118,
+    "slowAfter": 5000,
+    "slow": "waiting on spaceplace.nasa.gov (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 6118
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "title": "Reading bbc.co.uk — Why is the sky blue? And why it changes colour at sunset -…",
+    "tone": "run",
+    "at": 6122,
+    "slowAfter": 5000,
+    "slow": "waiting on bbc.co.uk (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6122
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "title": "Reading mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+    "tone": "run",
+    "at": 6123,
+    "slowAfter": 5000,
+    "slow": "waiting on mentalfloss.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6123
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+    "title": "Read bbc.co.uk — Why is the sky blue? And why it changes colour at sunset -…",
+    "tone": "ok",
+    "note": "kept 145 of 5,477 chars",
+    "ms": 6001,
+    "at": 12123
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12123
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.britannica.com/story/why-is-the-sky-blue",
+    "title": "Reading britannica.com — Why Is the Sky Blue? | Britannica",
+    "tone": "run",
+    "at": 12125,
+    "slowAfter": 5000,
+    "slow": "waiting on britannica.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12125
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+    "title": "Read mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+    "tone": "ok",
+    "note": "kept 321 of 4,822 chars",
+    "ms": 6042,
+    "at": 12165
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12165
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://kids.nationalgeographic.com/books/article/sky",
+    "title": "Reading kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+    "tone": "run",
+    "at": 12168,
+    "slowAfter": 5000,
+    "slow": "waiting on kids.nationalgeographic.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12168
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+    "title": "Read spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for…",
+    "tone": "ok",
+    "note": "kept 58 of 3,185 chars",
+    "ms": 6161,
+    "at": 12279
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12279
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://kids.nationalgeographic.com/books/article/sky",
+    "title": "Read kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+    "tone": "ok",
+    "note": "1,685 chars",
+    "ms": 6962,
+    "at": 19130
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 19130
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.britannica.com/story/why-is-the-sky-blue",
+    "title": "Could not read britannica.com",
+    "tone": "bad",
+    "note": "no text came back",
+    "ms": 12386,
+    "at": 24511
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 24511
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 24534,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 24534
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 26397
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "19 tokens",
+    "ms": 3584,
+    "at": 28118
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 28118
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 28122
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 weak — going back to search",
+    "at": 28169
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 4 new impressions",
+    "tone": "ok",
+    "note": "4 sentence(s) recalled from spaceplace.nasa.gov · 8 sentence(s) recalled from bbc.co.uk · 6 sentence(s) recalled from mentalfloss.com · 4 sentence(s) recalled from kids.nationalgeo",
+    "at": 28205
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 28217,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 28217
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 1486,
+    "at": 29703
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 29703
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "title": "Reading NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+    "tone": "run",
+    "at": 29709,
+    "slowAfter": 5000,
+    "slow": "waiting on NOAA NESDIS (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 29709
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+    "title": "Reading NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+    "tone": "run",
+    "at": 29711,
+    "slowAfter": 5000,
+    "slow": "waiting on NASA Space Place (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 29711
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+    "title": "Reading Center for Science Education — The Appearance of the Sky | Center for Science Education",
+    "tone": "run",
+    "at": 29713,
+    "slowAfter": 5000,
+    "slow": "waiting on Center for Science Education (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 29713
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+    "title": "Read NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+    "tone": "ok",
+    "note": "kept 264 of 3,185 chars",
+    "ms": 7,
+    "at": 29718
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 29718
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+    "title": "Reading HyperPhysics — Blue Sky and Rayleigh Scattering",
+    "tone": "run",
+    "at": 29719,
+    "slowAfter": 5000,
+    "slow": "waiting on HyperPhysics (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 29719
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+    "title": "Read HyperPhysics — Blue Sky and Rayleigh Scattering",
+    "tone": "ok",
+    "note": "kept 391 of 4,382 chars",
+    "ms": 5335,
+    "at": 35054
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 35054
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "title": "Read NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+    "tone": "ok",
+    "note": "kept 216 of 5,232 chars",
+    "ms": 6213,
+    "at": 35922
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 35922
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+    "title": "Read Center for Science Education — The Appearance of the Sky | Center for Science Education",
+    "tone": "ok",
+    "note": "kept 274 of 3,678 chars",
+    "ms": 6288,
+    "at": 36001
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 36001
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read 1 more source",
+    "tone": "ok",
+    "note": "“sky blue sunlight scattered Earth's atmosphere.”",
+    "at": 36016
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 2: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 39853
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 48 s · read 15 sources · gemma2:2b",
+    "at": 47641,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.003,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.004,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “Why is the sky blue?”"
+    }
+   },
+   {
+    "at": 0.007,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Why is the sky blue?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Why is the sky blue?"
+    }
+   },
+   {
+    "at": 6.014,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:Why is the sky blue?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.015,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.082,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Why is the sky blue?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "9 results via DuckDuckGo",
+     "ms": 6076
+    }
+   },
+   {
+    "at": 6.083,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.083,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Why is the sky blue?",
+     "n": 9
+    }
+   },
+   {
+    "at": 6.085,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 6.085,
+    "seq": 12,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 6.093,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Reading spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.094,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 6.094,
+    "seq": 15,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "spaceplace.nasa.gov",
+     "title": "Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids"
+    }
+   },
+   {
+    "at": 6.097,
+    "seq": 16,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+     "title": "Reading bbc.co.uk — Why is the sky blue? And why it changes colour at sunset -…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.097,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.097,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+     "site": "bbc.co.uk",
+     "title": "Why is the sky blue? And why it changes colour at sunset - BBC"
+    }
+   },
+   {
+    "at": 6.098,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+     "title": "Reading mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.098,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.098,
+    "seq": 21,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+     "site": "mentalfloss.com",
+     "title": "Why Is the Sky Blue? - Mental Floss"
+    }
+   },
+   {
+    "at": 12.098,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+     "title": "Read bbc.co.uk — Why is the sky blue? And why it changes colour at sunset -…",
+     "tone": "ok",
+     "note": "kept 145 of 5,477 chars",
+     "ms": 6001
+    }
+   },
+   {
+    "at": 12.098,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.098,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs",
+     "site": "bbc.co.uk",
+     "title": "Why is the sky blue? And why it changes colour at sunset - BBC",
+     "chars": 5477,
+     "kept": 145,
+     "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue? It’s a question you’ve probably heard before – you may even have asked it yourself. Common explanations include that the sky reflects the colour of the ocean, or that oxygen is a blue gas. If you’ve always wanted to impress everyone around you with the correct answer to this question, look no further! Here, BBC Bitesize takes you through it step by step, as well as some other cool facts about the solar system you might not know. You might already know that the Sun gives off light in all the colours of the rainbow, even though it looks white to our eyes. Sir Isaac Newton proved this in a famous experiment when he shone sunlight through a glass prism, which separated out all these colours. The colours in sunlight all have different wavelengths – the distance between the peaks of two light waves. Violet and blue have the shortest wavelengths and red has the longest. When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. The shorter the wavelength, the more it is scattered. That means blue light is scattered across the sky more than red light. But in that case, why isn’t the sky violet? Violet does have shorter wavelengths than blue. But more of the light that "
+    }
+   },
+   {
+    "at": 12.104,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.britannica.com/story/why-is-the-sky-blue",
+     "title": "Reading britannica.com — Why Is the Sky Blue? | Britannica",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.105,
+    "seq": 26,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.105,
+    "seq": 27,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.britannica.com/story/why-is-the-sky-blue",
+     "site": "britannica.com",
+     "title": "Why Is the Sky Blue? | Britannica"
+    }
+   },
+   {
+    "at": 12.14,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+     "title": "Read mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+     "tone": "ok",
+     "note": "kept 321 of 4,822 chars",
+     "ms": 6042
+    }
+   },
+   {
+    "at": 12.142,
+    "seq": 29,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.142,
+    "seq": 30,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue",
+     "site": "mentalfloss.com",
+     "title": "Why Is the Sky Blue? - Mental Floss",
+     "chars": 4822,
+     "kept": 321,
+     "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Perhaps there have been some days when the sky has been other colors, like snowstorms when the world above looked steely and grey, or if you’ve ever been present for a volcanic eruption or wildfire that tinted the sky an ominous orange. Most of the time, though, a blue sky above has been one of the most reliably shared experiences among humans on Earth. Since time immemorial, we’ve looked up and seen various shades of blue when the sun is out. Also, most likely since time immemorial, kids have been asking why this is. The answer is actually a bit complicated, so don’t worry if you are an adult who has lived your life aware of the reason behind our sky’s azure appearance! It turns out that our sky’s shade has to do with the fact that blue and violet light wavelengths scatter more frequently than any other wavelengths when they interact with molecules in our atmosphere. To unpack that sentence, we’ll need to go into some basic physics. Light, in short, produces energy that moves in waves. Each of these waves is a different size depending on the type of energy, and that size is referred to as a wavelength, which is measured in nanometers. The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed b"
+    }
+   },
+   {
+    "at": 12.143,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://kids.nationalgeographic.com/books/article/sky",
+     "title": "Reading kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.144,
+    "seq": 32,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.144,
+    "seq": 33,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://kids.nationalgeographic.com/books/article/sky",
+     "site": "kids.nationalgeographic.com",
+     "title": "Why is the sky blue? - National Geographic Kids"
+    }
+   },
+   {
+    "at": 12.254,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Read spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for…",
+     "tone": "ok",
+     "note": "kept 58 of 3,185 chars",
+     "ms": 6161
+    }
+   },
+   {
+    "at": 12.255,
+    "seq": 35,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.256,
+    "seq": 36,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "spaceplace.nasa.gov",
+     "title": "Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "chars": 3185,
+     "kept": 58,
+     "text": "Click above to watch this video about why the sky is blue! Voiceover provided by NASA scientist Dr. Moogega Stricker. Click here to download this video (1920x1080, 87 MB, video/mp4). It's easy to see that the sky is blue. Have you ever wondered why? A lot of other smart people have, too. And it took a long time to figure it out! The light from the Sun looks white. But it is really made up of all the colors of the rainbow. When white light shines through a prism, the light is separated into all its colors. A prism is a specially shaped crystal. If you visited The Land of the Magic Windows, you learned that the light you see is just one tiny bit of all the kinds of light energy beaming around the universe--and around you! Like energy passing through the ocean, light energy travels in waves, too. Some light travels in short, \"choppy\" waves. Other light travels in long, lazy waves. Blue light waves are shorter than red light waves. All light travels in a straight line unless something gets in the way and does one of these things:— or scatter it (like molecules of the gases in the atmosphere) or scatter it (like molecules of the gases in the atmosphere) Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more th"
+    }
+   },
+   {
+    "at": 19.105,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://kids.nationalgeographic.com/books/article/sky",
+     "title": "Read kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+     "tone": "ok",
+     "note": "1,685 chars",
+     "ms": 6962
+    }
+   },
+   {
+    "at": 19.106,
+    "seq": 38,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 19.106,
+    "seq": 39,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://kids.nationalgeographic.com/books/article/sky",
+     "site": "kids.nationalgeographic.com",
+     "title": "Why is the sky blue? - National Geographic Kids",
+     "chars": 1685,
+     "kept": 1685,
+     "text": "Actually, the sky was orange until about 2.5 billion years ago, but if you jumped back in time to see it, you’d double over in a coughing fit. Way back then, the air was a toxic fog of vicious vapors: carbon monoxide, carbon dioxide, nitrogen, cyanide, and methane. This last gas gave the sky an orange tint and the land a strange glow. But then something happened that would change the sky—and the planet—forever. Blue-green microbes called cyanobacteria formed in the ocean that were capable of a special trick that transformed the planet: photosynthesis. Later used by plants, this natural process converts sunlight and carbon dioxide into energy, creating oxygen as a by-product. Fed by nutrients in the sea and powered by the sun, cyanobacteria exploded across the ocean, pumping more and more oxygen into Earth’s atmosphere. Slowly, over the next two billion years, oxygen in the atmosphere rose to its present levels, and the sky took on the blue hue on view today. The light shining from the sun is made of all the colors of the rainbow, and each color travels on its own special type of wave, called its wavelength. When light hits the air molecules in our atmosphere, its colors are scattered in all directions. Blue light is scattered more because of its short, choppy wavelength, making it the color we see the most. At sunrise and sunset, when the sunlight must travel though a thicker c"
+    }
+   },
+   {
+    "at": 24.485,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.britannica.com/story/why-is-the-sky-blue",
+     "title": "Could not read britannica.com",
+     "tone": "bad",
+     "note": "no text came back",
+     "ms": 12386
+    }
+   },
+   {
+    "at": 24.486,
+    "seq": 41,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 24.487,
+    "seq": 42,
+    "kind": "st",
+    "st": {
+     "phase": "unread",
+     "url": "https://www.britannica.com/story/why-is-the-sky-blue",
+     "site": "britannica.com",
+     "title": "Why Is the Sky Blue? | Britannica",
+     "chars": 0,
+     "kept": 0,
+     "text": ""
+    }
+   },
+   {
+    "at": 24.5,
+    "seq": 43,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "Click above to watch this video about why the sky is blue!",
+     "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+    }
+   },
+   {
+    "at": 24.51,
+    "seq": 52,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 24.511,
+    "seq": 53,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 25.4,
+    "seq": 44,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+     "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+     "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+    }
+   },
+   {
+    "at": 26.3,
+    "seq": 45,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+     "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+     "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+    }
+   },
+   {
+    "at": 26.372,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 27.2,
+    "seq": 46,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "Click above to watch this video about why the sky is blue!",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 28.092,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "19 tokens",
+     "ms": 3584
+    }
+   },
+   {
+    "at": 28.095,
+    "seq": 56,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 28.098,
+    "seq": 57,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 28.146,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 weak — going back to search"
+    }
+   },
+   {
+    "at": 28.181,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 4 new impressions",
+     "tone": "ok",
+     "note": "4 sentence(s) recalled from spaceplace.nasa.gov · 8 sentence(s) recalled from bbc.co.uk · 6 sentence(s) recalled from mentalfloss.com · 4 sentence(s) recalled from kids.nationalgeo"
+    }
+   },
+   {
+    "at": 28.194,
+    "seq": 69,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 28.196,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 28.197,
+    "seq": 71,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "sky blue sunlight scattered Earth's atmosphere."
+    }
+   },
+   {
+    "at": 29,
+    "seq": 47,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "Click above to watch this video about why the sky is blue!",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 29.677,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 1486
+    }
+   },
+   {
+    "at": 29.678,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 29.679,
+    "seq": 74,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "sky blue sunlight scattered Earth's atmosphere.",
+     "n": 20
+    }
+   },
+   {
+    "at": 29.683,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "title": "Reading NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 29.684,
+    "seq": 76,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 29.684,
+    "seq": 77,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "site": "NOAA NESDIS",
+     "title": "Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service"
+    }
+   },
+   {
+    "at": 29.686,
+    "seq": 78,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Reading NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 29.686,
+    "seq": 79,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 29.686,
+    "seq": 80,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "NASA Space Place",
+     "title": "Why Is the Sky Blue? | NASA Space Place – NASA Science for Kids"
+    }
+   },
+   {
+    "at": 29.687,
+    "seq": 81,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "title": "Reading Center for Science Education — The Appearance of the Sky | Center for Science Education",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 29.688,
+    "seq": 82,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 29.688,
+    "seq": 83,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "site": "Center for Science Education",
+     "title": "The Appearance of the Sky | Center for Science Education"
+    }
+   },
+   {
+    "at": 29.693,
+    "seq": 84,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Read NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+     "tone": "ok",
+     "note": "kept 264 of 3,185 chars",
+     "ms": 7
+    }
+   },
+   {
+    "at": 29.693,
+    "seq": 85,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 29.693,
+    "seq": 86,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "NASA Space Place",
+     "title": "Why Is the Sky Blue? | NASA Space Place – NASA Science for Kids",
+     "chars": 3185,
+     "kept": 264,
+     "text": "Click above to watch this video about why the sky is blue! Voiceover provided by NASA scientist Dr. Moogega Stricker. Click here to download this video (1920x1080, 87 MB, video/mp4). It's easy to see that the sky is blue. Have you ever wondered why? A lot of other smart people have, too. And it took a long time to figure it out! The light from the Sun looks white. But it is really made up of all the colors of the rainbow. When white light shines through a prism, the light is separated into all its colors. A prism is a specially shaped crystal. If you visited The Land of the Magic Windows, you learned that the light you see is just one tiny bit of all the kinds of light energy beaming around the universe--and around you! Like energy passing through the ocean, light energy travels in waves, too. Some light travels in short, \"choppy\" waves. Other light travels in long, lazy waves. Blue light waves are shorter than red light waves. All light travels in a straight line unless something gets in the way and does one of these things:— or scatter it (like molecules of the gases in the atmosphere) or scatter it (like molecules of the gases in the atmosphere) Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more th"
+    }
+   },
+   {
+    "at": 29.694,
+    "seq": 87,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "title": "Reading HyperPhysics — Blue Sky and Rayleigh Scattering",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 29.694,
+    "seq": 88,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 29.694,
+    "seq": 89,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "site": "HyperPhysics",
+     "title": "Blue Sky and Rayleigh Scattering"
+    }
+   },
+   {
+    "at": 31,
+    "seq": 48,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "Click above to watch this video about why the sky is blue!",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 33.2,
+    "seq": 49,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "Click above to watch this video about why the sky is blue!",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 35.028,
+    "seq": 90,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "title": "Read HyperPhysics — Blue Sky and Rayleigh Scattering",
+     "tone": "ok",
+     "note": "kept 391 of 4,382 chars",
+     "ms": 5335
+    }
+   },
+   {
+    "at": 35.029,
+    "seq": 91,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 35.029,
+    "seq": 92,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "site": "HyperPhysics",
+     "title": "Blue Sky and Rayleigh Scattering",
+     "chars": 4382,
+     "kept": 391,
+     "text": "The blue color of the sky is caused by the scattering of sunlight off the molecules of the atmosphere. This scattering, called Rayleigh scattering , is more effective at short wavelengths (the blue end of the visible spectrum ). Therefore the light scattered down to the earth at a large angle with respect to the direction of the sun's light is predominantly in the blue end of the spectrum. Clouds in contrast to the blue sky appear white to achromatic gray. The water droplets that make up the cloud are much larger than the molecules of the air and the scattering from them is almost independent of wavelength in the visible range. This is an outstanding image of the blue sky and its extent relative to the diameter of the Earth. It was taken from a U.S. Air Force U-2 craft at about 70,000 feet. Index Scattering concepts Atmospheric optics concepts Go Back Rayleigh Scattering Rayleigh scattering refers to the scattering of light off of the molecules of the air, and can be extended to scattering from particles up to about a tenth of the wavelength of the light. It is Rayleigh scattering off the molecules of the air which gives us the blue sky . Lord Rayleigh calculated the scattered intensity from dipole scatterers much smaller than the wavelength to be: Rayleigh scattering can be considered to be elastic scattering since the photon energies of the scattered photons is not changed. S"
+    }
+   },
+   {
+    "at": 35.897,
+    "seq": 93,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "title": "Read NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+     "tone": "ok",
+     "note": "kept 216 of 5,232 chars",
+     "ms": 6213
+    }
+   },
+   {
+    "at": 35.897,
+    "seq": 94,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 35.897,
+    "seq": 95,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "site": "NOAA NESDIS",
+     "title": "Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+     "chars": 5232,
+     "kept": 216,
+     "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time. Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time. Like most curious people, you have probably asked at some time, “Why is the sky blue?” Or if you saw a beautiful sunset or sunrise, you might have asked, “Why is the sky red?” It’s so obvious that the sky is blue, you might think the reasons would be just as obvious. They aren’t! Of all the colors of the rainbow, why blue? Couldn’t the sky just as easily be green? Or yellow? When we see a rainbow, we do see green and yellow in the sky, as well as blue, violet, orange, yellow, red, and everything in between. The white light coming from the Sun is really made up of all the colors of the rainbow. We see all those colors when we look at rainbows. Raindrops act as tiny prisms when lit by the Sun, bending light and separating it into its different colors. But why are there different colors? The light you see is just one tiny bit of all the kinds of light energy beaming around the Universe - and around you! Like energy passing through the ocean, light ene"
+    }
+   },
+   {
+    "at": 35.975,
+    "seq": 96,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "title": "Read Center for Science Education — The Appearance of the Sky | Center for Science Education",
+     "tone": "ok",
+     "note": "kept 274 of 3,678 chars",
+     "ms": 6288
+    }
+   },
+   {
+    "at": 35.975,
+    "seq": 97,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 35.975,
+    "seq": 98,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "site": "Center for Science Education",
+     "title": "The Appearance of the Sky | Center for Science Education",
+     "chars": 3678,
+     "kept": 274,
+     "text": "The colors we see in the sky come from sunlight that is scattered by molecules in the atmosphere. This process is called Rayleigh scattering. Nitrogen and oxygen make up most of the molecules in our atmosphere, but any gas or aerosol suspended in the air will scatter rays of sunlight into separate wavelengths of light. Consequently, when there are more aerosols in the atmosphere, more sunlight is scattered, resulting in more colorful skies. Sunlight is made up of all the colors of light. It appears as white light when all the colors are together. Sunlight travels as waves of energy, and different colors of light have different wavelengths. Red light has long wavelengths, while blue light has short wavelengths. Light bounces off of air molecules in the Earth's atmosphere, scattering in all directions. Blue light is scattered more than other colors of light because of its shorter, smaller waves. Because blue light is scattered more than other colors of light, the sky appears blue. Rainbows result from light that scatters inside of water droplets. This is why you only see rainbows after it has rained, when there is water in the atmosphere and the Sun is shining. Sunlight enters a rain droplet and refracts, or bends, as it travels through the droplet. Shorter wavelengths of light bend more than longer wavelengths of light, causing the sunlight to separate into the full spectrum of "
+    }
+   },
+   {
+    "at": 35.991,
+    "seq": 105,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read 1 more source",
+     "tone": "ok",
+     "note": "“sky blue sunlight scattered Earth's atmosphere.”"
+    }
+   },
+   {
+    "at": 36,
+    "seq": 50,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "Click above to watch this video about why the sky is blue!",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "A blue sky is a sign of good weather and can even boost our mood – although we might not see it as often as we’d like to. But why is the sky blue?",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "Almost every day of your life, you’ve probably looked up at the sky and seen the color blue. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. Why Is the Sky Red at Sunrise and Sunset?",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 38.2,
+    "seq": 51,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 39,
+    "seq": 59,
+    "kind": "quick",
+    "n": 1,
+    "of": 4,
+    "p": {
+     "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+     "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+    }
+   },
+   {
+    "at": 39.827,
+    "seq": 106,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 2: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 39.881,
+    "seq": 119,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 7 new impressions",
+     "tone": "ok",
+     "note": "4 sentence(s) recalled from spaceplace.nasa.gov · 8 sentence(s) recalled from bbc.co.uk · 6 sentence(s) recalled from mentalfloss.com · 4 sentence(s) recalled from kids.nationalgeo"
+    }
+   },
+   {
+    "at": 39.893,
+    "seq": 120,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 39.894,
+    "seq": 121,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 39.895,
+    "seq": 122,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "sky blue sunlight scattered Earth's atmosphere."
+    }
+   },
+   {
+    "at": 39.9,
+    "seq": 60,
+    "kind": "quick",
+    "n": 2,
+    "of": 4,
+    "p": {
+     "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+     "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+     "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+    }
+   },
+   {
+    "at": 40.8,
+    "seq": 61,
+    "kind": "quick",
+    "n": 3,
+    "of": 4,
+    "p": {
+     "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+     "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+     "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+    }
+   },
+   {
+    "at": 40.829,
+    "seq": 123,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:sky blue sunlight scattered Earth's atmosphere.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 937
+    }
+   },
+   {
+    "at": 40.831,
+    "seq": 124,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 40.831,
+    "seq": 125,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "sky blue sunlight scattered Earth's atmosphere.",
+     "n": 20
+    }
+   },
+   {
+    "at": 40.836,
+    "seq": 126,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "title": "Reading NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 40.837,
+    "seq": 127,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 40.837,
+    "seq": 128,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "site": "NOAA NESDIS",
+     "title": "Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service"
+    }
+   },
+   {
+    "at": 40.838,
+    "seq": 129,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Reading NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 40.838,
+    "seq": 130,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 40.838,
+    "seq": 131,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "NASA Space Place",
+     "title": "Why Is the Sky Blue? | NASA Space Place – NASA Science for Kids"
+    }
+   },
+   {
+    "at": 40.839,
+    "seq": 132,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "title": "Reading Center for Science Education — The Appearance of the Sky | Center for Science Education",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 40.84,
+    "seq": 133,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 40.84,
+    "seq": 134,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "site": "Center for Science Education",
+     "title": "The Appearance of the Sky | Center for Science Education"
+    }
+   },
+   {
+    "at": 40.846,
+    "seq": 135,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "title": "Read NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Sate…",
+     "tone": "ok",
+     "note": "kept 216 of 5,232 chars",
+     "ms": 10
+    }
+   },
+   {
+    "at": 40.846,
+    "seq": 136,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 40.846,
+    "seq": 137,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+     "site": "NOAA NESDIS",
+     "title": "Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+     "chars": 5232,
+     "kept": 216,
+     "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time. Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time. Like most curious people, you have probably asked at some time, “Why is the sky blue?” Or if you saw a beautiful sunset or sunrise, you might have asked, “Why is the sky red?” It’s so obvious that the sky is blue, you might think the reasons would be just as obvious. They aren’t! Of all the colors of the rainbow, why blue? Couldn’t the sky just as easily be green? Or yellow? When we see a rainbow, we do see green and yellow in the sky, as well as blue, violet, orange, yellow, red, and everything in between. The white light coming from the Sun is really made up of all the colors of the rainbow. We see all those colors when we look at rainbows. Raindrops act as tiny prisms when lit by the Sun, bending light and separating it into its different colors. But why are there different colors? The light you see is just one tiny bit of all the kinds of light energy beaming around the Universe - and around you! Like energy passing through the ocean, light ene"
+    }
+   },
+   {
+    "at": 40.847,
+    "seq": 138,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "title": "Reading HyperPhysics — Blue Sky and Rayleigh Scattering",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 40.847,
+    "seq": 139,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 40.847,
+    "seq": 140,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "site": "HyperPhysics",
+     "title": "Blue Sky and Rayleigh Scattering"
+    }
+   },
+   {
+    "at": 40.852,
+    "seq": 141,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://spaceplace.nasa.gov/blue-sky/en/",
+     "title": "Read NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for…",
+     "tone": "ok",
+     "note": "kept 264 of 3,185 chars",
+     "ms": 13
+    }
+   },
+   {
+    "at": 40.852,
+    "seq": 142,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 40.852,
+    "seq": 143,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/",
+     "site": "NASA Space Place",
+     "title": "Why Is the Sky Blue? | NASA Space Place – NASA Science for Kids",
+     "chars": 3185,
+     "kept": 264,
+     "text": "Click above to watch this video about why the sky is blue! Voiceover provided by NASA scientist Dr. Moogega Stricker. Click here to download this video (1920x1080, 87 MB, video/mp4). It's easy to see that the sky is blue. Have you ever wondered why? A lot of other smart people have, too. And it took a long time to figure it out! The light from the Sun looks white. But it is really made up of all the colors of the rainbow. When white light shines through a prism, the light is separated into all its colors. A prism is a specially shaped crystal. If you visited The Land of the Magic Windows, you learned that the light you see is just one tiny bit of all the kinds of light energy beaming around the universe--and around you! Like energy passing through the ocean, light energy travels in waves, too. Some light travels in short, \"choppy\" waves. Other light travels in long, lazy waves. Blue light waves are shorter than red light waves. All light travels in a straight line unless something gets in the way and does one of these things:— or scatter it (like molecules of the gases in the atmosphere) or scatter it (like molecules of the gases in the atmosphere) Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more th"
+    }
+   },
+   {
+    "at": 40.858,
+    "seq": 144,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "title": "Read Center for Science Education — The Appearance of the Sky | Center for Science Education",
+     "tone": "ok",
+     "note": "kept 274 of 3,678 chars",
+     "ms": 18
+    }
+   },
+   {
+    "at": 40.859,
+    "seq": 145,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 40.859,
+    "seq": 146,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky",
+     "site": "Center for Science Education",
+     "title": "The Appearance of the Sky | Center for Science Education",
+     "chars": 3678,
+     "kept": 274,
+     "text": "The colors we see in the sky come from sunlight that is scattered by molecules in the atmosphere. This process is called Rayleigh scattering. Nitrogen and oxygen make up most of the molecules in our atmosphere, but any gas or aerosol suspended in the air will scatter rays of sunlight into separate wavelengths of light. Consequently, when there are more aerosols in the atmosphere, more sunlight is scattered, resulting in more colorful skies. Sunlight is made up of all the colors of light. It appears as white light when all the colors are together. Sunlight travels as waves of energy, and different colors of light have different wavelengths. Red light has long wavelengths, while blue light has short wavelengths. Light bounces off of air molecules in the Earth's atmosphere, scattering in all directions. Blue light is scattered more than other colors of light because of its shorter, smaller waves. Because blue light is scattered more than other colors of light, the sky appears blue. Rainbows result from light that scatters inside of water droplets. This is why you only see rainbows after it has rained, when there is water in the atmosphere and the Sun is shining. Sunlight enters a rain droplet and refracts, or bends, as it travels through the droplet. Shorter wavelengths of light bend more than longer wavelengths of light, causing the sunlight to separate into the full spectrum of "
+    }
+   },
+   {
+    "at": 40.863,
+    "seq": 147,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "title": "Read HyperPhysics — Blue Sky and Rayleigh Scattering",
+     "tone": "ok",
+     "note": "kept 391 of 4,382 chars",
+     "ms": 16
+    }
+   },
+   {
+    "at": 40.863,
+    "seq": 148,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 40.863,
+    "seq": 149,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html",
+     "site": "HyperPhysics",
+     "title": "Blue Sky and Rayleigh Scattering",
+     "chars": 4382,
+     "kept": 391,
+     "text": "The blue color of the sky is caused by the scattering of sunlight off the molecules of the atmosphere. This scattering, called Rayleigh scattering , is more effective at short wavelengths (the blue end of the visible spectrum ). Therefore the light scattered down to the earth at a large angle with respect to the direction of the sun's light is predominantly in the blue end of the spectrum. Clouds in contrast to the blue sky appear white to achromatic gray. The water droplets that make up the cloud are much larger than the molecules of the air and the scattering from them is almost independent of wavelength in the visible range. This is an outstanding image of the blue sky and its extent relative to the diameter of the Earth. It was taken from a U.S. Air Force U-2 craft at about 70,000 feet. Index Scattering concepts Atmospheric optics concepts Go Back Rayleigh Scattering Rayleigh scattering refers to the scattering of light off of the molecules of the air, and can be extended to scattering from particles up to about a tenth of the wavelength of the light. It is Rayleigh scattering off the molecules of the air which gives us the blue sky . Lord Rayleigh calculated the scattered intensity from dipole scatterers much smaller than the wavelength to be: Rayleigh scattering can be considered to be elastic scattering since the photon energies of the scattered photons is not changed. S"
+    }
+   },
+   {
+    "at": 40.879,
+    "seq": 150,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found nothing new",
+     "tone": "info",
+     "note": "“sky blue sunlight scattered Earth's atmosphere.”"
+    }
+   },
+   {
+    "at": 41.7,
+    "seq": 62,
+    "kind": "quick",
+    "n": 4,
+    "of": 4,
+    "p": {
+     "text": "Slowly, over the next two billion years, oxygen in the atmosphere rose to its present levels, and the sky took on the blue hue on view today. Blue light is scattered more because of its short, choppy wavelength, making it the color we see the most. At sunrise and sunset, when the sunlight must travel though a thicker chunk of atmosphere to reach our eyes, blue light is scattered completely out of our field of vision, and we’re typically left seeing brilliant red and orange colors. Text adapted from the Nat Geo Kids book Why Not?, by Chrispin Boyer, boy running photograph by Juice Images Ltd / Getty",
+     "ref": "kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+     "url": "https://kids.nationalgeographic.com/books/article/sky"
+    }
+   },
+   {
+    "at": 42.6,
+    "seq": 63,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 44.372,
+    "seq": 151,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 44.376,
+    "seq": 152,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 44.4,
+    "seq": 64,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 46.4,
+    "seq": 65,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 47.553,
+    "seq": 153,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · spaceplace.nasa.gov · 2 model calls"
+    }
+   },
+   {
+    "at": 47.613,
+    "seq": 154,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 47.617,
+    "seq": 155,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 48 s · read 15 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 48.6,
+    "seq": 66,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 51.4,
+    "seq": 67,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 53.6,
+    "seq": 99,
+    "kind": "quick",
+    "n": 1,
+    "of": 1,
+    "p": {
+     "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+     "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+    }
+   },
+   {
+    "at": 54.5,
+    "seq": 100,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_29e701",
+    "ps": [
+     {
+      "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+      "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+      "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 56.3,
+    "seq": 101,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_29e701",
+    "ps": [
+     {
+      "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+      "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+      "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 58.3,
+    "seq": 102,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_29e701",
+    "ps": [
+     {
+      "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+      "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+      "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 60.5,
+    "seq": 103,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_29e701",
+    "ps": [
+     {
+      "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+      "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+      "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 63.3,
+    "seq": 104,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_29e701",
+    "ps": [
+     {
+      "text": "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time.",
+      "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+      "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 65.5,
+    "seq": 107,
+    "kind": "quick",
+    "n": 1,
+    "of": 7,
+    "p": {
+     "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+     "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+     "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+    }
+   },
+   {
+    "at": 66.4,
+    "seq": 108,
+    "kind": "quick",
+    "n": 2,
+    "of": 7,
+    "p": {
+     "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+     "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+     "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+    }
+   },
+   {
+    "at": 67.3,
+    "seq": 109,
+    "kind": "quick",
+    "n": 3,
+    "of": 7,
+    "p": {
+     "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+     "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+     "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+    }
+   },
+   {
+    "at": 68.201,
+    "seq": 110,
+    "kind": "quick",
+    "n": 4,
+    "of": 7,
+    "p": {
+     "text": "Slowly, over the next two billion years, oxygen in the atmosphere rose to its present levels, and the sky took on the blue hue on view today. Blue light is scattered more because of its short, choppy wavelength, making it the color we see the most. At sunrise and sunset, when the sunlight must travel though a thicker chunk of atmosphere to reach our eyes, blue light is scattered completely out of our field of vision, and we’re typically left seeing brilliant red and orange colors. Text adapted from the Nat Geo Kids book Why Not?, by Chrispin Boyer, boy running photograph by Juice Images Ltd / Getty",
+     "ref": "kids.nationalgeographic.com — Why is the sky blue? - National Geographic Kids",
+     "url": "https://kids.nationalgeographic.com/books/article/sky"
+    }
+   },
+   {
+    "at": 69.101,
+    "seq": 111,
+    "kind": "quick",
+    "n": 5,
+    "of": 7,
+    "p": {
+     "text": "Blue light is scattered more than other colors because it travels as shorter, smaller waves. This is why we see a blue sky most of the time. Gases and particles in Earth's atmosphere scatter sunlight in all directions. A red light wave is about 750 nanometers, while a blue or violet wave is about 400 nanometers. A human hair is about 50,000 nanometers thick! Our climate is affected by how sunlight is scattered, reflected back to space, or absorbed by forests, deserts, snow- and ice-covered surfaces, different types of clouds, smoke from forest fires, and other pollutants in the air.",
+     "ref": "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service",
+     "url": "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue"
+    }
+   },
+   {
+    "at": 70.001,
+    "seq": 112,
+    "kind": "quick",
+    "n": 6,
+    "of": 7,
+    "p": {
+     "text": "The colors we see in the sky come from sunlight that is scattered by molecules in the atmosphere. Light bounces off of air molecules in the Earth's atmosphere, scattering in all directions. Because blue light is scattered more than other colors of light, the sky appears blue. Air Pollution: How We're Changing the Air",
+     "ref": "Center for Science Education — The Appearance of the Sky | Center for Science Education",
+     "url": "https://scied.ucar.edu/learning-zone/atmosphere/appearance-sky"
+    }
+   },
+   {
+    "at": 70.901,
+    "seq": 113,
+    "kind": "quick",
+    "n": 7,
+    "of": 7,
+    "p": {
+     "text": "The blue color of the sky is caused by the scattering of sunlight off the molecules of the atmosphere. Therefore the light scattered down to the earth at a large angle with respect to the direction of the sun's light is predominantly in the blue end of the spectrum. The graph of overall brightness above is just the sum of all three colors, with a maximum of 1 being white on the monitor.",
+     "ref": "HyperPhysics — Blue Sky and Rayleigh Scattering",
+     "url": "http://hyperphysics.phy-astr.gsu.edu/hbase/atmos/blusky.html"
+    }
+   },
+   {
+    "at": 71.801,
+    "seq": 114,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 73.601,
+    "seq": 115,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 75.601,
+    "seq": 116,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 77.801,
+    "seq": 117,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 80.601,
+    "seq": 118,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_9227c3",
+    "ps": [
+     {
+      "text": "It's easy to see that the sky is blue. Sunlight reaches Earth's atmosphere and is scattered in all directions by all the gases and particles in the air. Blue light is scattered in all directions by the tiny molecules of air in Earth's atmosphere. Blue is scattered more than other colors because it travels as shorter, smaller waves.",
+      "ref": "spaceplace.nasa.gov — Why Is the Sky Blue? | NASA Space Place - NASA Science for Kids",
+      "url": "https://spaceplace.nasa.gov/blue-sky/en/"
+     },
+     {
+      "text": "When the wavelengths reach Earth’s atmosphere, they get ‘scattered’ by air molecules, meaning they are sent in different directions. That means blue light is scattered across the sky more than red light. For example, the Moon has such a thin atmosphere that sunlight isn’t scattered, so the sky appears black regardless of whether it’s day or night. In contrast, Venus has an atmosphere 90 times denser than Earth’s. We now know that Earth’s sky isn’t blue because it reflects the colour of the oceans. The sea is blue because water molecules absorb light with longer wavelengths, like red and orange. When sunlight hits the water, these colours are absorbed and what’s left of the blue light is reflected back at us. That’s because oxygen 100-200 kilometres above Earth lets off green light.",
+      "ref": "bbc.co.uk — Why is the sky blue? And why it changes colour at sunset - BBC",
+      "url": "https://www.bbc.co.uk/bitesize/articles/zbwwcxs"
+     },
+     {
+      "text": "The length of each wave results in different colors when the wave is perceived by the human eye. Violet has the shortest wavelength—380–435 nm—followed by blue, at 435–500 nm. Red has the longest wavelength, at 625–740 nm, and the rest of the rainbow is somewhere between those lengths. How Scientists Discovered Why the Sky Looks Blue In 1870, British physicist John William Strutt refined Tyndall’s conclusions and confirmed that air molecules are responsible for scattering light wavelengths in our atmosphere, thus creating its color. Space is black because much of it lacks an atmosphere like Earth’s, meaning that wavelengths don’t have particles to bounce off of.",
+      "ref": "mentalfloss.com — Why Is the Sky Blue? - Mental Floss",
+      "url": "https://www.mentalfloss.com/science/physics/why-is-the-sky-blue"
+     }
+    ]
+   },
+   {
+    "at": 82.801,
+    "seq": 156,
+    "kind": "done"
+   }
+  ]
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "label": "after-core-seeded-shim",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T05:58:04.152Z",
+ "patchDir": null,
+ "turns": [
+  {
+   "ask": "why is the sky blue",
+   "web": [
+    "{\"scope\":\"web\",\"q\":\"why is the sky blue\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":true}",
+    "{\"scope\":\"wikipedia\",\"q\":\"why is the sky blue\",\"engine\":\"Wikipedia\",\"n\":20,\"ok\":true}",
+    "{\"scope\":\"route\",\"ok\":true,\"engine\":\"source router\",\"picked\":[\"web\",\"wikipedia\"],\"skipped\":[\"github\",\"archive\",\"openalex\",\"crossref\"],\"why\":{\"web\":\"always — the",
+    "{\"scope\":\"topic\",\"ok\":true,\"engine\":\"title gate\",\"demoted\":[\"Diffuse sky radiation - Wikipedia (no-shared-word)\",\"Ask the StoryBots - Wikipedia (no-shared-word)",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Sky_blue\",\"via\":\"direct\",\"chars\":10714,\"kept\":84,\"hash\":\"8037f42e\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Blue_moon\",\"via\":\"direct\",\"chars\":16858,\"kept\":2952,\"hash\":\"1855ba63\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Blue\",\"via\":\"direct\",\"chars\":24000,\"kept\":656,\"hash\":\"c77e486d\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Diffuse_sky_radiation\",\"via\":\"direct\",\"chars\":9116,\"kept\":752,\"hash\":\"8aa3f34a\",\"skipped\":true}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Ask_the_StoryBots\",\"via\":\"direct\",\"chars\":4782,\"kept\":489,\"hash\":\"d9bf2324\",\"skipped\":true}",
+    "{\"scope\":\"web\",\"q\":\"Here's breakdown 1. Sunlight Sunlight made colors rainbow.\",\"ok\":false,\"why\":\"Web search answered 502\",\"lap\":1}",
+    "{\"scope\":\"web\",\"q\":\"2. Earth's atmosphere atmosphere filled tiny particles air nitrogen oxygen\",\"ok\":false,\"why\":\"Web search answered 502\",\"lap\":1}",
+    "{\"scope\":\"web\",\"q\":\"2. Earth's atmosphere atmosphere filled tiny particles air nitrogen oxygen\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":"
+   ],
+   "spoken": "The sky appears blue thanks to a phenomenon called Rayleigh scattering.\n\nSunlight is made up of all the colors of the rainbow. Our atmosphere is filled with tiny particles of air, like nitrogen and oxygen molecules. Scattering: When sunlight hits those tiny particles in the atmosphere, it gets scattered in different directions. Blue light scatters most. This means it scatters more easily off those tiny air molecules. Our eyes are more sensitive to blue light, so we see the scattered blue light as the sky's color.\n\nSo, the sky appears blue because blue light is scattered more effectively by the Earth's atmosphere.",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “why is the sky blue”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Sky_blue",
+    "https://en.wikipedia.org/wiki/Blue_moon",
+    "https://en.wikipedia.org/wiki/Blue",
+    "https://en.wikipedia.org/wiki/Diffuse_sky_radiation",
+    "https://en.wikipedia.org/wiki/Ask_the_StoryBots",
+    "https://en.wikipedia.org/wiki/Earth",
+    "https://en.wikipedia.org/wiki/Ocean",
+    "https://en.wikipedia.org/wiki/Particulate_matter",
+    "https://en.wikipedia.org/wiki/Outer_space",
+    "https://en.wikipedia.org/wiki/Ocean_optics",
+    "https://en.wikipedia.org/wiki/Photoelectric_effect",
+    "https://en.wikipedia.org/wiki/Moon",
+    "https://en.wikipedia.org/wiki/Huygens_(spacecraft)",
+    "https://en.wikipedia.org/wiki/Blue",
+    "https://en.wikipedia.org/wiki/Light-emitting_diode",
+    "https://en.wikipedia.org/wiki/Visible_spectrum",
+    "https://en.wikipedia.org/wiki/Pale_Blue_Dot"
+   ],
+   "passages": [
+    "en.wikipedia.org — Sky blue - Wikipedia <https://en.wikipedia.org/wiki/Sky_blue>",
+    "en.wikipedia.org — Blue moon - Wikipedia <https://en.wikipedia.org/wiki/Blue_moon>",
+    "en.wikipedia.org — Blue - Wikipedia <https://en.wikipedia.org/wiki/Blue>",
+    "en.wikipedia.org — Sky blue - Wikipedia <https://en.wikipedia.org/wiki/Sky_blue>",
+    "en.wikipedia.org — Blue moon - Wikipedia <https://en.wikipedia.org/wiki/Blue_moon>",
+    "en.wikipedia.org — Blue - Wikipedia <https://en.wikipedia.org/wiki/Blue>",
+    "en.wikipedia.org — Diffuse sky radiation - Wikipedia <https://en.wikipedia.org/wiki/Diffuse_sky_radiation>",
+    "en.wikipedia.org — Ask the StoryBots - Wikipedia <https://en.wikipedia.org/wiki/Ask_the_StoryBots>"
+   ],
+   "notices": [],
+   "raws": [
+    "The sky appears blue thanks to a phenomenon called **Rayleigh scattering**. \n\nHere's a breakdown:\n\n1. **Sunlight:** Sunlight is made up of all the colors of the rainbow. \n2. **Earth's atmosphere:** Our atmosphere is filled with tiny particles of air, like nitrogen and oxygen molecules.\n3. **Scattering:** When sunlight hits those tiny particles in the atmosphere, it gets scattered in different directions.\n4. **Blue light scatters most:**  Blue light has a shorter wavelength than other colors in t",
+    "Sunlight is made up of all the colors of the rainbow. \n",
+    "Earth's atmosphere is filled with tiny particles of air, like nitrogen and oxygen molecules. \n",
+    "Scattering: When sunlight hits those tiny particles in the atmosphere, it gets scattered in different directions. \n",
+    "Our atmosphere is filled with tiny particles of air, like nitrogen and oxygen molecules. \n",
+    "Scattering: When sunlight hits those tiny particles in the atmosphere, it gets scattered in different directions. \n",
+    "Blue light scatters most. \n",
+    "5 \n"
+   ],
+   "referents": [
+    "Blue Room(5.4)",
+    "William McKinley(2.4)",
+    "Rayleigh(2.0)",
+    "When(2.0)",
+    "Earth(2.0)",
+    "President McKinley(1.6)",
+    "Mount McKinley(1.6)",
+    "Alaska(1.6)"
+   ],
+   "summary": {
+    "topic": "why is the sky blue",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I could not answer; they asked \"who is mt. mckinlet named afer?\" and I said \"President McKinley, a name that rings so bold, Across the land, a story to be told.\"; they asked \"why is the sky blue\" and I said \"The sky appears blue thanks to a phenomenon called Rayleigh scattering.\".",
+    "entities": [
+     "Blue Room",
+     "William McKinley",
+     "Rayleigh",
+     "When",
+     "Earth",
+     "President McKinley",
+     "Mount McKinley",
+     "Alaska"
+    ]
+   },
+   "modelRequest": [
+    "system: You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES:",
+    "user: write me a song about trampolines",
+    "user: who is mt. mckinlet named afer?",
+    "assistant: President McKinley, a name that rings so bold, Across the land, a story to be told. Mount McKinley stands tall, in Alaska's sky, Named for a president, reaching up high.",
+    "user: why is the sky blue"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+  "handle": "roberts",
+  "organ": "khora/native/kernel/holder-scope.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/roberts.json"
+  ],
+  "whatTheyArgued": "Modal subordination (Roberts 1989; 2019 handbook chapter, read): in 'A wolf might come in. It would eat you first', 'it' takes a merely hypothetical wolf as antecedent, licensed by the second sentence's modal and by anaphoric domain restriction; without the modal ('It is hungry') only a specific reading is available. The Question Under Discussion framework (Information Structure in Discourse, 1996/2012) is a separate theory of discourse structure.",
+  "scholarship": [
+    {
+      "ref": "Roberts, 'Modal Subordination: It would eat you first!' (Wiley-Blackwell Companion to Semantics, 2019 revision), author's PDF",
+      "url": "https://www.asc.ohio-state.edu/roberts.21/roberts.modal%20subordination.SemCom.2019.final.pdf",
+      "supports": "the wolf example, modal-licensed anaphora to hypothetical contexts, domain restriction",
+      "disputes": "abstract says an adequate account needs anaphoric domain restriction and selectional restrictions on modal elements; the chapter surveys rival accounts, which I did not read"
+    }
+  ],
+  "ourUse": "holder-scope.js: a reference resolves only against what its own holder (narrator, hypothesis) established, using kernel/perspective holders.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "wrong-paper",
+      "kind": "misstated",
+      "ours": "Credit is Information Structure in Discourse (1996) for 'resolves inside the hypothesis that introduced it'.",
+      "theirs": "That is modal subordination (1989). The 1996 paper is about QUD and focus."
+    },
+    {
+      "id": "licence-vs-prohibition",
+      "kind": "reinterpreted",
+      "ours": "A reference may not resolve beyond its holder: a restriction.",
+      "theirs": "Her point is the reverse puzzle: a later modal sentence CAN reach an antecedent otherwise trapped in a scope island, because it is evaluated in the subordinate context. Ours borrows the example as a rationale, not her mechanism."
+    },
+    {
+      "id": "holder-ours",
+      "kind": "re-scoped",
+      "ours": "Narrator stretches and hypotheses are both 'holders'.",
+      "theirs": "Roberts's contexts are modal/discourse contexts; the holder abstraction is ours (perspective.js)."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Semanticist; her modal subordination work (1989) shows a pronoun after a modal ('would') can resolve to a merely hypothetical referent. Ours uses the example as the reason to scope resolution to a holder, a different mechanism.' source: 'Modal Subordination and Pronominal Anaphora in Discourse (1989)'; separate QUD credit if needed"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

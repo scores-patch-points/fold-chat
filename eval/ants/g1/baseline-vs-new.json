@@ -1,0 +1,52 @@
+{
+ "n": 371,
+ "wants": 268,
+ "negatives": 103,
+ "old": {
+  "recall": "58.6% (157/268)",
+  "falseWants": "13.6% (14/103)"
+ },
+ "neu_classifyTurn": {
+  "recall": "99.3% (266/268)",
+  "falseWants": "0.0% (0/103)"
+ },
+ "neu_typeExact": "99.7% (370/371)",
+ "perType": {
+  "essay": "old wants 35/57 | new exact type 57/57",
+  "other": "old wants 5/15 | new exact type 15/15",
+  "poem": "old wants 33/53 | new exact type 53/53",
+  "story": "old wants 9/16 | new exact type 16/16",
+  "speech": "old wants 9/10 | new exact type 10/10",
+  "summary": "old wants 5/20 | new exact type 20/20",
+  "script": "old wants 3/5 | new exact type 5/5",
+  "slogan": "old wants 7/9 | new exact type 9/9",
+  "email": "old wants 8/11 | new exact type 11/11",
+  "letter": "old wants 9/16 | new exact type 16/16",
+  "outline": "old wants 2/5 | new exact type 5/5",
+  "table": "old wants 2/5 | new exact type 5/5",
+  "list": "old wants 3/11 | new exact type 11/11",
+  "translation": "old wants 6/12 | new exact type 12/12",
+  "rewrite": "old wants 10/11 | new exact type 11/11",
+  "code": "old wants 11/12 | new exact type 12/12"
+ },
+ "queryHasInstruction_old": "72.9% (62/85)",
+ "queryHasInstruction_new": "0.0% (0/85)",
+ "queryHasTopic_old": "27.1% (23/85)",
+ "queryHasTopic_new": "100.0% (85/85)",
+ "anaphora": {
+  "n": 26,
+  "old_correct_topic_in_query": "3.8% (1/26)",
+  "new_correct_topic": "100.0% (26/26)"
+ },
+ "needlessSearch": {
+  "n": 168,
+  "old_searches": "82.1% (138/168)",
+  "new_flagged_needsSources_false": "100.0% (168/168)"
+ },
+ "needsSourcesWrong_new": 0,
+ "nonEnglishWants": {
+  "n": 29,
+  "old": "0.0% (0/29)",
+  "new_type_exact": "100.0% (29/29)"
+ }
+}

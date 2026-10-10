@@ -1,0 +1,173 @@
+{
+ "label": "before",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T05:10:05.942Z",
+ "patchDir": null,
+ "turns": [
+  {
+   "ask": "write me a song about trampolines",
+   "spoken": "Sun's out, sky's blue, a perfect summer's day Kids are running free, with laughter in their way Jump, jump, jump, up and high, to the clouds they fly A little bounce, a little thrill, a smile in their eye\n\n(Chorus) Trampolines, oh trampolines, a world of fun to find Leaping and soaring, with the wind in our mind No limits, just the sky, a freedom we can't deny Trampolines, oh trampolines, a joyful, bouncing sigh\n\nDusting off the leather, a memory we hold dear Old days of endless jumps, a time we'd conquer fear The rush of air, the feeling bold, a story never told\n\n(Chorus) Trampolines, oh trampolines, a world of fun to find Leaping and soaring, with the wind in our mind No limits, just the sky, a freedom we can't deny Trampolines, oh trampolines, a joyful, bouncing sigh\n\n(Bridge) From backyard to park, a place to run and play With friends and laughter, a happy, bouncing day Trampolines, oh trampolines, a place to dance and sway Memories in motion, a smile upon your face every day\n\n(Chorus) Trampolines, oh trampolines, a world of fun to find Leaping and soaring, with the wind in our mind No limits, just the sky, a freedom we can't deny",
+   "kind": "generate",
+   "followed": null,
+   "feed": [
+    "The query: searching for “write me a song about trampolines”"
+   ],
+   "reads": [
+    "https://open.spotify.com/track/0lsRatBUs9HNIZAmoGABzk",
+    "https://www.songfacts.com/facts/shaed/trampoline",
+    "https://open.spotify.com/track/5j4pQ5lVOdcLvbKiDpLoNi",
+    "https://www.tiktok.com/discover/trampoline-song?lang=en"
+   ],
+   "passages": [
+    "SongFacts — Trampoline by Shaed - Songfacts <https://www.songfacts.com/facts/shaed/trampoline>"
+   ],
+   "notices": [],
+   "raws": [
+    "(Verse 1)\nSun's out, sky's blue, a perfect summer's day\nKids are running free, with laughter in their way\nJump, jump, jump, up and high, to the clouds they fly\nA little bounce, a little thrill, a smile in their eye\n\n(Chorus)\nTrampolines, oh trampolines, a world of fun to find\nLeaping and soaring, with the wind in our mind\nNo limits, just the sky, a freedom we can't deny\nTrampolines, oh trampolines, a joyful, bouncing sigh\n\n(Verse 2)\nDusting off the leather, a memory we hold dear\nOld days of endl"
+   ],
+   "referents": [
+    "Trampolines",
+    "Chorus",
+    "Leaping",
+    "No",
+    "Kids",
+    "Jump",
+    "Dusting",
+    "Old"
+   ],
+   "summary": {
+    "topic": "write me a song about trampolines",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"Sun's out, sky's blue, a perfect summer's day Kids are running free, with laughter in the…\".",
+    "entities": [
+     "Trampolines",
+     "Chorus",
+     "Leaping",
+     "No",
+     "Kids",
+     "Jump",
+     "Dusting",
+     "Old"
+    ]
+   },
+   "modelRequest": [
+    "system: You are a writer working ONLY from the sources provided in this context. The person asked you to WRITE or PRODUCE something. Write it now, in full, in this reply. Ground every fact in the sources you were given — never invent a date, name, figure, or event, an",
+    "user: write me a song about trampolines"
+   ]
+  },
+  {
+   "ask": "who is mt. mckinlet named afer?",
+   "spoken": "Mt. McKinley is named after President William McKinley of the United States.",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “who is mt. mckinlet named afer?”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute",
+    "https://www.cowcreek-nsn.gov/alaskan-mountain-denali-stripped-of-native-name/",
+    "https://www.history.com/articles/denali-mckinley-mountain-alaska-naming",
+    "https://www.jagranjosh.com/us/explainers/why-was-mt-mckinley-renamed-1860002250",
+    "https://nevadacurrent.com/2025/02/19/its-about-control-why-trump-renamed-denali-to-mount-mckinley/"
+   ],
+   "passages": [
+    "Wikipedia — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "Cowcreek-nsn — Alaskan Mountain Denali Stripped of Native Name - Cow Creek Band of Umpqua Tribe of Indians <https://www.cowcreek-nsn.gov/alaskan-mountain-denali-stripped-of-native-name/>",
+    "HISTORY — Why the Name of Alaska's Peak Changed From Mt. McKinley to Denali | HISTORY <https://www.history.com/articles/denali-mckinley-mountain-alaska-naming>",
+    "Wikipedia — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "Cowcreek-nsn — Alaskan Mountain Denali Stripped of Native Name - Cow Creek Band of Umpqua Tribe of Indians <https://www.cowcreek-nsn.gov/alaskan-mountain-denali-stripped-of-native-name/>",
+    "HISTORY — Why the Name of Alaska's Peak Changed From Mt. McKinley to Denali | HISTORY <https://www.history.com/articles/denali-mckinley-mountain-alaska-naming>",
+    "Nevada Current — ‘It’s about control’: Why Trump renamed Denali to Mount McKinley • Nevada Current <https://nevadacurrent.com/2025/02/19/its-about-control-why-trump-renamed-denali-to-mount-mckinley/>"
+   ],
+   "notices": [],
+   "raws": [
+    "Mt. McKinley is named after President William McKinley of the United States. \n",
+    "McKinley is named after President William McKinley of the United States. \n",
+    "3 \n",
+    "NONE \n"
+   ],
+   "referents": [
+    "Trampolines",
+    "Chorus",
+    "Leaping",
+    "No",
+    "Mt. McKinley",
+    "President William McKinley",
+    "United States",
+    "Kids"
+   ],
+   "summary": {
+    "topic": "who is mt. mckinlet named afer?",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"Sun's out, sky's blue, a perfect summer's day Kids are running free, with laughter in the…\"; they asked \"who is mt. mckinlet named afer?\" and I said \"Mt.\".",
+    "entities": [
+     "Trampolines",
+     "Chorus",
+     "Leaping",
+     "No",
+     "Mt. McKinley",
+     "President William McKinley",
+     "United States",
+     "Kids"
+    ]
+   },
+   "modelRequest": [
+    "system: You check an answer against the sources it was written from. You are given a numbered list of SENTENCES taken from the sources, and an ANSWER. Reply with the number of the ONE sentence that says what the answer says. If none of them does, reply NONE. Reply wit",
+    "user: SENTENCES [1] Dominating the Alaska landscape, Mount McKinley (formerly Denali), the tallest peak in North America, is nothing short of breathtaking. [2] The Indigenous name of North America’s highest mountain has been removed, marking a potentially significan"
+   ]
+  },
+  {
+   "ask": "why is the sky blue",
+   "spoken": "Gases and particles in Earth's atmosphere scatter sunlight in all directions.\n\nA red light wave is about 750 nanometers, while a blue or violet wave is about 400 nanometers. A human hair is about 50,000 nanometers thick.\n\nThe visible part of the spectrum ranges from red light with a wavelength of about 720 nm, to violet with a wavelength of about 380 nm, with orange, yellow, green, blue and indigo between. Aerosols of terpenes from the vegetation react with ozone in the atmosphere to form small particles about 200 nm across, and these particles scatter the blue light. Light under the sea is blue because water absorbs longer wavelengths of light through distances over about 20 metres.",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “why is the sky blue”"
+   ],
+   "reads": [
+    "https://spaceplace.nasa.gov/blue-sky/en/",
+    "https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue",
+    "https://www.reddit.com/r/explainlikeimfive/comments/1iytxes/eli5_why_is_the_sky_blue/",
+    "https://math.ucr.edu/home/baez/physics/General/BlueSky/blue_sky.html",
+    "https://kids.nationalgeographic.com/books/article/sky"
+   ],
+   "passages": [
+    "NASA Space Place — Why Is the Sky Blue? | NASA Space Place – NASA Science for Kids <https://spaceplace.nasa.gov/blue-sky/en/>",
+    "NOAA NESDIS — Why Is the Sky Blue? | NESDIS | National Environmental Satellite, Data, and Information Service <https://www.nesdis.noaa.gov/about/k-12-education/atmosphere/why-the-sky-blue>",
+    "University of California, Riverside — Why is the sky blue? <https://math.ucr.edu/home/baez/physics/General/BlueSky/blue_sky.html>"
+   ],
+   "notices": [],
+   "raws": [
+    "Gases and particles in Earth's atmosphere scatter sunlight in all directions. Like most curious people, you have probably asked at some time, “Why is the sky blue?” \n\nA red light wave is about 750 nanometers, while a blue or violet wave is about 400 nanometers. A human hair is about 50,000 nanometers thick! \n \nThe visible part of the spectrum ranges from red light with a wavelength of about 720 nm, to violet with a wavelength of about 380 nm, with orange, yellow, green, blue and indigo between. ",
+    "1 \n",
+    "6 \n"
+   ],
+   "referents": [
+    "Trampolines",
+    "Chorus",
+    "Leaping",
+    "No",
+    "Earth",
+    "Mt. McKinley",
+    "President William McKinley",
+    "United States"
+   ],
+   "summary": {
+    "topic": "why is the sky blue",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"Sun's out, sky's blue, a perfect summer's day Kids are running free, with laughter in the…\"; they asked \"who is mt. mckinlet named afer?\" and I said \"Mt.\"; they asked \"why is the sky blue\" and I said \"Gases and particles in Earth's atmosphere scatter sunlight in all directions.\".",
+    "entities": [
+     "Trampolines",
+     "Chorus",
+     "Leaping",
+     "No",
+     "Earth",
+     "Mt. McKinley",
+     "President William McKinley",
+     "United States"
+    ]
+   },
+   "modelRequest": [
+    "system: You check an answer against the sources it was written from. You are given a numbered list of SENTENCES taken from the sources, and an ANSWER. Reply with the number of the ONE sentence that says what the answer says. If none of them does, reply NONE. Reply wit",
+    "user: SENTENCES [1] A clear cloudless day-time sky is blue because molecules in the air scatter blue light from the Sun more than they scatter red light. [2] It follows that blue light is scattered more than red light by a factor of (700/400)4 ~= 10. [3] But the mos"
+   ]
+  }
+ ]
+}

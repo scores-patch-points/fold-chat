@@ -1,0 +1,461 @@
+{
+ "q": "What is the capital of Australia and is it the largest city?",
+ "spoken": "",
+ "shown": "No answer was written: no source could be read to write one from.\n⟂\nno source was reached\nSearched for “What is the capital of Australia and is it the largest city?”: Wikipedia failed — Wikipedia did not answer; Web failed — Web search did not answer. Nothing readable came back.\nWikipedia — failed: Wikipedia did not answer.\nWeb — failed: Web search did not answer.\nto close it: try the question again · attach the document you are working from · rephrase it with a name or a place the search can find\ntry again\n▸\nhow this was answered\nNo answer in 8.9 s · no source reached · effort balanced\ncopy\nretry\n⋯",
+ "flagText": [],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": false,
+  "examined": false,
+  "coverage": {
+   "entries": [],
+   "grounded": 0,
+   "total": 0,
+   "refs": [],
+   "ratio": 0
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [],
+   "response": [],
+   "has": false
+  },
+  "line": "On record · turn 1 · no material carried · the answer stands on the model alone",
+  "web": [
+   {
+    "scope": "wikipedia",
+    "q": "What is the capital of Australia and is it the largest city?",
+    "ok": false,
+    "why": "Wikipedia did not answer."
+   },
+   {
+    "scope": "web",
+    "q": "What is the capital of Australia and is it the largest city?",
+    "ok": false,
+    "why": "Web search did not answer."
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "an encyclopedic ask (definition, history, comparison)"
+    },
+    "webDown": true
+   }
+  ],
+  "nSources": 0,
+  "answerMode": "facing",
+  "kind": "research",
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · nothing readable",
+   "no model call · no source was reached — the model never speaks alone",
+   "checked · no source carried",
+   "void · ⟂ void — no source was reached (tried Wikipedia, Web); \"What is the capital of Australia and is it the largest city?\" is still open; to close it: try the question again, or attach the document you are working from, or rephrase it with a name or a place the search can find."
+  ],
+  "void": {
+   "kind": "unreached",
+   "counts": {
+    "sentences": 0,
+    "grounded": 0
+   },
+   "read": [],
+   "tried": [
+    "Wikipedia",
+    "Web"
+   ],
+   "attempts": [
+    {
+     "scope": "wikipedia",
+     "name": "Wikipedia",
+     "engine": null,
+     "q": "What is the capital of Australia and is it the largest city?",
+     "ok": false,
+     "n": null,
+     "why": "Wikipedia did not answer."
+    },
+    {
+     "scope": "web",
+     "name": "Web",
+     "engine": null,
+     "q": "What is the capital of Australia and is it the largest city?",
+     "ok": false,
+     "n": null,
+     "why": "Web search did not answer."
+    }
+   ],
+   "readFailed": 0,
+   "note": "Searched for “What is the capital of Australia and is it the largest city?”: Wikipedia failed — Wikipedia did not answer; Web failed — Web search did not answer. Nothing readable came back.",
+   "question": "What is the capital of Australia and is it the largest city?",
+   "closeBy": [
+    "try the question again",
+    "attach the document you are working from",
+    "rephrase it with a name or a place the search can find"
+   ]
+  },
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "What is the capital of Australia and is it the largest city?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 8
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “What is the capital of Australia and is it the largest city?”",
+    "at": 31
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:What is the capital of Australia and is it the largest city?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 35,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 35
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:What is the capital of Australia and is it the largest city?",
+    "title": "Asking Wikipedia",
+    "tone": "run",
+    "at": 41,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web and Wikipedia",
+    "at": 41
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:What is the capital of Australia and is it the largest city?",
+    "title": "Asked Wikipedia",
+    "tone": "bad",
+    "note": "Wikipedia did not answer.",
+    "ms": 8873,
+    "at": 8914
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 8914
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:What is the capital of Australia and is it the largest city?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 8917
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:What is the capital of Australia and is it the largest city?",
+    "title": "Searched the web",
+    "tone": "bad",
+    "note": "Web search did not answer.",
+    "ms": 8883,
+    "at": 8918
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 8918
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web returned nothing, so also Wikipedia",
+    "at": 8920
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "No source could be read",
+    "tone": "bad",
+    "note": "drawing the gap — I won't answer from memory",
+    "at": 8922
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "No answer in 8.9 s · no source reached",
+    "at": 8928,
+    "ok": false
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.003,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.004,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “What is the capital of Australia and is it the largest city?”"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:What is the capital of Australia and is it the largest city?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "What is the capital of Australia and is it the largest city?"
+    }
+   },
+   {
+    "at": 0.014,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:What is the capital of Australia and is it the largest city?",
+     "title": "Asking Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.014,
+    "seq": 7,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web and Wikipedia"
+    }
+   },
+   {
+    "at": 0.014,
+    "seq": 8,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "What is the capital of Australia and is it the largest city?"
+    }
+   },
+   {
+    "at": 8.887,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:What is the capital of Australia and is it the largest city?",
+     "title": "Asked Wikipedia",
+     "tone": "bad",
+     "note": "Wikipedia did not answer.",
+     "ms": 8873
+    }
+   },
+   {
+    "at": 8.888,
+    "seq": 10,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 8.888,
+    "seq": 11,
+    "kind": "st",
+    "st": {
+     "phase": "failed",
+     "scope": "wikipedia",
+     "q": "What is the capital of Australia and is it the largest city?",
+     "why": "Wikipedia did not answer."
+    }
+   },
+   {
+    "at": 8.89,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:What is the capital of Australia and is it the largest city?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 8.891,
+    "seq": 13,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 8.891,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:What is the capital of Australia and is it the largest city?",
+     "title": "Searched the web",
+     "tone": "bad",
+     "note": "Web search did not answer.",
+     "ms": 8883
+    }
+   },
+   {
+    "at": 8.891,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 8.892,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "failed",
+     "scope": "web",
+     "q": "What is the capital of Australia and is it the largest city?",
+     "why": "Web search did not answer."
+    }
+   },
+   {
+    "at": 8.893,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web returned nothing, so also Wikipedia"
+    }
+   },
+   {
+    "at": 8.893,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 8.893,
+    "seq": 19,
+    "kind": "writing",
+    "srcs": 0
+   },
+   {
+    "at": 8.896,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "No source could be read",
+     "tone": "bad",
+     "note": "drawing the gap — I won't answer from memory"
+    }
+   },
+   {
+    "at": 8.901,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "No answer in 8.9 s · no source reached"
+    }
+   },
+   {
+    "at": 9.693,
+    "seq": 22,
+    "kind": "done"
+   }
+  ]
+ }
+}

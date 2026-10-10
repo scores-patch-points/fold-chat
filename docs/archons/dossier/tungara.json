@@ -1,0 +1,53 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "tungara",
+  "organ": "khora/native/kernel/contest.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/tungara.json"
+  ],
+  "whatTheyArgued": "Biology as found. Tungara (Engystomops/Physalaemus pustulosus) males call in choruses; females visit and choose among them by call features. The advertisement call is a whine, and males can add a facultative 'chuck'; the chuck makes the call more attractive to females (Ryan 2008, Animal Behaviour 76, read in full text). In dense choruses, search-result summaries of the literature (not read in full) report that other callers' whines overlap a male's chucks, overlap lowers attractiveness, and males respond by adding more chucks. So the documented competitor effect is on the MALE signaller (call escalation), not a change in a female's acceptance threshold. I found no source in what I read showing the female's threshold rises when a rival is present.",
+  "scholarship": [
+    {
+      "ref": "Santiago Ron (2008), 'The evolution of female mate choice for complex calls in tungara frogs', Animal Behaviour 76:1783-1794 (full text read)",
+      "url": "https://courses.washington.edu/ccab/Ron08TungaraFrogs.pdf",
+      "supports": "choruses, female choice by call features, facultative chuck that enhances attractiveness; calls with and without chucks traditionally called complex and simple",
+      "disputes": "Ron questions the sensory-exploitation story for the chuck preference (ancestral-state reconstruction, sampling of Engystomops species); says nothing on competitor-dependent thresholds."
+    },
+    {
+      "ref": "Chorus-size and chuck-overlap findings (Bernal/Ryan lineage), as summarized by search results and the arXiv model 'Modeling sexual selection in Tungara frog and rationality of mate choice'",
+      "url": "https://arxiv.org/abs/1610.03930",
+      "supports": "males add chucks as chorus size rises because overlap reduces call attractiveness (summary only; the PDFs I fetched did not extract, so I did not read the papers' text)",
+      "disputes": "Not verified against the primary papers; treat as a lead, not a settled citation."
+    }
+  ],
+  "ourUse": "contest.js: a scored-candidate frame with co-present competitors must clear a stricter margin (contestedMargin) than an uncontested one; co-presence raises the bar and never raises a score. The compendium puts the analogy in the female: 'a female's acceptance threshold rises when a competing male's call is in the frame'.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "wrong-animal-wrong-direction",
+      "kind": "misstated",
+      "ours": "Compendium work: 'a female's acceptance threshold rises when a competing male's call is in the frame.'",
+      "theirs": "The effect the manifest itself names (and what I could find) is on males: they add chucks when a rival's call is present or chorus is dense. I found no verified claim that a female's acceptance threshold rises."
+    },
+    {
+      "id": "only-and-margin",
+      "kind": "reinterpreted",
+      "ours": "Header: call grows more complex 'only when a competing male is in the frame, raising the margin a rival must clear'.",
+      "theirs": "'Only' is not shown in the sources read, and 'the margin a rival must clear' is our decision-theoretic framing. In the frog the chuck is a signal, with overlap and attractiveness as the mechanism."
+    },
+    {
+      "id": "decorative-analogy",
+      "kind": "decorative",
+      "ours": "The frog names a design rule for a stricter margin on a contested pronoun binding.",
+      "theirs": "Nothing of the frog's mechanism (acoustic overlap, female phonotaxis, chuck attractiveness) is implemented. The design stands on the Borodino measurement (88% of frames refused) in the contest.js header, not on the frog."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Tungara males add chucks to their whine when rivals are calling nearby; females prefer the chuck-bearing call. contest.js borrows the idea that rivals in the frame change what counts as a clear signal: a contested frame must clear a stricter margin. The margin rule is ours; no frog threshold is claimed.'",
+    "compendium credit: 'the tungara frog - rivals in the frame change what counts as a clear signal (analogy; margin rule ours).'",
+    "contest.js handle line: drop 'only' and 'raising the margin a rival must clear'; say males escalate their call when a rival is present.",
+    "Before this archon is named as biology: read the primary Ryan/Rand/Bernal papers on chorus-size effects."
+  ],
+  "tokenized": false
+}

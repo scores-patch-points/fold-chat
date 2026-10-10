@@ -1,0 +1,64 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "kleeneUp",
+  "organ": "khora/native/organs/kleene-up.js and khora/native/kernel/kleene-up.js (compendium says 'the-fold (code inspection)')",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Kleene (RAND RM-704, 1951; 'Representation of Events in Nerve Nets and Finite Automata', published in Automata Studies, 1956) characterised the events recognised by finite automata, introducing regular events with a star operation (iteration). That characterisation (Kleene's theorem) is the founding result of regular languages and, later, regular expressions. He made no claim about when a pattern is or is not the right tool for software, and nothing about closed lists versus shapes. In fact, any finite list of words is itself a regular event, expressible by alternation, so the compendium's line 'a closed list is not a shape' contradicts the theory it borrows the name from.",
+  "scholarship": [
+    {
+      "ref": "RAND Corporation, Research Memorandum RM-704 listing (search result; page returned 403)",
+      "url": "https://www.rand.org/pubs/research_memoranda/RM704.html",
+      "supports": "1951 RAND memo, published 1956 in Automata Studies",
+      "disputes": "none"
+    },
+    {
+      "ref": "MacTutor biography of Kleene (University of St Andrews)",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Kleene/",
+      "supports": "summer 1951 at RAND; characterisation of finite automata; influential for theoretical computer science",
+      "disputes": "did not describe the star operation in detail"
+    }
+  ],
+  "ourUse": "Two different things are said. kernel/kleene-up.js and organs/kleene-up.js: evict regex FINDING and SNIPPING in favour of position-based needle/anchor/window over bytes, classify regex literals (literal/semantic/structural/typed_gap), and migrate by build. The compendium work line instead: replace regexes that enumerate closed lists with Sets/Maps. eo-teachings/sources/kleenup.txt (original in-repo composition, verified snip manifest eo-teachings/manifest/kleenup.json) says a regex that re-parses what the reading already names is a second implementation. tschichold.js states 'closed grammar as tables, never regex alternations (KleeneUp's rule)'.",
+  "verdict": "fails",
+  "noBendReason": "As a nomination the handle is our name; no claim is made that Kleene argued for regex eviction. The bends below concern what the compendium and organ nonetheless attribute to him, and they remain unresolved.",
+  "bends": [
+    {
+      "id": "closed-list-thesis",
+      "kind": "invented-attribution",
+      "ours": "Compendium: Kleene 'gave the field the exact boundary of when a pattern is the right tool: a SHAPE, not a CLOSED LIST'.",
+      "theirs": "Kleene proved regular events equal finite-automaton events. He drew no boundary of that kind, and finite lists are regular, so the stated rule is not a consequence of his work. The shape/list rule is a coding guideline the project chose."
+    },
+    {
+      "id": "pd-status",
+      "kind": "misstated",
+      "ours": "Compendium pdStatus: 'public-domain'.",
+      "theirs": "Kleene died in 1994; the 1956 Automata Studies chapter is in copyright. The 1951 RAND memo's public availability does not establish PD. The only 'source' on disk (kleenup.txt) is original text authored in this repo, not Kleene."
+    },
+    {
+      "id": "voice",
+      "kind": "misstated",
+      "ours": "Sentences of the repo's own source (kleenup.txt) and the compendium work line stand under the Kleene handle and 'credit' line.",
+      "theirs": "Words are ours, not his; the manifest itself records 'original composition authored in-repo'. A manifest that verifies our own file is not a snip of Kleene."
+    },
+    {
+      "id": "three-meanings",
+      "kind": "reinterpreted",
+      "ours": "Handle covers three different doctrines: evict regex find/snip (organ), replace closed-list alternations with tables (compendium), do not re-parse what the reading already names (kleenup.txt).",
+      "theirs": "None of these is Kleene's. They also do not agree with each other, so the credit line cannot be true of all."
+    },
+    {
+      "id": "namesake",
+      "kind": "decorative",
+      "ours": "Named for him because the organ 'evicts his machinery by name'.",
+      "theirs": "Naming the clean-up after the founder is a pun on regex lineage, not use of his ideas."
+    }
+  ],
+  "fix": [
+    "compendium: set pdStatus to 'nomination' (or remove the PD claim); rewrite credit as 'KleeneUp - our name for the regex-eviction patrol, after Kleene, whose 1951 work founded regular events; the rule is ours'",
+    "compendium work: delete 'Kleene ... gave the field the exact boundary' and 'a closed list is not a shape'; replace with one sentence describing what the organ does (position-based find/snip, classify regexes) and state it is the project's rule",
+    "unify: pick one doctrine and make organ header, compendium and kleenup.txt say the same thing"
+  ],
+  "tokenized": false
+}

@@ -1,0 +1,68 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -1828,6 +1828,7 @@
+     const runId = newRun("chat");
+     const s = sessions[id]; if (!s) return;
+     if (busy(id)) return;
++    if (s._after) { try { await s._after; } catch {} }   // E2 L1
+     // Every UI write below is for THIS chat's turn: it happens only while this
+     // chat is the open one. The session record is always updated.
+     const isLive = () => activeId === id;
+\ No newline at end of file
+@@ -2519,7 +2520,10 @@
+       // source's own slice, and narrates around it in its own words ("I checked this on Wikipedia, but I treat it as an index to primary sources, so I verified it on …"). No provenance
+       // sentence is ever model-written; a pointer the model made up is rejected and the narration says no source sentence could be found.
+       let provenance = null;
+-      if (provenanceEnabled() && wantWeb && webPassages.length && !strand && !slotTurn && !modelBarred && text.trim() && kind !== "generate" && kind !== "compose") {
++      const provWanted = provenanceEnabled() && wantWeb && webPassages.length && !strand && !slotTurn && !modelBarred && text.trim() && kind !== "generate" && kind !== "compose";
++      const deferProv = provWanted && (() => { try { return localStorage.getItem("fold-chat:e2defer") !== "off"; } catch { return true; } })();
++      const provenanceWork = async () => {
++      if (provWanted) {
+         say(`turn \u00b7 ${kindWord} \u00b7 asking the model to point at its source\u2026`);
+         feedPush(lineEvent(tt, "Asked the model where it got that", { tone: "info", note: "a second call, only to point at a sentence in the pages I read \u2014 I check it and write the line myself" }));
+         try {
+\ No newline at end of file
+@@ -2549,6 +2553,8 @@
+           feedPush(lineEvent(tt, pr.stored && pr.stored.verified ? "Verified where it came from" : "Could not verify a source sentence", { tone: pr.stored && pr.stored.verified ? "ok" : "warn", note: pr.stored && pr.stored.verified ? `${pr.stored.verified} source${pr.stored.verified === 1 ? "" : "s"} \u00b7 ${pr.stored.pointers.map((p) => p.host).join(", ")} \u00b7 ${pr.calls} model call${pr.calls === 1 ? "" : "s"}` : String(pr.stored?.why || "none") }));
+         } catch (e) { if (ac.signal.aborted) throw e; feedPush(lineEvent(tt, "The source check failed", { tone: "warn", note: String(e?.message || e).slice(0, 90) })); }
+       }
++      };
++      if (!deferProv) await provenanceWork();   // E2 L1: with the flag on, this runs AFTER the checked answer is on the page (below)
+       // The app-authored words of a turn the model may not answer alone (a fixed line, or "no sources for this kind of ask").
+       let primaryNotice = null;
+       if (primaryAsk && !ac.signal.aborted) {
+\ No newline at end of file
+@@ -2806,7 +2812,31 @@
+       if (!isLive()) s.unseen = true;
+       save("fold-chat:sessions", sessions);
+       row.wrap.remove();
+-      if (isLive()) appendMsg(s, "assistant", text, { sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored, provenance });
++      const drawMeta = (prov) => ({ sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored, provenance: prov });
++      let drawn = null;
++      if (isLive()) { drawn = buildMsg(s, "assistant", text, drawMeta(provenance)); if (drawn.seam) E.threadCol.append(drawn.seam); E.threadCol.append(drawn.wrap); E.thread.scrollTop = E.thread.scrollHeight; try { window.__e2answerAt = performance.now(); window.__e2pending = false; } catch {} }
++      if (deferProv) {
++        // E2 L1: the answer is visible. NOW point at the source (same code, same checks), then redraw the same message with the source line under it.
++        const msgObj = s.messages[idx];
++        if (!Object.prototype.hasOwnProperty.call(s, "_after")) Object.defineProperty(s, "_after", { value: null, writable: true, enumerable: false, configurable: true });   // never persisted
++        try { window.__e2pending = true; window.__e2provAt = null; } catch {}
++        s._after = (async () => {
++          try {
++            await provenanceWork();
++            if (provenance) msgObj.provenance = provenance;
++            try {
++              const tiers = (provenance?.pointers || []).map((p) => p.tier);
++              const best = tiers.includes("primary") ? "primary" : tiers.includes("origin") ? "origin" : tiers[0] || null;
++              const aw = watchPost({ ask: said, prior: askAt > 0 ? s.messages.slice(0, askAt) : [], pre: watcherPre, reads: surfedUrls.length ? surfedUrls : webPassages.map((p) => String(p.url || p.source || "")).filter(Boolean), setAside: asideUrls, events: turnEvents, passages: webPassages, spoken: text, reached: !!(provenance && provenance.verified), tier: best });
++              msgObj.watch = { relation: aw.relation, want: aw.want, flags: aw.flags.map((f) => f.flag), baton: aw.baton, ...(aw.detail ? { detail: aw.detail } : {}), ...(aw.appAnswered ? { appAnswered: true } : {}) };
++            } catch (e) { /* an aid */ }
++            if (record) record.feed = storeEvents(turnEvents, { max: 60 });
++            s.updated = now(); save("fold-chat:sessions", sessions);
++            if (isLive() && drawn && drawn.wrap.isConnected) { const again = buildMsg(s, "assistant", text, drawMeta(provenance)); drawn.wrap.replaceWith(again.wrap); drawn = again; }
++          } catch (e) { try { console.error("[fold-chat] deferred source check:", e); } catch {} }
++          finally { try { window.__e2provAt = performance.now(); window.__e2pending = false; } catch {} if (isLive()) E.stage.textContent = ""; s._after = null; }
++        })();
++      }
+     } catch (err) {
+       // A stop is a stop; ANYTHING else that died is stored as a typed, retry-able note on its own
+       // message (failTurn) — whether or not this chat is the open one.
+\ No newline at end of file

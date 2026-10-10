@@ -1,0 +1,198 @@
+{
+ "set": "dev",
+ "byType": {
+  "figure": {
+   "n": 12,
+   "contains": 11,
+   "strandContains": 9,
+   "gap": 0,
+   "precisionMedian": 0.6590328467153285,
+   "strandPrecisionMedian": 0.0261169838252716
+  },
+  "date": {
+   "n": 4,
+   "contains": 4,
+   "strandContains": 3,
+   "gap": 0,
+   "precisionMedian": 0.976984126984127,
+   "strandPrecisionMedian": 0.028256051295941255
+  },
+  "name": {
+   "n": 4,
+   "contains": 3,
+   "strandContains": 4,
+   "gap": 0,
+   "precisionMedian": 0.9064190595089472,
+   "strandPrecisionMedian": 0.06585439251528083
+  },
+  "place": {
+   "n": 3,
+   "contains": 3,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.9761904761904762,
+   "strandPrecisionMedian": 0.032852564102564104
+  },
+  "definition": {
+   "n": 2,
+   "contains": 2,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.9250639386189259,
+   "strandPrecisionMedian": 0.11014815131128597
+  },
+  "reason": {
+   "n": 2,
+   "contains": 1,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.4970588235294118,
+   "strandPrecisionMedian": 0.05771857923497268
+  },
+  "list": {
+   "n": 2,
+   "contains": 2,
+   "strandContains": 0,
+   "gap": 0,
+   "precisionMedian": 0.762202380952381,
+   "strandPrecisionMedian": 0
+  },
+  "yesno": {
+   "n": 1,
+   "contains": 1,
+   "strandContains": 0,
+   "gap": 0,
+   "precisionMedian": 0.44755244755244755,
+   "strandPrecisionMedian": 0
+  },
+  "unanswerable": {
+   "n": 4,
+   "gap": 4,
+   "strandShipped": 4
+  }
+ },
+ "byLang": {
+  "en": {
+   "n": 30,
+   "outcomes": [
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok"
+   ]
+  },
+  "es": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "fr": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "ru": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "zh": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "de": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  }
+ },
+ "misses": [
+  {
+   "id": "d03",
+   "q": "How long is the Great Wall of China?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Han and earlier Great Wall sites are 3,080 km (1,914 mi) long in total.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "d15",
+   "q": "Who proposed the Celsius scale?",
+   "class": "wrong page (a distractor passage supplied the span)",
+   "shipped": "The Fahrenheit scale () is a temperature scale based on one proposed in 1724 by the physicist Daniel Gabriel Fahrenheit (1686–1736).",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "d22",
+   "q": "Why was the Berlin Wall built?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer) [reason: the page states it with a different verb/noun than the ask]",
+   "shipped": "The Soviet Bloc propaganda portrayed the Wall as protecting its population from \"fascist elements conspiring to prevent the will of the peop",
+   "keyOnPrimary": true
+  }
+ ],
+ "imperfect": {
+  "pronounUnresolved": [
+   "d07",
+   "d11",
+   "d13",
+   "d17",
+   "d23"
+  ],
+  "noSubject": [
+   "d05"
+  ],
+  "overWide": [
+   "d02",
+   "d26",
+   "d31",
+   "d32",
+   "d33",
+   "d34"
+  ],
+  "fragment": [
+   "d08"
+  ]
+ },
+ "counts": {
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)": [
+   "d03"
+  ],
+  "wrong page (a distractor passage supplied the span)": [
+   "d15"
+  ],
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer) [reason: the page states it with a different verb/noun than the ask]": [
+   "d22"
+  ]
+ }
+}

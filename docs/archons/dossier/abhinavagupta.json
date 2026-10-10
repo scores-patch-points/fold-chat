@@ -1,0 +1,46 @@
+{
+  "handle": "abhinavagupta",
+  "organ": "khora/native/organs/pathos.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/abhinavagupta.json"
+  ],
+  "whatTheyArgued": "In his Locana on Anandavardhana's Dhvanyaloka (3.26) Abhinavagupta argues that shanta (the rasa of the fullness of the happiness of craving's cessation) is genuinely cognised (the snip, GRETIL e-text, verbatim). In the Abhinavabharati (commentary on the Natyasastra, not on disk) the secondary literature reports rasa as a depersonalised, universalised experience (sadharanikarana) of the cultivated spectator (sahrdaya), freed from ego and private associations.",
+  "scholarship": [
+    {
+      "ref": "Sreenivasa Rao, 'Abhinavabharati: an interpretation of Bharata's Natyasastra' (popular web essay, not peer-reviewed)",
+      "url": "https://sreenivasaraos.com/2012/09/13/abhinavabharati-an-interpretation-of-bharatas-natyasastra/",
+      "supports": "sahrdaya central; sadharanikarana lifts the spectator from the ego-bound to the general; Locana and Abhinavabharati are separate works",
+      "disputes": "weak source; I found no SEP/IEP entry in the search and did not read a peer-reviewed work in full (a JIP 2016 article and an SJSU paper appeared in search results but I did not open them)"
+    }
+  ],
+  "ourUse": "pathos.js: a pathos finding is refused without a declared experiencer ('for whom'); the re-ground is named 'shanta'. Header discloses the namesake is never asserted as measurement.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "wrong-work",
+      "kind": "misstated",
+      "ours": "Compendium source/credit: Abhinavabharati.",
+      "theirs": "The verified snip and the pathos.js epigraph come from the Locana on the Dhvanyaloka, a different work. The Abhinavabharati is not on disk and nothing in the code cites it."
+    },
+    {
+      "id": "for-whom-vs-universalised",
+      "kind": "reinterpreted",
+      "ours": "'it has a for whom, never a view from nowhere': a named, particular experiencer is mandatory.",
+      "theirs": "The sahrdaya is central, but rasa is experienced through sadharanikarana, depersonalised and not tied to a particular person's private situation. Our declared-experiencer rule is a design law, not his claim, and nearly inverts the universalisation emphasis."
+    },
+    {
+      "id": "shanta-as-reground",
+      "kind": "decorative",
+      "ours": "The re-ground is called 'shanta', the culminating state after pathemata are released.",
+      "theirs": "Shanta is a rasa whose existence Abhinava defends; it is not a mechanism for conceding and reopening a ground. The header already says the namesake is disclosed, not asserted."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Kashmir Shaiva aesthetician. In his Locana on the Dhvanyaloka (3.26) he defends shanta, the rasa of craving's cessation, as truly cognised; in the Abhinavabharati rasa is the cultivated spectator's depersonalised experience. Our code takes only the name for the re-ground and adds its own rule that a feeling needs a declared experiencer.'",
+    "compendium source/credit: 'Locana on Dhvanyaloka 3.26 (and, by report, Abhinavabharati)'; drop 'never a view from nowhere' as his claim",
+    "pathos.js header: keep the disclosure; say 'for whom' is our rule, set against his universalisation"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

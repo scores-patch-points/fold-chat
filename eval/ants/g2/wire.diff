@@ -1,0 +1,219 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -28,6 +28,9 @@
+ import { classifyTurn, GENERATE_NUDGE, checkable, recordable, skipsSearch, noClaimsLabel, KIND_PROMPT } from "./fold-chat-discourse.js";
+ import { evaluate as computeEvaluate, answerKeeps } from "./fold-chat-compute.js";
+ import { UNSOURCED_ANSWERS, unsourcedPlan, sourcesPrompt, liveAsk, unreachedGap, liveGap, emptyNotice, errorNotice, declinedFallbackNotice, noModelFallbackNotice, gapAnswerLine, modelSpeaksAlone, aloneTurn } from "./fold-chat-gaps.js";
++// THE VOID FOR A WRITTEN OUTPUT (fold-chat-genvoid.js): a failed generate/compose turn draws a typed gap that names the thing asked for, never the sources as the piece.
++// When ant G1's fold-chat-outputtype.js is wired (eval/ants/g1/wire.diff), use its describeOutput() through genVoidShape(outType, KNOWN_FORMS) instead of outputTypeFromAsk().
++import { genVoid, outputTypeFromAsk, topicQuery, topicIsMissing, strandFallbackAllowed, genVoidText } from "./fold-chat-genvoid.js";
+ import { threadPrompt, threadNotice, coldFollowUpNotice } from "./fold-chat-thread.js";
+ // GARY, TERRY GROSS AND THE PATHOS ARCHONS (vendored khora organs, by closure): the prompt door (what the mouth is handed, in what
+ // order, question last, a refused fold withheld), the conversation's flow (follow-ups, push-backs and frame-asks are moves against
+\ No newline at end of file
+@@ -1342,8 +1345,16 @@
+       }
+       box.append(ul);
+     }
++    if (v.kind === "generate") {
++      // what a written output is missing, what the turn did have, and the pages it set aside (about writing it, not about the topic) — all data from record.void
++      if ((v.missing || []).length) box.append(el("div", "gap-text", "missing: " + v.missing.join("; ")));
++      if ((v.attempts || []).length) { const ul = el("ul", "gap-list gap-attempts"); for (const a of v.attempts) ul.append(el("li", a.ok ? "" : "gap-failed", `${a.name}${a.engine && a.engine !== a.name ? " (" + a.engine + ")" : ""} \u2014 ${a.ok ? (a.n ?? 0) + " result" + (a.n === 1 ? "" : "s") : "failed: " + a.why}`)); box.append(ul); }
++      if ((v.had || []).length) { box.append(el("div", "gap-sub", "what the turn had")); const ul = el("ul", "gap-list"); for (const h of v.had) ul.append(el("li", "", h.kind === "page" ? `${h.title}${h.domain ? " \u00b7 " + h.domain : ""} \u2014 ${h.note || "usable"}` : h.note || "")); box.append(ul); }
++      if ((v.setAside || []).length) { box.append(el("div", "gap-sub", "set aside \u2014 not material for it")); const ul = el("ul", "gap-list"); for (const x of v.setAside) { const li = el("li"); if (x.url && /^https?:\/\//i.test(x.url)) { const a = el("a", "", x.title || x.url); a.href = x.url; a.target = "_blank"; a.rel = "noopener"; li.append(a); } else li.append(el("span", "", x.title || "page")); li.append(el("span", "gap-dom", " \u00b7 " + (x.domain ? x.domain + " \u00b7 " : "") + String(x.why).replace(/^meta-/, "about writing: ").replace(/-/g, " "))); ul.append(li); } box.append(ul); }
++      if (v.offer) { const b = el("button", "note-retry", v.offer.label); b.type = "button"; b.onclick = (e) => { e.stopPropagation(); setAnswerMode("snips"); retry?.(); }; box.append(b); }   // the person CHOOSES the sources-only turn; it is never drawn in place of the piece
++    }
+     if ((v.closeBy || []).length) box.append(el("div", "gap-text gap-close", "to close it: " + v.closeBy.join(" \u00b7 ")));
+-    if (retry && (v.kind === "unreached" || v.kind === "live")) { const b = el("button", "note-retry", "try again"); b.type = "button"; b.onclick = (e) => { e.stopPropagation(); retry(); }; box.append(b); }
++    if (retry && (v.kind === "unreached" || v.kind === "live" || (v.kind === "generate" && v.retry !== false))) { const b = el("button", "note-retry", "try again"); b.type = "button"; b.onclick = (e) => { e.stopPropagation(); retry(); }; box.append(b); }
+     return box;
+   }
+   // System notes about a turn (an identity claim the fold withdrew, a model
+\ No newline at end of file
+@@ -1867,7 +1878,7 @@
+     let watcherPre = null;
+     try { watcherPre = watchPre({ ask: said, prior: askAt > 0 ? s.messages.slice(0, askAt) : [], opts: { referents: s.referents || null, rejected: rejectedSurfaces(s.minds), hints: hintsFor(lang0 === "unknown" ? "en" : lang0) } }); } catch (e) { /* an aid, never a reason to lose a turn */ }
+     const question = follow.retry || said;
+-    const searchQ = follow.search || question;                       // what is SEARCHED (and what picks the quoted sentences)
++    let searchQ = follow.search || question;                         // what is SEARCHED (and what picks the quoted sentences); a written output narrows it to its topic below
+     let threadTurn = follow.mode === "thread" ? follow.thread : null;
+     // The transcript the MODEL may see: each turn carries only what its author
+     // wrote — never a system note, a void, or a withdrawn-claim line.
+\ No newline at end of file
+@@ -1925,6 +1936,13 @@
+     // turned "write an essay" into "what topics?"), and a greeting is never
+     // searched or checked.
+     const kind = classifyTurn(question, { hasMaterial: materialOf(s).length > 0 });
++    // THE OUTPUT TYPE of a written ask. Measured 2026-10-06 ("write me an essay on this" after "who invented the telephone?"): the search was "write essay invented
++    // telephone", so what came back was essay samples and essay-writing tutorials, and when the model call failed the strand quoted one of them as if it were the essay.
++    // A written output searches its TOPIC only; with no topic nothing is searched; and a failure is the typed gap (genGate), never the strand.
++    const genOt = kind === "generate" || kind === "compose" ? outputTypeFromAsk(question, { topic: follow.topic || (follow.carried || []).map((c) => (typeof c === "string" ? c : c?.surface || c?.name || "")).filter(Boolean).join(" and "), searchQ: follow.search || "", hasMaterial: materialOf(s).length > 0 }) : null;
++    let genGate = null;   // { ok:false, void, notice, fallbackAllowed } — what the turn could not write, and why (fold-chat-genvoid.js)
++    if (genOt && kind === "generate") { const tq = topicQuery(genOt, searchQ); if (tq) searchQ = tq; }
++    const genNoTopic = !!(genOt && kind === "generate" && genOt.needsSources && topicIsMissing(genOt.topic));
+     // The live narration: every step the fold takes is shown while it takes it,
+     // so the person sees the pipeline (classify → search → read → write →
+     // check) rather than a frozen spinner. The blinking cursor follows the live
+\ No newline at end of file
+@@ -1971,7 +1989,7 @@
+     // "find a primary source" with nothing already verified to read back: go and FIND one for the LAST ANSWER's claim (fold-chat-primary.js: search, read and the model's number-pointing are the chat's own, injected). The turn's words are the app's.
+     const primaryAsk = !srcRecall && follow.kind === "source-ask" && follow.mode === "web" && watcherPre && watcherPre.sub === "new" && watcherPre.thread && watcherPre.thread.has && String(watcherPre.thread.answer || "").trim()
+       ? { claim: String(watcherPre.thread.answer).replace(/\s+/g, " ").trim().split(/(?<=[.!?])\s+/)[0], turn: watcherPre.thread.turn } : null;
+-    const wantWeb = !skipsSearch(kind) && !!question && follow.mode === "web" && !noLookup && !recall && !srcRecall && !primaryAsk;
++    const wantWeb = !skipsSearch(kind) && !!question && follow.mode === "web" && !noLookup && !recall && !srcRecall && !primaryAsk && !genNoTopic;
+     if (srcRecall) feedPush(lineEvent(tt, srcRecall.inspect ? "Read back what I did last turn" : srcRecall.fromBaton ? "Read back what the last turn did" : "Read back where the last answer came from", { tone: "ok", note: `${srcRecall.turn ? "turn " + srcRecall.turn + " \u00b7 " : ""}no search, no model` }));
+     if (recall) feedPush(lineEvent(tt, "Read back what I said", { tone: "ok", note: `from the record at ${recall.address} \u2014 no search, no model` }));
+     if (noLookup) feedPush(lineEvent(tt, "Nothing to look up", { tone: "info", note: lookup.why + " \u2014 so I did not search" }));
+\ No newline at end of file
+@@ -2027,6 +2045,16 @@
+           if (probeTerm) sensesProbe = raceAbort(Promise.race([web.search("wikipedia", probeTerm, 0, { fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal) }), new Promise((r) => setTimeout(() => r(null), 7000))]), ac.signal).catch(() => null);
+           const w = await raceAbort(web.searchWeb(searchQ, { onStep, effort, read: readFor, memo: pageMemo, fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal) }), ac.signal);
+           webPassages = w.passages || [];
++          if (genOt) {
++            // pages ABOUT writing the output (tutorials, samples, templates, writing services, bot walls, pages that never mention the topic) are not material for it
++            const g0 = genVoid({ outputType: genOt, webPassages, question });
++            if (g0.setAside.length) {
++              asideUrls = [...asideUrls, ...g0.setAside.map((x) => String(x.url || "")).filter(Boolean)];
++              feedPush(lineEvent(tt, `Set aside ${g0.setAside.length} page${g0.setAside.length === 1 ? "" : "s"} about writing, not about the topic`, { tone: "info", note: [...new Set(g0.setAside.map((x) => x.why.replace(/^meta-/, "")))].join(", ") + " \u00b7 " + g0.setAside.slice(0, 3).map((x) => x.domain || x.title).join(", ") }));
++              webPassages = g0.passages;
++            }
++            if (!g0.ok && !webPassages.length && g0.setAside.length) genGate = g0;   // pages were read and every one was set aside; no pages at all is drawn below, with the search that was tried
++          }
+           surfedUrls = webPassages.map((p) => String(p.url || p.source || "")).filter(Boolean);
+           // THE WATCHER, fed the content that was surfed: for a source-ask, pages that do not bear on the thread's topic are set aside before anything is shown (never an empty hand).
+           if (follow.kind === "source-ask" && watcherPre) { try { const kept = keepOnTopic(webPassages, watcherPre, priorForWatch); if (kept.length && kept.length < webPassages.length) { asideUrls = webPassages.filter((p) => !kept.includes(p)).map((p) => String(p.url || p.source || "")).filter(Boolean); feedPush(lineEvent(tt, "Set aside pages that do not bear on it", { tone: "info", note: `${webPassages.length - kept.length} of ${webPassages.length} \u00b7 read by what they say, not by their titles` })); webPassages = kept; } } catch (e) { /* an aid */ } }
+\ No newline at end of file
+@@ -2104,7 +2132,9 @@
+     if (wantWeb && !webPassages.length && !slotTurn) {
+       plan = unsourcedPlan(UNSOURCED_ANSWERS, { live: !!liveHit });
+       say(`turn · ${kindWord} · no sources reached · drawing the gap (not answering from memory)…`);
+-      feedPush(lineEvent(tt, "No source could be read", { tone: "bad", note: "drawing the gap \u2014 I won't answer from memory" }));
++      // a written output with nothing to write from: the gap names the output (no topic / no usable source / the lane may not speak alone), with the search that was tried
++      if (genOt && !genGate) { genGate = genVoid({ outputType: genOt, webPassages, hasMaterial: materialOf(s).length > 0, barred: "alone", question }); if (!genGate.ok) genGate.void.attempts = unreachedGap(webTrace, question).attempts; }
++      feedPush(genGate && !genGate.ok ? lineEvent(tt, `No usable source for the ${genOt.type}`, { tone: "bad", note: genGate.void.note }) : lineEvent(tt, "No source could be read", { tone: "bad", note: "drawing the gap \u2014 I won't answer from memory" }));
+     }
+     // SOURCES ONLY (answer mode "snips"): no model at all — the answer is the passages the pages gave, verbatim,
+     // chosen with no model (structured block first, else the sentences that differ the ask), strung together.
+\ No newline at end of file
+@@ -2133,7 +2163,7 @@
+       say(`turn \u00b7 ${kindWord} \u00b7 following the conversation \u00b7 answering from turn ${threadTurn.turn}\u2026`);
+       feedPush(lineEvent(tt, "Followed the conversation", { tone: "ok", note: `no search \u2014 answering from your earlier turn ${threadTurn.turn}${threadTurn.carried ? ` and the ${threadTurn.carried} source(s) it read` : ""}` }));
+     } else if (follow.mode === "cold-gap") feedPush(lineEvent(tt, "Nothing earlier to follow", { tone: "info", note: "no search, and the model is not asked" }));
+-    const modelBarred = !!(plan || strand || aloneBarred);
++    const modelBarred = !!(plan || strand || aloneBarred || (genGate && !genGate.ok));
+     let doorRefusal = null;   // set when Gary refuses the composed turn below: the model is then not asked (the turn falls back like any refused call)
+     const callModel = (msgs, opts) => {
+       if (modelBarred) throw new Error("the model is barred on this turn (it never speaks alone)");
+\ No newline at end of file
+@@ -2198,8 +2228,12 @@
+       let out = { text: "", tokens: 0 };
+       // NO MODEL REACHABLE, and this turn would call one: fall back to the sources-only strand when sources were read
+       // (the same way a gate refusal does); otherwise there is nothing honest to show, and the turn says why.
+-      if (!skipModel && m.none) {
++      if (!skipModel && m.none && genOt) {
+         const why = noModelWhy({ bridgeUp: modelsUp, models, selectedId: s.model || null, page: pageState() });
++        genGate = genVoid({ outputType: genOt, webPassages, failure: { kind: "no-model", message: why.text || "no model" }, question }); skipModel = true;
++        feedPush(lineEvent(tt, "No model is reachable", { tone: "bad", note: "so nothing was written \u2014 the sources are not shown as the " + genOt.type }));
++      } else if (!skipModel && m.none) {
++        const why = noModelWhy({ bridgeUp: modelsUp, models, selectedId: s.model || null, page: pageState() });
+         const fb = wantWeb && webPassages.length ? snipsOf(webPassages, searchQ) : null;
+         if (!fb || !fb.snips.length) throw Object.assign(new Error("no model \u2014 " + (why.text || "none is available")), modelsUp ? {} : { status: 0 });
+         fellBack = noModelFallbackNotice(why, { from: answerMode });
+\ No newline at end of file
+@@ -2240,6 +2274,14 @@
+         },
+         signal: ac.signal,
+       }); } catch (modelErr) {
++        if (genOt && !ac.signal.aborted) {
++          // a WRITTEN OUTPUT is never answered by quoting pages: the typed gap names it, says what the turn had, and what would unblock it
++          genGate = genVoid({ outputType: genOt, webPassages, failure: modelErr, question }); skipModel = true; out = { text: "", tokens: 0 };
++          for (const n of [...body.childNodes]) if (n.nodeType === 3) n.remove();
++          delete body.dataset.streaming;
++          feedPush(endStep(tt, "write", { title: `${m.id} did not answer`, tone: "bad", note: modelErr?.status === 403 ? "the safety gate said no" : String(modelErr?.message || modelErr).slice(0, 80) }));
++          say(`turn \u00b7 ${kindWord} \u00b7 the model did not answer \u00b7 nothing was written`);
++        } else {
+         if (ac.signal.aborted || !wantWeb || !webPassages.length) throw modelErr;
+         const fb = snipsOf(webPassages, searchQ);
+         if (!fb.snips.length) throw modelErr;
+\ No newline at end of file
+@@ -2250,6 +2292,7 @@
+         feedPush(endStep(tt, "write", { title: `${m.id} did not answer`, tone: "bad", note: modelErr?.status === 403 ? "the safety gate said no" : String(modelErr?.message || modelErr).slice(0, 80) }));
+         feedPush(lineEvent(tt, "Fell back to the sources", { tone: "ok", note: `${fb.snips.length} passage(s), their own words \u2014 no model, so no gate` }));
+         say(`turn \u00b7 ${kindWord} \u00b7 the model declined \u00b7 showing the sources instead (${strand.snips.length} passage(s), no model)\u2026`);
++        }
+       }
+       if (ac.signal.aborted) throw abortError();
+       // THE REPROMPT: a draft the model ran out of room on (finish "length", or no finish reported and it stops mid-sentence) is handed back
+\ No newline at end of file
+@@ -2328,7 +2371,7 @@
+       // personal information…") is a FAILURE, not an answer. The fold's job is
+       // to report what the sources say; a model's policy reflex must never be
+       // shown as the result. Replace it with the fold's own honest line.
+-      if (!strand && isRefusal(text)) {
++      if (!strand && !genOt && isRefusal(text)) {
+         notices.push({
+           kind: "refusal",
+           text: webPassages.length
+\ No newline at end of file
+@@ -2338,6 +2381,8 @@
+         });
+         text = "";   // the fold shows its own line; the refusal is not an answer and is not kept as one
+       }
++      // A WRITTEN OUTPUT is judged as the thing it was asked for before anything is shown: a stub, a refusal, a question back, a how-to-write guide or a draft that never mentions the topic is a void.
++      if (genOt && !genGate && !strand && !skipModel) { const gj = genVoid({ outputType: genOt, webPassages, modelResult: { text, finish: out.finish }, hasMaterial: materialOf(s).length > 0, question }); if (!gj.ok) { genGate = gj; text = ""; } }
+       const bad = text && !strand ? memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} }) : null;
+       if (bad) notices.push({ kind: "identity", text: memory.identityCorrection(bad, { readerName }) });
+       // THE REC LOOP (reframe). Every sentence is tried against everything read (fold-chat-falsify.js). A sentence no source
+\ No newline at end of file
+@@ -2443,7 +2488,10 @@
+         if (pivotRes.skipped) notices.push({ kind: "fold", text: `The fold has no grammar for ${pivotRes.read}, so this reply was not read before being shown — it is exactly what the model wrote.` });
+         else {
+           text = pivotRes.text;
+-          if (pivotRes.gap) {
++          if (pivotRes.gap && genOt) {
++            genGate = genVoid({ outputType: genOt, webPassages, failure: { kind: "withheld" }, question }); text = "";
++            feedPush(lineEvent(tt, "Nothing the model wrote could be spoken", { tone: "bad", note: "drawing the gap, not the sources as the " + genOt.type }));
++          } else if (pivotRes.gap) {
+             // Nothing the model wrote could be traced to what was read. If SOURCES were read, the chat's own rule for "the model cannot be used
+             // on this turn" applies: the sources' own sentences, verbatim, no model (the strand). Otherwise the gap is said, never filled.
+             const rel = webPassages.length && !strand ? relevantPassages(webPassages, searchQ, functionWordsOf(readLang === "unknown" ? "en" : readLang)) : [];   // only pages whose TITLE shares a content word with the ask
+\ No newline at end of file
+@@ -2530,10 +2578,10 @@
+         if (aw.flags.length) feedPush(lineEvent(tt, "Discourse check", { tone: "warn", note: aw.flags.map((f) => f.flag.replace(/_/g, " ")).join(", ") + " \u2014 this turn read the conversation differently from how it answered" }));
+       } catch (e) { /* the watcher is an aid, never a reason to lose a turn */ }
+       if (!provenance && srcRecall && srcRecall.provenance) provenance = srcRecall.provenance;   // the same source line, drawn again under this turn
+-      if (aloneBarred) { const at = follow.mode === "cold-gap" ? { notice: coldFollowUpNotice() } : recall ? { notice: { kind: "alone", text: recall.text } } : srcRecall ? { notice: { kind: "alone", text: srcRecall.text } } : primaryNotice ? { notice: { kind: "alone", text: primaryNotice } } : aloneTurn(noLookup ? "nolookup" : kind); if (at.notice) notices.push(at.notice); }
++      if (aloneBarred) { const at = follow.mode === "cold-gap" ? { notice: coldFollowUpNotice() } : recall ? { notice: { kind: "alone", text: recall.text } } : srcRecall ? { notice: { kind: "alone", text: srcRecall.text } } : primaryNotice ? { notice: { kind: "alone", text: primaryNotice } } : aloneTurn(noLookup ? "nolookup" : kind, genOt && !noLookup ? { outputType: genOt, hasMaterial: materialOf(s).length > 0, question } : undefined); if (at.void && !genGate) genGate = { ok: false, void: at.void, notice: { kind: "gen-void", text: at.notice?.text || at.void.note }, fallbackAllowed: false }; if (at.notice && !at.void) notices.push(at.notice); }
+       if (threadTurn && text.trim()) { const tn = threadNotice(threadTurn); notices.push(threadTurn.carried ? { ...tn, text: tn.text.replace(/No web source was used[^.]*\./, `No new search was made; it used the ${threadTurn.carried} source(s) that turn read, and is checked against them.`) } : tn); }
+       { const cn = carryNotice(follow, s.messages.filter((x) => x.role === "assistant").length + 1); if (cn) notices.push(cn); }   // what the pronoun was read as: the person may refuse it (fold-chat-minds.js)
+-      if (!text.trim() && !notices.length && !skipModel && !liveDrop) notices.push(emptyNotice({ tokens: out.tokens, model: m.id }));
++      if (!text.trim() && !notices.length && !skipModel && !liveDrop && !genGate) notices.push(emptyNotice({ tokens: out.tokens, model: m.id }));
+       const turn = s.messages.filter((x) => x.role === "assistant").length + 1;
+       const lastUser = [...s.messages].reverse().find((x) => x.role === "user");
+       // Every turn but a greeting carries a grounding record — the fold is
+\ No newline at end of file
+@@ -2681,8 +2729,12 @@
+         const ref = String(p.ref || ""); return { title: (ref.includes(" \u2014 ") ? ref.slice(ref.indexOf(" \u2014 ") + 3) : ref).trim(), domain, url: p.url || null };
+       });
+       let gapReport = null;
+-      if (record && (plan || liveDrop)) {
++      if (record && genGate && !genGate.ok) {
+         delete record.creative; delete record.noClaims;      // a gap is not "no claims to check"
++        gapReport = genGate.void; text = "";
++        feedPush(lineEvent(tt, `Could not ${genGate.void.outputType && ["image", "video", "slides"].includes(genGate.void.outputType) ? "make" : "write"} the ${genGate.void.outputType || "piece"}`, { tone: "bad", note: genGate.void.missing.join("; ") }));
++      } else if (record && (plan || liveDrop)) {
++        delete record.creative; delete record.noClaims;      // a gap is not "no claims to check"
+         gapReport = (plan && plan.gap === "live") || liveDrop ? liveGap(webTrace, question, { read: liveDrop ? readList : [], what: liveHit?.what || null })
+           : unreachedGap(webTrace, question);
+         if (strandEmpty) gapReport.note = "Pages were read, but no passage of them could be quoted for this ask" + (strandWhy ? " (" + strandWhy + ")." : ".");
+\ No newline at end of file
+@@ -2716,7 +2768,7 @@
+         const un = (record.unsupported?.numbers?.length || 0) + (record.unsupported?.names?.length || 0);
+         feedPush(lineEvent(tt, "Checked the answer against what was read", { tone: un ? "warn" : "ok", note: un ? `${un} figure(s) or name(s) not found in the sources` : "every figure and name appears in the sources" }));
+       }
+-      feedPush(doneEvents(tt, { ok: !(plan || liveDrop || (slotTurn && !slotTurn.answer)), title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: slotTurn ? slotTurn.sources.length : webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop || (slotTurn && !slotTurn.answer)) }) }));
++      feedPush(doneEvents(tt, { ok: !(plan || liveDrop || (genGate && !genGate.ok) || (slotTurn && !slotTurn.answer)), title: summaryLine({ ms: Date.now() - flight.startedAt, nSources: slotTurn ? slotTurn.sources.length : webPassages.length, mode: strand ? "snips" : "facing", model: m.id, fellBack: fellBack ? (fellBack.kind === "fold" ? "nomodel" : "declined") : false, gap: !!(plan || liveDrop || (genGate && !genGate.ok) || (slotTurn && !slotTurn.answer)) }) }));
+       if (record) record.feed = storeEvents(turnEvents, { max: 60 });
+       const idx = s.messages.length;
+       // Stored by author: a Sources-only turn is `authored: "sources"` with its verbatim snips (content = their plain
+\ No newline at end of file

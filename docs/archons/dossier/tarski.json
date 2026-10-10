@@ -1,0 +1,46 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "tarski",
+  "organ": "khora/native/kernel/relation-composition.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/tarski.json"
+  ],
+  "whatTheyArgued": "Tarski (JSL 6(3), 1941, 'On the Calculus of Relations') revived and axiomatized an algebra of binary relations whose operations are Boolean ones plus relative product (composition), converse and identity. His key result: quantifier-free relation formulas reduce to equations, so relation algebra is an equational theory with models beyond set-theoretic relations. The calculus itself was made by Peirce and systematized by Schroeder (Algebra der Logik); Tarski did not set it out from scratch. The paper is copyrighted and no snip was cut (manifest is copyrighted_deferred); I did not read the paper itself, only scholarship about it.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'The Algebra of Logic Tradition' (Tarski 1941 section)",
+      "url": "https://plato.stanford.edu/entries/algebra-logic-tradition/",
+      "supports": "Tarski 1941 revived Peirce/Schroeder relation algebra, made it equational (formulas to equations), composition = relative product; Tarski-Givant 1987 showed it can formalize set theory",
+      "disputes": "none found for the historical claim; the entry stresses the Peirce-Schroeder origin, which the compendium's 'set out' blurs"
+    }
+  ],
+  "ourUse": "relation-composition.js chains hyperedges end-to-end by ordinal position (first end, last end) and then evaluates each chain against the Hyperlexicon: composition is licensed only by a GIVEN affordance with a named giver; observed adjacencies are candidates, never composed. It is evidence-gated chaining over witnessed edges. It implements no Boolean operations, no converse, no identity, and no equational laws; the file contains no test of associativity or the relation-algebra axioms.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "algebra-vs-gated-chaining",
+      "kind": "narrowed",
+      "ours": "Compendium: 'the algebra relation-composition stands on'. Code is a partial, license-gated chaining of witnessed edges.",
+      "theirs": "Tarski's calculus is a total algebra: composition of any two relations exists and obeys the axioms (associative, with identity and converse, plus Boolean operations). Our composition is deliberately partial (withheld without a given affordance), so it is not that algebra, only inspired by one operation of it."
+    },
+    {
+      "id": "who-set-it-out",
+      "kind": "misstated",
+      "ours": "'The logician who set out the calculus of relations ... the formal ancestor of relation composition.'",
+      "theirs": "Peirce introduced and Schroeder systematized the calculus; Tarski 1941 revived it and showed it equational. Ancestry of composition goes to Peirce/Schroeder (and De Morgan), with Tarski the modern axiomatizer."
+    },
+    {
+      "id": "no-primary-read",
+      "kind": "decorative",
+      "ours": "Header 'after the calculus of relations' and a credit citing 1941; no passage of Tarski is quoted or verified.",
+      "theirs": "The work is copyrighted, so no verified snip exists; the link between our code and any specific Tarski claim is untested by us."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Peirce and Schroeder built the algebra of relations and Tarski (1941) axiomatized it as an equational theory with composition (relative product) as a core operation. relation-composition.js uses only one idea from it: chaining relations end to end, and it withholds a chain unless a given affordance licenses it, so it is not the full relation algebra.'",
+    "compendium credit: 'Tarski (1941), axiomatizing the Peirce-Schroeder algebra of relations — relation composition as relative product; ours is a gated, partial use.'",
+    "organ header: replace 'after the calculus of relations' with 'borrows relative-product chaining from the Peirce-Schroeder-Tarski relation algebra; does not implement its laws'."
+  ]
+}

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+html, body { margin: 0; height: 100%; }
+body { font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: #141416; background: #ffffff; -webkit-font-smoothing: antialiased; }
+a { color: #1d4ed8; } a:hover { color: #1e40af; }
+textarea, button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+summary { cursor: pointer; }
+</style>
+</helmet>
+<div style="display: flex; flex-direction: column; height: 100vh; min-height: 560px;">
+  <header style="display: flex; align-items: center; gap: 16px; padding: 10px 18px; border-bottom: 1px solid #e4e4e9; flex-wrap: wrap;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span style="width: 28px; height: 28px; border-radius: 8px; background: #0d7a70; color: #fff; display: grid; place-items: center; font: 700 14px/1 ui-monospace, Menlo, monospace;">›</span>
+      <div style="display: flex; flex-direction: column;"><b style="font-size: 15px;">Block Kit</b><span style="font-size: 12.5px; color: #5f5f6b;">The model fills values, the kernel checks each assembly, the app renders</span></div>
+    </div>
+    <nav style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px; margin-left: auto;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+        <button type="button" onClick="{{ t.pick }}" aria-pressed="{{ t.on }}" style="white-space: nowrap; border: 0; border-radius: 999px; padding: 6px 14px; font-size: 13.5px; font-weight: 600; background: {{ t.bg }}; color: {{ t.fg }}; box-shadow: {{ t.shadow }};">{{ t.label }}</button>
+      </sc-for>
+    </nav>
+  </header>
+
+  <sc-if value="{{ isMake }}" hint-placeholder-val="{{ true }}">
+    <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(340px, 460px) minmax(0, 1fr);">
+      <div style="border-right: 1px solid #e4e4e9; display: flex; flex-direction: column; min-height: 0;">
+        <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid #e4e4e9;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="bk-ask" style="font-size: 13px; font-weight: 700; color: #44444e;">{{ askLabel }}</label>
+            <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+              <span style="display: flex; align-items: center; gap: 6px; font: 12.5px/1.4 ui-monospace, Menlo, monospace; color: #1d4ed8; background: #eef2ff; border-radius: 999px; padding: 2px 4px 2px 10px;">◎ {{ selLabel }}<button type="button" onClick="{{ clearSel }}" aria-label="Clear the selected part" style="border: 0; background: none; color: #1d4ed8; width: 22px; height: 22px; border-radius: 50%; padding: 0;">×</button></span>
+            </sc-if>
+          </div>
+          <textarea id="bk-ask" rows="3" value="{{ ask }}" onChange="{{ onAsk }}" placeholder="{{ askPlaceholder }}" style="resize: vertical; border: 1.5px solid #0d7a70; border-radius: 12px; padding: 10px 12px; font: 14px/1.5 ui-monospace, Menlo, monospace; background: #fff;"></textarea>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <sc-if value="{{ noKernel }}" hint-placeholder-val="{{ true }}">
+              <div role="group" aria-label="Kind" style="display: flex; gap: 2px; background: #f1f1f4; border-radius: 999px; padding: 3px;">
+                <sc-for list="{{ kinds }}" as="k" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ k.pick }}" aria-pressed="{{ k.on }}" style="white-space: nowrap; border: 0; border-radius: 999px; padding: 5px 11px; font-size: 13px; background: {{ k.bg }}; color: {{ k.fg }};">{{ k.label }}</button>
+                </sc-for>
+              </div>
+            </sc-if>
+            <span style="flex: 1;"></span>
+            <sc-if value="{{ running }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ stop }}" style="white-space: nowrap; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Stop</button>
+            </sc-if>
+            <sc-if value="{{ canStart }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ runMake }}" style="white-space: nowrap; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 14px; font-weight: 600;">Build with the local model</button>
+            </sc-if>
+            <sc-if value="{{ canFollow }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ restart }}" style="white-space: nowrap; height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Start over</button>
+              <button type="button" onClick="{{ runFollow }}" style="white-space: nowrap; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #0d7a70; color: #fff; font-size: 14px; font-weight: 600;">Follow up</button>
+            </sc-if>
+          </div>
+          <div style="font-size: 13px; color: #44444e; min-height: 20px;">{{ modelLine }}</div>
+        </div>
+        <div role="tablist" aria-label="Panel" style="display: flex; gap: 4px; padding: 0 12px; border-bottom: 1px solid #e4e4e9;">
+          <sc-for list="{{ panes }}" as="p" hint-placeholder-count="3">
+            <button type="button" role="tab" aria-selected="{{ p.on }}" onClick="{{ p.pick }}" style="white-space: nowrap; border: 0; background: none; padding: 9px 8px 8px; font-size: 13.5px; font-weight: 600; color: {{ p.fg }}; border-bottom: 2px solid {{ p.line }};">{{ p.label }}</button>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ isRunPane }}" hint-placeholder-val="{{ true }}">
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+            <sc-if value="{{ noSteps }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size: 14px; color: #5f5f6b; line-height: 1.55;">The run is a chain of small assemblies. The app writes each one's structure; the model in this tab writes only the values. Each is checked alone and commits whole or not at all.</div>
+            </sc-if>
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="0">
+              <div style="border: 1px solid #e4e4e9; border-left: 3px solid {{ s.color }}; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; align-items: baseline; gap: 8px;">
+                  <b style="font-size: 14px; white-space: nowrap;">{{ s.n }}. {{ s.id }}</b>
+                  <span style="font-size: 13px; color: {{ s.color }}; font-weight: 600;">{{ s.statusText }}</span>
+                  <span style="flex: 1;"></span>
+                  <span style="font-size: 12.5px; color: #5f5f6b; white-space: nowrap;">{{ s.meta }}</span>
+                </div>
+                <div style="font-size: 13px; color: #44444e;">{{ s.goal }}</div>
+                <sc-if value="{{ s.hasUnits }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; flex-direction: column; border-top: 1px solid #e4e4e9;">
+                    <sc-for list="{{ s.units }}" as="u" hint-placeholder-count="0">
+                      <div style="display: grid; grid-template-columns: minmax(86px, auto) minmax(0, 1fr) auto; gap: 2px 8px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid #f1f1f4;">
+                        <span style="font: 12px/1.4 ui-monospace, Menlo, monospace; color: #44444e;">{{ u.key }}</span>
+                        <span style="font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; color: {{ u.valueColor }};">{{ u.value }}</span>
+                        <span style="font: 700 11px/1 ui-monospace, Menlo, monospace; color: #fff; background: {{ u.byColor }}; border-radius: 4px; padding: 3px 5px; white-space: nowrap;">{{ u.by }}</span>
+                        <sc-if value="{{ u.hasNote }}" hint-placeholder-val="{{ false }}"><span></span><span style="grid-column: 2 / 4; font-size: 12px; color: #5f5f6b; line-height: 1.4;">{{ u.note }}</span></sc-if>
+                        <sc-for list="{{ u.scars }}" as="sc" hint-placeholder-count="0"><span></span><span style="grid-column: 2 / 4; font-size: 12px; color: #8a1f1f; line-height: 1.4;">✗ “{{ sc.value }}” · {{ sc.why }}</span></sc-for>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <sc-for list="{{ s.attempts }}" as="a" hint-placeholder-count="0">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <div style="font-size: 12.5px; color: #5f5f6b;">{{ a.head }}</div>
+                    <sc-if value="{{ a.hasText }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size: 12px; font-weight: 700; color: #44444e;">set down as (the app's skeleton, each unit's value)</div>
+                      <pre style="margin: 0; background: #f6f6f8; border-radius: 8px; padding: 8px 10px; font: 12.5px/1.5 ui-monospace, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 200px; overflow: auto;">{{ a.text }}</pre>
+                    </sc-if>
+                    <sc-for list="{{ a.errors }}" as="e" hint-placeholder-count="0">
+                      <div style="font-size: 13px; line-height: 1.45; color: #8a1f1f; background: #fdeaea; border-radius: 6px; padding: 6px 8px;"><b>{{ e.code }}</b> · {{ e.msg }}</div>
+                    </sc-for>
+                    <sc-for list="{{ a.notes }}" as="nt" hint-placeholder-count="0">
+                      <div style="font-size: 12.5px; color: #44444e;">note · {{ nt }}</div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isEditPane }}" hint-placeholder-val="{{ false }}">
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{ noKernel }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size: 14px; color: #5f5f6b; line-height: 1.55;">Build something first. Then pick a part here, or turn on Edit above the preview and click it. Every change becomes an EOT assembly in the history, checked like the model's.</div>
+            </sc-if>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{ parts }}" as="pt" hint-placeholder-count="0">
+                <button type="button" onClick="{{ pt.pick }}" aria-pressed="{{ pt.on }}" style="white-space: nowrap; border: 1px solid {{ pt.border }}; background: {{ pt.bg }}; color: {{ pt.fg }}; border-radius: 999px; padding: 4px 10px; font: 12.5px/1.4 ui-monospace, Menlo, monospace;">{{ pt.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ hasEditor }}" hint-placeholder-val="{{ false }}">
+              <div style="border: 1px solid #cfcfd7; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 12px;">
+                <div style="display: flex; flex-direction: column; gap: 2px;"><b style="font: 600 14px/1.4 ui-monospace, Menlo, monospace;">{{ edTitle }}</b><span style="font-size: 13px; color: #5f5f6b;">{{ edAbout }}</span></div>
+                <sc-for list="{{ edFields }}" as="f" hint-placeholder-count="0">
+                  <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: #44444e;">
+                    <span>{{ f.key }} <span style="font-weight: 400; color: #5f5f6b;">{{ f.hint }}</span></span>
+                    <sc-if value="{{ f.isChoice }}" hint-placeholder-val="{{ false }}">
+                      <select value="{{ f.value }}" onChange="{{ f.set }}" style="height: 38px; border: 1px solid #8d8d9a; border-radius: 8px; padding: 0 8px; background: #fff; font-weight: 400;">
+                        <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="0"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+                      </select>
+                    </sc-if>
+                    <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}">
+                      <div style="display: flex; gap: 6px; align-items: center;">
+                        <sc-if value="{{ f.isColor }}" hint-placeholder-val="{{ false }}"><span style="width: 26px; height: 26px; border-radius: 6px; border: 1px solid #cfcfd7; flex: none; background: {{ f.value }};"></span></sc-if>
+                        <input type="text" value="{{ f.value }}" onChange="{{ f.set }}" style="flex: 1; min-width: 0; height: 38px; border: 1px solid #8d8d9a; border-radius: 8px; padding: 0 10px; background: #fff; font-weight: 400;">
+                      </div>
+                    </sc-if>
+                  </label>
+                </sc-for>
+                <sc-if value="{{ edHasRoom }}" hint-placeholder-val="{{ false }}">
+                  <label style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; color: #44444e;">
+                    <span>records of room {{ edRoom }} <span style="font-weight: 400; color: #5f5f6b;">one per line · {{ edRoomFields }}</span></span>
+                    <textarea rows="5" value="{{ edRows }}" onChange="{{ setRows }}" style="border: 1px solid #8d8d9a; border-radius: 8px; padding: 8px 10px; font: 13px/1.5 ui-monospace, Menlo, monospace; resize: vertical;"></textarea>
+                  </label>
+                </sc-if>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <span style="font-size: 12px; font-weight: 700; color: #44444e;">this edit, as EOT</span>
+                  <pre style="margin: 0; background: #f6f6f8; border-radius: 8px; padding: 8px 10px; font: 12.5px/1.5 ui-monospace, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere;">{{ edEot }}</pre>
+                </div>
+                <sc-for list="{{ edErrors }}" as="e" hint-placeholder-count="0">
+                  <div style="font-size: 13px; color: #8a1f1f; background: #fdeaea; border-radius: 6px; padding: 6px 8px;"><b>{{ e.code }}</b> · {{ e.msg }}</div>
+                </sc-for>
+                <div style="display: flex; gap: 8px;">
+                  <button type="button" onClick="{{ saveEdit }}" style="white-space: nowrap; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #1d4ed8; color: #fff; font-size: 14px; font-weight: 600;">Check and apply</button>
+                  <button type="button" onClick="{{ resetEdit }}" style="white-space: nowrap; height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 14px;">Reset</button>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMemPane }}" hint-placeholder-val="{{ false }}">
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-size: 13px; color: #5f5f6b; line-height: 1.5;">The mouth does not learn; the system does. Values that held are kept in the library and recalled by frame. Your edits teach it, and what you replace is never recalled. A shape the mouth walls on {{ promoteAfter }} times becomes a standing rule.</div>
+            <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+              <div style="display: flex; flex-direction: column;"><b style="font-size: 22px; font-variant-numeric: tabular-nums;">{{ memLibrary }}</b><span style="font-size: 12.5px; color: #5f5f6b;">kept values</span></div>
+              <div style="display: flex; flex-direction: column;"><b style="font-size: 22px; font-variant-numeric: tabular-nums;">{{ memRejected }}</b><span style="font-size: 12.5px; color: #5f5f6b;">replaced by you</span></div>
+              <div style="display: flex; flex-direction: column;"><b style="font-size: 22px; font-variant-numeric: tabular-nums;">{{ memStandingN }}</b><span style="font-size: 12.5px; color: #5f5f6b;">standing rules</span></div>
+            </div>
+            <sc-for list="{{ memStanding }}" as="r" hint-placeholder-count="0">
+              <div style="font-size: 13px; line-height: 1.45; background: #fdf6e7; border-radius: 6px; padding: 6px 8px;"><b style="font-family: ui-monospace, Menlo, monospace;">{{ r.shape }}</b> · {{ r.why }} · now {{ r.owner }}</div>
+            </sc-for>
+            <div style="display: flex; flex-direction: column;">
+              <div style="display: grid; grid-template-columns: minmax(110px, 1fr) repeat(6, 44px); gap: 4px; font-size: 11.5px; font-weight: 700; color: #5f5f6b; padding-bottom: 4px; border-bottom: 1px solid #e4e4e9;"><span>shape</span><span>library</span><span>box</span><span>hunt</span><span>mouth</span><span>failed</span><span>you</span></div>
+              <sc-for list="{{ memScore }}" as="r" hint-placeholder-count="0">
+                <div style="display: grid; grid-template-columns: minmax(110px, 1fr) repeat(6, 44px); gap: 4px; font-size: 12.5px; padding: 4px 0; border-bottom: 1px solid #f1f1f4; font-variant-numeric: tabular-nums;"><span style="font-family: ui-monospace, Menlo, monospace;">{{ r.shape }}</span><span>{{ r.library }}</span><span>{{ r.box }}</span><span>{{ r.hunt }}</span><span>{{ r.mouth }}</span><span style="color: #8a1f1f;">{{ r.fail }}</span><span style="color: #1d4ed8;">{{ r.you }}</span></div>
+              </sc-for>
+            </div>
+            <button type="button" onClick="{{ forget }}" style="white-space: nowrap; align-self: flex-start; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13px;">Forget everything</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isHistPane }}" hint-placeholder-val="{{ false }}">
+          <div style="flex: 1; min-height: 0; overflow: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-size: 13px; color: #5f5f6b; line-height: 1.5;">Every assembly, oldest first: the model's, the app's and yours. Rejected ones are kept too; they changed nothing. Undo appends the inverse.</div>
+            <sc-for list="{{ history }}" as="h" hint-placeholder-count="0">
+              <div style="border-left: 3px solid {{ h.color }}; padding: 6px 10px; display: flex; flex-direction: column; gap: 6px; background: {{ h.bg }}; border-radius: 0 8px 8px 0;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <span style="font: 700 11.5px/1 ui-monospace, Menlo, monospace; color: #fff; background: {{ h.byColor }}; border-radius: 4px; padding: 3px 6px;">{{ h.by }}</span>
+                  <b style="font-size: 13.5px;">{{ h.label }}</b>
+                  <span style="font-size: 12.5px; color: {{ h.color }}; font-weight: 600;">{{ h.status }}</span>
+                  <span style="flex: 1;"></span>
+                  <sc-if value="{{ h.canUndo }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" onClick="{{ h.undo }}" style="white-space: nowrap; height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 12.5px;">Undo</button>
+                  </sc-if>
+                </div>
+                <pre style="margin: 0; font: 12px/1.5 ui-monospace, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; color: #2a2a30;">{{ h.text }}</pre>
+                <sc-for list="{{ h.errors }}" as="e" hint-placeholder-count="0"><div style="font-size: 12.5px; color: #8a1f1f;"><b>{{ e.code }}</b> · {{ e.msg }}</div></sc-for>
+              </div>
+            </sc-for>
+            <sc-if value="{{ hasHistory }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ copyEot }}" style="white-space: nowrap; align-self: flex-start; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13px;">{{ copyLabel }}</button>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0; background: #f1f1f4;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #fff; border-bottom: 1px solid #e4e4e9;">
+          <b style="font-size: 13.5px;">Preview</b><span style="font-size: 13px; color: #5f5f6b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0;">{{ previewNote }}</span><span style="flex: 1;"></span>
+          <button type="button" onClick="{{ toggleEdit }}" aria-pressed="{{ editMode }}" style="white-space: nowrap; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid {{ editBorder }}; background: {{ editBg }}; color: {{ editFg }}; font-size: 13px; font-weight: 600;">{{ editLabel }}</button>
+          <button type="button" onClick="{{ download }}" style="white-space: nowrap; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13px;">Download HTML</button>
+        </div>
+        <div style="flex: 1; min-height: 0; padding: 14px;">
+          <iframe ref="{{ frameRef }}" title="Preview" sandbox="allow-scripts allow-forms" style="width: 100%; height: 100%; border: 0; border-radius: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);"></iframe>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPlay }}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(320px, 440px) minmax(0, 1fr);">
+      <div style="border-right: 1px solid #e4e4e9; display: flex; flex-direction: column; min-height: 0; padding: 16px; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;"><b style="font-size: 13px; color: #44444e;">EOT</b><span style="flex: 1;"></span><button type="button" onClick="{{ runPlay }}" style="white-space: nowrap; height: 34px; padding: 0 14px; border-radius: 999px; border: 0; background: #141416; color: #fff; font-size: 13.5px; font-weight: 600;">Assemble</button><button type="button" onClick="{{ playToMake }}" style="white-space: nowrap; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #cfcfd7; background: #fff; font-size: 13.5px;">Open in Make</button></div>
+        <textarea value="{{ eot }}" onChange="{{ onEot }}" spellcheck="false" aria-label="EOT source" style="flex: 1; min-height: 200px; resize: none; border: 1px solid #cfcfd7; border-radius: 10px; padding: 10px 12px; font: 13px/1.55 ui-monospace, Menlo, monospace;"></textarea>
+        <div style="max-height: 40%; overflow: auto; display: flex; flex-direction: column; gap: 6px;">
+          <sc-for list="{{ playVerdicts }}" as="v" hint-placeholder-count="0">
+            <div style="border-left: 3px solid {{ v.color }}; padding: 4px 10px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-size: 13px;"><b>{{ v.head }}</b> <span style="color: {{ v.color }}; font-weight: 600;">{{ v.status }}</span></div>
+              <sc-for list="{{ v.errors }}" as="e" hint-placeholder-count="0"><div style="font-size: 13px; color: #8a1f1f;"><b>{{ e.code }}</b> · {{ e.msg }}</div></sc-for>
+              <sc-for list="{{ v.notes }}" as="nt" hint-placeholder-count="0"><div style="font-size: 12.5px; color: #44444e;">note · {{ nt }}</div></sc-for>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; min-width: 0; min-height: 0; background: #f1f1f4; padding: 14px;">
+        <iframe ref="{{ playRef }}" title="Playground preview" sandbox="allow-scripts allow-forms" style="width: 100%; height: 100%; border: 0; border-radius: 10px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.06);"></iframe>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCat }}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; min-height: 0; overflow: auto; padding: 24px; display: flex; flex-direction: column; gap: 24px;">
+      <div style="max-width: 760px; font-size: 14.5px; color: #44444e; line-height: 1.55;">The 27 coherent cells of EO: a terrain (what is shown) and a stance (how you engage with it) of the same grain. Each holds the blocks built for it, is a known gap, or is the desert. {{ coverage }}</div>
+      <sc-for list="{{ grains }}" as="g" hint-placeholder-count="3">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <b style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: #5f5f6b;">{{ g.grain }} grain</b>
+          <div style="display: grid; grid-template-columns: 120px repeat(3, minmax(160px, 1fr)); gap: 6px; max-width: 1100px;">
+            <span></span>
+            <sc-for list="{{ g.stances }}" as="st" hint-placeholder-count="3"><span style="font-size: 13px; font-weight: 600; color: #44444e; padding: 0 4px;">{{ st }}</span></sc-for>
+            <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="3">
+              <span style="font-size: 13px; font-weight: 600; padding: 10px 4px;">{{ r.terrain }}</span>
+              <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="3">
+                <div style="border: 1px {{ c.borderStyle }} {{ c.border }}; background: {{ c.bg }}; border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; min-height: 64px;">
+                  <span style="font: 600 13px/1.4 ui-monospace, Menlo, monospace; color: {{ c.fg }};">{{ c.title }}</span>
+                  <span style="font-size: 12.5px; color: #44444e; line-height: 1.4;">{{ c.about }}</span>
+                </div>
+              </sc-for>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTests }}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; min-height: 0; overflow: auto; padding: 24px; display: flex; flex-direction: column; gap: 12px; max-width: 900px;">
+      <div style="display: flex; align-items: center; gap: 12px;"><button type="button" onClick="{{ runTests }}" style="white-space: nowrap; height: 36px; padding: 0 16px; border-radius: 999px; border: 0; background: #141416; color: #fff; font-size: 14px; font-weight: 600;">Run the suite</button><b style="font-size: 14px;">{{ testSummary }}</b></div>
+      <sc-for list="{{ tests }}" as="t" hint-placeholder-count="0">
+        <div style="display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid #e4e4e9;">
+          <span style="font-weight: 700; color: {{ t.color }}; width: 16px;">{{ t.mark }}</span>
+          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;"><span style="font-size: 14px;">{{ t.name }}</span><span style="font-size: 13px; color: #8a1f1f; overflow-wrap: anywhere;">{{ t.error }}</span></div>
+          <span style="margin-left: auto; font-size: 12.5px; color: #5f5f6b;">{{ t.ms }} ms</span>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const PLAY = `# assembly 1: the look
+look : theme
+look.accent = #a5532e
+look.font = serif
+look.radius = soft
+!EVA look
+
+# assembly 2: the data
+classes : room
+classes.schema.name = text
+classes.schema.price = text
+classes.schema.length = text
+classes.row = Intro to the wheel | £45 | 2 hrs
+classes.row = Glazing basics | £35 | 90 min
+classes.row = Four-week course | £160 | 4 × 2 hrs
+!EVA classes
+
+# assembly 3: the blocks
+top : nav
+top.brand = Clay & Kiln
+top.items = Classes, Studio, Book
+hi : hero
+hi.title = Make something with your hands this weekend
+hi.sub = Small wheel-throwing classes, Saturdays and Sundays.
+hi.cta = Book a class
+hi.image = studio photo
+prices : cards
+prices.heading = Classes
+prices.room = classes
+prices.title = name
+prices.sub = price
+prices.meta = length
+prices.cta = Book
+book : form
+book.title = Book a class
+book.fields = Name, Email, Date
+book.submit = Request a place
+end : footer
+end.text = Clay & Kiln · Leith, Edinburgh
+!EVA top, hi, prices, book, end
+
+# assembly 4: the frame
+site : app
+site.kind = website
+site.title = Clay & Kiln
+site.blocks = top, hi, prices, book, end
+!EVA site`;
+const BY = { model: "#0d7a70", app: "#5f5f6b", you: "#1d4ed8" };
+
+class Component extends DCLogic {
+  state = { tab: "make", pane: "run", ask: "A one-page site for my pottery studio: weekend classes with prices, and a booking form", kind: "auto", running: false, steps: [], modelLine: "", previewNote: "nothing has passed yet", eot: PLAY, play: [], tests: [], testSummary: "", log: [], sel: null, ed: null, edErrors: [], editMode: false, rev: 0, copied: false };
+  frameRef = React.createRef();
+  playRef = React.createRef();
+  html = ""; playHtml = ""; kernel = null;
+
+  componentDidMount() {
+    const u = (f) => new URL(f, document.baseURI).href;
+    this.ready = Promise.all(["fold-blocks.js", "fold-blocks-kernel.js", "fold-blocks-make.js", "fold-blocks-tests.js", "fold-chat-client.js", "fold-chat-webllm.js", "fold-blocks-edit.js", "fold-blocks-weave.js"].map((f) => import(u(f))))
+      .then(([blocks, kernel, make, tests, client, webllm, edit, weave]) => { this.m = { blocks, kernel, make, tests, client, webllm, edit, weave }; this.memory = weave.createMemory(); this.forceUpdate(); return this.m; });
+    this.ready.then(() => { if (/[?&]tests\b/.test(location.search)) this.setState({ tab: "tests" }, () => this.runTests()); });
+    this.onMsg = (ev) => { const f = this.frameRef.current; if (!f || ev.source !== f.contentWindow) return; const d = ev.data || {}; if (d.fold === "pick" && d.name) this.pick(d.name); if (d.fold === "ready") this.tell(); };
+    window.addEventListener("message", this.onMsg);
+  }
+  componentWillUnmount() { window.removeEventListener("message", this.onMsg); }
+  componentDidUpdate() { this.paint(this.frameRef, this.html); this.paint(this.playRef, this.playHtml); }
+  paint(ref, html) { const f = ref.current; if (f && html && f.__html !== html) { f.srcdoc = html; f.__html = html; } }
+  tell() { const w = this.frameRef.current?.contentWindow; if (!w) return; w.postMessage({ fold: "edit", on: this.state.editMode }, "*"); w.postMessage({ fold: "select", name: this.state.sel }, "*"); }
+  refresh(note) { if (!this.kernel) return; this.html = this.m.blocks.render(this.kernel.model()); this.setState((s) => ({ rev: s.rev + 1, ...(note ? { previewNote: note } : {}) })); }
+  addLog(entry) { this.setState((s) => ({ log: [...s.log, { id: s.log.length, at: Date.now(), ...entry }] })); }
+
+  async engine() {
+    const { client, webllm } = this.m;
+    if (!this.modelId) {
+      const eng = webllm.createPageEngine({ storage: localStorage, onProgress: (p) => this.setState({ modelLine: `Loading the in-tab model… ${Math.round((p.progress || 0) * 100)}%` }) });
+      client.setPageEngine(eng, { confirmDownload: async () => true });
+      this.modelId = webllm.PAGE_PREFIX + webllm.DEFAULT_MODEL;
+      this.modelName = (webllm.MODEL_CHOICES.find((m) => m.id === webllm.DEFAULT_MODEL) || {}).name || webllm.DEFAULT_MODEL;
+    }
+    return this.modelId;
+  }
+  // The model in this tab. Its system text rides in the first user turn (small chat templates have no system role),
+  // and generation stops at the checkpoint line.
+  completer(modelId, signal0) {
+    const m = this.m;
+    return async (messages, { maxTokens, signal, onToken, stop }) => {
+      const sys = messages.filter((x) => x.role === "system").map((x) => x.content).join("\n\n");
+      const rest = messages.filter((x) => x.role !== "system");
+      const msgs = sys && rest.length ? [{ ...rest[0], content: sys + "\n\n" + rest[0].content }, ...rest.slice(1)] : rest;
+      const cut = new AbortController(); let acc = "", ended = false;
+      const fwd = () => cut.abort(); const sig = signal || signal0; if (sig) sig.addEventListener("abort", fwd, { once: true });
+      try {
+        const r = await m.client.chat(modelId, msgs, { maxTokens, signal: cut.signal, temperature: 0.2, allowDownload: true, totalTimeoutMs: 300000,
+          onToken: (t) => { acc += t; onToken && onToken(t); if (!ended && (stop === "line" ? /\S[^\n]*\n/.test(acc.replace(/^\s*```[^\n]*\n/, "")) : /(^|\n)\s*!EVA[^\n]*\n/i.test(acc))) { ended = true; cut.abort(); } } });
+        return r.text;
+      } catch (e) { if (ended) return acc; throw e; }
+      finally { if (sig) sig.removeEventListener("abort", fwd); }
+    };
+  }
+
+  async runMake() {
+    const m = this.m || (await this.ready);
+    const modelId = await this.engine();
+    const ac = new AbortController(); this.ac = ac;
+    this.html = ""; this.kernel = null;
+    this.setState({ running: true, pane: "run", steps: [], log: [], sel: null, ed: null, modelLine: `In this tab · ${this.modelName}`, previewNote: "nothing has passed yet" });
+    const t0 = Date.now(); let live = "", liveAt = 0;
+    const onEvent = (e) => {
+      if (e.type === "plan") this.setState({ steps: e.steps.map((s) => ({ ...s, attempts: [], live: "" })) });
+      if (e.type === "start" || e.type === "verdict") live = "";
+      if (e.type === "token") { live += e.text; if (Date.now() - liveAt > 120) { liveAt = Date.now(); this.patchStep(e.i, (s) => ({ ...s, status: "running", live })); } return; }
+      if (e.type === "start") { this.patchStep(e.i, (s) => ({ ...s, status: "running", t0: Date.now() })); this.setState({ modelLine: `Writing assembly ${e.i + 1} · in this tab · ${this.modelName}` }); }
+      if (e.type === "unit") this.patchStep(e.i, (s) => { const us = (s.units || []).filter((x) => x.key !== e.key); return { ...s, status: "running", units: [...us, { key: e.key, value: e.value, by: e.by, address: e.address, attempts: e.attempts }] }; });
+      if (e.type === "supplied") this.addLog({ by: "app", label: "supplied inputs", text: e.text, ok: true, errors: [] });
+      if (e.type === "verdict") {
+        const step = this.state.steps[e.i];
+        this.addLog({ by: "model", label: step ? step.id : "assembly", text: e.text || "", raw: e.raw, ok: e.ok, errors: e.errors || [] });
+        this.patchStep(e.i, (s) => ({ ...s, live: "", status: e.ok ? "passed" : "vetoed", units: e.units || s.units, attempts: [...s.attempts, { ok: e.ok, raw: e.raw || "", text: e.text || "", errors: e.errors || [], notes: e.notes || [], ms: Date.now() - (s.t0 || Date.now()) }], t0: Date.now() }));
+        if (e.ok) { this.html = m.blocks.render(e.model); this.setState({ previewNote: "showing what has passed so far" }); }
+      }
+      if (e.type === "veto") this.patchStep(e.i, (s) => ({ ...s, status: "vetoed" }));
+      if (e.type === "stopped") this.patchStep(e.i, (s) => ({ ...s, status: "stopped" }));
+      if (e.type === "frame") { this.addLog({ by: "app", label: "frame", text: e.text, ok: e.ok, errors: e.errors || [] }); if (e.ok) { this.html = m.blocks.render(e.model); this.setState({ previewNote: "the whole artifact" }); } }
+    };
+    try {
+      const kind = this.state.kind === "auto" ? null : this.state.kind;
+      this.runAsk = this.state.ask;
+      const r = await m.make.make(this.state.ask, { kind, complete: this.completer(modelId, ac.signal), onEvent, signal: ac.signal, memory: this.memory });
+      this.kernel = r.kernel; this.runKind = r.kind;
+      this.byKey = Object.fromEntries(r.steps.flatMap((s) => s.units || []).map((u) => [u.key, u]));
+      const secs = Math.round((Date.now() - t0) / 1000), tries = r.steps.flatMap((s) => s.units || []).reduce((n, u) => n + u.attempts.length, 0);
+      window.__blockKitRun = { ok: r.ok, kind: r.kind, steps: r.steps.map((s) => ({ id: s.id, status: s.status, attempts: s.attempts.length })) };
+      this.setState({ ask: "", modelLine: `${r.ok ? "Built" : ac.signal.aborted ? "Stopped" : "Did not hold"} · ${r.kind} · ${tries} model call${tries === 1 ? "" : "s"} · ${secs}s · ${this.modelName}` });
+    } catch (e) { this.setState({ modelLine: "The run failed: " + (e && e.message ? e.message : String(e)) }); }
+    finally { this.ac = null; this.setState({ running: false }); }
+  }
+  patchStep(i, fn) { this.setState((st) => ({ steps: st.steps.map((s, j) => (j === i ? fn(s) : s)) })); }
+
+  async runFollow() {
+    const m = this.m; if (!this.kernel || !this.state.ask.trim()) return;
+    const modelId = await this.engine();
+    const ac = new AbortController(); this.ac = ac;
+    const request = this.state.ask.trim(), t0 = Date.now();
+    this.setState({ running: true, pane: "hist", modelLine: `Following up · in this tab · ${this.modelName}` });
+    try {
+      const r = await m.make.followUp(this.kernel, request, { complete: this.completer(modelId, ac.signal), target: this.state.sel, signal: ac.signal,
+        onEvent: (e) => {
+          if (e.type === "target") this.setState({ modelLine: `${e.mode === "add" ? "Adding" : "Changing"} ${e.name} (${e.how}) · ${this.modelName}` });
+          if (e.type === "verdict") this.addLog({ by: e.by || "model", label: `follow-up · ${request.slice(0, 48)}`, text: e.text || "", raw: e.raw, ok: e.ok, errors: e.errors || [], inverse: e.ok ? e.inverse : null });
+          if (e.type === "frame") this.addLog({ by: "app", label: "place it", text: e.text, ok: e.ok, errors: e.errors || [] });
+        } });
+      if (r.ok && r.mode === "add" && r.inverse) this.setState((s) => ({ log: s.log.map((x, i) => (i === s.log.length - 2 ? { ...x, inverse: null } : i === s.log.length - 1 ? { ...x, inverse: r.inverse } : x)) }));
+      const secs = Math.round((Date.now() - t0) / 1000);
+      this.setState({ ask: r.ok ? "" : request, modelLine: r.ok ? `${r.mode === "add" ? "Added" : "Changed"} ${r.name} · ${r.how} · ${secs}s` : `Not changed: ${r.why}` });
+      if (r.ok) { this.refresh("the whole artifact"); if (this.state.ed && this.state.ed.name === r.name) this.openEditor(r.name); }
+    } catch (e) { this.setState({ modelLine: "The follow-up failed: " + (e && e.message ? e.message : String(e)) }); }
+    finally { this.ac = null; this.setState({ running: false }); }
+  }
+  restart() { this.kernel = null; this.html = ""; this.setState({ log: [], steps: [], sel: null, ed: null, pane: "run", modelLine: "", previewNote: "nothing has passed yet" }); }
+
+  pick(name) { this.setState({ sel: name, pane: "edit" }, () => { this.openEditor(name); this.tell(); }); }
+  openEditor(name) {
+    const ed = this.m.edit.editorFor(this.kernel, name); if (!ed) return;
+    this.setState({ ed: { ...ed, values: Object.fromEntries(ed.fields.map((f) => [f.key, f.value])), rows: ed.room ? ed.room.rowsText : null }, edErrors: [] });
+  }
+  edEOT() { const ed = this.state.ed; if (!ed || !this.kernel) return null; return this.m.edit.editEOT(this.kernel, ed.name, ed.values, ed.rows); }
+  saveEdit() {
+    const e = this.edEOT(); if (!e) return;
+    const v = this.kernel.submit(e.text, { by: "you", label: `edit ${this.state.ed.name}` });
+    if (v.ok && this.memory) { const ed = this.state.ed, words = this.m.weave.contentWords((this.runAsk || "") + " " + (this.runKind || "")); for (const f of ed.fields) { const now = String(ed.values[f.key] ?? "").trim(); if (now === f.value) continue; const shape = `${ed.type}.${f.key}`; if (f.value) this.memory.reject(shape, f.value, "you replaced it"); if (now) this.memory.keep(shape, now, words, "you"); } }
+    this.addLog({ by: "you", label: `edit ${this.state.ed.name}`, text: e.text, ok: v.ok, errors: v.errors, inverse: v.ok ? e.inverse : null });
+    if (v.ok) { this.refresh("the whole artifact"); this.openEditor(this.state.ed.name); } else this.setState({ edErrors: v.errors });
+  }
+  undo(entry) {
+    const v = this.kernel.submit(entry.inverse, { by: "you", label: `undo ${entry.label}` });
+    this.setState((s) => ({ log: s.log.map((x) => (x.id === entry.id ? { ...x, undone: v.ok } : x)) }));
+    this.addLog({ by: "you", label: `undo · ${entry.label}`, text: entry.inverse, ok: v.ok, errors: v.errors });
+    if (v.ok) { this.refresh(); if (this.state.ed) this.openEditor(this.state.ed.name); }
+  }
+
+  async runPlay() {
+    const m = this.m || (await this.ready);
+    const r = m.kernel.assemble(this.state.eot);
+    this.playKernel = r.kernel; this.playVerdicts = r.verdicts;
+    this.playHtml = m.blocks.render(r.model);
+    this.setState({ play: r.verdicts });
+  }
+  async playToMake() {
+    await this.runPlay();
+    this.kernel = this.playKernel; this.html = this.m.blocks.render(this.kernel.model());
+    this.setState({ tab: "make", pane: "hist", steps: [], sel: null, ed: null, modelLine: "Loaded from the playground", previewNote: "the whole artifact", log: this.playVerdicts.map((v, i) => ({ id: i, by: "you", label: `playground · ${v.targets.join(", ")}`, text: v.text, ok: v.ok, errors: v.errors })) });
+  }
+  async runTests() {
+    const m = this.m || (await this.ready);
+    this.setState({ testSummary: "running…" });
+    const res = await m.tests.runTests();
+    const bad = res.filter((t) => !t.ok).length;
+    window.__blockKitTests = res;
+    this.setState({ tests: res, testSummary: bad ? `${bad} of ${res.length} failed` : `all ${res.length} passed` });
+  }
+
+  renderVals() {
+    const st = this.state, m = this.m, k = this.kernel;
+    const tab = (id, label) => ({ label, on: st.tab === id, bg: st.tab === id ? "#ffffff" : "transparent", fg: st.tab === id ? "#141416" : "#44444e", shadow: st.tab === id ? "0 1px 2px rgba(0,0,0,.08)" : "none", pick: () => this.setState({ tab: id }, () => { if (id === "play" && !st.play.length) this.runPlay(); }) });
+    const pane = (id, label) => ({ label, on: st.pane === id, fg: st.pane === id ? "#141416" : "#5f5f6b", line: st.pane === id ? "#141416" : "transparent", pick: () => this.setState({ pane: id }) });
+    const kinds = ["auto", "website", "widget", "document"].map((x) => ({ label: x, on: st.kind === x, bg: st.kind === x ? "#ffffff" : "transparent", fg: st.kind === x ? "#141416" : "#44444e", pick: () => this.setState({ kind: x }) }));
+    const COLORS = { waiting: "#9494a0", running: "#0d7a70", passed: "#16793a", vetoed: "#c62828", stopped: "#5f5f6b" };
+    const steps = st.steps.map((s, i) => {
+      const attempts = s.attempts.map((a, j) => ({ head: `assembly ${a.ok ? "set down" : "not set down"} · ${(a.ms / 1000).toFixed(1)}s`, raw: (a.raw || "").trim() || "(nothing)", text: a.text, hasText: !!a.text, errors: a.errors.map((e) => ({ code: e.code, msg: e.msg })), notes: a.notes }));
+      if (s.live) attempts.push({ head: `attempt ${s.attempts.length + 1} · writing…`, raw: s.live, text: "", hasText: false, errors: [], notes: [] });
+      const BYC = { library: "#7c3aed", box: "#5f5f6b", hunt: "#a16207", mouth: "#0d7a70", gap: "#9494a0", wall: "#c62828" };
+      const units = (s.units || []).map((u) => { const scars = (u.attempts || []).filter((a) => !a.ok || a.why).map((a) => ({ value: a.value || "(nothing)", why: a.why || "" })); return { key: u.key, value: u.value || (u.by === "wall" ? "(could not be filled)" : "(left empty)"), valueColor: u.value ? "#141416" : "#8a1f1f", by: u.by, byColor: BYC[u.by] || "#5f5f6b", note: u.address || (u.by === "mouth" ? `drawn in ${u.attempts.length} ${u.attempts.length === 1 ? "try" : "tries"}` : ""), hasNote: !!(u.address || u.by === "mouth"), scars }; });
+      return { n: i + 1, id: s.id, goal: s.goal, units, hasUnits: units.length > 0, color: COLORS[s.status] || "#9494a0", statusText: { waiting: "waiting", running: "writing", passed: "passed", vetoed: "vetoed: could not be built as asked", stopped: "stopped" }[s.status], meta: (s.units || []).length ? `${(s.units || []).filter((u) => u.by === "mouth").length} of ${(s.units || []).length} drawn` : "", attempts };
+    });
+    const parts = k && m ? m.edit.editableParts(k).map((p) => ({ label: `${p.name} · ${p.type}`, on: st.sel === p.name, bg: st.sel === p.name ? "#eef2ff" : "#fff", border: st.sel === p.name ? "#1d4ed8" : "#cfcfd7", fg: st.sel === p.name ? "#1d4ed8" : "#2a2a30", pick: () => this.pick(p.name) })) : [];
+    const ed = st.ed;
+    const setVal = (key) => (e) => { const v = e.target.value; this.setState((s) => ({ ed: { ...s.ed, values: { ...s.ed.values, [key]: v } }, edErrors: [] })); };
+    const edFields = ed ? ed.fields.map((f) => ({ key: f.key, hint: `${f.type}${f.required ? "" : " · optional"}`, value: ed.values[f.key] ?? "", isChoice: f.type === "choice", isText: f.type !== "choice", isColor: f.type === "color", options: (f.options || []).map((o) => ({ v: o, label: o || "(default)" })), set: setVal(f.key) })) : [];
+    const pending = ed && k ? this.edEOT() : null;
+    let grains = [], coverage = "";
+    if (m) {
+      const { CELLS, BLOCKS, GRAINS, STANCES } = m.blocks;
+      const filled = CELLS.filter((c) => c.blocks.length).length;
+      coverage = `${filled} of 26 cells have blocks; ${26 - filled} are open gaps.`;
+      grains = GRAINS.map((g) => {
+        const cells = CELLS.filter((c) => c.grain === g);
+        return { grain: g, stances: Object.keys(STANCES).filter((s) => STANCES[s].grain === g), rows: [...new Set(cells.map((c) => c.terrain))].map((t) => ({ terrain: t, cells: cells.filter((c) => c.terrain === t).map((c) => c.desert ? { title: "✕ desert", about: "SYN at Ground: nothing builds a layout from a mood", bg: "#fdeaea", border: "#e7b4b4", borderStyle: "solid", fg: "#8a1f1f" } : c.blocks.length ? { title: c.blocks.join(" · "), about: c.blocks.map((b) => BLOCKS[b].about).join("; "), bg: "#e7f6f3", border: "#b7ded7", borderStyle: "solid", fg: "#0f6a62" } : { title: "gap", about: "no block yet", bg: "#ffffff", border: "#cfcfd7", borderStyle: "dashed", fg: "#5f5f6b" }) })) };
+      });
+    }
+    const history = st.log.map((h) => ({ by: h.by, byColor: BY[h.by] || "#5f5f6b", label: h.label, status: h.ok ? (h.undone ? "applied · undone" : "applied") : "rejected · nothing changed", color: h.ok ? "#16793a" : "#c62828", bg: h.ok ? "transparent" : "#fdf6f6", text: h.text || "(no EOT)", errors: (h.errors || []).map((e) => ({ code: e.code, msg: e.msg })), canUndo: !!(h.ok && h.inverse && !h.undone && !st.running), undo: () => this.undo(h) }));
+    return {
+      tabs: [tab("make", "Make"), tab("play", "Playground"), tab("cat", "Catalog"), tab("tests", "Tests")],
+      isMake: st.tab === "make", isPlay: st.tab === "play", isCat: st.tab === "cat", isTests: st.tab === "tests",
+      panes: [pane("run", "Run"), pane("edit", "Edit"), pane("hist", `History${st.log.length ? " · " + st.log.length : ""}`), pane("mem", "Memory")],
+      isRunPane: st.pane === "run", isEditPane: st.pane === "edit", isHistPane: st.pane === "hist", isMemPane: st.pane === "mem",
+      ...(() => { const md = this.memory ? this.memory.data() : { library: [], rejected: [], standing: {}, score: {} }; return {
+        memLibrary: md.library.length, memRejected: md.rejected.length, memStandingN: Object.keys(md.standing).length, promoteAfter: m ? m.weave.DECLARED.promoteAfter : 3,
+        memStanding: Object.entries(md.standing).map(([shape, r]) => ({ shape, why: r.why, owner: r.owner === "box" ? "box-owned" : "a named gap" })),
+        memScore: Object.entries(md.score).sort((a, b) => a[0].localeCompare(b[0])).map(([shape, s]) => ({ shape, library: s.library || 0, box: s.box || 0, hunt: s.hunt || 0, mouth: s.mouth || 0, fail: (s.mouthFail || 0) + (s.walls ? ` · ${s.walls}✕` : ""), you: s.you || 0 })),
+        forget: () => { this.memory && this.memory.forget(); this.forceUpdate(); } }; })(),
+      ask: st.ask, onAsk: (e) => this.setState({ ask: e.target.value }), kinds,
+      askLabel: k ? "Follow up" : "What to make", askPlaceholder: k ? (st.sel ? `What should change about ${st.sel}?` : "e.g. make the headline warmer · add the steps of a first class") : "Describe a website, widget or document",
+      hasSel: !!st.sel && !!k, selLabel: st.sel || "", clearSel: () => this.setState({ sel: null }, () => this.tell()),
+      running: st.running, noKernel: !k, canStart: !st.running && !k, canFollow: !st.running && !!k,
+      runMake: () => this.runMake(), runFollow: () => this.runFollow(), restart: () => this.restart(), stop: () => this.ac && this.ac.abort(),
+      modelLine: st.modelLine || (m ? "Uses the model in this tab. Nothing leaves the page." : "Loading the kit…"),
+      steps, noSteps: !steps.length,
+      parts, hasEditor: !!ed, edTitle: ed ? `${ed.name} · ${ed.type}` : "", edAbout: ed ? ed.about : "", edFields,
+      edHasRoom: !!(ed && ed.room), edRoom: ed && ed.room ? ed.room.name : "", edRoomFields: ed && ed.room ? ed.room.fields.join(" | ") : "", edRows: ed && ed.rows != null ? ed.rows : "",
+      setRows: (e) => { const v = e.target.value; this.setState((s) => ({ ed: { ...s.ed, rows: v }, edErrors: [] })); },
+      edEot: pending ? pending.text : "(no change yet)", edErrors: st.edErrors.map((e) => ({ code: e.code, msg: e.msg })),
+      saveEdit: () => this.saveEdit(), resetEdit: () => ed && this.openEditor(ed.name),
+      history, hasHistory: st.log.length > 0, copyLabel: st.copied ? "Copied" : "Copy the whole EOT",
+      copyEot: async () => { const t = st.log.filter((h) => h.ok).map((h) => `# ${h.by} · ${h.label}\n${h.text}`).join("\n\n"); try { await navigator.clipboard.writeText(t); this.setState({ copied: true }); setTimeout(() => this.setState({ copied: false }), 1500); } catch {} },
+      previewNote: st.previewNote, frameRef: this.frameRef, playRef: this.playRef,
+      editMode: st.editMode, editLabel: st.editMode ? "Editing · click a part" : "Edit", editBg: st.editMode ? "#1d4ed8" : "#fff", editFg: st.editMode ? "#fff" : "#141416", editBorder: st.editMode ? "#1d4ed8" : "#cfcfd7",
+      toggleEdit: () => this.setState((s) => ({ editMode: !s.editMode, pane: !s.editMode ? "edit" : s.pane }), () => this.tell()),
+      download: () => { if (!this.html) return; const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([this.html], { type: "text/html" })); a.download = "artifact.html"; a.click(); },
+      eot: st.eot, onEot: (e) => this.setState({ eot: e.target.value }), runPlay: () => this.runPlay(), playToMake: () => this.playToMake(),
+      playVerdicts: st.play.map((v, i) => ({ head: `assembly ${i + 1}${v.targets.length ? " · " + v.targets.join(", ") : ""}`, status: v.ok ? "passed" : "rejected", color: v.ok ? "#16793a" : "#c62828", errors: v.errors.map((e) => ({ code: e.code, msg: e.msg })), notes: v.notes })),
+      grains, coverage,
+      runTests: () => this.runTests(), testSummary: st.testSummary,
+      tests: st.tests.map((t) => ({ name: t.name, mark: t.ok ? "✓" : "✗", color: t.ok ? "#16793a" : "#c62828", error: t.error || "", ms: t.ms })),
+    };
+  }
+}
+</script>
+</body>
+</html>

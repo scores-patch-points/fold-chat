@@ -1,0 +1,1595 @@
+{
+ "q": "What is the boiling point of water at sea level?",
+ "spoken": "100 °C (212 °F)",
+ "shown": "100 °C (212 °F)\n\nW\nWikipedia\nopen ↗\nBoiling\n… The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. …\n1 source · 1 of 1 sentence backed\n·\n2 of 9 checks flagged\n58 s\n▶ watch\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "100 °C (212 °F)",
+     "ref": "Wikipedia — Boiling",
+     "source": "https://en.wikipedia.org/wiki/Boiling",
+     "span": {
+      "start": 152,
+      "end": 163
+     },
+     "address": "Wikipedia — Boiling#152-163",
+     "score": 2,
+     "window": {
+      "from": 0,
+      "to": 591
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "Wikipedia — Boiling#152-163"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "Wikipedia — Boiling#152-163",
+    "ref": "Wikipedia — Boiling",
+    "span": {
+     "start": 152,
+     "end": 163
+    },
+    "text": "100 °C (212 °F)"
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "Wikipedia — Boiling#152-163",
+     "ref": "Wikipedia — Boiling",
+     "span": {
+      "start": 152,
+      "end": 163
+     },
+     "label": "Wikipedia — Boiling",
+     "source": "https://en.wikipedia.org/wiki/Boiling",
+     "url": "https://en.wikipedia.org/wiki/Boiling",
+     "domain": "en.wikipedia.org",
+     "text": "The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure.",
+     "before": "The boiling point of water is",
+     "mark": "100 °C (212",
+     "after": "°F) at sea level and at normal barometric pressure.",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "100 °C (212 °F)",
+     "grounded": true,
+     "address": "Wikipedia — Boiling#152-163"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "wikipedia",
+    "q": "What is the boiling point of water at sea level?",
+    "engine": "Wikipedia",
+    "n": 28,
+    "ok": true
+   },
+   {
+    "scope": "web",
+    "q": "What is the boiling point of water at sea level?",
+    "ok": false,
+    "why": "no answer in 6 s — went on without the web"
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "an encyclopedic ask (definition, history, comparison)"
+    },
+    "webDown": true
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Bain-marie (no-shared-word)",
+     "Atmospheric pressure (no-shared-word)"
+    ]
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Boiling",
+    "via": "direct",
+    "chars": 11309,
+    "kept": 1122,
+    "hash": "757f91a9"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Boiling_water_reactor",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2870,
+    "hash": "dcd135a0"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Water",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2943,
+    "hash": "2730daf9"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Boiling_point",
+    "via": "direct",
+    "chars": 13176,
+    "kept": 2388,
+    "hash": "56e928d8",
+    "skipped": true
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Properties_of_water",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2945,
+    "hash": "26d135e4",
+    "skipped": true
+   }
+  ],
+  "passages": [
+   {
+    "ref": "Wikipedia — Boiling",
+    "source": "https://en.wikipedia.org/wiki/Boiling",
+    "url": "https://en.wikipedia.org/wiki/Boiling",
+    "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation.\nThe boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure.\nThe heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute.\nThe traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, the water is disinfected.\nThe boiling point of water is typically considered to be 100 °C (212 °F; 373 K), especially at sea level.\nAt an elevation of about one mile (1,600 m), water boils at approximately 95 °C (203 °F; 368 K)."
+   },
+   {
+    "ref": "Wikipedia — Boiling water reactor",
+    "source": "https://en.wikipedia.org/wiki/Boiling_water_reactor",
+    "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor",
+    "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power.\nThe condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air).\nThe cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F).\nIn comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi).\nThe water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water.\nWater exiting the fuel channels at the top guide is saturated with a steam quality of about 15%.\nChanging (increasing or decreasing) the flow of water through the core is the normal and convenient method for controlling power from approximately 30% to 100% reactor power.\nFrom about 0.5% power to 100% power, feedwater will automatically control the water level in the reactor.\nAt low power conditions, the feedwater controller acts as a simple PID control by watching reactor water level.\nBy using the water injection and steam flow rates, the feed water control system can rapidly anticipate water level deviations and respond to maintain water level within a few inches of set point.\nThe fact that the fuel rods' cladding is a zirconium alloy was also problematic since this element can react with steam at temperatures above 1,500 K (1,230 °C) to produce hydrogen,\nThis smaller 600 megawatt electrical reactor was notable for its incorporation—for the first time ever in a light water reactor—of \"passive safety\" design principles.\nThe ultimate result of the passive safety features of the SBWR would be a reactor that would not require human intervention in the event of a major safety contingency for at least 48 hours following the safety contingency; thence, it would only require periodic refilling of cooling water tanks located completely outside of the reactor, isolated from the cooling system, and designed to remove reactor waste heat through evaporation.\nDuring a period beginning in the late 1990s, GE engineers proposed to combine the features of the advanced boiling water reactor design with the distinctive safety features of the simplified boiling water re"
+   },
+   {
+    "ref": "Wikipedia — Water",
+    "source": "https://en.wikipedia.org/wiki/Water",
+    "url": "https://en.wikipedia.org/wiki/Water",
+    "text": "Water is an inorganic compound with the chemical formula H2O.\nAt 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F).\nBelow that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft).\nAt sea level, the boiling point of water is 100 °C (212 °F).\nAs atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters.\nFor example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result.\nThe triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist.\nUntil 2019, the triple point was used to define the Kelvin temperature scale.\nThe water/vapor phase curve terminates at 647.096 K (373.946 °C; 705.103 °F) and 22.064 megapascals (3,200.1 psi; 217.75 atm).\nTo observe the fundamental stretching absorption spectrum of water or of an aqueous solution in the region around 3,500 cm−1 (2.85 μm) a path length of about 25 μm is needed.\nThe refractive index of liquid water (1.333 at 20 °C (68 °F)) is much higher than that of air (1.0), similar to those of alkanes and ethanol, but lower than those of glycerol (1.473), benzene (1.501), carbon disulfide (1.627), and common types of glass (1.4 to 1.6).\nThe refraction index of ice (1.31) is lower than that of liquid water.\nThe O–H bond length is about 0.096 nm.\nEven in oceans at 4 km depth, where the pressure is 400 atm, water suffers only a 1.8% decrease in volume.\nThe viscosity of water is about 10−3 Pa·s or 0.01 poise at 20 °C (68 °F), and the speed of sound in liquid water ranges between 1,400 and 1,540 metres per second (4,600 and 5,100 ft/s) depending on temperature.\nSound travels long distances in water with little attenuation, especially at low frequencies (roughly 0.03 dB/km for 1 kHz), a property that is exploited by cetaceans and humans for communication and environment sensing (sonar).\nEarth's approximate water volume (the total water supply of the world) is 1.386 billion cubic kilometres (333 million cubic miles).\nMost water vapors found mostly in the ocean returns to it, but winds carry water vapor over land at the sa"
+   }
+  ],
+  "loop": {
+   "passes": [],
+   "cleared": true,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 1,
+    "weak": 0,
+    "contested": 0,
+    "unsupported": 0,
+    "backed": 1,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": true
+   },
+   "firstTry": true,
+   "processLine": "reframe · every sentence held on the first try"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 3 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply unknown — same",
+   "checked · the answer against the material carried",
+   "reframe · every sentence held on the first try"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1080,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 351,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 158,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 175,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 3,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": null,
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "What is the boiling point of water at sea level?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 8
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “What is the boiling point of water at sea level?”",
+    "at": 31
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:What is the boiling point of water at sea level?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 35,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 35
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:What is the boiling point of water at sea level?",
+    "title": "Asking Wikipedia",
+    "tone": "run",
+    "at": 41,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web and Wikipedia",
+    "at": 41
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:What is the boiling point of water at sea level?",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "28 results",
+    "ms": 6502,
+    "at": 6543
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 6543
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:What is the boiling point of water at sea level?",
+    "title": "Searched the web",
+    "tone": "info",
+    "note": "slow (over 6 s) — went on without it",
+    "ms": 6509,
+    "at": 6544
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6544
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web returned nothing, so also Wikipedia",
+    "at": 6546
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "2 pages named for something else that shares the name: Bain-marie; Atmospheric pressure",
+    "at": 6547
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling",
+    "title": "Reading Wikipedia — Boiling",
+    "tone": "run",
+    "at": 6547,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 6547
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling_water_reactor",
+    "title": "Reading Wikipedia — Boiling water reactor",
+    "tone": "run",
+    "at": 6550,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6550
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Water",
+    "title": "Reading Wikipedia — Water",
+    "tone": "run",
+    "at": 6551,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6551
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling",
+    "title": "Read Wikipedia — Boiling",
+    "tone": "ok",
+    "note": "kept 1,122 of 11,309 chars",
+    "ms": 221,
+    "at": 6768
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6768
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling_point",
+    "title": "Reading Wikipedia — Boiling point",
+    "tone": "run",
+    "at": 6770,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6770
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling_water_reactor",
+    "title": "Read Wikipedia — Boiling water reactor",
+    "tone": "ok",
+    "note": "kept 2,870 of 24,000 chars",
+    "ms": 293,
+    "at": 6843
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6843
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Properties_of_water",
+    "title": "Reading Wikipedia — Properties of water",
+    "tone": "run",
+    "at": 6846,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6846
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Water",
+    "title": "Read Wikipedia — Water",
+    "tone": "ok",
+    "note": "kept 2,943 of 24,000 chars",
+    "ms": 359,
+    "at": 6910
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6910
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Boiling_point",
+    "title": "Read Wikipedia — Boiling point",
+    "tone": "ok",
+    "note": "kept 2,388 of 13,176 chars",
+    "ms": 205,
+    "at": 6975
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 6975
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Properties_of_water",
+    "title": "Read Wikipedia — Properties of water",
+    "tone": "ok",
+    "note": "kept 2,945 of 24,000 chars",
+    "ms": 219,
+    "at": 7065
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 7065
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 19465
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references were read but do not carry this. It points to 1 original source.",
+    "at": 19465
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 19466
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 19467
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read.",
+    "at": 19467
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 19472,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 19472
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 24002
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "14 tokens",
+    "ms": 5797,
+    "at": 25269
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 25269
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 25273
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Tried to break every sentence — none broke",
+    "tone": "ok",
+    "note": "0 corroborated · 1 on one source",
+    "at": 25312
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read the draft before speaking",
+    "tone": "ok",
+    "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured",
+    "at": 25323
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Asked the model where it got that",
+    "tone": "info",
+    "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself",
+    "at": 25325
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "No primary page said it",
+    "tone": "info",
+    "note": "en.wikipedia.org: tertiary (tertiary_host) · freewebtools.com: unsupported (none) · products.integralife.com: unreadable (read_failed:unreachable) · en.ipshu.com: unsupported (none)",
+    "at": 58200
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Verified where it came from",
+    "tone": "ok",
+    "note": "1 source · en.wikipedia.org · 1 model call",
+    "at": 58201
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Checked the answer against what was read",
+    "tone": "ok",
+    "note": "every figure and name appears in the sources",
+    "at": 58253
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 58 s · read 3 sources · gemma2:2b",
+    "at": 58256,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.003,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.005,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “What is the boiling point of water at sea level?”"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:What is the boiling point of water at sea level?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.009,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "What is the boiling point of water at sea level?"
+    }
+   },
+   {
+    "at": 0.015,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:What is the boiling point of water at sea level?",
+     "title": "Asking Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.015,
+    "seq": 7,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web and Wikipedia"
+    }
+   },
+   {
+    "at": 0.015,
+    "seq": 8,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "What is the boiling point of water at sea level?"
+    }
+   },
+   {
+    "at": 6.516,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:What is the boiling point of water at sea level?",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "28 results",
+     "ms": 6502
+    }
+   },
+   {
+    "at": 6.517,
+    "seq": 10,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 6.517,
+    "seq": 11,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "What is the boiling point of water at sea level?",
+     "n": 28
+    }
+   },
+   {
+    "at": 6.517,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:What is the boiling point of water at sea level?",
+     "title": "Searched the web",
+     "tone": "info",
+     "note": "slow (over 6 s) — went on without it",
+     "ms": 6509
+    }
+   },
+   {
+    "at": 6.518,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.518,
+    "seq": 14,
+    "kind": "st",
+    "st": {
+     "phase": "failed",
+     "scope": "web",
+     "q": "What is the boiling point of water at sea level?",
+     "why": "slow (over 6 s) — went on without it"
+    }
+   },
+   {
+    "at": 6.519,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web returned nothing, so also Wikipedia"
+    }
+   },
+   {
+    "at": 6.519,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 6.52,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "2 pages named for something else that shares the name: Bain-marie; Atmospheric pressure"
+    }
+   },
+   {
+    "at": 6.52,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 2
+    }
+   },
+   {
+    "at": 6.52,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling",
+     "title": "Reading Wikipedia — Boiling",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.521,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 6.521,
+    "seq": 21,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Boiling",
+     "site": "Wikipedia",
+     "title": "Boiling"
+    }
+   },
+   {
+    "at": 6.523,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling_water_reactor",
+     "title": "Reading Wikipedia — Boiling water reactor",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.523,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.523,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor",
+     "site": "Wikipedia",
+     "title": "Boiling water reactor"
+    }
+   },
+   {
+    "at": 6.524,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Water",
+     "title": "Reading Wikipedia — Water",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.524,
+    "seq": 26,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.524,
+    "seq": 27,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Water",
+     "site": "Wikipedia",
+     "title": "Water"
+    }
+   },
+   {
+    "at": 6.74,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling",
+     "title": "Read Wikipedia — Boiling",
+     "tone": "ok",
+     "note": "kept 1,122 of 11,309 chars",
+     "ms": 221
+    }
+   },
+   {
+    "at": 6.741,
+    "seq": 29,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.741,
+    "seq": 30,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Boiling",
+     "site": "Wikipedia",
+     "title": "Boiling",
+     "chars": 11309,
+     "kept": 1122,
+     "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. Boiling occurs when a liquid is heated to its boiling point, so that the vapour pressure of the liquid is equal to the pressure exerted on the liquid by the surrounding atmosphere. Boiling and evaporation are the two main forms of liquid vapourization. There are two main types of boiling: nucleate boiling, where small bubbles of vapour form at discrete points; and critical heat flux boiling, where the boiling surface is heated above a certain critical temperature and a film of vapour forms on the surface. Transition boiling is an intermediate, unstable form of boiling with elements of both types. The boiling point of water is 100 °C or 212 °F, but is lower with the decreased atmospheric pressure found at higher altitudes. Boiling water is used as a method of making it potable by killing microbes and viruses that may be present. The sensitivity of different micro-organisms to heat varies, but if water is held at 100 °C (212 °F) for one minute, most micro-organisms and viruses are inactivated. Ten minutes at a temperature of 70 °C (158 °F) is also sufficient to inactivate most bacteria. Boiling water is also used in several cooking methods including boiling, parboiling, blanching, steaming, and poaching. == Types == === Free convection === The lowest heat flux"
+    }
+   },
+   {
+    "at": 6.747,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling_point",
+     "title": "Reading Wikipedia — Boiling point",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.749,
+    "seq": 32,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.75,
+    "seq": 33,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Boiling_point",
+     "site": "Wikipedia",
+     "title": "Boiling point"
+    }
+   },
+   {
+    "at": 6.816,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling_water_reactor",
+     "title": "Read Wikipedia — Boiling water reactor",
+     "tone": "ok",
+     "note": "kept 2,870 of 24,000 chars",
+     "ms": 293
+    }
+   },
+   {
+    "at": 6.818,
+    "seq": 35,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.818,
+    "seq": 36,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor",
+     "site": "Wikipedia",
+     "title": "Boiling water reactor",
+     "chars": 24000,
+     "kept": 2870,
+     "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. It is the second most common type of electricity-generating nuclear reactor after the pressurized water reactor (PWR). BWRs are thermal neutron reactors, where water is thus used both as a coolant and as a moderator, slowing down neutrons. As opposed to PWR, there is no separation between the reactor pressure vessel (RPV) and the steam turbine in BWR. Water is allowed to vaporize directly inside of the reactor core before being directed to the turbine which drives the electric generator. Immediately after the turbine, a heat exchanger called a condenser brings the outgoing fluid back into liquid form before it is sent back into the reactor. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The BWR was developed by the Argonne National Laboratory and General Electric (GE) in the mid-1950s. Its main present manufacturer is GE Vernova Hitachi Nuclear Energy, which specializes in the design and construction of BWRs. == Overview == A boiling water reactor uses demineralized water as a coolant and neutron moderator. Heat is produced by nuclear fission in the reactor core, and this causes the cooling water to boil, producing steam. The steam is directly used to drive a turbine, aft"
+    }
+   },
+   {
+    "at": 6.82,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Properties_of_water",
+     "title": "Reading Wikipedia — Properties of water",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.821,
+    "seq": 38,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.822,
+    "seq": 39,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Properties_of_water",
+     "site": "Wikipedia",
+     "title": "Properties of water"
+    }
+   },
+   {
+    "at": 6.883,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Water",
+     "title": "Read Wikipedia — Water",
+     "tone": "ok",
+     "note": "kept 2,943 of 24,000 chars",
+     "ms": 359
+    }
+   },
+   {
+    "at": 6.885,
+    "seq": 41,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.885,
+    "seq": 42,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Water",
+     "site": "Wikipedia",
+     "title": "Water",
+     "chars": 24000,
+     "kept": 2943,
+     "text": "Water is an inorganic compound with the chemical formula H2O. It is a transparent, tasteless, odorless, and nearly colorless chemical substance. It is the main constituent of Earth's streams, lakes, and oceans. Water is also the fluid of all known living organisms, in which it acts as a solvent. Water, being a polar molecule, undergoes strong intermolecular hydrogen bonding which is a large contributor to its physical and chemical properties. It is vital for all known forms of life, despite not providing food energy or being an organic micronutrient. Due to its presence in all organisms, its chemical stability, its worldwide abundance, and its strong polarity relative to its small molecular size, water is often referred to as the \"universal solvent\". Because Earth's surface temperature and pressure is relatively close to water's triple point, water exists on Earth as a solid, a liquid, and a gas. It forms precipitation in the form of rain and aerosols in the form of fog. Clouds consist of suspended droplets of water and ice, its solid state. When finely divided, crystalline ice may precipitate in the form of snow. The gaseous state of water is steam or water vapor. Water covers about 71% of the Earth's surface, with seas and oceans making up most of the water volume (about 96.5%). Small portions of water occur as groundwater (1.7%), in the glaciers and the ice caps of Antarctic"
+    }
+   },
+   {
+    "at": 6.948,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Boiling_point",
+     "title": "Read Wikipedia — Boiling point",
+     "tone": "ok",
+     "note": "kept 2,388 of 13,176 chars",
+     "ms": 205
+    }
+   },
+   {
+    "at": 6.95,
+    "seq": 44,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 6.95,
+    "seq": 45,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Boiling_point",
+     "site": "Wikipedia",
+     "title": "Boiling point",
+     "chars": 13176,
+     "kept": 2388,
+     "text": "The boiling point of a substance is the temperature at which the vapor pressure of a liquid equals the pressure surrounding the liquid and the liquid changes into a vapor. The boiling point of a liquid varies depending upon the surrounding environmental pressure. A liquid in a partial vacuum, i.e., under a lower pressure, has a lower boiling point than when that liquid is at atmospheric pressure. Because of this, water boils at 100 °C, rounded from scientific precision of 99.97 °C (211.95 °F), under standard pressure at sea level, but at 93.4 °C (200.1 °F) at 1,905 metres (6,250 ft) altitude. For a given pressure, different liquids will boil at different temperatures. The normal boiling point (also called the atmospheric boiling point or the atmospheric pressure boiling point) of a liquid is the special case in which the vapor pressure of the liquid equals the defined atmospheric pressure at sea level, one atmosphere. At that temperature, the vapor pressure of the liquid becomes sufficient to overcome atmospheric pressure and allow bubbles of vapor to form inside the bulk of the liquid. The standard boiling point has been defined by IUPAC since 1982 as the temperature at which boiling occurs under a pressure of one bar. The heat of vaporization is the energy required to transform a given quantity (a mol, kg, pound, etc.) of a substance from a liquid into a gas at a given pressu"
+    }
+   },
+   {
+    "at": 7.037,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Properties_of_water",
+     "title": "Read Wikipedia — Properties of water",
+     "tone": "ok",
+     "note": "kept 2,945 of 24,000 chars",
+     "ms": 219
+    }
+   },
+   {
+    "at": 7.039,
+    "seq": 47,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 7.04,
+    "seq": 48,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Properties_of_water",
+     "site": "Wikipedia",
+     "title": "Properties of water",
+     "chars": 24000,
+     "kept": 2945,
+     "text": "Water (H2O) is a polar inorganic compound that is, at room temperature, a tasteless and odorless liquid, which is nearly colorless apart from an inherent hint of blue. It is by far the most studied chemical compound and is described as the \"universal solvent\" and the \"solvent of life\". It is the most abundant substance on the surface of Earth and the only common substance to exist as a solid, liquid, and gas on Earth's surface. It is also the third most abundant molecule in the universe (behind molecular hydrogen and carbon monoxide). Water molecules form hydrogen bonds with each other and are strongly polar. This polarity allows them to dissociate ions in salts and bond to other polar substances such as alcohols and acids, thus dissolving them. Their hydrogen bonding causes their many unique properties, such as having a solid form less dense than its liquid form, a relatively high boiling point of 100 °C for its molar mass, and a high heat capacity. Water is amphoteric, meaning that it can exhibit properties of an acid or a base, depending on the pH of the solution that it is in; It readily produces both H+ and OH− ions. Related to its amphoteric character, it undergoes self-ionization. The product of the activities, or approximately, the concentrations of H+ and OH− is a constant, so their respective concentrations are inversely proportional to each other. == Physical propert"
+    }
+   },
+   {
+    "at": 7.115,
+    "seq": 49,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+     "ref": "Wikipedia — Boiling",
+     "url": "https://en.wikipedia.org/wiki/Boiling"
+    }
+   },
+   {
+    "at": 8.015,
+    "seq": 50,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+     "ref": "Wikipedia — Boiling water reactor",
+     "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+    }
+   },
+   {
+    "at": 8.915,
+    "seq": 51,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+     "ref": "Wikipedia — Water",
+     "url": "https://en.wikipedia.org/wiki/Water"
+    }
+   },
+   {
+    "at": 9.815,
+    "seq": 52,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_366617",
+    "ps": [
+     {
+      "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+      "ref": "Wikipedia — Boiling",
+      "url": "https://en.wikipedia.org/wiki/Boiling"
+     },
+     {
+      "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+      "ref": "Wikipedia — Boiling water reactor",
+      "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+     },
+     {
+      "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+      "ref": "Wikipedia — Water",
+      "url": "https://en.wikipedia.org/wiki/Water"
+     }
+    ]
+   },
+   {
+    "at": 11.615,
+    "seq": 53,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_366617",
+    "ps": [
+     {
+      "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+      "ref": "Wikipedia — Boiling",
+      "url": "https://en.wikipedia.org/wiki/Boiling"
+     },
+     {
+      "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+      "ref": "Wikipedia — Boiling water reactor",
+      "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+     },
+     {
+      "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+      "ref": "Wikipedia — Water",
+      "url": "https://en.wikipedia.org/wiki/Water"
+     }
+    ]
+   },
+   {
+    "at": 13.615,
+    "seq": 54,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_366617",
+    "ps": [
+     {
+      "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+      "ref": "Wikipedia — Boiling",
+      "url": "https://en.wikipedia.org/wiki/Boiling"
+     },
+     {
+      "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+      "ref": "Wikipedia — Boiling water reactor",
+      "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+     },
+     {
+      "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+      "ref": "Wikipedia — Water",
+      "url": "https://en.wikipedia.org/wiki/Water"
+     }
+    ]
+   },
+   {
+    "at": 15.815,
+    "seq": 55,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_366617",
+    "ps": [
+     {
+      "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+      "ref": "Wikipedia — Boiling",
+      "url": "https://en.wikipedia.org/wiki/Boiling"
+     },
+     {
+      "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+      "ref": "Wikipedia — Boiling water reactor",
+      "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+     },
+     {
+      "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+      "ref": "Wikipedia — Water",
+      "url": "https://en.wikipedia.org/wiki/Water"
+     }
+    ]
+   },
+   {
+    "at": 18.615,
+    "seq": 56,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_366617",
+    "ps": [
+     {
+      "text": "Boiling or ebullition is the rapid phase transition from liquid to gas or vapour; the reverse of boiling is condensation. The boiling point of water is 100 °C (212 °F) at sea level and at normal barometric pressure. The heat sensitivity of micro-organisms varies, at 70 °C (158 °F), Giardia species (which cause giardiasis) can take ten minutes for complete inactivation, most intestine affecting microbes and E. coli (gastroenteritis) take less than a minute; at boiling point, Vibrio cholerae (cholera) takes ten seconds and hepatitis A virus (causes the symptom of jaundice), one minute. The traditional advice of boiling water for ten minutes is mainly for additional safety, since microbes start getting eliminated at temperatures greater than 60 °C (140 °F) and bringing it to its boiling point is also a useful indication that can be seen without the help of a thermometer, and by this time, …",
+      "ref": "Wikipedia — Boiling",
+      "url": "https://en.wikipedia.org/wiki/Boiling"
+     },
+     {
+      "text": "A boiling water reactor (BWR) is a type of nuclear reactor used for the generation of electrical power. The condenser is then cooled by a secondary coolant cycle which is fed by the power plant's cold source (generally the sea or a river, more rarely air). The cooling water is maintained at about 75 atm (7.6 MPa, 1000–1100 psi) so that it boils in the core at about 285 °C (550 °F). In comparison, there is no significant boiling allowed in a pressurized water reactor (PWR) because of the high pressure maintained in its primary loop—approximately 158 atm (16 MPa, 2300 psi). The water now makes a 180-degree turn and moves up through the lower core plate into the nuclear core, where the fuel elements heat the water. Water exiting the fuel channels at the top guide is saturated with a steam quality of about 15%. Changing (increasing or decreasing) the flow of water through the core is the no…",
+      "ref": "Wikipedia — Boiling water reactor",
+      "url": "https://en.wikipedia.org/wiki/Boiling_water_reactor"
+     },
+     {
+      "text": "Water is an inorganic compound with the chemical formula H2O. At 1 atm pressure, it reaches its maximum density of 999.972 kg/m3 (62.4262 lb/cu ft) at 3.98 °C (39.16 °F). Below that temperature, but above the freezing point of 0 °C (32 °F), water expands (becoming less dense) until it reaches the freezing point, at which its density in the liquid phase is 999.8 kg/m3 (62.4155 lb/cu ft). At sea level, the boiling point of water is 100 °C (212 °F). As atmospheric pressure decreases with altitude, the boiling point decreases by 1 °C every 274 meters. For example, at 1,524 metres (5,000 ft), cooking time must be increased by a fourth to achieve the desired result. The triple point is at a temperature of 273.16 K (0.01 °C; 32.02 °F) and a pressure of 611.657 pascals (0.00604 atm; 0.0887 psi); it is the lowest pressure at which liquid water can exist. Until 2019, the triple point was used to …",
+      "ref": "Wikipedia — Water",
+      "url": "https://en.wikipedia.org/wiki/Water"
+     }
+    ]
+   },
+   {
+    "at": 19.437,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 19.438,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references were read but do not carry this. It points to 1 original source."
+    }
+   },
+   {
+    "at": 19.439,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 19.439,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 19.44,
+    "seq": 62,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read."
+    }
+   },
+   {
+    "at": 19.445,
+    "seq": 63,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 19.446,
+    "seq": 64,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 20.815,
+    "seq": 57,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 23.975,
+    "seq": 65,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 25.242,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "14 tokens",
+     "ms": 5797
+    }
+   },
+   {
+    "at": 25.244,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 25.247,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 25.285,
+    "seq": 69,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Tried to break every sentence — none broke",
+     "tone": "ok",
+     "note": "0 corroborated · 1 on one source"
+    }
+   },
+   {
+    "at": 25.297,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 25.298,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 58.172,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "No primary page said it",
+     "tone": "info",
+     "note": "en.wikipedia.org: tertiary (tertiary_host) · freewebtools.com: unsupported (none) · products.integralife.com: unreadable (read_failed:unreachable) · en.ipshu.com: unsupported (none)"
+    }
+   },
+   {
+    "at": 58.176,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · en.wikipedia.org · 1 model call"
+    }
+   },
+   {
+    "at": 58.227,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 58.23,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 58 s · read 3 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 58.232,
+    "seq": 76,
+    "kind": "done"
+   }
+  ]
+ }
+}

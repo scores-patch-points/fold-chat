@@ -1,0 +1,59 @@
+{
+  "organ": "khora/native/adapters/text/morph-cues.js; existence-grain.js; variety-lens.js; eval/lavar/english-ladder.mjs, greek.mjs, sanskrit.mjs (as the compendium lists)",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/sullivan-keller-mimicry.json",
+    "eo-teachings/manifest/sullivan-method-sentences.json"
+  ],
+  "whatTheyArgued": "From Keller (1903) and Sullivan's letters: for weeks Keller spelled words 'in monkey-like imitation' without knowing words existed, until the well-house on April 5, 1887, when she grasped that w-a-t-e-r named the water. Sullivan's April 5 letter says Helen 'has learned that everything has a name and that the manual alphabet is the key'. Her method, stated in an earlier letter, was the opposite of a graded ladder: talk into the hand in complete sentences, as to a hearing child, filling in meaning with gestures, not fixing the mind on one thing, and teach at odd moments rather than set times.",
+  "scholarship": [
+    {
+      "ref": "American Foundation for the Blind, Anne Sullivan Macy museum, 'Teaching Helen'",
+      "url": "https://afb.org/about-afb/history/online-museums/anne-sullivan-miracle-worker/anne-teacher/teaching-helen",
+      "supports": "Sullivan wrote that Helen knew words but had no idea they named things; Keller was mimicking the manual alphabet",
+      "disputes": "An institutional site, not peer-reviewed. Keller's account (1903) was written retrospectively, so the 'sudden' breakthrough versus the gradual letters is itself a framing difference; I did not read scholarship on that."
+    }
+  ],
+  "ourUse": "Sullivan's handle is put on a set of English/Greek/Sanskrit competence measures and on morph-cues and existence-grain: a mark is learned from what reliably comes with it, not from a rule written for the student; each language is re-measured, not assumed to transfer.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "layer-curriculum",
+      "kind": "misstated",
+      "ours": "Compendium role: a language is learned 'layer by layer, sound before script before pattern before meaning'.",
+      "theirs": "Sullivan's stated method is complete sentences from the start, meaning supplied by context and gesture, no fixed order; the ladder is our design."
+    },
+    {
+      "id": "graded-english",
+      "kind": "re-scoped",
+      "ours": "English 'curriculum graded by period and region' put under her charge.",
+      "theirs": "Sullivan taught one pupil in one language by immersion; period/region grading is not her idea."
+    },
+    {
+      "id": "re-measure",
+      "kind": "re-scoped",
+      "ours": "The discipline 'never assume a finding transfers between languages'.",
+      "theirs": "Nothing in the letters says this; it is a sound engineering rule we borrow the name for. The code in morph-cues (learned from co-occurrence) does fit her 'let regularity teach' image loosely."
+    },
+    {
+      "id": "mimicry-quote",
+      "kind": "misstated",
+      "ours": "Compendium: 'Everything before that moment was mimicry; everything after was language' and a credit line presenting this as her view.",
+      "theirs": "The word 'monkey-like imitation' is Keller's, not Sullivan's, and Keller says she learned many words that way before the breakthrough. 'Everything after was language' is our sentence. Keller also had home signs before Sullivan, which the compendium omits."
+    },
+    {
+      "id": "unattributed-code",
+      "kind": "decorative",
+      "ours": "Compendium admits greek.mjs and sanskrit.mjs carry no handle.",
+      "theirs": "Credit there is by assignment, not by the files' own design; honest as disclosed."
+    }
+  ],
+  "fix": [
+    "compendium work: replace the ladder claim with 'Sullivan taught by complete sentences spelled into the hand, meaning from context, no graded order (letters, 1887). Keller's own word for the pre-breakthrough spelling is monkey-like imitation.'",
+    "drop 'sound before script before pattern before meaning' from role; mark the re-measurement rule as ours",
+    "credit: 'Anne Sullivan - a sign needs its connection to the thing named (Keller 1903); the grading and re-measurement rules are ours.'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "sullivan",
+  "tokenized": false
+}

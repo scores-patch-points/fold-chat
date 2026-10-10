@@ -1,0 +1,43 @@
+ALL  {"n":61,"recall":"75% (33/44)","falseWants":"0% (0/17)","typeExact":"82% (50/61)","topic":"78% (18/23)","needsSources":"85% (28/33)","voids":"91% (30/33)","searchQuery":"100% (33/33)","constraints":"100% (5/5)","material":"60% (3/5)","steps":"n/a (0/0)"}
+per-type exact: speech 1/3  poem 8/11  summary 4/5  email 1/1  essay 4/6  letter 4/5  code 3/3  story 3/4  rewrite 1/1  translation 2/2  script 1/1  list 1/1  outline 0/1
+[r4] FAIL My sister is getting married next month. Can you write a toast?
+      type none != speech
+[r4] FAIL I'm studying for finals. Please write a summary of the French Revolution for me
+      needsSources false != true
+[r4] FAIL can you make a poem out of this
+      topic null lacks telephone
+[r4] FAIL Draft a polite reminder to my tenants about rent
+      type none != letter
+[r4] FAIL Write a thank you speech for winning the award
+      type none != speech
+[r4] FAIL write a villanelle about time
+      type none != poem
+[r4] FAIL compose a lullaby for my baby
+      type none != poem
+[r4] FAIL Write a short biography of Marie Curie
+      type none != essay
+[r4] FAIL write a product description for a stainless steel water bottle
+      type none != essay
+[r4] FAIL write an essay comparing the French and American revolutions
+      topic null lacks french,american | voids [no-topic] != []
+[r4] FAIL Write an essay arguing that social media is harmful
+      topic null lacks social media | voids [no-topic] != []
+[r4] FAIL write a story set in medieval Japan
+      topic null lacks japan
+[r4] FAIL Summarise this for a 5 year old
+      needsSources true != false | material null != thread-answer
+[r4] FAIL Écris une lettre à mon propriétaire à propos du chauffage
+      needsSources true != false
+[r4] FAIL Напиши краткое содержание Войны и мира
+      topic null lacks войн | needsSources false != true | voids [no-material] != []
+[r4] FAIL Quiero que escribas un cuento sobre un robot
+      type none != story
+[r4] FAIL J'aimerais un poème sur la mer
+      type none != poem
+[r4] FAIL Give me the main points of the article
+      type none != summary
+[r4] FAIL Thanks for the poem, can you now translate it to Spanish?
+      needsSources true != false | material null != thread-answer
+[r4] FAIL I have a presentation tomorrow. What should I include? Write me an outline on cl
+      type none != outline
+classifyTurn false-wants on negatives: 1 [ 'Explain how to write a haiku' ]

@@ -1,0 +1,39 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "output-order",
+  "organ": "khora/native/organs/output-order.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Nominated name, no author's work claimed. But the compendium work/credit lines hand authority to Murch and Vonnegut. Per the compendium's own entries (not independently verified here): Murch, a film cut lands where the audience blinks; Vonnegut, stories as fortune curves over time. I did not read In the Blink of an Eye or Vonnegut's lecture; see their own dossiers.",
+  "scholarship": [],
+  "ourUse": "orderByNarrative places claims by the material's own sequence anchors (first/then/afterward) and refuses with no_declared_order when none exist. The 'spine' arg is only echoed into a basis string; no rhythm, blink or fortune-curve computation exists in the file.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "murch-rhythm-decorative",
+      "kind": "decorative",
+      "ours": "work/credit: 'ordered by Murch's rhythm'; Murch 'owns the rhythm of the order'.",
+      "theirs": "Murch's blink concerns where an editor cuts between shots for emotional/attentional effect. orderByNarrative sorts by stated sequence position; nothing measures rhythm."
+    },
+    {
+      "id": "vonnegut-spine-decorative",
+      "kind": "decorative",
+      "ours": "credit: 'ordered by ... Vonnegut's spine'; '27-operator arc, taxonomically complete'.",
+      "theirs": "Vonnegut's shapes are fortune curves. The 27-cell arc is our own taxonomy; the code only echoes a spine name in a string."
+    },
+    {
+      "id": "authority-smuggled",
+      "kind": "invented-attribution",
+      "ours": "'the order is the cut; the spine is the arc' presented as a Murch+Vonnegut division of labour.",
+      "theirs": "Neither author said or implied this pairing; it is our sentence."
+    }
+  ],
+  "noBendReason": "Name 'output-order / The Cut' is ours and claims no author's work; the bends above concern the borrowed Murch and Vonnegut credits.",
+  "fix": [
+    "compendium work: 'The material's sequence register (output-claims.js) carries first/then/afterward; this organ places each claim in the sequence window that contains its span, and REFUSES when the material states no order. Document order is not narrative order. (Named for the film cut by analogy only; no Murch or Vonnegut method is implemented.)'",
+    "credit: 'The cut (output-order) — our name: placed by the material's own temporal anchors, refused when none are stated.' Remove 'ordered by Murch's rhythm and Vonnegut's spine' unless a rhythm or arc computation is added.",
+    "organ header: drop 'owns' wording for the archons; say 'named after, not implementing'."
+  ],
+  "tokenized": false
+}

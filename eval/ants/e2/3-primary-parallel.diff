@@ -1,0 +1,34 @@
+--- a/fold-chat-primary.js
++++ b/fold-chat-primary.js
+@@ -430,10 +430,12 @@
+   const seen = new Set();
+   const cands = [];
+   let order = 0;
+-  for (const query of queries) {
++  // E2 L3: every query is asked at once (they were asked one after another, ~1-6 s each); results are consumed in the SAME order
++  const asked = queries.map((query) => { const p = Promise.resolve().then(() => search(query)); p.catch(() => {}); return { query, p }; });
++  for (const { query, p } of asked) {
+     if (cands.length >= L.maxPages * 2) break;
+     let results;
+-    try { results = await search(query); }
++    try { results = await p; }
+     catch (e) { if (isAbort(e)) throw e; trail.push({ query, url: null, host: "", verdict: "unreadable", why: "search_failed:" + String(e?.message || e).slice(0, 60) }); continue; }
+     results = (Array.isArray(results) ? results : []).filter((r) => r && r.url).slice(0, L.maxResults);
+     if (!results.length) { trail.push({ query, url: null, host: "", verdict: "unreadable", why: "no_results" }); continue; }
+@@ -452,12 +454,15 @@
+   const hostsSeen = new Set();
+   const ranked = cands.filter((c) => (hostsSeen.has(c.host) ? false : (hostsSeen.add(c.host), true)));
+ 
++  // E2 L3: the pages the loop below may try (the first maxPages of the ranking) are fetched together, not one at a time (~2-6 s each)
++  const pre = new Map();
++  for (const c of ranked.slice(0, L.maxPages)) { const p = Promise.resolve().then(() => readPage(c.url)); p.catch(() => {}); pre.set(c.url, p); }
+   let tried = 0;
+   for (const c of ranked) {
+     if (tried >= L.maxPages || passages.length >= L.maxVerified) break;
+     tried++;
+     let text;
+-    try { text = await readPage(c.url); }
++    try { text = await (pre.get(c.url) || readPage(c.url)); }
+     catch (e) { if (isAbort(e)) throw e; trail.push({ query: c.query, url: c.url, host: c.host, verdict: "unreadable", why: "read_failed:" + String(e?.message || e).slice(0, 60) }); continue; }
+     // readPage's contract is string|null; a reader that returns { ok, text, title } (the chat's own readText does) is accepted too
+     let pageTitle = c.title;

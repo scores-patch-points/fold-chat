@@ -1,0 +1,45 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "houdini",
+  "organ": "khora/native/the-fold/archon-rules.js::houdiniExclusivity; proxy-runner.mjs::runProxyTurn",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "No work claimed. Historical record (HistoryNet, SPR summary, search results): Scientific American's committee offered prizes (1922) for demonstrable psychic manifestations; Houdini sat on it as a skeptic, attended the July 1924 Margery seances, explained how her effects could be done by ordinary means and built a restraining cabinet; the prize was not awarded.",
+  "scholarship": [
+    {
+      "ref": "HistoryNet, 'Mina Crandon & Harry Houdini'",
+      "url": "https://historynet.com/mina-crandon-harry-houdini-the-medium-and-the-magician/",
+      "supports": "SciAm offered the prize, Houdini was a committee member, explained her methods, prize declined",
+      "disputes": "I did not read scholarship on whether Houdini fairly treated Margery (accounts of him quarreling with the committee exist); the compendium's onstage re-performance claim is unverified by me."
+    }
+  ],
+  "ourUse": "houdiniExclusivity re-runs isMetaSentence (a regex-style test) over the finished piece and folds out sentences that sound like the mouth talking about its own phrasing or task.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "prize-ownership",
+      "kind": "narrowed",
+      "ours": "'He backed a standing, public prize (via Scientific American)'.",
+      "theirs": "The prize was Scientific American's committee's; Houdini was a member, not its sponsor, and the Margery prize was a specific 1922-24 committee offer."
+    },
+    {
+      "id": "mechanism-vs-pattern",
+      "kind": "re-scoped",
+      "ours": "'checked for the mechanism that actually produced it', 'show the mechanism live'.",
+      "theirs": "Houdini reproduced effects and exposed method on specific mediums; the code pattern-matches a sentence for self-reference and has no access to its true mechanism."
+    },
+    {
+      "id": "compendium-unverified",
+      "kind": "decorative",
+      "ours": "work cites 'not by declaring a seance false, but by attending one, then performing the same effect himself ... onstage'.",
+      "theirs": "The compendium itself says this was recalled from general knowledge; I verified attendance and explaining her tricks, not onstage re-performance."
+    }
+  ],
+  "noBendReason": "The handle is a project nomination claiming no Houdini text; the bends are about the historical gloss in the compendium and how far the code resembles his method.",
+  "fix": [
+    "work: 'Houdini sat on the 1924 Scientific American committee that declined to award the Margery prize and explained her effects as ordinary trickery. Our houdiniExclusivity is named for that posture only: a sentence dressed as channelled content is folded out when no mechanism backs it. The check is a regex-based self-reference test, not an investigation.'",
+    "source: drop the 'recalled from general knowledge' clause or cite HistoryNet."
+  ],
+  "tokenized": false
+}

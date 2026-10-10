@@ -1,0 +1,68 @@
+{
+ "variant": "empty",
+ "at": "2026-10-07T04:24:44.565Z",
+ "turns": [
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "4 Tips to get the best essay from AI essay writer\n\nChoose from our team of human writers specializing in diverse subjects. Needed someone to write essay for me with tons of research and really advanced concepts. Theyre my #1 hack for surviving college, the speed is just crazy and I can always count on them This is where essay writing services are actually useful. EssayPro keeps an eye on every essay as it progresses, and if something starts to go off track, support steps in to help fix it. These references give context to your \"write an essay for me\" request to help us craft an essay that feels more tailored and relevant.",
+   "shown": "model declined\nThe model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead.\ntry again\nFROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS\n‹ Prev\n1 of 2\nNext ›\n4 Tips to get the best essay from AI essay writer\nS1\nfrom wrizzle.ai\nopen ↗\nTip the creator\ncopy\ncopy</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "declined",
+     "text": "The model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead."
+    }
+   ],
+   "reads": [
+    "wrizzle.ai/essay-writer",
+    "papersowl.com/",
+    "essaypro.com/",
+    "ivypanda.com/tools/ai-essay-generator/",
+    "papersowl.com/pay-for-essay"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 2,
+   "authored": "sources",
+   "provenance": null,
+   "nRaw": 0,
+   "searched": null,
+   "creative": true,
+   "voidKind": null,
+   "snips": [
+    {
+     "text": "4 Tips to get the best essay from AI essay writer"
+    },
+    {
+     "text": "Choose from our team of human writers specializing in diverse subjects. Needed someone to write essay for me with tons of research and really advanced concepts. Theyre my #1 hack for surviving college, the speed is just crazy and I can always count on them This is where essay writing services are ac"
+    }
+   ],
+   "fell": "facing",
+   "passages": [
+    {
+     "ref": "wrizzle.ai — AI Essay Writer - Free Online Essay Generator",
+     "url": "https://www.wrizzle.ai/essay-writer",
+     "text": "4 Tips to get the best essay from AI essay writer"
+    },
+    {
+     "ref": "papersowl.com — Write My Essay | Essay Writing Service from $8/page",
+     "url": "https://papersowl.com/",
+     "text": "Partner with a reliable essay writing service powered by real human experts.Relieve your academic stress with custom research!\nFor over 9 years, we’ve connected students with verified human writers across 50+ subjects for every \"do my paper for me\" request.\nDianne Russell Active 43m ago Just wanted to thank you for helping me out with my history research.\nJacob Jones Active 17m ago Hello there I just got my last grade and wanted to thank you for helping me out with my English assignments.\nThe prices start at $8 per page to write an essay with professional support.\nOur service is committed to providing reliable essay help online through 100% original, human-written work.\nReliable academic par"
+    },
+    {
+     "ref": "essaypro.com — Write My Essay | Essay Writing Service at $11/page",
+     "url": "https://essaypro.com/",
+     "text": "Choose from our team of human writers specializing in diverse subjects.\nNeeded someone to write essay for me with tons of research and really advanced concepts.\nTheyre my #1 hack for surviving college, the speed is just crazy and I can always count on them\nThis is where essay writing services are actually useful.\nEssayPro keeps an eye on every essay as it progresses, and if something starts to go off track, support steps in to help fix it.\nThese references give context to your \"write an essay for me\" request to help us craft an essay that feels more tailored and relevant."
+    }
+   ],
+   "web": [
+    "https://www.wrizzle.ai/essay-writer",
+    "https://papersowl.com/",
+    "https://essaypro.com/",
+    "https://ivypanda.com/tools/ai-essay-generator/",
+    "https://papersowl.com/pay-for-essay"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+{
+  "frozen": "2026-10-06 before the first instrumented run",
+  "facts": [
+    {"id":"eiffel","ask":"How tall is the Eiffel Tower?","re":"33\\d|32[34]|1,?0[0-9]{2}"},
+    {"id":"austen","ask":"Who wrote Pride and Prejudice?","re":"Austen"},
+    {"id":"canberra","ask":"What is the capital of Australia?","re":"Canberra"},
+    {"id":"wall","ask":"In what year did the Berlin Wall fall?","re":"1989"},
+    {"id":"mona","ask":"Who painted the Mona Lisa?","re":"Leonardo|da Vinci"},
+    {"id":"gold","ask":"What is the chemical symbol for gold?","re":"\\bAu\\b"},
+    {"id":"python","ask":"Who created the Python programming language?","re":"Guido|van Rossum"},
+    {"id":"everest","ask":"What is the tallest mountain on Earth above sea level?","re":"Everest"},
+    {"id":"moon","ask":"Who was the first person to walk on the Moon?","re":"Armstrong"},
+    {"id":"ottawa","ask":"What is the capital of Canada?","re":"Ottawa"},
+    {"id":"penicillin","ask":"Who discovered penicillin?","re":"Fleming"},
+    {"id":"ww2","ask":"In what year did World War II end?","re":"1945"},
+    {"id":"light","ask":"What is the speed of light?","re":"299[ ,]?792|300[ ,]?000|3\\.0+ ?[x×]"},
+    {"id":"curie","ask":"Who was Marie Curie?","re":"Nobel|Polish|physicist|chemist"},
+    {"id":"relativity","ask":"Who developed the theory of general relativity?","re":"Einstein"},
+    {"id":"photo","ask":"What is photosynthesis?","re":"light|sunlight|energy"}
+  ]
+}

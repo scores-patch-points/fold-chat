@@ -1,0 +1,45 @@
+{
+  "handle": "shklovsky",
+  "organ": "khora/native/organs/pathos.js (proposed)",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/shklovsky.json"
+  ],
+  "whatTheyArgued": "Habitual perception becomes automatic and deadens experience; art's device is to make things unfamiliar and to make forms difficult, increasing the length and difficulty of perception, since perception is itself the aesthetic end (via secondary sources; I could not read a primary text).",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, 'Defamiliarization' (encyclopedia, not peer-reviewed)",
+      "url": "https://en.wikipedia.org/wiki/Defamiliarization",
+      "supports": "1917 essay 'Art as Device'/'Art as Technique'; automatization; prolonging perception; Tolstoy's Kholstomer and Sterne as examples",
+      "disputes": "weak source; page records translation variants of the title and key terms; I did not read a peer-reviewed treatment"
+    }
+  ],
+  "ourUse": "Nothing. grep finds no 'shklovsky' in khora/native; organ marked '(proposed)'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "quote-unverified",
+      "kind": "misstated",
+      "ours": "Compendium prints 'Art is the technique of making objects strange.' in quotation marks as his words.",
+      "theirs": "The exact wording depends on translation (Lemon & Reis render it differently, e.g. 'technique of art is to make objects unfamiliar' per secondary sources). I could not verify this wording in any text and no primary is on disk."
+    },
+    {
+      "id": "decorative-unimplemented",
+      "kind": "decorative",
+      "ours": "Assigned a role in pathos.js (proposed).",
+      "theirs": "No code uses estrangement; credit is a nomination."
+    },
+    {
+      "id": "art-to-reading",
+      "kind": "re-scoped",
+      "ours": "'perception prolonged against recognition' as a property of a reading/finding.",
+      "theirs": "A claim about artistic devices in literature, with perception as the aesthetic end; whether it carries to an analytic reader is our extension."
+    }
+  ],
+  "fix": [
+    "compendium work: drop the quotation marks or replace with a verified translation: 'Russian formalist who held that art counters automatised perception by making things unfamiliar and prolonging perception (1917).'",
+    "mark 'proposed, no code'"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

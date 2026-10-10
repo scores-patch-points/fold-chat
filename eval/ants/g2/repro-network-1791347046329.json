@@ -1,0 +1,208 @@
+{
+ "variant": "network",
+ "at": "2026-10-07T04:22:03.493Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The sources provide some different answers about who invented the telephone.\n\nSays Alexander Graham Bell invented the telephone. Says both Bell and Philipp Reis were involved in the invention. Says Antonio Meucci was recognized as the legitimate inventor of the telephone in 2002.\n\nWhat do you think?",
+   "shown": "The sources provide some different answers about who invented the telephone.\n\nSays Alexander Graham Bell invented the telephone. Says both Bell and Philipp Reis were involved in the invention. Says Antonio Meucci was recognized as the legitimate inventor of the telephone in 2002.\n\nWhat do you think?\n\nC\nAssociation of Old Crows\nopen ↗\nWho Invented That? The Telephone - Association of Old Crows\nEvery schoolchild knows that Alexander Graham Bell invented the telephone . …\n▶ watch\ncopy\ncopy</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 5,
+     "kept": 5,
+     "dropped": 0,
+     "unsourced": 4
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0.37,
+      "mean": 9.4,
+      "blinks": 2,
+      "dense": 1,
+      "n": 5
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "loc.gov/item/who-is-credited-with-inventing-the-telephone/",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "community.element14.com/members-area/personalblogs/b/blog/posts/no-ale",
+    "crows.org/stem-blog/who-invented-that-the-telephone/",
+    "telefonica.com/en/communication-room/blog/history-of-the-telephone/",
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "britannica.com/biography/Alexander-Graham-Bell",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "crows.org/stem-blog/who-invented-that-the-telephone/",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele"
+   ],
+   "read": 11,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The sources provide some different answers about who invented the telephone.",
+    "calls": 2,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "unrelated"
+   },
+   "nRaw": 5,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "NMS — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain.\nConcorde: The story of supersonic passenger flight Science and technology For almost 30 years, anyone who could afford the ticket could shoot across the globe at twice the speed of sound."
+    },
+    {
+     "ref": "Association of Old Crows — Who Invented That? The Telephone - Association of Old Crows",
+     "url": "https://crows.org/stem-blog/who-invented-that-the-telephone/",
+     "text": "Every schoolchild knows that Alexander Graham Bell invented the telephone.\nBoth Alexander Graham Bell and Elisha Gray, another speech-at-a-distance inventor, filed patents for telephone technology at the US Patent Office on the same day, February 14, 1876.\nHaving filed his application a few hours earlier, Bell was awarded the first US telephone patent (174465) on March 7, 1876.\nAn Italian immigrant to the US, Meucci had begun working on a talking telegraph (or telephone) in 1849.\nLargely forgotten, Meucci’s role in the invention of the telephone was finally acknowledged by a 2002 Congressional resolution.\nFrench claims that Bourseul invented the telephone somehow ring hollow; the French gove"
+    },
+    {
+     "ref": "Telefónica — History of the telephone - Telefónica",
+     "url": "https://www.telefonica.com/en/communication-room/blog/history-of-the-telephone/",
+     "text": "Did you know that at first the telephone was christened by its inventor, Antonio Meucci, as a ‘telettrofono’?\nAlthough patented in 1876 by Alexander Graham Bell, Antonio Meucci was recognised as the legitimate inventor of the telephone in 2002.\nA telephone operator who diverted all calls to her husband’s funeral home led Almon Brown Strowger, who owned a funeral home that was losing customers for this reason, to create an automatic calling system in the late 19th century.\nGraham Bell patented the telephone in 1876\nThe Scottish inventor and scientist Alexander Graham Bell patented the telephone on 7 March 1876, three days later making the famous (and elementary, since we were talking about li"
+    },
+    {
+     "ref": "NMS — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "But can its creator, Alexander Graham Bell, truly lay claim to the title ‘inventor of the telephone’?\nAlexander Bell was born in Edinburgh on 3 March 1847.\nSound and speech were part of Bell’s life from a young age.\nBoth his father and grandfather were well-known teachers of elocution and speech training; his father in Edinburgh, his grandfather in London.\nAlexander Graham Bell did not think he was inventing a ‘telephone’ during his early experiments.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nOn 11 August 1877, Bell and Mabel arrived in Britain from the USA on honeymoon.\nFor years following the award, Alexander "
+    },
+    {
+     "ref": "Association of Old Crows — Who Invented That? The Telephone - Association of Old Crows",
+     "url": "https://crows.org/stem-blog/who-invented-that-the-telephone/",
+     "text": "The Scottish-born Bell came to the United States in 1871 to teach at schools for the deaf in New England.\nBoth Alexander Graham Bell and Elisha Gray, another speech-at-a-distance inventor, filed patents for telephone technology at the US Patent Office on the same day, February 14, 1876.\nHaving filed his application a few hours earlier, Bell was awarded the first US telephone patent (174465) on March 7, 1876.\nAnother inventor in this story was Antonio Meucci.\nAn Italian immigrant to the US, Meucci had begun working on a talking telegraph (or telephone) in 1849.\nLargely forgotten, Meucci’s role in the invention of the telephone was finally acknowledged by a 2002 Congressional resolution.\nFrenc"
+    },
+    {
+     "ref": "Telefónica — History of the telephone - Telefónica",
+     "url": "https://www.telefonica.com/en/communication-room/blog/history-of-the-telephone/",
+     "text": "Although patented in 1876 by Alexander Graham Bell, Antonio Meucci was recognised as the legitimate inventor of the telephone in 2002.\nThe Scottish inventor and scientist Alexander Graham Bell patented the telephone on 7 March 1876, three days later making the famous (and elementary, since we were talking about literature in the previous paragraph) call to his assistant: ‘Mr Watson, come here, I want to see you’.\nThe enormous success and popularisation of this patent boosted the level of knowledge of Graham Bell, who, controversy aside, turned this device into a means of mass communication with the founding of the Bell Telephone Company in 1977.\nAntonio Meucci, creator and legitimate invento"
+    },
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "Charles Bourseul, Antonio Meucci, Johann Philipp Reis, Alexander Graham Bell, and Elisha Gray, amongst others, have all been credited with the invention of the telephone.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" (electric transmission of speech), describing a \"make-and-break\" type telephone transmitter later created by Johann Reis.\n2"
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nAn electromagnetic telegraph was created by Baron Schilling in 1832.\nAntonio Meucci, Philipp Reis, Alexander Graham Bell, and Elisha Gray amongst others, have all been credited with the telephone's invention.\nThe early history of the telephone became and still remains a confusing morass of claims and counterclaims, which were not clarified by the huge number of lawsuits filed in order to resolve the patent claims of the many individuals and commercial competitors.\nAlexander Graham Bell was, however, the first to patent the telephone, as an \"apparatus for transmitting vocal or other sounds telegraphically\".\nBell has most"
+    }
+   ],
+   "web": [
+    "https://www.loc.gov/item/who-is-credited-with-inventing-the-telephone/",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://community.element14.com/members-area/personalblogs/b/blog/posts/no-alexander-graham-bell-did-not-invent-the-telephone",
+    "https://crows.org/stem-blog/who-invented-that-the-telephone/",
+    "https://www.telefonica.com/en/communication-room/blog/history-of-the-telephone/",
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.britannica.com/biography/Alexander-Graham-Bell",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://crows.org/stem-blog/who-invented-that-the-telephone/",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "In this digital age, nearly all human beings have some form of attachment to their cell phone. compare contrast essay - telegraph vs texting Yesterday, on March 7, 1876, Alexander Graham Bell invented the telephone!\n\nHome — Essay Samples — Science — Telephone — Invention of Telephone In 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone. Custom essay delivered in as few as 3 hours We can write you a custom essay that will follow your exact instructions and meet the deadlines.\n\nThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot.",
+   "shown": "model declined\nThe model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead.\ntry again\nFROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS\n‹ Prev\n1 of 3\nNext ›\nIn this digital age, nearly all human beings have some form of attachment to their cell phone. compare contrast essay - telegraph vs texting Yesterday, on March 7, 1876, Alexander Graham Bell invented the telephone!\nS1\nfrom bartleby.com\nopen ↗\nTip the creator\ncopy\ncopy</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "declined",
+     "text": "The model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead."
+    }
+   ],
+   "reads": [
+    "bartleby.com/essay/The-Invention-Of-The-Telephone-F3F6PMXY9CXQ",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "quora.com/I-have-to-write-an-essay-about-the-inventor-of-the-telephone",
+    "cram.com/subjects/Telephone-Essay",
+    "leverageedu.com/discover/school-education/essay-on-telephone/"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": "sources",
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "write essay invented telephone",
+   "creative": true,
+   "voidKind": null,
+   "snips": [
+    {
+     "text": "In this digital age, nearly all human beings have some form of attachment to their cell phone. compare contrast essay - telegraph vs texting Yesterday, on March 7, 1876, Alexander Graham Bell invented the telephone!"
+    },
+    {
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone In 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone. Custom essay delivered in as few as 3 hours We can write you a custom essay that will follow your exact instructions and meet the deadli"
+    },
+    {
+     "text": "This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot."
+    }
+   ],
+   "fell": "facing",
+   "passages": [
+    {
+     "ref": "Bartleby — The Invention Of The Telephone Essay - 1824 Words | Bartleby",
+     "url": "https://www.bartleby.com/essay/The-Invention-Of-The-Telephone-F3F6PMXY9CXQ",
+     "text": "In this digital age, nearly all human beings have some form of attachment to their cell phone.\ncompare contrast essay - telegraph vs texting\nYesterday, on March 7, 1876, Alexander Graham Bell invented the telephone!"
+    },
+    {
+     "ref": "GradesFixer — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nCustom essay delivered in as few as 3 hours\nWe can write you a custom essay that will follow your exact instructions and meet the deadlines."
+    },
+    {
+     "ref": "Quora — I have to write an essay about the inventor of the telephone, Alexander Graham Bell. How did he break barriers in history? - Quora",
+     "url": "https://www.quora.com/I-have-to-write-an-essay-about-the-inventor-of-the-telephone-Alexander-Graham-Bell-How-did-he-break-barriers-in-history",
+     "text": "![Image 1: Icon for www.quora.com](https://www.quora.com/favicon.ico)\n\n## www.quora.com\n\n## Performing security verification\n\nThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot."
+    }
+   ],
+   "web": [
+    "https://www.bartleby.com/essay/The-Invention-Of-The-Telephone-F3F6PMXY9CXQ",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://www.quora.com/I-have-to-write-an-essay-about-the-inventor-of-the-telephone-Alexander-Graham-Bell-How-did-he-break-barriers-in-history",
+    "https://www.cram.com/subjects/Telephone-Essay",
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/"
+   ]
+  }
+ ]
+}

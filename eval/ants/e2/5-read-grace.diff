@@ -1,0 +1,23 @@
+--- a/fold-chat-web.js
++++ b/fold-chat-web.js
+@@ -313,6 +313,7 @@
+ // reachable at all answers in a second or two (measured: 100 ms–2 s), and the public
+ // proxies' failures took 8 s each to arrive.
+ export const GATEWAY_BUDGET_MS = 3500;
++export const READ_GRACE_MS = 1500;   // E2: once enough pages are read, how long reads still in flight may keep the turn waiting
+ export const DIRECT_BUDGET_MS = 1500;   // E2: the browser's own read of a page; past it the relay chain is tried
+ const hostKey = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
+ const WIKI_RE = /^https?:\/\/([a-z-]+)\.wikipedia\.org\/wiki\/([^?#]+)/i;
+@@ -874,7 +875,11 @@
+       if (rd.ok) okReads++;
+     }
+   };
+-  await Promise.all(Array.from({ length: Math.min(CONC, chosen.length) }, worker));
++  { const all = Promise.all(Array.from({ length: Math.min(CONC, chosen.length) }, worker));
++    const graceMs = (() => { try { return localStorage.getItem("fold-chat:e2grace") === "off" ? Infinity : READ_GRACE_MS; } catch { return READ_GRACE_MS; } })();
++    let release = null; const enough = new Promise((res) => { release = res; });
++    const poll = setInterval(() => { if (okReads >= want) { clearInterval(poll); setTimeout(release, graceMs === Infinity ? 0 : graceMs); } }, 50);
++    if (graceMs === Infinity) { clearInterval(poll); await all; } else { await Promise.race([all, enough]); clearInterval(poll); } }   // E2: enough pages read, do not wait for stragglers
+   reads.sort((x, y) => x.i - y.i);
+   // KEEP THE DIFFERENCE, NOT THE PAGE — for the model and the record. A read page (up to 24k chars) is reduced
+   // to its IMPRESSION — the sentences that differ the ask — and a SHADOW (original length, fingerprint, byte

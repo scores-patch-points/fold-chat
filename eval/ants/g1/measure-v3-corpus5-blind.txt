@@ -1,0 +1,15 @@
+ALL  {"n":57,"recall":"97% (36/37)","falseWants":"10% (2/20)","typeExact":"95% (54/57)","topic":"92% (24/26)","needsSources":"97% (35/36)","voids":"97% (35/36)","searchQuery":"100% (36/36)","constraints":"100% (4/4)","material":"100% (3/3)","steps":"n/a (0/0)"}
+per-type exact: essay 8/8  poem 8/8  story 2/2  email 4/4  table 1/1  list 1/1  outline 1/1  speech 1/1  summary 2/2  rewrite 1/1  translation 2/2  slogan 1/1  code 1/1  other 3/4
+[r5] FAIL write a persuasive email to my city council asking for more bike lanes
+      needsSources false != true
+[r5] FAIL make a table comparing iphone and android
+      topic null lacks iphone | voids [no-topic] != []
+[r5] FAIL create a recipe for vegan pancakes
+      type none != other
+[r5] FAIL make a logo for my bakery
+      topic null lacks bakery
+[r5] FAIL list all the countries in europe
+      type list != none
+[r5] FAIL I will draft the report tomorrow
+      type essay != none
+classifyTurn false-wants on negatives: 1 [ 'I will draft the report tomorrow' ]

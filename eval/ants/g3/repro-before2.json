@@ -1,0 +1,158 @@
+{
+ "label": "before2",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T05:15:23.508Z",
+ "patchDir": null,
+ "turns": [
+  {
+   "ask": "write me a song about trampolines",
+   "spoken": "The backyard's calling, sun is in the sky Dust dances in the wind, a perfect summer cry Little feet are bouncing, a happy sound so bright A canvas of the air, ready for flight\n\nThe springy surface sings, of laughter and of glee A child's wild joy explodes, just you and me We jump and twirl and flip, a carefree dance Forever lost in time, a joyful trance\n\n(Chorus) A symphony of leaps, just me and you The world shrinks down to this, a moment in time With every bounce and spin, a heart so light and sublime\n\nYears may change the landscape, the grass may wear and fade But the memory of that leap, will never ever be betrayed A simple act of joy, a feeling pure and strong A silent pact with freedom, where we all belong\n\n(Chorus) A symphony of leaps, just me and you The world shrinks down to this, a moment in time",
+   "kind": "generate",
+   "followed": null,
+   "feed": [
+    "The query: searching for “write me a song about trampolines”"
+   ],
+   "reads": [
+    "https://open.spotify.com/track/0lsRatBUs9HNIZAmoGABzk",
+    "https://www.songfacts.com/facts/shaed/trampoline",
+    "https://open.spotify.com/track/5j4pQ5lVOdcLvbKiDpLoNi",
+    "https://www.tiktok.com/discover/trampoline-song?lang=en"
+   ],
+   "passages": [
+    "Spotify — Trampoline - song and lyrics by SHAED <https://open.spotify.com/track/0lsRatBUs9HNIZAmoGABzk>",
+    "SongFacts — Trampoline by Shaed - Songfacts <https://www.songfacts.com/facts/shaed/trampoline>",
+    "Spotify — Jumping On My Trampoline - song and lyrics by KoolSongs <https://open.spotify.com/track/5j4pQ5lVOdcLvbKiDpLoNi>"
+   ],
+   "notices": [],
+   "raws": [
+    "(Verse 1)\nThe backyard's calling, sun is in the sky\nDust dances in the wind, a perfect summer cry\nLittle feet are bouncing, a happy sound so bright\nA canvas of the air, ready for flight\n\n(Verse 2)\nThe springy surface sings, of laughter and of glee\nA child's wild joy explodes, just you and me\nWe jump and twirl and flip, a carefree dance\nForever lost in time, a joyful trance\n\n(Chorus)\nTrampoline, a dream come true\nA symphony of leaps, just me and you\nThe world shrinks down to this, a moment in tim"
+   ],
+   "referents": [
+    "The(6.0)",
+    "Chorus(4.0)",
+    "Dust(2.0)",
+    "Little(2.0)",
+    "We(2.0)",
+    "Forever(2.0)",
+    "With(2.0)",
+    "Years(2.0)",
+    "But(2.0)"
+   ],
+   "summary": {
+    "topic": "write me a song about trampolines",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"The backyard's calling, sun is in the sky Dust dances in the wind, a perfect summer cry L…\".",
+    "entities": [
+     "The",
+     "Chorus",
+     "Dust",
+     "Little",
+     "We",
+     "Forever",
+     "With",
+     "Years"
+    ]
+   },
+   "modelRequest": [
+    "system: You are a writer working ONLY from the sources provided in this context. The person asked you to WRITE or PRODUCE something. Write it now, in full, in this reply. Ground every fact in the sources you were given — never invent a date, name, figure, or event, an",
+    "user: write me a song about trampolines"
+   ]
+  },
+  {
+   "ask": "who is mt. mckinlet named afer?",
+   "spoken": "Why the Name of Alaska’s Peak Changed From Mt. McKinley to Denali (Some had previously known the mountain as Densmore’s Peak, named for prospector Frank Densmore in 1889.) “[Stuck] felt strongly that it should retain the Native name—that there’s no reason it should be named after a politician who had never been to Alaska,” says Brian Okonek, who organized and led expeditions at Denali from 1979 to 2000. Ralph S. Regula, who represented McKinley’s home district, told the Times in 1980 that the name Denali “has only limited and local recognition” while the peak is “public land that belongs to all Americans.”",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “who is mt. mckinlet named afer?”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute",
+    "https://www.cowcreek-nsn.gov/alaskan-mountain-denali-stripped-of-native-name/",
+    "https://www.history.com/articles/denali-mckinley-mountain-alaska-naming",
+    "https://www.jagranjosh.com/us/explainers/why-was-mt-mckinley-renamed-1860002250",
+    "https://nevadacurrent.com/2025/02/19/its-about-control-why-trump-renamed-denali-to-mount-mckinley/"
+   ],
+   "passages": [
+    "Wikipedia — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "Cowcreek-nsn — Alaskan Mountain Denali Stripped of Native Name - Cow Creek Band of Umpqua Tribe of Indians <https://www.cowcreek-nsn.gov/alaskan-mountain-denali-stripped-of-native-name/>",
+    "HISTORY — Why the Name of Alaska's Peak Changed From Mt. McKinley to Denali | HISTORY <https://www.history.com/articles/denali-mckinley-mountain-alaska-naming>"
+   ],
+   "notices": [
+    "[fold] None of the model's sentences could be traced to what was read, so the sources' own words are shown instead."
+   ],
+   "raws": [
+    "Mt. McKinley is named after William McKinley, the 25th President of the United States. \n"
+   ],
+   "referents": [
+    "The(4.8)",
+    "Chorus(3.2)",
+    "Dust(1.6)",
+    "Little(1.6)",
+    "We(1.6)",
+    "Forever(1.6)",
+    "With(1.6)",
+    "Years(1.6)",
+    "But(1.6)"
+   ],
+   "summary": {
+    "topic": "write me a song about trampolines",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"The backyard's calling, sun is in the sky Dust dances in the wind, a perfect summer cry L…\"; they asked \"who is mt. mckinlet named afer?\" and I showed the sources' own words.",
+    "entities": [
+     "The",
+     "Chorus",
+     "Dust",
+     "Little",
+     "We",
+     "Forever",
+     "With",
+     "Years"
+    ]
+   },
+   "modelRequest": [
+    "system: You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES:",
+    "user: write me a song about trampolines",
+    "assistant: The backyard's calling, sun is in the sky Dust dances in the wind, a perfect summer cry Little feet are bouncing, a happy sound so bright A canvas of the air, ready for flight The springy surface sings, of laughter and of glee A child's wild joy explodes, just",
+    "user: who is mt. mckinlet named afer?"
+   ]
+  },
+  {
+   "ask": "why is the sky blue",
+   "spoken": "",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “why is the sky blue”"
+   ],
+   "reads": [],
+   "passages": [],
+   "notices": [],
+   "raws": [],
+   "referents": [
+    "The(3.8)",
+    "Chorus(2.6)",
+    "Dust(1.3)",
+    "Little(1.3)",
+    "We(1.3)",
+    "Forever(1.3)",
+    "With(1.3)",
+    "Years(1.3)",
+    "But(1.3)"
+   ],
+   "summary": {
+    "topic": "write me a song about trampolines",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I said \"The backyard's calling, sun is in the sky Dust dances in the wind, a perfect summer cry L…\"; they asked \"who is mt. mckinlet named afer?\" and I showed the sources' own words; they asked \"why is the sky blue\" and I could not answer.",
+    "entities": [
+     "The",
+     "Chorus",
+     "Dust",
+     "Little",
+     "We",
+     "Forever",
+     "With",
+     "Years"
+    ]
+   },
+   "modelRequest": null
+  }
+ ]
+}

@@ -1,0 +1,1702 @@
+{
+ "q": "Is Pluto a planet?",
+ "spoken": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet.",
+ "shown": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet.\n\nS\nNASA Science\nopen ↗\nPluto\n… Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. …\n1 source · 0 of 1 sentence backed\n·\nwent back 1 lap\n·\n2 of 9 checks failed\n76 s\n▶ watch\nWhere this came from\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks failed"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet.",
+     "ref": "NASA Science — Pluto",
+     "source": "https://science.nasa.gov/dwarf-planets/pluto/",
+     "span": {
+      "start": 287,
+      "end": 360
+     },
+     "address": "NASA Science — Pluto#287-360",
+     "score": 10,
+     "window": {
+      "from": 126,
+      "to": 461
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "NASA Science — Pluto#287-360"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "NASA Science — Pluto#287-360",
+    "ref": "NASA Science — Pluto",
+    "span": {
+     "start": 287,
+     "end": 360
+    },
+    "text": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "NASA Science — Pluto#287-360",
+     "ref": "NASA Science — Pluto",
+     "span": {
+      "start": 287,
+      "end": 360
+     },
+     "label": "NASA Science — Pluto",
+     "source": "https://science.nasa.gov/dwarf-planets/pluto/",
+     "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+     "domain": "science.nasa.gov",
+     "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006.",
+     "before": "Pluto was long considered our ninth planet, but",
+     "mark": "the International Astronomical Union reclassified Pluto as a dwarf planet",
+     "after": "in 2006.",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet.",
+     "grounded": true,
+     "address": "NASA Science — Pluto#287-360"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "Is Pluto a planet?",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web"
+    ],
+    "skipped": [
+     "wikipedia",
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything"
+    },
+    "webDown": false
+   },
+   {
+    "read": "https://science.nasa.gov/dwarf-planets/pluto/",
+    "via": "the fold's relay",
+    "chars": 1549,
+    "kept": 1549,
+    "hash": "233dc341"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Pluto",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2981,
+    "hash": "735e3b93"
+   },
+   {
+    "read": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "via": "the fold's relay",
+    "chars": 2922,
+    "kept": 2922,
+    "hash": "23f7c74a"
+   },
+   {
+    "read": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+    "via": "the fold's relay",
+    "chars": 11850,
+    "kept": 1338,
+    "hash": "f45e3195",
+    "skipped": true
+   },
+   {
+    "read": "https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+    "via": null,
+    "ok": false
+   }
+  ],
+  "passages": [
+   {
+    "ref": "NASA Science — Pluto",
+    "source": "https://science.nasa.gov/dwarf-planets/pluto/",
+    "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+    "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt.\nPluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt.\nPluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015.\nNASA's New Horizons was the first and, so far, the only mission to explore Pluto.\nNew Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt.\nPluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos, and Hydra\nA curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.\nNASA’s New Horizons Finds Evidence of Recent Liquid on Pluto’s Surface\nNASA’s New Horizons Spacecraft Wakes from Hibernation in Good Health\nNASA’s New Horizons Enters Mission’s Longest Hibernation Period\n10 Years Ago: NASA’s New Horizons Captures Pluto’s Heart\nNASA’s New Horizons to Continue Exploring Outer Solar System\nA curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models."
+   },
+   {
+    "ref": "Wikipedia — Pluto - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Pluto",
+    "url": "https://en.wikipedia.org/wiki/Pluto",
+    "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune.\nNew Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations.\nIn 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\".\nIn 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet.\nOnce Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century.\nFrom 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt.\nIn 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet.\nIn September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in their Minor Planet Catalogue, giving them the official minor-planet designations \"(134340) Pluto\", \"(136199) Eris\", and \"(136199) Eris I Dysnomia\".\nHad Pluto been included upon its discovery in 1930, it would have likely been designated 1164, following 1163 Saga, which was discovered a month earlier.\nThe New Mexico House of Representatives passed a resolution in honor of Clyde Tombaugh, the discoverer of Pluto and a longtime resident of that state, that declared that Pluto will always be considered a planet while in New Mexican skies and that March 13, 2007, was Pluto Planet Day.\nThe Illinois Senate passed a similar resolution in 2009 on the basis that Tombaugh was born in Illinois.\nIn April 2024, Arizona (where Pluto was first discovered in 1930) passed a law naming Pluto as the official state planet.\nResearchers on both sides of the debate gathered in August 2008, at the Johns Hopkins University Applied Physics Laboratory for a conference that included back-to-back talks on the IAU definition of a planet.\nHowever, Pluto is also protected by its 2:3 orbital resonance with Neptune: for every two orbits that Pluto makes around the Sun, Neptune makes three, in a frame of refe"
+   },
+   {
+    "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+    "source": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "text": "Learn more about dwarf planets and Pluto's role in our solar system.\nThe world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres.\nWhat differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.)\nBecause it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with frozen bodies left over from the solar system's formation. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius).\nPluto's surface is composed of a mixture of frozen nitrogen, methane, and carbon monoxide ices. The dwarf planet also has polar caps and regions of frozen methane and nitrogen.\nPluto has three known moons, Hydra, Nix, and Charon. With a diameter of about 737 miles (1,186 kilometers), Charon is the largest of Pluto's moons. The duo's gravity puts them in a synchronous orbit, which means they face each other with the same side all the time.\nIn January 2006, NASA launched its New Horizons spacecraft. It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. As part of an extended mission, the spacecraft is heading farther into the Kuiper Belt to examine another of the ancient, icy mini-worlds in that vast region, at least a billion miles beyond Neptune’s orbit.\nNew Horizons also found Pluto to have blue skies and water ice.\nAlso considered by many to be an asteroid, Ceres, like Pluto, was also renamed as a dwarf planet in 2006. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801.\nCeres's shape resembles a flattened sphere with a diameter of about 590 mile"
+   },
+   {
+    "ref": "NASA Science — Pluto",
+    "source": "https://science.nasa.gov/dwarf-planets/pluto/",
+    "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+    "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006.\nNASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015.\nA curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models."
+   },
+   {
+    "ref": "Wikipedia — Pluto - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Pluto",
+    "url": "https://en.wikipedia.org/wiki/Pluto",
+    "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune.\nIn 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto.\nAs of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist.\nFrom 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt.\nIn 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet.\nOthers in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet.\nIn September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in their Minor Planet Catalogue, giving them the official minor-planet designations \"(134340) Pluto\", \"(136199) Eris\", and \"(136199) Eris I Dysnomia\".\nThe Illinois Senate passed a similar resolution in 2009 on the basis that Tombaugh was born in Illinois.\nIn 2006, in its 17th annual words-of-the-year vote, the American Dialect Society voted plutoed as the word of the year.\nIn April 2024, Arizona (where Pluto was first discovered in 1930) passed a law naming Pluto as the official state planet."
+   },
+   {
+    "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+    "source": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet.\nThe International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres.\nThe dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius).\nIt swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015.\nCeres was discovered by Italian astronomer Giuseppe Piazzi in 1801.\nSee 3 planets line up in a dramatic display in the April sky"
+   },
+   {
+    "ref": "Astronomy.com — Is Pluto a planet? It depends.",
+    "source": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+    "url": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+    "text": "Before we get to the experts here’s how Dave described the discovery and death of Pluto as a planet in a December 2023 column:\nIn 1930 a young astronomer from Kansas, employed as an observer at Lowell Observatory in Arizona, discovered Pluto.\nIt was the first planet in the solar system to have been discovered since 1846, when astronomers in Germany detected Neptune.\nClyde Tombaugh, just 24 at the time, was hailed as a hero, Disney named a cartoon dog after the new planet, and for 76 years the solar system was a happy place.\nIn a controversial vote, astronomers — not planetary scientists — “demoted” Pluto to the status of being classified as a dwarf planet, taking away one major planet and reducing the number in our solar system to eight.\nThe flyby of NASA’s New Horizons mission in 2015 showed us that Pluto has an atmosphere and is geologically active, with mountains, volcanoes, and glaciers.\nWell, historically, large moons were called planets, as a team of planetary scientists pointed out in Icarus in 2021.\nIn a 2014 debate at the Harvard-Smithsonian Center for Astrophysics in Cambridge, Gingerich argued that “‘planet’ is a culturally defined word that has changed its meaning over and over again and over the ages.”\nIn 2006, at a meeting of the International Astronomical Union in Prague, astronomers voted to “demote” Pluto to dwarf planet status."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "In 2006, the International Astronomical Union reclassified Pluto as a dwarf planet.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "2006 International Astronomical Union reclassified Pluto dwarf planet.",
+       "afterIns": "holds"
+      }
+     ],
+     "added": 0,
+     "restated": [],
+     "reImpressed": [
+      {
+       "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+       "kept": 378,
+       "chars": 1549,
+       "segments": 3,
+       "recalled": 8
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Pluto",
+       "kept": 1384,
+       "chars": 24000,
+       "segments": 10,
+       "recalled": 108
+      },
+      {
+       "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+       "kept": 784,
+       "chars": 2922,
+       "segments": 6,
+       "recalled": 20
+      },
+      {
+       "url": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+       "kept": 1359,
+       "chars": 11850,
+       "segments": 9,
+       "recalled": 69
+      }
+     ]
+    }
+   ],
+   "cleared": true,
+   "after": {
+    "claims": 1,
+    "corroborated": 1,
+    "held": 0,
+    "weak": 0,
+    "contested": 0,
+    "unsupported": 0,
+    "backed": 1,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": true
+   },
+   "processLine": "reframed · went back 1 lap · 0 more source(s) read · 0 sentence(s) restated · every sentence holds"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 7 source(s)",
+   "wrote the answer · local",
+   "language · asker unknown, reply unknown — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 1 lap · 0 more source(s) read · 0 sentence(s) restated · every sentence holds"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1083,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 689,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 455,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 7,
+  "answerMode": "facing",
+  "language": {
+   "question": "unknown",
+   "reply": null,
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "Is Pluto a planet?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 23
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “Is Pluto a planet?”",
+    "at": 95
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Is Pluto a planet?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 109,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 109
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:Is Pluto a planet?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6132
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Is Pluto a planet?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 9007,
+    "at": 9116
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 9116
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 9125
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://science.nasa.gov/dwarf-planets/pluto/",
+    "title": "Reading NASA Science — Pluto",
+    "tone": "run",
+    "at": 9159,
+    "slowAfter": 5000,
+    "slow": "waiting on NASA Science (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 9159
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Pluto",
+    "title": "Reading Wikipedia — Pluto - Wikipedia",
+    "tone": "run",
+    "at": 9174,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 9174
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "title": "Reading National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+    "tone": "run",
+    "at": 9180,
+    "slowAfter": 5000,
+    "slow": "waiting on National Geographic (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 9180
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Pluto",
+    "title": "Read Wikipedia — Pluto - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,981 of 24,000 chars",
+    "ms": 4453,
+    "at": 13627
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 13627
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+    "title": "Reading Astronomy.com — Is Pluto a planet? It depends.",
+    "tone": "run",
+    "at": 13634,
+    "slowAfter": 5000,
+    "slow": "waiting on Astronomy.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 13634
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://science.nasa.gov/dwarf-planets/pluto/",
+    "title": "Read NASA Science — Pluto",
+    "tone": "ok",
+    "note": "1,549 chars",
+    "ms": 6297,
+    "at": 15456
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 15457
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+    "title": "Reading LOC — Why is Pluto no longer a planet? | Library of Congress",
+    "tone": "run",
+    "at": 15464,
+    "slowAfter": 5000,
+    "slow": "waiting on LOC (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 15464
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+    "title": "Read National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+    "tone": "ok",
+    "note": "2,922 chars",
+    "ms": 6809,
+    "at": 15989
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 15989
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+    "title": "Read Astronomy.com — Is Pluto a planet? It depends.",
+    "tone": "ok",
+    "note": "kept 1,338 of 11,850 chars",
+    "ms": 6262,
+    "at": 19896
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 19896
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+    "title": "Could not read LOC",
+    "tone": "bad",
+    "note": "no text came back",
+    "ms": 12418,
+    "at": 27882
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 27882
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 40041
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read.",
+    "at": 40042
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 40064,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 40064
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 47701
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "21 tokens",
+    "ms": 12042,
+    "at": 52106
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 52106
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 52110
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 52179
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 4 new impressions",
+    "tone": "ok",
+    "note": "3 sentence(s) recalled from NASA Science · 10 sentence(s) recalled from Wikipedia · 6 sentence(s) recalled from National Geographic · 9 sentence(s) recalled from Astronomy.com",
+    "at": 52359
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Found it in the pages already read",
+    "tone": "ok",
+    "note": "no new search needed",
+    "at": 52378
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Every sentence holds now",
+    "tone": "ok",
+    "note": "1 corroborated · 0 on one source",
+    "at": 52398
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read the draft before speaking",
+    "tone": "ok",
+    "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured",
+    "at": 52429
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Asked the model where it got that",
+    "tone": "info",
+    "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself",
+    "at": 52432
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Verified where it came from",
+    "tone": "ok",
+    "note": "1 source · science.nasa.gov · 2 model calls",
+    "at": 76348
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Checked the answer against what was read",
+    "tone": "ok",
+    "note": "every figure and name appears in the sources",
+    "at": 76416
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 76 s · read 7 sources · gemma2:2b",
+    "at": 76419,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.014,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.019,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “Is Pluto a planet?”"
+    }
+   },
+   {
+    "at": 0.03,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Is Pluto a planet?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.032,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.032,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Is Pluto a planet?"
+    }
+   },
+   {
+    "at": 6.052,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:Is Pluto a planet?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.053,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 9.036,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Is Pluto a planet?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 9007
+    }
+   },
+   {
+    "at": 9.038,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 9.038,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Is Pluto a planet?",
+     "n": 20
+    }
+   },
+   {
+    "at": 9.046,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 9.046,
+    "seq": 12,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 9.08,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://science.nasa.gov/dwarf-planets/pluto/",
+     "title": "Reading NASA Science — Pluto",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.082,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 9.082,
+    "seq": 15,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+     "site": "NASA Science",
+     "title": "Pluto"
+    }
+   },
+   {
+    "at": 9.095,
+    "seq": 16,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Pluto",
+     "title": "Reading Wikipedia — Pluto - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.096,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 9.097,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Pluto",
+     "site": "Wikipedia",
+     "title": "Pluto - Wikipedia"
+    }
+   },
+   {
+    "at": 9.1,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+     "title": "Reading National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.101,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 9.102,
+    "seq": 21,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+     "site": "National Geographic",
+     "title": "Pluto and Ceres: Dwarf Planets Information and Facts"
+    }
+   },
+   {
+    "at": 13.547,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Pluto",
+     "title": "Read Wikipedia — Pluto - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,981 of 24,000 chars",
+     "ms": 4453
+    }
+   },
+   {
+    "at": 13.549,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 13.549,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Pluto",
+     "site": "Wikipedia",
+     "title": "Pluto - Wikipedia",
+     "chars": 24000,
+     "kept": 2981,
+     "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. It is the ninth-largest and tenth-most-massive known object to directly orbit the Sun. It is the largest known trans-Neptunian object by volume by a small margin, but is less massive than Eris. Like other Kuiper belt objects, Pluto is made primarily of ice and rock and is much smaller than the inner planets. Pluto has roughly one-sixth the mass of the Moon and one-third of its volume. Originally considered a planet, its status was changed when astronomers adopted a new definition of the word with new criteria. Pluto has a moderately eccentric and inclined orbit, ranging from 30 to 49 astronomical units (4.5 to 7.3 billion kilometres; 2.8 to 4.6 billion miles) from the Sun. Light from the Sun takes 5.5 hours to reach Pluto at its orbital distance of 39.5 AU (5.91 billion km; 3.67 billion mi). Pluto's eccentric orbit periodically brings it closer to the Sun than Neptune, but a stable orbital resonance prevents them from colliding. Pluto has five known moons: Charon (the largest and the diameter of which is just over half that of Pluto), Styx, Nix, Kerberos, and Hydra. Pluto and Charon are sometimes considered a binary system because the barycenter of their orbits (that is, their center of mass) does not lie within either body, and they are tidally locked. New Hor"
+    }
+   },
+   {
+    "at": 13.565,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+     "title": "Reading Astronomy.com — Is Pluto a planet? It depends.",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 13.57,
+    "seq": 26,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 13.572,
+    "seq": 27,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+     "site": "Astronomy.com",
+     "title": "Is Pluto a planet? It depends."
+    }
+   },
+   {
+    "at": 15.376,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://science.nasa.gov/dwarf-planets/pluto/",
+     "title": "Read NASA Science — Pluto",
+     "tone": "ok",
+     "note": "1,549 chars",
+     "ms": 6297
+    }
+   },
+   {
+    "at": 15.38,
+    "seq": 29,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 15.382,
+    "seq": 30,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://science.nasa.gov/dwarf-planets/pluto/",
+     "site": "NASA Science",
+     "title": "Pluto",
+     "chars": 1549,
+     "kept": 1549,
+     "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos, and Hydra A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models. NASA’s New Horizons Finds Evidence of Recent Liquid on Pluto’s Surface NASA’s New Horizons Spacecraft Wakes from Hibernation in Good Health NASA’s New Horizons Enters Mission’s Longest Hibernation Period 10 Years Ago: NASA’s New Horizons Captures Pluto’s Heart NASA’s New Horizons to Continue Exploring Outer Solar System A curated"
+    }
+   },
+   {
+    "at": 15.386,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+     "title": "Reading LOC — Why is Pluto no longer a planet? | Library of Congress",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 15.392,
+    "seq": 32,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 15.393,
+    "seq": 33,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+     "site": "LOC",
+     "title": "Why is Pluto no longer a planet? | Library of Congress"
+    }
+   },
+   {
+    "at": 15.908,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+     "title": "Read National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+     "tone": "ok",
+     "note": "2,922 chars",
+     "ms": 6809
+    }
+   },
+   {
+    "at": 15.913,
+    "seq": 35,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 15.915,
+    "seq": 36,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres",
+     "site": "National Geographic",
+     "title": "Pluto and Ceres: Dwarf Planets Information and Facts",
+     "chars": 2922,
+     "kept": 2922,
+     "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with frozen bodies left over from the solar system's formation. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). Pluto's surface is composed of a mixture of frozen nitrogen, methane, and carbon monoxide ices. The dwarf planet also has polar caps and regions of frozen methane and nitrogen. Pluto has three known moons, Hydra, Nix, and Charon. With a diameter of about 737 miles"
+    }
+   },
+   {
+    "at": 19.816,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+     "title": "Read Astronomy.com — Is Pluto a planet? It depends.",
+     "tone": "ok",
+     "note": "kept 1,338 of 11,850 chars",
+     "ms": 6262
+    }
+   },
+   {
+    "at": 19.82,
+    "seq": 38,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 19.822,
+    "seq": 39,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/",
+     "site": "Astronomy.com",
+     "title": "Is Pluto a planet? It depends.",
+     "chars": 11850,
+     "kept": 1338,
+     "text": "Astronomy.com: We were going to write something new about Pluto here. But Astronomy Magazine editor Dave Eicher has already done the heavy lifting. Before we get to the experts here’s how Dave described the discovery and death of Pluto as a planet in a December 2023 column: In 1930 a young astronomer from Kansas, employed as an observer at Lowell Observatory in Arizona, discovered Pluto. It was the first planet in the solar system to have been discovered since 1846, when astronomers in Germany detected Neptune. Clyde Tombaugh, just 24 at the time, was hailed as a hero, Disney named a cartoon dog after the new planet, and for 76 years the solar system was a happy place. And then, in 2006, the International Astronomical Union (IAU) reconsidered Pluto’s status. In a controversial vote, astronomers — not planetary scientists — “demoted” Pluto to the status of being classified as a dwarf planet, taking away one major planet and reducing the number in our solar system to eight. Astronomers suddenly took sides, seeing various sides in the logic, and schoolchildren all around the world were heartbroken, having been enamored with the story of the most distant and mysterious planet that was discovered by a young, self-educated researcher, and having that status heartlessly yanked away. Astronomy.com: OK, the scene is set. We’re working in a shared document and Alison will go first. Aliso"
+    }
+   },
+   {
+    "at": 27.801,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+     "title": "Could not read LOC",
+     "tone": "bad",
+     "note": "no text came back",
+     "ms": 12418
+    }
+   },
+   {
+    "at": 27.81,
+    "seq": 41,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 27.811,
+    "seq": 42,
+    "kind": "st",
+    "st": {
+     "phase": "unread",
+     "url": "https://www.loc.gov/everyday-mysteries/categories/astronomy/item/why-is-pluto-no-longer-a-planet/",
+     "site": "LOC",
+     "title": "Why is Pluto no longer a planet? | Library of Congress",
+     "chars": 0,
+     "kept": 0,
+     "text": ""
+    }
+   },
+   {
+    "at": 27.91,
+    "seq": 43,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+     "ref": "NASA Science — Pluto",
+     "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+    }
+   },
+   {
+    "at": 28.81,
+    "seq": 44,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+     "ref": "Wikipedia — Pluto - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Pluto"
+    }
+   },
+   {
+    "at": 29.71,
+    "seq": 45,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+     "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+     "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+    }
+   },
+   {
+    "at": 30.61,
+    "seq": 46,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 32.41,
+    "seq": 47,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 34.41,
+    "seq": 48,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 36.61,
+    "seq": 49,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 39.41,
+    "seq": 50,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was once our solar system's ninth planet, but has been reclassified as a dwarf planet. It's located in the Kuiper Belt. Pluto is a dwarf planet located in a distant region of our solar system beyond Neptune known as the Kuiper Belt. Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. NASA's New Horizons was the first and, so far, the only mission to explore Pluto. New Horizons also was the first mission to explore the solar system's recently discovered \"third zone,\" the region beyond the giant planets called the Kuiper Belt. Pluto's largest moon, Charon, is about half the size of Pluto, making it the largest known moon relative to its parent planet in our solar system. Pluto's other moons are: Styx, Nix, Kerberos,…",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. New Horizons was the first spacecraft to visit Pluto and its moons, making a flyby on July 14, 2015, and taking detailed measurements and observations. In 1906, Percival Lowell—a wealthy Bostonian who had founded Lowell Observatory in Flagstaff, Arizona, in 1894—started an extensive project in search of a possible ninth planet, which he termed \"Planet X\". In 1909, Lowell and William H. Pickering suggested several possible celestial coordinates for such a planet. Once Pluto was found, its faintness and lack of a viewable disc cast doubt on the idea that it was Lowell's Planet X. Estimates of Pluto's mass were revised downward throughout the 20th century. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a po…",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "Learn more about dwarf planets and Pluto's role in our solar system. The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. What differentiates a dwarf planet from a planet? For the most part, they are identical, but there's one key difference: A dwarf planet hasn't \"cleared the neighborhood\" around its orbit, which means it has not become gravitationally dominant and it shares its orbital space with other bodies of a similar size. (Astronomers and other experts are debating this definition.) Because it has not cleared the neighborhood around its orbit, Pluto is considered a dwarf planet. It orbits in a disc-like zone beyond the orbit of Neptune called the Kuiper belt, a distant region populated with …",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 39.96,
+    "seq": 52,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 39.964,
+    "seq": 53,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read."
+    }
+   },
+   {
+    "at": 39.985,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 39.992,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 41.61,
+    "seq": 51,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 47.62,
+    "seq": 56,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 52.025,
+    "seq": 57,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "21 tokens",
+     "ms": 12042
+    }
+   },
+   {
+    "at": 52.027,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 52.03,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 52.101,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 52.27,
+    "seq": 61,
+    "kind": "quick",
+    "n": 1,
+    "of": 4,
+    "p": {
+     "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+     "ref": "NASA Science — Pluto",
+     "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+    }
+   },
+   {
+    "at": 52.28,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 4 new impressions",
+     "tone": "ok",
+     "note": "3 sentence(s) recalled from NASA Science · 10 sentence(s) recalled from Wikipedia · 6 sentence(s) recalled from National Geographic · 9 sentence(s) recalled from Astronomy.com"
+    }
+   },
+   {
+    "at": 52.3,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found it in the pages already read",
+     "tone": "ok",
+     "note": "no new search needed"
+    }
+   },
+   {
+    "at": 52.319,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Every sentence holds now",
+     "tone": "ok",
+     "note": "1 corroborated · 0 on one source"
+    }
+   },
+   {
+    "at": 52.35,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 52.352,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 53.17,
+    "seq": 62,
+    "kind": "quick",
+    "n": 2,
+    "of": 4,
+    "p": {
+     "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+     "ref": "Wikipedia — Pluto - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Pluto"
+    }
+   },
+   {
+    "at": 54.07,
+    "seq": 63,
+    "kind": "quick",
+    "n": 3,
+    "of": 4,
+    "p": {
+     "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+     "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+     "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+    }
+   },
+   {
+    "at": 54.97,
+    "seq": 64,
+    "kind": "quick",
+    "n": 4,
+    "of": 4,
+    "p": {
+     "text": "Before we get to the experts here’s how Dave described the discovery and death of Pluto as a planet in a December 2023 column: In 1930 a young astronomer from Kansas, employed as an observer at Lowell Observatory in Arizona, discovered Pluto. It was the first planet in the solar system to have been discovered since 1846, when astronomers in Germany detected Neptune. Clyde Tombaugh, just 24 at the time, was hailed as a hero, Disney named a cartoon dog after the new planet, and for 76 years the solar system was a happy place. In a controversial vote, astronomers — not planetary scientists — “demoted” Pluto to the status of being classified as a dwarf planet, taking away one major planet and reducing the number in our solar system to eight. The flyby of NASA’s New Horizons mission in 2015 showed us that Pluto has an atmosphere and is geologically active, with mountains, volcanoes, and glac…",
+     "ref": "Astronomy.com — Is Pluto a planet? It depends.",
+     "url": "https://www.astronomy.com/science/is-pluto-a-planet-the-experts-break-it-down/"
+    }
+   },
+   {
+    "at": 55.87,
+    "seq": 65,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 57.67,
+    "seq": 66,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 59.67,
+    "seq": 67,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 61.87,
+    "seq": 68,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 64.67,
+    "seq": 69,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_fd04e6",
+    "ps": [
+     {
+      "text": "Pluto was long considered our ninth planet, but the International Astronomical Union reclassified Pluto as a dwarf planet in 2006. NASA's New Horizons was the first spacecraft to explore Pluto up close, flying by in 2015. A curated collection of resources, including activities that can be done at home, as well as videos and animations, images, printable graphics, and 3D models.",
+      "ref": "NASA Science — Pluto",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/"
+     },
+     {
+      "text": "Pluto (minor-planet number 134340) is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. In 2006, the International Astronomical Union (IAU) formally redefined the term planet to exclude dwarf planets such as Pluto. As of 2000 the majority of scientists agreed that Planet X, as Lowell defined it, does not exist. From 1992 onward, many bodies were discovered orbiting in the same volume as Pluto, showing that Pluto is part of a population of objects called the Kuiper belt. In 1998, Brian G. Marsden of Harvard University's Minor Planet Center suggested that Pluto be given the minor planet number 10000 while still retaining its official position as a planet. Others in the astronomical community considered the discovery the strongest argument for reclassifying Pluto as a minor planet. In September 2006, the IAU included Pluto, and Eris and its moon Dysnomia, in …",
+      "ref": "Wikipedia — Pluto - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pluto"
+     },
+     {
+      "text": "The world was introduced to dwarf planets in 2006, when petite Pluto was stripped of its planet status and reclassified as a dwarf planet. The International Astronomical Union (IAU) currently recognizes two other dwarf planets, Eris and Ceres. The dwarf planet is a whopping 3.7 billion miles (5.9 billion kilometers) from the sun, and its average temperature hovers around -356 degrees Fahrenheit (-215 degrees Celsius). It swung past Jupiter for a gravity boost and scientific studies in February 2007, conducted a six-month-long reconnaissance flyby study of Pluto and its moons in summer 2015, and culminated with Pluto's closest approach on July 14, 2015. Ceres was discovered by Italian astronomer Giuseppe Piazzi in 1801. See 3 planets line up in a dramatic display in the April sky",
+      "ref": "National Geographic — Pluto and Ceres: Dwarf Planets Information and Facts",
+      "url": "https://www.nationalgeographic.com/science/article/dwarf-planets-pluto-ceres"
+     }
+    ]
+   },
+   {
+    "at": 76.266,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · science.nasa.gov · 2 model calls"
+    }
+   },
+   {
+    "at": 76.337,
+    "seq": 76,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 76.341,
+    "seq": 77,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 76 s · read 7 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 76.343,
+    "seq": 78,
+    "kind": "done"
+   }
+  ]
+ }
+}

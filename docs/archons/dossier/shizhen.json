@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "shizhen",
+  "organ": "khora/native/organs/kind-standing.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/shizhen.json"
+  ],
+  "whatTheyArgued": "Li Shizhen's Bencao Gangmu (completed 1578, printed 1596) classifies 1,892 medicinal substances in an explicit declared hierarchy of 16 divisions (bu) and 60 orders/categories (lei), arranged from the lowly to the noble: waters and fires, earths, metals and stones, then plants, then animals, with humans last. Each entry then carries its own name, description, preparation, and effects. The ordering and the categories are stated by the author in his preface and imposed top down from an organizing logic; entries are placed by him.",
+  "scholarship": [
+    {
+      "ref": "Search-result summary of Li Shizhen's preface (low to noble; 16 divisions, 60 orders, 1,892 substances) and Nappi, The Monkey and the Inkpot (Harvard UP, 2009), cited there. I did NOT open Nappi or the preface directly.",
+      "url": "https://en.wikipedia.org/wiki/Bencao_Gangmu",
+      "supports": "16 divisions, 60 orders, 1892 substances, ordering from low to noble",
+      "disputes": "Whether Li's scheme is a 'taxonomy' in the Linnaean sense is debated (a 2026 Frontiers/PubMed item argues for a hierarchical taxonomy before Linnaeus; I could not read it, cookie wall). Treat the 'Linnaean' framing as contested."
+    }
+  ],
+  "ourUse": "kind-standing.js discovers kinds from the material's own company (the token before and after each mention, count vectors, cosine fit, a measured null) and uses the resulting standing to gate whether two mentions may fold. Nothing is named or taught; the kind is measured, not declared.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "measured-vs-declared",
+      "kind": "reinterpreted",
+      "ours": "Kinds are measured from distributional context, 'never taught', gated by a statistical null.",
+      "theirs": "Li's kinds and their ranking are authorial and declared (an organizing preface, a fixed 16-division ladder). Our method is the opposite epistemics: bottom-up distribution versus top-down placement. Kinship is only that both ask 'what kind is this thing'."
+    },
+    {
+      "id": "ranked-kind-not-implemented",
+      "kind": "misstated",
+      "ours": "Compendium: 'one individual placed into a ranked kind'; header 'a hierarchical classification of medicinal plants as outlined by Li Shizhen's Bencao Gangmu' (model-written paragraph).",
+      "theirs": "The code produces flat company-kinds with a membership test; there is no rank or hierarchy in kind-standing.js, and it classifies mentions in prose, not plants. The 'hierarchical classification of medicinal plants' sentence describes a different file."
+    },
+    {
+      "id": "standing-never-verdict",
+      "kind": "invented-attribution",
+      "ours": "'standing, never a verdict' presented in the work field as part of the Bencao Gangmu's approach.",
+      "theirs": "That is our design rule. Li makes verdicts about placement and, in each entry, about medicinal effects."
+    },
+    {
+      "id": "snip-irrelevant",
+      "kind": "decorative",
+      "ours": "The verified snip is a botanical description of southernwood (leaves, flowers, seeds, 'male southernwood') presented as Shizhen speaking.",
+      "theirs": "It is a real passage in Stuart's 1911 translation but says nothing about ranking or kind placement; it illustrates a description entry, not classification."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Li Shizhen's Bencao Gangmu (1578) places 1,892 substances into a declared ladder of 16 divisions and 60 orders, ordered from lowly to noble. kind-standing.js shares only the question what kind of thing is this; it measures a flat kind from a mention's neighboring tokens rather than placing it in an authored ranking.'",
+    "compendium credit: 'Li Shizhen — the question of placing an individual in a kind (Bencao Gangmu, 1578); our kinds are measured, his were declared.' Consider demoting to a nomination, or choose a snip about classification (his preface) rather than the southernwood entry.",
+    "organ header: remove the model-written 'hierarchical classification of medicinal plants' paragraph."
+  ]
+}

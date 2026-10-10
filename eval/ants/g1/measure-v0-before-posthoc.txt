@@ -1,0 +1,39 @@
+ALL  {"n":135,"recall":"98% (106/108)","falseWants":"4% (1/27)","typeExact":"97% (131/135)","topic":"90% (63/70)","needsSources":"97% (102/105)","voids":"100% (105/105)","searchQuery":"100% (105/105)","constraints":"100% (16/16)","material":"100% (9/9)","steps":"100% (4/4)"}
+DEV  {"n":33,"recall":"100% (28/28)","falseWants":"0% (0/5)","typeExact":"100% (33/33)","topic":"100% (18/18)","needsSources":"100% (28/28)","voids":"100% (28/28)","searchQuery":"100% (28/28)","constraints":"100% (4/4)","material":"100% (4/4)","steps":"100% (1/1)"}
+HELD {"n":102,"recall":"98% (78/80)","falseWants":"5% (1/22)","typeExact":"96% (98/102)","topic":"87% (45/52)","needsSources":"96% (74/77)","voids":"100% (77/77)","searchQuery":"100% (77/77)","constraints":"100% (12/12)","material":"100% (5/5)","steps":"100% (3/3)"}
+per-type exact: essay 29/29  other 5/6  poem 17/17  story 5/5  speech 4/4  summary 6/6  script 2/2  slogan 5/5  email 4/4  letter 6/6  outline 2/2  table 1/2  list 3/4  translation 5/5  rewrite 5/5  code 6/6
+[held] FAIL write a short dialogue between a cat and a dog
+      topic null lacks cat,dog
+[held] FAIL write a screenplay scene where two robots argue about music
+      topic "music" lacks robots,music
+[held] FAIL write a tweet announcing my new job
+      topic null lacks new job
+[held] FAIL write a cover letter for a marketing job
+      topic null lacks marketing
+[held] FAIL write a formal 200 word cover letter in French for a nursing job
+      topic null lacks nursing
+[held] FAIL give me a summary of the plot of Hamlet
+      needsSources false != true
+[held] FAIL give me a list of 10 baby names
+      type none != list
+[held] FAIL make a to-do list for moving house
+      topic null lacks moving house
+[held] FAIL create a comparison table of python and rust
+      type essay != table
+[held] FAIL hazme un resumen de la revolución francesa
+      needsSources false != true
+[held] FAIL rédige une lettre de motivation pour un poste de vendeur
+      topic null lacks vendeur
+[held] FAIL напиши письмо начальнику с просьбой об отпуске
+      needsSources true != false
+[held] FAIL draw me a picture of a dolphin
+      type none != other
+[held] FAIL document.write is deprecated
+      type other != none
+classifyTurn false-wants on negatives: 5 [
+  'how do I write an essay',
+  "make sure you note that I'm allergic to nuts",
+  'is it ok to write in first person in an essay',
+  'why did he write the letter',
+  'how to write a cover letter'
+]

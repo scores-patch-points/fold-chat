@@ -1,0 +1,322 @@
+{
+ "variant": "network",
+ "at": "2026-10-07T06:40:25.233Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "Alexander Graham Bell invented the telephone.",
+   "shown": "Alexander Graham Bell invented the telephone.\n\nL\nleverageedu.com\nopen ↗\nEssay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu\n… The telephone was invented by Alexander Graham Bell in 1876. …\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 1,
+     "kept": 1,
+     "dropped": 0,
+     "unsourced": 0
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 6,
+      "blinks": 0,
+      "dense": 0,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/",
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/",
+    "papersowl.com/",
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/",
+    "papersowl.com/"
+   ],
+   "read": 11,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "Alexander Graham Bell invented the telephone.",
+    "calls": 2,
+    "verified": 1,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I got this from Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu (leverageedu.com). It says:",
+      "rule": "primary"
+     },
+     {
+      "kind": "quote",
+      "text": "“The telephone was invented by Alexander Graham Bell in 1876.”",
+      "index": 0,
+      "start": 289,
+      "end": 349,
+      "host": "leverageedu.com"
+     }
+    ],
+    "pointers": [
+     {
+      "index": 0,
+      "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+      "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+      "host": "leverageedu.com",
+      "title": "Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+      "tier": "primary",
+      "start": 289,
+      "end": 349
+     }
+    ],
+    "why": null
+   },
+   "nRaw": 5,
+   "searched": null,
+   "voidKind": null,
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+     "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words\nIn the 1980s, mobile phones were invented.\nHere are 10 lines to be included in an essay on telephone:\nTo write an essay on telephone in simple words, first start with an introduction that explains what a telephone is and who invented it.\nThe telephone was invented by Alexander Graham Bell in 1876."
+    },
+    {
+     "ref": "gradesfixer.com — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone\nIts creation by Alexander Graham Bell in the late 19th century revolutionized human interaction and paved the way for a new era of global connectivity.\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nThe 20th century witnessed the expansion of telephone networks and the shift from manual switchboards to automated systems.\nThe advent of mobile phones and smartphones in the 21st century further transformed communication, making it portable, versatile, and accessible to billions worldwide.\nConclusion: The Timeless Legacy of the Telephone"
+    },
+    {
+     "ref": "essays.io — The Invention of the Telephone, Essay Example | Essays.io",
+     "url": "https://essays.io/the-invention-of-the-telephone-essay-example/",
+     "text": "Relation of Global Warming and Extreme Weather Condition\nThe telephone was invented when telegraph was the dominant player in the telecommunications industry."
+    },
+    {
+     "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+     "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words\nIn the 1980s, mobile phones were invented.\nThe telephone was invented by Alexander Graham Bell in 1876.\nWatson, come here, I want to see you,” by Alexander Graham Bell to his assistant, Thomas Watson, on March 10, 1876."
+    },
+    {
+     "ref": "gradesfixer.com — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Its creation by Alexander Graham Bell in the late 19th century revolutionized human interaction and paved the way for a new era of global connectivity.\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nThe 20th century witnessed the expansion of telephone networks and the shift from manual switchboards to automated systems.\nThe advent of mobile phones and smartphones in the 21st century further transformed communication, making it portable, versatile, and accessible to billions worldwide.\nAlexander Graham Bell was born on March 3,1847 in Edinburgh,Scotland and died on August [...]"
+    },
+    {
+     "ref": "essays.io — The Invention of the Telephone, Essay Example | Essays.io",
+     "url": "https://essays.io/the-invention-of-the-telephone-essay-example/",
+     "text": "The name of the professor was Alexander Graham Bell, and the invention of the telephone forever carved his name into the history of the human technical progress.\nBell was the teacher of acoustics and a student in electricity, and worked hard to create a device that would let people transmit voice messages at a distance (Casson, 2007).\nPatent Office granted Bell the most valuable patent ever issued (Coe, 2006).\nThe telephone was invented when telegraph was the dominant player in the telecommunications industry."
+    },
+    {
+     "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+     "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words\nIn the 1980s, mobile phones were invented.\nThe telephone was invented by Alexander Graham Bell in 1876.\nWatson, come here, I want to see you,” by Alexander Graham Bell to his assistant, Thomas Watson, on March 10, 1876."
+    },
+    {
+     "ref": "gradesfixer.com — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Its creation by Alexander Graham Bell in the late 19th century revolutionized human interaction and paved the way for a new era of global connectivity.\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nThe 20th century witnessed the expansion of telephone networks and the shift from manual switchboards to automated systems.\nThe advent of mobile phones and smartphones in the 21st century further transformed communication, making it portable, versatile, and accessible to billions worldwide.\nAlexander Graham Bell was born on March 3,1847 in Edinburgh,Scotland and died on August [...]"
+    }
+   ],
+   "web": [
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/",
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/",
+    "https://papersowl.com/",
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/",
+    "https://papersowl.com/"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "Alexander Graham Bell invented telephone.",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "Alexander Graham Bell invented telephone.",
+     "ok": true,
+     "n": 5
+    }
+   ],
+   "voidFull": null,
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 10 source(s)",
+    "wrote the answer · local",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframed · went back 2 laps · 0 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: every page found was about writing an essay, not about “the telephone” (3 set aside).\nmissing: sources about “the telephone”\nSET ASIDE — NOT MATERIAL FOR IT\nEssay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu · leverageedu.com · about writing: sample\nInvention of Telephone - Telephone Topic Essay · gradesfixer.com · about writing: sample\nThe Invention of the Telephone, Essay Example | Essays.io · essays.io · about writing: sample\nto close it: name “the telephone” more specifically so the search finds pages about it · attach text you want it based on · try again\ntry again\nread as\nRead your question as being about Alexander Graham Bell.\nnot Alexander Graham Bell\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Alexander Graham Bell."
+    }
+   ],
+   "reads": [
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/"
+   ],
+   "read": 3,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "Alexander Graham Bell write me an essay on this",
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": [
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "meta-only",
+    "outputType": "essay",
+    "topic": "the telephone",
+    "missing": [
+     "sources about “the telephone”"
+    ],
+    "had": [],
+    "setAside": [
+     {
+      "kind": "page",
+      "title": "Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+      "domain": "leverageedu.com",
+      "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+      "why": "meta-sample"
+     },
+     {
+      "kind": "page",
+      "title": "Invention of Telephone - Telephone Topic Essay",
+      "domain": "gradesfixer.com",
+      "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+      "why": "meta-sample"
+     },
+     {
+      "kind": "page",
+      "title": "The Invention of the Telephone, Essay Example | Essays.io",
+      "domain": "essays.io",
+      "url": "https://essays.io/the-invention-of-the-telephone-essay-example/",
+      "why": "meta-sample"
+     }
+    ],
+    "unblock": [
+     "name “the telephone” more specifically so the search finds pages about it",
+     "attach text you want it based on",
+     "try again"
+    ],
+    "note": "I can't write the essay: every page found was about writing an essay, not about “the telephone” (3 set aside).",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [],
+    "closeBy": [
+     "name “the telephone” more specifically so the search finds pages about it",
+     "attach text you want it based on",
+     "try again"
+    ],
+    "question": "write me an essay on this",
+    "retry": true
+   },
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · nothing readable",
+    "no model call · no source was reached — the model never speaks alone",
+    "followed the conversation · carried · searched “Alexander Graham Bell write me an essay on this”",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: every page found was about writing an essay, not about “the telephone” (3 set aside). Missing: sources about “the telephone”. To close it: name “the telephone” more specifically so the search finds pages about it, or attach text you want it based on, or try again."
+   ]
+  }
+ ]
+}

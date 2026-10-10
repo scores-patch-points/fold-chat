@@ -1,0 +1,26 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "martial",
+  "organ": "khora/native/organs/martial.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/martial.json"],
+  "whatTheyArgued": "Martial (Epigrams I.52, in Bohn's 1897 English prose, OCR of a Google scan on disk) addresses a patron, Quinctianus, and asks him to defend the poet's books against another man who recites them as his own: tell him the books are mine and have been 'given by me to the public' (a manumission image), and proclaiming this three or four times will shame the plagiary. The translator's note glosses the word as plagiarising (reciting another's verses as one's own). Scholarship: Martial is the first classical poet to use plagiarius (literally a kidnapper of slaves) of literary theft, in a cycle of poems on one plagiarist, Fidentinus (I.29, 38, 52, 53, 66, 72). His complaint is false attribution, passing the books off as one's own.",
+  "scholarship": [
+    { "ref": "St Andrews Cornucopia classics resources on Mira Seo, 'Plagiarism and Poetic Identity in Martial', American Journal of Philology 130 (2009) (abstract page read; full article not accessed)", "url": "https://cornucopiaclassicsresources.wp.st-andrews.ac.uk/2021/07/05/plagiarism-and-poetic-identity-in-martial/", "supports": "Martial is the first to use plagiarius of literary theft; his plagiarism poems tie his poetic identity to the material book he sells as a marketplace object", "disputes": "I could not read Seo's article or any survey of rival readings, so I do not know the scholarly disputes; none are claimed." },
+    { "ref": "Search-result summary on the Fidentinus cycle and the etymology plagiarius/plagium (not read in full)", "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/secondary/SMIGRA*/Plagium.html", "supports": "plagiarius is the Roman kidnapper of slaves, the legal word Martial borrows", "disputes": "none read" }
+  ],
+  "ourUse": "martial.js: a verbatim or near-verbatim word-shingle match of a code body (function, class, file) against a retained corpus of distinctive code is a 'finding'; generic, recurrent idioms (init, main, a standard loop) come from a genericity floor built from 16 repos and are treated as good replication. Findings are nominations, never verdicts. The law line: 'Do not write what can be copied; replicate what should be replicated.'",
+  "verdict": "partial",
+  "bends": [
+    { "id": "law-line-not-martial", "kind": "invented-attribution", "ours": "Credit: 'Martial - do not write what can be copied; replicate what should be replicated (Epigrams)'; organ header sets this as THE LAW.", "theirs": "The epigram I.52 text contains no such maxim. It is our rule, credited to a book. Martial says: they are my books, tell him so." },
+    { "id": "legit-replication", "kind": "invented-attribution", "ours": "Compendium work: his epigrams 'distinguish copying from the legitimate replication a shared craft requires'.", "theirs": "In the poem I read, there is no such distinction. The generic/distinctive floor is the project's own measurement from code repos; I found no Martial passage on legitimate reuse and did not read the other Fidentinus poems or Latin." },
+    { "id": "attribution-vs-similarity", "kind": "reinterpreted", "ours": "A finding is textual similarity to a corpus, the refusal is 'compose, or cite the giver, or invent'.", "theirs": "Martial's wrong is passing another's verses off as one's own (claim of authorship), not similarity; our 'cite the giver' remedy matches that, but a shingle match alone cannot show the claim." },
+    { "id": "poetry-to-code", "kind": "re-scoped", "ours": "Applied to functions and classes at every holon level.", "theirs": "Martial is about a poet's recited and sold book-rolls, tied to poetic identity (Seo); code bodies are a different object." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Martial (Epigrams I.52 and the Fidentinus poems) uses the word plagiarius, a kidnapper of slaves, for a man who recites another's verses as his own, and asks to have his books recognised as his. martial.js flags near-verbatim copies of distinctive code; \"replicate what should be replicated\" and the genericity floor are the project's own.'",
+    "compendium credit: 'Martial - the first to call literary theft plagiarius (Epigrams I.52).'",
+    "martial.js header: attribute 'THE LAW' to the project, not to Martial."
+  ]
+}

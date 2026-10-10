@@ -1,0 +1,69 @@
+{
+ "label": "after-wired-seeded-shim",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T06:04:20.699Z",
+ "patchDir": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0-the-fold/0c804cde-75c0-4276-bf91-3cc3a46d1c35/scratchpad/patched",
+ "turns": [
+  {
+   "ask": "why is the sky blue",
+   "web": [
+    "{\"scope\":\"web\",\"q\":\"why is the sky blue\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":true}",
+    "{\"scope\":\"wikipedia\",\"q\":\"why is the sky blue\",\"engine\":\"Wikipedia\",\"n\":20,\"ok\":true}",
+    "{\"scope\":\"route\",\"ok\":true,\"engine\":\"source router\",\"picked\":[\"web\",\"wikipedia\"],\"skipped\":[\"github\",\"archive\",\"openalex\",\"crossref\"],\"why\":{\"web\":\"always — the",
+    "{\"scope\":\"topic\",\"ok\":true,\"engine\":\"title gate\",\"demoted\":[\"Diffuse sky radiation - Wikipedia (no-shared-word)\",\"Stephanie Comilang - Wikipedia (no-shared-word",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Sky_blue\",\"via\":\"direct\",\"chars\":10714,\"kept\":84,\"hash\":\"8037f42e\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Blue_moon\",\"via\":\"direct\",\"chars\":16858,\"kept\":2952,\"hash\":\"1855ba63\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Blue\",\"via\":\"direct\",\"chars\":24000,\"kept\":656,\"hash\":\"c77e486d\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Diffuse_sky_radiation\",\"via\":\"direct\",\"chars\":9116,\"kept\":752,\"hash\":\"8aa3f34a\",\"skipped\":true}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Stephanie_Comilang\",\"via\":\"direct\",\"chars\":8347,\"kept\":721,\"hash\":\"ec2bcfe1\",\"skipped\":true}"
+   ],
+   "spoken": "Sky blue refers to a collection of shades comparable to that of a clear daytime sky.",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “why is the sky blue”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Sky_blue",
+    "https://en.wikipedia.org/wiki/Blue_moon",
+    "https://en.wikipedia.org/wiki/Blue",
+    "https://en.wikipedia.org/wiki/Diffuse_sky_radiation",
+    "https://en.wikipedia.org/wiki/Stephanie_Comilang"
+   ],
+   "passages": [
+    "en.wikipedia.org — Sky blue - Wikipedia <https://en.wikipedia.org/wiki/Sky_blue>",
+    "en.wikipedia.org — Blue moon - Wikipedia <https://en.wikipedia.org/wiki/Blue_moon>",
+    "en.wikipedia.org — Blue - Wikipedia <https://en.wikipedia.org/wiki/Blue>"
+   ],
+   "notices": [],
+   "raws": [
+    "Sky blue refers to a collection of shades comparable to that of a clear daytime sky.  \n",
+    "1 \n"
+   ],
+   "referents": [
+    "Sky blue(3.0)",
+    "William McKinley(2.4)",
+    "Blue Room(2.4)",
+    "President McKinley(1.6)",
+    "Mount McKinley(1.6)",
+    "Alaska(1.6)"
+   ],
+   "summary": {
+    "topic": "why is the sky blue",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I could not answer; they asked \"who is mt. mckinlet named afer?\" and I said \"President McKinley, a name that rings so bold, Across the land, a story to be told.\"; they asked \"why is the sky blue\" and I said \"Sky blue refers to a collection of shades comparable to that of a clear daytime sky.\".",
+    "entities": [
+     "Sky blue",
+     "William McKinley",
+     "Blue Room",
+     "President McKinley",
+     "Mount McKinley",
+     "Alaska"
+    ]
+   },
+   "modelRequest": [
+    "system: You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES:",
+    "user: why is the sky blue"
+   ]
+  }
+ ]
+}

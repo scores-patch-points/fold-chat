@@ -1,0 +1,20 @@
+B-tut-wikihow-story|https://www.wikihow.com/Write-a-Short-Story|story|a lighthouse
+B-tut-wikihow-letter|https://www.wikihow.com/Write-a-Letter|letter|my landlord
+B-tut-wikihow-eulogy|https://www.wikihow.com/Write-a-Eulogy|speech|my grandfather
+B-tut-wikihow-blog|https://www.wikihow.com/Write-a-Blog-Post|blog post|sourdough
+B-tut-wikihow-limerick|https://www.wikihow.com/Write-a-Limerick|limerick|a cat
+B-tut-wikihow-sonnet|https://www.wikihow.com/Write-a-Sonnet|sonnet|the ocean
+B-tut-wikihow-email|https://www.wikihow.com/Write-a-Professional-Email|email|a delayed shipment
+B-tut-wikihow-summary|https://www.wikihow.com/Write-a-Summary|summary|the french revolution
+B-tut-poetryfdn-sonnet|https://www.poetryfoundation.org/learn/glossary-terms/sonnet|sonnet|the ocean
+B-tut-reedsy-story|https://blog.reedsy.com/how-to-write-a-short-story/|story|a lighthouse
+B-ctl-wright-flyer|https://en.wikipedia.org/wiki/Wright_Flyer|essay|first powered flight
+B-ctl-hubble|https://en.wikipedia.org/wiki/Hubble_Space_Telescope|poem|seeing deep space
+B-ctl-printing|https://en.wikipedia.org/wiki/Printing_press|essay|how books spread ideas
+B-ctl-fire|https://en.wikipedia.org/wiki/Great_Fire_of_London|story|a city burning
+B-ctl-industrial|https://en.wikipedia.org/wiki/Industrial_Revolution|report|factories and cities
+B-ctl-warren|https://en.wikipedia.org/wiki/Warren_Commission|report|the assassination inquiry
+B-ctl-sourdough|https://en.wikipedia.org/wiki/Sourdough|blog post|sourdough
+B-ctl-lighthouse|https://en.wikipedia.org/wiki/Lighthouse|story|a lighthouse
+B-ctl-french-rev|https://en.wikipedia.org/wiki/French_Revolution|summary|the french revolution
+B-ctl-letter-law|https://www.law.cornell.edu/wex/demand_letter|letter|my landlord

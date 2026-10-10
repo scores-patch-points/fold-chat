@@ -1,0 +1,57 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "buber",
+  "organ": "khora/native/organs/interlocutor.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/buber-deferred.json"
+  ],
+  "whatTheyArgued": "Two primary word-pairs: I-It (experiencing, using, objectifying; necessary for life and science) and I-Thou (direct mutual meeting of whole beings, not mediated by concepts). The Thou cannot be known in advance, categorized or grasped; it is a relation that happens (grace-like) and is reciprocal between persons. Every Thou becomes an It once it is described. 'Alles wirkliche Leben ist Begegnung' is genuine Buber (Ich und Du, 1923).",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Martin Buber'",
+      "url": "https://plato.stanford.edu/entries/buber/",
+      "supports": "I-It not evil but reduced; Thou cannot be reduced to a concept; reciprocity; Levinas's critique",
+      "disputes": "I did not check scholarly dispute over reciprocity with non-humans beyond SEP's note that nature relations are 'pre-dialogic'."
+    },
+    {
+      "ref": "Aeon essay 'All real living is meeting' (popular, quote's provenance in Ich und Du)",
+      "url": "https://aeon.co/essays/all-real-living-is-meeting-the-sacred-love-of-martin-buber",
+      "supports": "the German sentence and its place in Ich und Du; translation variants",
+      "disputes": ""
+    }
+  ],
+  "ourUse": "interlocutor.js computes MECHANICALLY from request shape (tools present, SDK user-agent, chat doorway) whether the speaker is an agent or a person, holds it as a revisable belief with basis, and uses it to select register of the same truth; socratic.js opens a self-harm response with the German sentence.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "typing-is-it",
+      "kind": "reinterpreted",
+      "ours": "Recognizing 'which kind of interlocutor' (agent vs person) by computed signals, framed as 'to recognize is not to reduce' and 'a door held open, never a box closed'.",
+      "theirs": "Sorting the other into a type from observable features is the I-It mode by Buber's own account; the Thou is the relation in which the other is not a type. The code does a legitimate I-It operation and borrows Thou language to describe it."
+    },
+    {
+      "id": "thou-by-classification",
+      "kind": "misstated",
+      "ours": "compendium: 'to recognize the other is to meet them as a Thou, not to reduce them to an It' and the type 'selects how the other is met'.",
+      "theirs": "Buber does not say recognition (identification) yields Thou; he says Thou arises in unmediated meeting and cannot be produced by method or technique. A system selecting an idiom per class is a technique, which he distrusts."
+    },
+    {
+      "id": "reciprocity",
+      "kind": "narrowed",
+      "ours": "One-sided: the reader decides how to address the other.",
+      "theirs": "Thou is mutual; a reader's unilateral choice of register is not reciprocal address. (Also a different disagreement: Levinas holds the relation should be asymmetric, so the code satisfies neither.)"
+    },
+    {
+      "id": "quote-use",
+      "kind": "decorative",
+      "ours": "Alles wirkliche Leben ist Begegnung (German sentence) opens the self-harm reply as 'the answer, not the means' of encounter.",
+      "theirs": "Sentence is genuine, but meets the user with a canned template per KIND; a stock quotation selected by classifier is the opposite of encounter in his sense. Applying it to crisis response is ours."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Buber distinguishes I-It (the other as experienced, used, categorized) from I-Thou (meeting without a category, mutual). Classifying a caller as agent or person is an I-It operation; we do it openly and keep it revisable, and we do not claim it meets anyone as a Thou.' Credit: 'Martin Buber — I and Thou (1923): the I-It / I-Thou distinction, used here as a caution against letting a type stand for the person.'",
+    "interlocutor.js header: remove 'its whole discipline is Buber's'; say instead 'the discipline borrowed is: a type is a belief, not the person'."
+  ]
+}

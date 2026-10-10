@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "mayeroff",
+  "organ": "khora/native/kernel/mayeroff.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/mayeroff.json"
+  ],
+  "whatTheyArgued": "Mayeroff's On Caring (1971) is a short phenomenological essay describing caring for another person (and for ideals, and in the sense of being 'in place' in the world) as helping that other grow. Per secondary sources, it is an original work of care ethics that predates Gilligan and Noddings. The eight ingredients in the compendium (knowing, alternating rhythms, patience, honesty, trust, humility, hope, courage) match what is widely attributed to the book, but this dossier could not read the book or a summary that lists them: the only scholarship actually read (IEP) names the book and says nothing about its content. Treat the list and the 'carer's actualization is bound up in the other's growth' clause as unverified here.",
+  "scholarship": [
+    {
+      "ref": "Internet Encyclopedia of Philosophy, 'Care Ethics'",
+      "url": "https://iep.utm.edu/care-ethics/",
+      "supports": "On Caring is one of the original works of care ethics",
+      "disputes": "none stated; the entry gives no account of Mayeroff's content, so it cannot confirm the eight ingredients"
+    },
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Care Ethics'",
+      "url": "https://plato.stanford.edu/entries/care-ethics/",
+      "supports": "nothing: page returned 'Not Yet Available' when fetched",
+      "disputes": "not read"
+    }
+  ],
+  "ourUse": "kernel/mayeroff.js is the 'care null': it rebuilds a composition with the self-interlocutor relation destroyed and reads the difference; mayeroffJudge works on 'arms' (asserted, witnessed, withheld, treatsSystemAsMaterial) and decides whether a deceptive/extractive shape is expressible. MAYEROFF_INGREDIENTS maps each ingredient to a place in the code (e.g. patience = 'gap kept and named', courage = 'candidate held open; falsifiability').",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "care-to-type-error",
+      "kind": "reinterpreted",
+      "ours": "Care is turned into a structural claim: with the relation intact, deception and hacking are not 'forbidden' but uncomposable ('a smaller state space'); mayeroffJudge classifies shapes.",
+      "theirs": "Caring is a way of being toward a particular person, lived and learned, with honesty as one ingredient among eight; it is not a proof that deception cannot occur. The type-error thesis is ours (it is argued in the organ header as the project's own Ubuntu/Heidegger null)."
+    },
+    {
+      "id": "person-to-reader",
+      "kind": "re-scoped",
+      "ours": "The carer is a reader/composer pipeline and the cared-for is whoever it reads for.",
+      "theirs": "Mayeroff's cases are parent/child, teacher/student, friend/friend, artist/work: reciprocal relations between beings who can grow, with the carer also growing."
+    },
+    {
+      "id": "ingredient-mapping",
+      "kind": "decorative",
+      "ours": "Each ingredient is assigned to an unrelated code feature (humility = rate-over-acts, hope = REC as earned NUL, courage = candidate held open).",
+      "theirs": "Not Mayeroff's glosses; these mappings are the project's analogies and do not test whether any code helps anyone grow. Names are credited to him, the glosses are not his."
+    },
+    {
+      "id": "unverified-clause",
+      "kind": "misstated",
+      "ours": "Compendium work line asserts 'the carer's own actualization is bound up in the other's growth, never a cost paid for it' as his position.",
+      "theirs": "Could not be verified in text by this dossier; plausible but unchecked. Must not stay as unqualified attribution."
+    }
+  ],
+  "fix": [
+    "compendium work: 'On Caring (1971) describes caring for another as helping them grow; commonly listed ingredients are knowing, alternating rhythms, patience, honesty, trust, humility, hope and courage. [verify against the text before keeping this list]'",
+    "compendium credit: unchanged is acceptable (it is the thesis sentence), but drop the 'carer's own place in the world' clause from role/work until verified",
+    "kernel/mayeroff.js header: say 'deception-as-type-error' and the ingredient glosses are this project's, taking Mayeroff's ingredient names only; 'UNCredited NO LONGER' should read 'credited by name, glossed by us'"
+  ],
+  "tokenized": false
+}

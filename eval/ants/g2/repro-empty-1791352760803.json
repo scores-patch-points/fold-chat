@@ -1,0 +1,63 @@
+{
+ "variant": "empty",
+ "at": "2026-10-07T05:59:16.757Z",
+ "turns": [
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: “this” points at nothing earlier in this chat, so there is no topic.\nmissing: a topic for the essay\nto close it: name the topic: “write an essay on the telephone” · ask a question first, then ask for the essay on its answer\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [],
+   "reads": [],
+   "read": 0,
+   "kind": "generate",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": null,
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": [],
+   "trace": [],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "no-topic",
+    "outputType": "essay",
+    "topic": "this",
+    "missing": [
+     "a topic for the essay"
+    ],
+    "had": [],
+    "setAside": [],
+    "unblock": [
+     "name the topic: “write an essay on the telephone”",
+     "ask a question first, then ask for the essay on its answer"
+    ],
+    "note": "I can't write the essay: “this” points at nothing earlier in this chat, so there is no topic.",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [],
+    "closeBy": [
+     "name the topic: “write an essay on the telephone”",
+     "ask a question first, then ask for the essay on its answer"
+    ],
+    "question": "write me an essay on this",
+    "retry": false
+   },
+   "process": [
+    "classified · writing request",
+    "effort · Balanced — full scopes · swarm gate · void",
+    "no search · personal writing",
+    "no model call · this kind of turn has no source, and the model never speaks alone",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: “this” points at nothing earlier in this chat, so there is no topic. Missing: a topic for the essay. To close it: name the topic: “write an essay on the telephone”, or ask a question first, then ask for the essay on its answer."
+   ]
+  }
+ ]
+}

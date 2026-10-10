@@ -1,0 +1,53 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "mahavira",
+  "organ": "khora/native/kernel/perspective.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/mahavira.json"
+  ],
+  "whatTheyArgued": "What the snip says is Hermann Jacobi's account (SBE 45, 1895 introduction), not Mahavira's words. Jacobi conjectures that Mahavira set up the Syadvada in opposition to the agnostic Sanjaya: one may affirm a thing's existence from one point of view (syat asti), deny it from another (syat nasti), and affirm both at different times; to affirm both from the same viewpoint at once, the thing is unspeakable (avaktavya). Jacobi presents this as the 'Saptabhanginaya' and speculates it silenced rivals. I read the passage and window; I did not read any Jaina sutra text of Mahavira's.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia 'Anekantavada' (fetched; weak source, used only for the standard historiography, not as scholarship)",
+      "url": "https://en.wikipedia.org/wiki/Anekantavada",
+      "supports": "anekantavada traced to Mahavira's teaching but the term coined by Siddhasena Divakara; syadvada and nayavada (partial viewpoints) developed later in the first millennium CE (Umasvati, Samantabhadra, Kundakunda); it cites Matilal and Dundas",
+      "disputes": "Implies that the saptabhangi formalization post-dates Mahavira, against Jacobi's attribution of it to him. No IEP/SEP page could be fetched, so no credible peer-reviewed source was read; Matilal and Dundas are named but unread."
+    }
+  ],
+  "ourUse": "perspective.js: projects 'who holds what' from the log. Beliefs are indexed by HOLDER (Walton, Victor, the creature, the reader), kept apart rather than merged, with a 'via' chain for nested reports and replay at any cursor. Handle: 'a claim is true from a standpoint, standpoints kept apart rather than merged into one voice'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "snip-is-jacobi",
+      "kind": "misstated",
+      "ours": "Header 'Mahavira speaks' and manifest giver 'Mahavira' over a sentence from Jacobi's 1895 introduction.",
+      "theirs": "The words are Jacobi's interpretive summary and his hypothesis about Mahavira's motives; the saptabhangi attribution to Mahavira himself is disputed in the later literature."
+    },
+    {
+      "id": "standpoint-is-holder",
+      "kind": "reinterpreted",
+      "ours": "A standpoint = a holder (person or narrator) who believes a claim; the log keeps each holder's belief.",
+      "theirs": "In syadvada the viewpoint is an aspect from which one thing is truly described (substance, place, time, mode: 'at different times' in the snip). Several viewpoints are each partly true of the same thing. A holder's say-so is a different matter (belief report, closer to what experiencer.js tracks)."
+    },
+    {
+      "id": "no-qualified-truth",
+      "kind": "narrowed",
+      "ours": "Beliefs are held, not asserted by the reader unless witnessed; no sevenfold predication, no avaktavya (unspeakable) outcome.",
+      "theirs": "The snip's core: each statement carries a qualifier (syat), existence and non-existence both affirmable at different viewpoints, and a same-time conflict yields 'cannot be spoken'. perspective.js has no such qualified predication."
+    },
+    {
+      "id": "first-person-header",
+      "kind": "invented-attribution",
+      "ours": "organ header comment opens with a first-person 'speaks' block and commentary in the archon's voice ('My teaching prioritizes...', 'I believe...'), generated text presented as the author's own words (perspective.js: 'I believe it could further explore the nuances of how these perspectives are... inter-related').",
+      "theirs": "Not in Mahavira or Jacobi."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Jain teacher, to whom tradition ascribes anekantavada: reality has many aspects and a statement is true from a stated viewpoint. In Jacobi's 1895 account the syadvada qualifies each assertion (syat asti, syat nasti) by viewpoint. perspective.js borrows only the habit of not merging viewpoints; it indexes beliefs by who holds them, which is not what the naya doctrine indexes.'",
+    "compendium credit: 'Mahavira (as presented by Jacobi) - viewpoints are kept apart (analogy; holder index ours).'",
+    "perspective.js: relabel the quoted block as Jacobi's summary; delete the first-person commentary.",
+    "Needs: read a primary Jaina sutra and a peer-reviewed secondary (Matilal, Dundas) before upgrading beyond partial."
+  ],
+  "tokenized": false
+}

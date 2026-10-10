@@ -1,0 +1,5 @@
+import { passageOf } from "./asks-lib.mjs"; import { answerSpan } from "../../../fold-chat-answerspan.js"; import { snipsOf } from "../../../fold-chat-strand.js";
+const qs = [["html:69ed1219f4", "How tall is the Eiffel Tower?"], ["html:69ed1219f4", "How many steps does the Eiffel Tower have?"], ["html:69ed1219f4", "How much does the Eiffel Tower weigh?"], ["html:69ed1219f4", "Does the Eiffel Tower change height?"],
+  ["html:07759960f0", "How long is the flight from New York to London?"], ["html:07759960f0", "What is the time difference between New York and London?"], ["html:07759960f0", "How far is New York from London?"], ["html:07759960f0", "What is the boiling point of ethanol?"]];
+for (const [pg, q] of qs) { const p = passageOf(pg); const r = answerSpan(q, [p]); const s = snipsOf([p], q);
+  console.log(`\n${q}\n  strand: ${s.snips.map((x) => x.kind + ":" + x.text.length).join(",")}\n  span: ${r.spans[0] ? JSON.stringify(r.spans[0].shown) + " [" + r.spans[0].kind + " c=" + r.spans[0].confidence + "]" : "GAP " + r.gap.kind + " " + r.gap.reason}`); }

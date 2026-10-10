@@ -1,0 +1,2358 @@
+{
+ "q": "When did the Apollo 11 mission land on the Moon?",
+ "spoken": "The Apollo 11 mission landed on the Moon on July 20, 1969.",
+ "shown": "The Apollo 11 mission landed on the Moon on July 20, 1969.\n\nR\nRoyal Museums Greenwich\nopen ↗\nApollo 11 Moon landing: minute by minute | Royal Museums Greenwich\nThe final, critical landing phase of the Apollo 11 mission began at 20:05 GMT on 20 July 1969 . …\n1 source · 1 of 1 sentence backed\n·\nwent back 1 lap\n·\n2 of 9 checks flagged\n84 s\n▶ watch\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "The Apollo 11 mission landed on the Moon on July 20, 1969.",
+     "ref": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+     "source": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "span": {
+      "start": 37,
+      "end": 58
+     },
+     "address": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich#37-58",
+     "score": 4,
+     "window": {
+      "from": 0,
+      "to": 183
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich#37-58"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich#37-58",
+    "ref": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+    "span": {
+     "start": 37,
+     "end": 58
+    },
+    "text": "The Apollo 11 mission landed on the Moon on July 20, 1969."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich#37-58",
+     "ref": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+     "span": {
+      "start": 37,
+      "end": 58
+     },
+     "label": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+     "source": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "domain": "rmg.co.uk",
+     "text": "The final, critical landing phase of the Apollo 11 mission began at 20:05 GMT on 20 July 1969 .",
+     "before": "The final, critical landing phase of",
+     "mark": "the Apollo 11 mission",
+     "after": "began at 20:05 GMT on 20 July 1969 .",
+     "ellipsisBefore": false,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "The Apollo 11 mission landed on the Moon on July 20, 1969.",
+     "grounded": true,
+     "address": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich#37-58"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "When did the Apollo 11 mission land on the Moon?",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web"
+    ],
+    "skipped": [
+     "wikipedia",
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Lunar - Missions - Apollo 11 Mission (no-shared-word)"
+    ]
+   },
+   {
+    "read": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "via": "the fold's relay",
+    "chars": 2584,
+    "kept": 2584,
+    "hash": "8dcc3ee1"
+   },
+   {
+    "read": "https://www.planetary.org/space-missions/apollo-11",
+    "via": "the fold's relay",
+    "chars": 7105,
+    "kept": 1723,
+    "hash": "30d6df0f"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Apollo_11",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2973,
+    "hash": "89b37454"
+   },
+   {
+    "read": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+    "via": "the fold's relay",
+    "chars": 14771,
+    "kept": 1041,
+    "hash": "195e928c",
+    "skipped": true
+   },
+   {
+    "read": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+    "via": "the fold's relay",
+    "chars": 9727,
+    "kept": 2948,
+    "hash": "52db3220",
+    "skipped": true
+   },
+   {
+    "scope": "web",
+    "q": "Apollo 11 mission landed Moon July 20 1969.",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Apollo_11",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2976,
+    "hash": "89b37454",
+    "lap": 1
+   },
+   {
+    "read": "https://www.nasa.gov/mission/apollo-11/",
+    "via": "the fold's relay",
+    "chars": 4625,
+    "kept": 1121,
+    "hash": "2f2fb6d4",
+    "lap": 1
+   },
+   {
+    "read": "https://www.britannica.com/topic/Apollo-11",
+    "via": "the fold's relay",
+    "chars": 7293,
+    "kept": 1569,
+    "hash": "4009ae77",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.history.com/articles/moon-landing-1969",
+    "via": "the fold's relay",
+    "chars": 9005,
+    "kept": 2940,
+    "hash": "67630d1e",
+    "skipped": true,
+    "lap": 1
+   }
+  ],
+  "passages": [
+   {
+    "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+    "source": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "text": "On July 20, 1969, a human walked on the Moon for the first time.\nRelive the full journey to and from the the Moon with the timeline below.\nJuly 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time)\nLiftoff! The Apollo 11 Spacecraft launched from Cape Kennedy.\nOver a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off.\nFrom launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music.\nNeil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: Theremin music.\nThe lunar module with Armstrong and Aldrin aboard was undocked from the command module. At 101:36 GET, the descent to the surface of the Moon began.\nMichael Collins stayed aboard the Command Module Columbia, serving as a communications link and photographing the lunar surface.\nMore about Collins's journey to the far side of the Moon\nThe lunar module touched down on the surface on the Moon.\nJuly 21, 19692:51 UTC July 20, 196910:51 pm ET\nNeil Armstrong begins his descent from the lunar module and takes humankind’s first steps on the Moon, followed by Buzz Aldrin.\nJuly 21, 19692:56 UTC July 20, 196910:56 pm ET\nThat's one small step for man, one giant leap for mankind.\nOn the Moon, the astronauts carried out a planned series of experiments. Approximately two hours and fifteen minutes later, the astronauts prepared to reenter the lunar module.\nThe ascent from the lunar surface began. At 21:35 UTC (5:35 pm ET) lunar module would rendezvous with the command and service modules, where Michael Collins would welcome back Aldrin and Armstrong. At 23:41 UTC (9:41 pm ET) Lunar Module Eagle was jettisoned into lunar orbit.\nApollo 11 left lunar orbit to return to Earth.\nThe astronauts returned to Earth. In case the Moon had any traces of biological pathogens, the astronauts had to stay in quarantine for 21 days.\nThe United States celebrated the returning heroes in the time-honored tradition reserved for such occasions: parades. The astronauts were lauded at parades across the "
+   },
+   {
+    "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+    "source": "https://www.planetary.org/space-missions/apollo-11",
+    "url": "https://www.planetary.org/space-missions/apollo-11",
+    "text": "Apollo 11 was the first mission to land humans on the Moon.\nOn 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television.\nThe mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science.\nNeil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969.\nAlmost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers.\nThe official touchdown time was 20:17:39 UTC on 20 July 1969.\nThe Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here for Lunar Reconnaissance Orbiter image analysis.\nArmstrong and Aldrin shot roughly 125 frames during their EVA, all on magazine 40/S, using a Hasselblad 500 EL Data Camera.\nAt 17:54 UTC on 21 July, after a total of 21 hours and 36 minutes on the surface, Armstrong and Aldrin blasted off in the lunar module's ascent stage.\nThey splashed down into the Pacific Ocean at 16:50:35 UTC on 24 July and were retrieved by the USS Hornet.\nThe facility was transported back to Houston, arriving on 28 July.\nOn 10 August, with the men showing no signs of illness 21 days after Armstrong and Aldrin's moonwalk, NASA released the crew.\nFull costs of the Apollo program can be found on the \"How Much Did the Apollo Program Cost?\"\nStarting with Apollo 7 in 1968 and culminating with Apollo 17 in 1972, NASA launched 33 astronauts on 11 Apollo missions."
+   },
+   {
+    "ref": "Wikipedia — Apollo 11 - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Apollo_11",
+    "url": "https://en.wikipedia.org/wiki/Apollo_11",
+    "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program.\nIt fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade.\nThe program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs.\nThe Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface.\nI believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and returning him safely to the Earth.\nThe effort to land a man on the Moon already had a name: Project Apollo.\nWhen Kennedy met with Nikita Khrushchev, the Premier of the Soviet Union in June 1961, he proposed making the Moon landing a joint project, but Khrushchev declined the offer.\nKennedy again proposed a joint expedition to the Moon in a speech to the United Nations General Assembly on September 20, 1963.\nIn March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit.\nOn July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11.\nThe Nuffield Radio Astronomy Laboratories radio telescope in England recorded transmissions from Luna 15 during its descent, and these were released in July 2009 for the 40th anniversary of Apollo 11.\nApollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10.\nThe Apollo 11 prime crew had none of the close cheerful camaraderie characterized by that of Apollo 12.\nFive 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Columbia before launch, and two on Eagle.\nNASA's Apollo Site Selection Board announced five potential landing sites on February 8, 1968.\nIn May 1969, Apollo 10's lunar module flew to within 15 kilometers (9.3 mi) of Site 2, and reported it was acceptable.\nThere were several differen"
+   },
+   {
+    "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+    "source": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "text": "On July 20, 1969, a human walked on the Moon for the first time.\nJuly 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time)\nThe Apollo 11 Spacecraft launched from Cape Kennedy.\nAt 101:36 GET, the descent to the surface of the Moon began.\nJuly 21, 19692:51 UTC July 20, 196910:51 pm ET\nJuly 21, 19692:56 UTC July 20, 196910:56 pm ET"
+   },
+   {
+    "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+    "source": "https://www.planetary.org/space-missions/apollo-11",
+    "url": "https://www.planetary.org/space-missions/apollo-11",
+    "text": "Apollo 11 was the first mission to land humans on the Moon.\nOn 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television.\nThe mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science.\nNeil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969.\nThe Eagle has landed,\" Armstrong famously reported after landing.\nThe official touchdown time was 20:17:39 UTC on 20 July 1969.\nThe lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.\nThe Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here for Lunar Reconnaissance Orbiter image analysis.\nThe facility was transported back to Houston, arriving on 28 July.\nOn 10 August, with the men showing no signs of illness 21 days after Armstrong and Aldrin's moonwalk, NASA released the crew.\nStarting with Apollo 7 in 1968 and culminating with Apollo 17 in 1972, NASA launched 33 astronauts on 11 Apollo missions."
+   },
+   {
+    "ref": "Wikipedia — Apollo 11 - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Apollo_11",
+    "url": "https://en.wikipedia.org/wiki/Apollo_11",
+    "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program.\nAfter a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia.\nIn March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit.\nOn July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11.\nApollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10.\nFive 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Columbia before launch, and two on Eagle.\nNASA's Apollo Site Selection Board announced five potential landing sites on February 8, 1968.\nAt 12:30 on May 20, the 5,443-tonne (5,357-long-ton; 6,000-short-ton) assembly departed the Vehicle Assembly Building atop the crawler-transporter, bound for Launch Pad 39A, part of Launch Complex 39, while Apollo 10 was still on its way to the Moon.\nA countdown test commenced on June 26, and concluded on July 2."
+   },
+   {
+    "ref": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+    "source": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+    "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+    "text": "The final, critical landing phase of the Apollo 11 mission began at 20:05 GMT on 20 July 1969 .\nJust under 13 minutes later, at 20:17 GMT , the Eagle lunar module landed on the Moon.\nArmstrong to Mission Control: Give us a reading on the 1202 programme alarm.\nMission Control: 6 plus 25.\nMission Control is instructing that the engine be throttled down six minutes and 35 seconds into the burn.\nAldrin is trying to work out what the 1202 programme alarm means, and tells Mission Control that it may be linked to when he requests a data display from the computer ('16/68').\nComing up on 8:30 you’re looking great."
+   },
+   {
+    "ref": "NASA — Apollo 11 Mission Overview - NASA",
+    "source": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+    "url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+    "text": "Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil Armstrong, Command Module Pilot Michael Collins and Lunar Module Pilot Edwin “Buzz” Aldrin into an initial Earth-orbit of 114 by 116 miles.\nAn estimated 650 million people watched Armstrong’s televised image and heard his voice describe the event as he took “…one small step for a man, one giant leap for mankind” on July 20, 1969.\nOn July 18, Armstrong and Aldrin put on their spacesuits and climbed through the docking tunnel from Columbia to Eagle to check out the LM, and to make the second TV transmission.\nOn July 19, after Apollo 11 had flown behind the moon out of contact with Earth, came the first lunar orbit insertion maneuver.\nOn July 20, Armstrong and Aldrin entered the LM again, made a final check, and at 100 hours, 12 minutes into the flight, the Eagle undocked and separated from Columbia for visual inspection.\nAt 101 hours, 36 minutes, when the LM was behind the moon on its 13th orbit, the LM descent engine fired for 30 seconds to provide retrograde thrust and commence descent orbit insertion, changing to an orbit of 9 by 67 miles, on a trajectory that was virtually identical to that flown by Apollo 10.\nArmstrong and Aldrin spent 21 hours, 36 minutes on the moon’s surface.\nApollo 11 landed 13 degrees, 19 minutes north latitude and 169 degrees, nine minutes west longitude July 24, 1969."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 0,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The Apollo 11 mission landed on the Moon on July 20, 1969.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "Apollo 11 mission landed Moon July 20 1969.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 1,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+       "kept": 347,
+       "chars": 2584,
+       "segments": 6,
+       "recalled": 16
+      },
+      {
+       "url": "https://www.planetary.org/space-missions/apollo-11",
+       "kept": 1353,
+       "chars": 7105,
+       "segments": 11,
+       "recalled": 31
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Apollo_11",
+       "kept": 1339,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 92
+      },
+      {
+       "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+       "kept": 606,
+       "chars": 14771,
+       "segments": 7,
+       "recalled": 39
+      },
+      {
+       "url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+       "kept": 1387,
+       "chars": 9727,
+       "segments": 8,
+       "recalled": 37
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 0,
+    "weak": 0,
+    "contested": 1,
+    "unsupported": 0,
+    "backed": 0,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 1 lap · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 9 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 1 lap · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 987,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1524,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 590,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 2,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 572,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 2,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 439,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 9,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "When did the Apollo 11 mission land on the Moon?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 26
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “When did the Apollo 11 mission land on the Moon?”",
+    "at": 116
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 130,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 130
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6154
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 6818,
+    "at": 6948
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6948
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 6950
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "1 page named for something else that shares the name: Lunar - Missions - Apollo 11 Mission",
+    "at": 6958
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "title": "Reading National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+    "tone": "run",
+    "at": 6959,
+    "slowAfter": 5000,
+    "slow": "waiting on National Air and Space Museum (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 6959
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.planetary.org/space-missions/apollo-11",
+    "title": "Reading The Planetary Society — Apollo 11 | The Planetary Society",
+    "tone": "run",
+    "at": 6963,
+    "slowAfter": 5000,
+    "slow": "waiting on The Planetary Society (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6963
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+    "title": "Reading Wikipedia — Apollo 11 - Wikipedia",
+    "tone": "run",
+    "at": 6964,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6964
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.planetary.org/space-missions/apollo-11",
+    "title": "Read The Planetary Society — Apollo 11 | The Planetary Society",
+    "tone": "ok",
+    "note": "kept 1,723 of 7,105 chars",
+    "ms": 5980,
+    "at": 12943
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12943
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+    "title": "Reading Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Gr…",
+    "tone": "run",
+    "at": 12949,
+    "slowAfter": 5000,
+    "slow": "waiting on Royal Museums Greenwich (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12949
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+    "title": "Read National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+    "tone": "ok",
+    "note": "2,584 chars",
+    "ms": 6101,
+    "at": 13060
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 13060
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.nasa.gov/history/apollo-11-mission-overview/",
+    "title": "Reading NASA — Apollo 11 Mission Overview - NASA",
+    "tone": "run",
+    "at": 13068,
+    "slowAfter": 5000,
+    "slow": "waiting on NASA (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 13068
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+    "title": "Read Wikipedia — Apollo 11 - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,973 of 24,000 chars",
+    "ms": 6262,
+    "at": 13226
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 13227
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.nasa.gov/history/apollo-11-mission-overview/",
+    "title": "Read NASA — Apollo 11 Mission Overview - NASA",
+    "tone": "ok",
+    "note": "kept 2,948 of 9,727 chars",
+    "ms": 4911,
+    "at": 17979
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 17979
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+    "title": "Read Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Gr…",
+    "tone": "ok",
+    "note": "kept 1,041 of 14,771 chars",
+    "ms": 6570,
+    "at": 19519
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 19519
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 20741
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 20746,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 20746
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 25081
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "24 tokens",
+    "ms": 12034,
+    "at": 32780
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 32780
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 32785
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 32845
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 5 new impressions",
+    "tone": "ok",
+    "note": "6 sentence(s) recalled from National Air and Space Museum · 11 sentence(s) recalled from The Planetary Society · 9 sentence(s) recalled from Wikipedia · 7 sentence(s) recalled from",
+    "at": 32973
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Apollo 11 mission landed Moon July 20 1969.",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 32999,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 32999
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Apollo 11 mission landed Moon July 20 1969.",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 1008,
+    "at": 34007
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 34007
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+    "title": "Reading en.wikipedia.org — Apollo 11 - Wikipedia",
+    "tone": "run",
+    "at": 34024,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 34024
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.nasa.gov/mission/apollo-11/",
+    "title": "Reading nasa.gov — Apollo 11 - NASA",
+    "tone": "run",
+    "at": 34035,
+    "slowAfter": 5000,
+    "slow": "waiting on nasa.gov (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 34035
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.britannica.com/topic/Apollo-11",
+    "title": "Reading britannica.com — Apollo 11 | History, Mission, Landing, Astronauts, Pictures…",
+    "tone": "run",
+    "at": 34049,
+    "slowAfter": 5000,
+    "slow": "waiting on britannica.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 34049
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+    "title": "Read en.wikipedia.org — Apollo 11 - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,976 of 24,000 chars",
+    "ms": 120,
+    "at": 34144
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 34144
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.history.com/articles/moon-landing-1969",
+    "title": "Reading history.com — 1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTO…",
+    "tone": "run",
+    "at": 34151,
+    "slowAfter": 5000,
+    "slow": "waiting on history.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 34151
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.nasa.gov/mission/apollo-11/",
+    "title": "Read nasa.gov — Apollo 11 - NASA",
+    "tone": "ok",
+    "note": "kept 1,121 of 4,625 chars",
+    "ms": 498,
+    "at": 34533
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 34533
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.britannica.com/topic/Apollo-11",
+    "title": "Read britannica.com — Apollo 11 | History, Mission, Landing, Astronauts, Pictures…",
+    "tone": "ok",
+    "note": "kept 1,569 of 7,293 chars",
+    "ms": 6117,
+    "at": 40166
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 40166
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.history.com/articles/moon-landing-1969",
+    "title": "Read history.com — 1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTO…",
+    "tone": "ok",
+    "note": "kept 2,940 of 9,005 chars",
+    "ms": 7774,
+    "at": 41925
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 41925
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 84 s · read 9 sources · gemma2:2b",
+    "at": 83560,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.013,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.017,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “When did the Apollo 11 mission land on the Moon?”"
+    }
+   },
+   {
+    "at": 0.029,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.032,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.032,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "When did the Apollo 11 mission land on the Moon?"
+    }
+   },
+   {
+    "at": 6.051,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.052,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.845,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:When did the Apollo 11 mission land on the Moon?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 6818
+    }
+   },
+   {
+    "at": 6.846,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.846,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "When did the Apollo 11 mission land on the Moon?",
+     "n": 20
+    }
+   },
+   {
+    "at": 6.847,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 6.847,
+    "seq": 12,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 6.856,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "1 page named for something else that shares the name: Lunar - Missions - Apollo 11 Mission"
+    }
+   },
+   {
+    "at": 6.856,
+    "seq": 14,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 1
+    }
+   },
+   {
+    "at": 6.857,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+     "title": "Reading National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.857,
+    "seq": 16,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 6.857,
+    "seq": 17,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+     "site": "National Air and Space Museum",
+     "title": "Apollo 11 Timeline | National Air and Space Museum"
+    }
+   },
+   {
+    "at": 6.86,
+    "seq": 18,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.planetary.org/space-missions/apollo-11",
+     "title": "Reading The Planetary Society — Apollo 11 | The Planetary Society",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.861,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.861,
+    "seq": 20,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.planetary.org/space-missions/apollo-11",
+     "site": "The Planetary Society",
+     "title": "Apollo 11 | The Planetary Society"
+    }
+   },
+   {
+    "at": 6.861,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+     "title": "Reading Wikipedia — Apollo 11 - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.862,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.862,
+    "seq": 23,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11",
+     "site": "Wikipedia",
+     "title": "Apollo 11 - Wikipedia"
+    }
+   },
+   {
+    "at": 12.84,
+    "seq": 24,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.planetary.org/space-missions/apollo-11",
+     "title": "Read The Planetary Society — Apollo 11 | The Planetary Society",
+     "tone": "ok",
+     "note": "kept 1,723 of 7,105 chars",
+     "ms": 5980
+    }
+   },
+   {
+    "at": 12.842,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.843,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.planetary.org/space-missions/apollo-11",
+     "site": "The Planetary Society",
+     "title": "Apollo 11 | The Planetary Society",
+     "chars": 7105,
+     "kept": 1723,
+     "text": "Apollo 11 was the first mission to land humans on the Moon. It fulfilled a 1961 goal set by President John F. Kennedy to send American astronauts to the surface and return them safely to Earth before the end of the decade. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Three hours later, their rocket's upper stage blasted them out of Earth orbit towards the Moon. They arrived 3 days later on 19 July and entered an initial lunar orbit of 111 by 306 kilometers. A second engine burn lowered their orbit to 100 by 113 kilometers. On 20 July, Armstrong and Aldrin boarded their lunar module, nicknamed Eagle, and undocked it from the command module, where Collins remained. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. Roughly an hour later, as the duo approached the Sea of Tranquility, they began a final powered d"
+    }
+   },
+   {
+    "at": 12.86,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "title": "Reading Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Gr…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.864,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.866,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "site": "Royal Museums Greenwich",
+     "title": "Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich"
+    }
+   },
+   {
+    "at": 12.958,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+     "title": "Read National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+     "tone": "ok",
+     "note": "2,584 chars",
+     "ms": 6101
+    }
+   },
+   {
+    "at": 12.962,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.964,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline",
+     "site": "National Air and Space Museum",
+     "title": "Apollo 11 Timeline | National Air and Space Museum",
+     "chars": 2584,
+     "kept": 2584,
+     "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: Theremin music. The lunar module with Armstrong and Aldrin aboard was undocked from the command module. At 101:36 GET, the descent to the surface of the Moon began. Michael Collins stayed aboard the Command Module Columbia, serving as a communications link and photographing the lunar surface. More about Collins's journey to the far side of the Moon The lunar module touched down on the surface on the Moon. July 21, 19692:51 UTC July 20, 196910:51 pm ET Neil Armstrong begins his descent from the lun"
+    }
+   },
+   {
+    "at": 12.968,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.nasa.gov/history/apollo-11-mission-overview/",
+     "title": "Reading NASA — Apollo 11 Mission Overview - NASA",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.974,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.975,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+     "site": "NASA",
+     "title": "Apollo 11 Mission Overview - NASA"
+    }
+   },
+   {
+    "at": 13.124,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+     "title": "Read Wikipedia — Apollo 11 - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,973 of 24,000 chars",
+     "ms": 6262
+    }
+   },
+   {
+    "at": 13.13,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 13.131,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11",
+     "site": "Wikipedia",
+     "title": "Apollo 11 - Wikipedia",
+     "chars": 24000,
+     "kept": 2973,
+     "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight. Launched atop a Saturn V rocket from Kennedy Space Center in Florida on July 16 at 13:32 UTC, the Apollo spacecraft consisted of three parts: the command module (CM), which housed the three astronauts and was the only part to return to Earth; the service module (SM), which provided propulsion, electrical power, oxygen, and water to the command module; and the Lunar Module (LM), which had two stages—a descent stage with a large engine and fuel tanks for landing on the Moon, and a lighter ascent stage containing a cabin for two astronauts and a small engine to return them to lunar orbit. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. Armstrong became the first human to walk on the Moon approximately six hours after landing, followed by Aldrin nineteen minutes later. Together they spent around two and a half hours walking on the surface, planting an American f"
+    }
+   },
+   {
+    "at": 17.876,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.nasa.gov/history/apollo-11-mission-overview/",
+     "title": "Read NASA — Apollo 11 Mission Overview - NASA",
+     "tone": "ok",
+     "note": "kept 2,948 of 9,727 chars",
+     "ms": 4911
+    }
+   },
+   {
+    "at": 17.878,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 17.878,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+     "site": "NASA",
+     "title": "Apollo 11 Mission Overview - NASA",
+     "chars": 9727,
+     "kept": 2948,
+     "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Additional flight objectives included scientific exploration by the lunar module, or LM, crew; deployment of a television camera to transmit signals to Earth; and deployment of a solar wind composition experiment, seismic experiment package and a Laser Ranging Retroreflector. During the exploration, the two astronauts were to gather samples of lunar-surface materials for return to Earth. They also were to extensively photograph the lunar terrain, the deployed scientific equipment, the LM spacecraft, and each other, both with still and motion picture cameras. This was to be the last Apollo mission to fly a “free-return” trajectory, which would enable a return to Earth with no engine firing, providing a ready abort of the mission at any time prior to lunar orbit insertion. Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil Armstrong, Command Module Pilot Michael Collins and Lunar Module Pilot Edwin “Buzz” Aldrin into an initial Earth-orbit of 114 by 116 miles. An estimated 650 million people watched Armstrong’s televised image and heard his voice describe the event as he took “…one small step for a man, one giant leap for mankind” on July 20, 1969. Two hours, 44 minutes and one-and-a-ha"
+    }
+   },
+   {
+    "at": 19.417,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "title": "Read Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Gr…",
+     "tone": "ok",
+     "note": "kept 1,041 of 14,771 chars",
+     "ms": 6570
+    }
+   },
+   {
+    "at": 19.419,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 19.419,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute",
+     "site": "Royal Museums Greenwich",
+     "title": "Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+     "chars": 14771,
+     "kept": 1041,
+     "text": "Plan your visit Back Plan your visit Tickets and prices What&#039;s on Back What&#039;s on Exhibitions Collections Back Collections Conservation Support us Back Support us Become a member Re-live the final, fraught 13 minutes of Neil Armstrong and Buzz Aldrin's lunar descent NASA recordings of the final 13 minutes of the Apollo 11 Moon landing capture the tension and the triumph of Neil Armstrong, Buzz Aldrin and Michael Collins's historic mission. Follow the radio communications between the astronauts and Mission Control during the lunar module's descent. The final, critical landing phase of the Apollo 11 mission began at 20:05 GMT on 20 July 1969 . Just under 13 minutes later, at 20:17 GMT , the Eagle lunar module landed on the Moon. Those 13 minutes to the Moon had been meticulously planned in the years building up to the first lunar landing mission, but this was still an unprecedented challenge for the Apollo Program. Intermittent radio signal, unfamiliar computer alarms and a rocky landing site all tested astronauts Neil Armstrong and Edwin 'Buzz' Aldrin to their limits during the descent to the Moon's surface. Hearing how the astronauts and Mission Control responded to these problems in real time remains one of the most extraordinary records of the Apollo 11 Moon landing. Please allow all cookies to watch the video. Despite signal problems, Armstrong and Aldrin managed to"
+    }
+   },
+   {
+    "at": 19.469,
+    "seq": 45,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+     "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+     "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+    }
+   },
+   {
+    "at": 20.369,
+    "seq": 46,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+     "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+     "url": "https://www.planetary.org/space-missions/apollo-11"
+    }
+   },
+   {
+    "at": 20.638,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 20.644,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 20.645,
+    "seq": 56,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 21.269,
+    "seq": 47,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+     "ref": "Wikipedia — Apollo 11 - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11"
+    }
+   },
+   {
+    "at": 22.169,
+    "seq": 48,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 23.969,
+    "seq": 49,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 24.979,
+    "seq": 57,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 25.969,
+    "seq": 50,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 28.169,
+    "seq": 51,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 30.969,
+    "seq": 52,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. Relive the full journey to and from the the Moon with the timeline below. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) Liftoff! The Apollo 11 Spacecraft launched from Cape Kennedy. Over a million spectators, including Vice President Spiro Agnew and former President Lyndon Johnson, have come to watch the lift off. From launch to landing, Armstrong, Aldrin, and Collins were on a three day journey to the Moon. One thing that was not widely publicized during the Apollo program was that the astronauts carried music with them into space. According to most accounts, the astronauts of Gemini and Apollo listened mainly to adult contemporary and country music. Neil Armstrong’s musical tastes were a bit more complex than his colleagues. He chose to bring something spacey onboard his space capsule: T…",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. Almost the same as in the Apollo 10 rehearsal 2 months earlier, the astronauts fired Eagle’s descent engine, dropping to an orbit with a low point of 14.5 kilometers. The official touchdown time was 20:17:39 UTC on 20 July 1969. The Apollo 11 lunar module landing coordinates are 0.67416 degrees N, 23.47314 E. See here and here f…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. It fulfilled a national goal set by President John F. Kennedy in May 1961, who had challenged the United States to land a man on the Moon and return him safely before the end of the decade. The program overcame a severe setback with the fatal Apollo 1 launchpad fire in January 1967 and drew on technologies developed through the preceding Mercury and Gemini programs. The Soviet Union, despite early leads in spaceflight, was unable to match the Saturn V rocket, and its uncrewed lunar probe Luna 15 crashed on the Moon on July 21, while Neil Armstrong and Buzz Aldrin were still on the lunar surface. I believe that this nation should commit itself to achieving the goal, before this decade [1960s] is out, of landing a man on the Moon and return…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 32.678,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "24 tokens",
+     "ms": 12034
+    }
+   },
+   {
+    "at": 32.681,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 32.684,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 32.744,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 32.873,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 5 new impressions",
+     "tone": "ok",
+     "note": "6 sentence(s) recalled from National Air and Space Museum · 11 sentence(s) recalled from The Planetary Society · 9 sentence(s) recalled from Wikipedia · 7 sentence(s) recalled from"
+    }
+   },
+   {
+    "at": 32.898,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Apollo 11 mission landed Moon July 20 1969.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 32.9,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 32.9,
+    "seq": 75,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Apollo 11 mission landed Moon July 20 1969."
+    }
+   },
+   {
+    "at": 33.169,
+    "seq": 53,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 33.904,
+    "seq": 76,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Apollo 11 mission landed Moon July 20 1969.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 1008
+    }
+   },
+   {
+    "at": 33.909,
+    "seq": 77,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 33.91,
+    "seq": 78,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Apollo 11 mission landed Moon July 20 1969.",
+     "n": 10
+    }
+   },
+   {
+    "at": 33.924,
+    "seq": 79,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+     "title": "Reading en.wikipedia.org — Apollo 11 - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 33.928,
+    "seq": 80,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 33.928,
+    "seq": 81,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11",
+     "site": "en.wikipedia.org",
+     "title": "Apollo 11 - Wikipedia"
+    }
+   },
+   {
+    "at": 33.934,
+    "seq": 82,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.nasa.gov/mission/apollo-11/",
+     "title": "Reading nasa.gov — Apollo 11 - NASA",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 33.94,
+    "seq": 83,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 33.941,
+    "seq": 84,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.nasa.gov/mission/apollo-11/",
+     "site": "nasa.gov",
+     "title": "Apollo 11 - NASA"
+    }
+   },
+   {
+    "at": 33.948,
+    "seq": 85,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.britannica.com/topic/Apollo-11",
+     "title": "Reading britannica.com — Apollo 11 | History, Mission, Landing, Astronauts, Pictures…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 33.951,
+    "seq": 86,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 33.952,
+    "seq": 87,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.britannica.com/topic/Apollo-11",
+     "site": "britannica.com",
+     "title": "Apollo 11 | History, Mission, Landing, Astronauts, Pictures, Spacecraft ..."
+    }
+   },
+   {
+    "at": 33.969,
+    "seq": 62,
+    "kind": "quick",
+    "n": 1,
+    "of": 5,
+    "p": {
+     "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+     "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+     "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+    }
+   },
+   {
+    "at": 34.044,
+    "seq": 88,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Apollo_11",
+     "title": "Read en.wikipedia.org — Apollo 11 - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,976 of 24,000 chars",
+     "ms": 120
+    }
+   },
+   {
+    "at": 34.047,
+    "seq": 89,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 34.047,
+    "seq": 90,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11",
+     "site": "en.wikipedia.org",
+     "title": "Apollo 11 - Wikipedia",
+     "chars": 24000,
+     "kept": 2976,
+     "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight. Launched atop a Saturn V rocket from Kennedy Space Center in Florida on July 16 at 13:32 UTC, the Apollo spacecraft consisted of three parts: the command module (CM), which housed the three astronauts and was the only part to return to Earth; the service module (SM), which provided propulsion, electrical power, oxygen, and water to the command module; and the Lunar Module (LM), which had two stages—a descent stage with a large engine and fuel tanks for landing on the Moon, and a lighter ascent stage containing a cabin for two astronauts and a small engine to return them to lunar orbit. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. Armstrong became the first human to walk on the Moon approximately six hours after landing, followed by Aldrin nineteen minutes later. Together they spent around two and a half hours walking on the surface, planting an American f"
+    }
+   },
+   {
+    "at": 34.05,
+    "seq": 91,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.history.com/articles/moon-landing-1969",
+     "title": "Reading history.com — 1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTO…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 34.053,
+    "seq": 92,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 34.054,
+    "seq": 93,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.history.com/articles/moon-landing-1969",
+     "site": "history.com",
+     "title": "1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTORY"
+    }
+   },
+   {
+    "at": 34.43,
+    "seq": 94,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.nasa.gov/mission/apollo-11/",
+     "title": "Read nasa.gov — Apollo 11 - NASA",
+     "tone": "ok",
+     "note": "kept 1,121 of 4,625 chars",
+     "ms": 498
+    }
+   },
+   {
+    "at": 34.433,
+    "seq": 95,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 34.434,
+    "seq": 96,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.nasa.gov/mission/apollo-11/",
+     "site": "nasa.gov",
+     "title": "Apollo 11 - NASA",
+     "chars": 4625,
+     "kept": 1121,
+     "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Neil A. Armstrong is probably best known as the commander for the Apollo 11 mission. He joined NASA’s predecessor, the NACA, as an aeronautical research scientist and pilot in 1955. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. The second human to set foot on the Moon An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. Collins served as command module pilot on Apollo 11. Michael Collins was one of the third group of astronauts named by NASA in October 1963. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. He logged over 266 hours in space. Watch highlights from the Apollo 11 mission including the launch on July 16, 1969, the landing of the lunar module, Neil Armstrong’s first steps on the Moon, splashdown, and more. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind Jul"
+    }
+   },
+   {
+    "at": 34.869,
+    "seq": 63,
+    "kind": "quick",
+    "n": 2,
+    "of": 5,
+    "p": {
+     "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+     "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+     "url": "https://www.planetary.org/space-missions/apollo-11"
+    }
+   },
+   {
+    "at": 35.769,
+    "seq": 64,
+    "kind": "quick",
+    "n": 3,
+    "of": 5,
+    "p": {
+     "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+     "ref": "Wikipedia — Apollo 11 - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Apollo_11"
+    }
+   },
+   {
+    "at": 36.669,
+    "seq": 65,
+    "kind": "quick",
+    "n": 4,
+    "of": 5,
+    "p": {
+     "text": "The final, critical landing phase of the Apollo 11 mission began at 20:05 GMT on 20 July 1969 . Just under 13 minutes later, at 20:17 GMT , the Eagle lunar module landed on the Moon. Armstrong to Mission Control: Give us a reading on the 1202 programme alarm. Mission Control: 6 plus 25. Mission Control is instructing that the engine be throttled down six minutes and 35 seconds into the burn. Aldrin is trying to work out what the 1202 programme alarm means, and tells Mission Control that it may be linked to when he requests a data display from the computer ('16/68'). Coming up on 8:30 you’re looking great.",
+     "ref": "Royal Museums Greenwich — Apollo 11 Moon landing: minute by minute | Royal Museums Greenwich",
+     "url": "https://www.rmg.co.uk/stories/space-astronomy/apollo-11-moon-landing-minute-minute"
+    }
+   },
+   {
+    "at": 37.569,
+    "seq": 66,
+    "kind": "quick",
+    "n": 5,
+    "of": 5,
+    "p": {
+     "text": "Apollo 11 launched from Cape Kennedy on July 16, 1969, carrying Commander Neil Armstrong, Command Module Pilot Michael Collins and Lunar Module Pilot Edwin “Buzz” Aldrin into an initial Earth-orbit of 114 by 116 miles. An estimated 650 million people watched Armstrong’s televised image and heard his voice describe the event as he took “…one small step for a man, one giant leap for mankind” on July 20, 1969. On July 18, Armstrong and Aldrin put on their spacesuits and climbed through the docking tunnel from Columbia to Eagle to check out the LM, and to make the second TV transmission. On July 19, after Apollo 11 had flown behind the moon out of contact with Earth, came the first lunar orbit insertion maneuver. On July 20, Armstrong and Aldrin entered the LM again, made a final check, and at 100 hours, 12 minutes into the flight, the Eagle undocked and separated from Columbia for visual i…",
+     "ref": "NASA — Apollo 11 Mission Overview - NASA",
+     "url": "https://www.nasa.gov/history/apollo-11-mission-overview/"
+    }
+   },
+   {
+    "at": 38.469,
+    "seq": 67,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 40.063,
+    "seq": 97,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.britannica.com/topic/Apollo-11",
+     "title": "Read britannica.com — Apollo 11 | History, Mission, Landing, Astronauts, Pictures…",
+     "tone": "ok",
+     "note": "kept 1,569 of 7,293 chars",
+     "ms": 6117
+    }
+   },
+   {
+    "at": 40.067,
+    "seq": 98,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 40.067,
+    "seq": 99,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.britannica.com/topic/Apollo-11",
+     "site": "britannica.com",
+     "title": "Apollo 11 | History, Mission, Landing, Astronauts, Pictures, Spacecraft ...",
+     "chars": 7293,
+     "kept": 1569,
+     "text": "How did Katherine Johnson inspire other women? What is unique about the Europa Clipper’s electronics vault? Our editors will review what you’ve submitted and determine whether to revise the article. Space.com - Apollo 11: First Men on the Moon BBC Newsround - Apollo 11 Moon landing: Everything you need to know Smithsonian National Air and Space Museum - Apollo 11 Royal Museums Greenwich - Apollo 11 crew Apollo 11 - Student Encyclopedia (Ages 11 and up) Apollo 11, the first space mission to put people on the Moon, was launched on July 16, 1969. Almost every major aspect of the flight of Apollo 11 was witnessed via television by hundreds of millions of people in nearly every part of the globe, until splashdown in the Pacific Ocean on July 24. What was the mission objective of Apollo 11? Apollo 11’s mission objective was to land astronauts on the Moon and return them safely back to Earth. It succeeded in its objective by landing Neil Armstrong and Buzz Aldrin on the Moon on July 20, 1969. Apollo 11’s crew members were commander Neil Armstrong, lunar module pilot Buzz Aldrin, and command module pilot Michael Collins. The lunar module Eagle of the Apollo 11 mission landed on the Moon on July 20, 1969. Neil Armstrong and Buzz Aldrin became the first people to land on the Moon and walk on the lunar surface. The fastest speed Apollo 11 achieved was 39,715 kilometers (24,678 miles) per "
+    }
+   },
+   {
+    "at": 40.269,
+    "seq": 68,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 41.822,
+    "seq": 100,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.history.com/articles/moon-landing-1969",
+     "title": "Read history.com — 1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTO…",
+     "tone": "ok",
+     "note": "kept 2,940 of 9,005 chars",
+     "ms": 7774
+    }
+   },
+   {
+    "at": 41.826,
+    "seq": 101,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 41.827,
+    "seq": 102,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.history.com/articles/moon-landing-1969",
+     "site": "history.com",
+     "title": "1969 Apollo 11 Moon Landing: Timeline, Facts, Video | HISTORY",
+     "chars": 9005,
+     "kept": 2940,
+     "text": "How Many Times Did the US Land on the Moon? On July 20, 1969, American astronauts Neil Armstrong (1930-2012) and Edwin \"Buzz\" Aldrin (1930-) became the first humans ever to land on the moon. About six-and-a-half hours later, Armstrong became the first person to walk on the moon. As he took his first step, Armstrong famously said, \"That's one small step for man, one giant leap for mankind.\" The Apollo 11 mission occurred eight years after President John F. Kennedy (1917-1963) announced a national goal of landing a man on the moon by the end of the 1960s. Apollo 17, the final manned moon mission, took place in 1972. Did the US Go to the Moon to Beat the Soviets? Why did JFK promise to put a man on the moon? Was it just to beat the Soviets? Learn about the events that led to the creation of the Apollo Program. The American effort to send astronauts to the moon had its origins in an appeal President Kennedy made to a special joint session of Congress on May 25, 1961: \"I believe this nation should commit itself to achieving the goal, before this decade is out, of landing a man on the moon and returning him safely to Earth.\" At the time, the United States was still trailing the Soviet Union in space developments, and Cold War-era America welcomed Kennedy's bold proposal. In 1966, after five years of work by an international team of scientists and engineers, the National Aeronautics a"
+    }
+   },
+   {
+    "at": 41.921,
+    "seq": 109,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read 1 more source",
+     "tone": "ok",
+     "note": "“Apollo 11 mission landed Moon July 20 1969.”"
+    }
+   },
+   {
+    "at": 42.269,
+    "seq": 69,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 44.469,
+    "seq": 70,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 47.269,
+    "seq": 71,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_b6b939",
+    "ps": [
+     {
+      "text": "On July 20, 1969, a human walked on the Moon for the first time. July 16, 196913:32:00 UTC (Universal Coordinated Time)9:32 am ET (Eastern Time) The Apollo 11 Spacecraft launched from Cape Kennedy. At 101:36 GET, the descent to the surface of the Moon began. July 21, 19692:51 UTC July 20, 196910:51 pm ET July 21, 19692:56 UTC July 20, 196910:56 pm ET",
+      "ref": "National Air and Space Museum — Apollo 11 Timeline | National Air and Space Museum",
+      "url": "https://airandspace.si.edu/explore/stories/apollo-missions/apollo-11-moon-landing/apollo-11-timeline"
+     },
+     {
+      "text": "Apollo 11 was the first mission to land humans on the Moon. On 21 July 1969 at 02:56:15 UTC, Neil Armstrong pressed his left foot onto the Moon and said, \"That's one small step for [a] man, one giant leap for mankind,\" as 530 million people watched live on television. The mission returned 20 kilograms of rock and soil to Earth, and paved the way for 5 additional Moon landings that greatly advanced the field of lunar science. Neil Armstrong, Buzz Aldrin, and Michael Collins began their journey with a launch aboard a Saturn V rocket on the morning of 16 July 1969. The Eagle has landed,\" Armstrong famously reported after landing. The official touchdown time was 20:17:39 UTC on 20 July 1969. The lunar module hatch opened at 02:39:35 UTC on 21 July 1969, and 17 minutes later, at 02:56:15 UTC (22:56:15 EDT on 20 July 1969), Armstrong stepped off the lunar module's ladder and onto the surface.…",
+      "ref": "The Planetary Society — Apollo 11 | The Planetary Society",
+      "url": "https://www.planetary.org/space-missions/apollo-11"
+     },
+     {
+      "text": "Apollo 11 (July 16–24, 1969) was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. After a three-day transit, Armstrong and Aldrin descended to the surface aboard the LM Eagle, landing in the Sea of Tranquility (Mare Tranquillitatis) on July 20 at 20:17 UTC while Collins remained in lunar orbit aboard the CM Columbia. In March 1969, Apollo 9 put the lunar module through its paces in Earth orbit, and in May Apollo 10 conducted a \"dress rehearsal\" in lunar orbit. On July 13, three days before Apollo 11's launch, the Soviet Union launched Luna 15, which reached lunar orbit before Apollo 11. Apollo 11 was the second American mission where all the crew members had prior spaceflight experience, the first being Apollo 10. Five 0.5-pound (0.23 kg) PPKs were carried on Apollo 11: three (one for each astronaut) were stowed on Col…",
+      "ref": "Wikipedia — Apollo 11 - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Apollo_11"
+     }
+    ]
+   },
+   {
+    "at": 49.469,
+    "seq": 103,
+    "kind": "quick",
+    "n": 1,
+    "of": 1,
+    "p": {
+     "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+     "ref": "nasa.gov — Apollo 11 - NASA",
+     "url": "https://www.nasa.gov/mission/apollo-11/"
+    }
+   },
+   {
+    "at": 50.369,
+    "seq": 104,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_bc45c2",
+    "ps": [
+     {
+      "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+      "ref": "nasa.gov — Apollo 11 - NASA",
+      "url": "https://www.nasa.gov/mission/apollo-11/"
+     }
+    ]
+   },
+   {
+    "at": 52.169,
+    "seq": 105,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_bc45c2",
+    "ps": [
+     {
+      "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+      "ref": "nasa.gov — Apollo 11 - NASA",
+      "url": "https://www.nasa.gov/mission/apollo-11/"
+     }
+    ]
+   },
+   {
+    "at": 54.169,
+    "seq": 106,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_bc45c2",
+    "ps": [
+     {
+      "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+      "ref": "nasa.gov — Apollo 11 - NASA",
+      "url": "https://www.nasa.gov/mission/apollo-11/"
+     }
+    ]
+   },
+   {
+    "at": 56.369,
+    "seq": 107,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_bc45c2",
+    "ps": [
+     {
+      "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+      "ref": "nasa.gov — Apollo 11 - NASA",
+      "url": "https://www.nasa.gov/mission/apollo-11/"
+     }
+    ]
+   },
+   {
+    "at": 59.169,
+    "seq": 108,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_bc45c2",
+    "ps": [
+     {
+      "text": "The primary objective of Apollo 11 was to complete a national goal set by President John F. Kennedy on May 25, 1961: perform a crewed lunar landing and return to Earth. Armstrong was one of nine men chosen of NASA’s second astronaut group in 1962, and flew to space on the Gemini 8 mission in 1966 before being assigned to the Apollo 11 mission. An engineer and fighter pilot in the Korean War, Dr. Edwin E. “Buzz” Aldrin was selected in NASA’s third astronaut class in 1963 and went to space on Gemini XII before becoming the lunar module pilot for Apollo 11. He first flew to space on Gemini X in 1966 before his assignment to the Apollo 11 mission. Apollo 11 launched on July 16, 1969, carrying Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… July 20, 1969: One Giant Leap For Mankind That mission landed on the moon. Find materials for students and educators, 3D pr…",
+      "ref": "nasa.gov — Apollo 11 - NASA",
+      "url": "https://www.nasa.gov/mission/apollo-11/"
+     }
+    ]
+   },
+   {
+    "at": 64.663,
+    "seq": 110,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Stopped going back",
+     "tone": "info",
+     "note": "out of time — the sentences still failing are marked"
+    }
+   },
+   {
+    "at": 64.695,
+    "seq": 111,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 64.698,
+    "seq": 112,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 83.403,
+    "seq": 113,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · rmg.co.uk · 3 model calls"
+    }
+   },
+   {
+    "at": 83.456,
+    "seq": 114,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 83.458,
+    "seq": 115,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 84 s · read 9 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 83.46,
+    "seq": 116,
+    "kind": "done"
+   }
+  ]
+ }
+}

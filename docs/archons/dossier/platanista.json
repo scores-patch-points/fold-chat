@@ -1,0 +1,51 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "platanista",
+  "organ": "khora/native/organs/signal.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/platanista-echolocation.json"
+  ],
+  "whatTheyArgued": "A biological archetype, not an author; nothing is quoted. Per Jensen et al. 2013 (PLoS ONE, read via summary): Ganges river dolphins are nearly blind and sense their surroundings with echolocation clicks, emitted at a high repetition rate (mean interclick interval about 35 ms) and low source level (mean about 183 dB re 1 uPa peak-to-peak, 1-2 orders of magnitude below similar-sized marine dolphins), centroid frequency lower than expected for their size; the authors read this as adaptation to short-range search in shallow, cluttered, reverberant river water. The paper does not address how an animal interprets absent echoes.",
+  "scholarship": [
+    {
+      "ref": "Jensen et al. 2013, 'Clicking in shallow rivers: short-range echolocation of Irrawaddy and Ganges river dolphins...', PLoS ONE 8(4):e59284",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3616034/",
+      "supports": "near-blind, echolocates by clicks; high click rate, low source level, short range search; click parameters above",
+      "disputes": "none about the basics; absence-of-echo interpretation is simply not addressed"
+    },
+    {
+      "ref": "Herald et al. 1969, 'Blind river dolphin: first side-swimming cetacean', Science 166:1408-1410 (cited by other papers; not read)",
+      "url": "https://www.science.org/doi/10.1126/science.166.3911.1408",
+      "supports": "first captive description of the animal's behavior (as cited in secondary papers; unverified by me)",
+      "disputes": "n/a"
+    }
+  ],
+  "ourUse": "signal.js: try many instruments over a stream, discover kinds from the stream's company, run a control built to fail, make the null search-aware (the bar is the distribution of the maximum across all instruments tried), count findings by source AND instrument, and type what does not survive rather than hide it. Handle comment: 'probe, listen; a clean nothing is itself a result.'",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "clean-silence",
+      "kind": "invented-attribution",
+      "ours": "Compendium: the dolphin 'reads a clean silence as a genuine result, not a failure to look.'",
+      "theirs": "The literature I read says nothing about interpreting an absent echo. That sentence is our principle placed on the animal; the dolphin's behavior as described is repeated click-and-listen at high rate."
+    },
+    {
+      "id": "mechanism-not-in-animal",
+      "kind": "reinterpreted",
+      "ours": "Search-aware null, instrument independence, controls built to fail.",
+      "theirs": "None of these has a dolphin counterpart; they come from our own hazards (multiple comparisons, shared instrument artifacts). Only 'emit a probe, read what returns' is the biology."
+    },
+    {
+      "id": "alone",
+      "kind": "narrowed",
+      "ours": "Header: hunts 'by echolocation alone'; compendium: 'near-blind water'.",
+      "theirs": "The animal is nearly blind and echolocation is its principal sense per the sources I read; whether it is the ONLY sense used I did not verify, so 'alone' is unconfirmed."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'The Ganges river dolphin is nearly blind and finds prey by emitting rapid clicks and listening to the echo, adapted to short-range search in cluttered river water. Our signal.js borrows only probe-then-listen; that a clean nothing counts as a result is our rule, and so are the controls and the search-aware null.'",
+    "compendium credit: 'after the Ganges river dolphin's probe-and-listen echolocation; the rule that a clean nothing is a result is ours.'"
+  ]
+}

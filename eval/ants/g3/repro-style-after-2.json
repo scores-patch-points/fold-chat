@@ -1,0 +1,57 @@
+{
+ "label": "style-after-2",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T06:12:46.892Z",
+ "patchDir": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0-the-fold/0c804cde-75c0-4276-bf91-3cc3a46d1c35/scratchpad/patched",
+ "turns": [
+  {
+   "ask": "who is mt. mckinlet named afer?",
+   "web": [
+    "{\"scope\":\"web\",\"q\":\"who is mt. mckinlet named afer?\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":true}",
+    "{\"scope\":\"wikipedia\",\"q\":\"who is mt. mckinlet named afer?\",\"engine\":\"Wikipedia\",\"n\":0,\"ok\":true}",
+    "{\"scope\":\"route\",\"ok\":true,\"engine\":\"source router\",\"picked\":[\"web\",\"wikipedia\"],\"skipped\":[\"github\",\"archive\",\"openalex\",\"crossref\"],\"why\":{\"web\":\"always — the",
+    "{\"scope\":\"topic\",\"ok\":true,\"engine\":\"title gate\",\"demoted\":[\"Denali - Wikipedia (no-shared-word)\",\"Molly of Denali - Wikipedia (no-shared-word)\",\"List of unusua",
+    "{\"scope\":\"topic\",\"ok\":true,\"skippedOff\":2,\"engine\":\"swarm gate\",\"strict\":false,\"dissent\":{\"no-content-word\":2}}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute\",\"via\":\"direct\",\"chars\":14258,\"kept\":1204,\"hash\":\"c1ed2de0\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/McKinley_Tower_Apartments\",\"via\":\"direct\",\"chars\":2281,\"kept\":2281,\"hash\":\"91e426cf\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Denali\",\"via\":\"direct\",\"chars\":24000,\"kept\":1674,\"hash\":\"9fa9f33c\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Molly_of_Denali\",\"via\":\"direct\",\"chars\":5377,\"kept\":304,\"hash\":\"4c8dddb3\",\"skipped\":true}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/List_of_unusual_deaths_in_the_21st_century\",\"via\":\"direct\",\"chars\":231,\"kept\":231,\"hash\":\"fa4cbaed\",\"skipped\":true}"
+   ],
+   "spoken": "",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “who is mt. mckinlet named afer?”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute",
+    "https://en.wikipedia.org/wiki/McKinley_Tower_Apartments",
+    "https://en.wikipedia.org/wiki/Denali",
+    "https://en.wikipedia.org/wiki/Molly_of_Denali",
+    "https://en.wikipedia.org/wiki/List_of_unusual_deaths_in_the_21st_century"
+   ],
+   "passages": [
+    "en.wikipedia.org — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "en.wikipedia.org — McKinley Tower Apartments - Wikipedia <https://en.wikipedia.org/wiki/McKinley_Tower_Apartments>",
+    "en.wikipedia.org — Denali - Wikipedia <https://en.wikipedia.org/wiki/Denali>"
+   ],
+   "notices": [
+    "[fold] The draft was read and none of it could be spoken (every sentence of the draft was withheld), so nothing is shown."
+   ],
+   "raws": [
+    "Mt. McKinley is named after William McKinley, who was the 25th president of the United States. \n"
+   ],
+   "referents": [],
+   "summary": {
+    "topic": "who is mt. mckinlet named afer?",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I could not answer; they asked \"who is mt. mckinlet named afer?\" and I could not answer.",
+    "entities": []
+   },
+   "modelRequest": [
+    "system: You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES:",
+    "user: who is mt. mckinlet named afer?"
+   ]
+  }
+ ]
+}

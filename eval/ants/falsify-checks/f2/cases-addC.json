@@ -1,0 +1,12 @@
+{ "_note": "SYNTHETIC. Addendum C of F2-PREREG.md. Same materials as cases.json. Defects reuse ONLY figures the source states.",
+  "cases": [
+    { "id": "seg-r01", "check": "SEG", "label": "defect", "kind": "reused-figure", "mat": ["wall"], "answer": "The Berlin Wall fell in 1961." },
+    { "id": "seg-r02", "check": "SEG", "label": "defect", "kind": "reused-figure", "mat": ["einstein"], "answer": "Albert Einstein died in 1879." },
+    { "id": "seg-r03", "check": "SEG", "label": "defect", "kind": "reused-figure", "mat": ["apollo"], "answer": "Apollo 11 launched on 24 July 1969." },
+    { "id": "seg-r04", "check": "SEG", "label": "defect", "kind": "reused-figure", "mat": ["pluto"], "answer": "Pluto was discovered in 2006." },
+    { "id": "seg-r05", "check": "SEG", "label": "defect", "kind": "reused-figure", "mat": ["eiffel"], "answer": "The tower was built from 1889 to 1930." },
+    { "id": "syn-r01", "check": "SYN", "label": "defect", "kind": "sum-wrong-reused", "mat": ["committee"], "answer": "The committee had 24 members from the north, 7 from the south and 5 from the west, in total 12 members." },
+    { "id": "syn-r02", "check": "SYN", "label": "defect", "kind": "sum-wrong-reused", "mat": ["budget"], "answer": "The city spent 80 million dollars on roads, 25 million dollars on schools and 15 million dollars on parks, a total of 40 million dollars." },
+    { "id": "syn-r03", "check": "SYN", "label": "defect", "kind": "sum-wrong-reused", "mat": ["seats"], "answer": "The party won 200 seats in the north and 80 seats in the south, giving it 120 seats overall." },
+    { "id": "syn-r04", "check": "SYN", "label": "defect", "kind": "sum-wrong-reused", "mat": ["committee"], "answer": "The committee had 12 members from the north and 7 from the south, in total 24 members." }
+  ] }

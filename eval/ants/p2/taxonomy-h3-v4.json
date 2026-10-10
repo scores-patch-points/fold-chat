@@ -1,0 +1,266 @@
+{
+ "set": "h3",
+ "byType": {
+  "figure": {
+   "n": 4,
+   "contains": 4,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.9333333333333333,
+   "strandPrecisionMedian": 0.021492537313432834
+  },
+  "date": {
+   "n": 11,
+   "contains": 4,
+   "strandContains": 7,
+   "gap": 3,
+   "precisionMedian": 0,
+   "strandPrecisionMedian": 0.02396644697423607
+  },
+  "name": {
+   "n": 6,
+   "contains": 5,
+   "strandContains": 5,
+   "gap": 0,
+   "precisionMedian": 0.6687900407687828,
+   "strandPrecisionMedian": 0.04588751678069452
+  },
+  "place": {
+   "n": 4,
+   "contains": 4,
+   "strandContains": 3,
+   "gap": 0,
+   "precisionMedian": 0.6956168831168832,
+   "strandPrecisionMedian": 0.028909692170312147
+  },
+  "definition": {
+   "n": 6,
+   "contains": 4,
+   "strandContains": 6,
+   "gap": 1,
+   "precisionMedian": 0.6390306122448979,
+   "strandPrecisionMedian": 0.06713529523644543
+  },
+  "list": {
+   "n": 1,
+   "contains": 0,
+   "strandContains": 1,
+   "gap": 1,
+   "precisionMedian": 0,
+   "strandPrecisionMedian": 0.05632115038945476
+  },
+  "reason": {
+   "n": 1,
+   "contains": 1,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.5054945054945055,
+   "strandPrecisionMedian": 0.03427719821162444
+  },
+  "yesno": {
+   "n": 2,
+   "contains": 2,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.5846371142981313,
+   "strandPrecisionMedian": 0.012377850162866449
+  },
+  "unanswerable": {
+   "n": 12,
+   "gap": 10,
+   "strandShipped": 12
+  }
+ },
+ "byLang": {
+  "en": {
+   "n": 43,
+   "outcomes": [
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "gap",
+    "contains",
+    "gap",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "gap",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG-SPAN",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "WRONG-SPAN",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok"
+   ]
+  },
+  "es": {
+   "n": 1,
+   "outcomes": [
+    "WRONG"
+   ]
+  },
+  "fr": {
+   "n": 1,
+   "outcomes": [
+    "WRONG"
+   ]
+  },
+  "zh": {
+   "n": 1,
+   "outcomes": [
+    "gap"
+   ]
+  },
+  "ru": {
+   "n": 1,
+   "outcomes": [
+    "gap"
+   ]
+  },
+  "pt": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  }
+ },
+ "misses": [
+  {
+   "id": "p06",
+   "q": "When was the PlayStation 5 launched in North America?",
+   "class": "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)",
+   "shipped": "It was announced as the successor to the PlayStation 4 in April 2019, and was launched in Australia, Japan, New Zealand, North America.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p09",
+   "q": "When did the French Revolution end?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p11",
+   "q": "When did the 2025 NBA Finals end?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p12",
+   "q": "When was the 97th Academy Awards ceremony held?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "In related events, the Academy held its 15th Governors Awards ceremony at the Ray Dolby Ballroom of the Ovation Hollywood complex in Hollywo",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p18",
+   "q": "Who was Salmonella named after?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Salmonella is a genus of rod-shaped, gram-negative bacteria of the family Enterobacteriaceae.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p23",
+   "q": "What is Salmonella?",
+   "class": "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)",
+   "shipped": "Salmonella is a genus of rod-shaped, gram-negative bacteria of the family Enterobacteriaceae.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "p28",
+   "q": "In which regions was the PlayStation 5 launched first?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "r01",
+   "q": "¿Cuándo alunizó el Apolo 11?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "El Apolo 11 (16 de julio - 24 de julio de 1969) fue la misión espacial estadounidense que logró el primer alunizaje de seres humanos en la L",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "r02",
+   "q": "Quand a été construit le mur de Berlin ?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "La construction du Mur représente ainsi une confirmation matérielle du statu quo: l'Union soviétique abandonne son exigence d'un Berlin-Oues",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "r03",
+   "q": "阿波罗11号是哪一年登月的？",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "r04",
+   "q": "Что такое Канберра?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  }
+ ],
+ "imperfect": {
+  "pronounUnresolved": [],
+  "noSubject": [],
+  "overWide": [
+   "p07",
+   "p10",
+   "p17",
+   "p19",
+   "p30"
+  ],
+  "fragment": [
+   "p08"
+  ]
+ },
+ "counts": {
+  "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)": [
+   "p06",
+   "p23"
+  ],
+  "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)": [
+   "p09",
+   "p11",
+   "p28",
+   "r03",
+   "r04"
+  ],
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)": [
+   "p12",
+   "p18",
+   "r01",
+   "r02"
+  ]
+ }
+}

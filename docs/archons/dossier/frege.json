@@ -1,0 +1,45 @@
+{
+  "handle": "frege",
+  "organ": "khora/native/kernel/scoped-kind.js; organs/aliases.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/frege.json"
+  ],
+  "whatTheyArgued": "Begriffsschrift section 11 (verbatim snip, German, archive.org): the concavity with its German letter marks the domain of the generality; only inside that domain does the letter hold its meaning, and the same letter may occur in different domains without meaning carrying across. In On Sense and Reference (1892; not on disk) the morning and evening star share a reference but differ in sense, which explains why the identity statement is informative (SEP).",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Gottlob Frege'",
+      "url": "https://plato.stanford.edu/entries/frege/",
+      "supports": "quantifiers as variable-binding; morning/evening star as same denotation, different senses; reference as a relation between expression and object",
+      "disputes": "entry gives no equivalence-class account of reference; I read it via a summariser and did not check the sections myself"
+    }
+  ],
+  "ourUse": "scoped-kind.js: a quantifier-bound reference resolves to a pattern/Kind, not a particular. aliases.js: the referent is the equivalence class of aliases; identity is a byte key over the class, never a spelling.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "scope-ok",
+      "kind": "re-scoped",
+      "ours": "Quantifier scope used to route 'every farmer who owns a donkey ... it' to Kind.",
+      "theirs": "The snip concerns variable scope in his formal language. The donkey-sentence analysis is later linguistics, not Frege."
+    },
+    {
+      "id": "equivalence-class",
+      "kind": "reinterpreted",
+      "ours": "'reference is an equivalence class, never a spelling'; aliases are interchangeable forms.",
+      "theirs": "He says co-referring names can differ in sense and cognitive value; an alias class erases exactly that. 'Equivalence class' is not in the SEP account of him."
+    },
+    {
+      "id": "s-and-r-unsnipped",
+      "kind": "decorative",
+      "ours": "aliases.js cites the Morning Star case; credit has no verified snip of On Sense and Reference.",
+      "theirs": "Only the Begriffsschrift passage is verified; the 1892 text is not on disk."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Begriffsschrift s.11: a variable keeps its meaning only inside the domain its quantifier marks. On Sense and Reference: two names may share a reference yet differ in sense. Our alias class treats co-referring forms as one referent and sets sense aside; the donkey-sentence routing is ours.'",
+    "add a verified snip of On Sense and Reference or mark the aliases.js header as the analogy"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

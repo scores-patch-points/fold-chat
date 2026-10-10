@@ -1,0 +1,40 @@
+ALL  {"n":73,"recall":"82% (40/49)","falseWants":"13% (3/24)","typeExact":"82% (60/73)","topic":"96% (24/25)","needsSources":"95% (37/39)","voids":"100% (39/39)","searchQuery":"100% (39/39)","constraints":"100% (6/6)","material":"100% (3/3)","steps":"100% (2/2)"}
+per-type exact: essay 9/12  poem 10/13  email 1/1  summary 3/4  rewrite 3/4  code 1/1  story 4/4  other 3/3  translation 1/2  list 1/1  slogan 1/2  speech 1/1  letter 1/1
+[r3] FAIL i need help writing an essay on shakespeare
+      type none != essay
+[r3] FAIL tl;dr this
+      type none != summary
+[r3] FAIL Could you write something to cheer me up?
+      needsSources true != false
+[r3] FAIL I'd like a 5-paragraph essay on the Industrial Revolution, 12th grade level
+      type none != essay
+[r3] FAIL Escribe un poema sobre el teléfono y luego tradúcelo al inglés
+      type poem != translation
+[r3] FAIL ¿Puedes escribirme un poema sobre la luna?
+      type none != poem
+[r3] FAIL Kannst du ein Gedicht über den Herbst schreiben?
+      type none != poem
+[r3] FAIL Draft a LinkedIn post about my promotion
+      type none != slogan
+[r3] FAIL Fix the grammar in this: me and him goes to school every days
+      type none != rewrite
+[r3] FAIL write 500 words on photosynthesis
+      type none != essay
+[r3] FAIL Write me something about love
+      needsSources true != false
+[r3] FAIL A haiku please
+      type none != poem
+[r3] FAIL write an essay about this
+      topic "when" lacks telephone
+[r3] FAIL she asked me to write her a letter
+      type letter != none
+[r3] FAIL my teacher told me to write an essay on Hamlet, any ideas how to start?
+      type essay != none
+[r3] FAIL hello, can you write essays?
+      type essay != none
+classifyTurn false-wants on negatives: 4 [
+  'she asked me to write her a letter',
+  'did you write that poem yourself?',
+  "please don't write a long essay",
+  'my teacher told me to write an essay on Hamlet, any ideas how to start?'
+]

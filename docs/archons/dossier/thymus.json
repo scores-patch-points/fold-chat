@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "thymus",
+  "organ": "khora/native/kernel/witness.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/thymus.json"
+  ],
+  "whatTheyArgued": "Thymic selection as I could confirm it (reviews known by title/abstract only; full text not read). Developing T cells (thymocytes), each with a randomly generated antigen receptor, are tested on self-peptide/MHC in the thymus. Positive selection keeps cells able to recognise self-MHC; negative selection removes strongly self-reactive cells (Klein, Kyewski, Allen and Hogquist 2014 summary as found; Reza and Ritter 1998 title and topics). Selection is a two-sided affinity test that most cells fail, which I take from the field's standard account but could not confirm in text I fetched.",
+  "scholarship": [
+    {
+      "ref": "L. Klein, B. Kyewski, P. M. Allen, K. A. Hogquist, 'Positive and negative selection of the T cell repertoire: what thymocytes see (and don't see)', Nature Reviews Immunology (2014) (listing and summary seen; full text paywalled and not read)",
+      "url": "https://www.nature.com/articles/nri1085",
+      "supports": "selection by receptor interaction with self-peptide/MHC; deletion of autoreactive cells (negative selection) and MHC restriction (positive selection) shape the repertoire",
+      "disputes": "I did not read the article, so I cannot report its disputes. Note the URL listed in search results (nri1085) may be a different Nature Reviews Immunology item; verify the citation before relying on it."
+    },
+    {
+      "ref": "J. N. Reza and M. A. Ritter, 'Positive and Negative Selection in the Thymus and the Thymic Paradox', Developmental Immunology (1998) (page title and topics only; full text not retrieved)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2275989/",
+      "supports": "that positive/negative selection and the 'thymic paradox' are the standard framing",
+      "disputes": "not read"
+    }
+  ],
+  "ourUse": "kernel/witness.js: a candidate is admitted as an Observation only with evidence anchored to the encounter; otherwise refused with a reason ('no evidence', 'anchor mismatch'). Handle comment: 'nomination is not admission'. Note also the thymus entry in the compendium: 'nominated for the repertoire... must survive the selection test before it is licensed'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "nomination-is-ours",
+      "kind": "reinterpreted",
+      "ours": "A candidate is 'nominated' and then 'licensed' by selection.",
+      "theirs": "Thymocytes are not nominated; receptors arise by random rearrangement and cells are tested. 'Nomination' is our word and 'licensed' is our gate vocabulary."
+    },
+    {
+      "id": "evidence-vs-affinity",
+      "kind": "re-scoped",
+      "ours": "Admission = explicit evidence whose anchor matches the encounter (a presence-and-match test).",
+      "theirs": "Selection tests receptor affinity for self-ligands: positive selection needs enough recognition of self-MHC, negative selection removes excess self-reactivity. It is a window on affinity, not a check that evidence is attached."
+    },
+    {
+      "id": "one-gate-vs-two",
+      "kind": "narrowed",
+      "ours": "One admit-or-refuse gate.",
+      "theirs": "Two opposed tests (positive and negative selection) at different stages and sites; the code has no analogue of negative selection (removing candidates that are too self-matching)."
+    },
+    {
+      "id": "conceptual-no-author",
+      "kind": "decorative",
+      "ours": "pdStatus 'conceptual'; no author is claimed.",
+      "theirs": "Correct: nothing to credit; the manifest is copyrighted_deferred and says Miller and Burnet are not quoted. The analogy is ours."
+    }
+  ],
+  "fix": [
+    "compendium work: 'In the thymus, developing T cells are tested on self-peptide/MHC: those that cannot recognise self-MHC, and those that react too strongly to self, are removed. witness.js borrows only the shape: a candidate is not admitted merely for being presented; it needs evidence anchored to the encounter. The analogy is loose and the test is ours.'",
+    "compendium credit: 'the thymus - being presented is not being admitted (analogy; gate is ours).'",
+    "Before use as biology: read Klein et al. 2014 or another review in full and cite the correct URL."
+  ],
+  "tokenized": false
+}

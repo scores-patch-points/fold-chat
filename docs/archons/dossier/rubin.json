@@ -1,0 +1,39 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "rubin",
+  "organ": "khora/native/kernel/surprise-segments.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Standing here follows the compendium (nomination: 'the specific namesake's works are not asserted'). The namesake the organ header names, Edgar Rubin (Visuell wahrgenommene Figuren, 1915/1921), studied the phenomenal difference between figure and ground in visual perception: the figure has thing-like character, the shaping contour belongs to the figure and not the ground, and the ground appears to extend behind. In the 1921 preface he says the figure/ground distinction is the difference he set out to examine (on disk), and argues against the view that attention merely lights up an otherwise unchanged mental content. Nothing in this is about prediction error or surprise.",
+  "scholarship": [
+    {
+      "ref": "Wagemans et al., 'A century of Gestalt psychology in visual perception: I. Perceptual grouping and figure-ground organization', Psychological Bulletin (2012), PMC open copy; read through a summarizing fetch",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3482144/",
+      "supports": "Rubin's figure-ground: thing-like figure, contour belongs to figure, ground recedes behind it; a visual-perception doctrine",
+      "disputes": "none relevant"
+    }
+  ],
+  "ourUse": "surprise-segments.js: ground = the prior so far, figure = an event whose surprise (bits, measured before it arrives) exceeds a quantile of surprises from a shuffled copy of the stream; boundaries are cut where the ground was most wrong, recursively. Medium-blind.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "header-names-rubin",
+      "kind": "misstated",
+      "ours": "Organ header: 'after Edgar Rubin's figure-ground boundary: the segment boundary sits exactly where the ground was most wrong'; file head 'Rubin speaks' with a verbatim 1921 sentence plus a model-written paragraph ('Rubin's figure-ground boundary analysis, where the segment boundary is situated where the ground was most wrong').",
+      "theirs": "Rubin did not argue that a boundary falls where a ground was most wrong; his contour belongs to the figure, and 'ground' is a perceptual region, not a statistical prior. The sentence is ours, placed in his name."
+    },
+    {
+      "id": "figure-ground-metaphor",
+      "kind": "reinterpreted",
+      "ours": "Figure = surprising event; ground = sedimented prior.",
+      "theirs": "Figure and ground are phenomenal structures of seeing (shape, contour ownership, depth order). Mapping them to surprise and prior is our metaphor; Rubin's own use of 'Grund' in the quoted line is about attention and unattended content."
+    }
+  ],
+  "noBendReason": "As a nomination the compendium entry claims no work of Rubin's and says so; the name is the project's chosen label for a posture. The bends listed concern only the organ header and file-head 'speaks' block, which do invoke Edgar Rubin and conflict with the compendium's own disclaimer. A verified manifest (rubin-surprise-segments.json, Figuren 1921 preface sentence) exists and is real, but supports figure/ground as a distinction only, not our claim.",
+  "tokenized": false,
+  "fix": [
+    "Keep the compendium entry as is (it is honest). Organ header: replace 'after Edgar Rubin's figure-ground boundary' with 'named Rubin for the figure/ground vocabulary; the rule that boundaries sit where the ground was most wrong is this project's, not Rubin's'.",
+    "Delete the model-written 'Rubin speaks' paragraph or relabel the snip 'Rubin on figure and ground (1921 preface)'. Consider also renaming the handle to avoid implying the claim."
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "organ": "khora/native/kernel/return-curve.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/sockeye.json"
+  ],
+  "whatTheyArgued": "Gilbert (1912 BC Fisheries report, verified in text) argues from scale-age data that the Fraser sockeye run is mostly four-year-olds but includes three- and five-year fish, probing the four-year-cycle theory. In the same report he speculates that young may disperse in the sea and reassemble off the Strait of Fuca 'when approaching maturity leads them back toward their natal stream', i.e. a fan-like dispersal and reverse movement. He gives no curve, no timing function, no 'pull that grows as the fish nears home'. Modern homing science (Hasler & Scholz 1983) attributes freshwater homing mainly to olfactory imprinting on home-stream water.",
+  "scholarship": [
+    {
+      "ref": "Hasler & Scholz 1983, Olfactory Imprinting and Homing in Salmon (as reported in search results; pdf fetch blocked 403)",
+      "url": "https://cob.silverchair.com/jeb/article-pdf/3389238/jexbio_199_1_83.pdf",
+      "supports": "salmon imprint on home-stream odor as smolts and use it as adults; homing in fresh water is olfactory",
+      "disputes": "ocean-phase navigation is a separate, partly unresolved question; I could not read the page text"
+    }
+  ],
+  "ourUse": "return-curve.js: events (key, at, form) in, a dyadic-bin curve of gap-since-last-return versus form out; used as the author's model of the audience's memory. Sockeye is only a metaphor for 'identity returns'.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "snip-mismatch",
+      "kind": "misstated",
+      "ours": "The attached Sockeye quote (and the file header) is the age-composition sentence.",
+      "theirs": "That sentence is about three/four/five-year fish and the four-year-cycle theory; it says nothing about return or homing. The relevant passage is the 'natal stream' speculation elsewhere in the same document."
+    },
+    {
+      "id": "pull-grows",
+      "kind": "invented-attribution",
+      "ours": "Compendium: 'a path, a timing, a pull that grows as the fish nears home'.",
+      "theirs": "Not in Gilbert. Modern work gives an olfactory-imprinting mechanism with stage structure but I did not verify any 'growing pull'."
+    },
+    {
+      "id": "curve-vs-switch",
+      "kind": "decorative",
+      "ours": "'Return is not a switch but a curve.'",
+      "theirs": "Gilbert does not argue this; the curve in return-curve.js is the gap histogram of re-mentions in a text, which has no biological counterpart."
+    }
+  ],
+  "fix": [
+    "re-cut the manifest on the passage ending 'reverse movement as spawning-time approaches' (line ~231 of gilbert-swiftsure-sockeye-1912.txt); snip.mjs is currently broken (see report)",
+    "compendium work: 'Sockeye salmon return from the sea to their natal stream to spawn (Gilbert 1912 speculates on the sea-to-stream reassembly; olfactory imprinting is the modern account). The curve over gaps is ours.'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "sockeye",
+  "tokenized": false
+}

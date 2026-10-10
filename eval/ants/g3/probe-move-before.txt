@@ -1,0 +1,11 @@
+THREAD move       escalation  are you sure about gravity
+THREAD move       frame-ask   what does it all mean
+THREAD move       frame-ask   so what is dna
+THREAD move       escalation  wait what is entropy
+THREAD move       map-ask     how do these fit together
+THREAD meta       frame-ask   so what
+THREAD meta       question    really
+THREAD meta       question    huh
+THREAD move       escalation  prove it
+THREAD move       escalation  are you sure
+THREAD move       frame-ask   what does it all mean

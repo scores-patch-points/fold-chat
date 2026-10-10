@@ -1,0 +1,384 @@
+{
+ "variant": "fulfill:tutorial",
+ "at": "2026-10-07T06:18:00.809Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The invention of the telephone is a complex topic with different perspectives.\n\nThe history of the telephone is not entirely clear-cut, and there are other claims to have played a role in its development.",
+   "shown": "The invention of the telephone is a complex topic with different perspectives.\n\nThe history of the telephone is not entirely clear-cut, and there are other claims to have played a role in its development.\n\nW\nen.wikipedia.org\nopen ↗\nTelephone - Wikipedia\n26 October 1861: Johann Philipp Reis (1834–1874) publicly demonstrated the Re… This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 4,
+     "kept": 2,
+     "dropped": 2,
+     "unsourced": 2
+    },
+    "dropped": [
+     {
+      "why": "attribution",
+      "detail": "according to",
+      "text": "According to sources, Alexander Graham Bell is often credited with inventing the telephone."
+     },
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "1876",
+      "text": "He is known for filing a patent for his design in 1876."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.29,
+      "mean": 17,
+      "blinks": 0,
+      "dense": 1,
+      "n": 2
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "pass",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The invention of the telephone is a complex topic with different perspectives.",
+    "calls": 2,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "unrelated"
+   },
+   "nRaw": 3,
+   "searched": null,
+   "voidKind": "unsupported",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 28
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "unsupported",
+    "counts": {
+     "sentences": 2,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "searched the web · read 3 source(s)",
+    "wrote the answer · local",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframe · every sentence held on the first try",
+    "void · ⟂ void — read 3 source(s) — Telephone - Wikipedia; History of the telephone - Wikipedia; Did Alexander Graham Bell invent the telephone? | National Museums Scotland — none established the claim; the search itself may have missed; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "How to Write an Essay\n\nHow to Write an Essay\n\nHow to Write an Essay\n\nHow to Write an Essay",
+   "shown": "How to Write an Essay\n\nHow to Write an Essay\n\nHow to Write an Essay\n\nHow to Write an Essay\n\n1\nleverageedu.com “To write an essay” ↗\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 20,
+     "kept": 4,
+     "dropped": 16,
+     "unsourced": 0
+    },
+    "dropped": [
+     {
+      "why": "number_not_given",
+      "detail": "1",
+      "text": "Step 1: Start with an introduction."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "2",
+      "text": "Step 2: Write the body with a topic sentence in each paragraph."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Step 3",
+      "text": "Step 3: End with a conclusion."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Tips",
+      "text": "Tips for your essay: keep to the word limit and write a thesis statement."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "1",
+      "text": "Step 1: Start with an introduction."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "2",
+      "text": "Step 2: Write the body with a topic sentence in each paragraph."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Step 3",
+      "text": "Step 3: End with a conclusion."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Tips",
+      "text": "Tips for your essay: keep to the word limit and write a thesis statement."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "1",
+      "text": "Step 1: Start with an introduction."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "2",
+      "text": "Step 2: Write the body with a topic sentence in each paragraph."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Step 3",
+      "text": "Step 3: End with a conclusion."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Tips",
+      "text": "Tips for your essay: keep to the word limit and write a thesis statement."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "1",
+      "text": "Step 1: Start with an introduction."
+     },
+     {
+      "why": "number_not_given",
+      "detail": "2",
+      "text": "Step 2: Write the body with a topic sentence in each paragraph."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Step 3",
+      "text": "Step 3: End with a conclusion."
+     },
+     {
+      "why": "ungrounded:name",
+      "detail": "Tips",
+      "text": "Tips for your essay: keep to the word limit and write a thesis statement."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 20,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "pass",
+     "number_not_given": "pass",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/",
+    "papersowl.com/",
+    "ivypanda.com/tools/ai-essay-generator/"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 1,
+   "searched": "write essay invented telephone",
+   "creative": true,
+   "voidKind": null,
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+     "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words\nIn the 1980s, mobile phones were invented.\nHere are 10 lines to be included in an essay on telephone:\nTo write an essay on telephone in simple words, first start with an introduction that explains what a telephone is and who invented it.\nKeep your sentences short and clear, use simple words, and organize the essay in 3–4 small paragraphs.\nThe telephone was invented by Alexander Graham Bell in 1876."
+    },
+    {
+     "ref": "gradesfixer.com — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nCustom essay delivered in as few as 3 hours\nWe can write you a custom essay that will follow your exact instructions and meet the deadlines."
+    },
+    {
+     "ref": "essays.io — The Invention of the Telephone, Essay Example | Essays.io",
+     "url": "https://essays.io/the-invention-of-the-telephone-essay-example/",
+     "text": "Relation of Global Warming and Extreme Weather Condition\nThe telephone was invented when telegraph was the dominant player in the telecommunications industry.\nUtilitarianism and Its Applications, Essay Example"
+    }
+   ],
+   "web": [
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/",
+    "https://papersowl.com/",
+    "https://ivypanda.com/tools/ai-essay-generator/"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "write essay invented telephone",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything"
+     }
+    }
+   ],
+   "voidFull": null,
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 3 source(s)",
+    "wrote the answer · local",
+    "followed the conversation · elliptical · searched “write essay invented telephone”",
+    "language · asker en, reply en — same",
+    "creative — no claims checked"
+   ]
+  }
+ ]
+}

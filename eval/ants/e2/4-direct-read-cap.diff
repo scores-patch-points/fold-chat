@@ -1,0 +1,19 @@
+--- a/fold-chat-web.js
++++ b/fold-chat-web.js
+@@ -313,6 +313,7 @@
+ // reachable at all answers in a second or two (measured: 100 ms–2 s), and the public
+ // proxies' failures took 8 s each to arrive.
+ export const GATEWAY_BUDGET_MS = 3500;
++export const DIRECT_BUDGET_MS = 1500;   // E2: the browser's own read of a page; past it the relay chain is tried
+ const hostKey = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
+ const WIKI_RE = /^https?:\/\/([a-z-]+)\.wikipedia\.org\/wiki\/([^?#]+)/i;
+ 
+@@ -404,7 +405,7 @@
+         }
+       } catch (e) {}
+     } }
+-  try { return await attempt(url, "direct", null); } catch (e) {}
++  try { return await attempt(url, "direct", null, (() => { try { return localStorage.getItem("fold-chat:e2cap") === "off" ? timeoutMs : Math.min(timeoutMs, DIRECT_BUDGET_MS); } catch { return Math.min(timeoutMs, DIRECT_BUDGET_MS); } })()); } catch (e) {}   // E2: a CORS-closed host answers only to be refused (5-7 s measured); the relay chain follows as before
+   // AN EXTENSION'S OWN FETCH IS THE DOOR: it has host permissions, so a refusal here is the site's own,
+   // and no proxy or text reader (each a third party that would learn the address) could change it.
+   if (direct) return { ok: false, text: "", title: "", via: null, url, error: "refused", direct: true };

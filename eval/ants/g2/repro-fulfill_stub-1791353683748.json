@@ -1,0 +1,424 @@
+{
+ "variant": "fulfill:stub",
+ "at": "2026-10-07T06:14:03.588Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The question of who invented the telephone is complex.\n\nThe sources say that Alexander Graham Bell is widely credited with inventing the telephone.\n\nDid Alexander Graham Bell invent the telephone?",
+   "shown": "The question of who invented the telephone is complex.\n\nThe sources say that Alexander Graham Bell is widely credited with inventing the telephone.\n\nDid Alexander Graham Bell invent the telephone?\n\nW\nen.wikipedia.org\nopen ↗\nHistory of the telephone - Wikipedia\n… The Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray. …\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 4,
+     "kept": 3,
+     "dropped": 1,
+     "unsourced": 1
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "10",
+      "text": "He is said to have signed and notarized his patent application for the telephone on 10 August 1876."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0.29,
+      "mean": 10,
+      "blinks": 1,
+      "dense": 1,
+      "n": 3
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele"
+   ],
+   "read": 17,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The question of who invented the telephone is complex.",
+    "calls": 1,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "none"
+   },
+   "nRaw": 6,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    },
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "Charles Bourseul, Antonio Meucci, Johann Philipp Reis, Alexander Graham Bell, and Elisha Gray, amongst others, have all been credited with the invention of the telephone.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n14 February 1876: Alexander Graham Bell applies for the patent \"Improvements in Telegraphy\", for electromagnetic telephones using what is now called amplitude modulation (oscillating current and voltage) but which he referred to as \"undulating current\".\n19 February 1876: Gray is notified by the U.S.\nPatent Office of an interference between his caveat and Bell's patent "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nCredit for the invention of the electric telephone is frequently disputed, and new controversies over the issue have arisen from time to time.\nAntonio Meucci, Philipp Reis, Alexander Graham Bell, and Elisha Gray amongst others, have all been credited with the telephone's invention.\nThe Canadian Parliamentary Motion on Alexander Graham Bell article reviews the controversial June 2002 United States House of Representatives resolution recognizing Meucci's contributions 'in' the invention of the telephone (not 'for' the invention of the telephone).\nOn 3 November 1877, Coy applied for and received a franchise from the Bell T"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThe box telephone was the first model of telephone to go on sale.\nAlexander Bell was born in Edinburgh on 3 March 1847.\nIn 1871 Bell moved to the United States.\nThese early experiments in speech creation, along with his knowledge of anatomy, informed his own experiments on transmitting speech, which he began in earnest from 1873.\nAlexander Graham Bell did not think he was inventing a ‘telephone’ during his early experiments.\nSo he filed an application for ‘Improvements in Telegraphy’ on 14 February 1876.\nBell was granted the patent on 7 March 1876.\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nTo m"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nThe Court's decision in the Telephone Cases is notable for the size of the opinions delivered; together, they occupy the entire 126th volume of the United States Reports.\nAdditionally the Bell Company became embroiled in a number of challenges from those companies associated with Antonio Meucci, as shown in the Canadian Parliamentary Motion on Alexander Graham Bell, itself a response to the United States HRes.\nElisha Gray and Alexander Bell telephone controvers"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "Notable people included in this process were Antonio Meucci, Philipp Reis, Elisha Gray and Alexander Graham Bell.\nInnocenzo Manzetti considered the idea of a telephone as early as 1844, and may have made one in 1864, as an enhancement to an automaton built by him in 1849.\nThat is about the same time that Meucci later claimed to have created his first attempt at the telephone in Italy.\nThe resolution said that \"if Meucci had been able to pay the $10 fee to maintain the caveat after 1874, no patent could have been issued to Bell\".\nThe Meucci resolution by the US Congress was promptly followed by a Canada legislative motion by Canada's 37th Parliament, declaring Alexander Graham Bell as the inv"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 28
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "signed notarized patent application telephone 10 August 1876. Alexander Graham",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "question invented telephone complex.",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "signed notarized patent application telephone 10 August 1876. Alexander Graham",
+     "ok": true,
+     "n": 4
+    }
+   ],
+   "voidFull": {
+    "kind": "partial",
+    "counts": {
+     "sentences": 3,
+     "grounded": 2
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     },
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "wrote the answer · local",
+    "scaffolding · 1 source label(s) removed from the model's text, 1 shown as citations",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframed · went back 2 laps · 0 more source(s) read · 0 sentence(s) restated · 2 still failing, marked",
+    "void · ⟂ void — 1 of 3 sentence(s) had no source; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "Essay on Telephone in 100, 200, 300, and 500 Words Essay on Telephone: The telephone is one of the most revolutionary inventions in history, transforming the way people communicate. In this essay on telephone blog, we provide samples of essays and explanations to help students better understand the importance of the telephone in our lives. Here are 10 lines to be included in an essay on telephone: To write an essay on telephone in simple words, first start with an introduction that explains what a telephone is and who invented it.\n\nThe telephone was invented by Alexander Graham Bell in 1876.\n\nHome — Essay Samples — Science — Telephone — Invention of Telephone\n\nThis essay delves into the invention of the telephone, its impact on society, and its enduring relevance in today's interconnected world. In 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone. These innovations marked the evolution of the telephone from a novel invention to an essential tool for daily life.\n\nIn conclusion, the invention of the telephone by Alexander Graham Bell marked a pivotal moment in human history, forever changing the way we communicate and connect.\n\nAlexander Graham Bell was born on March 3,1847 in Edinburgh,Scotland and died on August [...]\n\nRelation of Global Warming and Extreme Weather Condition The aim of the paper is to discuss the evolution of the telephone and the effects of this evolution on society. The name of the professor was Alexander Graham Bell, and the invention of the telephone forever carved his name into the history of the human technical progress.\n\nHistory says that the President of Western Union refused to buy out Bell’s patent for $100,000 and to monopolize the telecommunications industry, because he did not even imagine how they could use that electric toy (Ronell, 1991). Bell, however, did not have any doubts about the unbelievable future of his invention.",
+   "shown": "fold note\nNone of the model's sentences could be traced to what was read, so the sources' own words are shown instead.\nFROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS\n‹ Prev\n1 of 3\nNext ›\nEssay on Telephone in 100, 200, 300, and 500 Words Essay on Telephone: The telephone is one of the most revolutionary inventions in history, transforming the way people communicate. In this essay on telephone blog, we provide samples of essays and explanations to help students better understand the importance of the telephone in our lives. Here are 10 lines to be included in an essay on telephone: To write an essay on telephone in simple words, first start with an introduction that explains what a telephone is and who invented it. …\n… The telephone was invented by Alexander Graham Bell in 1876. …\nS1\nfrom leverageedu.com\nopen ↗\nTip the creator\nread as\nRead your question as being about Did Alexander Graham Bell and History of the telephone.\nnot Did Alexander Graham Bell\nnot History of the telephone\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 1,
+     "kept": 0,
+     "dropped": 1,
+     "unsourced": 0
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:name",
+      "detail": "Certainly",
+      "text": "Certainly, I'd be happy to help you write an essay on the telephone!"
+     }
+    ],
+    "gap": {
+     "kind": "nothing_survived",
+     "why": "every sentence of the draft was withheld"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [
+    {
+     "kind": "fold",
+     "text": "None of the model's sentences could be traced to what was read, so the sources' own words are shown instead."
+    },
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Did Alexander Graham Bell and History of the telephone."
+    }
+   ],
+   "reads": [
+    "leverageedu.com/discover/school-education/essay-on-telephone/",
+    "gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "essays.io/the-invention-of-the-telephone-essay-example/"
+   ],
+   "read": 3,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": "sources",
+   "provenance": null,
+   "nRaw": 1,
+   "searched": "Did Alexander Graham Bell History of the telephone write me an essay on this",
+   "creative": true,
+   "voidKind": null,
+   "snips": [
+    {
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words Essay on Telephone: The telephone is one of the most revolutionary inventions in history, transforming the way people communicate. In this essay on telephone blog, we provide samples of essays and explanations to help students better understand the "
+    },
+    {
+     "text": "The telephone was invented by Alexander Graham Bell in 1876."
+    },
+    {
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone"
+    },
+    {
+     "text": "This essay delves into the invention of the telephone, its impact on society, and its enduring relevance in today's interconnected world. In 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone. These innovations marked the evolution of the telephone from a nov"
+    },
+    {
+     "text": "In conclusion, the invention of the telephone by Alexander Graham Bell marked a pivotal moment in human history, forever changing the way we communicate and connect."
+    },
+    {
+     "text": "Alexander Graham Bell was born on March 3,1847 in Edinburgh,Scotland and died on August [...]"
+    },
+    {
+     "text": "Relation of Global Warming and Extreme Weather Condition The aim of the paper is to discuss the evolution of the telephone and the effects of this evolution on society. The name of the professor was Alexander Graham Bell, and the invention of the telephone forever carved his name into the history of"
+    },
+    {
+     "text": "History says that the President of Western Union refused to buy out Bell’s patent for $100,000 and to monopolize the telecommunications industry, because he did not even imagine how they could use that electric toy (Ronell, 1991). Bell, however, did not have any doubts about the unbelievable future "
+    }
+   ],
+   "fell": "facing",
+   "passages": [
+    {
+     "ref": "leverageedu.com — Essay on Telephone in 100, 200, 300, and 500 Words - Leverage Edu",
+     "url": "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+     "text": "Essay on Telephone in 100, 200, 300, and 500 Words\nEssay on Telephone: The telephone is one of the most revolutionary inventions in history, transforming the way people communicate.\nIn this essay on telephone blog, we provide samples of essays and explanations to help students better understand the importance of the telephone in our lives.\nHere are 10 lines to be included in an essay on telephone:\nTo write an essay on telephone in simple words, first start with an introduction that explains what a telephone is and who invented it.\nKeep your sentences short and clear, use simple words, and organize the essay in 3–4 small paragraphs.\nThe telephone was invented by Alexander Graham Bell in 1876."
+    },
+    {
+     "ref": "gradesfixer.com — Invention of Telephone - Telephone Topic Essay",
+     "url": "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+     "text": "Home — Essay Samples — Science — Telephone — Invention of Telephone\nIts creation by Alexander Graham Bell in the late 19th century revolutionized human interaction and paved the way for a new era of global connectivity.\nThis essay delves into the invention of the telephone, its impact on society, and its enduring relevance in today's interconnected world.\nIn 1876, Alexander Graham Bell received a patent for his revolutionary invention—the telephone.\nThese innovations marked the evolution of the telephone from a novel invention to an essential tool for daily life.\nThe telephone's journey did not end with the original invention.\nThe 20th century witnessed the expansion of telephone networks an"
+    },
+    {
+     "ref": "essays.io — The Invention of the Telephone, Essay Example | Essays.io",
+     "url": "https://essays.io/the-invention-of-the-telephone-essay-example/",
+     "text": "Relation of Global Warming and Extreme Weather Condition\nThe aim of the paper is to discuss the evolution of the telephone and the effects of this evolution on society.\nThe name of the professor was Alexander Graham Bell, and the invention of the telephone forever carved his name into the history of the human technical progress.\nBell was the teacher of acoustics and a student in electricity, and worked hard to create a device that would let people transmit voice messages at a distance (Casson, 2007).\nOn March 7, 1876, the U.S.\nPatent Office granted Bell the most valuable patent ever issued (Coe, 2006).\nHistory says that the President of Western Union refused to buy out Bell’s patent for $100"
+    }
+   ],
+   "web": [
+    "https://leverageedu.com/discover/school-education/essay-on-telephone/",
+    "https://gradesfixer.com/free-essay-examples/invention-of-telephone/",
+    "https://essays.io/the-invention-of-the-telephone-essay-example/"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "Did Alexander Graham Bell History of the telephone write me an essay on this",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "Did Alexander Graham Bell History of the telephone write me an essay on this",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "an encyclopedic ask (definition, history, comparison)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": null,
+   "process": [
+    "searched the web · read 3 source(s)",
+    "wrote the answer · local",
+    "followed the conversation · carried · searched “Did Alexander Graham Bell History of the telephone write me an essay on this”",
+    "language · asker en, reply en — same",
+    "fell back · the model did not answer (no model reachable) — drew the sources-only strand instead, no model",
+    "the sources' own words, unchanged — no model wrote this, so nothing is scored"
+   ]
+  }
+ ]
+}

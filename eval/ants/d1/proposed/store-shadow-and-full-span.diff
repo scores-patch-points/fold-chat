@@ -1,0 +1,12 @@
+--- a/fold-chat.js	2026-10-07 02:20:27
++++ b/fold-chat.js	2026-10-07 02:20:27
+@@ -2599,7 +2599,7 @@
+       const record = recordable(kind) ? ground.turnRecord(strand ? "" : text, material, { turn, question: lastUser?.content || "", model: m.id, sealed: !!m.sealed, effort }) : null;
+       if (record && webTrace) record.web = webTrace;
+       // what this turn read, kept (clipped) so a follow-up can use and cite it without searching again
+-      if (record && webPassages.length) record.passages = webPassages.slice(0, 8).map((p) => ({ ref: p.ref, source: p.source, url: p.url, title: p.title, domain: p.domain, text: String(p.text || "").slice(0, 2400) }));
++      if (record && webPassages.length) record.passages = webPassages.slice(0, 8).map((p) => ({ ref: p.ref, source: p.source, url: p.url, title: p.title, domain: p.domain, text: String(p.text || "").slice(0, 3000), shadow: p.shadow ? { chars: p.shadow.chars, hash: p.shadow.hash, segments: p.shadow.segments } : undefined }));   // 3000 = IMPRESSION_BUDGET, so a claim's support span is never cut off the stored text; the shadow maps a span back to the page (impression.js originalSpan)
+       if (record && recLoop) {
+         record.loop = recLoop;
+         const lp = recLoop.passes.length, S = recLoop.after || {};
+\ No newline at end of file

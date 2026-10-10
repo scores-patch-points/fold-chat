@@ -1,0 +1,158 @@
+{
+ "variant": "fulfill:tutorial",
+ "at": "2026-10-07T05:24:07.214Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The question of who invented the telephone is complex and the subject of much debate.\n\nThe sources say that Alexander Graham Bell is often credited with the invention of the telephone.\n\nThe sources also indicate that there were other inventors working on similar devices around the same time.",
+   "shown": "The question of who invented the telephone is complex and the subject of much debate.\n\nThe sources say that Alexander Graham Bell is often credited with the invention of the telephone.\n\nThe sources also indicate that there were other inventors working on similar devices around the same time.\n\nW\nWikipedia\nopen ↗\nHistory of the telephone\n… The Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray. …\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 4,
+     "kept": 3,
+     "dropped": 1,
+     "unsourced": 2
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "1876",
+      "text": "He signed and notarized his patent application for the telephone on February 1876."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.05,
+      "mean": 16,
+      "blinks": 0,
+      "dense": 1,
+      "n": 3
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The question of who invented the telephone is complex and the subject of much debate.",
+    "calls": 2,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "unrelated"
+   },
+   "nRaw": 4,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "The Telephone Cases, 126 U.S.\ncourt cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nIn all, the American Bell Telephone Company and its successor, AT&T, litigated 587 court challenges to its patents, including five that went t"
+    },
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "In 1876, shortly after Bell's patent application, Hungarian engineer Tivadar Puskás proposed the telephone switch, which allowed for the formation of telephone exchanges, and eventually networks.\nPatent 161,739 \"Transmitters and Receivers for Electric Telegraphs\" is granted.\n11 February 1876: Elisha Gray invents a liquid transmitter for use with the telephone but does not build one.\n14 February 1876: Alexander Graham Bell applies for the patent \"Improvements in Telegraphy\", for electromagnetic telephones using what is now called amplitude modulation (oscillating current and voltage) but which he referred to as \"undulating current\".\n19 February 1876: Gray is notified by the U.S.\nPatent Office"
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "House of Representatives for his contributory work on the telephone.\nThe telephone exchange was an idea of the Hungarian engineer Tivadar Puskás (1844–1893) in 1876, while he was working for Thomas Edison on a telegraph exchange.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along with Herrick P. Frost and Walter Lewis, who provided the capital, established the District Telephone Company of New Haven on 15 January 1878.\n28 December 1871: Antonio Meucci files a patent caveat (No. 3353, a notice of intent to invent, but not a formal patent application) at the U.S.\nPatent 161,739 \"Transmitters and Receiver"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nCo., 32 F. 214, and\nCo., 22 F. 309 and 25 F. 725.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nThe Court's decision in the Telephone Cases is notable for the size of the opinions delivered; together, they occupy the entire 126th volume of the United States Reports.\nElisha Gray and Alexander Bell telephone controversy\nWho Invented the Telephone?: "
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "He called his device \"teletrofono\".\nDrawings and notes by Antonio Meucci dated September 27, 1870, show coils of wire on long-distance telephone lines.\nMeucci's 1871 caveat did not mention any of the telephone features later credited to him by his lawyer, and which were published in that Scientific American Supplement, a major reason for the loss of the 'Bell v.\nThe Reis telephone was developed from 1857 onwards.\nCyrille Duquet invents the handset.Duquet obtained a patent on 1 Feb.\n1878 for a number of modifications \"giving more facility for the transmission of sound and adding to its acoustic properties,\" and in particular for the design of a new apparatus combining the speaker and receiver"
+    },
+    {
+     "ref": "Wikipedia — Alexander Graham Bell",
+     "url": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+     "text": "He also co-founded the American Telephone and Telegraph Company (AT&T) in 1885.\npatent for the telephone, on March 7, 1876.\nAlthough enrolled as a student in Latin and Greek, he instructed classes himself in return for board and £10 per session.\nIn 1868, Bell completed his matriculation exams and was accepted for admission to University College London, though he did not complete his studies, as his family emigrated to Canada in 1870 following the deaths of his brothers Edward and Melville from tuberculosis.\nThroughout late 1867, his health faltered mainly through exhaustion.\nHe outlined this in an 1898 paper detailing his belief that, with resources and effort, the deaf could be taught to re"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No answer was written: no source could be read to write one from.\n⟂\nno source was reached\nSearched for “write me an essay on this”: Web failed — Web search answered 502. Nothing readable came back.\nWeb — failed: Web search answered 502\nto close it: try the question again · attach the document you are working from · rephrase it with a name or a place the search can find\ntry again\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [],
+   "reads": [],
+   "read": 0,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "write essay invented telephone",
+   "voidKind": "unreached",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": []
+  }
+ ]
+}

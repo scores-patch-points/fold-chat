@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "meerkat",
+  "organ": "khora/native/kernel/orientation.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/meerkat.json"
+  ],
+  "whatTheyArgued": "Field studies of Kalahari meerkats (Clutton-Brock et al. 1999, Science 284:1640) found sentinel guarding is individually self-interested: animals guard from safe sites mostly once fed, and are often first to detect predators and bolt. Later work (Manser and colleagues) shows sentinels are not silent: they give surveillance calls (the 'watchman's song' family; single/double-note calls act as all-clear) that tell foragers a sentinel is present and how it is placed, and foragers adjust their own vigilance in response; predator-specific alarm calls convey type and urgency.",
+  "scholarship": [
+    {
+      "ref": "Clutton-Brock et al. 1999, 'Selfish sentinels in cooperative mammals', Science 284(5420):1640-1644 (read via search-result summaries and the UZH record, not the full paper)",
+      "url": "https://www.zora.uzh.ch/entities/publication/ce4ec43f-eef3-4133-aeaa-3db759e3820b",
+      "supports": "guarding from safe sites once satiated; challenges altruism explanations",
+      "disputes": "contrast with older altruistic accounts of sentinels"
+    },
+    {
+      "ref": "Meerkat vocal sequences / sentinel calling literature (PMC7488032; found in search, summarized in search result, full page fetch failed)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7488032",
+      "supports": "six sentinel call types; surveillance calls signal sentinel presence, satiation and height; foragers adjust vigilance",
+      "disputes": "none stated"
+    },
+    {
+      "ref": "Wikipedia 'Meerkat' (read; cites Manser et al. on alarm-call information)",
+      "url": "https://en.wikipedia.org/wiki/Meerkat",
+      "supports": "alarm calls encode predator type and urgency and elicit different responses",
+      "disputes": "tertiary source only"
+    }
+  ],
+  "ourUse": "orientation.js deriveOrientation(): gathers open expectations, obligations and tasks from the fold into an EOOrientation record that conditions what to attend to next. Its header: orientation is transient, defeasible, 'conditions attention but is not witness'. That design rule is sound, but is justified in the compendium by a claim about meerkats.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "sentinel-reports-nothing",
+      "kind": "misstated",
+      "ours": "Compendium: the watch 'itself reports nothing about the world's dangers - the watch is orientation, never evidence'; orientation.js Handle line: 'never itself evidence of what it's watching for'.",
+      "theirs": "Sentinels do report: surveillance calls and alarm calls carry information (presence, all-clear, predator type, urgency) and foragers use it as evidence. The sentinel stance is informative to the group; it is only fallible and self-interested."
+    },
+    {
+      "id": "selfish-not-service",
+      "kind": "reinterpreted",
+      "ours": "A watch that serves the group's attention.",
+      "theirs": "Clutton-Brock et al.: sentinels guard when it is individually optimal (fed, from safe sites); group benefit is a by-product, not the point."
+    },
+    {
+      "id": "analogy-is-design-rule",
+      "kind": "decorative",
+      "ours": "The orientation-is-not-witness rule is credited to meerkat behavior.",
+      "theirs": "The rule comes from our own epistemics (attention must not launder belief); the biology neither supports nor needs it."
+    }
+  ],
+  "fix": [
+    "compendium meerkat.work: 'Sentinel meerkats stand guard from safe sites, mainly once fed, and call to the group while they do (surveillance and alarm calls), which foragers use to adjust their own vigilance. Our orientation module borrows only the image of a raised watch; the rule that orientation is not evidence is our own design, not the meerkats'.'",
+    "orientation.js Handle line: change 'is never itself evidence' from attributed to the animal to 'our rule'.",
+    "Alternative: re-label the archon a nomination (our name) if no biological claim is wanted."
+  ]
+}

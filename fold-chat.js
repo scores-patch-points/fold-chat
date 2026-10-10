@@ -21,6 +21,8 @@ import * as ground from "./fold-chat-ground.js";
 import { presentationOf, agreementOf, salientSentences } from "./fold-chat-present.js";
 import { renderPresented, mountLive, armTailReplay, renderTapeStrip } from "./fold-chat-presentview.js";
 import * as shelf from "./fold-chat-book.js";
+import * as bookfold from "./fold-chat-bookfold.js";   // the mechanical FOLD of a shelfed book (no model): the chapter-reduction rung the shelf lacked
+import * as bookscenes from "./fold-chat-bookscenes.js";   // the SCENES BENEATH the fold: Murch-cut scenes, each event the book's own sentence, verbatim at its address
 import * as web from "./fold-chat-web.js";
 import { falsifyAnswer, FAILING, claimSentences, routeOf, pickPassages, restateClaimMessages, replaceSentence, reImpress } from "./fold-chat-falsify-answer.js";
 // What this tab has already read, and which hosts turned it away: a follow-up about the same pages costs no fetch.
@@ -59,7 +61,7 @@ import { provenanceFor, provenanceEnabled } from "./fold-chat-provenance.js";
 import { findPrimary, mergeProvenance } from "./fold-chat-primary.js";
 import { fetchLoaded, describeLoaded, noModelWhy, createLoadedPoller } from "./fold-chat-loaded.js";
 import { createPageEngine, canonicalModelId, ollamaTagOf, MODEL_CHOICES } from "./fold-chat-webllm.js";
-import { snipsOf, strandText, storeSnip, verifySnips } from "./fold-chat-strand.js";
+import { snipsOf, strandText, storeSnip, verifySnips, STRAND } from "./fold-chat-strand.js";
 import { slotTurnWanted, slotPipelineOn, runSlotTurn, endsTurn, answerLine, storeAnswerTurn, traceFeed, answerRecordNote, answerProcessLine } from "./fold-chat-answerwire.js";
 import { mountAnswerCard } from "./fold-chat-answercard.js";
 import { pivotText, verifyPivot, storePivot, pivotLine, standingLine, pivotEnabled, relevantPassages } from "./fold-chat-pivot.js";
@@ -94,6 +96,7 @@ import { mountMonitor } from "./fold-chat-monitor.js";
 import { createTaint } from "./fold-chat-seal.js";
 import { createRedactor, DEFAULT_REDACTOR } from "./fold-chat-redact.js";
 import * as life from "./fold-chat-sessions.js";
+import { clipAsk } from "./fold-chat-clip.js";
 
 const PRESETS = Object.freeze({
   plain: { label: "Plain", system: "You are a helpful assistant. Reply directly, briefly, and naturally, the way a person would. If the person just says hi or asks how you are, answer in kind and offer to help — do not ask them for files or material." },
@@ -1896,6 +1899,10 @@ export function mount(root, opts = {}) {
     let watcherPre = null;
     try { watcherPre = watchPre({ ask: said, prior: askAt > 0 ? s.messages.slice(0, askAt) : [], opts: { referents: s.referents || null, rejected: rejectedSurfaces(s.minds), hints: hintsFor(lang0 === "unknown" ? "en" : lang0), lang: lang0 } }); } catch (e) { /* an aid, never a reason to lose a turn */ }
     const question = follow.retry || said;
+    // A BOOK ASK (fold-chat-book.js): the person named a book the fold holds WHOLE. The fold reads it — it never searches
+    // the web for what it can read itself. `content` distinguishes "summarize war and peace" (read and narrate) from a bare
+    // mention ("war and peace?"), where the fold offers the two ways it could go.
+    const bookask = shelf.bookAsk(question);
     // WHAT IS ASKED TO BE PRODUCED (fold-chat-outputtype.js, pure, no model): "write me an essay on this" is an ESSAY about the telephone, not a lookup of the
     // instruction. `searchQuery` is the TOPIC (resolved through the thread: "who invented the telephone"), never "write essay invented telephone"; `needsSources`
     // says whether this kind of piece grounds in sources at all (a poem, a joke, a tagline does not); `voidIfMissing` are the typed gaps for fold-chat-genvoid.js.
@@ -2018,7 +2025,8 @@ export function mount(root, opts = {}) {
     // a piece that needs no outside facts (a poem, a toast) has no claim for the model to invent, so it may be written without a source. DECISION FOR THE BOSS: ALONE_KINDS (fold-chat-gaps.js) is [] today; this is
     // the one place that says "creative, needs no sources, no typed gap" may stand alone. Both the barrier below (aloneBarred) and Gary's door (materialInView) read it.
     const mayWriteAlone = modelSpeaksAlone(kind) || (producing && !outType.needsSources && !activeGap && (kind === "generate" || kind === "compose"));
-    const wantWeb = !skipsSearch(kind) && !!question && follow.mode === "web" && !noLookup && !recall && !srcRecall && !primaryAsk && !needlessSearch && !activeGap;
+    let wantWeb = !skipsSearch(kind) && !!question && follow.mode === "web" && !noLookup && !recall && !srcRecall && !primaryAsk && !needlessSearch && !activeGap;
+    if (bookask && follow.mode === "web") wantWeb = true;   // a book ask is ALWAYS read from the shelf: the fold reads what it holds, it does not guess or defer to the web
     if (srcRecall) feedPush(lineEvent(tt, srcRecall.inspect ? "Read back what I did last turn" : srcRecall.fromBaton ? "Read back what the last turn did" : "Read back where the last answer came from", { tone: "ok", note: `${srcRecall.turn ? "turn " + srcRecall.turn + " \u00b7 " : ""}no search, no model` }));
     if (recall) feedPush(lineEvent(tt, "Read back what I said", { tone: "ok", note: `from the record at ${recall.address} \u2014 no search, no model` }));
     if (noLookup) feedPush(lineEvent(tt, "Nothing to look up", { tone: "info", note: lookup.why + " \u2014 so I did not search" }));    // A live-data ask (weather, a price, a score, today's news) can only be answered from a
@@ -2057,6 +2065,50 @@ export function mount(root, opts = {}) {
               sourceBlock = shelf.bookPrompt(onShelf, found, question) + "\n\n" + sourcesPrompt(webPassages);
               feedPush(lineEvent(tt, `Kept ${found.passages.length} scenes`, { tone: "ok", note: found.passages.map((p) => p.bookPlace.book.replace(/ \(.*\)/, "") + " · " + p.bookPlace.chapter).join(", ") }));
               say(`turn · ${kindWord} · read ${onShelf.title} · ${placeLabel(m)} · answering…`);
+            } else {
+              // THE FOLD (fold-chat-bookfold.js): the ask names no person — it is about the book ITSELF (its plot,
+              // story, summary, themes). The shelf kept nothing because it is a FIND; this is the chapter-reduction
+              // FOLD it lacked: each chapter reduced to the sentence where the book's own cast is densest, chapters
+              // folded into books. No model writes it — Houdini holds every cut (a line naming no being is folded out).
+              const fold = bookfold.plotFold(parsed.text, parsed, onShelf, question);
+              if (fold.passages.length) {
+                webPassages = fold.passages;
+                webTrace = [{ scope: "book", engine: `${onShelf.title} · folded (no model)`, n: fold.withLine, ok: true }, ...fold.passages.map((p) => ({ read: p.url, via: "book fold", chars: p.text.length }))];
+                // A fold turn's own material is the book's folded event lines: kept whole in the Sources-only view (the fold IS the
+                // summary), so the 17 book folds are not cut to the strand's usual five. No answerSpan — a fold line is the answer.
+                const foldChars = fold.passages.reduce((a, p) => a + p.text.length, 0);
+                const foldLimits = { ...STRAND, maxPassages: Math.max(STRAND.maxPassages, fold.passages.length), totalChars: Math.max(STRAND.totalChars, foldChars + 400), minimal: false };
+                bookFound = { names: fold.cast.slice(0, 8), focal: null, matched: fold.withLine, chapters: fold.chapterCount, passages: fold.passages, book: onShelf, paras: parsed.paras.length, chars: parsed.chars, fold: true, foldLimits };
+                try { pvLive?.book(onShelf, { names: fold.cast.slice(0, 8), matched: fold.withLine, chapters: fold.books.length, paras: parsed.paras.length }); pvLive?.passages(fold.passages); } catch {}
+                sourceBlock = bookfold.foldPrompt(onShelf, fold, question) + "\n\n" + sourcesPrompt(webPassages);
+                feedPush(lineEvent(tt, `Folded ${fold.chapterCount} chapters into ${fold.books.length} books`, { tone: "ok", note: `${fold.withLine} chapters kept an event line; ${fold.foldedOut} lines about the telling folded out \u2014 no model` }));
+                // THE SCENES BENEATH (fold-chat-bookscenes.js): the seam cuts each chapter at Murch's blinks and binds each
+                // scene's events — every event the book's own sentence, VERBATIM at its byte address. The fold never WRITES an
+                // event; it lifts what the grammar bound. An aid — never a reason to lose a turn.
+                try {
+                  const scenes = bookscenes.bookScenesFor(parsed.text, parsed, onShelf, { maxScenes: 2, maxEvents: 2, progress: (t) => feedPush(lineEvent(tt, t, { tone: "info" })) });
+                  let ev = 0;
+                  for (const p of scenes.per) for (const s of p.scenes) ev += s.events.length;
+                  bookFound.scenes = scenes;
+                  if (scenes.per.length) {
+                    const scenePassages = scenes.per.filter((p) => p.scenes.length).map((p) => {
+                      const top = p.scenes[0]; const e = top?.events?.[0];
+                      return e ? { ref: `${onShelf.title} \u2014 ${top.ref} scene`, url: onShelf.home, source: onShelf.home,
+                        text: e.text, at: { start: e.at, end: e.at + e.len }, via: onShelf.via, bookPlace: { book: p.book, chapter: top.chapter }, scene: true } : null;
+                    }).filter(Boolean);
+                    if (scenePassages.length) {
+                      webPassages = [...webPassages, ...scenePassages];
+                      foldLimits.maxPassages = Math.max(foldLimits.maxPassages, webPassages.length);
+                      foldLimits.totalChars = Math.max(foldLimits.totalChars, webPassages.reduce((a, p) => a + p.text.length, 0) + 400);
+                      sourceBlock += "\n\n" + bookscenes.scenePromptFor(onShelf, scenes);
+                      try { pvLive?.passages(scenePassages); } catch {}
+                    }
+                    feedPush(lineEvent(tt, `Cut ${scenes.cut} scenes across ${scenes.per.length} books`, { tone: "ok", note: `${ev} events, every one verbatim at its address \u2014 no model wrote an event` }));
+                  }
+                } catch (e) { feedPush(lineEvent(tt, "Scenes didn't fold", { tone: "warn", note: String(e?.message || e).slice(0, 90) + " \u2014 the book folds still hold" })); }
+                feedPush(lineEvent(tt, `Kept ${fold.passages.length} book folds`, { tone: "ok", note: fold.plot.filter((p) => p.line).map((p) => p.label.replace(/ \(.*\)/, "")).join(", ").slice(0, 200) }));
+                say(`turn \u00b7 ${kindWord} \u00b7 folded ${onShelf.title} \u00b7 ${webPassages.length} addressed passages \u00b7 ${placeLabel(m)} \u00b7 answering\u2026`);
+              }
             }
           } catch (e) {
             if (ac.signal.aborted) throw e;
@@ -2167,11 +2219,13 @@ export function mount(root, opts = {}) {
     // SOURCES ONLY (answer mode "snips"): no model at all — the answer is the passages the pages gave, verbatim,
     // chosen with no model (structured block first, else the sentences that differ the ask), strung together.
     let strand = null, strandEmpty = false, strandWhy = "";
+    // A FOLD turn (bookFound.fold) keeps its whole fold in the Sources-only view; every other turn takes the strand's usual limits.
+    const foldOpts = bookFound?.foldLimits ? { limits: bookFound.foldLimits } : undefined;
     // A slot turn is marked like a strand (no model, authored by the sources, never scored: its answer line is the source sentence's own words) but it
     // carries no snips — the card (fold-chat-answercard.js) draws it. Every strand-guarded step below therefore stands down for it, as it should.
     if (slotTurn) strand = { snips: [], dropped: [], slotTurn };
     if (answerMode === "snips" && wantWeb && webPassages.length && !slotTurn) {
-      strand = snipsOf(webPassages, searchQ);
+      strand = snipsOf(webPassages, searchQ, foldOpts);
       if (!strand.snips.length) { strandWhy = [...new Set((strand.gaps || []).map((g) => g.reason).filter(Boolean))].slice(0, 3).join("; "); strand = null; strandEmpty = true; plan = unsourcedPlan(UNSOURCED_ANSWERS, { live: false }); }   // the typed gaps say why (a wall, a gate, only menus and notices)
       else { say(`turn · ${kindWord} · sources only · stringing ${strand.snips.length} passage(s) together (no model)…`); feedPush(lineEvent(tt, "Strung the sources' passages together", { tone: "ok", note: `${strand.snips.length} passage(s), their own words \u2014 no model` })); }
     }
@@ -2266,7 +2320,7 @@ export function mount(root, opts = {}) {
         feedPush(lineEvent(tt, "No model is reachable", { tone: "bad", note: "so nothing was written \u2014 the sources are not shown as the " + genOt.type }));
       } else if (!skipModel && m.none) {
         const why = noModelWhy({ bridgeUp: modelsUp, models, selectedId: s.model || null, page: pageState() });
-        const fb = wantWeb && webPassages.length && !producing ? snipsOf(webPassages, searchQ) : null;   // quoting pages is never the essay
+        const fb = wantWeb && webPassages.length && (!producing || bookFound?.fold) ? snipsOf(webPassages, searchQ, foldOpts) : null;   // quoting pages is never the essay — but a book FOLD is the summary the reader asked for, so it stands when the model cannot
         if (!fb || !fb.snips.length) throw Object.assign(new Error("no model \u2014 " + (why.text || "none is available")), modelsUp ? {} : { status: 0 });
         fellBack = noModelFallbackNotice(why, { from: answerMode });
         strand = fb; skipModel = true;        feedPush(lineEvent(tt, "No model is reachable", { tone: "info", note: "so I'll show what the sources say" }));
@@ -2314,7 +2368,7 @@ export function mount(root, opts = {}) {
           say(`turn \u00b7 ${kindWord} \u00b7 the model did not answer \u00b7 nothing was written`);
         } else {
         if (ac.signal.aborted || !wantWeb || !webPassages.length || producing) throw modelErr;   // a failed WRITING turn is a failed turn (failTurn: a typed note + retry), never "from the sources, unchanged"
-        const fb = snipsOf(webPassages, searchQ);
+        const fb = snipsOf(webPassages, searchQ, foldOpts);
         if (!fb.snips.length) throw modelErr;
         fellBack = declinedFallbackNotice(modelErr, { from: answerMode });        strand = fb; skipModel = true; out = { text: "", tokens: 0 };
         for (const n of [...body.childNodes]) if (n.nodeType === 3) n.remove();   // any words the model had streamed are dropped, not shown
@@ -2358,6 +2412,9 @@ export function mount(root, opts = {}) {
       // never `content`: `content` is only what the model wrote.
       const notices = [];
       if (fellBack) notices.push(fellBack);
+      // A BOOK FOLD is the fold's own reading of a whole book: say so, and offer the alternative — the person can always ask for
+      // what people say online instead of what the book says.
+      if (bookFound?.fold) notices.push({ kind: "book", text: `I read the whole of ${bookFound.book.title} and folded it from its own words \u2014 no model wrote the fold. If you'd rather I search online and see what people say about it, just ask.` });
       // The tab's engine could not load the chosen model and answered with its small fallback: said, never hidden.
       if (out.fellBackFrom) notices.push({ kind: "fold", text: `${tabName(out.fellBackFrom)} would not load in this tab, so ${tabName(out.model)} answered instead (smaller; expect a plainer answer).` });
       // THE MODEL MAY NOT SHOW THE FOLD'S SCAFFOLDING, OR NAME A SOURCE THE PAGE DID NOT GIVE IT
@@ -2953,6 +3010,41 @@ export function mount(root, opts = {}) {
     setEngagement("code");
     E.input.placeholder = `what should change? (starts from ${r.version.round === 0 ? "the earlier version" : "attempt " + r.version.round})`;
     E.input.focus();
+  }
+  // "Type it, get the cut": a clip/stitch sentence is a CUT, not a chat turn — the parser
+  // (fold-chat-clip.js) is deterministic, the cut happens on the reader's own machine by the
+  // yt-dlp helper, and the model invents nothing. Results land in clips/ on the fold surface
+  // (the holodeck dev server), which is where any clip is meant to be watched.
+  async function runClip(id, spec) {
+    const s = sessions[id]; if (!s) return;
+    const base = (() => { try { return (localStorage.getItem("hd:ytdl") || "").replace(/\/+$/, "") || "http://127.0.0.1:11450"; } catch (e) { return "http://127.0.0.1:11450"; } })();
+    const surface = "http://127.0.0.1:8813";   // the fold surface serves /clips/*; FOLD_SURFACE to change
+    const clk = x => { const t = Math.max(0, Math.round(x)); const h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60), r = t % 60; return (h ? h + ":" + String(m).padStart(2, "0") : String(m)) + ":" + String(r).padStart(2, "0"); };
+    const reply = (content, at) => {
+      s.messages.push({ role: "assistant", content, at: at || now(), mode: "chat" });
+      s.updated = now(); save("fold-chat:sessions", sessions);
+      appendMsg(s, "assistant", content, { index: s.messages.length - 1, mode: "chat" });
+    };
+    const appendAside = (content) => appendMsg(s, "assistant", content, { index: s.messages.length, mode: "chat" });
+    appendAside(spec.kind === "stitch" ? "Stitching…" : "Clipping…");
+    try {
+      const segs = (spec.segments || []).map(x => "seg=" + encodeURIComponent(x.start + "-" + x.end)).join("&");
+      const u = spec.kind === "stitch"
+        ? base + "/stitch?id=" + encodeURIComponent(spec.id) + "&name=" + encodeURIComponent(spec.name) + (segs ? "&" + segs : "")
+        : base + "/clip?id=" + encodeURIComponent(spec.id) + "&start=" + encodeURIComponent(String(spec.segments[0].start)) + "&end=" + encodeURIComponent(String(spec.segments[0].end)) + "&name=" + encodeURIComponent(spec.name);
+      const r = await fetch(u);
+      if (!r.ok) throw new Error("the yt-dlp helper answered HTTP " + r.status);
+      const man = await r.json();
+      const ticks = man.segments.map(x => "[" + clk(x.start) + "–" + clk(x.end) + "]").join(" + ");
+      const href = surface + (man.url || "/clips/" + encodeURIComponent(man.name) + ".mp4");
+      reply("**" + man.name + "** — " + man.duration + "s " + spec.kind +
+        "\n\n" + ticks + " · source `" + spec.id + "`" +
+        "\n\n▶ " + (href.length > 90 ? "[" + man.name + ".mp4](" + href + ")" : href) +
+        "\n\n_(a cut of real bytes, made by yt-dlp on this machine — watch it on the fold surface at " + surface + ")_");
+      return;
+    } catch (e) {
+      reply("The " + spec.kind + " failed: " + String(e && e.message || e) + " — is the yt-dlp helper running? (`python3 tools/ytdl-helper.py`)");
+    }
   }
   async function runCode(id = activeId) {
     const s = sessions[id]; if (!s) return;
@@ -3624,7 +3716,21 @@ export function mount(root, opts = {}) {
         const raw = await file.text();
         taint.addFromText(raw, "local-read"); taint.add(file.name, "filename");
         const reading = await client.read(raw, { base: bridge, source: file.name, sessionId: sessions[activeId]?.codeSessionId || null });
-        const s = sessions[activeId] || (newChat(), sessions[activeId]);
+const s = sessions[activeId] || (newChat(), sessions[activeId]);
+    // A typed clip/stitch sentence is a CUT, never a model turn: the parser is
+    // deterministic, the cut is real bytes on this machine, and nothing is invented.
+    const clip = clipAsk(text);
+    if (clip) {
+      E.input.value = ""; E.input.style.height = "auto";
+      s.messages.push({ role: "user", content: text, at: now(), mode: normMode(engagement) });
+      s.title = s.title === "New chat" ? text.slice(0, 46) : s.title; s.updated = now();
+      save("fold-chat:sessions", sessions);
+      setView(false);
+      appendMsg(s, "user", text, { index: s.messages.length - 1, mode: normMode(engagement) });
+      renderChats();
+      runClip(s.id, clip);
+      return;
+    }
         const note = readingNote(file.name, raw.length, reading);
         s.attachments = [...(s.attachments || []), { name: file.name, bytes: raw.length, referents: (reading.referents || []).length, relations: (reading.relations || []).length }];
         // The reading rides the history as grounded material — never the raw

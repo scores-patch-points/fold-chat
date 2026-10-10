@@ -1,0 +1,57 @@
+{
+  "organ": "khora/native/kernel/identity.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/ise-identity.json"
+  ],
+  "whatTheyArgued": "Aston (Shinto, 1905, p.~305-308, verified in text) reports a norito that announces to the Sun-Goddess the rebuilding of her shrine, 'which took place every twentieth year', and that old shrine fragments were sold as o-harahi after breaking up the old shrine every twentieth year. Aston is a reporter of ritual, not a theorist of identity; he never says the shrine remains 'the same' nor uses the term shikinen sengu. The identity thesis is modern scholarship: Jordan Sand (A History of Timelessness, UC Press) argues timelessness at Ise is pursued through repetition rather than durable matter and that authenticity is constructed through ritual, state and circulation of materials.",
+  "scholarship": [
+    {
+      "ref": "Jordan Sand, A History of Timelessness: Constructing Authenticity at the Ise Shrines (University of California Press), publisher description",
+      "url": "https://www.ucpress.edu/books/a-history-of-timelessness/hardcover",
+      "supports": "Ise pursues timelessness through repetition; authenticity is constructed; materials/treasures circulate",
+      "disputes": "Sand treats 'unchanging' Ise as in part a modern construction (state nationalization in the 19th c.), against the popular claim of an unbroken identical shrine"
+    },
+    {
+      "ref": "Web search digest of EAJS 2021 and architecture writing on Ise",
+      "url": "https://nomadit.co.uk/conference/eajs2021/paper/56194",
+      "supports": "cycle of twenty years since the 7th century; rebuilt identically",
+      "disputes": "Authenticity debate: Western material authenticity vs Shinto ritual authenticity (search snippet only)"
+    }
+  ],
+  "ourUse": "identity.js: identity is a separate store (identityAlternative, live hypotheses) that persists while forms change; handle says 'same shrine persists through total periodic rebuilding'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "identity-thesis-not-aston",
+      "kind": "reinterpreted",
+      "ours": "Header's Ise speaks line then asserts 'identity is not merely a static point...'; compendium: 'it is the same shrine through every total rebuilding'.",
+      "theirs": "Aston only reports the norito and the twenty-year rebuilding. The sameness claim is a later interpretation (Sand and others), and contested as constructed."
+    },
+    {
+      "id": "voice",
+      "kind": "misstated",
+      "ours": "identity.js opens 'Ise speaks:' followed by a second paragraph ('My teaching is...') in the shrine's voice.",
+      "theirs": "The paragraph after the quote is generated prose, not Aston's or the shrine's; only the one Aston sentence is sourced."
+    },
+    {
+      "id": "from-scratch-every-part",
+      "kind": "narrowed",
+      "ours": "'Identity survives the destruction and replacement of every part.'",
+      "theirs": "Aston's text records fragments of the old shrine kept and distributed; sources I read stress ritual and craft transmission, and I did not verify whether every element (e.g. central pillar, treasures) is replaced."
+    },
+    {
+      "id": "termsengu",
+      "kind": "invented-attribution",
+      "ours": "Compendium source 'shikinen sengu' attributed via the Aston snip.",
+      "theirs": "That term does not occur in Aston's passage (grep on the source file finds no 'shikinen')."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Aston records that the Ise shrine was rebuilt every twentieth year and announced to the Sun-Goddess by a norito. That the shrine is therefore the same shrine is a later reading (Sand 2013-) which we borrow for identity.js; Aston did not say it.'",
+    "identity.js header: drop the paragraph written in Ise's voice or label it ours."
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "ise",
+  "tokenized": false
+}

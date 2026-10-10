@@ -1,0 +1,27 @@
+{
+  "organ": "ethos/scripts/pronunciation.mjs (named by the compendium; the file contains no Tadoma reference)",
+  "standing": "nomination",
+  "creditAsScholarship": false,
+  "snips": [],
+  "whatTheyArgued": "Tadoma is a tactile speech-perception method, not a thesis. Sophia Alcorn developed it for deaf-blind pupils (accounts disagree whether at the Kentucky School for the Deaf from 1910 with Oma Simpson, or at Perkins in the 1920s, where Inis Hall introduced it); it is named for Tad Chapman and Oma Simpson. The listener's hand rests on the speaker's lips, jaw and throat to feel articulation, voicing and airflow. No claim about heteronyms, hashing or TTS exists in the method.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, Tadoma and Sophia Alcorn (history, naming, how it works)",
+      "url": "https://en.wikipedia.org/wiki/Tadoma",
+      "supports": "inventor, naming from Tad and Oma, hand placement, what is felt",
+      "disputes": "Venue/date: the Tadoma page places development at Perkins; other pages say Alcorn first developed it at the Kentucky School for the Deaf (1909-1920). Alcorn's own 1932 account, cited by the compendium, I did not locate."
+    }
+  ],
+  "ourUse": "Nothing in the code uses the name. pronunciation.mjs serves pinned WAV/IPA bytes by sha256 and refuses words absent from the manifest. The compendium borrows the method as a metaphor for an alternate channel plus a disclosed limit (heteronyms read one way).",
+  "verdict": "partial",
+  "bends": [],
+  "noBendReason": "It is our name for a metaphor: pronunciation.mjs makes no use of Tadoma and the method makes no claim about pinned synthesis or heteronyms, so no author's argument is claimed. I record caveats instead: the compendium's '1920s ... taught by Alcorn and Hall' conflicts with accounts placing Alcorn's origin at Kentucky c.1910; the compendium's source line (Alcorn 1932) I could not verify; and no organ file mentions the handle, so the compendium's organ link is by assignment.",
+  "fix": [
+    "compendium work: say it is our metaphor ('named for a method deaf-blind pupils used; the pinning and heteronym finding are ours'); give the Kentucky/Perkins ambiguity or drop the date",
+    "add Handle: Tadoma to pronunciation.mjs or drop the organ link",
+    "drop the Alcorn 1932 source unless located"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "tadoma",
+  "tokenized": false
+}

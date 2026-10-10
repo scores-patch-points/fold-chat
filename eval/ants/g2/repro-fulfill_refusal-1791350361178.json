@@ -1,0 +1,152 @@
+{
+ "variant": "fulfill:refusal",
+ "at": "2026-10-07T05:16:46.757Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The question of who invented the telephone is a subject of debate and controversy. Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.",
+   "shown": "The question of who invented the telephone is a subject of debate and controversy. Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\n\nW\nWikipedia\nopen ↗\nThe Telephone Cases\n… Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876 . …\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 2,
+     "kept": 2,
+     "dropped": 0,
+     "unsourced": 1
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0.43,
+      "mean": 24.5,
+      "blinks": 0,
+      "dense": 1,
+      "n": 2
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The question of who invented the telephone is a subject of debate and controversy.",
+    "calls": 1,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "none"
+   },
+   "nRaw": 3,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "The Telephone Cases, 126 U.S.\ncourt cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nIn all, the American Bell Telephone Company and its successor, AT&T, litigated 587 court challenges to its patents, including five that went t"
+    },
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "Before the development of the electric telephone, the term telephone was applied to other inventions, and not all early researchers of the electrical device used the term.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nCharles Bourseul, Antonio Meucci, Johann Philipp Reis, Alexander Graham Bell, and Elisha Gray, amongst others, have all been credited with the invention of the telephone.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\nBefore Bell's patent, the telephone transmitted sound in a way that was similar to the teleg"
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nCredit for the invention of the electric telephone is frequently disputed, and new controversies over the issue have arisen from time to time.\nAntonio Meucci, Philipp Reis, Alexander Graham Bell, and Elisha Gray amongst others, have all been credited with the telephone's invention.\nThe early history of the telephone became and still remains a confusing morass of claims and counterclaims, which were not clarified by the huge number of lawsuits filed in order to resolve the patent claims of the many individuals and commercial competitors.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of w"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "court cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nSupreme Court that upheld the priority of the patents belonging to Alexander Graham Bell.\nThe objector (or plaintiff) in the Supreme Court case was initially the Western Union telegraph company, which was then a far-larger and better financed competitor than American Bell Telephone.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nA decision for Western Union would have immediatel"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "The invention of the telephone was the culmination of work done by many different people, and led to an array of lawsuits relating to the conflicting patent claims made by several individuals and numerous companies.\nNotable people included in this process were Antonio Meucci, Philipp Reis, Elisha Gray and Alexander Graham Bell.\nThat is about the same time that Meucci later claimed to have created his first attempt at the telephone in Italy.\nAn early communicating device that several sources credit as the first telephone was invented around 1849 by Antonio Meucci, who called it a telettrofono (lit.\nA retired director general of the Telecom Italia central telecommunications research institute "
+    },
+    {
+     "ref": "Wikipedia — Alexander Graham Bell",
+     "url": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+     "text": "patent for the telephone, on March 7, 1876.\nBell was born in Edinburgh, Scotland, on March 3, 1847, to Alexander Melville Bell, a phonetician, and Eliza Grace Bell (née Symonds).\nIn return, Ben's father John Herdman gave both boys the run of a small workshop in which to \"invent\".\nHis father had also experienced a debilitating illness earlier in life and been restored to health by convalescence in Newfoundland.\nIn 1874, telegraph message traffic was rapidly expanding and, in the words of Western Union President William Orton, had become \"the nervous system of commerce\".\nMeanwhile, Elisha Gray was also experimenting with acoustic telegraphy and thought of a way to transmit speech using a water"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No answer was written: no source could be read to write one from.\n⟂\nno source was reached\nSearched for “write me an essay on this”: Web failed — Web search answered 502. Nothing readable came back.\nWeb — failed: Web search answered 502\nto close it: try the question again · attach the document you are working from · rephrase it with a name or a place the search can find\ntry again\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [],
+   "reads": [],
+   "read": 0,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "write essay invented telephone",
+   "voidKind": "unreached",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": []
+  }
+ ]
+}

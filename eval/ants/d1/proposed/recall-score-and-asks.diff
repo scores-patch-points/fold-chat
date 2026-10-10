@@ -1,0 +1,23 @@
+--- a/fold-chat-recall.js	2026-10-07 01:12:11
++++ b/fold-chat-recall.js	2026-10-07 01:12:22
+@@ -30,7 +30,7 @@
+ const turnsOf = (claims) => [...new Set((claims || []).map((c) => Number(String(c.ground).match(/^\/t(\d+)\//)?.[1])).filter(Boolean))].sort((a, b) => a - b);
+ 
+ /** `fw`: the language's closed class (to find the content words of "about X"); omitted → every word counts. */
+-export function recallOf({ question = "", claims = [], fw = null } = {}) {
++export function recallOf({ question = "", claims = [], fw = null, asks = null } = {}) {   // asks: Map<turn, the ask that turn answered> (summary.records[].forWhom) — a fact-bearing sentence rarely names its topic, the ask did
+   const ask = recallAsk(question);
+   if (!ask || !claims.length) return null;
+   const turns = turnsOf(claims);
+@@ -39,7 +39,10 @@
+   if (ask.about) {
+     const want = new Set(ground.tokenize(ask.about).filter((t) => t.length > 1 && !(fw && fw.has(t))));
+     if (!want.size) return null;
+-    const hit = [...turns].reverse().find((n) => claimsAt(turnAddress(n), claims).some((c) => ground.tokenize(c.roles.ARG1).some((t) => want.has(t))));
++    // a turn matches on its SAID words or on the ASK it answered; the most content words in common wins (not simply the latest turn), and a tie between turns is returned as ambiguous, not guessed
++    const score = (n) => { const bag = new Set([...claimsAt(turnAddress(n), claims).flatMap((c) => ground.tokenize(c.roles.ARG1)), ...(asks ? ground.tokenize(String(asks.get(n) || "")) : [])]); return [...want].filter((t) => bag.has(t)).length; };
++    const best = Math.max(0, ...turns.map(score));
++    const hit = best >= Math.ceil(want.size / 2) && [...turns].reverse().find((n) => score(n) === best);   // half of what was named must be there: "the Leaning Tower of Pisa" is not answered by "the Eiffel Tower" on the one shared word
+     if (!hit) return null;   // nothing the fold said bears on it: not answered from a guess — the ask goes the normal way
+     turn = hit;
+   }

@@ -1,0 +1,104 @@
+{
+ "follow": {
+  "n": 45,
+  "ok": 44,
+  "acc": 0.978,
+  "ci": [
+   0.88,
+   1
+  ]
+ },
+ "switch": {
+  "n": 49,
+  "ok": 49,
+  "acc": 1,
+  "ci": [
+   0.93,
+   1
+  ]
+ },
+ "hard": {
+  "n": 19,
+  "ok": 15,
+  "acc": 0.789,
+  "ci": [
+   0.57,
+   0.91
+  ]
+ },
+ "follow/en": {
+  "n": 31,
+  "ok": 31,
+  "acc": 1,
+  "ci": [
+   0.89,
+   1
+  ]
+ },
+ "follow/es": {
+  "n": 7,
+  "ok": 6,
+  "acc": 0.857,
+  "ci": [
+   0.49,
+   0.97
+  ]
+ },
+ "follow/fr": {
+  "n": 7,
+  "ok": 7,
+  "acc": 1,
+  "ci": [
+   0.65,
+   1
+  ]
+ },
+ "switch/en": {
+  "n": 33,
+  "ok": 33,
+  "acc": 1,
+  "ci": [
+   0.9,
+   1
+  ]
+ },
+ "switch/es": {
+  "n": 8,
+  "ok": 8,
+  "acc": 1,
+  "ci": [
+   0.68,
+   1
+  ]
+ },
+ "switch/fr": {
+  "n": 8,
+  "ok": 8,
+  "acc": 1,
+  "ci": [
+   0.68,
+   1
+  ]
+ },
+ "switch/share": {
+  "n": 21,
+  "ok": 21,
+  "acc": 1,
+  "ci": [
+   0.85,
+   1
+  ]
+ },
+ "followRightReferent": {
+  "n": 44,
+  "ok": 44
+ },
+ "thread_mode_on_non_follow": []
+}
+
+FAILURES:
+  f038 follow/es expect=carry got kind=standalone mode=web q="¿quién la construyó?"  ← "¿quién la construyó?"
+  h103 hard/en expect=carry got kind=standalone mode=web q="what is the difference between that and a hurricane"  ← "what is the difference between that and a hurricane"
+  h109 hard/en expect=none got kind=carried mode=web q="Tornado that is scary, how do I stay safe"  ← "that is scary, how do I stay safe"
+  h110 hard/es expect=carry got kind=standalone mode=web q="¿cuándo murió?"  ← "¿cuándo murió?"
+  h111 hard/es expect=carry got kind=standalone mode=web q="¿cuánto cuesta visitarla?"  ← "¿cuánto cuesta visitarla?"

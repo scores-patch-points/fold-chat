@@ -1,0 +1,18 @@
+/* B — full-bleed push navigation: each layer is the whole screen, wearing its site; a persistent slim spine names where you are */
+html[data-model="b"] .layer { left:0; right:0; top:44px; bottom:0; box-shadow:-10px 0 24px rgba(0,0,0,.16); touch-action:pan-y; will-change:transform; }
+#spine { position:fixed; z-index:800; left:0; right:0; top:0; height:44px; display:flex; align-items:stretch; background:var(--side); color:var(--ink); border-bottom:3px solid var(--s-accent, var(--ag)); padding:0 4px; font:600 13.5px/1 var(--sans); }
+#spine[hidden] { display:none; }
+#spine ol { list-style:none; margin:0; padding:0; display:flex; align-items:stretch; min-width:0; flex:1; }
+#spine li { display:flex; align-items:stretch; min-width:0; }
+#spine li + li::before { content:"\203a"; align-self:center; padding:0 1px; color:var(--mut); font-size:16px; }
+#spine li:first-child { flex:none; }
+#spine li:last-child { flex:1 1 auto; min-width:0; }
+#spine button, #spine .cur { display:flex; align-items:center; gap:7px; min-width:44px; height:44px; padding:0 10px; border-radius:8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+#spine .cur { font-weight:800; }
+#spine .dot { width:9px; height:9px; border-radius:50%; flex:none; background:var(--ag); }
+#spine .lb { overflow:hidden; text-overflow:ellipsis; }
+#spine .k { font:600 10px/1 var(--mono); letter-spacing:.06em; text-transform:uppercase; color:var(--mut); }
+#spine button:focus-visible { outline-offset:-3px; }
+#spine .more { color:var(--ink2); font:700 13px/1 var(--mono); }
+@media (max-width:420px) { #spine li:nth-last-child(2) .lb { max-width:11ch; } #spine .k { display:none; } }
+.edge { position:fixed; z-index:790; left:0; top:44px; bottom:0; width:22px; touch-action:pan-y; }

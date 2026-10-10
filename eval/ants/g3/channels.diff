@@ -1,0 +1,24 @@
+--- a/fold-chat-channels.js	2026-10-07 00:48:45
++++ b/fold-chat-channels.js	2026-10-07 00:49:15
+@@ -21,6 +21,7 @@
+ 
+ import { checkable } from "./fold-chat-discourse.js";
+ import { searchAttempts, searchSummary } from "./fold-chat-gaps.js";
++import { styleSafeMessages } from "./fold-chat-histkind.js";
+ import { genVoidLabel, genVoidText } from "./fold-chat-genvoid.js";
+ 
+ const OPEN = "a broader web/records/news search";
+@@ -237,9 +238,11 @@
+  *  carrying only what its author wrote. An assistant turn that wrote nothing
+  *  (a refusal the fold replaced, an agent that produced no code) is omitted —
+  *  never padded with a system string. */
+-export function modelHistory(messages) {
++export function modelHistory(messages, { styleSafe = null } = {}) {
+   const out = [];
+-  for (const m of messages || []) {
++  // (G3) a creative exchange (a song, a poem) is not conversation for a factual turn: fold-chat-histkind.js stands one plain line in for it. Off unless asked.
++  const src = styleSafe ? styleSafeMessages(messages, styleSafe) : messages;
++  for (const m of src || []) {
+     if (!m || m.role === "system") continue;
+     const content = modelText(m);
+     if (m.role === "assistant" && !content.trim()) continue;

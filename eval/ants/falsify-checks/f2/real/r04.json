@@ -1,0 +1,3388 @@
+{
+ "q": "What caused the 2008 financial crisis?",
+ "spoken": "Many of these loans were bundled together and sold to investors as mortgage-backed securities.",
+ "shown": "Many of these loans were bundled together and sold to investors as mortgage-backed securities.\n\nB\nbritannica.com\nopen ↗\nFinancial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...\n… contributing to the growth of subprime lending was the widespread practice of securitization, whereby banks bundled together hundreds or even thousands of subprime mortgages and other, less-risky forms of consumer debt and sold them (or …\n1 source · 1 of 1 sentence backed\n·\nwent back 1 lap\n·\n3 of 9 checks flagged\n214 s\n▶ watch\nWhere this came from\ncopy\nretry\n⋯",
+ "flagText": [
+  "3 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "Many of these loans were bundled together and sold to investors as mortgage-backed securities.",
+     "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "source": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "span": {
+      "start": 338,
+      "end": 354
+     },
+     "address": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...#338-354",
+     "score": 2,
+     "window": {
+      "from": 223,
+      "to": 1053
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...#338-354"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...#338-354",
+    "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+    "span": {
+     "start": 338,
+     "end": 354
+    },
+    "text": "Many of these loans were bundled together and sold to investors as mortgage-backed securities."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...#338-354",
+     "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "span": {
+      "start": 338,
+      "end": 354
+     },
+     "label": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "source": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "domain": "britannica.com",
+     "text": "contributing to the growth of subprime lending was the widespread practice of securitization, whereby banks bundled together hundreds or even thousands of subprime mortgages and other, less-risky forms of consumer debt and sold them (or",
+     "before": "contributing to the growth of subprime lending was the widespread practice of securitization, whereby banks",
+     "mark": "bundled together",
+     "after": "hundreds or even thousands of subprime mortgages and other, less-risky forms of consumer debt and sold them (or",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "Many of these loans were bundled together and sold to investors as mortgage-backed securities.",
+     "grounded": true,
+     "address": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...#338-354"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "What caused the 2008 financial crisis?",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "What caused the 2008 financial crisis?",
+    "engine": "Wikipedia",
+    "n": 24,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+    },
+    "webDown": false
+   },
+   {
+    "read": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+    "via": "the fold's relay",
+    "chars": 109,
+    "kept": 109,
+    "hash": "66b1f8e7"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2938,
+    "hash": "3e4b7a31"
+   },
+   {
+    "read": "https://www.investopedia.com/terms/g/great-recession.asp",
+    "via": "the fold's relay",
+    "chars": 78,
+    "kept": 78,
+    "hash": "a6b61970"
+   },
+   {
+    "read": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "via": "the fold's relay",
+    "chars": 16699,
+    "kept": 1504,
+    "hash": "6670498c",
+    "skipped": true
+   },
+   {
+    "read": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+    "via": "the fold's relay",
+    "chars": 5530,
+    "kept": 498,
+    "hash": "7cf40dd0",
+    "skipped": true
+   },
+   {
+    "scope": "web",
+    "q": "Here's summary based sources housing market bubble people took loans",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2197,
+    "hash": "91db80fe",
+    "lap": 1
+   },
+   {
+    "read": "https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+    "via": null,
+    "ok": false,
+    "lap": 1
+   },
+   {
+    "read": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 1623,
+    "hash": "fe9ba843",
+    "lap": 1
+   },
+   {
+    "read": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+    "via": "direct",
+    "chars": 8773,
+    "kept": 1307,
+    "hash": "64d34ab3",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "introductory rates expired people found unable afford home payments. Subprime",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/",
+    "via": "the fold's relay",
+    "chars": 20031,
+    "kept": 2464,
+    "hash": "dae4929a",
+    "lap": 1
+   },
+   {
+    "read": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+    "via": "direct",
+    "chars": 8773,
+    "kept": 1316,
+    "hash": "64d34ab3",
+    "lap": 1
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 1694,
+    "hash": "91db80fe",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.investopedia.com/terms/s/subprime_rates.asp",
+    "via": "the fold's relay",
+    "chars": 109,
+    "kept": 109,
+    "hash": "66b1f8e7",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "securities rated highly too highly even based risky loans.",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.fdic.gov/media/18636",
+    "via": "a public proxy",
+    "chars": 24000,
+    "kept": 469,
+    "hash": "20744cd4",
+    "lap": 1
+   },
+   {
+    "read": "https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 24000,
+    "hash": "6b5c171a",
+    "lap": 1
+   },
+   {
+    "read": "https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 105,
+    "hash": "288908e0",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.kiplinger.com/article/investing/t035-c000-s004-securities-based-loans-are-risky-business.html",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 53,
+    "hash": "e288a5e9",
+    "skipped": true,
+    "lap": 1
+   }
+  ],
+  "passages": [
+   {
+    "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+    "source": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+    "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+    "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters"
+   },
+   {
+    "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "text": "A major worldwide financial crisis centered in the United States took place in 2008.\nThe immediate cause of the crisis was the collapse of the 2000s U.S.\nOn September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S.\nThe crisis exacerbated the Great Recession, a global recession that began in mid-2007.\nIt was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history.\nThe de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solvency crisis and caused a decrease in international trade.\nCongress: the Financial Crisis Inquiry Commission report, released January 2011, and a report by the United States Senate Homeland Security Permanent Subcommittee on Investigations entitled Wall Street and the Financial Crisis: Anatomy of a Financial Collapse, released April 2011.\nIn total, 47 bankers served jail time as a result of the crisis, over half of whom were from Iceland, where the crisis was the most severe and led to the collapse of all three major Icelandic banks.\nIn April 2012, Geir Haarde of Iceland became the only politician to be convicted as a result of the crisis.\nGoldman Sachs, Goldman Sachs paid a $550 million civil penalty and acknowledged that its marketing materials for CDO contained incomplete information, settling securities fraud charges after allegedly anticipating the financial crisis and selling toxic investments to its clients.\nNovember 2006: UBS warned of \"an impending crisis in the U.S.\nJuly 30, 2007: IKB Deutsche Industriebank, the first banking casualty of the crisis, announces its bailout by German public financial institution KfW.\nJanuary 11, 2008: Bank of America agreed to buy Countrywide Financial for $4 billion in stock.\nJanuary 18, 2008: Stock markets fell to a yearly low as the credit rating of Ambac, a bond insurance company, was downgraded.\nMeanwhile, an increase in the amount of withdrawals caused Scottish Equitable to implement delays of up to 12 months on people wishing to w"
+   },
+   {
+    "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+    "source": "https://www.investopedia.com/terms/g/great-recession.asp",
+    "url": "https://www.investopedia.com/terms/g/great-recession.asp",
+    "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In"
+   },
+   {
+    "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries.\nAs the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators.\nAs interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007.\nHe projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring.\nMay 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgages.\nSeptember 18, 2007: The Federal Open Market Committee began reducing the federal funds rate from its peak of 5.25% in response to worries about liquidity and confidence.\nWorries about inflation combined with strong demand from China encouraged people to invest in commodities during the 2000s commodities boom.\nBernanke requested a $700 billion fund to acquire toxic mortgages and reportedly told them: \"If we don't do this, we may not have an economy on Monday\".\nGold prices soared to $900/ounce."
+   },
+   {
+    "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+    "source": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history.\nAfter the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003.\nCheap credit flooded into the housing market.\nMortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay.\nThey gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans.\nLehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by October 2009.\nLow interest rates after 2001 fed a housing boom.\nBanks bundled mortgages, including subprime loans to borrowers with poor credit histories, into mortgage-backed securities and sold them worldwide, so the lenders who wrote the loans did not bear the risk.\nThe Federal Reserve cut its policy rate from 5.25% to a range of 0 to 0.25% within 18 months and then began quantitative easing, taking its balance sheet from about $900 billion to over $4.5 trillion by 2015."
+   },
+   {
+    "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+    "source": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+    "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+    "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses.\nThe result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation).\nSecond, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter).\nAccordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the loans and often misleading them about the risks involved.\nAs a result, the share of subprime mortgages among all home loans increased from about 2.5 percent to nearly 15 percent per year from the late 1990s to 2004–07.\nBonds consisting primarily of mortgages became known as mortgage-backed securities, or MBSs, which entitled their purchasers to a share of the interest and principal payments on the underlying loans."
+   },
+   {
+    "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "text": "The first phase was the subprime mortgage crisis, which began in early 2007 as mortgage-backed securities (MBS) tied to U.S.\nAs interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007.\nThe increase in cash out refinancings, as home values rose, fueled an increase in consumption that could no longer be sustained when home prices declined.\nMany financial institutions owned investments whose value was based on home mortgages such as mortgage-backed securities, or credit derivatives used to insure them against failure, which declined in value significantly.\nToxic securities were owned by corporate and institutional investors globally.\nDue to increasingly lax underwriting standards, one-third of all mortgages in 2006 were subprime or no-documentation loans, which comprised 17% of home purchases that year.\nDue to increased delinquency rates in subprime lending, Freddie Mac said that it would stop investing in certain subprime loans.\nApril 2, 2007: New Century, an American real estate investment trust specializing in subprime lending and securitization, filed for Chapter 11 bankruptcy protection.\nSeptember 28, 2007: NetBank suffered from bank failure and filed bankruptcy due to exposure to home loans."
+   },
+   {
+    "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+    "source": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "text": "After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003.\nBanks discovered they could originate mortgages, bundle them into securities called mortgage-backed securities (MBS), and sell them to investors worldwide.\nBy 2006, subprime mortgages, loans made to borrowers with poor credit histories and little documentation, accounted for roughly 20% of all new mortgage originations.\nMortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay.\nThe mortgage-backed securities sold to investors around the world were so complex that even sophisticated institutional buyers did not fully understand what they contained.\nThe racial wealth gap widened dramatically: Black and Hispanic households, who were disproportionately targeted for subprime loans, lost a larger share of their net worth than white households.\nBanks bundled mortgages, including subprime loans to borrowers with poor credit histories, into mortgage-backed securities and sold them worldwide, so the lenders who wrote the loans did not bear the risk.\nThe TARP programme recapitalised banks, AIG received a rescue that grew to $182 billion, and Fannie Mae and Freddie Mac were placed in government conservatorship."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 8,
+      "corroborated": 0,
+      "held": 2,
+      "weak": 0,
+      "contested": 0,
+      "unsupported": 6,
+      "backed": 2,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 1,
+       "s": "Here's a summary based on the sources: **The housing market bubble:** Many people took out loans to buy houses they couldn't really afford, and these loans often included \"adjustable-rate mortgages\" (ARMs) with low introductory rates.",
+       "verdict": "unsupported",
+       "op": "INS",
+       "why": "no kept passage states it — look in the whole pages, then search with the claim itself",
+       "query": "Here's summary based sources housing market bubble people took loans",
+       "afterIns": "still failing"
+      },
+      {
+       "i": 2,
+       "s": "When these introductory rates expired, many people found themselves unable to afford their home payments. **Subprime mortgages and securitization:** Many of these loans were bundled together and sold to investors as mortgage-backed securities.",
+       "verdict": "unsupported",
+       "op": "INS",
+       "why": "no kept passage states it — look in the whole pages, then search with the claim itself",
+       "query": "introductory rates expired people found unable afford home payments. Subprime",
+       "afterIns": "still failing"
+      },
+      {
+       "i": 3,
+       "s": "These securities were often rated highly (too highly), even though they were based on risky loans.",
+       "verdict": "unsupported",
+       "op": "INS",
+       "why": "no kept passage states it — look in the whole pages, then search with the claim itself",
+       "query": "securities rated highly too highly even based risky loans.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 6,
+     "restated": [
+      {
+       "i": 1,
+       "from": "Here's a summary based on the sources: **The housing market bubble:** Many people took out loans to buy houses they couldn't really afford, and these loans often included \"adjustable-rate mortgages\" (ARMs) with low introductory rates.",
+       "to": "The housing market bubble: Many people took out loans to buy houses they couldn't really afford, and these loans often included \"adjustable-rate mortgages\" (ARMs) with low introductory rates.",
+       "verdict": "held"
+      },
+      {
+       "i": 2,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      },
+      {
+       "i": 3,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+       "kept": 1391,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 118
+      },
+      {
+       "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+       "kept": 1368,
+       "chars": 16699,
+       "segments": 9,
+       "recalled": 54
+      },
+      {
+       "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+       "kept": 1312,
+       "chars": 5530,
+       "segments": 6,
+       "recalled": 12
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+       "kept": 1355,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 79
+      },
+      {
+       "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+       "kept": 1386,
+       "chars": 16699,
+       "segments": 8,
+       "recalled": 76
+      },
+      {
+       "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+       "kept": 1365,
+       "chars": 5530,
+       "segments": 6,
+       "recalled": 14
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+       "kept": 1301,
+       "chars": 24000,
+       "segments": 8,
+       "recalled": 12
+      },
+      {
+       "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+       "kept": 1022,
+       "chars": 16699,
+       "segments": 8,
+       "recalled": 26
+      },
+      {
+       "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+       "kept": 1390,
+       "chars": 5530,
+       "segments": 5,
+       "recalled": 9
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 8,
+    "corroborated": 2,
+    "held": 1,
+    "weak": 0,
+    "contested": 2,
+    "unsupported": 3,
+    "backed": 3,
+    "swapsArmed": 4,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 1 lap · 6 more source(s) read · 1 sentence(s) restated · 5 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 18 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 1 lap · 6 more source(s) read · 1 sentence(s) restated · 5 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 894,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1538,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1538,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1465,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 584,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 140,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 18,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "What caused the 2008 financial crisis?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 14
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “What caused the 2008 financial crisis?”",
+    "at": 40
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:What caused the 2008 financial crisis?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 46,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 46
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:What caused the 2008 financial crisis?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6057
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:What caused the 2008 financial crisis?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 7233,
+    "at": 7279
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 7279
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:What caused the 2008 financial crisis?",
+    "title": "Asking Wikipedia",
+    "tone": "run",
+    "at": 7283,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 7283
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:What caused the 2008 financial crisis?",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "24 results",
+    "ms": 5201,
+    "at": 12484
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 12484
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 12486
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+    "title": "Reading investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+    "tone": "run",
+    "at": 12497,
+    "slowAfter": 5000,
+    "slow": "waiting on investopedia.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 12497
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "title": "Reading en.wikipedia.org — 2008 financial crisis - Wikipedia",
+    "tone": "run",
+    "at": 12500,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12500
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.investopedia.com/terms/g/great-recession.asp",
+    "title": "Reading investopedia.com — Great Recession: What It Was and What Caused It - Investope…",
+    "tone": "run",
+    "at": 12501,
+    "slowAfter": 5000,
+    "slow": "waiting on investopedia.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12501
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/2008_financial_crisis",
+    "title": "Read en.wikipedia.org — 2008 financial crisis - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,938 of 24,000 chars",
+    "ms": 411,
+    "at": 12911
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12911
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "title": "Reading maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+    "tone": "run",
+    "at": 12913,
+    "slowAfter": 5000,
+    "slow": "waiting on maseconomics.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12913
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+    "title": "Read investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+    "tone": "ok",
+    "note": "109 chars",
+    "ms": 6132,
+    "at": 18629
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 18629
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.britannica.com/money/financial-crisis-of-2007-2008",
+    "title": "Reading britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects,…",
+    "tone": "run",
+    "at": 18634,
+    "slowAfter": 5000,
+    "slow": "waiting on britannica.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 18634
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.investopedia.com/terms/g/great-recession.asp",
+    "title": "Read investopedia.com — Great Recession: What It Was and What Caused It - Investope…",
+    "tone": "ok",
+    "note": "78 chars",
+    "ms": 6339,
+    "at": 18840
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 18840
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+    "title": "Read maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+    "tone": "ok",
+    "note": "kept 1,504 of 16,699 chars",
+    "ms": 6021,
+    "at": 18934
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 18934
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.britannica.com/money/financial-crisis-of-2007-2008",
+    "title": "Read britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects,…",
+    "tone": "ok",
+    "note": "kept 498 of 5,530 chars",
+    "ms": 4380,
+    "at": 23014
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 23014
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read. It points to 1 original source.",
+    "at": 24012
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "this sentence could not be matched to its references.",
+    "at": 24012
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 24018,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 24018
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 26872
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "271 tokens",
+    "ms": 72202,
+    "at": 96220
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 96220
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 96233
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 3 sentences broke",
+    "tone": "warn",
+    "note": "s2 unsupported · s3 unsupported · s4 unsupported — going back to search",
+    "at": 96407
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 9 new impressions",
+    "tone": "ok",
+    "note": "9 sentence(s) recalled from en.wikipedia.org · 9 sentence(s) recalled from maseconomics.com · 6 sentence(s) recalled from britannica.com · 9 sentence(s) recalled from en.wikipedia.",
+    "at": 96788
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Here's summary based sources housing market bubble people took loans",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 96887,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 96887
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Here's summary based sources housing market bubble people took loans",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 984,
+    "at": 97871
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 97871
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+    "title": "Reading en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+    "tone": "run",
+    "at": 97877,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 97877
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+    "title": "Reading fastercapital.com — Housing bubble: Subprime Borrowers and the Bursting of the…",
+    "tone": "run",
+    "at": 97880,
+    "slowAfter": 5000,
+    "slow": "waiting on fastercapital.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 97880
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+    "title": "Reading explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+    "tone": "run",
+    "at": 97881,
+    "slowAfter": 5000,
+    "slow": "waiting on explaininghistory.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 97881
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+    "title": "Read en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,197 of 24,000 chars",
+    "ms": 506,
+    "at": 98383
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 98383
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+    "title": "Reading federalreservehistory.org — Subprime Mortgage Crisis - Federal Reserve History",
+    "tone": "run",
+    "at": 98383,
+    "slowAfter": 5000,
+    "slow": "waiting on federalreservehistory.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 98383
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+    "title": "Read federalreservehistory.org — Subprime Mortgage Crisis - Federal Reserve History",
+    "tone": "ok",
+    "note": "kept 1,307 of 8,773 chars",
+    "ms": 6162,
+    "at": 104545
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 104545
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 214 s · read 18 sources · gemma2:2b",
+    "at": 213564,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.016,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.018,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “What caused the 2008 financial crisis?”"
+    }
+   },
+   {
+    "at": 0.023,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:What caused the 2008 financial crisis?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.024,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.024,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "What caused the 2008 financial crisis?"
+    }
+   },
+   {
+    "at": 6.035,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:What caused the 2008 financial crisis?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.035,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 7.255,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:What caused the 2008 financial crisis?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 7233
+    }
+   },
+   {
+    "at": 7.257,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 7.257,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "What caused the 2008 financial crisis?",
+     "n": 10
+    }
+   },
+   {
+    "at": 7.26,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:What caused the 2008 financial crisis?",
+     "title": "Asking Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 7.261,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 7.261,
+    "seq": 13,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "What caused the 2008 financial crisis?"
+    }
+   },
+   {
+    "at": 12.46,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:What caused the 2008 financial crisis?",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "24 results",
+     "ms": 5201
+    }
+   },
+   {
+    "at": 12.461,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 12.461,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "What caused the 2008 financial crisis?",
+     "n": 24
+    }
+   },
+   {
+    "at": 12.462,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 12.462,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 12.473,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+     "title": "Reading investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.473,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 12.473,
+    "seq": 21,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+     "site": "investopedia.com",
+     "title": "The 2008 Financial Crisis Explained - Investopedia"
+    }
+   },
+   {
+    "at": 12.476,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/2008_financial_crisis",
+     "title": "Reading en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.476,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.476,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+     "site": "en.wikipedia.org",
+     "title": "2008 financial crisis - Wikipedia"
+    }
+   },
+   {
+    "at": 12.477,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.investopedia.com/terms/g/great-recession.asp",
+     "title": "Reading investopedia.com — Great Recession: What It Was and What Caused It - Investope…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.477,
+    "seq": 26,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.477,
+    "seq": 27,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.investopedia.com/terms/g/great-recession.asp",
+     "site": "investopedia.com",
+     "title": "Great Recession: What It Was and What Caused It - Investopedia"
+    }
+   },
+   {
+    "at": 12.887,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/2008_financial_crisis",
+     "title": "Read en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,938 of 24,000 chars",
+     "ms": 411
+    }
+   },
+   {
+    "at": 12.888,
+    "seq": 29,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.888,
+    "seq": 30,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis",
+     "site": "en.wikipedia.org",
+     "title": "2008 financial crisis - Wikipedia",
+     "chars": 24000,
+     "kept": 2938,
+     "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. housing bubble, which involved excessive speculation in property values by both homeowners and financial institutions, exacerbated by predatory lending and by deficiencies in regulation. The first phase was the subprime mortgage crisis, which began in early 2007 as mortgage-backed securities (MBS) tied to U.S. real estate, and a vast web of derivatives linked to those MBS, collapsed in value. A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. The crisis exacerbated the Great Recession, a global recession that began in late 2007, and contributed to major crises in Iceland and the eurozone. During the 1990s, the U.S. Congress passed legislation intended to expand affordable housing through looser financing rules, and in 1999 parts of the 1933 Banking Act (Glass–Steagall Act) were repealed, enabling institutions to mix low-risk operations, such as commercial banking and insurance, with higher-risk operations such as investment banking and proprietary trading. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-inc"
+    }
+   },
+   {
+    "at": 12.893,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+     "title": "Reading maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.895,
+    "seq": 32,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.895,
+    "seq": 33,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+     "site": "maseconomics.com",
+     "title": "The 2008 Financial Crisis Explained - MASEconomics"
+    }
+   },
+   {
+    "at": 18.605,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+     "title": "Read investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+     "tone": "ok",
+     "note": "109 chars",
+     "ms": 6132
+    }
+   },
+   {
+    "at": 18.609,
+    "seq": 35,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 18.609,
+    "seq": 36,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp",
+     "site": "investopedia.com",
+     "title": "The 2008 Financial Crisis Explained - Investopedia",
+     "chars": 109,
+     "kept": 109,
+     "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters"
+    }
+   },
+   {
+    "at": 18.611,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "title": "Reading britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects,…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 18.613,
+    "seq": 38,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 18.613,
+    "seq": 39,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "site": "britannica.com",
+     "title": "Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ..."
+    }
+   },
+   {
+    "at": 18.816,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.investopedia.com/terms/g/great-recession.asp",
+     "title": "Read investopedia.com — Great Recession: What It Was and What Caused It - Investope…",
+     "tone": "ok",
+     "note": "78 chars",
+     "ms": 6339
+    }
+   },
+   {
+    "at": 18.819,
+    "seq": 41,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 18.82,
+    "seq": 42,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.investopedia.com/terms/g/great-recession.asp",
+     "site": "investopedia.com",
+     "title": "Great Recession: What It Was and What Caused It - Investopedia",
+     "chars": 78,
+     "kept": 78,
+     "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In"
+    }
+   },
+   {
+    "at": 18.912,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+     "title": "Read maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+     "tone": "ok",
+     "note": "kept 1,504 of 16,699 chars",
+     "ms": 6021
+    }
+   },
+   {
+    "at": 18.914,
+    "seq": 44,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 18.914,
+    "seq": 45,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/",
+     "site": "maseconomics.com",
+     "title": "The 2008 Financial Crisis Explained - MASEconomics",
+     "chars": 16699,
+     "kept": 1504,
+     "text": "Economics explained with real data, on our channel. In September 2008, the world came within hours of a complete financial meltdown. Lehman Brothers, one of Wall Street’s oldest and most storied investment banks, filed for bankruptcy. The insurance giant AIG needed a $182 billion government rescue. Global stock markets lost more than $10 trillion in value in a matter of weeks. Unemployment in the United States would eventually double, reaching 10% by October 2009, and 8.7 million American jobs would vanish. The 2008 financial crisis was the collapse of the US housing and credit markets that spread through the global banking system between 2007 and 2009 and caused the deepest recession since the 1930s. It was not just a banking problem. It was a failure of economic incentives, a collapse of information systems, and a stress test for every macroeconomic theory about how modern economies function. It reshaped regulation, rewrote monetary policy, and left scars that are still visible nearly two decades later. The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 20"
+    }
+   },
+   {
+    "at": 22.99,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "title": "Read britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects,…",
+     "tone": "ok",
+     "note": "kept 498 of 5,530 chars",
+     "ms": 4380
+    }
+   },
+   {
+    "at": 22.991,
+    "seq": 47,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 22.991,
+    "seq": 48,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008",
+     "site": "britannica.com",
+     "title": "Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "chars": 5530,
+     "kept": 498,
+     "text": "financial crisis of 2007–08, severe contraction of liquidity in global financial markets that originated in the United States as a result of the collapse of the U.S. housing market. It threatened to destroy the international financial system; caused the failure (or near-failure) of several major investment and commercial banks, mortgage lenders, insurance companies, and savings and loan associations; and precipitated the Great Recession (2007–09), the worst economic downturn since the Great Depression (1929–c. 1939). Although the exact causes of the financial crisis are a matter of dispute among economists, there is general agreement regarding the factors that played a role (experts disagree about their relative importance). First, the Federal Reserve (Fed), the central bank of the United States, having anticipated a mild recession that began in 2001, reduced the federal funds rate (the interest rate that banks charge each other for overnight loans of federal funds—i.e., balances held at a Federal Reserve bank) 11 times between May 2000 and December 2001, from 6.5 percent to 1.75 percent. That significant decrease enabled banks to extend consumer credit at a lower prime rate (the interest rate that banks charge to their “prime,” or low-risk, customers, generally three percentage points above the federal funds rate) and encouraged them to lend even to “subprime,” or high-risk, c"
+    }
+   },
+   {
+    "at": 23.028,
+    "seq": 49,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+     "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+     "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+    }
+   },
+   {
+    "at": 23.928,
+    "seq": 50,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+     "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+    }
+   },
+   {
+    "at": 23.987,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read. It points to 1 original source."
+    }
+   },
+   {
+    "at": 23.988,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "this sentence could not be matched to its references."
+    }
+   },
+   {
+    "at": 23.994,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 23.994,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 24.828,
+    "seq": 51,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+     "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+     "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+    }
+   },
+   {
+    "at": 25.728,
+    "seq": 52,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_20b7eb",
+    "ps": [
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+      "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+      "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+     },
+     {
+      "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+      "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+      "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+     }
+    ]
+   },
+   {
+    "at": 26.848,
+    "seq": 62,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 27.528,
+    "seq": 53,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_20b7eb",
+    "ps": [
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+      "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+      "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+     },
+     {
+      "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+      "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+      "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+     }
+    ]
+   },
+   {
+    "at": 29.528,
+    "seq": 54,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_20b7eb",
+    "ps": [
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+      "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+      "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+     },
+     {
+      "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+      "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+      "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+     }
+    ]
+   },
+   {
+    "at": 31.728,
+    "seq": 55,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_20b7eb",
+    "ps": [
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+      "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+      "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+     },
+     {
+      "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+      "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+      "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+     }
+    ]
+   },
+   {
+    "at": 34.528,
+    "seq": 56,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_20b7eb",
+    "ps": [
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters",
+      "ref": "investopedia.com — The 2008 Financial Crisis Explained - Investopedia",
+      "url": "https://www.investopedia.com/articles/economics/09/financial-crisis-review.asp"
+     },
+     {
+      "text": "A major worldwide financial crisis centered in the United States took place in 2008. The immediate cause of the crisis was the collapse of the 2000s U.S. On September 7, 2008, Fannie Mae and Freddie Mac, two government-sponsored enterprises which owned or guaranteed half of the U.S. The crisis exacerbated the Great Recession, a global recession that began in mid-2007. It was also followed by the euro area crisis, which began with the start of the Greek government-debt crisis in late 2009, and the 2008–2011 Icelandic financial crisis, which involved the bank failure of all three of the major banks in Iceland and, relative to the size of its economy, was the largest economic collapse suffered by any country in history. The de-leveraging of financial institutions, as assets were sold to pay back obligations that could not be refinanced in frozen credit markets, further accelerated the solv…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In",
+      "ref": "investopedia.com — Great Recession: What It Was and What Caused It - Investopedia",
+      "url": "https://www.investopedia.com/terms/g/great-recession.asp"
+     }
+    ]
+   },
+   {
+    "at": 36.728,
+    "seq": 57,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 96.194,
+    "seq": 63,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "271 tokens",
+     "ms": 72202
+    }
+   },
+   {
+    "at": 96.205,
+    "seq": 64,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 96.209,
+    "seq": 65,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 96.381,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 3 sentences broke",
+     "tone": "warn",
+     "note": "s2 unsupported · s3 unsupported · s4 unsupported — going back to search"
+    }
+   },
+   {
+    "at": 96.761,
+    "seq": 67,
+    "kind": "quick",
+    "n": 1,
+    "of": 7,
+    "p": {
+     "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+     "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+    }
+   },
+   {
+    "at": 96.762,
+    "seq": 79,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 9 new impressions",
+     "tone": "ok",
+     "note": "9 sentence(s) recalled from en.wikipedia.org · 9 sentence(s) recalled from maseconomics.com · 6 sentence(s) recalled from britannica.com · 9 sentence(s) recalled from en.wikipedia."
+    }
+   },
+   {
+    "at": 96.862,
+    "seq": 80,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Here's summary based sources housing market bubble people took loans",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 96.862,
+    "seq": 81,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 96.862,
+    "seq": 82,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Here's summary based sources housing market bubble people took loans"
+    }
+   },
+   {
+    "at": 97.661,
+    "seq": 68,
+    "kind": "quick",
+    "n": 2,
+    "of": 7,
+    "p": {
+     "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+     "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+     "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+    }
+   },
+   {
+    "at": 97.845,
+    "seq": 83,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Here's summary based sources housing market bubble people took loans",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 984
+    }
+   },
+   {
+    "at": 97.846,
+    "seq": 84,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 97.846,
+    "seq": 85,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Here's summary based sources housing market bubble people took loans",
+     "n": 10
+    }
+   },
+   {
+    "at": 97.851,
+    "seq": 86,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "title": "Reading en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 97.853,
+    "seq": 87,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 97.853,
+    "seq": 88,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "site": "en.wikipedia.org",
+     "title": "Subprime mortgage crisis - Wikipedia"
+    }
+   },
+   {
+    "at": 97.854,
+    "seq": 89,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+     "title": "Reading fastercapital.com — Housing bubble: Subprime Borrowers and the Bursting of the…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 97.854,
+    "seq": 90,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 97.854,
+    "seq": 91,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+     "site": "fastercapital.com",
+     "title": "Housing bubble: Subprime Borrowers and the Bursting of the Housing ..."
+    }
+   },
+   {
+    "at": 97.855,
+    "seq": 92,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+     "title": "Reading explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 97.855,
+    "seq": 93,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 97.855,
+    "seq": 94,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+     "site": "explaininghistory.org",
+     "title": "The US Subprime Mortgage Bubble: Causes and Consequences"
+    }
+   },
+   {
+    "at": 98.356,
+    "seq": 95,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "title": "Read en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,197 of 24,000 chars",
+     "ms": 506
+    }
+   },
+   {
+    "at": 98.357,
+    "seq": 96,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 98.357,
+    "seq": 97,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "site": "en.wikipedia.org",
+     "title": "Subprime mortgage crisis - Wikipedia",
+     "chars": 24000,
+     "kept": 2197,
+     "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. It led to a severe economic recession, with millions becoming unemployed and many businesses going bankrupt. The U.S. government intervened with a series of measures to stabilize the financial system, including the Troubled Asset Relief Program (TARP) and the American Recovery and Reinvestment Act of 2009 (ARRA). The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. This ultimately led to mass foreclosures and the devaluation of housing-related securities. The housing bubble preceding the crisis was financed with mortgage-backed securities (MBSes) and collateralized debt obligations (CDOs), which initially offered higher interest rates (i.e., better returns) than government securities, along with attractive risk ratings from rating agencies. Despite being highly rated, most of these financial instruments were made up of high-risk subprime mortgages. While elements of the crisis first became more visible during 2007, several major financial institutions collapsed in late 2008, with significant disruption in the flow of credit to businesses and consumers and the onset of a severe global recession. Most notably"
+    }
+   },
+   {
+    "at": 98.357,
+    "seq": 98,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "title": "Reading federalreservehistory.org — Subprime Mortgage Crisis - Federal Reserve History",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 98.358,
+    "seq": 99,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 98.358,
+    "seq": 100,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "site": "federalreservehistory.org",
+     "title": "Subprime Mortgage Crisis - Federal Reserve History"
+    }
+   },
+   {
+    "at": 98.561,
+    "seq": 69,
+    "kind": "quick",
+    "n": 3,
+    "of": 7,
+    "p": {
+     "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+     "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+    }
+   },
+   {
+    "at": 99.461,
+    "seq": 70,
+    "kind": "quick",
+    "n": 4,
+    "of": 7,
+    "p": {
+     "text": "The first phase was the subprime mortgage crisis, which began in early 2007 as mortgage-backed securities (MBS) tied to U.S. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. The increase in cash out refinancings, as home values rose, fueled an increase in consumption that could no longer be sustained when home prices declined. Many financial institutions owned investments whose value was based on home mortgages such as mortgage-backed securities, or credit derivatives used to insure them against failure, which declined in value significantly. Toxic securities were owned by corporate and institutional investors globally. Due to increasingly lax underwriting standards, one-third of all mortgages in 2006 were subprime or no-documen…",
+     "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+    }
+   },
+   {
+    "at": 100.361,
+    "seq": 71,
+    "kind": "quick",
+    "n": 5,
+    "of": 7,
+    "p": {
+     "text": "After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Banks discovered they could originate mortgages, bundle them into securities called mortgage-backed securities (MBS), and sell them to investors worldwide. By 2006, subprime mortgages, loans made to borrowers with poor credit histories and little documentation, accounted for roughly 20% of all new mortgage originations. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. The mortgage-backed securities sold to investors around the world were so complex that even sophisticated institutional buyers did not fully understand what they contained. The racial wealth gap widened dramatically: Black and Hispanic house…",
+     "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+     "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+    }
+   },
+   {
+    "at": 101.261,
+    "seq": 72,
+    "kind": "quick",
+    "n": 6,
+    "of": 7,
+    "p": {
+     "text": "As long as home prices continued to increase, subprime borrowers could protect themselves against high mortgage payments by refinancing, borrowing against the increased value of their homes, or selling their homes at a profit and paying off their mortgages. Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the loans and often misleading them about the risks involved. As a result, the share of subprime mortgages among all home loans increased from about 2.5 percent to nearly 15 percent per year from the late 1990s to 2004–07. Third, contributing to the growth of subprime lending was the widespread practice of securitization, whereby banks bundled together hundreds or even thousands of subprime mortgages and other, less-risky forms of consumer debt and sold them (or pieces of the…",
+     "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+     "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+    }
+   },
+   {
+    "at": 102.161,
+    "seq": 73,
+    "kind": "quick",
+    "n": 7,
+    "of": 7,
+    "p": {
+     "text": "As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. Many financial institutions owned investments whose value was based on home mortgages such as mortgage-backed securities, or credit derivatives used to insure them against failure, which declined in value significantly. and European banks lost more than $1 trillion on toxic assets and from bad loans from January 2007 to September 2009. Toxic securities were owned by corporate and institutional investors globally. This permitted t…",
+     "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+    }
+   },
+   {
+    "at": 103.061,
+    "seq": 74,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_a97b82",
+    "ps": [
+     {
+      "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+      "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+      "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+     },
+     {
+      "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+      "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+      "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+     }
+    ]
+   },
+   {
+    "at": 104.518,
+    "seq": 101,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "title": "Read federalreservehistory.org — Subprime Mortgage Crisis - Federal Reserve History",
+     "tone": "ok",
+     "note": "kept 1,307 of 8,773 chars",
+     "ms": 6162
+    }
+   },
+   {
+    "at": 104.519,
+    "seq": 102,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 104.519,
+    "seq": 103,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "site": "federalreservehistory.org",
+     "title": "Subprime Mortgage Crisis - Federal Reserve History",
+     "chars": 8773,
+     "kept": 1307,
+     "text": "The subprime mortgage crisis of 2007-10 stemmed from an earlier expansion of mortgage credit, including to borrowers who previously would have had difficulty getting mortgages, which both contributed to and was facilitated by rapidly rising home prices. Historically, potential homebuyers found it difficult to obtain mortgages if they had below average credit histories, provided small down payments or sought high-payment loans. Unless protected by government insurance, lenders often denied such mortgage requests. While some high-risk families could obtain small-sized mortgages backed by the Federal Housing Administration (FHA), others, facing limited credit options, rented. In that era, homeownership fluctuated around 65 percent, mortgage foreclosure rates were low, and home construction and house prices mainly reflected swings in mortgage interest rates and income. In the early and mid-2000s, high-risk mortgages became available from lenders who funded mortgages by repackaging them into pools that were sold to investors. New financial products were used to apportion these risks, with private-label mortgage-backed securities (PMBS) providing most of the funding of subprime mortgages. The less vulnerable of these securities were viewed as having low risk either because they were insured with new financial instruments or because other securities would first absorb any losses on th"
+    }
+   },
+   {
+    "at": 104.861,
+    "seq": 75,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_a97b82",
+    "ps": [
+     {
+      "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+      "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+      "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+     },
+     {
+      "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+      "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+      "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+     }
+    ]
+   },
+   {
+    "at": 105.629,
+    "seq": 104,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+     "title": "Read explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+     "tone": "ok",
+     "note": "kept 1,623 of 24,000 chars",
+     "ms": 7775
+    }
+   },
+   {
+    "at": 105.63,
+    "seq": 105,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 105.63,
+    "seq": 106,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/",
+     "site": "explaininghistory.org",
+     "title": "The US Subprime Mortgage Bubble: Causes and Consequences",
+     "chars": 24000,
+     "kept": 1623,
+     "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The Derivatives Loophole: Commodity Futures Modernization Act of 2000 The Fed's Pivot: Dot-Com Crash and Low Interest Rates Predatory Lending and the Originate-to-Distribute Model The Securitization Machine: Turning Lemons into Lemonade From Housing Crisis to Financial Meltdown The subprime mortgage crisis that erupted in 2007 was not a sudden accident but the culmination of a decade-long chain of deregulation, financial innovation, and speculative excess. Over a few short years, a system built to lend only to the most creditworthy borrowers mutated into one that handed out high-risk loans—often with no income verification, no down payment, and deceptively low initial rates—to millions of Americans who could not realistically afford them. What followed was not just a housing crash but a global financial meltdown that wiped out trillions in wealth, triggered the deepest recession since the Great Depression, and permanently reshaped the landscape of modern finance. This article traces the origins, mechanics, and unraveling of the subprime mortgage bubble. It examines the legislative deregulation that enabled the explosion of risk, the Federal Reserve’s low-interest-rate policies following the dot-com crash, the rise of exotic loan products like NINJA loans and exploding ARMs, the role of government-sponsored enterprises "
+    }
+   },
+   {
+    "at": 106.861,
+    "seq": 76,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_a97b82",
+    "ps": [
+     {
+      "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+      "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+      "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+     },
+     {
+      "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+      "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+      "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+     }
+    ]
+   },
+   {
+    "at": 109.061,
+    "seq": 77,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_a97b82",
+    "ps": [
+     {
+      "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+      "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+      "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+     },
+     {
+      "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+      "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+      "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+     }
+    ]
+   },
+   {
+    "at": 110.491,
+    "seq": 107,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+     "title": "Could not read fastercapital.com",
+     "tone": "bad",
+     "note": "no text came back",
+     "ms": 12638
+    }
+   },
+   {
+    "at": 110.492,
+    "seq": 108,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 110.492,
+    "seq": 109,
+    "kind": "st",
+    "st": {
+     "phase": "unread",
+     "url": "https://fastercapital.com/content/Housing-bubble--Subprime-Borrowers-and-the-Bursting-of-the-Housing-Bubble.html",
+     "site": "fastercapital.com",
+     "title": "Housing bubble: Subprime Borrowers and the Bursting of the Housing ...",
+     "chars": 0,
+     "kept": 0,
+     "text": ""
+    }
+   },
+   {
+    "at": 110.57,
+    "seq": 110,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:introductory rates expired people found unable afford home payments. Subprime",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 110.571,
+    "seq": 111,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 110.571,
+    "seq": 112,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "introductory rates expired people found unable afford home payments. Subprime"
+    }
+   },
+   {
+    "at": 111.861,
+    "seq": 78,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_a97b82",
+    "ps": [
+     {
+      "text": "A liquidity crisis spread to global institutions by mid-2007 and climaxed with the bankruptcy of Lehman Brothers in September 2008, which triggered a stock market crash and bank runs in several countries. As the Federal Reserve (Fed) lowered the federal funds rate from 2000 to 2003, institutions increasingly targeted low-income homebuyers, largely belonging to racial minorities, with high-risk subprime loans; this development went unattended by regulators. As interest rates rose from 2004 to 2006, monthly payments on these largely adjustable-rate mortgages spiked, leading to a wave of defaults, foreclosures, and bankruptcies among subprime lenders in early 2007. He projected they would become volatile within two years of the low \"teaser rate\" of the mortgages expiring. May 2006: JPMorgan warned clients of a housing downturn, and rising foreclosure rates, especially in sub-prime mortgage…",
+      "ref": "en.wikipedia.org — 2008 financial crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/2008_financial_crisis"
+     },
+     {
+      "text": "The roots of the crisis stretch back to the early 2000s, when a combination of low interest rates, deregulated lending, and financial innovation created the conditions for the largest housing bubble in American history. After the dot-com crash and the September 11 attacks, the Federal Reserve cut interest rates to historic lows, bringing the federal funds rate down to 1% by 2003. Cheap credit flooded into the housing market. Mortgage brokers earned commissions on volume, not quality, so they had every incentive to approve as many loans as possible, regardless of the borrower’s ability to repay. They gave AAA ratings, the highest possible safety grade, to securities that were stuffed with subprime loans. Lehman Brothers failed on 15 September 2008, AIG needed a $182 billion rescue, global stock markets lost more than $10 trillion in a matter of weeks, and US unemployment reached 10% by O…",
+      "ref": "maseconomics.com — The 2008 Financial Crisis Explained - MASEconomics",
+      "url": "https://maseconomics.com/the-2008-financial-crisis-explained-causes-response-and-lessons-for-the-global-economy/"
+     },
+     {
+      "text": "Consumers took advantage of the cheap credit to purchase durable goods such as appliances, automobiles, and especially houses. The result was the creation in the late 1990s of a “housing bubble” (a rapid increase in home prices to levels well beyond their fundamental, or intrinsic, value, driven by excessive speculation). Second, owing to changes in banking laws beginning in the 1980s, banks were able to offer to subprime customers mortgage loans that were structured with balloon payments (unusually large payments that are due at or near the end of a loan period) or adjustable interest rates (rates that remain fixed at relatively low levels for an initial period and float, generally with the federal funds rate, thereafter). Accordingly, many banks aggressively marketed subprime loans to customers with poor credit or few assets, knowing that those borrowers could not afford to repay the …",
+      "ref": "britannica.com — Financial crisis of 2007-08 | Definition, Causes, Effects, & Facts ...",
+      "url": "https://www.britannica.com/money/financial-crisis-of-2007-2008"
+     }
+    ]
+   },
+   {
+    "at": 112.18,
+    "seq": 113,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:introductory rates expired people found unable afford home payments. Subprime",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 1609
+    }
+   },
+   {
+    "at": 112.18,
+    "seq": 114,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 112.18,
+    "seq": 115,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "introductory rates expired people found unable afford home payments. Subprime",
+     "n": 20
+    }
+   },
+   {
+    "at": 112.19,
+    "seq": 116,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/",
+     "title": "Reading Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 112.191,
+    "seq": 117,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 112.191,
+    "seq": 118,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/",
+     "site": "Lawshelf",
+     "title": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned"
+    }
+   },
+   {
+    "at": 112.192,
+    "seq": 119,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "title": "Reading Federal Reserve History — Subprime Mortgage Crisis | Federal Reserve History",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 112.193,
+    "seq": 120,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 112.193,
+    "seq": 121,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "site": "Federal Reserve History",
+     "title": "Subprime Mortgage Crisis | Federal Reserve History"
+    }
+   },
+   {
+    "at": 112.193,
+    "seq": 122,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "title": "Reading Wikipedia — Subprime mortgage crisis - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 112.194,
+    "seq": 123,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 112.194,
+    "seq": 124,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "site": "Wikipedia",
+     "title": "Subprime mortgage crisis - Wikipedia"
+    }
+   },
+   {
+    "at": 112.212,
+    "seq": 125,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "title": "Read Federal Reserve History — Subprime Mortgage Crisis | Federal Reserve History",
+     "tone": "ok",
+     "note": "kept 1,316 of 8,773 chars",
+     "ms": 19
+    }
+   },
+   {
+    "at": 112.212,
+    "seq": 126,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 112.212,
+    "seq": 127,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis",
+     "site": "Federal Reserve History",
+     "title": "Subprime Mortgage Crisis | Federal Reserve History",
+     "chars": 8773,
+     "kept": 1316,
+     "text": "The subprime mortgage crisis of 2007-10 stemmed from an earlier expansion of mortgage credit, including to borrowers who previously would have had difficulty getting mortgages, which both contributed to and was facilitated by rapidly rising home prices. Historically, potential homebuyers found it difficult to obtain mortgages if they had below average credit histories, provided small down payments or sought high-payment loans. Unless protected by government insurance, lenders often denied such mortgage requests. While some high-risk families could obtain small-sized mortgages backed by the Federal Housing Administration (FHA), others, facing limited credit options, rented. In that era, homeownership fluctuated around 65 percent, mortgage foreclosure rates were low, and home construction and house prices mainly reflected swings in mortgage interest rates and income. In the early and mid-2000s, high-risk mortgages became available from lenders who funded mortgages by repackaging them into pools that were sold to investors. New financial products were used to apportion these risks, with private-label mortgage-backed securities (PMBS) providing most of the funding of subprime mortgages. The less vulnerable of these securities were viewed as having low risk either because they were insured with new financial instruments or because other securities would first absorb any losses on th"
+    }
+   },
+   {
+    "at": 112.213,
+    "seq": 128,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.investopedia.com/terms/s/subprime_rates.asp",
+     "title": "Reading Investopedia — Subprime Rates: What It is, How It Works",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 112.213,
+    "seq": 129,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 112.213,
+    "seq": 130,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.investopedia.com/terms/s/subprime_rates.asp",
+     "site": "Investopedia",
+     "title": "Subprime Rates: What It is, How It Works"
+    }
+   },
+   {
+    "at": 112.265,
+    "seq": 131,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "title": "Read Wikipedia — Subprime mortgage crisis - Wikipedia",
+     "tone": "ok",
+     "note": "kept 1,694 of 24,000 chars",
+     "ms": 72
+    }
+   },
+   {
+    "at": 112.265,
+    "seq": 132,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 112.266,
+    "seq": 133,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis",
+     "site": "Wikipedia",
+     "title": "Subprime mortgage crisis - Wikipedia",
+     "chars": 24000,
+     "kept": 1694,
+     "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. It led to a severe economic recession, with millions becoming unemployed and many businesses going bankrupt. The U.S. government intervened with a series of measures to stabilize the financial system, including the Troubled Asset Relief Program (TARP) and the American Recovery and Reinvestment Act of 2009 (ARRA). The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. This ultimately led to mass foreclosures and the devaluation of housing-related securities. The housing bubble preceding the crisis was financed with mortgage-backed securities (MBSes) and collateralized debt obligations (CDOs), which initially offered higher interest rates (i.e., better returns) than government securities, along with attractive risk ratings from rating agencies. Despite being highly rated, most of these financial instruments were made up of high-risk subprime mortgages. While elements of the crisis first became more visible during 2007, several major financial institutions collapsed in late 2008, with significant disruption in the flow of credit to businesses and consumers and the onset of a severe global recession. Most notably"
+    }
+   },
+   {
+    "at": 112.932,
+    "seq": 134,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.investopedia.com/terms/s/subprime_rates.asp",
+     "title": "Read Investopedia — Subprime Rates: What It is, How It Works",
+     "tone": "ok",
+     "note": "109 chars",
+     "ms": 720
+    }
+   },
+   {
+    "at": 112.932,
+    "seq": 135,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 112.932,
+    "seq": 136,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.investopedia.com/terms/s/subprime_rates.asp",
+     "site": "Investopedia",
+     "title": "Subprime Rates: What It is, How It Works",
+     "chars": 109,
+     "kept": 109,
+     "text": "​ Skip to content Investopedia Trade Search Please fill out this field. Log In My Account Log Out Newsletters"
+    }
+   },
+   {
+    "at": 119.145,
+    "seq": 137,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/",
+     "title": "Read Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and…",
+     "tone": "ok",
+     "note": "kept 2,464 of 20,031 chars",
+     "ms": 6955
+    }
+   },
+   {
+    "at": 119.145,
+    "seq": 138,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 119.145,
+    "seq": 139,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/",
+     "site": "Lawshelf",
+     "title": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+     "chars": 20031,
+     "kept": 2464,
+     "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned The Subprime Mortgage Crisis: Causes and Lessons Learned In the late 2000’s, a series of economic conditions came together to cause a major downturn in real estate and mortgage finance markets. This “bursting” of the real estate bubble created a ripple effect throughout the economy that is now referred to as the subprime mortgage crisis. The impacts of the crisis were global in scale. In this module, we will look at what common mortgage practices in the United States lead to the crisis and how the government responded to the collapse. We will highlight some of the most prominent factors that contributed to the greatest economic pullback since the Great Depression of the 1930s. After investigating the causes of the economic recession, the discussion then turns to how Congress responded with the Dodd-Frank Wall Street Reform and Consumer Protection Act.[1] By 2007, real estate markets were over-saturated with over-priced homes being purchased by people who posed high credit risks.[2] Lenders gave out expensive mortgages during a real estate boom that people seemed to think would last forever. As real estate values slipped, many of these mortgages amounted to more than the homes’ total values. Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinan"
+    }
+   },
+   {
+    "at": 119.223,
+    "seq": 140,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:securities rated highly too highly even based risky loans.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 119.223,
+    "seq": 141,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 119.223,
+    "seq": 142,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "securities rated highly too highly even based risky loans."
+    }
+   },
+   {
+    "at": 120.625,
+    "seq": 143,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:securities rated highly too highly even based risky loans.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 1403
+    }
+   },
+   {
+    "at": 120.626,
+    "seq": 144,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 120.626,
+    "seq": 145,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "securities rated highly too highly even based risky loans.",
+     "n": 20
+    }
+   },
+   {
+    "at": 120.633,
+    "seq": 146,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.fdic.gov/media/18636",
+     "title": "Reading FDIC — 1 Origins of the Crisis Overview",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 120.638,
+    "seq": 147,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 120.638,
+    "seq": 148,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.fdic.gov/media/18636",
+     "site": "FDIC",
+     "title": "1 Origins of the Crisis Overview"
+    }
+   },
+   {
+    "at": 120.639,
+    "seq": 149,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf",
+     "title": "Reading FDIC — 1 | P a g e Measuring the Risk of Securitized Products Octo…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 120.64,
+    "seq": 150,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 120.64,
+    "seq": 151,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf",
+     "site": "FDIC",
+     "title": "1 | P a g e Measuring the Risk of Securitized Products October 2010"
+    }
+   },
+   {
+    "at": 120.642,
+    "seq": 152,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf",
+     "title": "Reading GovInfo — THE FINANCIAL CRISIS INQUIRY REPORT • OFFICIAL GOVERNMENT E…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 120.642,
+    "seq": 153,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 120.642,
+    "seq": 154,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf",
+     "site": "GovInfo",
+     "title": "THE FINANCIAL CRISIS INQUIRY REPORT • OFFICIAL GOVERNMENT EDITION •"
+    }
+   },
+   {
+    "at": 127.54,
+    "seq": 155,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf",
+     "title": "Read GovInfo — THE FINANCIAL CRISIS INQUIRY REPORT • OFFICIAL GOVERNMENT E…",
+     "tone": "ok",
+     "note": "kept 105 of 24,000 chars",
+     "ms": 6898
+    }
+   },
+   {
+    "at": 127.54,
+    "seq": 156,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 127.54,
+    "seq": 157,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.govinfo.gov/content/pkg/GPO-FCIC/pdf/GPO-FCIC.pdf",
+     "site": "GovInfo",
+     "title": "THE FINANCIAL CRISIS INQUIRY REPORT • OFFICIAL GOVERNMENT EDITION •",
+     "chars": 24000,
+     "kept": 105,
+     "text": "%PDF-1.6 %���� 3166 0 obj <> endobj 3212 0 obj <>/Filter/FlateDecode/ID[<0D1ADBA73FF6A405512C5E875636AB8F><431AF89F3EE5704C89B5B32CDAA6C82D>]/Index[3166 79]/Info 3165 0 R/Length 198/Prev 5459070/Root 3167 0 R/Size 3245/Type/XRef/W[1 3 1]>>stream h�bbd`\u0010``b`\u0010� \"\u0019�A$s �dK\u0004�,��\"� ��\u0012̞ &��d\u001eX \u0013�T\u0003�\\�`s6�H��`�,\u0010)�\u0010lB\u001b�d=��5�t�L�@�B/X<\u001fD��ŧ\u0003IFǍ v�N\u0010��W\u0010��\u0001�v�� �@�2e\u0010ە\u0013�^� boI\u0005��|\u0007��xA\"�\u0016 ҹ\u0019$RZ\u0006\"\u000f\u0004�D� ���`�7?\u0005��\u0004C\u0018�\u0018\u0019xނD�.\u001ab��o �\u0002 o\u001f%\u0003 endstream endobj startxref 0 %%EOF 3244 0 obj <>stream h��Z{tSe��;���\u0007��\u0013�0\u0012\u0002�\u0016[HI����㴴AJ�4-\u0014�\b4�&�S|���\u0017Ʀꨌ+s�\"8FAf9zg�c\u0018\u0007�\u001b�\u000eW��Z���5�\u0019�8w�W�~�y$'iR����_d�|�����޿���9k%�#�[�\u0007�A�!��!\u0017�!\u0007�r5\u00162��0��z���-ǘ�82�%��\u001az~v�� 4�q��\u0003���p*\u001eWr^�NF]\u0011�|\u0019�)\u001a�\u001a\u0016�q��,�0\u0007�eU��JL\b�\u0006 Ŧ��0cU)֟��q��\u0004�y�`�q8cd�`\\�h\"��� :b9?���X\u0017�z�>Ư��\u0002�Op��{\u0005���B����\u0011,\u0003�37a'ch�錐���|+������\b���\u0012~�\u000e�0\u0006�Q�/x�Yp�\u00026\u0007���-~\u0003�����\u0019����0?\u001dm1�\u0012Ή���0׌ .�nt\u001b�b����h� ��e\u0015��ٜ{ ��\u0015��B�`��.�el��b���\u001d�ya\u0019΋q�����(6����;\u001c�X�\u001f�\u001fo�r �\u0011�g��ǝ�U\u0011�D�\\�*#�CWc�,Ʀ��\u001e;���`k�\u000f�\"��5�x��`g���:k^\u0007\\\u000epǱ1.�&� \u0015�j�\u001e�6#?\u0015\u0017��_cs��!\u001c��!�q ��j�p �\"�\u001eǚ��`wp\u0018��\u0014��\u0005�F��`}�{\u0017'E��P sVl��Q������4]Y�\u0013\b\\�+\\���-�\u001d�����X�\u0011���\u0013-���\u00125��[V�\u001b�\u0016aSp�6t�x7֙���ya�Oh��\u0013Qt�Ob���Û\u0003�x �{�% �G{�y\u0016�\u0007y\u001e� w\u0017.a\u001d��s��9}�\u0013\u0004�a-Z\u0003� �a�>F{�\u001f��bËq�_�\u0003΋���t��\u0014G��9d��8�>#��\u0018燢�,TbU���ia�$�z ����8��}�H� �;7.|��\u0003��qiD\b�\u0018#ao��|\u000e���o��H����<��Q>��P�K\u0011��$t$ĭ`��\u001d}�Jl�Y�\u0015���f�\u001e\u0017� \u001f�=h��\u0018�oǙA�=�o��F8\u0017\u0011ڱ�+��\u0006���� o�F/s; �^\u0007�\u0004\u0004\u0006;�7��*LŦ��(�3���\u0010��!�y?z]�l,�\u0016E��O�O4 =X�%4w"
+    }
+   },
+   {
+    "at": 127.541,
+    "seq": 158,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.kiplinger.com/article/investing/t035-c000-s004-securities-based-loans-are-risky-business.html",
+     "title": "Reading Kiplinger — Securities-Based Loans Are Risky Business | Kiplinger",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 127.541,
+    "seq": 159,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 127.541,
+    "seq": 160,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.kiplinger.com/article/investing/t035-c000-s004-securities-based-loans-are-risky-business.html",
+     "site": "Kiplinger",
+     "title": "Securities-Based Loans Are Risky Business | Kiplinger"
+    }
+   },
+   {
+    "at": 128.48,
+    "seq": 161,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf",
+     "title": "Read FDIC — 1 | P a g e Measuring the Risk of Securitized Products Octo…",
+     "tone": "ok",
+     "note": "24,000 chars",
+     "ms": 7841
+    }
+   },
+   {
+    "at": 128.481,
+    "seq": 162,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 128.481,
+    "seq": 163,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf",
+     "site": "FDIC",
+     "title": "1 | P a g e Measuring the Risk of Securitized Products October 2010",
+     "chars": 24000,
+     "kept": 24000,
+     "text": "%PDF-1.4 %���� 2653 0 obj <> endobj xref 2653 44 0000000016 00000 n 0000003858 00000 n 0000003947 00000 n 0000004149 00000 n 0000004413 00000 n 0000004554 00000 n 0000004970 00000 n 0000005423 00000 n 0000005812 00000 n 0000006174 00000 n 0000006723 00000 n 0000007214 00000 n 0000007253 00000 n 0000007304 00000 n 0000007604 00000 n 0000007862 00000 n 0000008114 00000 n 0000008359 00000 n 0000008617 00000 n 0000008696 00000 n 0000009397 00000 n 0000010124 00000 n 0000010896 00000 n 0000011611 00000 n 0000012346 00000 n 0000013086 00000 n 0000013222 00000 n 0000013521 00000 n 0000014197 00000 n 0000014778 00000 n 0000017473 00000 n 0000025133 00000 n 0000025390 00000 n 0000025610 00000 n 0000042348 00000 n 0000062982 00000 n 0000071796 00000 n 0000072047 00000 n 0000072262 00000 n 0000072448 00000 n 0000078673 00000 n 0000078924 00000 n 0000084263 00000 n 0000001176 00000 n trailer <]>> startxref 0 %%EOF 2696 0 obj <>stream x��VyT�W\u0016�\u0012B6 ��\u0010PC �\u00100�,\u0016,Ah\u001a\u00104\"H@��-� Ud;�1\u001f���,\u0001AA\u0003���r\u001c��\u0006 �)*\u0002Z\u0015�\b�\u0002��\u0016T��L ,A�کsf��{�w����w�����^>\u0012�S�\u0003@5\u0006h�iӐ��\u0007(����s&L \\*\u0006�L\u0018�����\u0004�\u000eԱ�\u0012jF7�\u0004�i'T\u0002�SLm���0\u0014\\�B\u0002m\u0015�#\u0013�<\b��C���\u0012\u0001\u0011r�Y�e1\u0010�6m�0�B���O\u0006\u0014\u0004�PFt�1(uw\u0006\u0004��\u0005o3E�o�&�b�4�sZ\u000e��ho��\u001f҄j�� \";e�X/Q\\��ض\u0006_\u001a���[\u0018�\u000e�a��:��e����\u001a=�^(V�\u001c%�'\u0011!�FQ\u0003p�ٶ��U\u0019 ަM�c��������M-g� \u0005��F�$��\b�E�RD7t/��T�[\u001d�#�湴mUK\u0018vR~��we��C 6*���\u001a!R�Is�Z���\u0013�F>/=g�\u0005Ē�$�b\u001a��\u000f�^`u#\b\u0012k0\u0011�J!܆A��D���6�KPx��:��z\u000f�/�bw��w\\_�����ݽ�!\u0004�̓\u0005�R�5\u0016�\u001e�\u0007j"
+    }
+   },
+   {
+    "at": 129.315,
+    "seq": 164,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.fdic.gov/media/18636",
+     "title": "Read FDIC — 1 Origins of the Crisis Overview",
+     "tone": "ok",
+     "note": "kept 469 of 24,000 chars",
+     "ms": 8681
+    }
+   },
+   {
+    "at": 129.315,
+    "seq": 165,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 129.315,
+    "seq": 166,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.fdic.gov/media/18636",
+     "site": "FDIC",
+     "title": "1 Origins of the Crisis Overview",
+     "chars": 24000,
+     "kept": 469,
+     "text": "%PDF-1.7 %���� 1962 0 obj <> endobj 1982 0 obj <>/Filter/FlateDecode/ID[<36326AE2E79EDE48A24EABD3FF64EEF2>]/Index[1962 33]/Info 1961 0 R/Length 95/Prev 378608/Root 1963 0 R/Size 1995/Type/XRef/W[1 2 1]>>stream h�bbd\u0010``b`i\u0007\u0012���\u0004�\u0017 ��\u000fĚ \"�\u0003 � \u0002���\u0019�j\u0004��A�>\u0010k7H�z\u0010�\u0001$�����\u0011 !�\u0016H���\u0015\u0001%\u0018�-�,\u0006\u0006F҈��\u0002�\u0001\u0004\u0018\u0010D\u0011C endstream endobj startxref 0 %%EOF 1994 0 obj <>stream h�b```\u0002�� � �r � \b���\u0002\u0014ea�hp\u0010�Q`pPlpdp\u0011`Q�`ah��@h������\u0017sL�\u0002\u0003��\u0006\u001f��T����\u0002�29��/�x��`s��qSS+�\u001d��{?0+$�#�� ��$\u0006V\u0001y�~�;p�� �B��� \u0003C�m\u0006Pre}\u000f �) �G7BT3�\u0001\u0004\u0018���\u0013 endstream endobj 1963 0 obj <>>>/MarkInfo<>/Metadata 146 0 R/Pages 1955 0 R/StructTreeRoot 310 0 R/Type/Catalog>> endobj 1964 0 obj <>/ExtGState<>/Font<>/ProcSet[/PDF/Text]/XObject<>>>/Rotate 0/StructParents 0/Tabs/S/Thumb 116 0 R/TrimBox[0.0 0.0 504.0 720.0]/Type/Page>> endobj 1965 0 obj <>stream hޤWms�8\u0010�\u0005�\u0007}����dY�g�ΤM ��P�\u0002\u001c��8���p��vJ{�����6}I[��Ȓ�����yv-�$\u0014��i����\u001b���o\u0018�T̍X���$\"N#n�B�X��b��ܗJ�\u0002e����\u0001+MC�R������=���8���\u0011^c��\u0007\u0018�.�U��1����~5\\v�0H!x��A;U�b��\u000f��{�k�\u001f�#�DX��\"oNN76Nhwkk3kl\u000e\u001fb/~���C1ʊ���\u001e���iV�VO�W\u0001}�_�|��\u0013�\u000e{���\u000e���\u0007DKKG�3K�\u0017��6k- 3?��u�66\u001e��\u0015����Գ`��\u0019ڲ\u0015ilh+���n�\b\\��1R��\u0011�\u001a�ఘuhP�� � 2!J`�,ւՅ�\u0012�L�\u001f:�ᗟ\u0013&O��Ƨ49�\u0001�􉰽\u001f���e�����\u0012� �-�� �UD��>D�A��@�� 8�\u000eQ�I���J�' ���.��~\u0004Q�\u0013\u0010�\u001d�]D��\u0010\u0005��GT\"� *5�� o����y�t\u0018����X\u001c�?�q�\u001f��ٚ�ʣC#�3\u001e4����' ��)\"�l\u0004��\b��\u0014 4 vkq�y���nߍF\u0016Qah�\u0013\u0010z\u0017n^ ���\"\u0004.\u0004o`'I�\u001e����<��{ }������v�\u001a��0�����@V6Epj�2��\u0019:׺\"�h��X��\u0003\u001a�j�>|�4���\u000f���hw��v8ͫ����Z\u0014n�v�ԇ"
+    }
+   },
+   {
+    "at": 135.709,
+    "seq": 167,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.kiplinger.com/article/investing/t035-c000-s004-securities-based-loans-are-risky-business.html",
+     "title": "Read Kiplinger — Securities-Based Loans Are Risky Business | Kiplinger",
+     "tone": "ok",
+     "note": "kept 53 of 24,000 chars",
+     "ms": 8169
+    }
+   },
+   {
+    "at": 135.71,
+    "seq": 168,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 135.71,
+    "seq": 169,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.kiplinger.com/article/investing/t035-c000-s004-securities-based-loans-are-risky-business.html",
+     "site": "Kiplinger",
+     "title": "Securities-Based Loans Are Risky Business | Kiplinger",
+     "chars": 24000,
+     "kept": 53,
+     "text": "Securities-Based Loans Are Risky Business | Kiplinger @font-face { font-family: \"Lato-fallback\"; size-adjust: 97.38%; ascent-override: 98%; src: local(Arial); } @font-face { font-family: \"Source Serif Pro-fallback-TNR\"; size-adjust: 110.86999999999993%; ascent-override: 84%; src: local(\"Times New Roman\"); } @font-face { font-family: \"Source Serif Pro-fallback-T\"; size-adjust: 110.86999999999993%; ascent-override: 84%; src: local(Times); } @layer legacy{@media (min-width:1280px){.vanilla-centered-header .navigation .navigation__topitem{left:calc(50% + 71px)!important}}@media (min-width:700px) and (max-width:1280px){.vanilla-centered-header .navigation__burgerbar .locale-selector-slice{margin-left:3%!important}}@media (min-width:700px){.vanilla-centered-header .navigation .logo .logo__svg{padding-top:3px}.vanilla-centered-header .navigation .logo .logo__text{margin-top:10px}.vanilla-centered-header .navigation .locale-selector-slice .locale-selector__trigger{min-width:93px;min-height:28px}.vanilla-centered-header .navigation .locale-selector-slice .locale-selector__trigger .locale-selector__icon--chevron-down{position:absolute;right:0}.vanilla-centered-header .navigation .nav-subscribe .subscribe-text{background:#ededed;padding:10px 15px;width:100px}.vanilla-centered-header .navigation .logo .logo__svg img{height:50px}.vanilla-centered-header .navigation .logo__strapline{font-wei"
+    }
+   },
+   {
+    "at": 135.789,
+    "seq": 170,
+    "kind": "quick",
+    "n": 1,
+    "of": 6,
+    "p": {
+     "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+     "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+    }
+   },
+   {
+    "at": 135.791,
+    "seq": 181,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read 6 more sources",
+     "tone": "ok",
+     "note": "“Here's summary based sources housing market bubble people took loans” · “introductory rates expired people found unable afford home payments. Subprime” · “securities rated highly "
+    }
+   },
+   {
+    "at": 136.689,
+    "seq": 171,
+    "kind": "quick",
+    "n": 2,
+    "of": 6,
+    "p": {
+     "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+     "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+     "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+    }
+   },
+   {
+    "at": 137.589,
+    "seq": 172,
+    "kind": "quick",
+    "n": 3,
+    "of": 6,
+    "p": {
+     "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+     "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+     "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+    }
+   },
+   {
+    "at": 138.489,
+    "seq": 173,
+    "kind": "quick",
+    "n": 4,
+    "of": 6,
+    "p": {
+     "text": "The subprime mortgage crisis of 2007-10 stemmed from an earlier expansion of mortgage credit, including to borrowers who previously would have had difficulty getting mortgages, which both contributed to and was facilitated by rapidly rising home prices. Historically, potential homebuyers found it difficult to obtain mortgages if they had below average credit histories, provided small down payments or sought high-payment loans. In that era, homeownership fluctuated around 65 percent, mortgage foreclosure rates were low, and home construction and house prices mainly reflected swings in mortgage interest rates and income. Because FHA loans allow for low down payments, the agency's share of newly issued mortgages jumped from under 10 percent to over 40 percent. The Federal Reserve, which lowered short-term interest rates to nearly 0 percent by early 2009, took additional steps to lower long…",
+     "ref": "Federal Reserve History — Subprime Mortgage Crisis | Federal Reserve History",
+     "url": "https://www.federalreservehistory.org/essays/subprime-mortgage-crisis"
+    }
+   },
+   {
+    "at": 139.389,
+    "seq": 174,
+    "kind": "quick",
+    "n": 5,
+    "of": 6,
+    "p": {
+     "text": "z'��d\u0019\u000eV��=�\u0016\u001d���q���7\u0005�@A�\u001b�PO������l��T�'�\u0017T��\\�[�7.>������]�LK� �#'A�`\u0005��/LOX�H!�^\u0007\u0019i-��F\u0006!v�dS��II�s&9�s�{Vvk��,��-��ݓ�+\u001a�ds��b�\u0017CC�C~��\u0016$J�K�\u000f��\u001a�ԕ��Hεڌ%Ƶ����ʼ�m횶V[GGA+\u000fA(bD\u0005T^\u0003\bH^�\u0007�$7 A�MHBB\b\u0010\u0013\u001e\u0001\u0004d\u0011\u0014��/|L�G\u0017N\u001d�Ō�֮2�̹�K�̉�c�߳�����o�[TJ�$\u0005� �wV���܅��\u001c��h�8��\u001fd62f�~B�ԏ��.IkJ\"�7?�� ����g\"�����D<�pF»��{K&�h-{�k\u001d�\u0015.�E׮�t]]�^\u0002���,��m��f�\\w&��2~e`dRȿ;3�9чZ\u0014��7{2�d\u0013LC����a�1�\u0002�%�c�\u0010�䖗����|\u0014�DU�S� n���1�am܆Q�ɦf���5<\"z��\\��OB���\u0004Xg� ͒z\u0014\\�*�h�=��t4����� �z\u0018��t��R�D�VK�",
+     "ref": "FDIC — 1 Origins of the Crisis Overview",
+     "url": "https://www.fdic.gov/media/18636"
+    }
+   },
+   {
+    "at": 140.289,
+    "seq": 175,
+    "kind": "quick",
+    "n": 6,
+    "of": 6,
+    "p": {
+     "text": "%PDF-1.4 %���� 2653 0 obj <> endobj xref 2653 44 0000000016 00000 n 0000003858 00000 n 0000003947 00000 n 0000004149 00000 n 0000004413 00000 n 0000004554 00000 n 0000004970 00000 n 0000005423 00000 n 0000005812 00000 n 0000006174 00000 n 0000006723 00000 n 0000007214 00000 n 0000007253 00000 n 0000007304 00000 n 0000007604 00000 n 0000007862 00000 n 0000008114 00000 n 0000008359 00000 n 0000008617 00000 n 0000008696 00000 n 0000009397 00000 n 0000010124 00000 n 0000010896 00000 n 0000011611 00000 n 0000012346 00000 n 0000013086 00000 n 0000013222 00000 n 0000013521 00000 n 0000014197 00000 n 0000014778 00000 n 0000017473 00000 n 0000025133 00000 n 0000025390 00000 n 0000025610 00000 n 0000042348 00000 n 0000062982 00000 n 0000071796 00000 n 0000072047 00000 n 0000072262 00000 n 0000072448 00000 n 0000078673 00000 n 0000078924 00000 n 0000084263 00000 n 0000001176 00000 n trailer <]>> s…",
+     "ref": "FDIC — 1 | P a g e Measuring the Risk of Securitized Products October 2010",
+     "url": "https://www.fdic.gov/regulations/laws/federal/2010/10c19ad62.pdf"
+    }
+   },
+   {
+    "at": 141.189,
+    "seq": 176,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_9ce3de",
+    "ps": [
+     {
+      "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+      "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+     },
+     {
+      "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+      "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+      "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+     },
+     {
+      "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+      "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+      "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+     }
+    ]
+   },
+   {
+    "at": 142.989,
+    "seq": 177,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_9ce3de",
+    "ps": [
+     {
+      "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+      "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+     },
+     {
+      "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+      "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+      "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+     },
+     {
+      "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+      "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+      "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+     }
+    ]
+   },
+   {
+    "at": 144.989,
+    "seq": 178,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_9ce3de",
+    "ps": [
+     {
+      "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+      "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+     },
+     {
+      "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+      "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+      "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+     },
+     {
+      "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+      "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+      "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+     }
+    ]
+   },
+   {
+    "at": 147.189,
+    "seq": 179,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_9ce3de",
+    "ps": [
+     {
+      "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+      "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+     },
+     {
+      "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+      "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+      "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+     },
+     {
+      "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+      "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+      "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+     }
+    ]
+   },
+   {
+    "at": 149.989,
+    "seq": 180,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_9ce3de",
+    "ps": [
+     {
+      "text": "The American subprime mortgage crisis was a multinational financial crisis that occurred between 2007 and 2010, contributing to the 2008 financial crisis. The collapse of the 2000s United States housing bubble and high interest rates led to unprecedented numbers of borrowers missing mortgage repayments and becoming delinquent. housing prices fell nearly 30% on average and the U.S. stock market fell approximately 50% by early 2009, with stocks regaining their December 2007 level during September 2012. interest rates from 2002 to 2004 contributed to easy credit conditions, which fueled both housing and credit bubbles. Loans of various types (e.g., mortgage, credit card, and auto) were easy to obtain and consumers assumed an unprecedented debt load. These assumptions included: 1) Housing prices would not fall dramatically; 2) Free and open financial markets supported by sophisticated finan…",
+      "ref": "en.wikipedia.org — Subprime mortgage crisis - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Subprime_mortgage_crisis"
+     },
+     {
+      "text": "The Death of Glass-Steagall: Gramm-Leach-Bliley Act of 1999 The housing bubble of the 2000s was no exception. But to understand how the American mortgage market became a powder keg, we must first examine the deregulatory shifts of the late 1990s and early 2000s—changes that tore down the walls that had separated commercial banking, investment banking, and insurance for nearly seven decades. For most of the twentieth century, the Glass-Steagall Act of 1933 had kept a firm barrier between commercial banks (which took deposits and made loans) and investment banks (which underwrote securities and traded on their own account). This separation was a direct response to the stock market crash of 1929 and the subsequent Great Depression, which had been exacerbated by banks gambling with depositor money. In 2000, the dot-com bubble burst, wiping out trillions in market value and sending the US ec…",
+      "ref": "explaininghistory.org — The US Subprime Mortgage Bubble: Causes and Consequences",
+      "url": "https://explaininghistory.org/2026/04/15/the-us-subprime-mortgage-bubble-how-risky-loans-built-a-house-of-cards/"
+     },
+     {
+      "text": "Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned Many homeowners found themselves unable to afford their monthly mortgage payments, and they could no longer refinance or sell due to plummeting real estate values. The financial collapse of 2007 to 2009 is commonly referred to as the subprime mortgage crisis because this lending practice is considered the main trigger of the collapse. Subprime loans started rising in popularity in the mid-1990’s.[5] In 1994, total subprime mortgage loans issued in the United States amounted to $35 billion. Many in the industry believed that if people found themselves unable to pay their mortgages, they would simply sell their home for a profit in the booming housing market and use the proceeds to pay off the loan. Predominantly, these tactics included adjustable rate mortgages with teaser rates and tricky underwriting practices. …",
+      "ref": "Lawshelf — Part 2, Module 4: The Subprime Mortgage Crisis: Causes and Lessons Learned",
+      "url": "https://www.lawshelf.com/videocoursesmoduleview/part-2-module-4-the-subprime-mortgage-crisis-causes-and-lessons-learned/"
+     }
+    ]
+   },
+   {
+    "at": 192.493,
+    "seq": 182,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Restated 1 sentence from what was found",
+     "tone": "ok",
+     "note": "the rest of the answer is unchanged"
+    }
+   },
+   {
+    "at": 192.706,
+    "seq": 183,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Stopped going back",
+     "tone": "info",
+     "note": "out of time — the sentences still failing are marked"
+    }
+   },
+   {
+    "at": 193.262,
+    "seq": 184,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: 1 of 10 sentences spoken, 9 withheld · 10 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 193.262,
+    "seq": 185,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 213.465,
+    "seq": 186,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · maseconomics.com · 2 model calls"
+    }
+   },
+   {
+    "at": 213.534,
+    "seq": 187,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 213.537,
+    "seq": 188,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 214 s · read 18 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 213.538,
+    "seq": 189,
+    "kind": "done"
+   }
+  ]
+ }
+}

@@ -1,0 +1,44 @@
+{
+  "organ": "khora/native/kernel/hypergraph.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/berge-hypergraph.json"
+  ],
+  "whatTheyArgued": "Berge's Graphes et hypergraphes (Dunod 1970; English 1973) generalizes graphs so an edge (hyperedge) may join any number of vertices, not just two; the arXiv review I searched (not readable as text) and catalog records confirm the book and its dates. I did not read Berge. The manifest is copyrighted_deferred. Whether he first coined 'hypergraph' in 1970 is a gap: other sources date his work to 1967 and 1973 and a Berge-led Hypergraph Seminar in 1972 (edited 1974), so the 1970 coinage in the compendium is unverified.",
+  "scholarship": [
+    {
+      "ref": "Hypergraphs: an introduction and review (arXiv 2002.05014), via search digest; PDF unreadable by fetch",
+      "url": "https://arxiv.org/pdf/2002.05014",
+      "supports": "Berge 1967/1973 introduces hypergraphs to generalize graphs; multi-adic relations",
+      "disputes": "a date inconsistency (1967 vs 1970 vs 1973) across citations; I could not resolve it"
+    },
+    {
+      "ref": "Catalogue record, Graphes et hypergraphes (BnF)",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb458870226",
+      "supports": "existence of the 1970 French book",
+      "disputes": "none"
+    }
+  ],
+  "ourUse": "hypergraph.js: EOHyperedge participants and refs are walked as a hypergraph of observations, mentions, expectations and obligations; edges are n-ary.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "coined-claim",
+      "kind": "misstated",
+      "ours": "Compendium role is 'he coined it'; credit says he coined the hypergraph.",
+      "theirs": "I verified only that Berge wrote the founding book; priority of the term over Berge's earlier 1967 usage and others was not verified."
+    },
+    {
+      "id": "definition-scope",
+      "kind": "re-scoped",
+      "ours": "Hyperedges as typed participant lists with witness and encounter refs, built for reading.",
+      "theirs": "Berge's hypergraphs are set systems on a vertex set, with a theory (transversals, colorings, duality); we use none of the theory, only n-ary edges."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Claude Berge's Graphes et hypergraphes (1970; Graphs and Hypergraphs 1973) founded the theory of hypergraphs: edges that join any number of vertices. We use only n-ary edges.' (drop 'he coined it' unless the term's first use is sourced)"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "berge",
+  "tokenized": false
+}

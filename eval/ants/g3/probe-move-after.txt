@@ -1,0 +1,30 @@
+web    standalone question    why is the sky blue
+web    standalone question    how do bats see
+web    standalone question    what is love
+web    standalone question    why do cats purr
+web    standalone question    how does gps work
+web    standalone question    who invented the telephone
+web    standalone question    what is a tornado
+web    standalone question    why is water wet
+web    standalone question    what is ethics
+web    standalone question    how tall is everest
+web    standalone question    explain gravity
+web    standalone question    prove pythagoras
+web    standalone escalation  are you sure about gravity
+THREAD move       frame-ask   what does it all mean
+web    standalone frame-ask   so what is dna
+web    standalone escalation  wait what is entropy
+THREAD move       map-ask     how do these fit together
+THREAD meta       frame-ask   so what
+THREAD meta       question    really
+THREAD meta       question    huh
+web    standalone question    what is the meaning of life
+web    standalone question    convince me about vaccines
+web    standalone question    is the earth flat
+web    standalone question    what is truth
+web    standalone question    how do planes fly
+web    standalone question    so how do vaccines work
+web    standalone question    no way, is that true
+THREAD move       escalation  prove it
+THREAD move       escalation  are you sure
+THREAD move       frame-ask   what does it all mean

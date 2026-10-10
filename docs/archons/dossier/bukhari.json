@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "bukhari",
+  "organ": "khora/native/organs/corroboration.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/bukhari-corroboration.json", "eo-teachings/manifest/bukhari-reproduction.json"],
+  "whatTheyArgued": "The two verbatim snips (Arabic Sahih, untranslated) are Bukhari's own notes naming further narrators who corroborated a report through another chain (mutaba'a: 'Abu 'Abdillah said: and Sa'id ibn Masruq and Mis'ar and al-Shaybani followed him'), and a second note setting out the wording different narrators gave for one report. So he does record corroborating chains and does compare wordings. What he is reported to have required for inclusion is different: just narrators with strong memory, a complete isnad, and that consecutive narrators met. By one count the Sahih holds 344 mutaba'at against thousands of reports, so most reports stand on a single chain. Nothing in the snips says a shared link makes two reports one witness; that count-independence rule is the project's reading.",
+  "scholarship": [
+    { "ref": "Wikipedia 'Sahih al-Bukhari' (fetched; weak secondary, it summarizes Brown and classical commentators; no stronger source could be opened)", "url": "https://en.wikipedia.org/wiki/Sahih_al-Bukhari", "supports": "four inclusion conditions (just, strong memory, unbroken isnad, narrators met); 344 mutaba'at; chains of three to nine narrators", "disputes": "traditional ranking of Sahih as most authentic is a community judgment; Brown's work on canonization treats that status as historically formed (book not read)" },
+    { "ref": "Wikipedia 'Hadith terminology' (fetched)", "url": "https://en.wikipedia.org/wiki/Hadith_terminology", "supports": "mutawatir needs many narrators; gharib/ahad is a report with a single narrator at some level, a category the Sahih contains", "disputes": "does not itself say whether Sahih accepts single-chain reports; I infer it from the mutaba'at count and the gharib category, and flag this as inference" }
+  ],
+  "ourUse": "corroboration.js makes the witness tier the ledger's second vote: two documents corroborate a note only through the witness protocol, with an ask budget and verbatim deciders; the compendium line is 'stands only on independent chains; shared chain = one witness'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "only-on-independent-chains", "kind": "misstated", "ours": "compendium: 'a report stands only on independent chains of narrators'.", "theirs": "The Sahih accepts single-chain reports from reliable narrators; mutaba'at are supporting additions, not a condition of standing (inference from criteria and counts above)." },
+    { "id": "shared-chain-one-witness", "kind": "invented-attribution", "ours": "'two reports sharing one link are one witness, not two' as his discipline.", "theirs": "No such statement is in the snips; independence of chains matters in tawatur doctrine and mutaba'a, but this crisp rule is ours." },
+    { "id": "chains-to-documents", "kind": "re-scoped", "ours": "Chains of narrators become two web pages' sentences matched by a small model's yes/no.", "theirs": "His chains are named persons with graded reliability; our witness tier has no narrator identities or reliability grading." },
+    { "id": "speaks-block", "kind": "misstated", "ours": "corroboration.js opens with 'Bukhari speaks:' + snip, then 'I believe a more nuanced approach incorporating broader sources of evidence could enrich the understanding of hadith'.", "theirs": "That first-person sentence is generated, not Bukhari, yet is placed under his name." },
+    { "id": "yada-owns-domain", "kind": "reinterpreted", "ours": "Header says the paraphrase domain is owned by YadaYadaYada and Bukhari is only the organ's handle.", "theirs": "Bukhari's snips compare wordings of a report across narrators, which is the closest real overlap with paraphrase; it is credited elsewhere." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Compiler of the Sahih. He required just, reliable narrators and an unbroken isnad whose links had met, and he sometimes adds corroborating chains (mutaba'at) and sets out differing wordings of one report. The project borrows the idea that independent chains support a report more than copies of one chain do.'",
+    "compendium credit: 'al-Bukhari - corroborating chains (mutaba'at) noted beside a report (Sahih); independence rule is the project's own.'",
+    "corroboration.js: delete or mark generated the first-person paragraph after the snip."
+  ]
+}
