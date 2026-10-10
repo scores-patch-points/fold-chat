@@ -103,17 +103,95 @@ export async function createBuild({ units = [], field = null, hunt = null, draw 
   return { artifact: materialize(log, { assemble }), verdict, log };
 }
 
+/** orderOf(claims) — the build's units in the order they were defined. Pure. */
+export function orderOf(claims) {
+  return [...(claims ?? [])].filter((c) => c.kind === "unit" && c.phase === "define").sort(bySeq).map((c) => ({ name: c.unit, spec: c.spec ?? null }));
+}
+
+const stem = (w) => String(w).replace(/(ies|es|s|ing|ed)$/i, "");
+/** editedUnits(edit, units) — the units an edit NAMES, best first, ties to the earlier unit.
+ *  A NAMED unit (its name shares a word with the edit; stemmed, so "button" meets "buttons")
+ *  beats a spec match, so "add a 25% button" touches `buttons`, not every unit whose spec says
+ *  "tip". Spec matches are used only when no name matches. Empty when the edit names nothing the
+ *  build has. Pure. */
+export function editedUnits(edit, units) {
+  const want = [...new Set(words(edit).map(stem))];
+  if (!want.length) return [];
+  const nameHits = [], specHits = [];
+  (units ?? []).forEach((u, i) => {
+    const nm = new Set(words(u.name).map(stem)), sp = new Set(words(u.spec).map(stem));
+    let n = 0, s = 0;
+    for (const w of want) { if (nm.has(w)) n += 1; if (sp.has(w)) s += 1; }
+    if (n) nameHits.push({ u, score: 2 * n + s, i });
+    else if (s) specHits.push({ u, score: s, i });
+  });
+  const pick = nameHits.length ? nameHits : specHits;
+  pick.sort((a, b) => b.score - a.score || a.i - b.i);
+  return pick.map((x) => x.u);
+}
+
+/** applyEdit(claims, { edit, units, addUnits, draw, field, hunt, gate, assemble, test }) — an
+ *  ATOMIC edit to the build log. Only the units the edit TOUCHES get a new `fill` (appended, so it
+ *  supersedes the last one); every other unit keeps its last fill BYTE-FOR-BYTE. The artifact is
+ *  the fold of the grown log — no unit is redefined, the whole page is never redrawn. Returns
+ *  { artifact, verdict, log, touched }. Falsifying control: an untouched unit whose bytes move, or
+ *  a unit define row appended for an existing unit, concedes the rule. */
+export async function applyEdit(claims, { edit = "", units = null, addUnits = [], draw = null, field = null, hunt = null, gate = () => ({ ok: true, reason: "ungated" }), assemble = null, test = null } = {}) {
+  const log = [...(claims ?? [])];
+  const A = (claim) => { const row = { schema: BUILD_LOG_SCHEMA, seq: log.length, ...claim }; log.push(row); return row; };
+  for (const u of addUnits) A({ kind: "unit", phase: "define", unit: u.name, spec: u.spec ?? null });
+  const prior = new Map(materialize(log, { assemble }).units.map((u) => [u.unit, u.code]));
+  const targets = (units && units.length) ? units : editedUnits(edit, orderOf(log));
+  const touched = [];
+  for (const u of targets) {
+    const name = u.name, priorCode = prior.get(name) ?? "";
+    let filled = false;
+    for (const [source, fn] of [["field", field], ["hunt", hunt]]) {
+      if (filled || typeof fn !== "function") continue;
+      const cand = await fn(u, priorCode, edit);
+      if (!cand) continue;
+      if (cand.code === priorCode) { A({ kind: "refusal", unit: name, source, address: cand.address ?? null, reason: "the source came back unchanged — nothing to set down" }); continue; }
+      const g = gate(u, cand.code, priorCode, edit);
+      if (g.ok) { A({ kind: "fill", unit: name, source, address: cand.address ?? null, code: cand.code, model: null, applied: true }); filled = true; }
+      else A({ kind: "refusal", unit: name, source, address: cand.address ?? null, reason: g.reason });
+    }
+    if (!filled && typeof draw === "function") {
+      let d = null; try { d = await draw(u, priorCode, edit); } catch { d = null; }
+      const code = d?.code ?? d?.text ?? "";
+      if (code && code === priorCode) A({ kind: "refusal", unit: name, source: "draw", reason: "the draw came back unchanged — nothing to set down" });
+      else {
+        const g = code ? gate(u, code, priorCode, edit) : { ok: false, reason: "empty draw" };
+        if (code && g.ok) { A({ kind: "fill", unit: name, source: "draw", address: null, code, model: d.model ?? null, applied: true }); filled = true; }
+        else A({ kind: "refusal", unit: name, source: "draw", reason: g.reason || "empty draw" });
+      }
+    }
+    if (filled) touched.push(name);
+  }
+  const artifact = materialize(log, { assemble });
+  A({ kind: "fold", bytes: bytesOf(artifact.code), units: artifact.units.length });
+  let verdict = { ok: null, reason: "no test declared" };
+  try { verdict = typeof test === "function" ? await test(artifact.code, log) : verdict; } catch (e) { verdict = { ok: false, reason: String((e && e.message) || e) }; }
+  A({ kind: "verdict", ok: verdict.ok === true, reason: verdict.reason ?? null });
+  return { artifact: materialize(log, { assemble }), verdict, log, touched };
+}
+
 /** unitsFromOutline(outline) — one unit per planned line ("signature — spec"),
- *  the `NEEDS:` line dropped. Pure. */
+ *  the `NEEDS:` line dropped. A line that is MARKUP or code is NOT a part: when a
+ *  planner "plans" by dumping the whole page, the units must never become
+ *  "```html", "<!DOCTYPE html>", "<head>" — those are refused, a named gap, not
+ *  parts to fill. Pure. */
 export function unitsFromOutline(outline, { max = 12 } = {}) {
   const out = [];
   for (const raw of String(outline ?? "").split("\n")) {
     const line = raw.replace(/^\s*(?:[-*•]|\d+[.)])\s*/, "").trim();
     if (!line || /^NEEDS\s*:/i.test(line)) continue;
+    // a LINE OF CODE OR MARKUP is not a unit — a whole page was dumped, not a plan
+    if (/^(<[\w/!]|```|~~~|<!doctype)/i.test(line)) continue;
+    if (/[\{\};]/.test(line) && /[=]/.test(line)) continue;   // JS/CSS: code, not a part
     const m = /^(.*?)\s*(?:—|--|:|–)\s*(.*)$/.exec(line);
     const name = (m ? m[1] : line).replace(/["']/g, "").replace(/\s+/g, " ").trim();
     const spec = (m ? m[2] : "").trim();
-    if (name) out.push({ name: name.slice(0, 60), spec: spec.slice(0, 160) });
+    if (name && !/^<[^>]*>$/.test(name) && !/^```/.test(name)) out.push({ name: name.slice(0, 60), spec: spec.slice(0, 160) });
     if (out.length >= max) break;
   }
   return out;
@@ -203,4 +281,4 @@ export function assetFor(unit, material) {
   return null;
 }
 
-export default { BUILD_LOG_SCHEMA, PROJECTION_SCHEMA, bytesOf, materialize, createBuild, unitsFromOutline, snipFor, figuresIn, grounded, imageUrlsIn, assetFor };
+export default { BUILD_LOG_SCHEMA, PROJECTION_SCHEMA, bytesOf, materialize, createBuild, orderOf, editedUnits, applyEdit, unitsFromOutline, snipFor, figuresIn, grounded, imageUrlsIn, assetFor };

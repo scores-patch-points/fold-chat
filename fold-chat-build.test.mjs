@@ -2,7 +2,7 @@
 // refusal, resume, hunt-first order, the named gap, and the field snipper.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { materialize, createBuild, unitsFromOutline, snipFor, grounded, figuresIn, bytesOf, BUILD_LOG_SCHEMA, imageUrlsIn, assetFor } from "./fold-chat-build.js";
+import { materialize, createBuild, unitsFromOutline, snipFor, grounded, figuresIn, bytesOf, BUILD_LOG_SCHEMA, imageUrlsIn, assetFor, applyEdit, editedUnits, orderOf } from "./fold-chat-build.js";
 
 const mk = (arr) => arr.map((c, i) => ({ seq: i, ...c }));
 const base = mk([
@@ -140,4 +140,54 @@ test("F4 · assetFor: an image from an UNRELATED passage is refused (no cross-so
 
 test("assetFor: an image-like unit with no source image is a named gap, never a made-up URL", () => {
   assert.equal(assetFor({ name: "hero image", spec: "a dolphin" }, [{ source: "a.example", text: "dolphins" }]), null);
+});
+
+// ── ATOMIC EDITS — the whole point: an edit appends a fill for the units it
+//    touches; every other unit's bytes are untouched. The page is never redrawn. ──
+const TIP_UNITS = [
+  { name: "amount", spec: "input for the bill total" },
+  { name: "buttons", spec: "10, 15, 20 percent tip buttons" },
+  { name: "result", spec: "shows the tip and the total" },
+];
+const TIP_DRAW = async (u) => ({ model: "m1", code: {
+  amount: `<label>Bill $<input id="bill" type="number" value="100"></label>`,
+  buttons: `<div id="tips"><button data-p="10">10%</button><button data-p="15">15%</button><button data-p="20">20%</button></div>`,
+  result: `<p id="out">Tip: $15.00 · Total: $115.00</p>`,
+}[u.name] });
+
+test("editedUnits: an edit names the unit it touches (stemmed, name-first), not the others", () => {
+  const u = editedUnits("add a 25% button and a custom tip field", TIP_UNITS);
+  assert.deepEqual(u.map((x) => x.name), ["buttons"]);
+  assert.equal(editedUnits("update the result text", TIP_UNITS)[0].name, "result");
+  assert.deepEqual(editedUnits("recite a poem", TIP_UNITS), []);
+});
+
+test("applyEdit: an edit is APPEND-ONLY and ATOMIC — untouched units keep their exact bytes", async () => {
+  const built = await createBuild({ units: TIP_UNITS, draw: TIP_DRAW, test: () => ({ ok: true }) });
+  const v1 = built.artifact;
+  const before = new Map(v1.units.map((u) => [u.unit, u.code]));
+  const rowsBefore = built.log.length;
+
+  const edited = await applyEdit(built.log, {
+    edit: "add a 25% button and a custom tip field",
+    draw: async (u, priorCode) => ({ model: "m2", code: priorCode.replace("</div>", `<button data-p="25">25%</button><input id="custom" type="number" placeholder="custom %"></div>`) }),
+    test: () => ({ ok: true, reason: "runs" }),
+  });
+
+  // the log only GREW, and by an appended fill + fold + verdict — no re-defines
+  assert.ok(edited.log.length > rowsBefore);
+  assert.equal(edited.log.filter((c) => c.kind === "unit").length, 3);   // no unit redefined
+  assert.deepEqual(edited.touched, ["buttons"]);
+
+  // the edit changed ONLY the touched unit; the rest are byte-for-byte identical
+  assert.notEqual(edited.artifact.units.find((u) => u.unit === "buttons").code, before.get("buttons"));
+  assert.equal(edited.artifact.units.find((u) => u.unit === "amount").code, before.get("amount"));
+  assert.equal(edited.artifact.units.find((u) => u.unit === "result").code, before.get("result"));
+  assert.equal(edited.artifact.complete, true);
+  assert.ok(edited.artifact.code.includes('data-p="25"'));
+
+  // and the log is append-only: the prefix is untouched
+  assert.equal(edited.log.slice(0, rowsBefore).map((r) => JSON.stringify(r)).join("\n"), built.log.map((r) => JSON.stringify(r)).join("\n"));
+  // orderOf reads the units back from the log, in define order
+  assert.deepEqual(orderOf(edited.log).map((u) => u.name), ["amount", "buttons", "result"]);
 });

@@ -12,6 +12,7 @@ import { editorFor, editEOT, editableParts } from "./fold-blocks-edit.js";
 import { createMemory, contentWords } from "./fold-blocks-weave.js";
 import { longKind, urlOf, runEssay, runExtract, addSection, replaceInArtifact, extendEssay } from "./fold-chat-longform.js";
 import { createWorkspace, treeOf, applyEdits, parseEdits, diffLines, diffStat, snapshot as wsSnapshot } from "./fold-chat-workspace.js";
+import { spineBase, buildViaSpine, editViaSpine } from "./fold-chat-spine.js";
 // THE APP'S OWN FALSIFIER — the same organ the answer lane uses. A made page is
 // not trusted because it renders; its CLAIMS are falsified against the material
 // that was read, and a failing claim sends the turn back (REC→NUL) to be corrected.
@@ -22,7 +23,7 @@ import { falsifyAnswer, claimSentences, FAILING } from "./fold-chat-falsify-answ
 import { RUNGS, cellOf, cellLine, gateTurn, runSpiral } from "./fold-chat-cube.js";
 // THE WEAVE, in the browser (an experiment): the page is stitched from what was
 // read — field first, mouth only the residue, every byte logged with provenance.
-import { createBuild, unitsFromOutline, snipFor, grounded, assetFor } from "./fold-chat-build.js";
+import { createBuild, unitsFromOutline, snipFor, grounded, assetFor, applyEdit, editedUnits, orderOf } from "./fold-chat-build.js";
 // THE ASK, FOLDED; THE PRODUCT, JOINED. EVA is a join over addressed atoms, not a
 // model holding the whole ask or the whole page: the ask folds into bounded spans,
 // each read locally into verbatim-verified atoms; the render is the other side.
@@ -40,6 +41,10 @@ const KEY = "fold-chat:folds@1";
 // THE WEAVE EXPERIMENT: ?stitch=1 makes the make stitch the page from what was
 // read (field first, the mouth only the residue) instead of drawing it whole.
 const STITCH = (typeof location !== "undefined") && new URLSearchParams(location.search).get("stitch") === "1";
+// THE LOG IS THE FOLD (2026-10-10): a page is BUILT as an append-only unit log and
+// PROJECTED from it; an edit APPENDS a fill for only the unit it names — the whole
+// page is never redrawn. `?log=0` forces the old whole-page draw (the fallback).
+const UNIT_LOG = (typeof location === "undefined") ? true : new URLSearchParams(location.search).get("log") !== "0";
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const uid = () => "fd_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 // PHEROMONE TRAILS — the ant's memory over the log. A path that led to a held page
@@ -136,7 +141,6 @@ const CSS = `
 .fs-glyph{--g:var(--ag-deep);font:700 var(--fs-sm)/1 var(--mono);color:var(--g);width:1.5em;height:1.5em;flex:none;display:inline-flex;align-items:center;justify-content:center;position:relative;border-radius:50%}
 .fs-row.bad .fs-glyph{--g:var(--bad)}
 .fs-row.info .fs-glyph{--g:var(--mut)}
-.fs-glyph.g-ground{border-radius:0;padding-bottom:3px}
 .fs-glyph.g-ground::after{content:"";position:absolute;left:.22em;right:.22em;bottom:0;height:2px;border-radius:1px;background:var(--g)}
 .fs-glyph.g-figure{border:1.5px solid var(--g)}
 .fs-glyph.g-pattern{background:var(--g);color:var(--bg)}
@@ -411,23 +415,28 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     let r; try { r = falsifyAnswer(sentences, material); } catch { return null; }
     return { summary: r.summary, failed: r.claims.filter((c) => FAILING.has(c.verdict)) };
   }
-  /** THE STITCH (the weave experiment): decompose the outline into units, fill
-   *  each from the FIELD (the passages that were read) by snip+address, ask the
-   *  MOUTH only for the residue, gate every byte, and project the page from the
-   *  log. Returns the build ({ artifact, verdict, log }) or null. */
-  async function tryStitch(text, material, outline, draw, ac, atoms = []) {
-    const units = unitsFromOutline(outline, { max: 8 });
-    if (!units.length) return null;
+  /** THE STITCH — now the DEFAULT page-builder (the log is the fold): decompose the
+   *  outline into units, fill each from the FIELD (the passages read) by snip+address,
+   *  ask the MOUTH only for the residue (one fragment per unit — never the whole page),
+   *  gate every byte, and PROJECT the page from the log. Works with NO sources too (a
+   *  widget like a tip calculator) — the gate is then structural, and the test decides.
+   *  Returns the build ({ artifact, verdict, log }) or null. */
+  function stitchKit(material, ac, atoms = []) {
+    const hasMat = !!(material && material.length);
     const model = getModelId?.();
-    return createBuild({
-      units,
-      field: (u) => assetFor(u, material) || snipFor(u, material),
-      gate: (u, code) => grounded(u, code, material),
-      draw: async (u) => {
-        const out = await draw([
-          { role: "system", content: "You write ONE short HTML fragment for ONE piece of a page — no <html> shell, no prose, no markdown. Use only the facts you are given." },
-          { role: "user", content: `The piece: ${u.name}\nWhat it is: ${u.spec || "(unspecified)"}\nFacts you may use (only these):\n${material.map((m) => `- ${String(m.text).slice(0, 300)}`).join("\n")}` },
-        ], { maxTokens: 400, signal: ac.signal });
+    return {
+      units: null, // filled by the caller from the outline
+      field: hasMat ? ((u) => assetFor(u, material) || snipFor(u, material)) : (() => null),
+      gate: hasMat ? ((u, code) => grounded(u, code, material)) : ((u, code) => (String(code || "").trim() ? { ok: true, reason: "a byte the maker set down" } : { ok: false, reason: "empty" })),
+      draw: async (u, priorCode = "", edit = "") => {
+        const sys = edit
+          ? "You change ONE small HTML fragment of a page. Output only the NEW fragment — no <html> shell, no prose, no markdown. Keep everything that already works; change only what was asked."
+          : "You write ONE short HTML fragment for ONE piece of a page — no <html> shell, no prose, no markdown. Use only the facts you are given.";
+        const facts = hasMat ? `\nFacts you may use (only these):\n${material.map((m) => `- ${String(m.text).slice(0, 300)}`).join("\n")}` : "";
+        const ask = edit
+          ? `The piece: ${u.name}\nWhat it is: ${u.spec || "(unspecified)"}\nIts current HTML:\n${priorCode}\n\nThe change asked for: ${edit}\n\nOutput only the new HTML fragment for "${u.name}", inside a single fenced code block.`
+          : `The piece: ${u.name}\nWhat it is: ${u.spec || "(unspecified)"}${facts}`;
+        const out = await draw([{ role: "system", content: sys }, { role: "user", content: ask }], { maxTokens: 400, signal: ac.signal });
         return { code: stripFence(out), model };
       },
       assemble: (joined, order, us) => `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{font:16px/1.6 system-ui,sans-serif;max-width:820px;margin:2rem auto;padding:0 1rem;color:#17171a}h2{margin:1.4em 0 .4em}section{margin:0 0 1em}</style></head><body>${us.map((u) => u.code).join("\n")}</body></html>`,
@@ -435,12 +444,48 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         const obs = await observePage(code);
         if (obs.err && obs.err.length) return { ok: false, reason: `the page threw: ${obs.err[0]}` };
         if (obs.nodes < 4) return { ok: false, reason: "the page rendered nothing" };
-        // THE JOIN: the render is one side, the ask's atoms the other — mechanical.
         const missing = missingAtoms(atoms, { labels: obs.labels, text: obs.t0 });
         if (missing.length) return { ok: false, reason: `the page does not show ${atomLine(missing)} — the ask names them` };
         return { ok: true, reason: `ran · ${obs.nodes} nodes · every required item shown` };
       },
+    };
+  }
+  async function tryStitch(text, material, outline, draw, ac, atoms = [], units = null) {
+    const us = units || unitsFromOutline(outline, { max: 8 });
+    if (!us.length) return null;
+    const kit = stitchKit(material, ac, atoms);
+    return createBuild({ units: us, field: kit.field, gate: kit.gate, draw: kit.draw, assemble: kit.assemble, test: kit.test });
+  }
+  /** AN EDIT TO A LOG-BUILT PAGE IS AN ATOMIC APPEND, NEVER A REDRAW. The unit(s) the
+   *  edit names get a new fill — the mouth is prompted for THAT fragment alone (with the
+   *  current fragment as the anchor), never the whole page; every other unit keeps its
+   *  last fill byte-for-byte. The page is the fold of the grown log. */
+  async function applyEditToBuild(text, ac) {
+    const material = cur.buildMaterial || [];
+    const kit = stitchKit(material, ac, cur.buildAtoms || []);
+    const targets = editedUnits(text, cur.buildUnits || []);
+    push({ kind: "think", by: "fold", op: "SEG", text: targets.length ? `the change names: ${targets.map((u) => u.name).join(", ")} — only ${targets.length === 1 ? "that part is" : "those parts are"} redrawn.` : "the change names no part I have — I try the whole page's parts for one it fits.", ok: true });
+    paint();
+    const before = cur.buildLog.length;
+    const st = await applyEdit(cur.buildLog, {
+      edit: text, units: targets.length ? targets : null,
+      field: kit.field, hunt: null, draw: kit.draw, gate: kit.gate, assemble: kit.assemble, test: kit.test,
     });
+    for (const c of st.log.slice(before)) {
+      const by = c.source === "field" ? "library" : c.source === "hunt" ? "hunt" : "mouth";
+      if (c.kind === "fill") push({ kind: "assembly", by, op: "REC", label: `${c.unit} · ${c.source}`, text: String(c.code).slice(0, 400), ok: true, address: c.address || null });
+      else if (c.kind === "refusal") push({ kind: "think", by: "app", op: "REC", text: `refused ${c.unit}: ${c.reason}`, ok: false });
+      else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `edit verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true, ...(c.ok ? { run: { ok: true, finding: null } } : {}) });
+    }
+    cur.buildLog = st.log;
+    if (st.touched.length) {
+      cur.artifact = { ...(cur.artifact || {}), kind: "app", html: st.artifact.code, title: cur.artifact?.title || text.slice(0, 48) };
+      push({ kind: "assembly", by: "app", op: "SYN", label: `applied to ${st.touched.join(", ")} — the page folded again`, text: st.artifact.code, ok: true });
+      toast(st.verdict?.ok ? `Changed ${st.touched.join(", ")}.` : "The change did not hold.");
+    } else {
+      push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "not changed", msg: "the change names no part of this page — name the part (e.g. “the buttons”) or the field to change.", fix: "" }] });
+    }
+    paint();
   }
   /** Climb the cube: grain = the ask's own words; terrain = the ask in its want;
    *  domain = the kind of thing it is, broadly. Returns the refined SEARCH subject. */
@@ -477,7 +522,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // make-verb, a codebase, or an existing artifact is what earns a build), so
     // the fold stops before it searches or draws — no page for "who is the
     // president?". One act, zero draws, and it is done.
-    const wantsBuild = /\b(make|build|create|design|draft|write|generate|spin up|set up|mock up|prototype|implement|turn .* into|add|change|edit|redo)\b/i.test(text) || isMakeAsk(text) || !!cur.codebase || !!(cur.artifact && (cur.artifact.html || cur.artifact.doc));
+    const wantsBuild = /\b(make|build|create|design|draft|write|generate|spin up|set up|mock up|prototype|implement|turn .* into|add|change|edit|redo|rename|refactor|move)/i.test(text) || isMakeAsk(text) || !!cur.codebase || !!(cur.artifact && (cur.artifact.html || cur.artifact.doc));
     if (!wantsBuild) {
       push({ kind: "think", by: "app", op: "REC", say: `“${text.replace(/\s+/g, " ").trim().slice(0, 70)}” is a question, not a thing to make — I only build things here. Ask it in Chat instead.` });
       paint();
@@ -573,7 +618,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       try {
         outline = await draw([
           { role: "system", content: "You plan a single self-contained web page. Be concrete and short; no preamble." },
-          { role: "user", content: `The ask: ${text}\n${want && want.satisfy ? `It is satisfied when: ${want.satisfy}\n` : ""}${material && material.length ? `Real sources:\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${slice(m.text).slice(0, 140)}`).join("\n")}\n` : ""}\nList the pieces the page needs, one per line — its sections and the facts to show (use the sources). Then one line: NEEDS: <what you lack, or "nothing">.` },
+          { role: "user", content: `The ask: ${text}\n${want && want.satisfy ? `It is satisfied when: ${want.satisfy}\n` : ""}${material && material.length ? `Real sources:\n${material.map((m, i) => `[${i + 1}] ${m.source} — ${slice(m.text).slice(0, 140)}`).join("\n")}\n` : ""}\nList the pieces the page needs, one per line — its sections and the facts to show (use the sources). Then one line, exactly: NEEDS: nothing — or, only if you truly need a real thing you could fetch that is not on this page, NEEDS: that thing, short.` },
         ], { maxTokens: 400, signal: ac.signal, onToken: otok });
       } catch { /* no outline */ }
       endStream();
@@ -583,7 +628,14 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
       if (cur.codebase) haveL.push("a codebase");
       haveL.push("the in-tab model");
       const needsLine = /^\s*NEEDS:\s*(.+)$/im.exec(outline || "");
-      need = needsLine && !/^\s*nothing\b/i.test(needsLine[1]) ? needsLine[1].trim() : null;
+      // "<nothing>" is NOT a lack (measured 2026-10-10): a small model copies
+      // the prompt's own angle-bracket placeholder verbatim, the old test
+      // /^\s*nothing\b/ let the brackets through, and the spiral climbed on a
+      // literal "<nothing>" — re-read, re-search, re-outline, one wasted pass
+      // per climb, "I still lack <nothing>". Brackets, dashes and quote marks
+      // are stripped before the nothing/none test, so only a REAL lack climbs.
+      const needRaw = needsLine ? needsLine[1].replace(/^[<>\s\-—*"'`]+|[<>\s\-—*"'`]+$/g, "").trim() : "";
+      need = needRaw && !/^(nothing|none|no|\w*less)$/i.test(needRaw) ? needRaw : null;
       push({ kind: "think", by: "app", op: "CON", text: `I'm building from ${haveL.join(", ")}${lackL.length || need ? ` — and I'm short ${[...lackL, need].filter(Boolean).join(", ")}` : ""}` });
       setLive(material && material.length ? "checking what I have" : "checking what I have — no sources yet");
       paint();
@@ -612,10 +664,10 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // THE MEASURED RESIDUAL (the DMD observable): how far the page is from holding —
     // the real test's own output (observation errors + failing claims), never a text length.
     let residual = 1, obsErrors = 0, failedClaims = 0;
-    // THE EXPERIMENT (the weave, ?stitch=1): before asking the mouth for a whole
-    // page, STITCH it from what was read — field first (snipped by address), the
-    // mouth only the residue, every byte gated and logged with its provenance.
-    if (STITCH && !finding && material && material.length) {
+    // THE LOG IS THE FOLD: build the page as an append-only unit log and PROJECT it
+    // (the mouth draws only the residue — one fragment per unit, never the whole
+    // page). A page that does not hold falls back to the whole-page draw below.
+    if (UNIT_LOG && !finding && outline) {
       const st = await tryStitch(text, material, outline, draw, ac, required);
       if (st) {
         for (const c of st.log) {
@@ -623,20 +675,21 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           if (c.kind === "fill") push({ kind: "assembly", by, op: "SYN", label: `${c.unit} · ${c.source}`, text: String(c.code).slice(0, 400), ok: true, address: c.address || null });
           else if (c.kind === "refusal") push({ kind: "think", by: "app", op: "REC", text: `refused ${c.unit} from ${c.source}: ${c.reason}`, ok: false });
           else if (c.kind === "unfilled") push({ kind: "think", by: "app", op: "NUL", text: `unfilled ${c.unit}: ${c.reason}`, ok: false });
-          else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `stitch verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true, ...(c.ok ? { run: { ok: true, finding: null } } : {}) });
+          else if (c.kind === "verdict") push({ kind: "assembly", by: "app", op: "EVA", label: `build verdict · ${c.ok ? "holds" : "not held"}`, text: c.reason || "", ok: c.ok === true, ...(c.ok ? { run: { ok: true, finding: null } } : {}) });
         }
-        push({ kind: "think", by: "app", op: "CON", text: `stitched ${st.artifact.units.length}/${st.artifact.order.length} units — ${st.artifact.provenance.map((p) => `${p.unit}←${p.source}`).join(", ")}`, ok: true });
+        push({ kind: "think", by: "app", op: "CON", text: `built ${st.artifact.units.length}/${st.artifact.order.length} units — ${st.artifact.provenance.map((p) => `${p.unit}←${p.source}`).join(", ")}`, ok: true });
         paint();
         if (st.verdict?.ok && st.artifact.complete) {
           html = st.artifact.code; held = true;
           cur.artifact = { kind: "app", html, title: text.slice(0, 48) };
-          push({ kind: "assembly", by: "app", op: "SYN", label: "the page (stitched from the sources)", text: html, ok: true });
-          toast("Held — stitched from the sources.");
+          cur.buildLog = st.log; cur.buildUnits = orderOf(st.log); cur.buildMaterial = material || []; cur.buildAtoms = required;
+          push({ kind: "assembly", by: "app", op: "SYN", label: "the page (folded from the log)", text: html, ok: true });
+          toast("Held — folded from the log.");
           paint();
           lastMaterial = material;
           return { held: true, finding: null, refused: false, residual: 0 };
         }
-        push({ kind: "think", by: "app", op: "REC", text: `the stitched page did not hold (${st.verdict?.reason || "incomplete"}) — drawing the whole page instead.`, ok: false });
+        push({ kind: "think", by: "app", op: "REC", text: `the folded page did not hold (${st.verdict?.reason || "incomplete"}) — drawing the whole page instead.`, ok: false });
         paint();
       }
     }
@@ -744,6 +797,82 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     }
   }
 
+  /** THE THIN-CLIENT SPINE PATH (2026-10-10): a widget make or edit goes to the
+   *  MACHINE (penelope's spiral door) — arrange + the cube-tied behavioral judge
+   *  + the append-only program log — and the page here only DISPLAYS the returned
+   *  artifact and the machine's own record. The browser never draws the widget. */
+  async function runSpine(text, first) {
+    setLive(first ? "asking the machine spine to build it" : "asking the machine spine to edit one unit"); paint();
+    try {
+      const r = first ? await buildViaSpine(text) : await editViaSpine(cur.spine, text);
+      if (!r.ok) {
+        push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: r.typed || "spine-refused", msg: r.reason || "the machine refused" }] });
+        paint(); return;
+      }
+      cur.spine = r.session;
+      cur.artifact = { ...(cur.artifact || {}), kind: "app", html: r.html, title: cur.artifact?.title || text.slice(0, 48) };
+      push({ kind: "think", by: "app", op: "CON", text: `the machine spine held it — ${r.cells.join(" · ")}${r.refusals ? ` · ${r.refusals} refusal(s) on the log` : ""}`, ok: true });
+      for (const c of r.log) {
+        const row = c.kind === "test"
+          ? { op: "EVA", label: "the machine's verdict", text: c.reason || "", ok: c.ok === true, run: { ok: c.ok === true } }
+          : c.kind === "patch"
+            ? { op: "REC", label: `machine · patch${c.reason ? " · " + c.reason : ""}`, text: c.address || "", ok: true }
+            : c.kind === "refusal"
+              ? { op: "NUL", label: "machine · refused", text: c.reason || "", ok: false }
+              : { op: "SYN", label: `machine · ${c.kind}${c.source ? " ← " + c.source : ""}`, text: c.address || "", ok: true };
+        push({ kind: "assembly", by: "app", ...row });
+      }
+      for (const w of r.whispers || []) push({ kind: "assembly", by: "app", op: "EVA", grain: "Pattern", target: "witness:" + w.unit, label: "the murmur · " + w.unit, text: w.verdict + " — " + (w.basis || ""), ok: w.verdict === "held" });
+      toast(first ? "Built by the machine spine — the log is its record." : "One unit changed — the spine re-judged and held it.");
+      paint();
+    } catch (e) {
+      push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "spine-unreachable", msg: String(e?.message || e).slice(0, 120) }] });
+      paint();
+    }
+  }
+  /** THE WORKTREE KNOWS ITSELF — a codebase-bound ask is answered from the tree's
+   *  own bytes: WORKSPACE.md is the tree's self-description, and the inventory
+   *  below is a grep, zero draws. A multi-call-site rename is named as a GRAPH
+   *  CASCADE (the one-unit lane's wall, typed) with every location disclosed;
+   *  a single-unit edit is offered with its exact span. Never a fabrication. */
+  async function runWorktreeAsk(text) {
+    const m = /(?:rename|move)\s+([A-Za-z_$][\w$]*)\s+(?:to|→|->)\s+([A-Za-z_$][\w$]*)/i.exec(text) || /(?:rename|move)\s+([A-Za-z_$][\w$]*)\s*(?:to|→|->)\s*([A-Za-z_$][\w$]*)/i.exec(text);
+    const files = (cur.codebase && cur.codebase.files) || {};
+    const name = m ? m[1] : null;
+    push({ kind: "think", by: "app", op: "DEF", grain: "Pattern", target: "the-ask", text: name ? `the worktree's own self-description is read first; the inventory is a grep of ${Object.keys(files).length} file(s) — zero draws.` : "no target name found — the ask must name the symbol.", ok: true });
+    if (name) {
+      const hits = [];
+      const CODE = /\.(mjs|js|ts|jsx|tsx)$/i;
+      for (const [p, code] of Object.entries(files)) {
+        const lines = String(code).split("\n");
+        lines.forEach((l, i) => { if (l.includes(name)) hits.push({ p, line: i + 1, text: l.trim().slice(0, 90) }); });
+      }
+      push({ kind: "assembly", by: "app", op: "SIG", grain: "Figure", target: "unit:" + name, label: `inventory of “${name}” (SIG·Figure · the unit-holon inside the worktree)`, text: hits.map((h) => `${h.p}:${h.line}  ${h.text}`).join("\n") || "none in the bound tree", ok: true });
+      // THE MOVES ARE THE CUBE'S, NEVER BESPOKE. DEFN → the holon's state;
+      // decoys are CODE bindings only (a self-description that NAMES the decoy
+      // is not one — falsified 2026-10-10: WORKSPACE.md:6 was counted).
+      const decoys = hits.filter((h) => CODE.test(h.p) && new RegExp("(?:^|[;\\s])(?:const|let|var)\\s+\\b" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b\\s*(?:=|:)").test(h.text) && !new RegExp("export\\s+(?:function|const)\\s+\\b" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(h.text));
+      const defs = hits.filter((h) => CODE.test(h.p) && !decoys.some((d) => d.p === h.p && d.line === h.line) && new RegExp("(?:export\\s+)?(?:function|const|async\\s+function)\\s+\\b" + name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b").test(h.text));
+      const callSites = hits.filter((h) => !defs.some((d) => d.p === h.p && d.line === h.line) && !decoys.some((d) => d.p === h.p && d.line === h.line));
+      const definedIn = [...new Set(defs.map((d) => d.p))];
+      const canOneUnit = defs.length === 1 && callSites.length <= 1 && decoys.length === 0;
+      if (hits.length >= 2 && !canOneUnit) {
+        // REC — the wall, recorded: the graph cascade is not a one-unit move.
+        push({ kind: "note", by: "app", text: "", ok: false, op: "REC", grain: "Figure", target: "unit:" + name, errors: [{ code: "graph-cascade", msg: `“${name}” is a GRAPH edit, not a unit: ${defs.length} definition(s) in ${definedIn.join(", ") || "?"} and ${callSites.length} call site(s) across files. The cube's move here is REC — record the wall. The one-unit lane cannot hold a call graph, and a partial rename breaks the tests.` }] });
+      } else {
+        // SYN — one unit, applied here; EVA is the machine's own test (pending).
+        const target = canOneUnit ? (definedIn[0] || hits[0].p) : null;
+        if (target && cur.codebase.files[target] && m) {
+          cur.codebase.files[target] = String(cur.codebase.files[target]).split(m[1]).join(m[2]);
+          push({ kind: "assembly", by: "app", op: "SYN", grain: "Figure", target: "file:" + target, label: `move: SYN·Figure — one-unit patch of ${target} (${m[1]} → ${m[2]})`, text: cur.codebase.files[target], ok: true });
+          push({ kind: "assembly", by: "app", op: "EVA", grain: "Pattern", target: "test:worktree", label: "EVA · Pattern pending — the machine's own test decides (this lane has no npm)", text: `the worktree's test (npm test --prefix …) must run before the patch is called green — unverified, not done.`, ok: true, run: { ok: null, finding: "test not run here" } });
+        } else {
+          push({ kind: "think", by: "app", op: "EVA", text: `inventory: ${defs.length} definition(s)${decoys.length ? `, ${decoys.length} code decoy(s) NOT to touch: ${decoys.map((d) => d.p + ":" + d.line).join(", ")}` : ""}, ${callSites.length} call site(s) — a rename reaches ${hits.length} span(s) across ${new Set(hits.map((h) => h.p)).size} file(s); ${canOneUnit ? "single-unit — the move is SYN." : "a graph cascade — the move is REC, record the wall."}`, ok: true });
+        }
+      }
+    }
+    paint();
+  }
   async function runAsk(text) {
     if (!cur || running) return;
     const ac = new AbortController(); running = ac;
@@ -756,11 +885,36 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     // first call is the slow one — so paint the ask and a working line BEFORE the
     // await, never a blank screen until the model speaks.
     setLive(first ? "reading what you're asking for" : "reading your follow-up"); paint();
+    // THE THIN CLIENT: a widget make (or a follow-up edit to one) with a spine
+    // door set goes to the MACHINE — never to the browser's own whole-page
+    // pipeline. ANY make-verb routes when a door is set; the door is the judge
+    // and answers an unknown task with a typed gap (measured: "bill splitter"
+    // never routed because the local isMakeAsk's noun list lacks "splitter" —
+    // the browser's own classifier was deciding what the machine may hold).
+    const spine = spineBase();
+    const isMakeVerb = /\b(make|build|create|design|draft|write|generate|spin up|set up|mock up|prototype|implement|turn .* into|add|change|edit|redo|update|rename|refactor|move|rename it)\b/i.test(text);
+    const spineMake = first && isMakeVerb && !longKind(text);
+    const spineEditAsk = !first && cur.spine && isMakeVerb;
+    if (spine && !cur.codebase && (spineMake || spineEditAsk)) {
+      await runSpine(text, first);
+      running = null; live = null; paint(); renderList();
+      return;
+    }
     // THE PIPELINE: (1) what does the person want → (2) find examples → (3) does
     // that change the want → (4) outline → (5) inventory → (6) weave; REC→NUL at
     // any point. One turn, the whole movement, streamed and operator-tagged.
     if (!lk && !cur.codebase) {
       await runPipeline(text, ac);
+      running = null; live = null; paint(); renderList();
+      return;
+    }
+    // A FOLLOW-UP EDIT TO A LOG-BUILT PAGE: append, don't redraw. The change names a
+    // part; only that part is re-drawn (prompted for that fragment alone), and the log
+    // grows. This is the whole point of the log — the page is folded, never rewritten.
+    const editVerb = /\b(add|remove|delete|rename|change|edit|redo|update|modify|tweak|adjust|include|another|again|also|instead|move|reorder|make it|set it|use)\b/i.test(text);
+    if (UNIT_LOG && !first && cur.buildLog && cur.buildUnits && (editVerb || isMakeAsk(text))) {
+      try { await applyEditToBuild(text, ac); }
+      catch (e) { push({ kind: "note", by: "app", op: "REC", text: "", ok: false, errors: [{ code: "failed", msg: String(e?.message || e) }] }); }
       running = null; live = null; paint(); renderList();
       return;
     }
@@ -790,6 +944,13 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
           await addSection(cur.artifact.doc, text.replace(/^(add|write|cover|include)\s+(a\s+)?(section\s+)?(on|about)?\s*/i, "").replace(/[.!]+$/, ""), { complete: cx, signal: ac.signal, onStep, onLive });
         } else { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "not changed", msg: lk === "essay" ? "Follow-ups here: make it longer, 1500 words, add 4 more sections, change \u201cx\u201d to \u201cy\u201d, or add a section on <topic>." : "Follow-ups here: change \u201cx\u201d to \u201cy\u201d, or paste another URL to parse." }] });
         }
+      } else if (cur.codebase && /rename|move|refactor/i.test(text)) {
+        // THE WORKTREE KNOWS ITSELF (2026-10-10): a codebase-bound ask is answered
+        // FROM THE TREE — its own bytes, grepped, zero draws. The tree's
+        // WORKSPACE.md is its self-description (roles, the decoy, the test
+        // command); the inventory names every definition and call site of the
+        // target and says whether the edit is single-unit or a graph cascade.
+        await runWorktreeAsk(text);
       } else { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "no path", msg: "this ask reached no builder" }] }); }
     } catch (e) { push({ kind: "note", by: "app", text: "", ok: false, errors: [{ code: "failed", msg: String(e?.message || e) }] }); }
     finally { const stopped = ac.signal.aborted; running = null; live = null; if (ed) openEditor(ed.name); paint(); renderList(); if (stopped) queue.length = 0; else if (queue.length) runAsk(queue.shift()); }
@@ -898,7 +1059,7 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
     if (!space.firstChild) space.innerHTML = `<div class="fs-sess"></div><div class="fs-canvas"></div>`;
     if (!space.dataset.view) space.dataset.view = "session";
     const sessEl = space.querySelector(".fs-sess"), canvasEl = space.querySelector(".fs-canvas");
-    sessEl.innerHTML = `<div class="fs-head"><span class="fs-chip">${esc(KIND_WORD[cur.kind] || cur.kind || "agent")}</span><b>${esc(cur.title)}</b>${state ? `<span class="fs-badge ${state.c}">${state.t}</span>` : ""}<span class="fs-sp"></span><button type="button" class="fs-btn fs-vt" data-view="canvas">Preview →</button><button type="button" class="fs-btn" data-new="1" title="New fold">＋ New</button><button type="button" class="fs-btn" data-close="1" title="Back to chat">Chat</button></div>
+    sessEl.innerHTML = `<div class="fs-head"><span class="fs-chip">${esc(KIND_WORD[cur.kind] || cur.kind || "agent")}</span><b>${esc(cur.title)}</b>${state ? `<span class="fs-badge ${state.c}">${state.t}</span>` : ""}<span class="fs-sp"></span><button type="button" class="fs-btn fs-vt" data-view="canvas">Preview →</button><button type="button" class="fs-btn" data-new="1" title="New fold">＋ New</button><button type="button" class="fs-btn" data-close="1" title="Back to chat">Chat</button>${!cur.codebase ? `<input class="fs-repo" data-repouri="" placeholder="link a repo (https://github.com/…)" aria-label="repo link"><button type="button" class="fs-btn" data-repogo="1" title="import the repo by link">link</button>` : ""}</div>
       <div class="fs-log" aria-live="polite">${turnsHtml || emptyState}${liveHtml}</div>${edHtml}
       <div class="fs-comp">${sel && kernel ? `<div class="row"><span class="fs-sel">◎ ${esc(sel)}</span><button type="button" class="fs-more" data-unsel="1">clear</button></div>` : ""}<div class="inrow"><textarea rows="2" aria-label="${started ? "Follow up on this fold" : "What should this fold make"}">${esc(keepComp)}</textarea>${running ? `<button type="button" class="fs-btn" data-stop="1">Stop</button>` : `<button type="button" class="fs-btn go" data-send="1">${started ? "Send" : "Make it"}</button>`}</div>
         ${!started ? `<div class="row">${["auto", "website", "widget", "document"].map((k) => `<button type="button" class="fs-btn${(cur.kindPick || "auto") === k ? " on" : ""}" data-kind="${k}">${k}</button>`).join("")}</div>` : ""}</div>`;
@@ -912,7 +1073,25 @@ export function mountFolds({ main, list, newBtn = null, railBtn = null, getModel
         ${tab === "code" && cur.codebase ? codeView : tab === "eot" ? `<pre class="fs-eot">${esc(cur.log.filter((e) => e.ok && e.text).map((e) => `# ${esc(whoWord(e.by))} · ${e.label}\n${e.text}`).join("\n\n") || "(nothing set down yet)")}</pre>` : html ? `<div class="fs-frame"><iframe title="The fold's artifact" sandbox="allow-scripts allow-forms"></iframe></div>` : `<div class="fs-empty">The artifact appears here as its parts pass.</div>`}`;
       frame = canvasEl.querySelector("iframe"); if (frame) { frame.srcdoc = html; frameHtml = html; }
     }
-    const log = space.querySelector(".fs-log"); log.scrollTop = log.scrollHeight;
+    space.querySelectorAll("[data-repogo]").forEach((b) => (b.onclick = async () => {
+    const u = space.querySelector("[data-repouri]")?.value?.trim(); if (!u) return;
+    const door = spineBase(); if (!door) { toast("no spine door set — the machine that clones is off (window.__spineBase)"); return; }
+    setLive("the machine is cloning the repo (shallow)…"); paint();
+    try { const r = await (await fetch(door + "/v1/import-repo", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ url: u }) })).json();
+      if (!r.ok) { toast((r.reason || "the machine refused the repo").slice(0, 90)); return; }
+      folds.setCodebase(r.files); push({ kind: "codebase", by: "you", label: "repo by link · " + (r.origin || u).slice(0, 60) + " · " + Object.keys(r.files).length + " files", ok: true });
+      setLive(null); paint(); renderList();
+    } catch (e) { setLive(null); paint(); toast("repo import failed: " + String(e.message || e).slice(0, 90)); }
+  }));
+  // 2) FEEDBACK AT ANY TIME: Enter while running is a NOTE — it aborts the pass and re-issues with the note carried (steering for aesthetics, finding for the ride)
+  const ta2 = space.querySelector(".fs-comp textarea");
+  if (ta2 && running && !ta2._fbWired) {
+    ta2._fbWired = true;
+    ta2.onkeydown = (ev) => {
+      if (ev.key === "Enter" && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); const note = ta2.value.trim(); if (note) { ta2.value = ""; running?.abort(); push({ kind: "think", by: "you", op: "REC", text: "feedback at any time: “" + note.slice(0, 90) + "” — the pass is aborted and re-issued carrying the note. Choose any moment; the log keeps it.", ok: true }); setTimeout(() => { if (!running) { ta2.focus(); } }, 400); } }
+    };
+  }
+  const log = space.querySelector(".fs-log"); log.scrollTop = log.scrollHeight;
     const ta = space.querySelector(".fs-comp textarea");
     if (hadFocus) { ta.focus(); try { ta.setSelectionRange(selA, selB); } catch {} }
     ta.onkeydown = (ev) => { if (ev.key === "Enter" && !ev.shiftKey && !ev.isComposing) { ev.preventDefault(); send(); } };

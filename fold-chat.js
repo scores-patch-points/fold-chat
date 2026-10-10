@@ -377,11 +377,16 @@ export function mount(root, opts = {}) {
   // line just below: a `const` read before its declaration is a TDZ
   // ReferenceError that crashes mount() and the whole app (found live: nothing
   // could submit, in any mode).
-  const NO_HEIMDALL = true;
+  const NO_HEIMDALL = false; // AUTO-LOAD THE LOCAL MODEL (2026-10-10): boot onto the machine's own embedded heimdall — the local ollama models (gemma2:2b, qwen2.5-coder:1.5b) are found automatically, autoPick selects one, zero downloads, zero confirm. The in-tab WebLLM path waits when NO_HEIMDALL is true.
   // Where heimdall is. The stored override / opts.bridge is preferred (except an old stored standalone-bridge port, which never
   // shadows the embedded heimdall serving this very page); on boot the surface probes the same-origin /heimdall first, then the
   // legacy local port, so a fresh page finds a bridge the person never had to type in. A page with none still has its in-tab model.
   let bridge = NO_HEIMDALL ? null : client.pickBridge(opts.bridge || localStorage.getItem("fold-chat:bridge"));
+  // FORAGE THROUGH THIS MACHINE'S OWN BRIDGE (2026-10-10): without this the web layer
+  // skips the local bridge and falls to public CORS proxies that fail, so a make has NO
+  // material to snip from and the mouth draws the whole page. setBridge points search/read
+  // at the embedded heimdall (server-side fetch, no CORS wall).
+  try { web.setBridge(bridge); } catch { /* web layer not present in some embeds */ }
   let bridgeHello = null;
   const sessions = load("fold-chat:sessions", {});
   // Sessions stored before the channels were split carry the system-authored
@@ -480,7 +485,7 @@ export function mount(root, opts = {}) {
   // in the one thread. Nothing is a separate app with its own store.
   // HIDDEN FOR NOW (user, 2026-10-06): Folds and Agent mode. Flip to false to bring both back; nothing else changes (the code, the stored records and the
   // modules stay). While true the app is always in Chat, and no control that leads to Agent or Folds is drawn.
-  const HIDE_AGENT = true;
+  const HIDE_AGENT = false; // VISIBLE AGENT MODE (2026-10-10): the fold agent lane is shown; the spine seam still routes widget makes to the machine door
   // HIDDEN FOR NOW (user, 2026-10-07): the external-calls monitor / evidence drawer and the lock / sealed-external indicators. UI only: the sealing, the
   // redactor and the outbound audit ledger still run underneath, so nothing changes about what can leave; flip to false to show them again.
   const HIDE_EXTERNAL = true;
@@ -3568,6 +3573,8 @@ export function mount(root, opts = {}) {
       try { return await web.searchWeb(q, { effort: "balanced", read: 3, memo: pageMemo, onStep }); }
       catch { return { results: [], passages: [], trace: [] }; }
     } });
+  // SELF-TEST HOOK (2026-10-10) — AFTER the mount: the fold exposes its own API so a harness binds a worktree, and the app tells the harness about itself.
+  try { window.__folds = folds; } catch {}
   for (const id of ["chats", "projects", "topNew", "chatsNew"]) $(id)?.addEventListener("click", () => folds.isOpen() && folds.close(), true);
   // ADD A CODEBASE: choose a folder → the agent's workspace (fold-chat-workspace.js),
   // shown in the fold as a worktree with each file viewable as a projection or a log.
