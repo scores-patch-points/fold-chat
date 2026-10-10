@@ -27,7 +27,11 @@ const normalize = (x) => x == null ? null : String(x).trim().toLowerCase() || nu
 // same refusal the reader's own third-person doctrine states, applied to the box
 // the mouth is handed (Gary's job: a clean input, not a censored output).
 const straight = (w) => String(w).toLowerCase().replace(/[’‘]/g, "'");
-const CLOSED = new Set([...NEGATION_WORDS, ...SUBJECT_PRONOUNS, ...AUXILIARY_VERBS].map(straight));
+// The third-person doctrine's own closed class (giver lang/en): first- and
+// second-person postures of address, contractions included — "you"/"I" are who
+// is addressed, never who the text does things to or by; a being never is one.
+const POSTURES = new Set("i me my mine you your yours he him his she her hers we us our ours they them their theirs it its i'll i've i'm i'd you'll you've you're you'd we'll we've we're we'd they'll they've they're they'd he'll he's he'd she'll she's she'd it's it'll it'd that's what's who's".split(" "));
+const CLOSED = new Set([...NEGATION_WORDS, ...SUBJECT_PRONOUNS, ...AUXILIARY_VERBS, ...POSTURES].map(straight));
 export const isBeing = (x) => !!x && /^[\p{L}][\p{L}'’-]*$/u.test(String(x)) && !CLOSED.has(straight(x));
 /** Drop edges whose subject or object is not a being, or whose act is an
  * auxiliary — the box the mouth composes from. Pure; edges in, edges out. */

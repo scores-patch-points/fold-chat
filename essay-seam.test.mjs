@@ -311,3 +311,11 @@ test('screenBeings: a miseated scene-word is not a being; a named resident or a 
   assert.ok(scr.some((e) => e.s === 'anna') && scr.some((e) => e.s === 'prince') && scr.some((e) => e.s === 'andrew'));
   assert.ok(!scr.some((e) => e.s === 'face'), 'the miseated scene-word is refused');
 });
+
+test('a first- or second-person posture is never a being (the third-person doctrine)', () => {
+  assert.equal(isBeing('pierre'), true);
+  assert.equal(isBeing('i'), false);
+  assert.equal(isBeing("i'll"), false);
+  assert.equal(isBeing('you'), false);
+  assert.equal(isBeing('her'), false);
+});
