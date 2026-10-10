@@ -3,7 +3,7 @@
 // (never causal), story order holds, and every sentence traces to a bound edge.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { tell, threadsOf, scenesOf, joinActs, plaintext } from "./telling.mjs";
+import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect } from "./telling.mjs";
 
 const edges = [
   { s: "anna", v: "cough", o: "days", at: 10 },
@@ -45,4 +45,12 @@ test("a composed sentence the record cannot trace is unjustified, never shipped"
 test("joinActs: comma + and, never a causal join", () => {
   assert.equal(joinActs([{ v: "cough", o: "days" }, { v: "receive", o: "company" }, { v: "recover", o: "none" }]), "cough days, receive company, and recover none");
   assert.equal(joinActs([{ v: "go", o: null }]), "go");
+});
+test('inflect adopts a literary-present form ONLY when the material attests it (the doctrine wall)', () => {
+  const tokens = new Set(['kisses', 'enter', 'say', 'says']);
+  assert.equal(inflect('kiss', tokens), 'kisses', 'attested present adopted');
+  assert.equal(inflect('enter', tokens), 'enter', 'enters unattested -> the seam base stands');
+  assert.equal(inflect('say', tokens), 'says');
+  assert.equal(inflect('cough', tokens), 'cough', 'coughs unattested -> base stands');
+  assert.equal(inflect('kiss'), 'kiss', 'no material in view -> no invented form ever');
 });

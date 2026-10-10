@@ -24,8 +24,71 @@
 
 export const TELLING_SCHEMA = "Telling@1";
 
+import { createLemmatizer } from "../khora/native/adapters/text/morphology.js";
+
 const col = (x) => String(x ?? "").trim().toLowerCase();
 const cap = (x) => x.charAt(0).toUpperCase() + x.slice(1);
+
+// ── THE LITERARY PRESENT, ATTESTED ONLY (the doctrine, morphology.js: "only
+// forms ATTESTED IN THIS MATERIAL join … the material decides presence") ─────
+// The reader emits BASE forms ("Prince enter court"); the telling's register is
+// the literary present ("Prince enters the court") — but NEVER an invented one.
+// Inflection is how a reader HEARS (same act, one tense); generation claims a
+// form only if the SOURCE's own token stream contains it. The lemma comes from
+// the received UniMorph prior + the copular/aux supplement (giver lang/en); the
+// present-3sg candidate is then gated: adopted only when attested in the
+// material — otherwise the seam's base form (itself attested) stands. Every
+// verb still cites its base act.
+import fs from "node:fs";
+let morphCache = null;
+function morphMap() {
+  if (morphCache) return morphCache;
+  const SUPPL = { was: ["be"], were: ["be"], is: ["be"], am: ["be"], are: ["be"], has: ["have"], had: ["have"], does: ["do"], did: ["do"],
+    said: ["say"], says: ["say"], saw: ["see"], went: ["go"], came: ["come"], took: ["take"], got: ["get"], left: ["leave"],
+    gave: ["give"], knew: ["know"], felt: ["feel"], thought: ["think"], became: ["become"], made: ["make"], spoke: ["speak"],
+    told: ["tell"], heard: ["hear"], wrote: ["write"], found: ["find"], laid: ["lay"], bore: ["bear"], sought: ["seek"] };
+  const m = new Map();
+  try {
+    const prior = JSON.parse(fs.readFileSync("/Users/mlacy/Documents/3.0/janus/priors/morphology-eng.json", "utf8"));
+    for (const [k, v] of Object.entries(prior.forms ?? {})) m.set(k, new Set(v));
+  } catch { /* no prior: exact forms stand */ }
+  for (const [k, v] of Object.entries(SUPPL)) { if (!m.has(k)) m.set(k, new Set()); for (const l of v) m.get(k).add(l); }
+  morphCache = { map: m, supplied: Object.keys(SUPPL).length };
+  return morphCache;
+}
+let lemmatizerCache = null;
+function lemmatizer() {
+  if (!lemmatizerCache) lemmatizerCache = createLemmatizer(morphMap().map, { language: "eng" });
+  return lemmatizerCache;
+}
+const PRESENT_IRREG = Object.freeze({ be: "is", have: "has", do: "does", go: "goes", say: "says" });
+export function present3(lemma) {
+  const l = col(lemma);
+  if (PRESENT_IRREG[l]) return PRESENT_IRREG[l];
+  if (/[sxz]$/.test(l) || /(?:ch|sh|o)$/.test(l)) return l + "es";
+  if (/[^aeiou]y$/.test(l)) return l.slice(0, -1) + "ies";
+  return l + "s";
+}
+/** `materialsTokens(texts)` — the material's own token stream, the attestation
+ *  set inflection may adopt from. Pure. */
+export function materialsTokens(texts) {
+  const out = new Set();
+  for (const t of texts || []) for (const w of String(t ?? "").toLowerCase().match(/[\p{L}'’]+/gu) ?? []) out.add(w);
+  return out;
+}
+/** `inflect(verb, tokenTypes)` — the literary-present 3sg of the verb's lemma,
+ *  adopted ONLY if the material contains it (actClosure's presence wall); else
+ *  the seam-bound base form stands. */
+export function inflect(verb, tokenTypes) {
+  const v = col(verb);
+  if (!v) return v;
+  const lemmas = [...lemmatizer().lemmasOf(v)];
+  let lemma = v;
+  for (const l of lemmas) if (l !== v && l.length <= lemma.length) lemma = l;
+  const candidates = [present3(lemma), v, lemma].map(col);
+  for (const c of candidates) if (tokenTypes instanceof Set && tokenTypes.has(c)) return c;
+  return v;
+}
 
 /** Attest one act against a witness sentence: the source literally says
  *  S … V … O within a ±3-token window of the verb. Pure. */
@@ -129,9 +192,12 @@ export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2
   }).filter((sc) => sc.length > 0);
 }
 
-/** compose an edge's act into a situation sentence with its grounds. */
-function sentenceLine(t) {
-  const line = cap(t.s) + " " + joinActs(t.acts);
+/** compose an edge's act into a situation sentence with its grounds. The finite
+ *  verb is the ATTESTED literary-present form when the material contains it,
+ *  else the seam-bound base form (inflect's presence wall). */
+function sentenceLine(t, tokenTypes) {
+  const parts = t.acts.map((a) => `${inflect(a.v, tokenTypes)}${a.o ? " " + a.o : ""}`.trim());
+  const line = cap(t.s) + " " + (parts.length <= 1 ? parts[0] : parts.slice(0, -1).join(", ") + ", and " + parts.at(-1));
   return {
     s: col(t.s), text: line.replace(/\s+([.,;!?:])/g, "$1") + ".",
     grounds: t.acts.map((a) => a.at),
@@ -141,18 +207,19 @@ function sentenceLine(t) {
 }
 
 /**
- * tell({ edges, witnessEdge }) -> { schema, telling, scenes, lint }
+ * tell({ edges, tokenTypes }) -> { schema, telling, scenes, lint }
  *  Composes the REPORTABLE situations: the highest-learning act per being per
- *  scene, grammatical join, story order, grounds cited. witnessEdge: a
- *  "does this normalized (s,v[,o]) live in a bound edge?" finder.
+ *  scene, grammatical join (connectors grammatical, never causal), story order,
+ *  grounds cited, finite verb inflected ONLY where the material attests the
+ *  form. `tokenTypes` — the material's own token stream — gates the inflection.
  */
-export function tell({ edges = [], witnessEdge = null, ...opts } = {}) {
+export function tell({ edges = [], witnessEdge = null, tokenTypes = null, ...opts } = {}) {
   const scenes = selectReportable(edges, opts);
   const has = witnessEdge || ((s, v) => edges.some((e) => col(e.s) === col(s) && col(e.v) === col(v)));
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };
   for (const st of scenes) {
-    const lines = st.map((t) => sentenceLine(t));
+    const lines = st.map((t) => sentenceLine(t, tokenTypes));
     const para = lines.map((l) => l.text).join(" Then ");
     for (const l of lines) {
       const ok = l.verbs.every((v) => has(l.s, v));
