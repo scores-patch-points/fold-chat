@@ -3,7 +3,7 @@
 // (never causal), story order holds, and every sentence traces to a bound edge.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect } from "./telling.mjs";
+import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect, tellerSubjects } from "./telling.mjs";
 
 const edges = [
   { s: "anna", v: "cough", o: "days", at: 10 },
@@ -53,4 +53,27 @@ test('inflect adopts a literary-present form ONLY when the material attests it (
   assert.equal(inflect('say', tokens), 'says');
   assert.equal(inflect('cough', tokens), 'cough', 'coughs unattested -> base stands');
   assert.equal(inflect('kiss'), 'kiss', 'no material in view -> no invented form ever');
+});
+
+test('tellerSubjects: a recurrent actor or a name may be seated; a once-acting scene-word may not', () => {
+  const edges = [
+    { s: 'anna', v: 'warn', o: 'prince', at: 1 }, { s: 'anna', v: 'ask', o: 'prince', at: 2 },
+    { s: 'anna', v: 'enter', o: 'court', at: 3 }, { s: 'anna', v: 'greet', o: 'princess', at: 4 },
+    { s: 'prince', v: 'warn', o: 'anna', at: 5 },
+    { s: 'step', v: 'offer', o: 'contrast', at: 6 },
+  ];
+  const allowed = tellerSubjects(edges, { nameSignals: new Set(['anna', 'prince', 'pierre']) });
+  assert.ok(allowed.has('anna'), 'a recurring actor is seated');
+  assert.ok(allowed.has('prince'), 'a name is seated regardless of volume');
+  assert.ok(!allowed.has('step'), 'a once-acting scene-word cannot open the seat');
+});
+
+test('the subject policy threads into the telling: step is not told', () => {
+  const edges = [
+    { s: 'anna', v: 'warn', o: 'prince', at: 1 }, { s: 'step', v: 'offer', o: 'contrast', at: 6 },
+  ];
+  const t = tell({ edges, nameSignals: new Set(['anna', 'prince']) });
+  const subjects = t.telling.flatMap((p) => p.sentences).map((s) => s.s);
+  assert.ok(subjects.every((s) => s !== 'step'));
+  assert.ok(subjects.includes('anna'));
 });

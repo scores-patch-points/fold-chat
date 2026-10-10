@@ -172,9 +172,9 @@ export function joinActs(acts = []) {
  * act told is the HIGHEST-LEARNING bound proposition, not every verb the seam
  * bound. When the read carries no learning, the earliest acts stand (fallback,
  * disclosed). Only acts with a patient (a bound object) form a situation. */
-export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2 } = {}) {
+export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2, subjects = null } = {}) {
   const withDelta = edges.some((e) => Number.isFinite(e.delta));
-  const threads = threadsOf(edges);
+  const threads = threadsOf(edges).filter((t) => !subjects || subjects.has(col(t.s)));
   const scenes = scenesOf(threads);
   return scenes.map((sc) => {
     const chosen = sc.threads
@@ -190,6 +190,25 @@ export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2
       .slice(0, perSceneThreads);
     return chosen;
   }).filter((sc) => sc.length > 0);
+}
+
+/** tellerSubjects(edges, { nameSignals, floor }) — the subject policy of the
+ * TELLING (janus's "what kinds of things can be said about which referents"):
+ * a being may be seated as a teller-subject only when the material attests it
+ * as an actor — a NAME (mid-sentence signal), or a high volume of attestation
+ * (acting >= `floor` times in the read). 'step', 'sort', 'round' — a noun the
+ * POS prior knows AND the reader seats — are refused here: their attestation
+ * volume says no such thing can be said of them. The record keeps the edges;
+ * the telling refuses to open the seat. floor is declared, never tuned to a
+ * golden: 4, the fold's own recurring-actor band (a protagonist acts a lot). */
+export function tellerSubjects(edges = [], { nameSignals = null, floor = 4 } = {}) {
+  if (nameSignals == null) return null;               // no policy in view: every thread keeps its seat
+  const sig = nameSignals instanceof Set ? nameSignals : new Set();
+  const actsOf = new Map();
+  for (const e of edges) if (e.s) actsOf.set(col(e.s), (actsOf.get(col(e.s)) ?? 0) + 1);
+  const allowed = new Set();
+  for (const [s, n] of actsOf) if (sig.has(s) || n >= floor) allowed.add(s);
+  return allowed;
 }
 
 /** compose an edge's act into a situation sentence with its grounds. The finite
@@ -213,8 +232,9 @@ function sentenceLine(t, tokenTypes) {
  *  grounds cited, finite verb inflected ONLY where the material attests the
  *  form. `tokenTypes` — the material's own token stream — gates the inflection.
  */
-export function tell({ edges = [], witnessEdge = null, tokenTypes = null, ...opts } = {}) {
-  const scenes = selectReportable(edges, opts);
+export function tell({ edges = [], witnessEdge = null, tokenTypes = null, nameSignals = null, ...opts } = {}) {
+  const subjects = tellerSubjects(edges, { nameSignals });
+  const scenes = selectReportable(edges, { ...opts, subjects });
   const has = witnessEdge || ((s, v) => edges.some((e) => col(e.s) === col(s) && col(e.v) === col(v)));
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };
