@@ -3,7 +3,7 @@
 // (never causal), story order holds, and every sentence traces to a bound edge.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect, tellerSubjects, tellerPatients } from "./telling.mjs";
+import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect, tellerSubjects, tellerPatients, fullName, titleRuns } from "./telling.mjs";
 
 const edges = [
   { s: "anna", v: "cough", o: "days", at: 10 },
@@ -102,4 +102,12 @@ test('entities render title-case when the material uses them as names (case-free
     { s: 'anna', v: 'pass', o: 'book', at: 3 },
   ], nameSignals: new Set(['anna']) });
   assert.ok(/open book/.test(plain.telling[0].para), 'a common noun stays lowercase');
+});
+
+test('fullName resolves a bearer only when the window attests one (refuse the ambiguous guess)', () => {
+  const runs = titleRuns('Anna greeted Prince Vasíli. Prince Vasíli bowed. Then Prince Andrew entered.');
+  const alone = fullName('prince', ['anna greeted prince vasíli. prince vasíli bowed.'], runs);
+  assert.equal(alone, 'Prince Vasíli', 'an attested single bearer resolves');
+  const mixed = fullName('prince', ['prince vasíli and prince andrew entered together.'], runs);
+  assert.equal(mixed, null, 'a mixed window refuses the guess — the title stands');
 });

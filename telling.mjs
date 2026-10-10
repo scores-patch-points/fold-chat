@@ -228,6 +228,48 @@ export function tellerPatients(edges = [], { nameSignals = null, floor = 3 } = {
   return allowed;
 }
 
+/** FULL-NOUN-PHRASE RESOLUTION, GATED. `prince` in the material is a title that
+ * names several beings — "Prince Vasíli Kurágin" and "Prince Andrew Bolkónski"
+ * both recur. The teller may render a head as its FULL surface ("Prince Vasíli")
+ * ONLY when the scene unambiguously attests one bearer (a family name in the
+ * scene's span that dominates its competitors, reaching the floor); otherwise
+ * the ambiguous-but-true title stands. A wrong full name is a false claim,
+ * worse than an ambiguous one — this is the refuse-not-guess wall applied to
+ * names.
+ * `runs`: the capitalized multi-word surfaces of the source (verbatim). */
+export function titleRuns(source) {
+  const out = [];
+  for (const m of String(source ?? "").matchAll(/(?:[A-Z][\p{L}''’-]*\s+){1,3}[A-Z][\p{L}''’-]*/gu)) {
+    const r = m[0].replace(/\s+/g, " ").trim();
+    if (r.split(" ").length >= 2) out.push(r);
+  }
+  return out;
+}
+
+export function fullName(head, spans, runs = [], { floor = 2, majority = 2 } = {}) {
+  const hcol = col(head);
+  const spanTexts = spans.map((text) => col(text)).join(" ");
+  // candidates: runs whose first token IS the head; possessive 's runs (Prince
+  // Vasíli's) are a different slot and do not testify for the bearer
+  const candidates = runs.filter((r) => col(r.split(" ")[0]) === hcol && !/’s$/i.test(col(r)));
+  const famOf = (r) => col(r.split(" ")[1] ?? "");
+  const countIn = (fam) => [...spanTexts.matchAll(new RegExp(fam, "gu"))].length;
+  const byFam = new Map();
+  for (const r of candidates) {
+    const fam = famOf(r);
+    if (!fam) continue;
+    if (!byFam.has(fam)) byFam.set(fam, { r, n: 0 });
+    byFam.get(fam).n = Math.max(byFam.get(fam).n, countIn(fam));
+  }
+  const counts = [...byFam.values()].sort((a, b) => b.n - a.n);
+  if (!counts.length) return null;
+  const top = counts[0];
+  const runner = counts[1];
+  if (top.n < floor) return null;                                    // the bearer is not attested here
+  if (runner && top.n < runner.n * majority) return null;            // ambiguous scene — the title stands
+  return top.r;
+}
+
 /** compose an edge's act into a situation sentence with its grounds. The finite
  *  verb is the ATTESTED literary-present form when the material contains it,
  *  else the seam-bound base form (inflect's presence wall). Entities render in
@@ -236,10 +278,13 @@ export function tellerPatients(edges = [], { nameSignals = null, floor = 3 } = {
  *  — 'prince' -> 'Prince' — because a lowercase 'prince' reads as a common noun
  *  and a title-name must be written with its capital. The capital is DERIVED
  *  from a case-free identity; it never decides one. */
-const renderEntity = (x, sig) => (sig && sig.has(col(x)) ? cap(x) : x);
-function sentenceLine(t, tokenTypes, nameSignals) {
-  const parts = t.acts.map((a) => `${inflect(a.v, tokenTypes)} ${renderEntity(a.o ?? "", nameSignals)}`.replace(/\s+$/, "").trim());
-  const line = renderEntity(cap(t.s), nameSignals) + " " + joinParts(parts);
+const renderEntity = (x, sig, names = null) => {
+  if (names && names.has(col(x))) return names.get(col(x));
+  return sig && sig.has(col(x)) ? cap(x) : x;
+};
+function sentenceLine(t, tokenTypes, nameSignals, names) {
+  const parts = t.acts.map((a) => `${inflect(a.v, tokenTypes)} ${renderEntity(a.o ?? "", nameSignals, names)}`.replace(/\s+$/, "").trim());
+  const line = renderEntity(cap(t.s), nameSignals, names) + " " + joinParts(parts);
   return {
     s: col(t.s), text: line.replace(/\s+([.,;!?:])/g, "$1") + ".",
     grounds: t.acts.map((a) => a.at),
@@ -256,15 +301,34 @@ const joinParts = (parts) => (parts.length <= 1 ? parts[0] : parts.slice(0, -1).
  *  grounds cited, finite verb inflected ONLY where the material attests the
  *  form. `tokenTypes` — the material's own token stream — gates the inflection.
  */
-export function tell({ edges = [], witnessEdge = null, tokenTypes = null, nameSignals = null, ...opts } = {}) {
+export function tell({ edges = [], witnessEdge = null, tokenTypes = null, nameSignals = null, source = null, ...opts } = {}) {
   const subjects = tellerSubjects(edges, { nameSignals });
   const patients = tellerPatients(edges, { nameSignals });
   const scenes = selectReportable(edges, { ...opts, subjects, patients });
+  const runs = typeof source === "string" ? titleRuns(source) : [];
   const has = witnessEdge || ((s, v) => edges.some((e) => col(e.s) === col(s) && col(e.v) === col(v)));
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };
   for (const st of scenes) {
-    const lines = st.map((t) => sentenceLine(t, tokenTypes, nameSignals));
+    // FULL-NAME RESOLUTION, gated at the ACT: a head renders as its full surface
+    // only when the window AROUND ITS OWN ACT attests one bearer ("Prince Vasíli"
+    // at the greeting, not the chapter's most-mentioned Prince). Else the safe
+    // title stands. A wrong name is a false claim — refused, never guessed.
+    const resolvedFor = (t) => {
+      const ats = t.acts.map((a) => a.at).filter(Number.isFinite);
+      if (!source || !ats.length) return new Map();
+      const a0 = Math.max(0, Math.min(...ats) - 600);
+      const a1 = Math.min(source.length, Math.max(...ats) + 600);
+      const spanText = source.slice(a0, a1);
+      const names = new Map();
+      for (const r of [t.s, ...t.acts.map((a) => a.o)]) {
+        if (!r) continue;
+        const f = fullName(r, [spanText], runs);
+        if (f) names.set(col(r), f);
+      }
+      return names;
+    };
+    const lines = st.map((t) => sentenceLine(t, tokenTypes, nameSignals, resolvedFor(t)));
     const para = lines.map((l) => l.text).join(" Then ");
     for (const l of lines) {
       const ok = l.verbs.every((v) => has(l.s, v));
