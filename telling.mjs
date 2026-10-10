@@ -27,6 +27,47 @@ export const TELLING_SCHEMA = "Telling@1";
 const col = (x) => String(x ?? "").trim().toLowerCase();
 const cap = (x) => x.charAt(0).toUpperCase() + x.slice(1);
 
+/** Attest one act against a witness sentence: the source literally says
+ *  S … V … O within a ±3-token window of the verb. Pure. */
+const toks = (w) => (String(w ?? "").toLowerCase().match(/[\p{L}'’]+/gu) ?? []).map((x) => x.replace(/[’‘]/g, "'"));
+export function attestAct(witness, s, v, o) {
+  if (!witness || !s || !v) return false;
+  const t = toks(witness);
+  const j = t.indexOf(v);
+  if (j < 0) return false;
+  const before = t.slice(Math.max(0, j - 3), j);
+  const after = t.slice(j + 1, j + 4);
+  return before.includes(s) && (!o || after.includes(o));
+}
+
+/** Attest an edge against its own witness: the source literally says the act.
+ *  An edge whose referents came from construction (a pronoun resolved into a
+ *  name, a common noun seated as a being) fails — the text never says that
+ *  sentence. Pure. */
+export function attestedEdges(edges, witnesses) {
+  const out = [];
+  for (const e of edges || []) {
+    const wit = witnesses instanceof Map ? witnesses.get(e.at) : null;
+    if (wit && attestAct(wit, e.s, e.v, e.o)) out.push(e);
+  }
+  return out;
+}
+
+/** Reference-continuity: the fraction of adjacent sentence pairs that share a
+ *  content word — the mechanical shape of "one sentence follows another". */
+export function referenceContinuity(sentences, { words = null } = {}) {
+  const lines = (sentences ?? []).filter(Boolean).map((x) => x.replace(/⟦[^⟧]*⟧/g, " "));
+  if (lines.length < 2) return 100;
+  const cw = words || ((t) => new Set((t.toLowerCase().match(/[\p{L}'’]+/gu) ?? []).filter((w) => w.length >= 4)));
+  let pairs = 0, shared = 0;
+  for (let i = 0; i < lines.length - 1; i++) {
+    const a = cw(lines[i]), b = cw(lines[i + 1]);
+    pairs += 1;
+    if ([...a].some((w) => b.has(w))) shared += 1;
+  }
+  return Math.round((shared / pairs) * 100);
+}
+
 /** threads(edges) — group bound edges by acting being, in story order. */
 export function threadsOf(edges = []) {
   const order = [];
@@ -39,15 +80,19 @@ export function threadsOf(edges = []) {
   return order.map((s) => ({ s, acts: map.get(s).sort((a, b) => a.at - b.at || a.v.localeCompare(b.v)) }));
 }
 
-/** scenes(threads, { window }) — adjacent threads within `window` bytes are one
- *  paragraph; a thread stands alone when its first act is distant from all. */
-export function scenesOf(threads = [], { window = 12000 } = {}) {
+/** scenes(threads) — the telling's scenes are REFERENCE COHORTS (telling-spec
+ * Phase 1): a thread joins the current scene when its subject or one of its
+ * objects CO-OCCURS with the cohort's accumulated referents — a cast that holds
+ * together and changes together, never a byte-run. A thread that co-refers with
+ * nobody opens its own scene. */
+export function scenesOf(threads = []) {
   const scenes = [];
+  const refsOf = (sc) => new Set(sc.threads.flatMap((x) => [x.s, ...x.acts.map((a) => a.o)].filter(Boolean)));
   for (const t of threads) {
-    const at = t.acts[0]?.at ?? Infinity;
     const last = scenes.at(-1);
-    const lastAt = last ? Math.min(...last.threads.map((x) => x.acts[0]?.at ?? Infinity), ...last.threads.flatMap((x) => x.acts.map((a) => a.at))) : -Infinity;
-    if (last && at - lastAt <= window) last.threads.push(t);
+    const refs = last ? refsOf(last) : null;
+    const shares = refs && (refs.has(t.s) || t.acts.some((a) => a.o && refs.has(a.o)));
+    if (last && shares) last.threads.push(t);
     else scenes.push({ threads: [t] });
   }
   return scenes;
@@ -85,9 +130,14 @@ export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2
 }
 
 /** compose an edge's act into a situation sentence with its grounds. */
-function sentenceLine(t, { literary } = {}) {
+function sentenceLine(t) {
   const line = cap(t.s) + " " + joinActs(t.acts);
-  return { s: col(t.s), text: line.replace(/\s+([.,;!?:])/g, "$1") + ".", grounds: t.acts.map((a) => a.at), verbs: t.acts.map((a) => col(a.v)) };
+  return {
+    s: col(t.s), text: line.replace(/\s+([.,;!?:])/g, "$1") + ".",
+    grounds: t.acts.map((a) => a.at),
+    verbs: t.acts.map((a) => col(a.v)),
+    acts: t.acts.map((a) => ({ s: col(a.s), v: col(a.v), o: a.o ? col(a.o) : null, at: a.at })),
+  };
 }
 
 /**
@@ -102,14 +152,14 @@ export function tell({ edges = [], witnessEdge = null, ...opts } = {}) {
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };
   for (const st of scenes) {
-    const lines = st.map((t) => { const l = sentenceLine(t); return l; });
+    const lines = st.map((t) => sentenceLine(t));
     const para = lines.map((l) => l.text).join(" Then ");
     for (const l of lines) {
       const ok = l.verbs.every((v) => has(l.s, v));
       if (ok) lint.accepted += 1;
       else lint.unjustified.push({ s: l.s, text: l.text, verbs: l.verbs });
     }
-    telling.push({ para, grounds: lines.flatMap((l) => l.grounds) });
+    telling.push({ para, sentences: lines, grounds: lines.flatMap((l) => l.grounds) });
   }
   return { schema: TELLING_SCHEMA, telling, scenes: telling.length, lint };
 }

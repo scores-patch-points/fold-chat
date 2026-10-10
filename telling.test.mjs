@@ -7,21 +7,21 @@ import { tell, threadsOf, scenesOf, joinActs, plaintext } from "./telling.mjs";
 
 const edges = [
   { s: "anna", v: "cough", o: "days", at: 10 },
-  { s: "anna", v: "receive", o: "company", at: 20 },
+  { s: "anna", v: "kiss", o: "prince", at: 15 },
   { s: "prince", v: "enter", o: "court", at: 30 },
 ];
 
 test("a being's acts join into ONE situation-sentence, grammatical not causal", () => {
   const t = tell({ edges });
   assert.equal(t.telling.length, 1);
-  assert.ok(t.telling[0].para.includes("Anna cough days, and receive company"), t.telling[0].para);
+  assert.ok(t.telling[0].para.includes("Anna cough days, and kiss prince."), t.telling[0].para);
   assert.ok(t.telling[0].para.includes("Then Prince enter court."), t.telling[0].para);
   assert.ok(!/because|so\b/i.test(t.telling[0].para), "no causal connective the record does not hold");
 });
 
 test("the telling keeps grounds — every sentence names its byte addresses", () => {
   const t = tell({ edges });
-  assert.deepEqual(t.telling[0].grounds.sort((a, b) => a - b), [10, 20, 30]);
+  assert.deepEqual(t.telling[0].grounds.sort((a, b) => a - b), [10, 15, 30]);
 });
 
 test("situations are ordered by story position, not alphabet", () => {
