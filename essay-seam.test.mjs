@@ -271,3 +271,12 @@ test('the two-lane seal: grounded + cited voice SEALS; an uncited voice does not
   const refused = sealEssayDraft({ draft: scene('[voice:kind] A thought with no citation').draft, sourceFile, sourceId: 'fold:essay-source', snipSentence, replaceCites, lanes: bad });
   assert.equal(refused.verdict, 'UNVERIFIED');
 });
+
+test('a verbatim source sentence is grounded at its byte even when its claims do not bind (mind-wander)', () => {
+  const draft = 'Pierre ruled France. ⟦fold:essay-source@40⟧';
+  const s2 = scene('Pierre ruled France. ⟦fold:essay-source@40⟧');
+  const witnesses = new Map([[40, 'Pierre ruled France.']]);
+  const lanes = classifyEssay({ draft, read: s2.read, claims: { claims: [] }, sourceAt: new Set([40]), witnesses });
+  assert.equal(lanes.counts.grounded, 1);
+  assert.equal(lanes.sentences[0].because, 'verbatim witnessed at its byte');
+});

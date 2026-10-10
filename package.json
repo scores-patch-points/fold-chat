@@ -8,7 +8,8 @@
     "test": "node --test",
     "e2e": "node fold-e2e-falsify.mjs",
     "e2e:essay": "node fold-e2e-essay.mjs --mouth compose",
-    "e2e:essay:ollama": "node fold-e2e-essay.mjs --mouth ollama"
+    "e2e:essay:ollama": "node fold-e2e-essay.mjs --mouth ollama",
+    "e2e:experiment": "node fold-experiment.mjs --tasks 6 --voice none"
   },
   "devDependencies": {
     "playwright": "^1.63.0"

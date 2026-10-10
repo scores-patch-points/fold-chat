@@ -122,6 +122,20 @@ export function boundEdgesFromRead({ sourceText, excerptStart = 0, excerpt, read
   return edges;
 }
 
+/** Map<byteAddress, sentenceText> for the read — the byte-trace witnesses a
+ * wandered/quoted sentence may be verified against (Tarski convention-T). */
+export function sentenceWitnesses({ sourceText, excerptStart = 0, excerpt, read } = {}) {
+  if (typeof sourceText !== 'string' || typeof excerpt !== 'string' || !read) throw new TypeError('sentenceWitnesses: source, excerpt, and reader required');
+  if (sourceText.slice(excerptStart, excerptStart + excerpt.length) !== excerpt) throw new TypeError('sentenceWitnesses: excerpt is not at declared source position');
+  const { found } = locateSentences(sourceText, excerptStart, read.sents ?? [], { endChar: excerptStart + excerpt.length });
+  const out = new Map();
+  for (const s of read.sents ?? []) {
+    const w = found.get(s.order);
+    if (w && typeof s.text === 'string') out.set(w.byteAt, s.text);
+  }
+  return out;
+}
+
 /** Assertion-level grounding for a draft. The caller supplies the mouth's own
  * prose, read by the SAME Khora reader that read the material (so a claim's
  * referents are the same beings the edges bound — agreement by construction,
@@ -218,10 +232,16 @@ export function discloseUnsupported({ read, claims } = {}) {
  * `draft` is the ORIGINAL draft (markers intact); its offsets align with the
  * equal-length prose the `read` was taken over, so each span slices the draft.
  * `sourceAt` (optional) is the Set of witnessed source byte addresses; a voice
- * sentence must cite one of them, not any old byte. */
+ * sentence must cite one of them, not any old byte.
+ * `witnesses` (optional) is a Map<byteAddress, sourceSentenceText>. A sentence
+ * that is VERBATIM the source at its own byte — a travelled/wandered real
+ * sentence, or any mouth that quotes exactly — is GROUNDED by the byte-trace
+ * (Tarski convention-T), even where claim-matching cannot re-bind it out of
+ * context. The quoted string's semantics is verified at its byte address. */
 export const VOICE_MARK = '[voice]';
 export const VOICE_ALTITUDES = Object.freeze(['kind', 'field', 'link', 'network', 'atmosphere', 'lens', 'paradigm']);
-export function classifyEssay({ draft, read, claims, sourceAt = null } = {}) {
+const normW = (x) => String(x ?? "").replace(/\s+/g, " ").replace(/^["“']+|["“']+$/g, "").replace(/[.,;:!?…"“”'’\s]+$/g, "").trim().toLowerCase();
+export function classifyEssay({ draft, read, claims, sourceAt = null, witnesses = null } = {}) {
   if (typeof draft !== 'string' || !read || !Array.isArray(claims?.claims)) throw new TypeError('classifyEssay: draft, a draft read, and its claim verdicts are required');
   const witnessed = sourceAt instanceof Set ? sourceAt : null;
   const spans = (read.sents ?? [])
@@ -239,8 +259,11 @@ export function classifyEssay({ draft, read, claims, sourceAt = null } = {}) {
     const altitude = (vm?.[1] ?? '').toLowerCase() || null;
     const contradicted = cs.some((c) => c.verdict === 'contradicted');
     const allBound = cs.length > 0 && cs.every((c) => c.verdict === 'bound');
+    const rawNoMark = `${raw}`.replace(/⟦[^⟧]*⟧/g, " ").replace(/\s+/g, " ").trim();
+    const verbatim = witnesses instanceof Map && sourceCites.some((n) => witnesses.has(n) && normW(witnesses.get(n)) === normW(rawNoMark));
     let lane, because;
-    if (contradicted) { lane = 'fail'; because = 'contradicted'; }
+    if (verbatim) { lane = 'grounded'; because = 'verbatim witnessed at its byte'; }
+    else if (contradicted) { lane = 'fail'; because = 'contradicted'; }
     else if (allBound) { lane = 'grounded'; because = 'bound'; }
     else if (isVoice && VOICE_ALTITUDES.includes(altitude) && sourceCites.length > 0) { lane = 'voice'; because = `explicit ${altitude}-altitude voice, cited to a source span`; }
     else if (isVoice && !VOICE_ALTITUDES.includes(altitude)) { lane = 'fail'; because = `voice without a terrain altitude (${VOICE_ALTITUDES.join('/')})`; }
@@ -249,7 +272,7 @@ export function classifyEssay({ draft, read, claims, sourceAt = null } = {}) {
     sentences.push({ at: s.at, len: s.len, text: raw.trim(), lane, because, voice: isVoice, altitude, cites: sourceCites.length, markers: cites.length, claims: cs.length });
   }
   const count = (k) => sentences.filter((x) => x.lane === k).length;
-  const contradicted = claims.claims.some((c) => c.verdict === 'contradicted');
+  const contradicted = sentences.some((x) => x.because === 'contradicted');
   const altitudes = {};
   for (const x of sentences) if (x.lane === 'voice') altitudes[x.altitude] = (altitudes[x.altitude] ?? 0) + 1;
   return { schema: CLAIM_SEAM_SCHEMA, sentences,

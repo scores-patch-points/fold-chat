@@ -15,7 +15,7 @@
 import fs from "node:fs";
 import { readEnglish } from "../khora/native/eval/the-fold/scene/reader-en.mjs";
 import { replaceCitesUtf8, snipSentenceUtf8 } from "../penelope/organs/verified-byte-snips.mjs";
-import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, rewriteParts, sealEssayDraft } from "./essay-seam.mjs";
+import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, rewriteParts, sealEssayDraft, sentenceWitnesses } from "./essay-seam.mjs";
 
 const SOURCE_ID = "fold:essay-source";
 const ALTITUDES = ["atmosphere", "lens", "kind", "paradigm", "field", "network"];
@@ -44,14 +44,15 @@ export async function runEssay({
   const read = await readEnglish({ text: excerpt });
   const box = essayBoxFromRead({ sourceText: full, excerptStart: offset, excerpt, sourceFile: source, sourceId: SOURCE_ID, read, induceKinds: () => [] });
   const edges = cleanEdges(boundEdgesFromRead({ sourceText: full, excerptStart: offset, excerpt, read }));
-  const sourceAt = new Set(edges.map((e) => e.at));
+  const witnesses = sentenceWitnesses({ sourceText: full, excerptStart: offset, excerpt, read });
+  const sourceAt = new Set([...witnesses.keys()]);
   const facts = edges.filter((e) => e.o).slice(0, 12);
 
   const classify = async (text) => {
     const prose = text.replace(/⟦[^⟧]*⟧/g, (m) => " ".repeat(m.length));
     const dr = await readEnglish({ text: prose });
     const claims = verifyDraftClaims({ read: dr, edges, text: prose });
-    return { read: dr, claims, lanes: classifyEssay({ draft: text, read: dr, claims, sourceAt }) };
+    return { read: dr, claims, lanes: classifyEssay({ draft: text, read: dr, claims, sourceAt, witnesses }) };
   };
 
   // THE GROUNDED BODY — only propositions that bind survive re-reading.
