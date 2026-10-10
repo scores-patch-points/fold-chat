@@ -96,6 +96,10 @@ test('entities render title-case when the material uses them as names (case-free
   const t = tell({ edges: [{ s: 'anna', v: 'greet', o: 'prince', at: 1 }], nameSignals: new Set(['anna', 'prince']) });
   assert.match(t.telling[0].para, /Anna greet Prince\./);
   assert.ok(!/greet prince/.test(t.telling[0].para), 'a signalled name never renders lowercase mid-sentence');
-  const plain = tell({ edges: [{ s: 'anna', v: 'open', o: 'book', at: 1 }], nameSignals: new Set(['anna']) });
+  const plain = tell({ edges: [
+    { s: 'anna', v: 'open', o: 'book', at: 1 },
+    { s: 'anna', v: 'close', o: 'book', at: 2 },
+    { s: 'anna', v: 'pass', o: 'book', at: 3 },
+  ], nameSignals: new Set(['anna']) });
   assert.ok(/open book/.test(plain.telling[0].para), 'a common noun stays lowercase');
 });
