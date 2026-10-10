@@ -230,10 +230,16 @@ export function tellerPatients(edges = [], { nameSignals = null, floor = 3 } = {
 
 /** compose an edge's act into a situation sentence with its grounds. The finite
  *  verb is the ATTESTED literary-present form when the material contains it,
- *  else the seam-bound base form (inflect's presence wall). */
-function sentenceLine(t, tokenTypes) {
-  const parts = t.acts.map((a) => `${inflect(a.v, tokenTypes)}${a.o ? " " + a.o : ""}`.trim());
-  const line = cap(t.s) + " " + (parts.length <= 1 ? parts[0] : parts.slice(0, -1).join(", ") + ", and " + parts.at(-1));
+ *  else the seam-bound base form (inflect's presence wall). Entities render in
+ *  the case the material itself uses for them: a NAME-signal being (found
+ *  CASE-FREE — recurrence + company) renders title-case in English orthography
+ *  — 'prince' -> 'Prince' — because a lowercase 'prince' reads as a common noun
+ *  and a title-name must be written with its capital. The capital is DERIVED
+ *  from a case-free identity; it never decides one. */
+const renderEntity = (x, sig) => (sig && sig.has(col(x)) ? cap(x) : x);
+function sentenceLine(t, tokenTypes, nameSignals) {
+  const parts = t.acts.map((a) => `${inflect(a.v, tokenTypes)} ${renderEntity(a.o ?? "", nameSignals)}`.replace(/\s+$/, "").trim());
+  const line = renderEntity(cap(t.s), nameSignals) + " " + joinParts(parts);
   return {
     s: col(t.s), text: line.replace(/\s+([.,;!?:])/g, "$1") + ".",
     grounds: t.acts.map((a) => a.at),
@@ -241,6 +247,7 @@ function sentenceLine(t, tokenTypes) {
     acts: t.acts.map((a) => ({ s: col(a.s), v: col(a.v), o: a.o ? col(a.o) : null, at: a.at })),
   };
 }
+const joinParts = (parts) => (parts.length <= 1 ? parts[0] : parts.slice(0, -1).join(", ") + ", and " + parts.at(-1));
 
 /**
  * tell({ edges, tokenTypes }) -> { schema, telling, scenes, lint }
@@ -257,7 +264,7 @@ export function tell({ edges = [], witnessEdge = null, tokenTypes = null, nameSi
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };
   for (const st of scenes) {
-    const lines = st.map((t) => sentenceLine(t, tokenTypes));
+    const lines = st.map((t) => sentenceLine(t, tokenTypes, nameSignals));
     const para = lines.map((l) => l.text).join(" Then ");
     for (const l of lines) {
       const ok = l.verbs.every((v) => has(l.s, v));
