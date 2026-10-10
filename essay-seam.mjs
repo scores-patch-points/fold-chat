@@ -68,7 +68,7 @@ export function essayBoxFromRead({ sourceText, sourceFile, sourceId = sourceFile
     // The BOUND EDGES — every witnessed (s,v,o) the material's own reading
     // holds, the ground a draft claim is checked against. `at` is the byte
     // the act was witnessed at, so a claim can name where it is answered.
-    edges.push({ s, v, o: o ?? null, at: witness.byteAt });
+    edges.push({ s, v, o: o ?? null, at: witness.byteAt, delta: Number(c.learning ?? 0) });
     cast.set(s, (cast.get(s) ?? 0) + 1);
     if (o && o !== s) {
       if (!company.has(s)) company.set(s, new Map());
@@ -117,7 +117,7 @@ export function boundEdgesFromRead({ sourceText, excerptStart = 0, excerpt, read
     const o = normalize(typeof read.objectRefOf === 'function' ? read.objectRefOf(c) : c.object?.head);
     if (!s || !v) continue;
     if (!isBeing(s) || !isBeing(v) || (o && !isBeing(o))) continue;
-    edges.push({ s, v, o: o ?? null, at: witness.byteAt });
+    edges.push({ s, v, o: o ?? null, at: witness.byteAt, delta: Number(c.learning ?? 0) });
   }
   return edges;
 }
@@ -241,6 +241,14 @@ export function discloseUnsupported({ read, claims } = {}) {
 export const VOICE_MARK = '[voice]';
 export const VOICE_ALTITUDES = Object.freeze(['kind', 'field', 'link', 'network', 'atmosphere', 'lens', 'paradigm']);
 const normW = (x) => String(x ?? "").replace(/\s+/g, " ").replace(/^["“']+|["“']+$/g, "").replace(/[.,;:!?…"“”'’\s]+$/g, "").trim().toLowerCase();
+const CONTENT_RE = /[\p{L}'’-]+/gu;
+/** A received-lite content word: a letter-token of length >= 4 that is not one
+ * of the lang/en closed classes already loaded. Used ONLY to gate that a voice
+ * thought is prompted BY the span it cites — never as an identity. */
+export function contentWords(text) {
+  return new Set((String(text ?? "").toLowerCase().match(CONTENT_RE) ?? [])
+    .map((w) => w.replace(/[’‘]/g, "'")).filter((w) => w.length >= 4 && !CLOSED.has(straight(w))));
+}
 export function classifyEssay({ draft, read, claims, sourceAt = null, witnesses = null } = {}) {
   if (typeof draft !== 'string' || !read || !Array.isArray(claims?.claims)) throw new TypeError('classifyEssay: draft, a draft read, and its claim verdicts are required');
   const witnessed = sourceAt instanceof Set ? sourceAt : null;
