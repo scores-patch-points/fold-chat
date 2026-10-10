@@ -4,96 +4,111 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>The Fold · School e2e</title>
+<title>The Fold · Essay — War and Peace</title>
 <script src="fold-theme-boot.js"></script>
 <style>
   :root { color-scheme: light; --bg:#fff; --side2:#f1f1f4; --line:#e4e4e9; --ink:#141416; --ink2:#44444e; --dim:#5f5f6b;
     --acc:#17171a; --ok:#16793a; --ok-soft:#e6f4ea; --bad:#c62828; --warn:#a04a07; --link:#1d4ed8; --ag:#0d7a70; --ag-soft:#e7f6f3;
-    --r:10px; --fs-xs:11.5px; --fs-sm:13px; --fs-md:15px; --mono:ui-monospace,Menlo,monospace; --sans:Inter,system-ui,sans-serif; }
-  html[data-theme="dark"] { --bg:#101014; --side2:#17171b; --line:#26262c; --ink:#eceef2; --ink2:#b8bcc6; --dim:#8a8f9c; --acc:#eef0f4; --ok:#3dd68c; --ok-soft:#0e2a1a; --bad:#ff5f5f; --warn:#ffb066; --link:#7aa2ff; --ag:#3dd6c4; --ag-soft:#0c2724; --acc-soft:#1e1e24; }
-  * { box-sizing: border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 var(--sans); }
-  .wrap { max-width:980px; margin:0 auto; padding:32px 22px 90px; }
+    --r:10px; --mono:ui-monospace,Menlo,monospace; --sans:Inter,system-ui,sans-serif; }
+  html[data-theme="dark"] { --bg:#101014; --side2:#17171b; --line:#26262c; --ink:#eceef2; --ink2:#b8bcc6; --dim:#8a8f9c; --ok:#3dd68c; --ok-soft:#0e2a1a; --bad:#ff5f5f; --warn:#ffb066; --link:#7aa2ff; --ag:#3dd6c4; --ag-soft:#0c2724; }
+  * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.6 var(--sans); }
+  .wrap { max-width:820px; margin:0 auto; padding:32px 22px 100px; }
   h1 { font-size:22px; margin:0 0 4px; letter-spacing:-.02em; } h1 b { color:var(--ag); }
-  .sub { color:var(--dim); font-size:13px; margin-bottom:22px; }
-  .card { background:var(--bg); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; margin-bottom:14px; }
+  .sub { color:var(--dim); font-size:13px; margin-bottom:20px; }
+  .card { border:1px solid var(--line); border-radius:var(--r); padding:16px 18px; margin-bottom:14px; }
   .badge { display:inline-block; font:600 11px/1 var(--mono); padding:5px 9px; border-radius:999px; margin-right:8px; }
-  .ok { background:var(--ok-soft); color:var(--ok); } .bad { background:#fdeaea; color:var(--bad); } .warn { background:#fdf3e3; color:var(--warn); }
-  html[data-theme="dark"] .bad { background:#2a1010; color:var(--bad); } html[data-theme="dark"] .warn { background:#261a08; color:var(--warn); }
-  .label { color:var(--dim); font:600 11px/1 var(--mono); text-transform:uppercase; letter-spacing:.08em; margin:16px 0 6px; }
-  .mono { font:12.5px/1.7 var(--mono); }
-  .clause { font:12.5px/1.75 var(--mono); padding:4px 0; border-bottom:1px dashed var(--line); }
-  .clause b { font-weight:600; } .s { color:var(--ag); } .o { color:var(--link); } .d { color:var(--warn); }
-  .row { display:flex; gap:14px; flex-wrap:wrap; } .metric { flex:1; min-width:120px; }
-  .big { font:700 20px/1 var(--mono); margin-top:4px; }
-  .verm { font-size:14px; } .btn { margin-top:18px; border:0; background:var(--acc); color:var(--bg); font:600 13px/1 var(--sans); padding:11px 18px; border-radius:999px; cursor:pointer; }
-  #log { white-space:pre-wrap; font:12px/1.8 var(--mono); color:var(--ink2); background:var(--side2); border-radius:var(--r); padding:14px 16px; max-height:220px; overflow:auto; }
+  .ok { background:var(--ok-soft); color:var(--ok); } .bad { background:#fdeaea; color:var(--bad); }
+  html[data-theme="dark"] .bad { background:#2a1010; }
+  .label { color:var(--dim); font:600 11px/1 var(--mono); text-transform:uppercase; letter-spacing:.08em; margin:14px 0 8px; }
+  .mono { font:12.5px/1.75 var(--mono); } .btn { border:0; background:var(--acc); color:var(--bg); font:600 13px/1 var(--sans); padding:11px 18px; border-radius:999px; cursor:pointer; }
+  .btn[disabled] { opacity:.5; cursor:default; } .btn.alt { background:var(--ag); }
+  #log { white-space:pre-wrap; font:12px/1.8 var(--mono); color:var(--ink2); background:var(--side2); border-radius:var(--r); padding:12px 14px; max-height:170px; overflow:auto; }
+  .topic { font-size:17px; font-weight:600; margin:4px 0 2px; }
+  .essay { font:15px/1.75 var(--sans); } .essay p { margin:0 0 14px; }
+  .essay q, .essay .q { color:var(--ag); } .pill { display:inline-block; font:11px var(--mono); color:var(--dim); border:1px solid var(--line); border-radius:999px; padding:2px 8px; margin:2px 4px 2px 0; }
+  #status { font:600 13px/1.4 var(--sans); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>The Fold · <b>Language School</b> e2e</h1>
-  <div class="sub">Champollion reads a <b>War &amp; Peace</b> slice (EN, word-order seam) live in the browser — read → EO clauses → gates → verdict. The whole pipeline, visible.</div>
+  <h1>The Fold · <b>Essay</b></h1>
+  <div class="sub">War and Peace, read by the full pipeline: khora reads · janus kinds · penelope's snip-cite grounds every quote. The mouth is <b>WebLLM, in this tab</b>.</div>
 
   <div class="card">
-    <div class="label">run</div>
-    <button class="btn" id="run">Run the school on War &amp; Peace</button>
-    <div class="label" style="margin-top:16px">live log</div>
-    <div id="log">press run — the fold reads the bytes, emits EO clauses, audits (byte + idempotence), files a verdict.</div>
+    <div class="label">topic</div>
+    <div class="topic" id="topic">…</div>
+    <div class="label">the box (what the mouth may draw on)</div>
+    <div class="mono" id="box">loading…</div>
+    <button class="btn" id="run" disabled style="margin-top:16px">Compose the essay (loads WebLLM in-browser)</button>
+    <div class="label" style="margin-top:14px">log</div>
+    <div id="log"></div>
   </div>
 
-  <div class="card" id="gatesCard" hidden>
-    <div class="label">the verdict</div>
-    <div class="verm" id="verdict"></div>
-    <div class="row" style="margin-top:14px" id="metrics"></div>
-  </div>
-
-  <div class="card" id="clausesCard" hidden>
-    <div class="label">the EO clauses the seam bound (article-declared / position = case)</div>
-    <div id="clauses"></div>
-  </div>
-
-  <div class="card" id="castCard" hidden>
-    <div class="label">the cast (who is there — edge recurrence, not orthography)</div>
-    <div class="mono" id="cast"></div>
+  <div class="card" id="essayCard" hidden>
+    <div class="label">the essay — grounded, cited in text</div>
+    <div id="status" style="margin-bottom:12px"></div>
+    <div class="essay" id="essay"></div>
+    <div class="label">verbatim snips (each at its byte address)</div>
+    <div id="snips" class="mono"></div>
   </div>
 </div>
-<script>
+<script type="module">
 const $ = (id) => document.getElementById(id);
-const log = (m) => { $("log").textContent += "\n" + m; $("log").scrollTop = $("log").scrollHeight; };
+const log = (m) => { $("log").textContent += (($("log").textContent ? "\n" : "")) + m; $("log").scrollTop = $("log").scrollHeight; };
+let BOX = null;
+
+// 1. fetch the box (READ + BOX-SETTLE + HUNT — server side, no model)
+try {
+  BOX = await (await fetch("/api/essay/box")).json();
+  if (BOX.error) { log("box error: " + BOX.error); throw new Error(BOX.error); }
+  $("topic").textContent = BOX.topic;
+  $("box").textContent = `cast: ${BOX.cast.join(", ")}\ndeed: ${BOX.deeds.join(", ")}\nkinds: ${BOX.kinds.map(k=>`[${k.members.join(",")}]`).join(" ")}\nhunt: ${BOX.hunt.length} quotable addresses · events: ${BOX.events}`;
+  $("run").disabled = false;
+  log(`box ready: ${BOX.cast.length} cast · ${BOX.hunt.length} hunt addresses · ${BOX.events} events.`);
+} catch (e) { log("fatal: " + e.message); }
+
+// 2. the mouth: WebLLM in the tab (the model runs here, no server, no heimdall)
+let engine = null;
+async function loadMouth() {
+  const webllm = await import("https://esm.run/@mlc-ai/web-llm");
+  log("WebLLM module loaded; fetching the model (first run downloads ~1GB)…");
+  const initProgressCallback = (p) => { if (p && p.text) log("  " + p.text.slice(0, 110)); };
+  engine = await webllm.CreateMLCEngine("Llama-3.2-1B-Instruct-q4f32_1-MLC", { initProgressCallback });
+  log("mouth ready: Llama-3.2-1B (in-browser).");
+}
 
 $("run").addEventListener("click", async () => {
-  $("log").textContent = "reading the bytes…";
-  const t0 = performance.now();
+  $("run").disabled = true;
   try {
-    const r = await fetch("/api/school");
-    const d = await r.json();
-    if (d.error) { log("ERROR: " + d.error); return; }
-    log(`took ${d.ms}ms · learned=${d.learned} · family=${d.family} · reader=${d.reader} · score=${d.score}`);
+    if (!engine) await loadMouth();
+    const huntLines = BOX.hunt.map((h) => `${h.marker}  (${h.s} ${h.v})`).join("\n");
+    const prompt = `Write a literary essay of 4-5 paragraphs. TOPIC: ${BOX.topic}
 
-    $("verdict").innerHTML = `<span class="badge ${d.learned ? "ok" : "bad"}">${d.learned ? "LEARNED" : "REFUSED"}</span> ` +
-      `<b>${d.family ?? "—"}</b> · ${d.reader ?? "—"} · score <b>${d.score ?? "—"}</b> · EO <b>${d.gates?.EO ?? "—"}/8</b> · ` +
-      `idempotent <b>${d.idempotent ? "yes" : "no"}</b> · byte-truths <b>${Math.round((d.gates?.byteTruths ?? 0) * 100)}%</b> · byte-refusals <b>${Math.round((d.gates?.byteRefusals ?? 0) * 100)}%</b>`;
-    $("gatesCard").hidden = false;
+Use ONLY these facts from the reading:
+cast: ${BOX.cast.join(", ")}
+deeds: ${BOX.deeds.join(", ")}
+kinds: ${BOX.kinds.map(k=>`{${k.members.join(",")}}`).join(" ")}
 
-    const m = [
-      ["clauses", d.gates?.genre?.clauses ?? "—"], ["bindings", d.gates?.genre?.bindings ?? "—"],
-      ["EO-native", d.gates?.EO ?? "—"], ["score", d.score ?? "—"],
-    ];
-    $("metrics").innerHTML = m.map(([k, v]) => `<div class="metric mono"><span>${k}</span><div class="big">${v}</div></div>`).join("");
+You MUST quote the source by keeping these citation markers EXACTLY as written (the machine replaces each marker with the source's verbatim sentence):
+${huntLines}
 
-    $("metrics").insertAdjacentHTML("beforeend", `<div class="metric mono"><span>tried</span><div class="big">${d.tried?.length ?? 0}</div></div>`);
-    try {
-      const r2 = await fetch("/api/clauses");
-      if (r2.ok) {
-        const c = await r2.json();
-        $("clauses").innerHTML = (c.edges || []).slice(0, 14).map((e) =>
-          `<div class="clause">${e.s ? `<b class="s">${e.s}</b>` : "<b class='s'>∅</b>"} · ${e.v ?? ""} · ${e.o ? `<b class="o">${e.o}</b>` : "<b class='o'>∅</b>"} <span style='color:var(--dim)'>(at ${e.at})</span></div>`).join("");
-        $("clausesCard").hidden = false;
-      }
-    } catch (e) { /* clauses route optional */ }
-    $("cast").textContent = (d.cast || []).join(" · ") || "—";
-    $("castCard").hidden = false;
-  } catch (e) { log("fatal: " + e.message); }
+Rules: every paragraph must contain at least one marker, verbatim. Do not invent
+names, deeds, or quotes. Write plain connected prose with a thesis. Plain text only.`;
+    log("drawing the essay from the box (the mouth may only speak the box)…");
+    const reply = await engine.chat.completions.create({ messages: [{ role: "user", content: prompt }], temperature: 0.4, max_tokens: 900 });
+    const draft = reply.choices[0].message.content;
+    log(`draft: ${draft.length} chars. Sealing (snip-cite grounds every quote)…`);
+
+    // 3. seal: server replaces markers with verbatim bytes + tests
+    const sealed = await (await fetch("/api/essay/seal", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ draft }) })).json();
+    if (sealed.error) { log("seal error: " + sealed.error); return; }
+    $("status").innerHTML = `<span class="badge ${sealed.verdict === "SEALED" ? "ok" : "bad"}">${sealed.verdict}</span> ${sealed.snips.filter(s=>s.verified).length} verbatim snips · ${sealed.refused.length} refused`;
+    $("essay").innerHTML = sealed.text.split(/\n\n+/).map((p) => `<p>${p.replace(/“([^”]+)”/g, '<span class="q">“$1”</span>')}</p>`).join("");
+    $("snips").innerHTML = sealed.snips.map((s) => s.verified ? `<div>✓ <span style="color:var(--ag)">“${s.quote.slice(0,90)}…”</span> <span class="pill">@${s.abs}</span></div>` : `<div>✗ refused @${s.abs} (${s.gap})</div>`).join("");
+    $("essayCard").hidden = false;
+    log("sealed. The essay is grounded — every quote is the source's own bytes.");
+  } catch (e) { log("error: " + (e?.message || e)); }
+  $("run").disabled = false;
 });
 </script>
 </body>

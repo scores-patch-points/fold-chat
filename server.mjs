@@ -219,15 +219,73 @@ export async function createFoldServer({ port = DEFAULT_PORT, host = DEFAULT_HOS
       // the EOT, gates, and verdict back to school.html for visible rendering.
       // Imported lazily; a missing scene resolves to a typed 404, never a crash.
       const reqPath = (u = "") => { try { return new URL(u, "http://x").pathname; } catch { return String(u).split("?")[0]; } };
+      const WNP = { file: "/Users/mlacy/Documents/3.0/Zenodotus/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt", charset: "utf8" };
+      const wnpRead = async (n = 40000) => {
+        const fsx = await import("node:fs");
+        const text = fsx.readFileSync(WNP.file, WNP.charset);
+        const islice = text.indexOf("CHAPTER I");
+        return (islice >= 0 ? text.slice(islice) : text).slice(0, n);
+      };
       if (reqPath(req.url) === "/api/clauses") {
         try {
           const { readEnglish } = await import("../khora/native/eval/the-fold/scene/reader-en.mjs");
-          const fsx = await import("node:fs");
-          const text = fsx.readFileSync("/Users/mlacy/Documents/3.0/Zenodotus/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt", "utf8");
-          const islice = text.indexOf("CHAPTER I");
-          const r = await readEnglish({ text: (islice >= 0 ? text.slice(islice) : text).slice(0, 40000) });
+          const r = await readEnglish({ text: await wnpRead(40000) });
           const edges = r.clauses.map((c) => ({ s: c.subject?.head ?? null, v: c.verb, o: c.object?.head ?? null, at: c.span?.[0] ?? 0 })).filter((e) => e.s || e.o);
           return sendJson(res, 200, { edges: edges.slice(0, 200) });
+        } catch (e) { return sendJson(res, 500, { error: e.message?.slice(0, 200) }); }
+      }
+      // THE ESSAY BOX (READ + BOX-SETTLE + HUNT, no model): the khora reads
+      // War & Peace; janus induces kinds; the hunt gathers the QUOTABLE byte
+      // addresses as ⟦source@abs⟧ markers. The MOUTH — WebLLM in the browser —
+      // draws on ONLY this box and POSTs the draft to /api/essay/seal.
+      if (reqPath(req.url) === "/api/essay/box") {
+        try {
+          const fsx = await import("node:fs");
+          const { readEnglish } = await import("../khora/native/eval/the-fold/scene/reader-en.mjs");
+          const { induceKinds } = await import("../janus/native/organs/kind-induction.js");
+          const full = fsx.readFileSync(WNP.file, WNP.charset);
+          const iC1 = full.indexOf("CHAPTER I");
+          const body = (iC1 >= 0 ? full.slice(iC1) : full).slice(0, 80000);
+          const r = await readEnglish({ text: body });
+          const name = (x) => (x && /^[A-Z]/.test(String(x)) && !/^(I|You|He|She|It|We|They|Me|Him|Her)$/.test(String(x)) ? String(x) : null);
+          const cast = new Map(), deeds = new Map(), events = [];
+          for (const c of r.clauses) {
+            const s = name(c.subject?.head), o = name(c.object?.head), v = String(c.verb || "").toLowerCase();
+            const at = c.span?.[0] ?? 0;
+            if (s && v.length > 2 && !/^(was|is|are|be|had|has|have|does|do|would|will|should|could)$/.test(v)) {
+              if (!cast.has(s)) cast.set(s, new Set());
+              cast.get(s).add(v); deeds.set(v, (deeds.get(v) ?? 0) + 1);
+              events.push({ s, v, o, at });
+            }
+          }
+          const topCast = [...cast].sort((a, b) => b[1].size - a[1].size).slice(0, 14).map(([w]) => w);
+          const topDeeds = [...deeds].sort((a, b) => b[1] - a[1]).slice(0, 12).map(([w]) => w);
+          const present = topCast.filter((c) => body.includes(c));
+          const comp = new Map(present.map((b) => [b, new Map()]));
+          for (const e of events) for (const a of present) for (const b of present) if (a !== b && e.s === a && e.o && String(e.o).includes(b)) comp.get(a).set(b, 1);
+          const vecs = present.map((w) => ({ ref: w, names: Object.keys(comp.get(w) ?? {}), company: comp.get(w) ?? {}, total: comp.get(w)?.size ?? 0 }));
+          const K = induceKinds(vecs, { threshold: 0.2 });
+          const kinds = K.map((k, i) => ({ id: i, members: (k.members ?? []).slice(0, 4) })).slice(0, 8);
+          const hunted = events.filter((e) => /^(said|replied|cried|asked|exclaimed|thought|smiled|noticed|warned|told|began|continued)$/.test(e.v) && e.o).slice(0, 14);
+          const hunt = hunted.map((e) => ({ s: e.s, v: e.v, at: e.at, marker: `⟦${WNP.file}@${e.at}⟧` }));
+          return sendJson(res, 200, { topic: "How the salon begins the war — society in the drawing-room as the hidden cause of War and Peace", cast: topCast, deeds: topDeeds, kinds, hunt, events: events.length, source: WNP.file });
+        } catch (e) { return sendJson(res, 500, { error: e.message?.slice(0, 200) }); }
+      }
+      // THE ESSAY SEAL (SNIP + TEST, no model): penelope's snip-cite replaces
+      // every ⟦marker⟧ the mouth planted with the source's VERBATIM bytes;
+      // behavior-check: a refused marker or an ungrounded paragraph → REFUSED.
+      if (reqPath(req.url) === "/api/essay/seal") {
+        try {
+          let buf = "";
+          for await (const chunk of req) buf += chunk;
+          const { draft } = JSON.parse(buf || "{}");
+          const { replaceCites, snipSentence } = await import("../penelope/organs/snip-cite.mjs");
+          const snip = replaceCites(String(draft ?? ""), { resolve: snipSentence });
+          const paras = snip.text.split(/\n\n/).filter(Boolean);
+          const grounded = paras.filter((p) => /“/.test(p) || /⟦/.test(p)).length;
+          const verdict = snip.refused.length === 0 && paras.length > 0 && grounded >= paras.length * 0.6
+            ? "SEALED" : `REFUSED (${snip.refused.length} unresolved · ${grounded}/${paras.length} grounded)`;
+          return sendJson(res, 200, { text: snip.text, snips: snip.snips, refused: snip.refused, verdict });
         } catch (e) { return sendJson(res, 500, { error: e.message?.slice(0, 200) }); }
       }
       if (reqPath(req.url) === "/api/school") {
