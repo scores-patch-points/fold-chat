@@ -83,7 +83,8 @@ export function screenBeings(edges, { sourceText = null } = {}) {
     if (e.o) patient.add(e.o);
   }
   const eligible = (x) => !!x && (sig.has(x) || (company.get(x)?.size ?? 0) >= 8 || ((company.get(x)?.size ?? 0) >= 3 && patient.has(x)));
-  return (edges || []).filter((e) => eligible(e.s));
+  const cleanObject = (o) => !o || (!/['’]s$/i.test(o) && o !== "i");
+  return (edges || []).filter((e) => e.s && e.o !== e.s && eligible(e.s) && cleanObject(e.o));
 }
 
 /** Keep the scene's declared corpus extent visible. Do not pretend an 80K-char
