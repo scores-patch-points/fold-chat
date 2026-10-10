@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>The Fold · School e2e</title>
+<script src="fold-theme-boot.js"></script>
+<style>
+  :root { color-scheme: light; --bg:#fff; --side2:#f1f1f4; --line:#e4e4e9; --ink:#141416; --ink2:#44444e; --dim:#5f5f6b;
+    --acc:#17171a; --ok:#16793a; --ok-soft:#e6f4ea; --bad:#c62828; --warn:#a04a07; --link:#1d4ed8; --ag:#0d7a70; --ag-soft:#e7f6f3;
+    --r:10px; --fs-xs:11.5px; --fs-sm:13px; --fs-md:15px; --mono:ui-monospace,Menlo,monospace; --sans:Inter,system-ui,sans-serif; }
+  html[data-theme="dark"] { --bg:#101014; --side2:#17171b; --line:#26262c; --ink:#eceef2; --ink2:#b8bcc6; --dim:#8a8f9c; --acc:#eef0f4; --ok:#3dd68c; --ok-soft:#0e2a1a; --bad:#ff5f5f; --warn:#ffb066; --link:#7aa2ff; --ag:#3dd6c4; --ag-soft:#0c2724; --acc-soft:#1e1e24; }
+  * { box-sizing: border-box; } body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 var(--sans); }
+  .wrap { max-width:980px; margin:0 auto; padding:32px 22px 90px; }
+  h1 { font-size:22px; margin:0 0 4px; letter-spacing:-.02em; } h1 b { color:var(--ag); }
+  .sub { color:var(--dim); font-size:13px; margin-bottom:22px; }
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:var(--r); padding:18px 20px; margin-bottom:14px; }
+  .badge { display:inline-block; font:600 11px/1 var(--mono); padding:5px 9px; border-radius:999px; margin-right:8px; }
+  .ok { background:var(--ok-soft); color:var(--ok); } .bad { background:#fdeaea; color:var(--bad); } .warn { background:#fdf3e3; color:var(--warn); }
+  html[data-theme="dark"] .bad { background:#2a1010; color:var(--bad); } html[data-theme="dark"] .warn { background:#261a08; color:var(--warn); }
+  .label { color:var(--dim); font:600 11px/1 var(--mono); text-transform:uppercase; letter-spacing:.08em; margin:16px 0 6px; }
+  .mono { font:12.5px/1.7 var(--mono); }
+  .clause { font:12.5px/1.75 var(--mono); padding:4px 0; border-bottom:1px dashed var(--line); }
+  .clause b { font-weight:600; } .s { color:var(--ag); } .o { color:var(--link); } .d { color:var(--warn); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; } .metric { flex:1; min-width:120px; }
+  .big { font:700 20px/1 var(--mono); margin-top:4px; }
+  .verm { font-size:14px; } .btn { margin-top:18px; border:0; background:var(--acc); color:var(--bg); font:600 13px/1 var(--sans); padding:11px 18px; border-radius:999px; cursor:pointer; }
+  #log { white-space:pre-wrap; font:12px/1.8 var(--mono); color:var(--ink2); background:var(--side2); border-radius:var(--r); padding:14px 16px; max-height:220px; overflow:auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>The Fold · <b>Language School</b> e2e</h1>
+  <div class="sub">Champollion reads a <b>War &amp; Peace</b> slice (EN, word-order seam) live in the browser — read → EO clauses → gates → verdict. The whole pipeline, visible.</div>
+
+  <div class="card">
+    <div class="label">run</div>
+    <button class="btn" id="run">Run the school on War &amp; Peace</button>
+    <div class="label" style="margin-top:16px">live log</div>
+    <div id="log">press run — the fold reads the bytes, emits EO clauses, audits (byte + idempotence), files a verdict.</div>
+  </div>
+
+  <div class="card" id="gatesCard" hidden>
+    <div class="label">the verdict</div>
+    <div class="verm" id="verdict"></div>
+    <div class="row" style="margin-top:14px" id="metrics"></div>
+  </div>
+
+  <div class="card" id="clausesCard" hidden>
+    <div class="label">the EO clauses the seam bound (article-declared / position = case)</div>
+    <div id="clauses"></div>
+  </div>
+
+  <div class="card" id="castCard" hidden>
+    <div class="label">the cast (who is there — edge recurrence, not orthography)</div>
+    <div class="mono" id="cast"></div>
+  </div>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+const log = (m) => { $("log").textContent += "\n" + m; $("log").scrollTop = $("log").scrollHeight; };
+
+$("run").addEventListener("click", async () => {
+  $("log").textContent = "reading the bytes…";
+  const t0 = performance.now();
+  try {
+    const r = await fetch("/api/school");
+    const d = await r.json();
+    if (d.error) { log("ERROR: " + d.error); return; }
+    log(`took ${d.ms}ms · learned=${d.learned} · family=${d.family} · reader=${d.reader} · score=${d.score}`);
+
+    $("verdict").innerHTML = `<span class="badge ${d.learned ? "ok" : "bad"}">${d.learned ? "LEARNED" : "REFUSED"}</span> ` +
+      `<b>${d.family ?? "—"}</b> · ${d.reader ?? "—"} · score <b>${d.score ?? "—"}</b> · EO <b>${d.gates?.EO ?? "—"}/8</b> · ` +
+      `idempotent <b>${d.idempotent ? "yes" : "no"}</b> · byte-truths <b>${Math.round((d.gates?.byteTruths ?? 0) * 100)}%</b> · byte-refusals <b>${Math.round((d.gates?.byteRefusals ?? 0) * 100)}%</b>`;
+    $("gatesCard").hidden = false;
+
+    const m = [
+      ["clauses", d.gates?.genre?.clauses ?? "—"], ["bindings", d.gates?.genre?.bindings ?? "—"],
+      ["EO-native", d.gates?.EO ?? "—"], ["score", d.score ?? "—"],
+    ];
+    $("metrics").innerHTML = m.map(([k, v]) => `<div class="metric mono"><span>${k}</span><div class="big">${v}</div></div>`).join("");
+
+    $("metrics").insertAdjacentHTML("beforeend", `<div class="metric mono"><span>tried</span><div class="big">${d.tried?.length ?? 0}</div></div>`);
+    try {
+      const r2 = await fetch("/api/clauses");
+      if (r2.ok) {
+        const c = await r2.json();
+        $("clauses").innerHTML = (c.edges || []).slice(0, 14).map((e) =>
+          `<div class="clause">${e.s ? `<b class="s">${e.s}</b>` : "<b class='s'>∅</b>"} · ${e.v ?? ""} · ${e.o ? `<b class="o">${e.o}</b>` : "<b class='o'>∅</b>"} <span style='color:var(--dim)'>(at ${e.at})</span></div>`).join("");
+        $("clausesCard").hidden = false;
+      }
+    } catch (e) { /* clauses route optional */ }
+    $("cast").textContent = (d.cast || []).join(" · ") || "—";
+    $("castCard").hidden = false;
+  } catch (e) { log("fatal: " + e.message); }
+});
+</script>
+</body>
+</html>

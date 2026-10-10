@@ -214,6 +214,35 @@ export async function createFoldServer({ port = DEFAULT_PORT, host = DEFAULT_HOS
       res.setHeader("content-security-policy", "frame-ancestors 'self'");
       res.setHeader("x-frame-options", "SAMEORIGIN");
       if (!hostAllowed(req.headers.host, server.address()?.port, env)) return send(res, 421, "misdirected request");
+      // THE SCHOOL ROUTE (2026-10-09): a live, in-browser e2e of the fold —
+      // run the language school (Champollion) on a War & Peace slice and hand
+      // the EOT, gates, and verdict back to school.html for visible rendering.
+      // Imported lazily; a missing scene resolves to a typed 404, never a crash.
+      const reqPath = (u = "") => { try { return new URL(u, "http://x").pathname; } catch { return String(u).split("?")[0]; } };
+      if (reqPath(req.url) === "/api/clauses") {
+        try {
+          const { readEnglish } = await import("../khora/native/eval/the-fold/scene/reader-en.mjs");
+          const fsx = await import("node:fs");
+          const text = fsx.readFileSync("/Users/mlacy/Documents/3.0/Zenodotus/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt", "utf8");
+          const islice = text.indexOf("CHAPTER I");
+          const r = await readEnglish({ text: (islice >= 0 ? text.slice(islice) : text).slice(0, 40000) });
+          const edges = r.clauses.map((c) => ({ s: c.subject?.head ?? null, v: c.verb, o: c.object?.head ?? null, at: c.span?.[0] ?? 0 })).filter((e) => e.s || e.o);
+          return sendJson(res, 200, { edges: edges.slice(0, 200) });
+        } catch (e) { return sendJson(res, 500, { error: e.message?.slice(0, 200) }); }
+      }
+      if (reqPath(req.url) === "/api/school") {
+        try {
+          const runner = await import("../khora/native/organs/school-runner.mjs");
+          const fsx = await import("node:fs");
+          const text = fsx.readFileSync("/Users/mlacy/Documents/3.0/Zenodotus/11-multi-language/war-and-peace/en/pg2600_War_and_Peace_Tolstoy_Maude.txt", "utf8");
+          const islice = text.indexOf("CHAPTER I");
+          const started = Date.now();
+          const resBeen = await runner.learnFromText((islice >= 0 ? text.slice(islice) : text).slice(0, 40000), { truths: ["Pierre"], falsehoods: ["Dragon"], preferFamily: "word-order", label: "war-and-peace" });
+          const verdict = resBeen.verdict ?? {};
+          const payload = { ranAt: new Date().toISOString(), ms: Date.now() - started, learned: resBeen.learned, family: verdict.family, reader: verdict.reader, score: verdict.score, gates: verdict.gates, idempotent: verdict.idempotent, cast: verdict.gates?.cast ?? [], clauses: verdict.gates?.genre?.clauses, tried: resBeen.tried ?? [] };
+          return sendJson(res, 200, payload);
+        } catch (e) { return sendJson(res, 500, { error: e.message?.slice(0, 200) }); }
+      }
       await serveStatic(req, res, rootDir, realRoot);
     } catch (e) {
       log(`request: ${e?.message || e}`);
