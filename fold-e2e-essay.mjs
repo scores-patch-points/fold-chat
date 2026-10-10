@@ -15,7 +15,7 @@
 import fs from "node:fs";
 import { readEnglish } from "../khora/native/eval/the-fold/scene/reader-en.mjs";
 import { replaceCitesUtf8, snipSentenceUtf8 } from "../penelope/organs/verified-byte-snips.mjs";
-import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, rewriteParts, sealEssayDraft, sentenceWitnesses } from "./essay-seam.mjs";
+import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, rewriteParts, sealEssayDraft, sentenceWitnesses, contentWords } from "./essay-seam.mjs";
 
 const SOURCE_ID = "fold:essay-source";
 const ALTITUDES = ["atmosphere", "lens", "kind", "paradigm", "field", "network"];
@@ -71,8 +71,9 @@ export async function runEssay({
     const e = facts[i];
     let thought;
     if (mouth === "compose") {
-      thought = i % 2 ? "read from the household, this act takes on the colour of obligation"
-        : "the company of the drawing-room gives this act its tone";
+      const ws = [...contentWords(witnesses.get(e.at) ?? "")].filter((x) => x.length >= 4);
+      const w1 = ws[0] ?? e.s, w2 = ws[1] ?? (e.o ?? e.s);
+      thought = i % 2 ? `${w1} and ${w2} carry the register of the scene` : `the ${w1} of this passage sets the tone`;
     } else {
       const snip = snipSentenceUtf8(source, e.at);
       const quote = (snip.ok ? snip.quote : `${e.s} ${e.v} ${e.o}`).replace(/\s+/g, " ").slice(0, 240);

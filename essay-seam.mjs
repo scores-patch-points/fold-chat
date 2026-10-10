@@ -269,15 +269,23 @@ export function classifyEssay({ draft, read, claims, sourceAt = null, witnesses 
     const allBound = cs.length > 0 && cs.every((c) => c.verdict === 'bound');
     const rawNoMark = `${raw}`.replace(/⟦[^⟧]*⟧/g, " ").replace(/\s+/g, " ").trim();
     const verbatim = witnesses instanceof Map && sourceCites.some((n) => witnesses.has(n) && normW(witnesses.get(n)) === normW(rawNoMark));
+    // THE RELEVANCE GATE (the thought must be PROMPTED BY the span it cites):
+    // when witnesses are in view, a voice thought must share at least one content
+    // word with the source sentence at its citation — otherwise it cites a span it
+    // never engaged (a thought from nowhere pinned to a byte).
+    const thoughtWords = contentWords(rawNoMark);
+    const prompted = witnesses instanceof Map && sourceCites.some((n) => witnesses.has(n)
+      && [...contentWords(witnesses.get(n))].some((w) => thoughtWords.has(w)));
     let lane, because;
     if (verbatim) { lane = 'grounded'; because = 'verbatim witnessed at its byte'; }
     else if (contradicted) { lane = 'fail'; because = 'contradicted'; }
     else if (allBound) { lane = 'grounded'; because = 'bound'; }
-    else if (isVoice && VOICE_ALTITUDES.includes(altitude) && sourceCites.length > 0) { lane = 'voice'; because = `explicit ${altitude}-altitude voice, cited to a source span`; }
+    else if (isVoice && VOICE_ALTITUDES.includes(altitude) && sourceCites.length > 0 && (!(witnesses instanceof Map) || prompted)) { lane = 'voice'; because = `explicit ${altitude}-altitude voice, cited to a source span it shares content with`; }
+    else if (isVoice && VOICE_ALTITUDES.includes(altitude) && sourceCites.length > 0) { lane = 'fail'; because = 'voice not prompted by the cited span (no shared content with it)'; }
     else if (isVoice && !VOICE_ALTITUDES.includes(altitude)) { lane = 'fail'; because = `voice without a terrain altitude (${VOICE_ALTITUDES.join('/')})`; }
     else if (isVoice) { lane = 'fail'; because = witnessed ? 'voice with no witnessed source span (a thought not prompted by the text)' : 'voice without a source span'; }
     else { lane = 'fail'; because = cs.length === 0 ? 'no-claim' : (cs.find((c) => c.verdict !== 'bound')?.verdict ?? 'unbound'); }
-    sentences.push({ at: s.at, len: s.len, text: raw.trim(), lane, because, voice: isVoice, altitude, cites: sourceCites.length, markers: cites.length, claims: cs.length });
+    sentences.push({ at: s.at, len: s.len, text: raw.trim(), lane, because, voice: isVoice, altitude, prompted, cites: sourceCites.length, markers: cites.length, claims: cs.length });
   }
   const count = (k) => sentences.filter((x) => x.lane === k).length;
   const contradicted = sentences.some((x) => x.because === 'contradicted');

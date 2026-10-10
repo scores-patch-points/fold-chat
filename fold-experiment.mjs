@@ -21,7 +21,7 @@ import { readEnglish } from "../khora/native/eval/the-fold/scene/reader-en.mjs";
 import { replaceCitesUtf8, snipSentenceUtf8 } from "../penelope/organs/verified-byte-snips.mjs";
 import { idfOver, makeMuller } from "./experiments/mind-wandering/compose.mjs";
 import { isStop } from "./experiments/mind-wandering/wander.mjs";
-import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, sealEssayDraft, sentenceWitnesses } from "./essay-seam.mjs";
+import { essayBoxFromRead, boundEdgesFromRead, cleanEdges, verifyDraftClaims, classifyEssay, sealEssayDraft, sentenceWitnesses, contentWords } from "./essay-seam.mjs";
 
 const SOURCE_ID = "fold:essay-source";
 const SOURCE = (() => { const i = process.argv.indexOf("--source"); return i >= 0 ? process.argv[i + 1] : "/Users/mlacy/Documents/3.0/pg2600.txt"; })();
@@ -108,7 +108,10 @@ async function voiceThoughts(s, facts, { voiceModel = true } = {}) {
     const e = facts[i];
     let out;
     if (!voiceModel) {
-      out = i % 2 ? "read from the household, this act takes on the colour of obligation" : "the company of the drawing-room gives this act its tone";
+      const wit = String(s.witnesses.get(e.at) ?? "").replace(/\s+/g, " ");
+      const ws = [...contentWords(wit)].filter((x) => x.length >= 4);
+      const w1 = ws[0] ?? e.s, w2 = ws[1] ?? (e.o ?? e.s);
+      out = i % 2 ? `${w1} and ${w2} carry the register of the scene` : `the ${w1} of this passage sets the tone`;
     } else {
       const snip = snipSentenceUtf8(SOURCE, e.at);
       const quote = (snip.ok ? snip.quote : `${e.s} ${e.v} ${e.o}`).replace(/\s+/g, " ").slice(0, 220);

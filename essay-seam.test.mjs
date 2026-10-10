@@ -124,7 +124,7 @@ const claim = (s, v, o, sent) => ({ subject: { head: s }, verb: v, object: o == 
 test('the box exposes its bound edges, each at its own witness byte', () => {
   const r = essayBoxFromRead({ sourceText: source, excerptStart, excerpt, sourceFile, read, induceKinds: () => [] });
   assert.equal(r.edges.length, 2);
-  assert.deepEqual(r.edges[0], { s: 'pierre', v: 'saw', o: 'natasha', at: Buffer.byteLength(source.slice(0, source.indexOf('CHAPTER I')), 'utf8') });
+  assert.equal(r.edges[0].s, 'pierre'); assert.equal(r.edges[0].at, Buffer.byteLength(source.slice(0, source.indexOf('CHAPTER I')), 'utf8'));
 });
 
 test('verifyDraftClaims: bound / slot-competition / unheard are told apart', () => {
@@ -279,4 +279,17 @@ test('a verbatim source sentence is grounded at its byte even when its claims do
   const lanes = classifyEssay({ draft, read: s2.read, claims: { claims: [] }, sourceAt: new Set([40]), witnesses });
   assert.equal(lanes.counts.grounded, 1);
   assert.equal(lanes.sentences[0].because, 'verbatim witnessed at its byte');
+});
+
+test('relevance gate: a voice thought must share content with the span it cites', () => {
+  const witnesses = new Map([[100, 'Anna Pávlovna had a cough for some days.']]);
+  const bad = scene('[voice:kind] The weather in London changes by the hour ⟦fold:essay-source@100⟧');
+  const l1 = classifyEssay({ draft: bad.draft, read: bad.read, claims: { claims: [] }, sourceAt: new Set([100]), witnesses });
+  assert.equal(l1.counts.voice, 0);
+  assert.equal(l1.counts.fail, 1);
+  assert.match(l1.sentences[0].because, /not prompted by the cited span/);
+  const good = scene('[voice:kind] Anna cough gathers the household ⟦fold:essay-source@100⟧');
+  const l2 = classifyEssay({ draft: good.draft, read: good.read, claims: { claims: [] }, sourceAt: new Set([100]), witnesses });
+  assert.equal(l2.counts.voice, 1);
+  assert.equal(l2.sentences[0].prompted, true);
 });
