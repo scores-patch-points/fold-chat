@@ -40,6 +40,8 @@
     <div class="label">the box (what the mouth may draw on)</div>
     <div class="mono" id="box">loading…</div>
     <button class="btn" id="run" disabled style="margin-top:16px">Compose the essay (loads WebLLM in-browser)</button>
+    <div class="label" style="margin-top:14px">mouth (both quantizations of a model map to one Ollama tag)</div>
+    <select id="model" class="btn" style="font-size:12px;padding:8px 10px"></select>
     <div class="label" style="margin-top:14px">log</div>
     <div id="log"></div>
   </div>
@@ -56,6 +58,22 @@
 const $ = (id) => document.getElementById(id);
 const log = (m) => { $("log").textContent += (($("log").textContent ? "\n" : "")) + m; $("log").scrollTop = $("log").scrollHeight; };
 let BOX = null;
+let mouth = null;
+
+// THE SHARED IN-PAGE MOUTH (fold-mouth-webllm.mjs): the same WebLLM organ the
+// fold chat uses — pinned CDN, module worker, GPU-typed, download consent,
+// penelope's mouth contract. No second model instance in this page.
+import { createPageEngine, MODEL_CHOICES } from "./fold-chat-webllm.js";
+import { createPageMouth } from "./fold-mouth-webllm.mjs";
+
+const PRESET = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+for (const m of MODEL_CHOICES) {
+  const o = document.createElement("option");
+  o.value = m.id;
+  o.textContent = `${m.label.split(" — ")[0]} (${m.sizeLabel})`;
+  if (m.id === PRESET) o.selected = true;
+  $("model").appendChild(o);
+}
 
 // 1. fetch the box (READ + BOX-SETTLE + HUNT — server side, no model)
 try {
@@ -63,40 +81,30 @@ try {
   if (BOX.error) { log("box error: " + BOX.error); throw new Error(BOX.error); }
   $("topic").textContent = BOX.topic;
   $("box").textContent = `cast: ${BOX.cast.join(", ")}\ndeed: ${BOX.deeds.join(", ")}\nkinds: ${BOX.kinds.map(k=>`[${k.members.join(",")}]`).join(" ")}\nhunt: ${BOX.hunt.length} quotable addresses · events: ${BOX.events}`;
+  const engine = createPageEngine({ storage: localStorage, onProgress: (p) => log(`  ${p.phase}: ${String(p.text ?? "").slice(0, 110)}`) });
+  mouth = createPageMouth({ engine });
   $("run").disabled = false;
   log(`box ready: ${BOX.cast.length} cast · ${BOX.hunt.length} hunt addresses · ${BOX.events} events.`);
 } catch (e) { log("fatal: " + e.message); }
 
-// 2. the mouth: WebLLM in the tab (the model runs here, no server, no heimdall)
-let engine = null;
-async function loadMouth() {
-  const webllm = await import("https://esm.run/@mlc-ai/web-llm");
-  log("WebLLM module loaded; fetching the model (first run downloads ~1GB)…");
-  const initProgressCallback = (p) => { if (p && p.text) log("  " + p.text.slice(0, 110)); };
-  engine = await webllm.CreateMLCEngine("Llama-3.2-1B-Instruct-q4f32_1-MLC", { initProgressCallback });
-  log("mouth ready: Llama-3.2-1B (in-browser).");
-}
-
+// 2. the mouth: WebLLM in the tab, drawn through the shared organ — the
+//    frame lets it speak ONLY the box (mouth-last; khora FOLD II.9), never derive.
 $("run").addEventListener("click", async () => {
   $("run").disabled = true;
   try {
-    if (!engine) await loadMouth();
-    const huntLines = BOX.hunt.map((h) => `${h.marker}  (${h.s} ${h.v})`).join("\n");
-    const prompt = `Write a literary essay of 4-5 paragraphs. TOPIC: ${BOX.topic}
+    const spec = `Write a literary essay of 4-5 paragraphs. TOPIC: ${BOX.topic}
 
 Use ONLY these facts from the reading:
 cast: ${BOX.cast.join(", ")}
 deeds: ${BOX.deeds.join(", ")}
 kinds: ${BOX.kinds.map(k=>`{${k.members.join(",")}}`).join(" ")}
 
-You MUST quote the source by keeping these citation markers EXACTLY as written (the machine replaces each marker with the source's verbatim sentence):
-${huntLines}
-
-Rules: every paragraph must contain at least one marker, verbatim. Do not invent
-names, deeds, or quotes. Write plain connected prose with a thesis. Plain text only.`;
+Every paragraph must contain at least one hunt marker VERBATIM (the machine replaces each marker with the source's own bytes). Do not invent names, deeds, or quotes. Write plain connected prose with a thesis. Plain text only.`;
+    const prompt = mouth.frame(spec, { topic: BOX.topic, cast: BOX.cast, deeds: BOX.deeds, hunt: BOX.hunt.map((h) => h.marker) });
     log("drawing the essay from the box (the mouth may only speak the box)…");
-    const reply = await engine.chat.completions.create({ messages: [{ role: "user", content: prompt }], temperature: 0.4, max_tokens: 900 });
-    const draft = reply.choices[0].message.content;
+    const r = await mouth.draw(prompt, { model: $("model").value, maxTokens: 900, temperature: 0.4, kind: "text" });
+    if (!r.ok) { log("mouth error: " + r.error); return; }
+    const draft = r.text;
     log(`draft: ${draft.length} chars. Sealing (snip-cite grounds every quote)…`);
 
     // 3. seal: server replaces markers with verbatim bytes + tests
