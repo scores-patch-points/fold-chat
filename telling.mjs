@@ -172,14 +172,14 @@ export function joinActs(acts = []) {
  * act told is the HIGHEST-LEARNING bound proposition, not every verb the seam
  * bound. When the read carries no learning, the earliest acts stand (fallback,
  * disclosed). Only acts with a patient (a bound object) form a situation. */
-export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2, subjects = null } = {}) {
+export function selectReportable(edges, { perSceneThreads = 3, perThreadActs = 2, subjects = null, patients = null } = {}) {
   const withDelta = edges.some((e) => Number.isFinite(e.delta));
   const threads = threadsOf(edges).filter((t) => !subjects || subjects.has(col(t.s)));
   const scenes = scenesOf(threads);
   return scenes.map((sc) => {
     const chosen = sc.threads
       .map((t) => {
-        const reportable = t.acts.filter((a) => a.o).sort((a, b) => {
+        const reportable = t.acts.filter((a) => a.o && (!patients || patients.has(col(a.o)))).sort((a, b) => {
           if (withDelta) return (b.delta ?? 0) - (a.delta ?? 0);
           return a.at - b.at;
         }).slice(0, perThreadActs);
@@ -211,6 +211,23 @@ export function tellerSubjects(edges = [], { nameSignals = null, floor = 4 } = {
   return allowed;
 }
 
+/** tellerPatients(edges, { nameSignals, floor }) — the PATIENT policy, the
+ * object mirror of tellerSubjects: a told OBJECT must be attested as a patient
+ * of the material — a NAME, or bound as a patient >= `floor` times. 'bear',
+ * 'sort', 'remark' (a noun the POS prior knows, seated by the reader once as
+ * the object) are refused: an act is not told ON a thing the material never
+ * attested receiving. The record keeps the edge; the telling refuses the
+ * object. floor is declared (3 = a patient the material repeatedly takes). */
+export function tellerPatients(edges = [], { nameSignals = null, floor = 3 } = {}) {
+  if (nameSignals == null) return null;
+  const sig = nameSignals instanceof Set ? nameSignals : new Set();
+  const patVol = new Map();
+  for (const e of edges) if (e.o) patVol.set(col(e.o), (patVol.get(col(e.o)) ?? 0) + 1);
+  const allowed = new Set();
+  for (const [o, n] of patVol) if (sig.has(o) || n >= floor) allowed.add(o);
+  return allowed;
+}
+
 /** compose an edge's act into a situation sentence with its grounds. The finite
  *  verb is the ATTESTED literary-present form when the material contains it,
  *  else the seam-bound base form (inflect's presence wall). */
@@ -234,7 +251,8 @@ function sentenceLine(t, tokenTypes) {
  */
 export function tell({ edges = [], witnessEdge = null, tokenTypes = null, nameSignals = null, ...opts } = {}) {
   const subjects = tellerSubjects(edges, { nameSignals });
-  const scenes = selectReportable(edges, { ...opts, subjects });
+  const patients = tellerPatients(edges, { nameSignals });
+  const scenes = selectReportable(edges, { ...opts, subjects, patients });
   const has = witnessEdge || ((s, v) => edges.some((e) => col(e.s) === col(s) && col(e.v) === col(v)));
   const telling = [];
   const lint = { accepted: 0, unjustified: [] };

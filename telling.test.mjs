@@ -3,7 +3,7 @@
 // (never causal), story order holds, and every sentence traces to a bound edge.
 import test from "node:test";
 import assert from "node:assert/strict";
-import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect, tellerSubjects } from "./telling.mjs";
+import { tell, threadsOf, scenesOf, joinActs, plaintext, inflect, tellerSubjects, tellerPatients } from "./telling.mjs";
 
 const edges = [
   { s: "anna", v: "cough", o: "days", at: 10 },
@@ -76,4 +76,18 @@ test('the subject policy threads into the telling: step is not told', () => {
   const subjects = t.telling.flatMap((p) => p.sentences).map((s) => s.s);
   assert.ok(subjects.every((s) => s !== 'step'));
   assert.ok(subjects.includes('anna'));
+});
+
+test('tellerPatients: a told object must be attested as a patient — a name or a recurrent one', () => {
+  const edges = [
+    { s: 'anna', v: 'ask', o: 'prince', at: 1 },
+    { s: 'anna', v: 'pick', o: 'book', at: 2 },
+    { s: 'anna', v: 'open', o: 'book', at: 3 },
+    { s: 'anna', v: 'close', o: 'book', at: 4 },
+    { s: 'step', v: 'offer', o: 'contrast', at: 5 },
+  ];
+  const patients = tellerPatients(edges, { nameSignals: new Set(['anna', 'prince']) });
+  assert.ok(patients.has('prince'), 'a name is a patient it may be told on');
+  assert.ok(patients.has('book'), 'a recurrent patient is attested');
+  assert.ok(!patients.has('contrast'), 'a once-seated object cannot be told on');
 });
