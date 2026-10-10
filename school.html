@@ -47,8 +47,9 @@
   </div>
 
   <div class="card" id="essayCard" hidden>
-    <div class="label">the essay — grounded, cited in text</div>
+    <div class="label">the essay — the mouth's words, judged, never censored (P186)</div>
     <div id="status" style="margin-bottom:12px"></div>
+    <button class="btn alt" id="repair" hidden style="margin-bottom:12px">Repair ungrounded sentences — through the mouth (P186 carve-out)</button>
     <div class="essay" id="essay"></div>
     <div class="label">verbatim snips (each at its byte address)</div>
     <div id="snips" class="mono"></div>
@@ -89,6 +90,31 @@ try {
 
 // 2. the mouth: WebLLM in the tab, drawn through the shared organ — the
 //    frame lets it speak ONLY the box (mouth-last; khora FOLD II.9), never derive.
+let CUR = "";
+let SEAL = null;
+const sealNow = async (draft) => {
+  const r = await fetch("/api/essay/seal", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ draft }) });
+  return r.json();
+};
+function render(sealed) {
+  const cs = sealed.claimsSummary;
+  const L = sealed.lanes?.counts;
+  $("status").innerHTML = `<span class="badge ${sealed.verdict === "SEALED" ? "ok" : "bad"}">${sealed.verdict}</span> ${sealed.snips.filter(s=>s.verified).length} verbatim snips · ${sealed.refused.length} refused`
+    + (L ? ` · grounded ${L.grounded} · voice ${L.voice}${L.fail ? ` · fail ${L.fail}` : ``}${Object.keys(L.altitudes||{}).length ? ` (${Object.entries(L.altitudes).map(([a,n])=>a).join(", ")})` : ``}` : (cs ? ` · claims ${cs.bound}/${cs.total} bound` : ``))
+    + (sealed.sealScope === "grounded_and_voiced" ? ` · grounded+voiced` : ``);
+  $("essay").innerHTML = sealed.text.split(/\n\n+/).filter(Boolean).map((p) => `<p>${p.replace(/“([^”]+)”/g, '<span class="q">“$1”</span>')}</p>`).join("");
+  const lanes = (sealed.lanes?.sentences ?? []).map((s) => `<div>${s.lane === 'grounded' ? '✓ grounded' : s.lane === 'voice' ? `✓ voice:${s.altitude} → cited` : '✗ fail'} <span class="pill">${s.because}</span> <span style="color:var(--dim)">${String(s.text).slice(0,80)}…</span></div>`).join("");
+  const unsup = (sealed.unsupported ?? []).map((u, i) => {
+    const parts = (sealed.rewrite?.[i]?.parts ?? []).map((p) => `⟦${p.s} · ${p.v} · ${p.o ?? "—"}⟧`).join(" ");
+    return `<div style="color:var(--bad)">✗ <span class="pill">${u.because}</span> ${String(u.text).slice(0,120)}…</div>` + (parts ? `<div class="mono" style="color:var(--dim)">material the mouth may compose from: ${parts}</div>` : ``);
+  }).join("");
+  $("snips").innerHTML = sealed.snips.map((s) => s.verified ? `<div>✓ <span style="color:var(--ag)">“${s.quote.slice(0,90)}…”</span> <span class="pill">@${s.abs}</span></div>` : `<div>✗ refused @${s.abs} (${s.gap})</div>`).join("")
+    + (lanes ? `<div class="label" style="margin-top:10px">the two lanes — grounded, or explicit voice cited to a source span</div>` + lanes : "")
+    + (unsup ? `<div class="label" style="margin-top:10px">ungrounded — kept and disclosed, never deleted (P186)</div>` + unsup : "");
+  $("essayCard").hidden = false;
+  $("repair").hidden = !(sealed.unsupported?.length);
+}
+
 $("run").addEventListener("click", async () => {
   $("run").disabled = true;
   try {
@@ -98,26 +124,57 @@ Use ONLY these facts from the reading:
 cast: ${BOX.cast.join(", ")}
 deeds: ${BOX.deeds.join(", ")}
 kinds: ${BOX.kinds.map(k=>`{${k.members.join(",")}}`).join(" ")}
+edges (subject · act · object): ${BOX.edges.slice(0,40).map(e=>`${e.s}·${e.v}·${e.o ?? ""}`).join(", ")}
 
-Every paragraph must contain at least one hunt marker VERBATIM (the machine replaces each marker with the source's own bytes). Do not invent names, deeds, or quotes. Write plain connected prose with a thesis. Plain text only.`;
+Every paragraph must contain at least one hunt marker VERBATIM (the machine replaces each marker with the source's own bytes). State only acts that appear in the edges above. Plain connected prose with a thesis. Plain text only.`;
     const prompt = mouth.frame(spec, { topic: BOX.topic, cast: BOX.cast, deeds: BOX.deeds, hunt: BOX.hunt.map((h) => h.marker) });
     log("drawing the essay from the box (the mouth may only speak the box)…");
     const r = await mouth.draw(prompt, { model: $("model").value, maxTokens: 900, temperature: 0.4, kind: "text" });
     if (!r.ok) { log("mouth error: " + r.error); return; }
-    const draft = r.text;
-    log(`draft: ${draft.length} chars. Sealing (snip-cite grounds every quote)…`);
-
-    // 3. seal: server replaces markers with verbatim bytes + tests
-    const sealed = await (await fetch("/api/essay/seal", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ draft }) })).json();
-    if (sealed.error) { log("seal error: " + sealed.error); return; }
-    $("status").innerHTML = `<span class="badge ${sealed.verdict === "SEALED" ? "ok" : "bad"}">${sealed.verdict}</span> ${sealed.snips.filter(s=>s.verified).length} verbatim snips · ${sealed.refused.length} refused`;
-    $("essay").innerHTML = sealed.text.split(/\n\n+/).map((p) => `<p>${p.replace(/“([^”]+)”/g, '<span class="q">“$1”</span>')}</p>`).join("");
-    $("snips").innerHTML = sealed.snips.map((s) => s.verified ? `<div>✓ <span style="color:var(--ag)">“${s.quote.slice(0,90)}…”</span> <span class="pill">@${s.abs}</span></div>` : `<div>✗ refused @${s.abs} (${s.gap})</div>`).join("");
-    $("essayCard").hidden = false;
-    log("sealed. The essay is grounded — every quote is the source's own bytes.");
+    CUR = r.text;
+    log(`draft: ${CUR.length} chars. Sealing (snip-cite grounds every quote)…`);
+    SEAL = await sealNow(CUR);
+    if (SEAL.error) { log("seal error: " + SEAL.error); return; }
+    render(SEAL);
+    log(SEAL.sealScope === "claims_and_quotations" ? (SEAL.claimsVerified ? "SEALED at claim scope — every claim sits on a bound edge." : `${SEAL.unsupported.length} ungrounded sentence(s) kept and disclosed — use Repair to rewrite them through the mouth.`) : "sealed. The essay is grounded — every quote is the source's own bytes.");
   } catch (e) { log("error: " + (e?.message || e)); }
   $("run").disabled = false;
 });
+
+// THE ONE DISCLOSED CARVE-OUT (P186): rewrite each ungrounded sentence THROUGH
+// THE MOUTH, and splice only when the replacement's own reading grounds. The
+// mouth's words are never edited by the machine; a candidate is adopted only if
+// it stands on a bound edge, and every revision is logged.
+$("repair").addEventListener("click", async () => {
+  $("repair").disabled = true;
+  let adopted = 0;
+  try {
+    for (let pass = 0; pass < 8; pass++) {
+      const u = SEAL?.unsupported?.[0];
+      const r = SEAL?.rewrite?.[0];
+      if (!u || !r?.parts?.length) break;
+      const facts = r.parts.map((p) => `${p.s} ${p.v} ${p.o ?? ""} ⟦fold:essay-source@${p.at}⟧`).join("\n");
+      const spec = `The reading holds only these facts:\n${facts}\n\nWrite ONE sentence that states only these facts, keeping each ⟦...@...⟧ marker exactly as written. Just the sentence.`;
+      const prompt = mouth.frame(spec, { topic: BOX.topic, hunt: r.parts.map((p) => p.marker) });
+      const out = await mouth.draw(prompt, { model: $("model").value, maxTokens: 120, temperature: 0.2, kind: "text" });
+      if (!out.ok) { log("repair: mouth error " + out.error); break; }
+      const cand = (out.text || "").trim().split(/\n+/).filter(Boolean)[0];
+      if (!cand) break;
+      const spliced = CUR.slice(0, u.at) + cand + CUR.slice(u.at + u.len);
+      const again = await sealNow(spliced);
+      if (again.verdict === "SEALED" || (again.claimsSummary?.bound ?? 0) > (SEAL.claimsSummary?.bound ?? 0)) {
+        log(`carve-out adopted (${u.because}): "${String(u.text).slice(0,44)}…" → "${cand.slice(0,44)}…"`);
+        CUR = spliced; SEAL = again; adopted++; render(SEAL);
+      } else {
+        log(`carve-out refused (${u.because}): the replacement did not ground — the mouth's words stand (P186).`);
+        break;
+      }
+    }
+    log(adopted ? `repair done: ${adopted} grounded replacement(s) adopted.` : "repair: nothing could be grounded; the mouth's words stand (P186).");
+  } catch (e) { log("repair error: " + (e?.message || e)); }
+  $("repair").disabled = false;
+});
+
 </script>
 </body>
 </html>

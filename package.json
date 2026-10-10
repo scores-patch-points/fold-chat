@@ -6,7 +6,9 @@
   "scripts": {
     "serve": "node server.mjs",
     "test": "node --test",
-    "e2e": "node fold-e2e-falsify.mjs"
+    "e2e": "node fold-e2e-falsify.mjs",
+    "e2e:essay": "node fold-e2e-essay.mjs --mouth compose",
+    "e2e:essay:ollama": "node fold-e2e-essay.mjs --mouth ollama"
   },
   "devDependencies": {
     "playwright": "^1.63.0"

@@ -269,9 +269,44 @@ export async function createFoldServer({ port = DEFAULT_PORT, host = DEFAULT_HOS
           // Decode only after reassembly: a UTF-8 citation marker can straddle chunks.
           const { draft } = JSON.parse(Buffer.concat(chunks).toString("utf8") || "{}");
           const { replaceCitesUtf8, snipSentenceUtf8 } = await import("../penelope/organs/verified-byte-snips.mjs");
-          const { sealEssayDraft } = await import("./essay-seam.mjs");
-          return sendJson(res, 200, sealEssayDraft({ draft: String(draft ?? ""),
-            sourceFile: WNP.file, sourceId: "fold:essay-source", replaceCites: replaceCitesUtf8, snipSentence: snipSentenceUtf8 }));
+          const { sealEssayDraft, boundEdgesFromRead, verifyDraftClaims, discloseUnsupported, rewriteParts, classifyEssay } = await import("./essay-seam.mjs");
+          // THE CLAIM SEAM (2026-10-10): re-derive the SAME ground the box gave
+          // the mouth (the material's bound edges), then read the mouth's OWN
+          // prose — markers replaced by equal-length spaces, so the reader's
+          // clause offsets land on the draft — with the SAME Khora reader. The
+          // seal JUDGES and DISCLOSES, it never edits (P186 — the mouth is not
+          // censored): every sentence the mouth wrote ships, the ungrounded ones
+          // are NAMED, and `rewrite` hands the caller the parts to repair them
+          // through the mouth. Deterministic, model-free: the client's draft is
+          // never trusted as its own ground.
+          const sealedDraft = String(draft ?? "");
+          let claims = null;
+          let unsupported = null;
+          let rewrite = null;
+          let lanes = null;
+          try {
+            const { readEnglish } = await import("../khora/native/eval/the-fold/scene/reader-en.mjs");
+            const full = fs.readFileSync(WNP.file, WNP.charset);
+            const iC1 = full.indexOf("CHAPTER I");
+            const offset = iC1 < 0 ? 0 : iC1;
+            const excerpt = full.slice(offset, offset + 80000);
+            const sourceRead = await readEnglish({ text: excerpt });
+            const edges = boundEdgesFromRead({ sourceText: full, excerptStart: offset, excerpt, read: sourceRead });
+            const prose = sealedDraft.replace(/⟦[^⟧]*⟧/g, (m) => " ".repeat(m.length));
+            if (prose.trim()) {
+              const draftRead = await readEnglish({ text: prose });
+              claims = verifyDraftClaims({ read: draftRead, edges, text: prose });
+              unsupported = discloseUnsupported({ read: draftRead, claims }).unsupported
+                .map((u) => ({ ...u, text: sealedDraft.slice(u.at, u.at + u.len).trim() }));
+              rewrite = rewriteParts({ read: draftRead, claims, edges, sourceId: "fold:essay-source" });
+              // The two lanes need the SOURCE address space, not the model's own:
+              // a voice sentence must cite a witnessed source byte.
+              lanes = classifyEssay({ draft: sealedDraft, read: draftRead, claims,
+                sourceAt: new Set(edges.map((e) => e.at)) });
+            }
+          } catch (e) { log(`essay seal: claim seam declined (${e?.message || e})`); }
+          return sendJson(res, 200, sealEssayDraft({ draft: sealedDraft,
+            sourceFile: WNP.file, sourceId: "fold:essay-source", replaceCites: replaceCitesUtf8, snipSentence: snipSentenceUtf8, claims, unsupported, rewrite, lanes }));
         } catch (e) { return sendJson(res, 400, { error: "invalid-draft", detail: String(e?.message ?? e).slice(0, 180) }); }
       }
       if (reqPath(req.url) === "/api/school") {
