@@ -1,0 +1,57 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "bourdieu",
+  "organ": "khora/native/kernel/moral-shadow.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/bourdieu-deferred.json"
+  ],
+  "whatTheyArgued": "Habitus: systems of durable, transposable dispositions, structured by one's social position and history and predisposed to function as structuring principles of practice (hexis plus schemes of perception and judgment), mostly below awareness; the 'durably installed generative principle of regulated improvisations' phrase is in Outline (1972/77). It reproduces social position. Critics say it is too deterministic.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, 'Habitus (sociology)' (encyclopedia-level; SEP/IEP/Britannica pages were unavailable to me)",
+      "url": "https://en.wikipedia.org/wiki/Habitus_(sociology)",
+      "supports": "definition, hexis, structure/agency bridge, determinism critique",
+      "disputes": "critics read habitus as making people automata"
+    },
+    {
+      "ref": "Search result confirming the 'regulated improvisations' phrase in Outline of a Theory of Practice (Cambridge chapter 'Generative schemes and practical logic')",
+      "url": "https://www.cambridge.org/core/books/outline-of-a-theory-of-practice/generative-schemes-and-practical-logic-invention-within-limits/9AA389FFDEAB26B2114332D77FAA73B6",
+      "supports": "the phrase is Bourdieu's",
+      "disputes": ""
+    }
+  ],
+  "ourUse": "moral-shadow.js is an append-only ledger of the MACHINE's own acts (norm_compliant / norm_conflict / descriptive / unrealizable), assessed as a frequency over acts; since 2026-09-16 persons appear only as subjects of acts and can strike rows naming them.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "habitus-not-a-ledger",
+      "kind": "reinterpreted",
+      "ours": "Habitus = an append-only ledger / frequency of recorded acts.",
+      "theirs": "Habitus is the internalized, embodied dispositional system that GENERATES acts; it is not a record of acts and not a rate. The causal arrow is reversed (acts counted vs dispositions that produce them)."
+    },
+    {
+      "id": "person-vs-machine",
+      "kind": "re-scoped",
+      "ours": "Keyed to the machine's own moves; persons only subjects. Compendium credit says 'a person's standing is a rate over their acts'.",
+      "theirs": "Habitus belongs to persons/agents formed by social position; the credit line describes a design (a per-person rate) that the code deliberately does NOT implement. Credit and code contradict each other."
+    },
+    {
+      "id": "never-a-verdict",
+      "kind": "invented-attribution",
+      "ours": "'a person's standing ... never a verdict about them' in Bourdieu's credit line.",
+      "theirs": "Bourdieu does not argue against verdicts on persons; he argues dispositions reproduce class position. The 'cells classify moves, never persons' rule is the project's helix law, and the heteronomy rationale is the project's own critique."
+    },
+    {
+      "id": "social-structure-absent",
+      "kind": "narrowed",
+      "ours": "No field, capital, class, or social origin enters the ledger.",
+      "theirs": "Habitus is inseparable from field and capital; without them the term is only 'accumulated habit'."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium credit: 'Named by loose analogy to habitus (dispositions built up by a history of acts); this ledger is only an append-only record of the machine's own acts, assessed as a frequency. The never-a-verdict-on-a-person rule is ours (helix law), not Bourdieu's.' Consider re-handling to the helix/record-keeping source actually used.",
+    "moral-shadow.js header: say 'habitus' is an analogy for accumulation only, and that the ledger records acts, it does not generate them."
+  ]
+}

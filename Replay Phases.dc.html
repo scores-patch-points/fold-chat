@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>body{margin:0;background:#f1f1f4;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:#141416;-webkit-font-smoothing:antialiased}a{color:#1d4ed8}a:hover{color:#0f2f8f}</style>
+</helmet>
+<div style="padding:48px;display:flex;flex-direction:column;gap:28px;width:1920px;box-sizing:border-box">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:900px">
+    <h1 style="margin:0;font-size:26px;font-weight:650;letter-spacing:-.015em">The middle panel, phase by phase</h1>
+    <div style="font-size:15px;line-height:1.55;color:#5f5f6b;text-wrap:pretty">One turn throughout: “When did quantitative easing start, and did it work?” Each phase has its own visual register (type, list, paper, brackets, graph, dark, ledger, diff, matrix) so you can tell where you are at a glance. The question’s three colours carry through every frame.</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,600px);gap:24px">
+
+    <!-- 1 NUL -->
+    <div data-screen-label="01 NUL hold" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#666673">∅</span><b style="font:600 13px ui-monospace,Menlo,monospace">1 · NUL</b><span style="font-size:13px;color:#5f5f6b">hold · type only: the question, its key words picked out</span></div>
+      <div style="height:320px;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:0 44px">
+        <span style="font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#666673">your question</span>
+        <div style="font-size:31px;line-height:1.3;font-weight:600;letter-spacing:-.015em;text-wrap:pretty">When did <span style="border-bottom:4px solid #0d7a70">quantitative easing</span> <span style="border-bottom:4px solid #1d4ed8">start</span>, and did it <span style="border-bottom:4px solid #a04a07">work</span>?</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:13px;border:1px solid #cfcfd7;border-radius:999px;padding:4px 12px;color:#44444e">a question of fact · it needs a source</span><span style="font-size:13px;border:1px solid #cfcfd7;border-radius:999px;padding:4px 12px;color:#44444e">two parts: a date, a judgement</span></div>
+      </div>
+    </div>
+
+    <!-- 2 SIG -->
+    <div data-screen-label="02 SIG notice" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#1d4ed8">○</span><b style="font:600 13px ui-monospace,Menlo,monospace">2 · SIG</b><span style="font-size:13px;color:#5f5f6b">notice · a ruled list: results, and which key words each holds</span></div>
+      <div style="height:320px;display:flex;flex-direction:column;padding:10px 20px">
+        <div style="display:grid;grid-template-columns:24px minmax(0,1fr) 54px 64px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e4e4e9"><span style="width:22px;height:22px;border-radius:5px;background:#eaecf0;display:flex;align-items:center;justify-content:center;font:600 12px Georgia,serif">W</span><span style="min-width:0"><b style="font-size:14px">Quantitative easing</b><span style="font-size:12.5px;color:#5f5f6b;margin-left:8px">en.wikipedia.org</span></span><span style="display:flex;gap:4px"><i style="width:9px;height:9px;border-radius:50%;background:#0d7a70"></i><i style="width:9px;height:9px;border-radius:50%;background:#1d4ed8"></i><i style="width:9px;height:9px;border-radius:50%;background:#a04a07"></i></span><span style="font-size:12.5px;color:#16793a">read</span></div>
+        <div style="display:grid;grid-template-columns:24px minmax(0,1fr) 54px 64px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e4e4e9"><span style="width:22px;height:22px;border-radius:5px;background:#141416;color:#fff;display:flex;align-items:center;justify-content:center;font:600 12px Georgia,serif">M</span><span style="min-width:0"><b style="font-size:14px">Economics explained with real data</b><span style="font-size:12.5px;color:#5f5f6b;margin-left:8px">maseconomics.com</span></span><span style="display:flex;gap:4px"><i style="width:9px;height:9px;border-radius:50%;background:#0d7a70"></i><i style="width:9px;height:9px;border-radius:50%;background:#1d4ed8"></i><i style="width:9px;height:9px;border-radius:50%;border:1.5px solid #cfcfd7;box-sizing:border-box"></i></span><span style="font-size:12.5px;color:#16793a">read</span></div>
+        <div style="display:grid;grid-template-columns:24px minmax(0,1fr) 54px 64px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e4e4e9"><span style="width:22px;height:22px;border-radius:5px;background:#0b3b70;color:#fff;display:flex;align-items:center;justify-content:center;font:600 11px Georgia,serif">F</span><span style="min-width:0"><b style="font-size:14px">Large-scale asset purchases</b><span style="font-size:12.5px;color:#5f5f6b;margin-left:8px">federalreserve.gov</span></span><span style="display:flex;gap:4px"><i style="width:9px;height:9px;border-radius:50%;background:#0d7a70"></i><i style="width:9px;height:9px;border-radius:50%;background:#1d4ed8"></i><i style="width:9px;height:9px;border-radius:50%;border:1.5px solid #cfcfd7;box-sizing:border-box"></i></span><span style="font-size:12.5px;color:#16793a">read</span></div>
+        <div style="display:grid;grid-template-columns:24px minmax(0,1fr) 54px 64px;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid #e4e4e9;opacity:.45"><span style="width:22px;height:22px;border-radius:5px;background:#eaecf0;display:flex;align-items:center;justify-content:center;font:600 11px Georgia,serif">I</span><span style="min-width:0"><b style="font-size:14px;font-weight:500">What is QE?</b><span style="font-size:12.5px;color:#5f5f6b;margin-left:8px">investopedia.com</span></span><span style="display:flex;gap:4px"><i style="width:9px;height:9px;border-radius:50%;background:#0d7a70"></i><i style="width:9px;height:9px;border-radius:50%;border:1.5px solid #cfcfd7;box-sizing:border-box"></i><i style="width:9px;height:9px;border-radius:50%;border:1.5px solid #cfcfd7;box-sizing:border-box"></i></span><span style="font-size:12.5px;color:#666673">dropped</span></div>
+        <div style="display:grid;grid-template-columns:24px minmax(0,1fr) 118px;gap:12px;align-items:center;padding:11px 0;color:#666673"><span style="width:22px;height:22px;border-radius:5px;border:1px dashed #cfcfd7;box-sizing:border-box"></span><span style="font-size:13.5px;text-decoration:line-through">Brave search</span><span style="font-size:12.5px">no answer in 6 s</span></div>
+      </div>
+    </div>
+
+    <!-- 3 INS -->
+    <div data-screen-label="03 INS mint" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#141416">●</span><b style="font:600 13px ui-monospace,Menlo,monospace">3 · INS</b><span style="font-size:13px;color:#5f5f6b">mint · paper: each page in its own type, the kept span marked</span></div>
+      <div style="height:320px;background:#f4f1ea;padding:22px 26px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+        <div style="background:#ffffff;border:1px solid #d9d4c7;border-radius:4px;padding:12px 16px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="font:400 17px 'Linux Libertine',Georgia,'Times New Roman',serif;border-bottom:1px solid #a2a9b1;padding-bottom:4px;margin-bottom:8px">Quantitative easing</div>
+          <div style="font:14.5px/1.6 Georgia,serif;color:#9a9aa5">… mortgage-backed securities. <mark style="background:#fdf0b0;color:#202122;padding:0 2px">In August 2010 the FOMC signaled a second round of <span style="border-bottom:2px solid #0d7a70">quantitative easing</span>.</mark> The program …</div>
+        </div>
+        <div style="background:#fbf7ee;border:1px solid #e6dcc6;border-radius:4px;padding:12px 16px;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+          <div style="font:15px/1.6 Georgia,'Iowan Old Style',serif;color:#9a9aa5"><mark style="background:#fdf0b0;color:#202122;padding:0 2px">The Fed’s unconventional policy <span style="border-bottom:2px solid #1d4ed8">began</span> in late 2008, when the zero lower bound on interest rates forced <span style="border-bottom:2px solid #0d7a70">quantitative easing</span> onto the menu.</mark> 4 economic concepts …</div>
+          <div style="font-size:12px;color:#5f5f6b;margin-top:6px">maseconomics.com</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 SEG -->
+    <div data-screen-label="04 SEG segment" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#0d7a70">｜</span><b style="font:600 13px ui-monospace,Menlo,monospace">4 · SEG</b><span style="font-size:13px;color:#5f5f6b">segment · brackets: each kept sentence cut into who | does | what</span></div>
+      <div style="height:320px;padding:26px 24px;display:flex;flex-direction:column;gap:30px;box-sizing:border-box;background-image:linear-gradient(#f3f5fa 1px,transparent 1px),linear-gradient(90deg,#f3f5fa 1px,transparent 1px);background-size:20px 20px">
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px">
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border:1.5px dashed #9a9aa5;border-radius:6px;padding:5px 9px;background:#fff">August 2010</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#666673">WHEN</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border:2px solid #0d7a70;border-radius:6px;padding:5px 9px;background:#fff">the FOMC</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#0d7a70">SUBJ</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border-radius:6px;padding:6px 10px;background:#1d4ed8;color:#fff;font-style:italic">signaled</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#1d4ed8">VERB</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border:2px solid #a04a07;border-radius:6px;padding:5px 9px;background:#fff">second round · quantitative easing</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#a04a07">OBJ</span></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px">
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border:2px solid #0d7a70;border-radius:6px;padding:5px 9px;background:#fff">the Fed’s unconventional policy</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#0d7a70">SUBJ</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border-radius:6px;padding:6px 10px;background:#1d4ed8;color:#fff;font-style:italic">began</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#1d4ed8">VERB</span></div>
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:center"><span style="font-size:15px;border:1.5px dashed #9a9aa5;border-radius:6px;padding:5px 9px;background:#fff">late 2008</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#666673">WHEN</span></div>
+        </div>
+        <div style="font-size:13px;color:#666673">dropped: <span style="text-decoration:line-through">in · the · a · of · when · on · onto</span></div>
+      </div>
+    </div>
+
+    <!-- 5 CON -->
+    <div data-screen-label="05 CON bond" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#0d7a70">⋈</span><b style="font:600 13px ui-monospace,Menlo,monospace">5 · CON</b><span style="font-size:13px;color:#5f5f6b">bond · a graph: same things merge, verbs become links</span></div>
+      <div style="height:320px;position:relative;background-color:#fbfbfc;background-image:radial-gradient(#d9d9e0 1px,transparent 1px);background-size:16px 16px">
+        <svg width="600" height="320" viewBox="0 0 600 320" style="position:absolute;inset:0"><path d="M190,90 C260,90 300,150 370,150" fill="none" stroke="#9aa3b5" stroke-width="1.5"></path><path d="M190,230 C260,230 300,160 370,160" fill="none" stroke="#9aa3b5" stroke-width="1.5"></path><path d="M190,90 C250,70 340,50 400,52" fill="none" stroke="#9aa3b5" stroke-width="1.5"></path></svg>
+        <div style="position:absolute;left:24px;top:62px;width:166px;background:#fff;border:2px solid #0d7a70;border-radius:10px;padding:8px 10px;font-size:14px;box-shadow:0 0 0 4px #e7f6f3">the Fed · FOMC<div style="font:600 10.5px ui-monospace,Menlo,monospace;color:#0d7a70;margin-top:3px">merged · 2 sources</div></div>
+        <div style="position:absolute;left:24px;top:206px;width:166px;background:#fff;border:1px solid #cfcfd7;border-radius:10px;padding:8px 10px;font-size:14px">unconventional policy</div>
+        <div style="position:absolute;left:370px;top:126px;width:200px;background:#fff;border:2px solid #0d7a70;border-radius:10px;padding:8px 10px;font-size:14px;box-shadow:0 0 0 4px #e7f6f3">quantitative easing<div style="font:600 10.5px ui-monospace,Menlo,monospace;color:#0d7a70;margin-top:3px">merged · 2 sources</div></div>
+        <div style="position:absolute;left:400px;top:34px;width:170px;background:#fff;border:1px dashed #9a9aa5;border-radius:10px;padding:8px 10px;font-size:14px">August 2010</div>
+        <div style="position:absolute;left:400px;top:250px;width:170px;background:#fff;border:1px dashed #9a9aa5;border-radius:10px;padding:8px 10px;font-size:14px">late 2008</div>
+        <span style="position:absolute;left:262px;top:100px;font:italic 14px Georgia,serif;background:#eef2ff;padding:1px 6px;border-radius:4px;color:#1d4ed8">signaled</span>
+        <span style="position:absolute;left:266px;top:198px;font:italic 14px Georgia,serif;background:#eef2ff;padding:1px 6px;border-radius:4px;color:#1d4ed8">began</span>
+      </div>
+    </div>
+
+    <!-- 6 SYN -->
+    <div data-screen-label="06 SYN compose" style="background:#141416;border:1px solid #141416;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #2a2a31"><span style="font-size:18px;color:#2dd4bf">△</span><b style="font:600 13px ui-monospace,Menlo,monospace;color:#ffffff">6 · SYN</b><span style="font-size:13px;color:#a9a9b6">compose · dark: the path the answer takes, lit; it writes</span></div>
+      <div style="height:320px;position:relative">
+        <svg width="600" height="200" viewBox="0 0 600 200" style="position:absolute;left:0;top:0"><path d="M170,60 C250,60 290,100 360,100" fill="none" stroke="#2dd4bf" stroke-width="2.5"></path><path d="M170,160 C250,160 290,110 360,110" fill="none" stroke="#3a3a44" stroke-width="1.5"></path><path d="M470,118 C500,140 500,150 480,160" fill="none" stroke="#2dd4bf" stroke-width="2.5"></path></svg>
+        <div style="position:absolute;left:24px;top:40px;width:146px;border:2px solid #2dd4bf;border-radius:10px;padding:8px 10px;font-size:14px;color:#ffffff;box-shadow:0 0 18px rgba(45,212,191,.35)">the Fed</div>
+        <div style="position:absolute;left:24px;top:140px;width:146px;border:1px solid #3a3a44;border-radius:10px;padding:8px 10px;font-size:14px;color:#6b6b78">FOMC · 2010</div>
+        <div style="position:absolute;left:360px;top:82px;width:160px;border:2px solid #2dd4bf;border-radius:10px;padding:8px 10px;font-size:14px;color:#ffffff;box-shadow:0 0 18px rgba(45,212,191,.35)">quantitative easing</div>
+        <div style="position:absolute;left:420px;top:150px;width:110px;border:2px solid #2dd4bf;border-radius:10px;padding:6px 10px;font-size:14px;color:#ffffff">late 2008</div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:16px 24px;border-top:1px solid #2a2a31;background:#1c1c20">
+          <div style="font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#a9a9b6;margin-bottom:6px">WRITING · SENTENCE 1</div>
+          <div style="font-size:17px;line-height:1.5;color:#ffffff"><span style="border-bottom:2px solid #2dd4bf">Quantitative easing</span> <span style="border-bottom:2px solid #2dd4bf">began</span> in <span style="border-bottom:2px solid #2dd4bf">late 2008</span>, when the Fed<span style="display:inline-block;width:2px;height:18px;background:#2dd4bf;margin-left:2px;vertical-align:-3px"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 DEF -->
+    <div data-screen-label="07 DEF define" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#44444e">⊢</span><b style="font:600 13px ui-monospace,Menlo,monospace">7 · DEF</b><span style="font-size:13px;color:#5f5f6b">define · a ledger: each sentence becomes a claim, what it commits to pulled out</span></div>
+      <div style="height:320px;padding:14px 20px;box-sizing:border-box">
+        <div style="display:grid;grid-template-columns:34px minmax(0,1fr) 150px;column-gap:12px;font-size:14px">
+          <span style="font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#666673;padding:6px 0">#</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#666673;padding:6px 0">CLAIM</span><span style="font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#666673;padding:6px 0">COMMITS TO</span>
+          <span style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b;padding:12px 0;border-top:1px solid #e4e4e9">s1</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;line-height:1.5">Quantitative easing began in late 2008, when the Fed hit the zero lower bound.</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start"><span style="font:12px ui-monospace,Menlo,monospace;border:1px solid #141416;border-radius:3px;padding:2px 6px">late 2008</span><span style="font:12px ui-monospace,Menlo,monospace;border:1px solid #141416;border-radius:3px;padding:2px 6px">Fed</span></span>
+          <span style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b;padding:12px 0;border-top:1px solid #e4e4e9">s2</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;line-height:1.5">In August 2010 the FOMC signaled a second round.</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start"><span style="font:12px ui-monospace,Menlo,monospace;border:1px solid #141416;border-radius:3px;padding:2px 6px">August 2010</span><span style="font:12px ui-monospace,Menlo,monospace;border:1px solid #141416;border-radius:3px;padding:2px 6px">FOMC</span></span>
+          <span style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b;padding:12px 0;border-top:1px solid #e4e4e9">s3</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;line-height:1.5">Some claim it helped prevent a deeper recession.</span><span style="padding:12px 0;border-top:1px solid #e4e4e9;color:#666673;font-size:13px">a judgement · no figure or name</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 EVA -->
+    <div data-screen-label="08 EVA evaluate" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#16793a">⊨</span><b style="font:600 13px ui-monospace,Menlo,monospace">8 · EVA</b><span style="font-size:13px;color:#5f5f6b">evaluate · a diff: claim against source, then the swap</span></div>
+      <div style="height:320px;padding:18px 20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="border:1px solid #e4e4e9;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px"><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#666673">s2 · CLAIM</span><span style="font-size:14.5px;line-height:1.55">In August 2010 the FOMC <span style="background:#e6f4ea;box-shadow:inset 0 -2px 0 #16793a">signaled a second round</span>.</span></div>
+          <div style="border:1px solid #e4e4e9;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:#fafafa"><span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#666673">WIKIPEDIA · S2</span><span style="font:14.5px/1.55 Georgia,serif">In August 2010 the FOMC <span style="background:#e6f4ea;box-shadow:inset 0 -2px 0 #16793a">signaled a second round</span> of quantitative easing.</span></div>
+        </div>
+        <div style="display:flex;gap:16px;font-size:13px;color:#44444e;flex-wrap:wrap"><span><b style="color:#16793a">✓</b> shared run · 9 words</span><span><b style="color:#16793a">✓</b> 2010 in the sentence</span><span><b style="color:#16793a">✓</b> FOMC in the sentence</span><span><b style="color:#16793a">✓</b> same polarity</span></div>
+        <div style="border:1px dashed #cfcfd7;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:6px">
+          <span style="font:600 10.5px ui-monospace,Menlo,monospace;color:#666673">SWAP · WOULD A WRONG VERSION PASS?</span>
+          <span style="font-size:14.5px;line-height:1.55">In August <span style="text-decoration:line-through;color:#666673">2010</span> <span style="color:#c62828;font-weight:600">2008</span> the FOMC signaled a second round.</span>
+          <span style="font-size:13px;color:#16793a">No longer matches. The source tells the two apart.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 REC -->
+    <div data-screen-label="09 REC reframe" style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:10px;padding:12px 16px;border-bottom:1px solid #e4e4e9"><span style="font-size:18px;color:#a04a07">∗</span><b style="font:600 13px ui-monospace,Menlo,monospace">9 · REC</b><span style="font-size:13px;color:#5f5f6b">reframe · a matrix: every claim against every source, sorted</span></div>
+      <div style="height:320px;padding:14px 20px;box-sizing:border-box">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) 32px 32px 32px 100px;align-items:center;font-size:14px">
+          <span></span><span style="display:flex;justify-content:center"><span style="width:20px;height:20px;border-radius:5px;background:#eaecf0;display:flex;align-items:center;justify-content:center;font:600 11px Georgia,serif">W</span></span><span style="display:flex;justify-content:center"><span style="width:20px;height:20px;border-radius:5px;background:#141416;color:#fff;display:flex;align-items:center;justify-content:center;font:600 11px Georgia,serif">M</span></span><span style="display:flex;justify-content:center"><span style="width:20px;height:20px;border-radius:5px;background:#0b3b70;color:#fff;display:flex;align-items:center;justify-content:center;font:600 10px Georgia,serif">F</span></span><span></span>
+          <span style="grid-column:1 / -1;font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#16793a;padding:12px 0 4px">STANDS</span>
+          <span style="padding:8px 0;border-top:1px solid #e4e4e9"><b style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b">s1</b> began in late 2008</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#16793a;font-weight:600">✓</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#16793a;font-weight:600">✓</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="padding:8px 0;border-top:1px solid #e4e4e9;font-size:12.5px;color:#16793a">corroborated</span>
+          <span style="padding:8px 0;border-top:1px solid #e4e4e9"><b style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b">s2</b> August 2010, second round</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#16793a;font-weight:600">✓</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="padding:8px 0;border-top:1px solid #e4e4e9;font-size:12.5px;color:#16793a">one source</span>
+          <span style="grid-column:1 / -1;font:600 10.5px ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#c62828;padding:14px 0 4px">NO SOURCE</span>
+          <span style="padding:8px 0;border-top:1px solid #e4e4e9"><b style="font:600 12px ui-monospace,Menlo,monospace;color:#5f5f6b">s3</b> prevented a deeper recession</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="text-align:center;padding:8px 0;border-top:1px solid #e4e4e9;color:#666673">·</span><span style="padding:8px 0;border-top:1px solid #e4e4e9;font-size:12.5px;color:#c62828">no source</span>
+        </div>
+        <div style="font-size:12.5px;color:#5f5f6b;margin-top:14px">The box closes to this. It lines up with the answer: s3 is the dotted sentence.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

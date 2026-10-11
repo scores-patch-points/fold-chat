@@ -1,0 +1,248 @@
+UNAPPLIED wiring for fold-chat-answerspan.js (P2, 2026-10-07). Nothing here has been applied; the files are other lanes' (strand*, answerwire, index.html) and the tree has uncommitted work in them.
+Made against the working tree as it was on 2026-10-07 (check with `patch -p1 --dry-run < eval/ants/p2/wire.diff` first; the hunks are small and anchored on unchanged lines).
+
+WHAT IT DOES
+ 1. Sources-only mode (fold-chat-strand.js snipsOf): ONE answerSpan pass over the passages read gives the smallest span that answers. It becomes the first snip, kind "span":
+      text     = the mechanical final pass (named rules, re-derivable)         e.g. "The tower is 330 metres (1,083 ft) tall."
+      verbatim = the page's own bytes the span was cut from (a substring of the page text, or of the declared FAQ item)
+      context  = the sentence it sits in (ONE TAP AWAY: the view's "the sentence" button)
+    Every other snip of the turn is `more: true` and drawn behind "more from this page": the group / declared block is never the default view.
+    verifySnip checks a span snip (the verbatim bytes occur in the page and the shown text is those bytes, or verifyRewrite re-derives it from them by the named rules).
+    With no span the groups are drawn as before and the strand carries `minimalGap` = the typed gap ("no sentence in what was read states this"); the chat passes it to renderStrand(…, { gap }).
+    An encyclopedia passage (tertiary) never supplies the span (it is a pointer, never a source).
+    Off switch: STRAND.minimal = false (or snipsOf(…, { limits: { ...STRAND, minimal: false } })).
+ 2. THE SPAN IS NOT TRUSTED ALONE. Measured (eval/ants/P2-RESULTS.md): it holds the answer in ~70-84% of asks; its confidence separates right from wrong only weakly (AUC ~0.75 on the first held set).
+    So the view opens the span WITH its sentence showing when confidence < 0.9 and no second, independent page carries the same figure/date/name (span.agreement >= 1); the
+    group is always one tap away ("more from this page"). The strand alone contains the answer in ~69-74%; span or strand together ~86-94% (the "union" rows): that is what this wiring buys.
+ 3. The strand view (fold-chat-strandview.js + 4 lines of CSS in index.html): the span large, "the sentence" as a toggle, "more from this page" as <details>; the typed gap line when there is no span.
+ 4. The slot pipeline (fold-chat-answerwire.js): `minimalOfTurn(turn, question)` cuts the smallest span from the answer's own `row.sentence` (no outside sentence, so no pronoun is
+    resolved from beyond it) and `runSlotTurn` attaches it as `turn.minimal`; `answerLine(turn)` returns it. contentAllowed (answerTurnBacksContent) accepts the content being either
+    the realised line or that span (the every-word-occurs-in-row.sentence check still applies). The answer CARD (fold-chat-presentview.js) should draw `turn.minimal.text` first and
+    `turn.minimal.sentence` behind the same "the sentence" tap; that file is not touched here.
+ 5. NOT wired: fold-chat.js needs no change (it already calls snipsOf and strandText); the stored message keeps `snips` (span fields verbatim/rewrite/context/agreement/more are stored by storeSnip).
+    One integration fact: the strand's own junk gate (fold-chat-junk.js junkOf) calls a 5-word statement like "Ethanol boils at 78.37 °C" a fragment (< 6 words, no stop), so span snips are pushed
+    after their own verification instead of through `add()`; answerSpan applies the chrome flags of junkOf to the shown span itself.
+
+--- a/fold-chat-strand.js
++++ b/fold-chat-strand.js
+@@ -11,6 +11,10 @@
+ //   2. otherwise the sentences `impressionOf` (fold-chat-impression.js) already picks as differing the
+ //      ask — adjacent sentences merged into one passage, an ellipsis wherever text was skipped.
+ //   3. strung together in source-rank order (the order the passages were read), de-duplicated.
++//   0. (when `limits.minimal`) FIRST, the smallest span that answers the ask (fold-chat-answerspan.js `answerSpan`: a figure with its subject, a date, a name, a
++//      definition — never the whole group); it is a snip of kind "span" whose `text` is the mechanical final pass (named rules) and whose `verbatim` is the page's own bytes.
++//      Every other snip of the turn is then `more: true` (drawn behind "more from this page"). When nothing clears the threshold, `minimalGap` is the typed gap
++//      ("no sentence in what was read states this") and the groups are drawn as before.
+ //
+ // EVERY SNIP IS VERIFIABLE: `verifySnip` checks that a snip's words occur in the page text it came from
+ // (whitespace-normalised, never reworded). A snip that does not verify is a bug and is DROPPED, never
+@@ -26,6 +30,7 @@
+ import { contactOfPassage } from "./fold-chat-tip.js";
+ import { junkOf, wallOf } from "./fold-chat-junk.js";
+ import { maskNavRegion } from "./fold-chat-region.js";
++import { answerSpan, verifyRewrite } from "./fold-chat-answerspan.js";
+ 
+ export const STRAND = Object.freeze({
+   perPassageChars: 700,    // how much of one source a strand quotes (impression budget)
+@@ -34,6 +39,7 @@
+   maxItems: 12,            // Q&A pairs / how-to steps quoted from one declared block
+   leadChars: 600,          // a Wikipedia lead
+   minSnipWords: 8,         // a prose passage shorter than this (a caption, a heading) is not worth quoting alone
++  minimal: true,           // THE SMALLEST SPAN FIRST (fold-chat-answerspan.js): the clause that answers, its sentence one tap away; the groups below are "more from this page"
+ });
+ 
+ const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
+@@ -191,6 +197,7 @@
+     return true;
+   };
+   const gap = (p, pi, kind, reason) => gaps.push({ kind: "gap", gap: kind, reason, p: pi, source: p?.url || p?.source || null, site: siteOf(p) });
++  const minimal = limits.minimal === false ? null : answerSpan(question, list);
+   list.forEach((p, pi) => {
+     const text = String(p?.text ?? "");
+     const hasDeclared = !!p?.recipe || (Array.isArray(p?.declared) && p.declared.length);
+@@ -236,7 +243,20 @@
+     }
+     if (snips.length === before && text.trim()) gap(p, pi, junk.length > junkBefore || !groups.length ? "junk" : "none", junk.length > junkBefore ? "everything this page offered was the site talking about itself (menus, banners, notices), not its content" : "no passage on this page differs the ask");
+   });
+-  return { snips, dropped, junk, gaps };
++  // THE SMALLEST SPAN FIRST. The span is checked like every other snip (verifySnip: the page's own bytes, and the rewrite re-derived by its named rules);
++  // one that fails is dropped, never shown. The groups quoted above become "more from this page" (`more: true`); with no span they stay the answer.
++  let minimalGap = null;
++  if (minimal) {
++    const sp = minimal.spans.find((x) => !list[x.passageIndex]?.tertiary) || null;       // an encyclopedia is a pointer, never the span
++    const p = sp && list[sp.passageIndex];
++    const lead = sp && p ? snipFrom(p, sp.passageIndex, {
++      kind: "span", text: norm(sp.shown), verbatim: sp.text, credit: siteOf(p), range: { start: sp.start, end: sp.end }, ellipsisBefore: sp.start > 0, ellipsisAfter: true,
++      context: { text: sp.sentence.text, start: sp.sentence.start, end: sp.sentence.end }, rewrite: sp.rewrite || null, atom: sp.atom || null, why: sp.why, confidence: sp.confidence, agreement: sp.agreement || 0, ...(sp.item ? { item: sp.item } : {}),
++    }) : null;
++    if (lead && verifySnip(lead, p)) { for (const s of snips) s.more = true; snips.unshift({ ...lead, more: false }); }
++    else { if (lead) dropped.push(lead); minimalGap = minimal.gap || { kind: "no-span", reason: "no sentence in what was read states this", text: "no sentence in what was read states this" }; }
++  }
++  return { snips, dropped, junk, gaps, ...(minimalGap ? { minimalGap } : {}) };
+ }
+ 
+ /** The plain concatenation of the verbatim snip text — what `message.content` holds for a sources-only turn
+@@ -251,6 +271,16 @@
+   if (!snip || !passage) return false;
+   const hay = norm(passage.text);
+   const has = (x) => { const n = norm(x); return !!n && hay.includes(n); };
++  if (snip.kind === "span") {
++    // the span's own words are the page's bytes (a page text, or the declared item it came from); what is SHOWN is either those bytes or their
++    // re-derivation by the named rewrite rules (verifyRewrite), never anything else
++    const v = norm(snip.verbatim);
++    if (!v) return false;
++    const item = snip.item ? (Array.isArray(passage.declared) ? passage.declared : [])[snip.item.block]?.items?.[snip.item.item] : null;
++    if (!(snip.item ? typeof item === "string" && norm(item).includes(v) : hay.includes(v))) return false;
++    if (norm(snip.text) === v) return true;
++    return !!snip.rewrite && verifyRewrite(snip.rewrite, passage).ok && norm(snip.rewrite.text) === norm(snip.text);
++  }
+   if (snip.kind === "recipe") {
+     const r = passage.recipe; if (!r) return false;
+     const c = snip.card || {};
+@@ -285,8 +315,8 @@
+ // ── the stored shape ───────────────────────────────────────────────────────
+ /** A snip as stored on the message: plain data, small. (The recipe card is kept whole — it is the card's own data.) */
+ export function storeSnip(s) {
+-  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name, contact, via, pointers, address } = s;
+-  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(via ? { via } : {}), ...(pointers ? { pointers } : {}), ...(address ? { address } : {}), ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
++  const { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, card, items, name, contact, via, pointers, address, verbatim, rewrite, context, atom, why, confidence, agreement, more, item } = s;
++  return { n, p, kind, text, source, title, site, credit, range, shadow, ellipsisBefore, ellipsisAfter, ...(kind === "span" ? { verbatim, rewrite, context, atom, why, confidence, agreement, ...(item ? { item } : {}) } : {}), ...(more ? { more: true } : {}), ...(via ? { via } : {}), ...(pointers ? { pointers } : {}), ...(address ? { address } : {}), ...(contact ? { contact } : {}), ...(card ? { card } : {}), ...(items ? { items } : {}), ...(name ? { name } : {}) };
+ }
+ 
+ /** A slot answer's content is allowed only as the turn's own answer line: the turn carries an answer whose source sentence (`answer.row`,
+@@ -298,7 +328,9 @@
+   const row = a && a.row;
+   if (!a || !row || typeof row.sentence !== "string" || !row.sentence.trim() || !row.source || !(row.source.url || row.source.title)) return false;
+   const norm = (t) => String(t ?? "").replace(/\s+/g, " ").trim();
+-  if (norm(a.text) !== norm(msg.content)) return false;
++  // the content is the realised line, or the smallest span of the same source sentence (fold-chat-answerwire.js minimalOfTurn): the word check below holds for both
++  const mini = msg.answerTurn.minimal && norm(msg.answerTurn.minimal.text);
++  if (norm(a.text) !== norm(msg.content) && !(mini && mini === norm(msg.content))) return false;
+   const words = (t) => (String(t ?? "").normalize("NFKD").replace(/\p{M}+/gu, "").toLocaleLowerCase("und").match(/[\p{L}\p{N}]+/gu) || []);
+   const held = new Set(words(row.sentence));
+   return words(msg.content).every((w) => held.has(w));
+--- a/fold-chat-strandview.js
++++ b/fold-chat-strandview.js
+@@ -23,13 +23,36 @@
+     renderSnips(holder, [recipe.card], { toast });
+     one.append(holder);
+   } else {
+-    for (const s of group.snips) {
++    const drawText = (s, into) => {
+       const p = el("div", "strand-text");
+       if (s.ellipsisBefore) p.append(el("span", "strand-el", "\u2026 "));
+       p.append(document.createTextNode(String(s.text)));
+       if (s.ellipsisAfter) p.append(el("span", "strand-el", " \u2026"));
+-      one.append(p);
+-    }
++      into.append(p);
++    };
++    // THE SMALLEST SPAN FIRST (fold-chat-answerspan.js): the clause that answers, large; the sentence it sits in is one tap away, and everything else this page
++    // offered is behind "more from this page" — never the whole group by default. Words are textContent only, as everywhere in this view.
++    const span = group.snips.find((s) => s.kind === "span");
++    if (span) {
++      const a = el("div", "strand-answer", String(span.text));
++      one.append(a);
++      if (span.context && span.context.text && String(span.context.text).trim() !== String(span.text).trim()) {
++        const ctx = el("div", "strand-context", String(span.context.text));
++        // THE SPAN IS NOT TRUSTED ALONE (measured: its confidence separates right from wrong only weakly, AUC ~0.75 on the held asks): below SURE it opens with its
++        // sentence showing, unless a second, independent page carries the same figure/date/name (span.agreement >= 1)
++        const sure = (span.confidence ?? 0) >= 0.9 || (span.agreement || 0) >= 1;
++        ctx.hidden = sure;
++        const btn = el("button", "strand-tap", "the sentence"); btn.type = "button"; btn.setAttribute("aria-expanded", String(!sure));
++        btn.addEventListener("click", () => { ctx.hidden = !ctx.hidden; btn.setAttribute("aria-expanded", String(!ctx.hidden)); });
++        one.append(btn, ctx);
++      }
++      const more = group.snips.filter((s) => s !== span && s.more);
++      if (more.length) {
++        const d = el("details", "strand-more"); d.append(el("summary", "", "more from this page"));
++        for (const s of more) drawText(s, d);
++        one.append(d);
++      }
++    } else for (const s of group.snips) drawText(s, one);
+   }
+   // THE PATH: where the claim was found and how it reached this page (an origin), or where an encyclopedia's lead was found and the pages it
+   // points at (a pointer: each a link to fetch; the encyclopedia is a hop of the path, never the source)
+@@ -82,12 +105,14 @@
+ }
+ 
+ /** Draw the strand under `body`. Draws nothing when there are no snips. Several sources are paged, one at a time. */
+-export function renderStrand(body, snips, { toast = null } = {}) {
++export function renderStrand(body, snips, { toast = null, gap = null } = {}) {
+   const list = (Array.isArray(snips) ? snips : []).filter((s) => s && String(s.text || "").trim());
+   if (!list.length) return;
+   const col = el("section", "strand");
+   col.setAttribute("aria-label", "Answer from the sources, unchanged");
+   col.append(el("div", "strand-k", "from the sources, unchanged \u00b7 no model wrote this"));
++  // no span cleared the threshold (strand.minimalGap, passed in by the chat): say so in the typed words, then the passages that came closest, as before
++  if (gap && gap.text) col.append(el("div", "strand-gap", String(gap.text) + " \u00b7 the closest passages are below"));
+   const pages = pagesOf(list).map((g, i) => ({ key: g.key, n: g.n, url: g.url, label: (g.n || "S" + (i + 1)) + " \u00b7 " + (g.snips[0].title || g.snips[0].site || "source"), node: pageOf(g, i, toast) }));
+   col.append(mountPager(pages, { label: "Sources" }));
+   body.append(col);
+--- a/fold-chat-answerwire.js
++++ b/fold-chat-answerwire.js
+@@ -21,6 +21,7 @@
+ import { wikiLead, referentPassages } from "./fold-chat-web.js";
+ import { originateTurn, ORIGIN } from "./fold-chat-origin.js";
+ 
++import { answerSpan } from "./fold-chat-answerspan.js";
+ /** Declared, not measured (Constitution II.11). Giver: the WIRE task of the answer-pipeline contract (2026-10-06). */
+ export const WIRE = Object.freeze({
+   giver: "the WIRE task of the answer-pipeline contract (2026-10-06); declared, not measured",
+@@ -131,7 +132,7 @@
+       try {
+         const out = await originateTurn(turn, { passages: webPassages, fetchImpl: bound(fetchImpl, ob.signal), memo, signal: ob.signal, boxMs: ORIGIN.turnBoxMs });
+         if (signal && signal.aborted) return { aborted: true, answer: null, contest: [], gap: null, trace: [] };
+-        return out;
++        return withMinimal(out, question);
+       } finally { ob.done(); }
+     }
+     return turn;
+@@ -143,6 +144,25 @@
+   } finally { box.done(); }
+ }
+ 
++/** THE SMALLEST SPAN OF THE ANSWER'S OWN SENTENCE (fold-chat-answerspan.js): the slot answer keeps its source sentence verbatim (`answer.row.sentence`); the
++ *  card should show the clause that answers first ("Ethanol boils at 78.37 °C") and that sentence one tap away, not the whole sentence by default. The span is
++ *  cut from `row.sentence` alone (no previous sentence, so no pronoun is resolved from outside it): every word of it occurs in that sentence, which is
++ *  exactly what `contentAllowed` (fold-chat-strand.js answerTurnBacksContent) asks of a line that is not the realised one. null when nothing clears the threshold.
++ *  → { text (the mechanical final pass), verbatim (the sentence's own bytes), sentence, rewrite, why, confidence } */
++export function minimalOfTurn(turn, question) {
++  const row = turn && turn.answer && turn.answer.row;
++  if (!row || !isStr(row.sentence) || !row.sentence.trim() || !isStr(question)) return null;
++  const r = answerSpan(question, [{ text: row.sentence, ref: row.source && isStr(row.source.title) ? row.source.title : "" }]);
++  const s = r.spans[0];
++  if (!s) return null;
++  return { text: s.shown, verbatim: s.text, sentence: row.sentence, rewrite: s.rewrite || null, why: s.why, confidence: s.confidence };
++}
++
++/** The turn with its smallest span attached (`turn.minimal`), when it is an answer with a source sentence. Never throws: a turn is never lost to this. */
++function withMinimal(turn, question) {
++  try { const m = turn && turn.answer ? minimalOfTurn(turn, question) : null; return m ? { ...turn, minimal: m } : turn; } catch { return turn; }
++}
++
+ /** Does this result end the turn mechanically? An answer, a contest, or a typed gap — and not a handoff, and not a stopped turn. */
+ export function endsTurn(turn) {
+   if (!turn || typeof turn !== "object" || turn.handoff || turn.aborted) return false;
+@@ -151,6 +171,7 @@
+ 
+ /** message.content for a slot turn: the realised answer line when there is one, else '' (a gap or a contest is drawn by the card). */
+ export function answerLine(turn) {
++  if (turn && turn.minimal && isStr(turn.minimal.text) && turn.minimal.text.trim()) return turn.minimal.text;        // the smallest span first (minimalOfTurn)
+   return turn && turn.answer && isStr(turn.answer.text) ? turn.answer.text : "";
+ }
+ 
+--- a/index.html
++++ b/index.html
+@@ -409,6 +409,10 @@
+   .strand-snip:first-of-type { border-top: 0; padding-top: 2px; }
+   .strand-text { white-space: pre-line; overflow-wrap: anywhere; line-height: 1.6; color: var(--ink); }
+   .strand-el { color: var(--dim); }
++  .strand-answer { font-size: var(--fs-lg, 1.05em); line-height: 1.5; color: var(--ink); overflow-wrap: anywhere; }
++  .strand-tap { appearance: none; background: none; border: 0; padding: 2px 0; margin-top: 2px; font: inherit; font-size: var(--fs-xs); color: var(--mut); cursor: pointer; text-decoration: underline dotted; }
++  .strand-context, .strand-gap { overflow-wrap: anywhere; line-height: 1.5; color: var(--dim); }
++  .strand-more > summary { cursor: pointer; font-size: var(--fs-xs); color: var(--mut); margin-top: 4px; }
+   .strand-via, .strand-pointers { margin-top: 4px; font-size: var(--fs-xs); color: var(--mut); overflow-wrap: anywhere; }
+   .strand-via a, .strand-pointers a { color: var(--ink2); text-decoration: underline; text-underline-offset: 2px; margin-right: 6px; }
+   .strand-via-k { font-style: italic; color: var(--dim); }
+\ No newline at end of file

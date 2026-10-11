@@ -1,0 +1,57 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "kierkegaard",
+  "organ": "khora/native/organs/socratic.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/kierkegaard-deferred.json"
+  ],
+  "whatTheyArgued": "Truths of existence/faith cannot be directly communicated; the author uses indirect communication (pseudonyms, irony, Socratic maieutics) so the reader appropriates rather than receives them. Point of View for My Work as an Author sec. 2 (title as retrieved from search snippets): to lead a person to a position one must first find him where he is and begin there; the same text says to help someone one must first understand what he understands. Kierkegaard frames the aim as inwardness and the religious.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Søren Kierkegaard'",
+      "url": "https://plato.stanford.edu/entries/kierkegaard/",
+      "supports": "indirect communication, pseudonymity, appropriation vs verbal understanding, Point of View",
+      "disputes": "Scholars dispute whether Point of View is honest self-report or retrospective revisionism (journals suggest evolution)."
+    },
+    {
+      "ref": "Search results quoting Point of View section 2 heading and the 'understand what he understands' sentence (Hong translation excerpts; primary text not fetched by me)",
+      "url": "https://www.thetedkarchive.com/library/howard-v-hong-and-edna-h-hong-the-essential-kierkegaard",
+      "supports": "the 'find him where he is' principle and the 'understand what he understands' sentence exist in the text",
+      "disputes": "our quotation with an ellipsis is a paraphrase-splice, not located verbatim"
+    }
+  ],
+  "ourUse": "socratic.js composes the reply to a decline as a plain question or reasons in a person/agent register, keeps the exact judgment on the audit record, never lets nothing-but-a-verdict be handed over.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "quote-splice",
+      "kind": "misstated",
+      "ours": "compendium quotation: 'To help another, one must first understand what he understands... one must first and foremost meet him where he is.'",
+      "theirs": "Two separate passages (the 'understand what he understands' sentence, and the section-2 heading about finding him where he is) joined by an ellipsis into one sentence, in an uncredited translation; not verified as one sentence in the book."
+    },
+    {
+      "id": "honesty-vs-deception",
+      "kind": "re-scoped",
+      "ours": "Indirect communication used for honest, compliance-free explanation of a refusal.",
+      "theirs": "Kierkegaard's indirection is deliberately deceptive in service of a religious end ('deception into the truth' in Point of View); our code forbids exactly that ('dressing up manipulation as a question' is the one thing it must never do). The method is borrowed, the ethic is reversed."
+    },
+    {
+      "id": "ends",
+      "kind": "narrowed",
+      "ours": "Used as a customer-facing register for declines (a question for a person, reasons for an agent).",
+      "theirs": "Aimed at the reader's appropriation of existential/religious truth over a whole authorship, not at wording a single reply."
+    },
+    {
+      "id": "maieutic-vs-template",
+      "kind": "narrowed",
+      "ours": "Canned per-KIND replies that end in a question.",
+      "theirs": "Socratic maieutics responds to what the particular person understands; a fixed template cannot meet them 'where he is'."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: split the quotation into its two real sentences from one cited translation (Lowrie 1939 or Hong 1998) and drop the ellipsis; or paraphrase without quote marks.",
+    "socratic.js header: add 'Kierkegaard's indirection is also a method of deception toward truth; ours is not, and we refuse that half.'"
+  ]
+}

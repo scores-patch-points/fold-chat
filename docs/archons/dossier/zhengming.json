@@ -1,0 +1,51 @@
+{
+  "handle": "zhengming",
+  "organ": "khora/native/organs/cast.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/zhengming.json",
+    "eo-teachings/manifest/xunzi.json"
+  ],
+  "whatTheyArgued": "Analects XIII.3 (Legge, verbatim snip): if names are not correct, language does not accord with the truth of things, and affairs cannot succeed. Xunzi 22 (Dubs, verbatim snip in xunzi.json): names are given by convention but should follow likeness, alike things named alike, different differently; the sage-king fixes names to guide the people (SEP).",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Xunzi'",
+      "url": "https://plato.stanford.edu/entries/xunzi/",
+      "supports": "names must answer to actualities; assignment is conventional but must track distinctions; chapter is moral/political more than linguistic",
+      "disputes": "the search summary of SEP Confucius says for Confucius zhengming is rectifying people's conduct to match their titles, not names to referents; I saw this in a search snippet only, not the page"
+    },
+    {
+      "ref": "SEP, 'Logic and Language in Early Chinese Philosophy'",
+      "url": "https://seop.illc.uva.nl/entries/chinese-logic-language/",
+      "supports": "context of the doctrine",
+      "disputes": "not opened"
+    }
+  ],
+  "ourUse": "cast.js: variants like 'Pierre' and 'Bezukhov' are checked via referent discovery rather than byte containment; a name resolves to its referent.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "direction",
+      "kind": "reinterpreted",
+      "ours": "A name is read as answering to its referent, so variant names unify.",
+      "theirs": "The Confucian demand is normative: bring names and conduct/reality into line (rectify), mainly a political act; scholars read the Analects case as conduct matching titles."
+    },
+    {
+      "id": "corrupt-speech-act",
+      "kind": "invented-attribution",
+      "ours": "Compendium: 'a mismatched name is a corrupt speech act.'",
+      "theirs": "Not in the Legge snip, which says language fails to accord with truth of things and affairs fail."
+    },
+    {
+      "id": "identity-is-referent",
+      "kind": "misstated",
+      "ours": "'Identity is the referent, never the string.'",
+      "theirs": "Ours: a sentence in the school's voice. Xunzi says things alike are named alike, which concerns how names should be assigned, not an identity criterion."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Confucius (Analects XIII.3): if names are not correct, speech fails to accord with things and affairs fail. Xunzi 22 adds that names follow likeness. cast.js applies a descriptive version: name variants are resolved to a referent.' drop 'corrupt speech act' and 'Identity is the referent' from the author's voice"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

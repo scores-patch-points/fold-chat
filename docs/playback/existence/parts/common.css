@@ -1,0 +1,104 @@
+/* Shared by the three Existence mocks. Tokens are the app's own (index.html :root), light and dark. */
+:root {
+  color-scheme: light;
+  --bg: #ffffff; --side: #ffffff; --side2: #f1f1f4; --line: #e4e4e9; --line2: #cfcfd7;
+  --ink: #141416; --ink2: #44444e; --mut: #5f5f6b; --dim: #666673;
+  --link: #1d4ed8; --on-link: #ffffff; --ag: #0d7a70; --ag-soft: #e7f6f3; --ok: #16793a; --bad: #c62828; --warn: #a04a07;
+  --acc: #17171a; --shadow-sm: 0 1px 2px rgba(0,0,0,.08);
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --void: repeating-linear-gradient(135deg, var(--line2) 0 2px, transparent 2px 7px);
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #17171a; --side: #1c1c20; --side2: #29292e; --line: #2e2e33; --line2: #3f3f46;
+  --ink: #f4f4f6; --ink2: #c9c9d2; --mut: #9d9da8; --dim: #9494a0;
+  --link: #8ab4ff; --on-link: #0b1220; --ag: #2dd4bf; --ag-soft: #0f2b27; --ok: #56d364; --bad: #f87171; --warn: #f0b429;
+  --acc: #ededf0; --shadow-sm: 0 1px 2px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #17171a; --side: #1c1c20; --side2: #29292e; --line: #2e2e33; --line2: #3f3f46;
+    --ink: #f4f4f6; --ink2: #c9c9d2; --mut: #9d9da8; --dim: #9494a0;
+    --link: #8ab4ff; --on-link: #0b1220; --ag: #2dd4bf; --ag-soft: #0f2b27; --ok: #56d364; --bad: #f87171; --warn: #f0b429;
+    --acc: #ededf0; --shadow-sm: 0 1px 2px rgba(0,0,0,.5);
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { font: 15px/1.55 var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; text-align: inherit; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 4px; }
+a { color: var(--link); text-decoration: none; }
+p { margin: 0; }
+.mono { font-family: var(--mono); }
+.kick { font: 600 10.5px/1.2 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--mut); }
+
+/* mock-only controls: dashed, outside the product frame */
+.mock { max-width: 1120px; margin: 8px auto 0; padding: 0 16px; font-size: 12.5px; color: var(--mut); }
+.mock > summary { cursor: pointer; list-style: none; padding: 6px 10px; border: 1px dashed var(--line2); border-radius: var(--r-md); display: inline-block; font: 600 11px/1.2 var(--mono); }
+.mock[open] > summary { margin-bottom: 8px; }
+.mockrow { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 8px 10px; border: 1px dashed var(--line2); border-radius: var(--r-md); }
+.seg { display: inline-flex; border: 1px solid var(--line2); border-radius: var(--r-pill); overflow: hidden; }
+.seg button { padding: 4px 10px; font-size: 12px; color: var(--ink2); }
+.seg button[aria-pressed="true"] { background: var(--acc); color: var(--bg); }
+.mockrow label { display: inline-flex; gap: 8px; align-items: center; }
+.mockrow input[type=range] { width: 160px; accent-color: var(--link); }
+
+/* the product frame: the reading panel */
+.pv { max-width: 1120px; margin: 12px auto 24px; padding: 0 16px; }
+.pv-in { border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--bg); overflow: hidden; }
+.pv-head { padding: 10px 14px 8px; border-bottom: 1px solid var(--line); display: grid; gap: 2px; }
+.crumbs { font: 600 11px/1.3 var(--mono); color: var(--mut); display: flex; flex-wrap: wrap; gap: 2px 6px; align-items: baseline; }
+.crumbs b { color: var(--ink); font-weight: 600; }
+.crumbs .sep { color: var(--dim); }
+.crumbs button { color: var(--mut); font: inherit; }
+.crumbs button:hover { color: var(--ink); }
+.cap { font-size: 14px; color: var(--ink2); }
+
+.pv-body { display: grid; grid-template-columns: minmax(0, 1fr); }
+.faces { min-width: 0; min-height: 440px; position: relative; outline: none; }
+.face { padding: 14px; }
+.face.in-zoomin { animation: fIn .24s ease-out both; }
+.face.in-zoomout { animation: fOut .24s ease-out both; }
+.face.in-pan { animation: fPan .24s ease-out both; }
+@keyframes fIn { from { opacity: 0; transform: scale(.965); } }
+@keyframes fOut { from { opacity: 0; transform: scale(1.035); } }
+@keyframes fPan { from { opacity: 0; transform: translateX(22px); } }
+@media (prefers-reduced-motion: reduce) { .face.in-zoomin, .face.in-zoomout, .face.in-pan { animation: none; } * { transition: none !important; } }
+
+/* the neighbouring faces, as one line of what each found: the way to travel, not a menu */
+.hints { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.hint { padding: 10px 14px; display: grid; gap: 3px; align-content: start; min-width: 0; }
+.hint + .hint { border-left: 1px solid var(--line); text-align: right; }
+.hint:hover { background: var(--side2); }
+.hint .kick { color: var(--link); }
+.hint .say { font-size: 13px; line-height: 1.4; color: var(--ink2); }
+.hint[disabled] { opacity: .5; cursor: default; }
+.dots { display: flex; gap: 6px; align-items: center; justify-content: center; padding: 8px 0 0; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--mut); display: block; }
+.dots i.on { background: var(--ink); border-color: var(--ink); width: 9px; height: 9px; }
+.dots span { width: 18px; height: 1.5px; background: var(--line2); display: block; }
+@media (min-width: 1000px) {
+  .pv-body { grid-template-columns: 220px minmax(0, 1fr) 220px; }
+  .hints { display: contents; }
+  .hint { padding: 16px 14px; border-top: 0; }
+  .hint:first-child { grid-column: 1; grid-row: 1; border-right: 1px solid var(--line); }
+  .hint + .hint { grid-column: 3; grid-row: 1; border-left: 1px solid var(--line); }
+  .faces { grid-column: 2; grid-row: 1; min-height: 520px; }
+  .face { padding: 18px 22px; }
+  .dots-wrap { display: none; }
+}
+
+/* favicon: the app's own pv-fav */
+.fav { width: 18px; height: 18px; flex: none; border-radius: 4px; display: inline-grid; place-items: center; font: 700 10px/1 Georgia, serif; box-shadow: inset 0 0 0 1px var(--line); vertical-align: -4px; }
+.fav.sm { width: 16px; height: 16px; font-size: 9px; border-radius: 3px; vertical-align: -3px; }
+.fav.hollow { background: transparent !important; color: var(--mut) !important; box-shadow: inset 0 0 0 1.5px var(--line2); }
+/* a face's own title line */
+.ftitle { font-size: 13px; color: var(--ink2); margin-bottom: 12px; max-width: 62ch; }
+.ftitle b { color: var(--ink); font-weight: 600; }
+.gap { color: var(--mut); border: 1px dashed var(--line2); border-radius: var(--r-sm); padding: 1px 6px; font-size: 12.5px; }
+.tag { font: 600 10px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--mut); }

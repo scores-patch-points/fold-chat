@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "solon",
+  "organ": "khora/native/organs/ethos.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/solon.json"],
+  "whatTheyArgued": "The verified snip is Herodotus's Histories I (Cary 1904): in a scene Herodotus composes, Solon tells Croesus that no one should be called happy before the end of his life is seen, 'we ought therefore to consider the end of everything'. That is a claim about happiness and fortune, delivered as a speech in another author's narrative, not Solon's own text. Solon's own surviving poems (fragments quoted by later authors) defend his political work; his documented reforms were ending debt-slavery and the hektemoroi dues and publishing the laws (Antigone Journal). The passage says nothing about a constitution acting as a ground or about 'nothing in excess'.",
+  "scholarship": [
+    { "ref": "Antigone Journal, 'Shake It Off, Solon: What Was the Seisachtheia?' (2022) (fetched and read)", "url": "https://antigonejournal.com/2022/01/solon-seisachtheia/", "supports": "what Solon securely did (end debt-slavery, abolish the sixth-part dues, publish laws) and that his poems were self-presentation of his reforms", "disputes": "ancient reports of general debt cancellation and wealth limits are now viewed as unlikely; even the word seisachtheia may be later" },
+    { "ref": "Search-result summaries (EBSCO Research Starters 'Solon'; Delphic maxims overview) (search listing only, pages not opened)", "url": "https://www.ebsco.com/research-starters/history/solon/", "supports": "Diogenes Laertius lists 'nothing in excess' (meden agan) among sayings credited to Solon; tradition otherwise gives it to Chilon or to the Seven Sages collectively or to Delphi", "disputes": "modern view: the Delphic maxims were probably popular proverbs, not any one person's coinage" }
+  ],
+  "ourUse": "ethos.js composes the UDHR charter (Grotius) and the privacy spec gate (Brandeis) into a 'constitution' and produces a clearance without which the reader session cannot be built; Solon is the namesake for 'a constitution the city stood on'. The compendium adds that the ground is 'not a gate that can be lifted' and credits the maxim meden agan.",
+  "verdict": "fails",
+  "bends": [
+    { "id": "snip-unrelated", "kind": "decorative", "ours": "The verified Solon snip (Herodotus, 'consider the end') is presented as Solon's teaching behind the ethos organ.", "theirs": "It is a happiness/fortune lesson in Herodotus's narrative and has no connection to constitution, ground, or clearance." },
+    { "id": "meden-agan", "kind": "invented-attribution", "ours": "Compendium credit: Solon, 'nothing in excess' (meden agan).", "theirs": "Attribution is contested: Diogenes Laertius gives it to Solon, others to Chilon or the Seven Sages or Delphi, and it is probably a proverb. None of this is in our snip, and the organ does not implement moderation at all." },
+    { "id": "bearing-wall-sentence", "kind": "misstated", "ours": "compendium work: 'The ground is not a gate that can be lifted — pull it and the structure falls', set inside an entry about Solon.", "theirs": "This is the project's own engineering design principle (ethos before logos; requireClearance); no Solon text says it. It reads as the lawgiver's wisdom." },
+    { "id": "constitution-reinterpreted", "kind": "reinterpreted", "ours": "Constitution = a charter plus a privacy gate producing a clearance object checked at session start.", "theirs": "Solon's documented work was relief of debt-bondage and the public writing of laws for a city in conflict, in which the substance was contested and the details are uncertain." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'The Athenian lawgiver whose reforms ended debt-slavery and published Athens' laws; the project borrows his name for its constitution-before-reasoning principle. The 'nothing in excess' maxim is traditionally credited to Solon by one ancient source, to others by other sources; this organ does not implement it.'",
+    "compendium credit: 'Solon (as portrayed in Herodotus I) - consider the end of everything before judging; name used here for the project's own ethos-before-logos ground.'",
+    "delete the sentence 'The ground is not a gate that can be lifted...' from the work field or tag it '(project design principle, not Solon)'",
+    "ethos.js header: say 'Handle: Solon - namesake only; the clearance design is ours.' Better: replace the snip with Solon's own fragments or Aristotle Ath. Pol. ch. 12 quoting them (not on disk; I did not fetch it)."
+  ]
+}

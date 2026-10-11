@@ -1,0 +1,11 @@
+/* C — spatial zoom: the tapped thing grows into the layer; Back / pinch-out / Esc zooms out to exactly where it was.
+   Each ancestor leaves a thin ring in its own accent colour around the edge: the rings are the breadcrumb you can see without reading. */
+html[data-model="c"] .layer { box-shadow:none; will-change:clip-path, transform; touch-action:pan-y; }
+#rings { position:fixed; inset:0; z-index:850; pointer-events:none; }
+#rings i { position:absolute; border:3px solid var(--rc, var(--ag)); }
+#zl { position:fixed; z-index:860; right:8px; top:6px; display:flex; align-items:center; gap:7px; min-width:44px; height:44px; padding:0 12px; border-radius:999px; background:var(--ink); color:var(--on-ink); font:700 13px/1 var(--mono); box-shadow:var(--shadow); }
+#zl[hidden] { display:none; }
+#zl svg { width:18px; height:18px; flex:none; }
+#zl:focus-visible { outline-color:var(--link); }
+html[data-model="c"] .l-head { padding-right:76px; }
+.zhint { position:fixed; z-index:860; left:50%; transform:translateX(-50%); bottom:6px; font:500 10.5px/1 var(--mono); color:var(--mut); pointer-events:none; opacity:.0; }

@@ -1,0 +1,52 @@
+{
+  "organ": "khora/native/organs/speaker.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/scheherazade.json"
+  ],
+  "whatTheyArgued": "Nothing: the Nights is an anonymous medieval story collection, not an argument. Scheherazade is a character, not an author. In the frame story (Burton 1885, vol. I, snipped) she tells her sister that she will tell a tale as their deliverance, to turn the King from his blood-thirsty custom. Within her tales characters tell further tales, so the work has layered nesting. Nothing in the text states a rule that each 'I' is bound to its declaring frame; that is a narratological reading (our own, or Genette-style) laid over the work.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, One Thousand and One Nights (frame story, nested narratives, textual history); a general reference, not peer-reviewed. I found no SEP/IEP entry on the Nights.",
+      "url": "https://en.wikipedia.org/wiki/One_Thousand_and_One_Nights",
+      "supports": "frame narrative; a character in a tale may tell a tale of their own, which may nest another",
+      "disputes": "No single canonical text: Syrian vs Egyptian traditions; Mahdi's Leiden edition is the only critical edition; Galland added tales (Aladdin) absent from Arabic manuscripts; Burton is one of several translations, itself disputed for emphasis"
+    }
+  ],
+  "ourUse": "speaker.js reads the declared headings of epistolary sections (journal, diary, letter) and binds each 'I' to that section's declared author via a binding table. The Dracula-style document heading is the whole mechanism. The header says it follows the nested tales of the Nights 'however deep the nesting goes', but grep of speaker.js finds no nesting-depth handling, only the Handle line mentions nesting.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "voice-paragraph",
+      "kind": "misstated",
+      "ours": "speaker.js opens with a block headed 'Scheherazade speaks:' quoting the Burton passage, then a paragraph saying the file 'is the embodiment of Scheherazade's skill' and 'My teaching demands that this file remain a testament to the art of storytelling'. That paragraph is generated text in Scheherazade's first person.",
+      "theirs": "The Nights contains no such statement; Scheherazade never says anything about speaker boundaries or this file. Only the snipped Burton sentence is hers."
+    },
+    {
+      "id": "snip-vs-claim",
+      "kind": "decorative",
+      "ours": "The snip (her plan to tell a tale as deliverance) is offered as the teaching behind 'each I bound to its frame'.",
+      "theirs": "The snipped sentence is the frame-story premise; it says nothing about frames, narrators or binding of 'I'. It is a thematic epigraph, not support."
+    },
+    {
+      "id": "nesting-not-built",
+      "kind": "re-scoped",
+      "ours": "Handle line and compendium: nested tellers 'however deep the nesting goes'.",
+      "theirs": "The Nights does nest tellers, but our code implements one level: epistolary section headings in a modern novel, a different structure from oral tale nesting marked by narration verbs, and it has no depth stack."
+    },
+    {
+      "id": "rule-attributed",
+      "kind": "invented-attribution",
+      "ours": "Compendium work: 'the tale-within-the-tale's narrator is never the outer narrator'.",
+      "theirs": "A narratological principle, not stated in the Nights; in the Nights the outer narrator reports all inner tellers, and Scheherazade herself is framed by an anonymous voice."
+    }
+  ],
+  "fix": [
+    "compendium work: 'The frame-story heroine of the Nights, whose tales nest further tellers (Burton 1885 vol. I). We borrow the image only: speaker.js binds each epistolary \"I\" to its section's declared author; it does not model oral tale nesting.'",
+    "speaker.js: delete the 'Scheherazade speaks' prose paragraph (keep, if wanted, the Burton quote marked as a quote); change Handle line to 'after the nested tellers of the Nights (image only)'.",
+    "credit: 'Scheherazade (Nights, tr. Burton) - nested tellers; our speaker.js binds epistolary headings, one level.'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "scheherazade",
+  "tokenized": false
+}

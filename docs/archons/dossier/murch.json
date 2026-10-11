@@ -1,0 +1,64 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "murch",
+  "organ": "khora/native/organs/pacing.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/walter-murch.json"
+  ],
+  "whatTheyArgued": "From secondary descriptions of In the Blink of an Eye (read: MusicBed summary; book itself not read): Murch noticed on The Conversation that cuts lined up with Gene Hackman's blinks, and holds that a listener blinks at the moment they 'get' an idea; a cut works as a blink that punctuates ideas; a performer's blinks tie to their thought; viewers' blinks can synchronize with a well-cut film. His Rule of Six ranks emotion first, then story, rhythm, eye-trace, 2D plane, 3D space. Quoted phrase 'the cut is a blink' is credited short phrase only.",
+  "scholarship": [
+    {
+      "ref": "MusicBed, 'Editing Secrets from Legendary Editor Walter Murch' (read; trade summary)",
+      "url": "https://musicbed.com/blog/filmmaking/editing/editing-secrets-from-legendary-editor-walter-murch",
+      "supports": "blink as punctuation of ideas; cut as blink; cuts per minute parallels",
+      "disputes": "trade source, not scholarship"
+    },
+    {
+      "ref": "Theseus (Finnish thesis repository) 'Walter Murch's The Rule of Six' (search result only, not opened)",
+      "url": "https://www.theseus.fi/handle/10024/341190",
+      "supports": "Rule of Six exists and is studied",
+      "disputes": "not read; gap"
+    }
+  ],
+  "ourUse": "pacing.js: pacingGrade measures sentence-length variance and 'blink points' (a sentence at least 35% shorter than the running mean after longer ones) and treats near-zero variance as a flatline. earned-cast.js reuses the flatline as a conversation-has-gone-flat signal. output-order.js credits Murch with owning 'the rhythm of the order', while the module places claims by the material's own temporal anchors and refuses when none are stated.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "blink-to-sentence-length",
+      "kind": "reinterpreted",
+      "ours": "A blink point is a short sentence after long ones; sentence variance is the 'blink'.",
+      "theirs": "Blinks are physiological events of the performer or viewer when a thought lands; cuts are placed to coincide. Sentence length is a proxy we invented."
+    },
+    {
+      "id": "flatline-is-ours",
+      "kind": "misstated",
+      "ours": "'A piece that never varies has no blinks - a flatline' and 'the eye rests at a sentence boundary' (compendium work).",
+      "theirs": "Not found in what I read; he warns against cutting that loses the audience's rhythm, not against uniform prose."
+    },
+    {
+      "id": "rule-of-six-dropped",
+      "kind": "narrowed",
+      "ours": "Only the rhythm/blink idea is implemented.",
+      "theirs": "Rhythm is third of six, below emotion and story; emotion is first priority."
+    },
+    {
+      "id": "order-misattributed",
+      "kind": "decorative",
+      "ours": "output-order.js credits Murch with the rhythm of claim order and refusal without stated order.",
+      "theirs": "Refusing to impose order is our law; Murch's work is about cutting, not about whether source material states an order."
+    },
+    {
+      "id": "audience-vs-editor",
+      "kind": "reinterpreted",
+      "ours": "Compendium: a film is cut where the audience blinks.",
+      "theirs": "He cuts where he (or the actor) would blink; audience blink synchronization is an effect of good cutting, per the summary."
+    }
+  ],
+  "fix": [
+    "compendium murch.work: 'Film editor who observed that cuts work like blinks: they punctuate ideas, and a performer's blinks mark where a thought lands. Our pacing module uses sentence-length variance as a rough proxy; the flatline rule and the sentence-boundary claim are ours.'",
+    "output-order.js: remove Murch as owner of ordering, or say only 'the cut as punctuation'.",
+    "Read the book (or a library copy) and replace summaries with page-cited phrases."
+  ]
+}

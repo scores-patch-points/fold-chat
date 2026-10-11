@@ -1,0 +1,33 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "kahanamoku",
+  "organ": "khora/native/organs/activation-retrieval.js; field-of-record.js; proxy-runner.mjs::surfTask",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Nothing: the compendium itself says no work is claimed. Biography only (Britannica): Duke Kahanamoku (1890-1968), Hawaiian surfer and swimmer, Olympic gold medalist in 1912 and 1920, called the father of modern surfing for carrying surfboarding to Australia and the US coasts.",
+  "scholarship": [
+    {
+      "ref": "Britannica, 'Duke Kahanamoku' (via search result summary)",
+      "url": "https://www.britannica.com/biography/Duke-Kahanamoku",
+      "supports": "dates, Olympic career, role in spreading surfing",
+      "disputes": "none relevant; no doctrine exists to dispute"
+    }
+  ],
+  "ourUse": "activation-retrieval.js: question beings activate the sentences they stand in (hop 0, hop 1), ranked; shadow/echo null and feed cut live elsewhere.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "slogan-as-credit",
+      "kind": "decorative",
+      "ours": "credit line 'read the water, then ride the wave that is actually there' set after his name as if his posture.",
+      "theirs": "No source I found attributes this maxim or any retrieval doctrine to him; it is our metaphor."
+    }
+  ],
+  "noBendReason": "The handle is a project nomination: no work or doctrine of Kahanamoku is claimed, and the entry says so; the one bend is the slogan credit line.",
+  "fix": [
+    "credit: 'Kahanamoku (Duke) — our name for the surf metaphor: read the water, then ride the wave that is there. Namesake only; no teaching of his is claimed.'",
+    "organ header: 'after Duke Kahanamoku' fine; change 'who carried surfing to the wider world' to a plain biographical fact and mark the maxim as ours."
+  ],
+  "tokenized": false
+}

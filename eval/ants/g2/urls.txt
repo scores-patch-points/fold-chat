@@ -1,0 +1,45 @@
+tut-leverageedu-telephone|https://leverageedu.com/discover/school-education/essay-on-telephone/|essay|telephone
+tut-gradesfixer-telephone|https://gradesfixer.com/free-essay-examples/invention-of-telephone/|essay|telephone
+tut-essaysio-telephone|https://essays.io/the-invention-of-the-telephone-essay-example/|essay|telephone
+tut-papersowl|https://papersowl.com/|essay|telephone
+tut-ivypanda-tool|https://ivypanda.com/tools/ai-essay-generator/|essay|telephone
+tut-purdue-essay|https://owl.purdue.edu/owl/general_writing/academic_writing/essay_writing/index.html|essay|climate
+tut-scribbr-essay|https://www.scribbr.com/academic-essay/|essay|climate
+tut-unc-essay|https://writingcenter.unc.edu/tips-and-tools/essay-structure/|essay|climate
+tut-coverletter-indeed|https://www.indeed.com/career-advice/resumes-cover-letters/how-to-write-a-cover-letter|cover letter|my job
+tut-coverletter-template|https://www.indeed.com/career-advice/resumes-cover-letters/cover-letter-samples|cover letter|my job
+tut-haiku-poets|https://poets.org/glossary/haiku|haiku|autumn
+tut-haiku-howto|https://www.wikihow.com/Write-a-Haiku|haiku|autumn
+tut-report-scribbr|https://www.scribbr.com/research-paper/research-paper-format/|report|solar power
+tut-blog-hubspot|https://blog.hubspot.com/marketing/how-to-start-a-blog|blog post|coffee
+tut-poem-wikihow|https://www.wikihow.com/Write-a-Poem|poem|the sea
+tut-speech-howto|https://www.wikihow.com/Write-a-Speech|speech|my sister's wedding
+ctl-wp-telephone|https://en.wikipedia.org/wiki/Telephone|essay|telephone
+ctl-wp-history-telephone|https://en.wikipedia.org/wiki/History_of_the_telephone|essay|telephone
+ctl-wp-bell|https://en.wikipedia.org/wiki/Alexander_Graham_Bell|essay|telephone
+ctl-brit-telephone|https://www.britannica.com/technology/telephone|essay|telephone
+ctl-loc-telephone|https://www.loc.gov/item/who-is-credited-with-inventing-the-telephone/|essay|telephone
+ctl-nms-bell|https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone|essay|telephone
+ctl-wp-essay|https://en.wikipedia.org/wiki/Essay|essay|essay
+ctl-wp-haiku|https://en.wikipedia.org/wiki/Haiku|haiku|haiku
+ctl-wp-coverletter|https://en.wikipedia.org/wiki/Cover_letter|cover letter|cover letter
+tut-wikihow-essay|https://www.wikihow.com/Write-an-Essay|essay|climate
+tut-masterclass-essay|https://www.masterclass.com/articles/how-to-write-an-essay|essay|climate
+tut-grammarly-essay|https://www.grammarly.com/blog/writing-tips/how-to-write-an-essay/|essay|climate
+tut-wikihow-coverletter|https://www.wikihow.com/Write-a-Cover-Letter|cover letter|my job
+tut-wikihow-report|https://www.wikihow.com/Write-a-Report|report|solar power
+tut-wikihow-haiku|https://www.wikihow.com/Write-a-Haiku-Poem|haiku|autumn
+tut-toppr-essay-telephone|https://www.toppr.com/guides/essays/essay-on-telephone/|essay|telephone
+tut-byjus-telephone|https://byjus.com/english/essay-on-telephone/|essay|telephone
+tut-vedantu-telephone|https://www.vedantu.com/english/essay-on-telephone|essay|telephone
+tut-shiksha-telephone|https://www.shiksha.com/boards/essay-on-telephone-blogId-101012|essay|telephone
+ctl-wp-photosynthesis|https://en.wikipedia.org/wiki/Photosynthesis|essay|photosynthesis
+ctl-wp-solar|https://en.wikipedia.org/wiki/Solar_power|report|solar power
+ctl-wp-climate|https://en.wikipedia.org/wiki/Climate_change|essay|climate
+ctl-wp-coffee|https://en.wikipedia.org/wiki/Coffee|blog post|coffee
+ctl-wp-sea|https://en.wikipedia.org/wiki/Sea|poem|the sea
+ctl-wp-autumn|https://en.wikipedia.org/wiki/Autumn|haiku|autumn
+ctl-wp-wedding|https://en.wikipedia.org/wiki/Wedding|speech|my sister's wedding
+ctl-nasa-solar|https://www.energy.gov/eere/solar/how-does-solar-work|report|solar power
+ctl-wp-wright|https://en.wikipedia.org/wiki/Wright_brothers|essay|the wright brothers
+ctl-wp-montaigne|https://en.wikipedia.org/wiki/Michel_de_Montaigne|essay|montaigne

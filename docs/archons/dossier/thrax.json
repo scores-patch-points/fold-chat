@@ -1,0 +1,26 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "thrax",
+  "organ": "khora/native/organs/grammar-lens.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/thrax.json"],
+  "whatTheyArgued": "The Tekhne grammatike (Davidson 1874 English, read in the on-disk text) opens by defining grammar as an experimental, i.e. empirical, knowledge of the usages of language current among poets and prose writers, divided into six parts. Section 13 lists eight parts of speech (noun, verb, participle, article, pronoun, preposition, adverb, conjunction) and then defines each by what it does and what accidents it has: a noun is a declinable part signifying a concrete or abstract thing, with five accidents (genders, species, forms, numbers, cases). The parts are thus defined as properties of words in a language. Davidson's footnotes (position = convention, not nature) concern the length of vowels, not the parts of speech.",
+  "scholarship": [
+    { "ref": "Kemp, 'The Tekhne Grammatike of Dionysius Thrax: translated into English', Historiographia Linguistica 13 (1986), publisher page (not fetched; blocked 403)", "url": "https://benjamins.com/catalog/hl.13.2-3.12kem", "supports": "existence of a modern English translation; I could not read it", "disputes": "n/a" },
+    { "ref": "Leiden dissertation on Dionysius of Halicarnassus, introduction to the Tekhne authenticity debate (read via pdftotext)", "url": "https://scholarlypublications.universiteitleiden.nl/access/item:2963272/view", "supports": "Di Benedetto (1958-59) argued most of the Tekhne, including the word-class system, is a 3rd-4th century AD compilation and Thrax wrote only the first five paragraphs; most specialists now accept this", "disputes": "Pfeiffer and Erbse rebutted Di Benedetto; the report is that most specialists have since come over to his view" }
+  ],
+  "ourUse": "grammar-lens.js lays a Thrax-tradition word class over each hypergraph edge's connector span as a SEPARATE reading, never rewriting edge.verb. The class comes from perceiver/text/wordclass.js: UD_English-EWT (CC BY-SA 4.0) tag counts mapped to the eight classes; ADJ, PART, NUM, PUNCT, SYM, X are marked out of scope; interjection is credited to Donatus and Priscian. THRAX_META names the giver as 'Dionysius Thrax, Tekhne grammatike, Alexandria, ~100 BCE'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "reading-not-property", "kind": "misstated", "ours": "Compendium: the parts are 'a reading of a language's arrangement, named by their giver, never a property of the words themselves.'", "theirs": "Thrax defines each part by properties of words (declinable or not, what it signifies, its accidents). Treating the classification as a giver-named reading is our epistemic stance; his text presents the classes as the words' own kinds." },
+    { "id": "authorship-and-date", "kind": "misstated", "ours": "Compendium and snip: Thrax 'fixed the eight parts of speech'; THRAX_META dates the scheme to ~100 BCE.", "theirs": "On the scholarship I read, the passage we snipped (section 13) is in the portion most specialists attribute to a 3rd-4th century AD compiler, not to Thrax. The eight-class system may be older than the Tekhne, but its attribution to Thrax himself is disputed." },
+    { "id": "empirical-to-statistical", "kind": "reinterpreted", "ours": "Classes assigned from treebank frequency counts (dominantClass with caller-declared minShare) on English text.", "theirs": "Grammar as trained empirical knowledge of Greek poets' and prose writers' usage; no counts, no English, no probabilistic dominance." },
+    { "id": "narrowed-eight", "kind": "narrowed", "ours": "Eight Thrax classes mapped onto a UD tag set; ADJ, NUM, PART out of scope; interjection added from Latin tradition.", "theirs": "Thrax's text (on disk) treats the adjective as a kind of noun; the mapping of UD tags onto his eight is an interpretation we disclose, not his." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'The Tekhne grammatike (attributed to Dionysius Thrax; most scholars date the word-class section later) lists eight parts of speech and defines them by the properties of words. We borrow the eight-class scheme as one labelled reading of a connector slot; calling that reading giver-named rather than a property of words is our stance, not Thrax's.'",
+    "wordclass.js THRAX_META.giver: 'eight-part scheme of the Tekhne grammatike (traditionally attributed to Dionysius Thrax; authorship of the word-class section disputed)'",
+    "grammar-lens.js header: separate 'Thrax defined' from 'we hold it as a reading'"
+  ]
+}

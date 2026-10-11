@@ -1,0 +1,250 @@
+{
+ "en": {
+  "eiffel": {
+   "name": "Eiffel Tower",
+   "qa": [
+    "How tall is the Eiffel Tower?",
+    "Who designed the Eiffel Tower?"
+   ],
+   "pron": [
+    "How tall is it?",
+    "And who designed it?"
+   ]
+  },
+  "everest": {
+   "name": "Mount Everest",
+   "qa": [
+    "How high is Mount Everest?",
+    "Who first reached the summit of Mount Everest?"
+   ],
+   "pron": [
+    "How high is it?",
+    "And who first reached its summit?"
+   ]
+  },
+  "telephone": {
+   "name": "telephone",
+   "qa": [
+    "Who invented the telephone?",
+    "When was the telephone patented?"
+   ],
+   "pron": [
+    "Who invented it?",
+    "And when was it patented?"
+   ]
+  },
+  "curie": {
+   "name": "Marie Curie",
+   "qa": [
+    "Who was Marie Curie?",
+    "When did Marie Curie win her first Nobel Prize?"
+   ],
+   "pron": [
+    "Who was she?",
+    "And when did she win her first Nobel Prize?"
+   ]
+  },
+  "photo": {
+   "name": "photosynthesis",
+   "qa": [
+    "Who discovered photosynthesis?",
+    "What is the efficiency of photosynthesis in plants?"
+   ],
+   "pron": [
+    "Who discovered it?",
+    "And what is its efficiency in plants?"
+   ]
+  },
+  "penicillin": {
+   "name": "penicillin",
+   "qa": [
+    "What is penicillin?",
+    "Who discovered penicillin?"
+   ],
+   "pron": [
+    "What is it?",
+    "And who discovered it?"
+   ]
+  },
+  "greatwall": {
+   "name": "Great Wall of China",
+   "qa": [
+    "Which dynasty built the best-known sections of the Great Wall of China?",
+    "When was the Great Wall of China first built?"
+   ],
+   "pron": [
+    "Which dynasty built its best-known sections?",
+    "And when was it first built?"
+   ]
+  },
+  "berlinwall": {
+   "name": "Berlin Wall",
+   "qa": [
+    "When did the Berlin Wall fall?",
+    "When was the Berlin Wall built?"
+   ],
+   "pron": [
+    "When did it fall?",
+    "And when was it built?"
+   ]
+  },
+  "canberra": {
+   "name": "Canberra",
+   "qa": [
+    "What is the population of Canberra?",
+    "When was Canberra founded?"
+   ],
+   "pron": [
+    "What is its population?",
+    "And when was it founded?"
+   ]
+  },
+  "panama": {
+   "name": "Panama Canal",
+   "qa": [
+    "How long is the Panama Canal?",
+    "When did the Panama Canal open?"
+   ],
+   "pron": [
+    "How long is it?",
+    "And when did it open?"
+   ]
+  },
+  "suez": {
+   "name": "Suez Canal",
+   "qa": [
+    "How long is the Suez Canal?",
+    "When did the Suez Canal open?"
+   ],
+   "pron": [
+    "How long is it?",
+    "And when did it open?"
+   ]
+  },
+  "titanic": {
+   "name": "Titanic",
+   "qa": [
+    "When did the Titanic sink?",
+    "How many people died on the Titanic?"
+   ],
+   "pron": [
+    "When did it sink?",
+    "And how many people died on it?"
+   ]
+  },
+  "pluto": {
+   "name": "Pluto",
+   "qa": [
+    "Is Pluto a planet?",
+    "When was Pluto discovered?"
+   ],
+   "pron": [
+    "Is it a planet?",
+    "And when was it discovered?"
+   ]
+  },
+  "austen": {
+   "name": "Pride and Prejudice",
+   "qa": [
+    "Who wrote Pride and Prejudice?",
+    "When was Pride and Prejudice published?"
+   ],
+   "pron": [
+    "Who wrote it?",
+    "And when was it published?"
+   ]
+  },
+  "pisa": {
+   "name": "Leaning Tower of Pisa",
+   "qa": [
+    "How tall is the Leaning Tower of Pisa?",
+    "When was the Leaning Tower of Pisa built?"
+   ],
+   "pron": [
+    "How tall is it?",
+    "And when was it built?"
+   ]
+  }
+ },
+ "es": {
+  "garcia": {
+   "name": "Gabriel García Márquez",
+   "qa": [
+    "¿Quién fue Gabriel García Márquez?",
+    "¿Cuándo ganó García Márquez el Premio Nobel?"
+   ],
+   "pron": [
+    "¿Quién fue?",
+    "¿Y cuándo ganó el Premio Nobel?"
+   ]
+  },
+  "colon": {
+   "name": "Cristóbal Colón",
+   "qa": [
+    "¿Quién fue Cristóbal Colón?",
+    "¿Cuándo llegó Colón a América?"
+   ],
+   "pron": [
+    "¿Quién fue?",
+    "¿Y cuándo llegó a América?"
+   ]
+  },
+  "teide": {
+   "name": "Teide",
+   "qa": [
+    "¿Qué altura tiene el Teide?",
+    "¿Dónde está el Teide?"
+   ],
+   "pron": [
+    "¿Qué altura tiene?",
+    "¿Y dónde está?"
+   ]
+  }
+ },
+ "fr": {
+  "montblanc": {
+   "name": "Mont Blanc",
+   "qa": [
+    "Quelle est la hauteur du mont Blanc ?",
+    "Quand le mont Blanc a-t-il été gravi pour la première fois ?"
+   ],
+   "pron": [
+    "Quelle est sa hauteur ?",
+    "Et quand a-t-il été gravi pour la première fois ?"
+   ]
+  },
+  "pasteur": {
+   "name": "Louis Pasteur",
+   "qa": [
+    "Qui était Louis Pasteur ?",
+    "Quand Louis Pasteur est-il mort ?"
+   ],
+   "pron": [
+    "Qui était-il ?",
+    "Et quand est-il mort ?"
+   ]
+  },
+  "hugo": {
+   "name": "Victor Hugo",
+   "qa": [
+    "Qui a écrit Les Misérables ?",
+    "Quand Victor Hugo est-il mort ?"
+   ],
+   "pron": [
+    "Qui l'a écrit ?",
+    "Et quand est-il mort ?"
+   ]
+  },
+  "eiffelfr": {
+   "name": "tour Eiffel",
+   "qa": [
+    "Quelle est la hauteur de la tour Eiffel ?",
+    "Qui a construit la tour Eiffel ?"
+   ],
+   "pron": [
+    "Quelle est sa hauteur ?",
+    "Et qui l'a construite ?"
+   ]
+  }
+ }
+}

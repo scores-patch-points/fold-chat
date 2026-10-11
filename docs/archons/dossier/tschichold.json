@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "tschichold",
+  "organ": "khora/native/organs/tschichold.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/tschichold.json"
+  ],
+  "whatTheyArgued": "Per secondary sources: Die neue Typographie (1928) was a modernist rulebook that favoured sans-serif type, asymmetric non-centred layouts and clear functional hierarchy. From about 1932 Tschichold abandoned its rigidity, later called it too extreme and compared its dogmatism to authoritarian politics. At Penguin (1947-49) he set the Penguin Composition Rules, a house standard drawing on classical book conventions (serif faces, centred title pages), which contradict the 1928 manifesto. The Form of the Book (essays 1949-74) argues for tradition, legibility and balance. None of these concern reading a text's setting to separate edition from author, or declaring a frame.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, 'Jan Tschichold' (fetched; encyclopedic, not peer reviewed)",
+      "url": "https://en.wikipedia.org/wiki/Jan_Tschichold",
+      "supports": "1928 argument; later reversal after c.1932; Penguin Composition Rules 1947-49; rejection of Die neue Typographie as too extreme",
+      "disputes": "none stated beyond Tschichold's own self-criticism"
+    },
+    {
+      "ref": "EBSCO Research Starters, 'Jan Tschichold' (search snippet only)",
+      "url": "https://www.ebsco.com/research-starters/history/jan-tschichold",
+      "supports": "general biography",
+      "disputes": "not read in full"
+    }
+  ],
+  "ourUse": "tschichold.js reads how a text was set (wraps, lineation, labels, running heads, page UI, doubled fetches) from bytes, learns rules once from originals, and declares the setting as a frame via frame.js before readings are compared, so edition conventions are not mistaken for authorial facts. Closed typographic grammar is stated as tables.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "function-to-forensics",
+      "kind": "reinterpreted",
+      "ours": "'A text's setting is read and declared before its words are'; typography read as evidence about an edition.",
+      "theirs": "Tschichold argued how to compose a page so form serves function and readers; he did not argue for reading received bytes to peel off edition artefacts. The kinship (conventions as a compositor's craft the reader should not have to notice) is real but the discipline is ours."
+    },
+    {
+      "id": "wrong-book-for-the-claim",
+      "kind": "misstated",
+      "ours": "Credit pairs Die neue Typographie (1928) with 'a page's form answers to its function' as the lineage for convention-reading.",
+      "theirs": "The 1928 book is the doctrine he later repudiated; the convention-codifying work is the Penguin Composition Rules and The Form of the Book. The compendium cites the repudiated work as the source for a house-conventions stance."
+    },
+    {
+      "id": "print-to-bytes",
+      "kind": "re-scoped",
+      "ours": "Applied to digital text bytes, OCR, Wikisource wikitext, GRETIL e-texts in Arabic, Chinese, Greek and IAST.",
+      "theirs": "His rules are for printed Latin-script books; Penguin rules assume English composition. The non-Latin extension is entirely ours."
+    },
+    {
+      "id": "namesake",
+      "kind": "decorative",
+      "ours": "Handle line and role name him for a measurement organ (rules with evidence and falsification, bench priors).",
+      "theirs": "The measured-rule machinery, p-value bars and CV look are not typographic doctrine."
+    }
+  ],
+  "fix": [
+    "compendium credit: 'Jan Tschichold - typographer whose later Penguin Composition Rules codified house conventions so readers need not notice them; this organ reads an edition's setting off its bytes, which is our method, named in his honour'",
+    "compendium work: cite the Penguin Composition Rules and The Form of the Book for conventions; mention 1928 only as the doctrine he later repudiated",
+    "tschichold.js header: add 'the byte-reading method is ours; Tschichold supplies the idea that setting is convention to be declared'"
+  ],
+  "tokenized": false
+}

@@ -1,0 +1,51 @@
+{
+  "organ": "khora/native/kernel/rhythm-priors.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/tala.json"
+  ],
+  "whatTheyArgued": "The attached snip is Natyashastra 28.1-2 as quoted by Fox Strangways as an example of the sloka metre (prosody illustration, not a definition of tala). Read as a verse, it sorts instruments into four classes (tata stringed, avanaddha drums, ghana, susira wind) and glosses ghana as talas, i.e. cymbals/clappers in that verse. Fox Strangways separately treats musical time as derived from the prosody of verse; modern accounts define tala as a metric cycle of beats (avartana) distinct from raga. Natyashastra-tradition talas are built of laghu, guru, pluta units.",
+  "scholarship": [
+    {
+      "ref": "Acta Orientalia Vilnensia, 'Tala: Features of Rhythm System in Indian Classical Music'",
+      "url": "https://www.zurnalai.vu.lt/acta-orientalia-vilnensia/article/view/18351",
+      "supports": "tala is a quantitative rhythm system rooted in Vedic/Sanskrit phonetic structure; sources include Natyashastra",
+      "disputes": "abstract only; says Indian tala is a different type of rhythm than European measure"
+    },
+    {
+      "ref": "Wikipedia, Tala (music) (secondary, via search digest)",
+      "url": "https://en.wikipedia.org/wiki/Tala_(music)",
+      "supports": "tala is a repeating cycle of matras; Natyashastra tradition has laghu/guru/pluta",
+      "disputes": "none"
+    }
+  ],
+  "ourUse": "rhythm-priors.js: sediments how soon an admitted being is mentioned again in narrative, measured on novels; header says 'WHEN, held independent of content'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "snip-is-instrument-classes",
+      "kind": "misstated",
+      "ours": "File header opens 'Tala speaks:' with this verse, and says it embodies rhythm as independent of content.",
+      "theirs": "The verse classifies instruments; 'talas' there names the cymbal class. It does not state tala as a cycle independent of content."
+    },
+    {
+      "id": "independent-of-content",
+      "kind": "reinterpreted",
+      "ours": "'A meter is a prior about time, not about what happens within it' (compendium work).",
+      "theirs": "I did not verify that any source says this. Fox Strangways argues the reverse direction: musical time develops from verse prosody and the language's structure."
+    },
+    {
+      "id": "mention-gaps-not-beats",
+      "kind": "re-scoped",
+      "ours": "Tala = mention-interval distribution of characters in novels.",
+      "theirs": "Tala is a cyclic measure of beats with sam/khali structure in music; there is no cycle or beat in our measure."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Tala is the Indian metric cycle of beats. We borrow only the idea that time structure can be modelled apart from what fills it; our rhythm prior is a distribution of re-mention gaps, not a tala.'",
+    "re-cut the manifest on a passage that actually defines tala (Fox Strangways TALA chapter, line ~15845 onward) once snip.mjs works"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "tala",
+  "tokenized": false
+}

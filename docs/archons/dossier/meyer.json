@@ -1,0 +1,45 @@
+{
+  "handle": "meyer",
+  "organ": "khora/native/organs/pathos.js (proposed)",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/meyer.json"
+  ],
+  "whatTheyArgued": "Emotion arises when a tendency to respond is arrested or inhibited. Music sets up expectations from learned stylistic norms; 'embodied meaning' is one musical event pointing to and making us expect another, as opposed to designative reference to extramusical things (via Huron's notes on Meyer; I did not read the book).",
+  "scholarship": [
+    {
+      "ref": "David Huron, 'Notes on Meyer: Emotion and Meaning in Music', ch. 1 (reading notes by a leading music cognition scholar)",
+      "url": "https://hugoribeiro.com.br/biblioteca-digital/Huron-Notes_on_Meyer-Emotion_Meaning_Music-Cap01.html",
+      "supports": "tendency/inhibition thesis; expected progression as norm and deviation from it; embodied vs designative meaning",
+      "disputes": "critics say Meyer over-weights expectation as the source of meaning, is culture-bound (unfamiliar styles seem to carry little meaning) and favours conscious processing"
+    },
+    {
+      "ref": "Lorraine, 'Music, tendencies, and inhibitions: reflections on a theory of Leonard Meyer' (PhilPapers record only; abstract not read)",
+      "url": "https://philpapers.org/rec/LORMTA",
+      "supports": "existence of philosophical critique of the tendency/inhibition account",
+      "disputes": "content not read"
+    }
+  ],
+  "ourUse": "Nothing. grep finds no 'meyer' in khora/native; the organ is marked '(proposed)'. The compendium entry credits him for a role no code plays.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "decorative-unimplemented",
+      "kind": "decorative",
+      "ours": "Entry assigns Meyer the role 'felt deviation of what arrives from what was learned' in pathos.js (proposed).",
+      "theirs": "No code uses it. This is a nomination of a source, not a use."
+    },
+    {
+      "id": "deviation-is-meaning",
+      "kind": "narrowed",
+      "ours": "'Deviation from what was learned is where meaning arises.'",
+      "theirs": "Meaning for Meyer is expectation-based in general (fulfilment, delay and violation all carry it); emotion specifically comes from inhibition. 'Deviation = meaning' flattens that, and it was about music in a learned style, not about arbitrary arriving data."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Music theorist: emotion arises when a tendency to respond is inhibited; embodied meaning is one event making us expect another (1956). Proposed use only, not yet implemented; extending it from learned musical style to arbitrary data is our move.'",
+    "mark organ 'proposed, no code'"
+  ],
+  "schema": "ArchonDossier@1",
+  "tokenized": false
+}

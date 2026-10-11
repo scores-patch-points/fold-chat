@@ -1,0 +1,140 @@
+{
+ "follow": {
+  "n": 45,
+  "ok": 29,
+  "acc": 0.644,
+  "ci": [
+   0.5,
+   0.77
+  ]
+ },
+ "switch": {
+  "n": 49,
+  "ok": 35,
+  "acc": 0.714,
+  "ci": [
+   0.58,
+   0.82
+  ]
+ },
+ "hard": {
+  "n": 19,
+  "ok": 8,
+  "acc": 0.421,
+  "ci": [
+   0.23,
+   0.64
+  ]
+ },
+ "follow/en": {
+  "n": 31,
+  "ok": 29,
+  "acc": 0.935,
+  "ci": [
+   0.79,
+   0.98
+  ]
+ },
+ "follow/es": {
+  "n": 7,
+  "ok": 0,
+  "acc": 0,
+  "ci": [
+   0,
+   0.35
+  ]
+ },
+ "follow/fr": {
+  "n": 7,
+  "ok": 0,
+  "acc": 0,
+  "ci": [
+   0,
+   0.35
+  ]
+ },
+ "switch/en": {
+  "n": 33,
+  "ok": 19,
+  "acc": 0.576,
+  "ci": [
+   0.41,
+   0.73
+  ]
+ },
+ "switch/es": {
+  "n": 8,
+  "ok": 8,
+  "acc": 1,
+  "ci": [
+   0.68,
+   1
+  ]
+ },
+ "switch/fr": {
+  "n": 8,
+  "ok": 8,
+  "acc": 1,
+  "ci": [
+   0.68,
+   1
+  ]
+ },
+ "switch/share": {
+  "n": 21,
+  "ok": 13,
+  "acc": 0.619,
+  "ci": [
+   0.41,
+   0.79
+  ]
+ },
+ "followRightReferent": {
+  "n": 29,
+  "ok": 29
+ },
+ "thread_mode_on_non_follow": []
+}
+
+FAILURES:
+  f006 follow/en expect=carry got kind=standalone mode=web q="What happened to him after Waterloo?"  ← "What happened to him after Waterloo?"
+  f018 follow/en expect=carry got kind=standalone mode=web q="and in 1911?"  ← "and in 1911?"
+  f032 follow/es expect=carry got kind=standalone mode=web q="¿Qué descubrió ella?"  ← "¿Qué descubrió ella?"
+  f033 follow/es expect=carry got kind=standalone mode=web q="háblame más"  ← "háblame más"
+  f034 follow/es expect=carry got kind=standalone mode=web q="¿y su marido?"  ← "¿y su marido?"
+  f035 follow/es expect=carry got kind=standalone mode=web q="¿por qué?"  ← "¿por qué?"
+  f036 follow/es expect=carry got kind=standalone mode=web q="¿y en 1911?"  ← "¿y en 1911?"
+  f037 follow/es expect=carry got kind=standalone mode=web q="¿qué le pasó después de Waterloo?"  ← "¿qué le pasó después de Waterloo?"
+  f038 follow/es expect=carry got kind=standalone mode=web q="¿quién la construyó?"  ← "¿quién la construyó?"
+  f039 follow/fr expect=carry got kind=standalone mode=web q="Qu'a-t-elle découvert ?"  ← "Qu'a-t-elle découvert ?"
+  f040 follow/fr expect=carry got kind=standalone mode=web q="dis-m'en plus"  ← "dis-m'en plus"
+  f041 follow/fr expect=carry got kind=standalone mode=web q="et son mari ?"  ← "et son mari ?"
+  f042 follow/fr expect=carry got kind=standalone mode=web q="pourquoi ?"  ← "pourquoi ?"
+  f043 follow/fr expect=carry got kind=standalone mode=web q="et en 1911 ?"  ← "et en 1911 ?"
+  f044 follow/fr expect=carry got kind=standalone mode=web q="Que lui est-il arrivé après Waterloo ?"  ← "Que lui est-il arrivé après Waterloo ?"
+  f045 follow/fr expect=carry got kind=standalone mode=web q="quand a-t-elle été construite ?"  ← "quand a-t-elle été construite ?"
+  s046 switch/en expect=none got kind=carried mode=web q="The Blue Room White House why is the sky blue"  ← "why is the sky blue"
+  s047 switch/en expect=none got kind=carried mode=web q="The Blue Room White House why is the sky blue"  ← "why is the sky blue"
+  s048 switch/en expect=none got kind=carried mode=web q="Denali President William McKinley why is the sky blue"  ← "why is the sky blue"
+  s050 switch/en expect=none got kind=carried mode=web q="Marie Curie Polish-French what is the boiling point of ethanol"  ← "what is the boiling point of ethanol"
+  s052 switch/en expect=none got kind=carried mode=web q="The Eiffel Tower Paris what is the tallest mountain on earth"  ← "what is the tallest mountain on earth"
+  s053 switch/en expect=none got kind=carried mode=web q="Chocolate chip cookie what is the best temperature to bake bread"  ← "what is the best temperature to bake bread"
+  s054 switch/en expect=none got kind=carried mode=web q="The Titanic April why is the ocean salty"  ← "why is the ocean salty"
+  s055 switch/en expect=none got kind=carried mode=web q="Napoleon Bonaparte French Revolution how do bats see in the dark"  ← "how do bats see in the dark"
+  s056 switch/en expect=none got kind=carried mode=web q="Neil Armstrong Apollo 11 how far is the moon from the earth"  ← "how far is the moon from the earth"
+  s058 switch/en expect=none got kind=carried mode=web q="Jupiter Ganymede how many planets are there"  ← "how many planets are there"
+  s060 switch/en expect=none got kind=carried mode=web q="Photosynthesis why do leaves change color in the fall"  ← "why do leaves change color in the fall"
+  s068 switch/en expect=none got kind=carried mode=web q="Ludwig van Beethoven German how many bones are in the human body"  ← "how many bones are in the human body"
+  s069 switch/en expect=none got kind=carried mode=web q="The Great Wall of China Ming what is the speed of light"  ← "what is the speed of light"
+  s078 switch/en expect=none got kind=carried mode=web q="Chocolate chip cookie what is the boiling point of water"  ← "what is the boiling point of water"
+  h095 hard/en expect=none got kind=carried mode=web q="Marie Curie Polish-French what is it like to be a bat"  ← "what is it like to be a bat"
+  h097 hard/en expect=none got kind=carried mode=web q="The Eiffel Tower Paris is it true that the earth is flat"  ← "is it true that the earth is flat"
+  h099 hard/en expect=carry got kind=standalone mode=web q="and Buzz Aldrin?"  ← "and Buzz Aldrin?"
+  h100 hard/en expect=carry got kind=standalone mode=web q="what about Saturn?"  ← "what about Saturn?"
+  h103 hard/en expect=carry got kind=standalone mode=web q="what is the difference between that and a hurricane"  ← "what is the difference between that and a hurricane"
+  h106 hard/en expect=none got kind=elliptical mode=web q="bigger sun moon jupiter"  ← "which is bigger, the sun or the moon"
+  h107 hard/en expect=none got kind=elliptical mode=web q="more cats sleep dogs chocolate chip cookie recipe"  ← "how much more do cats sleep than dogs"
+  h109 hard/en expect=none got kind=elliptical mode=web q="scary stay safe tornado"  ← "that is scary, how do I stay safe"
+  h110 hard/es expect=carry got kind=standalone mode=web q="¿cuándo murió?"  ← "¿cuándo murió?"
+  h111 hard/es expect=carry got kind=standalone mode=web q="¿cuánto cuesta visitarla?"  ← "¿cuánto cuesta visitarla?"
+  h112 hard/fr expect=carry got kind=standalone mode=web q="quand est-elle morte ?"  ← "quand est-elle morte ?"

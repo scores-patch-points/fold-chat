@@ -1,0 +1,411 @@
+{
+ "variant": "control",
+ "at": "2026-10-07T06:28:13.012Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The question of who invented the telephone is complex and has been debated historically.",
+   "shown": "The question of who invented the telephone is complex and has been debated historically.\n\nW\nen.wikipedia.org\nopen ↗\nTelephone - Wikipedia\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 3,
+     "kept": 1,
+     "dropped": 2,
+     "unsourced": 1
+    },
+    "dropped": [
+     {
+      "why": "attribution",
+      "detail": "according to",
+      "text": "According to and, the invention of the telephone is attributed to Alexander Graham Bell."
+     },
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "10",
+      "text": "also states that Bell made his first intelligible telephone call three days after 10 March 1876."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 14,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "pass",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The question of who invented the telephone is complex and has been debated historically.",
+    "calls": 3,
+    "verified": 1,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says:",
+      "rule": "index"
+     },
+     {
+      "kind": "quote",
+      "text": "“This controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.”",
+      "index": 3,
+      "start": 409,
+      "end": 554,
+      "host": "en.wikipedia.org"
+     }
+    ],
+    "pointers": [
+     {
+      "index": 3,
+      "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+      "host": "en.wikipedia.org",
+      "title": "History of the telephone",
+      "tier": "index",
+      "start": 409,
+      "end": 554
+     }
+    ],
+    "why": null
+   },
+   "nRaw": 6,
+   "searched": null,
+   "voidKind": "unsupported",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    },
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "In 1876, Alexander Graham Bell was the first to be granted a United States patent for a device that produced clearly intelligible replication of the human voice at a second device.\nCredit for the invention of the electric telephone is frequently disputed.\nCharles Bourseul, Antonio Meucci, Johann Philipp Reis, Alexander Graham Bell, and Elisha Gray, amongst others, have all been credited with the invention of the telephone.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\nIn 1876, shortly after Bell's patent application, Hungarian engineer Tivadar Puskás proposed the telephone switch, "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nCredit for the invention of the electric telephone is frequently disputed, and new controversies over the issue have arisen from time to time.\nSeveral other controversies also surround the question of priority of invention for the telephone.\nThe Canadian Parliamentary Motion on Alexander Graham Bell article reviews the controversial June 2002 United States House of Representatives resolution recognizing Meucci's contributions 'in' the invention of the telephone (not 'for' the invention of the telephone).\nBy 1880, the company had the right from the Bell Telephone Company to service all of Connecticut and western Massachu"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nBut can its creator, Alexander Graham Bell, truly lay claim to the title ‘inventor of the telephone’?\nAlexander Bell was born in Edinburgh on 3 March 1847.\nIn 1871 Bell moved to the United States.\nBell was granted the patent on 7 March 1876.\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nTo my delight he came and declared that he had heard and understood what I said.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nFor years following the award, Alexander Graham Bell had to defend it in expensive and protracted litigation batt"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "court cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nSupreme Court that upheld the priority of the patents belonging to Alexander Graham Bell.\nThose patents were used by the American Bell Telephone Company and the Bell System, although they had also acquired critical microphone patents from Emile Berliner.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nCo., 22 F. 309 and 25 F. 725.\nThe Court's decision in the Telephone Cases is no"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "Notable people included in this process were Antonio Meucci, Philipp Reis, Elisha Gray and Alexander Graham Bell.\nCharles Bourseul was a French telegraph engineer who proposed (but did not build) the first design of a \"make-and-break\" telephone in 1854.\nThat is about the same time that Meucci later claimed to have created his first attempt at the telephone in Italy.\nThe Meucci resolution by the US Congress was promptly followed by a Canada legislative motion by Canada's 37th Parliament, declaring Alexander Graham Bell as the inventor of the telephone.\nA retired director general of the Telecom Italia central telecommunications research institute (CSELT), Basilio Catania, and the Italian Socie"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 29
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "unsupported",
+    "counts": {
+     "sentences": 1,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     },
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "wrote the answer · local",
+    "scaffolding · 3 source label(s) removed from the model's text, 2 shown as citations",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframed · went back 1 lap · 0 more source(s) read · 0 sentence(s) restated · every sentence holds",
+    "void · ⟂ void — read 6 source(s) — Telephone - Wikipedia; History of the telephone - Wikipedia; Did Alexander Graham Bell invent the telephone? | National Museums Scotland; Telephone - Wikipedia — none established the claim; the search itself may have missed; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: the model could not be reached (a network error).\nmissing: the model's draft of the essay\nWHAT THE TURN HAD\nTelephone - Wikipedia · en.wikipedia.org — about the topic\nHistory of the telephone - Wikipedia · en.wikipedia.org — about the topic\nDid Alexander Graham Bell invent the telephone? | National Museums Scotland · nms.ac.uk — about the topic\nshow what the sources say about invented telephone (their own words, not an essay)\nto close it: try again · check that the Fold's server is running (npm run serve), or load the in-tab model\ntry again\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/Bell_Telephone_Company",
+    "en.wikipedia.org/wiki/Timeline_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "write essay invented telephone",
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nFor a few years in the late 1800s, acoustic telephones were marketed commercially as a competitor to the electrical telephone.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nBy 21 February 1878, however, whe"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/Bell_Telephone_Company",
+    "https://en.wikipedia.org/wiki/Timeline_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "invented telephone",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "invented telephone",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "network",
+    "outputType": "essay",
+    "topic": "invented telephone",
+    "missing": [
+     "the model's draft of the essay"
+    ],
+    "had": [
+     {
+      "kind": "page",
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+      "note": "about the topic"
+     }
+    ],
+    "setAside": [],
+    "unblock": [
+     "try again",
+     "check that the Fold's server is running (npm run serve), or load the in-tab model"
+    ],
+    "note": "I can't write the essay: the model could not be reached (a network error).",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "closeBy": [
+     "try again",
+     "check that the Fold's server is running (npm run serve), or load the in-tab model"
+    ],
+    "question": "write me an essay on this",
+    "retry": true,
+    "offer": {
+     "act": "show-sources",
+     "n": 3,
+     "label": "show what the sources say about invented telephone (their own words, not an essay)"
+    }
+   },
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 3 source(s)",
+    "no model call · this kind of turn has no source, and the model never speaks alone",
+    "followed the conversation · elliptical · searched “write essay invented telephone”",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: the model could not be reached (a network error). Missing: the model's draft of the essay. To close it: try again, or check that the Fold's server is running (npm run serve), or load the in-tab model."
+   ]
+  }
+ ]
+}

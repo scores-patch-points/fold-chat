@@ -1,0 +1,52 @@
+{
+  "organ": "khora/native/kernel/temporal-reference.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/partee.json"
+  ],
+  "whatTheyArgued": "Partee (1973, J. Philosophy 70(18):601-609) argued, by a series of parallels, that English tenses behave like pronouns: they can be used deictically, can corefer anaphorically with an earlier time, and can be bound by an antecedent or quantifier. The stove example ('I didn't turn off the stove') is hers: the past tense refers to a particular past time, not an existential claim about some past time. Her 1984 paper 'Nominal and Temporal Anaphora' (Linguistics and Philosophy) is where narrative progression of the reference time is treated; I did not read either paper, only a secondary summary.",
+  "scholarship": [
+    {
+      "ref": "Search-result summary of Partee 1973 and later literature (Semantics & Pragmatics 10 (2017) note; Bittner, 'Tense as temporal centering'); I read excerpts via search, not the full papers.",
+      "url": "https://semprag.org/index.php/sp/article/download/sp.10.2n/pdf/9357",
+      "supports": "1973 paper motivates a pronominal analysis through interpretive parallels: contextual/deictic reference, coreference, binding",
+      "disputes": "Whether the anaphoric reference point is a time (Reichenbach, Partee, Stone) or an event (Kamp, Webber) is divided in the literature; Bittner argues for a centering analysis"
+    }
+  ],
+  "ourUse": "temporal-reference.js individuates a time as a referent and keeps a current reference ground that narrative acts advance; a bare past tense resolves to it. The header says it follows 'Tense, Aspect and Anaphora'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "narrowed-to-anaphora",
+      "kind": "narrowed",
+      "ours": "Compendium: 'tense is anaphora ... its reference fixed by the discourse's own now'.",
+      "theirs": "The 1973 claim is broader and more hedged: tense patterns with pronouns in three uses (deictic, anaphoric, bound). Deictic use, anchored to the speech time, is part of her account, so 'not the utterance moment' overstates it."
+    },
+    {
+      "id": "narrative-advance",
+      "kind": "re-scoped",
+      "ours": "Header: narrative advances the reference ground, credited under Handle: Partee.",
+      "theirs": "Advancing reference time through narrative is the programme of Partee 1984 and Kamp/Hinrichs/Webber work; the 1973 paper the compendium cites as source does not develop it. I could not verify what each paper contains."
+    },
+    {
+      "id": "title-mismatch",
+      "kind": "misstated",
+      "ours": "Handle line cites Partee's 'Tense, Aspect and Anaphora'.",
+      "theirs": "I found no Partee paper of that title; her papers are 1973 (Tenses and Pronouns) and 1984 (Nominal and Temporal Anaphora). The manifest names those two."
+    },
+    {
+      "id": "time-vs-event",
+      "kind": "reinterpreted",
+      "ours": "Reference ground is a time-referent individuated as an entity (INS Figure) and also a situation atmosphere.",
+      "theirs": "Partee's reference is a time; whether it should be an event is the live dispute and we pick a side by cube cell without saying so."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Barbara Partee (1973) argued English tenses pattern with pronouns: deictic, anaphoric to an earlier time, or bound. Her 1984 paper extends this to narrative progression. temporal-reference.js implements a discourse reference time that narrative advances.'",
+    "temporal-reference.js header: replace 'Tense, Aspect and Anaphora' with the real titles; mark narrative advance as 1984 and later work.",
+    "note in the organ that the time-versus-event choice is disputed."
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "partee",
+  "tokenized": false
+}

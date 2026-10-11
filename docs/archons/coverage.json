@@ -1,0 +1,583 @@
+[
+ {
+  "handle": "solon",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "sima",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "bukhari",
+  "pd": "public-domain",
+  "snips": 2,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "wigmore",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "khaldun",
+  "pd": "public-domain",
+  "snips": 2,
+  "statuses": "verified_local_archive_pending",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "yadayadayada",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "mozi",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "output-claims",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "output-order",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "output-voice",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "dai",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "nadim",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified_local_archive_pending",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "kahanamoku",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "houdini",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "dignaga",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "liu-hui",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "nagarjuna",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "tungara",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "thymus",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "panini",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "mahavira",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "jaimini",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "bharata",
+  "pd": "public-domain",
+  "snips": 2,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "meerkat",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "arokin",
+  "pd": "reserved",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "terry-gross",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "eastwood",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "kubrick",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "murch",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "abhinavagupta",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified_local_archive_pending",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "meyer",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "shklovsky",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "clark",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "roberts",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "frege",
+  "pd": "received-classic",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "zhengming",
+  "pd": "received-classic",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "scheherazade",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "partee",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "gebser",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "chomsky",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "sullivan",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "tadoma",
+  "pd": "conceptual",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "synapse",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "atta",
+  "pd": "conceptual",
+  "snips": 3,
+  "statuses": "copyrighted_deferred|verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "ise",
+  "pd": "conceptual",
+  "snips": 3,
+  "statuses": "verified|verified_local_archive_pending",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "sockeye",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "tala",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "vasana",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "brahmagupta",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "berge",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "tarski",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "kanada",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "shizhen",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "xunzi",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "xushen",
+  "pd": "public-domain",
+  "snips": 2,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "koopman",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "rubin",
+  "pd": "nomination",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "polanyi",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "itti-baldi",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "hubel",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "alhazen",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified_local_archive_pending",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "thrax",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "platanista",
+  "pd": "conceptual",
+  "snips": 1,
+  "statuses": "not_found",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "brillat-savarin",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "strunk-white",
+  "pd": "public-domain",
+  "snips": 1,
+  "statuses": "verified",
+  "primarySourceOnDisk": true
+ },
+ {
+  "handle": "vonnegut",
+  "pd": "fair-use",
+  "snips": 2,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "koestler",
+  "pd": "fair-use",
+  "snips": 1,
+  "statuses": "copyrighted_deferred",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "output-holograph",
+  "pd": "nomination",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "brandeis",
+  "pd": "public-domain",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "martial",
+  "pd": "public-domain",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "saltzer",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "popper",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "goffman",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "ulysses",
+  "pd": "public-domain",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "levinas",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "buber",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "kierkegaard",
+  "pd": "public-domain",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "bourdieu",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "mayeroff",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "ubuntu",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "ostrom",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "tschichold",
+  "pd": "fair-use",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ },
+ {
+  "handle": "kleeneUp",
+  "pd": "public-domain",
+  "snips": 0,
+  "statuses": "",
+  "primarySourceOnDisk": false
+ }
+]

@@ -1,0 +1,360 @@
+{
+ "set": "held",
+ "byType": {
+  "figure": {
+   "n": 24,
+   "contains": 19,
+   "strandContains": 13,
+   "gap": 1,
+   "precisionMedian": 0.7201863354037268,
+   "strandPrecisionMedian": 0.004923052773874368
+  },
+  "date": {
+   "n": 15,
+   "contains": 10,
+   "strandContains": 12,
+   "gap": 2,
+   "precisionMedian": 0.23076923076923078,
+   "strandPrecisionMedian": 0.02378048780487805
+  },
+  "name": {
+   "n": 8,
+   "contains": 5,
+   "strandContains": 6,
+   "gap": 1,
+   "precisionMedian": 0.39307175680452455,
+   "strandPrecisionMedian": 0.027249320832743628
+  },
+  "place": {
+   "n": 6,
+   "contains": 5,
+   "strandContains": 4,
+   "gap": 0,
+   "precisionMedian": 0.9793436293436294,
+   "strandPrecisionMedian": 0.01984698744767953
+  },
+  "definition": {
+   "n": 7,
+   "contains": 7,
+   "strandContains": 7,
+   "gap": 0,
+   "precisionMedian": 0.992,
+   "strandPrecisionMedian": 0.08244680851063829
+  },
+  "list": {
+   "n": 2,
+   "contains": 2,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.9904970760233918,
+   "strandPrecisionMedian": 0.025985937022317333
+  },
+  "reason": {
+   "n": 4,
+   "contains": 4,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.99077851436342,
+   "strandPrecisionMedian": 0
+  },
+  "yesno": {
+   "n": 4,
+   "contains": 4,
+   "strandContains": 4,
+   "gap": 0,
+   "precisionMedian": 0.4695767195767196,
+   "strandPrecisionMedian": 0.03267633279464729
+  },
+  "unanswerable": {
+   "n": 16,
+   "gap": 14,
+   "strandShipped": 16
+  }
+ },
+ "byLang": {
+  "en": {
+   "n": 76,
+   "outcomes": [
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "gap",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "gap",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "WRONG",
+    "gap",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "gap-ok",
+    "gap-ok",
+    "WRONG-SPAN",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "WRONG-SPAN",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok"
+   ]
+  },
+  "es": {
+   "n": 2,
+   "outcomes": [
+    "WRONG",
+    "contains"
+   ]
+  },
+  "fr": {
+   "n": 2,
+   "outcomes": [
+    "contains",
+    "WRONG"
+   ]
+  },
+  "ru": {
+   "n": 4,
+   "outcomes": [
+    "WRONG",
+    "contains",
+    "WRONG",
+    "contains"
+   ]
+  },
+  "zh": {
+   "n": 2,
+   "outcomes": [
+    "gap",
+    "contains"
+   ]
+  },
+  "de": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  },
+  "pt": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  },
+  "ja": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  }
+ },
+ "misses": [
+  {
+   "id": "h05",
+   "q": "What is the average distance from the Earth to the Moon?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "The Moon is spiraling away from Earth at an average rate of 3.8 cm (1.5 in) per year, as detected by the Lunar Laser Ranging experiment.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h06",
+   "q": "How much did the Statue of Unity cost to build?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h13",
+   "q": "How fast is the speed of light?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "The speed of light is approximately 186282 miles per second.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h15",
+   "q": "When was Super Bowl LIX played?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h21",
+   "q": "When did the Apollo missions begin landing on the Moon?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "And the first crewed mission to land on the Moon was Apollo 11 in 1969.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h27",
+   "q": "Who created Python?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Serving as a NOP (i.e., no operation), which is syntactically needed to create an empty code block.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h29",
+   "q": "Who founded Rome?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "While Roman mythology dates the founding of Rome at around 753 BC.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h30",
+   "q": "Who planned to kidnap Lincoln?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "h35",
+   "q": "Where is Heathrow Airport located?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "One of those lounges is the British Airways Arrivals Lounge, which is located land-side.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "n01",
+   "q": "¿Cuándo cayó el Muro de Berlín?",
+   "class": "wrong page (a distractor passage supplied the span)",
+   "shipped": "El Muro de Berlín cayó en la noche del jueves 9 al viernes 10 de noviembre de 1989.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "n04",
+   "q": "Quand a eu lieu la chute du mur de Berlin ?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "En 1987, plus de 5 millions de visites ont eu lieu en RFA et à Berlin-Ouest.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "n05",
+   "q": "Какова высота Эйфелевой башни?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Сам Эйфель называл её просто «300-метровая башня» (tour de 300 mètres).",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "n07",
+   "q": "柏林墙是哪一年倒塌的？",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "n09",
+   "q": "Какая высота у Эйфелевой башни?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Конкурс объявили в 1886 году с условием построить на Марсовом поле железную башню высотой 300 метров.",
+   "keyOnPrimary": true
+  }
+ ],
+ "imperfect": {
+  "pronounUnresolved": [
+   "h01",
+   "h09",
+   "h12",
+   "h20"
+  ],
+  "noSubject": [
+   "h01",
+   "h37",
+   "h55",
+   "h56"
+  ],
+  "overWide": [
+   "h04",
+   "h12",
+   "h16",
+   "h19",
+   "h22",
+   "h25",
+   "h28",
+   "h39",
+   "h51",
+   "h52",
+   "h54",
+   "h55",
+   "h56",
+   "n06"
+  ],
+  "fragment": [
+   "h17"
+  ]
+ },
+ "counts": {
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)": [
+   "h05",
+   "h13",
+   "h21",
+   "h27",
+   "h29",
+   "h35",
+   "n04",
+   "n05",
+   "n09"
+  ],
+  "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)": [
+   "h06",
+   "h15",
+   "h30",
+   "n07"
+  ],
+  "wrong page (a distractor passage supplied the span)": [
+   "n01"
+  ]
+ }
+}

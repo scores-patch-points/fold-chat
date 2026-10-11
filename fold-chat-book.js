@@ -19,6 +19,20 @@ const SHELF = [
 ];
 export const bookFor = (q) => SHELF.find((b) => b.match.test(String(q || ""))) || null;
 
+// A BOOK ASK: the person named a book the fold holds WHOLE. `content` is true when the ask asks for what is IN it —
+// read it, summarize it, the plot, the story, what happens, the themes — in which case the fold reads it and narrates.
+// A bare mention ("war and peace?") is not yet a content ask: the fold offers the two ways it could go.
+const CONTENT_ASK_RE = /\b(read|summari[sz]e|summary|synopsis|recap|tl;?dr|gist|plot|story|premise|theme|themes|character|characters|protagonist|what happens|what happened|explain|describe|tell me|analyse|analyze|analys|review|overview|walk me|spoil|beginning|ending|moral)\b/i;
+export function bookAsk(question) {
+  const book = bookFor(question);
+  if (!book) return null;
+  return { book, content: CONTENT_ASK_RE.test(deaccent(String(question || ""))) };
+}
+/** What the fold says when it could either read the book or search the web for what people say — its own words. */
+export function bookOffer(book) {
+  return `I hold the whole text of ${book.title} by ${book.author}, so I can read it and tell you what happens, or search online and see what people say about it. Which would you like?`;
+}
+
 const deaccent = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 const TITLES = new Set(["prince", "princess", "count", "countess", "lord", "lady", "sir", "madame", "monsieur", "mademoiselle", "general", "emperor", "tsar", "king", "queen"]);
 const STOP = new Set("the and but for with from that this what when where which who whom whose why how explain tell about plot story give show describe summary summarize analysis analyse analyze perspective point view eyes voice told book novel chapter war peace into onto their there they them then than through also just only very more most".split(" "));
@@ -40,7 +54,8 @@ export async function load(book, { fetchImpl = fetch } = {}) {
   return p;
 }
 
-/** Book / Chapter / paragraph, each paragraph with its character offsets in the raw text. */
+/** Book / Chapter / paragraph, each paragraph with its character offsets in the raw text.
+ *  `text` is the raw text itself, kept for the mechanical fold (fold-chat-bookfold.js). */
 export function parse(raw) {
   const text = String(raw);
   const paras = [];
@@ -59,7 +74,7 @@ export function parse(raw) {
   };
   while ((m = re.exec(text))) { push(at, m.index); at = m.index + m[0].length; }
   push(at, text.length);
-  return { chars: text.length, paras, chapters: new Set(paras.map((p) => p.bookN + ":" + p.chapN)).size };
+  return { chars: text.length, paras, chapters: new Set(paras.map((p) => p.bookN + ":" + p.chapN)).size, text };
 }
 
 /** The people an ask names, read off the book: words of the ask the book writes capitalized, often. */

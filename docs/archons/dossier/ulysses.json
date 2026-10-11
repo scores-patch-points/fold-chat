@@ -1,0 +1,45 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "ulysses",
+  "organ": "khora/native/organs/ulysses.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/ulysses-sirens.json"
+  ],
+  "whatTheyArgued": "Odyssey 12 (Butler prose, read around the snip): Circe warns that the Sirens' song kills those who come near; the crew's ears are stopped with wax, and Odysseus MAY listen if bound to the mast, to be bound tighter if he begs release. At the song he longs to hear more and signals the crew to free him; they bind him harder. The Sirens promise knowledge ('wiser', they know all that happens). The snipped lines are the song's address to him.",
+  "scholarship": [
+    {
+      "ref": "Project Gutenberg #1727, Butler's Odyssey, book 12 (primary text, read in full around the passage)",
+      "url": "https://www.gutenberg.org/cache/epub/1727/pg1727.txt",
+      "supports": "Circe's instructions, crew with wax, Odysseus begging release, tighter binding, the Sirens' promise of knowledge",
+      "disputes": "none; translation not the Greek"
+    }
+  ],
+  "ourUse": "ulysses.js flags instruction-shaped text in ingested material and discloses it as a claim about the material, never obeyed. socratic.js quotes Greek line 'δεῦρ᾽ ἄγ᾽ ἰὼν πολύαιν᾽ Ὀδυσεῦ'. (Greek not on disk; Butler's English snip verifies the address, not the Greek wording.)",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "precommitment-vs-evidence-channel",
+      "kind": "reinterpreted",
+      "ours": "Mast = evidence/instruction channel separation; 'heard, not obeyed' as a rule for material.",
+      "theirs": "The mast is Odysseus' precommitment against his own future weakness of will; the Sirens are not an instruction channel and he wants to obey. The story is about self-binding, not about classifying inputs."
+    },
+    {
+      "id": "not-disobedience",
+      "kind": "misstated",
+      "ours": "'The song is heard, obeying it was never the point.' / 'does not obey it' as Odysseus' discipline.",
+      "theirs": "Odysseus strains to obey and is stopped by the crew, who do not hear it at all. His restraint is external; the discipline belongs to the crew (wax, tighter ropes)."
+    },
+    {
+      "id": "song-as-knowledge",
+      "kind": "narrowed",
+      "ours": "The song is a temptation/attack and 'evidence of the attempt'.",
+      "theirs": "The Sirens' lure is knowledge ('wiser', all that happens); they are tempting by information, not by command."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'In Odyssey 12, Circe has Odysseus bound to the mast so he can hear the Sirens and still not steer to them; the crew, ears stopped, bind him tighter when he begs release. The binding is precommitment, not an evidence/instruction distinction; the evidence-never-instruction rule is ours, using the scene as an image.' Credit: 'Ulysses — hear the song, be bound against it (Odyssey 12).'",
+    "socratic.js: fetch/verify the Greek line before quoting it as Homer's wording (no Greek text on disk)."
+  ]
+}

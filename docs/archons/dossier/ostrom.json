@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "ostrom",
+  "organ": "khora/native/organs/provenance-cover.js, skill-enrich.js, skill-toggles.js, skill-usage.js (compendium names organs/ethos.js, which does not mention her)",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/ostrom.json"
+  ],
+  "whatTheyArgued": "In Governing the Commons (1990), from long-enduring cases (Swiss alpine meadows, Japanese mountain commons, Spanish huertas, Philippine zanjeras and others), Ostrom argued that users can sustain common-pool resources through self-made, self-monitored institutions, neither by state regulation nor privatization alone. Having failed to find specific rules common to all successes, she proposed eight general design principles that characterise long-surviving systems. Cox, Arnold and Villamayor Tomas (112-study meta-analysis) report that she tried unsuccessfully to find consistent rule sets, that the principles are general attributes, not specific rules, and that a probabilistic reading is warranted. The principles are descriptive of what correlates with durability, not a recipe.",
+  "scholarship": [
+    {
+      "ref": "Cox, Arnold, Villamayor Tomas, 'Design Principles are not Blue Prints, but are They Robust? A Meta-analysis of 112 Studies' (Lincoln Institute working paper, 2009); abstract read in full, body not extractable",
+      "url": "https://www.lincolninst.edu/app/uploads/legacy-files/pubfiles/1707_925_Cox%20Final.pdf",
+      "supports": "principles are general, not specific rules; the cited context of self-organisation vs government/private imposition; robust against empirical studies but best read probabilistically",
+      "disputes": "most trenchant critiques are theoretical; open question whether principles apply at other scales; interaction effects with group size, heterogeneity, regime"
+    },
+    {
+      "ref": "Search-result summaries (Dartmouth SESMAD, Agrarian Trust, others) for the list of eight principles",
+      "url": "https://sesmad.dartmouth.edu/theories/54",
+      "supports": "the list: boundaries, proportional equivalence of costs and benefits, collective choice, monitoring, graduated sanctions, conflict resolution, minimal recognition of rights, nested enterprises (seen only as snippets; some lists vary in wording)",
+      "disputes": "critiques: structural attributes without process (trust, legitimacy); overgeneralisation from cultural context; extension beyond the kinds of systems she studied"
+    }
+  ],
+  "ourUse": "provenance-cover.js: an artifact is a commons; every element must account for its source (boundaries clear, uses visible). skill-enrich.js/skill-toggles.js/skill-usage.js: 'Ostrom's principles as attributes' (authority, fit, monitoring, sanctions, resolution, nesting), graduated toggles (principle 5), usage records as the monitoring record (principle 4). The compendium additionally frames her as archon of ethos 'read as an enabling capacity' and says 'a harm is self-defeating because it draws down the commons'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "commons-metaphor",
+      "kind": "reinterpreted",
+      "ours": "Text, artifacts and skills are treated as commons whose 'uses' must be accounted for.",
+      "theirs": "Ostrom's commons are common-pool resources (rivalrous, hard to exclude from) governed by identifiable user groups; provenance of words is an analogy, and the group-governance part (users make and enforce the rules) is absent when one developer sets toggles."
+    },
+    {
+      "id": "principles-as-checklist",
+      "kind": "narrowed",
+      "ours": "Principles become attributes a skill can be scored on.",
+      "theirs": "They characterise whole institutions, interact with each other, and are probabilistic (Cox et al); a per-item attribute is not what she tested."
+    },
+    {
+      "id": "harm-self-defeating",
+      "kind": "invented-attribution",
+      "ours": "Compendium: 'a harm is not banned but self-defeating because it draws down the commons the harmer's next act stands on'.",
+      "theirs": "Not an Ostrom argument as read here. She does describe free-riding and sanctions, but graduated sanctions are an applied rule enforced by users, which contradicts 'not banned'. This sentence is ours."
+    },
+    {
+      "id": "wrong-organ",
+      "kind": "misstated",
+      "ours": "Compendium organ field says organs/ethos.js.",
+      "theirs": "ethos.js contains no mention of Ostrom or commons; actual uses are provenance-cover.js and the skill-* organs. The 'dormant eoreader5 social/commons.js' claim lives at eochat/vendor/eoreader5/packages/engine/social/commons.js, not checked in detail."
+    }
+  ],
+  "fix": [
+    "compendium organ: 'organs/provenance-cover.js; organs/skill-*.js'",
+    "compendium work: drop the 'harm is self-defeating' and 'earns its authority' sentences or label them ours; state that the code uses her principles by analogy as attributes",
+    "provenance-cover.js header: 'treats an artifact as a commons by analogy (Ostrom studied common-pool resources governed by their users)'"
+  ],
+  "tokenized": false
+}

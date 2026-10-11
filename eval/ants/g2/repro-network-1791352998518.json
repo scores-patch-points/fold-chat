@@ -1,0 +1,323 @@
+{
+ "variant": "network",
+ "at": "2026-10-07T06:00:50.893Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The question of who invented the telephone is a complex one. The sources give many details about different inventors and their contributions.\n\nAlexander Graham Bell later patented his version of the telephone.\n\nThe controversy surrounding the invention of the telephone was explored in the \"Elisha Gray and Alexander Bell telephone controversy\". This controversy asked whether Bell and Gray independently invented the telephone, or if Bell stole the invention from Gray.",
+   "shown": "The question of who invented the telephone is a complex one. The sources give many details about different inventors and their contributions.\n\nAlexander Graham Bell later patented his version of the telephone.\n\nThe controversy surrounding the invention of the telephone was explored in the \"Elisha Gray and Alexander Bell telephone controversy\". This controversy asked whether Bell and Gray independently invented the telephone, or if Bell stole the invention from Gray.\n\nW\nWikipedia\nopen ↗\nTelephone\n309 and 25 F. Who Invented the Telephone?: Lawyers, Patents, and the Judgments of History, Technology and Culture, Vol.\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 6,
+     "kept": 5,
+     "dropped": 1,
+     "unsourced": 5
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "1861",
+      "text": "For example, Johann Philipp Reis constructed the first speech-transmitting telephone in 1861."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.29,
+      "mean": 14,
+      "blinks": 0,
+      "dense": 2,
+      "n": 5
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The question of who invented the telephone is a complex one.",
+    "calls": 1,
+    "verified": 1,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I found this on Wikipedia, which I treat as a pointer rather than a source, and I could not reach a primary page that says it, so treat it as unconfirmed. It says:",
+      "rule": "index"
+     },
+     {
+      "kind": "quote",
+      "text": "“This controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.”",
+      "index": 1,
+      "start": 409,
+      "end": 554,
+      "host": "en.wikipedia.org"
+     }
+    ],
+    "pointers": [
+     {
+      "index": 1,
+      "ref": "Wikipedia — History of the telephone",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+      "host": "en.wikipedia.org",
+      "title": "History of the telephone",
+      "tier": "index",
+      "start": 409,
+      "end": 554
+     }
+    ],
+    "why": null
+   },
+   "nRaw": 3,
+   "searched": null,
+   "voidKind": "unsupported",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "The Telephone Cases, 126 U.S.\ncourt cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nIn all, the American Bell Telephone Company and its successor, AT&T, litigated 587 court challenges to its patents, including five that went t"
+    },
+    {
+     "ref": "Wikipedia — Telephone",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "This instrument was further developed by many others, and became rapidly indispensable in business, government, and in households.\nAs with other influential inventions such as radio, television, the light bulb, and the computer, several inventors pioneered experimental work on voice transmission over a wire and improved on each other's ideas.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\nSome used a water microphone, some had a metal diaphragm that induced current in an electromagnet wound around a permanent magnet, and some were dynamic – their diaphragm vibrated a coil of wire in the field of a permanent magnet or the coi"
+    },
+    {
+     "ref": "Wikipedia — History of the telephone",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "When the Bell telephone patents expired and many new telephone manufacturers began competing, acoustic telephone makers quickly went out of business.\nIn 1804, Spanish polymath and scientist Francisco Salva Campillo constructed an electrochemical telegraph.\nAlthough telephonic devices were in use before the invention of the telephone exchange, their success and economical operation would have been impossible with the schema and structure of the contemporary telegraph systems.\nHowever it was withdrawn in 1973 in order to demolish the building and construct a parking garage.\nPatent 161,739 \"Transmitters and Receivers for Electric Telegraphs\" is granted.\n12 November 1877: The first commercial te"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "court cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nCo., 32 F. 214, and\nCo., 22 F. 309 and 25 F. 725.\nWho Invented the Telephone?: Lawyers, Patents, and the Judgments of History, Technology and Culture, Vol. 51, No. 4, October 2010, pp. 854–878, DOI: 10.1353/tech.2010.0038.\nLegat, Wilhelm von (1862) Litigation Series – Telephone Interferences: Edison Exhibits, which covers: (Reis, Ph"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "The invention of the telephone was the culmination of work done by many different people, and led to an array of lawsuits relating to the conflicting patent claims made by several individuals and numerous companies.\nThey claim that Meucci was the actual inventor of the telephone, and base their argument on reconstructed evidence.\nHe used to give his patients two conductors linked to 60 Bunsen batteries and ending with a cork.\nMeucci later claimed that he did not think about transmitting voice by using the principle of the telegraph \"make-and-break\" method, but he looked for a \"continuous\" solution that did not interrupt the electric current.\nReis' new invention was articulated in a lecture b"
+    },
+    {
+     "ref": "Wikipedia — Alexander Graham Bell",
+     "url": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+     "text": "He could decipher Visible Speech representing virtually every language, including Latin, Scottish Gaelic, and even Sanskrit, accurately reciting written tracts without any prior knowledge of their pronunciation.\nAt Boston University, Bell was \"swept up\" by the excitement engendered by the many scientists and inventors living in the city."
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "q": "who invented the telephone?",
+     "ok": false,
+     "why": "Web search answered 502"
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 29
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web down: a plain factual ask may still read the encyclopedia"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "web",
+     "q": "sources give details different inventors contributions.",
+     "ok": false,
+     "why": "Web search answered 502"
+    }
+   ],
+   "voidFull": {
+    "kind": "unsupported",
+    "counts": {
+     "sentences": 5,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "The Telephone Cases",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases"
+     },
+     {
+      "title": "Telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "The Telephone Cases",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "searched the web · read 8 source(s)",
+    "wrote the answer · local",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframed · went back 1 lap · 0 more source(s) read · 0 sentence(s) restated · 1 still failing, marked",
+    "void · ⟂ void — read 6 source(s) — Telephone; History of the telephone; The Telephone Cases; Telephone — none established the claim; the search itself may have missed; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: no source about “Alexander Graham Bell and Elisha Gray” could be read.\nmissing: sources about “Alexander Graham Bell and Elisha Gray”\nto close it: try again · name “Alexander Graham Bell and Elisha Gray” more specifically · attach text you want it based on\ntry again\nread as\nRead your question as being about Alexander Graham Bell and Elisha Gray.\nnot Alexander Graham Bell\nnot Elisha Gray\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Alexander Graham Bell and Elisha Gray."
+    }
+   ],
+   "reads": [],
+   "read": 0,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "Alexander Graham Bell Elisha Gray write me an essay on this",
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": [],
+   "trace": [
+    {
+     "scope": "web",
+     "q": "Alexander Graham Bell and Elisha Gray",
+     "ok": false,
+     "why": "Web search answered 502"
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything"
+     }
+    }
+   ],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "no-sources",
+    "outputType": "essay",
+    "topic": "Alexander Graham Bell and Elisha Gray",
+    "missing": [
+     "sources about “Alexander Graham Bell and Elisha Gray”"
+    ],
+    "had": [],
+    "setAside": [],
+    "unblock": [
+     "try again",
+     "name “Alexander Graham Bell and Elisha Gray” more specifically",
+     "attach text you want it based on"
+    ],
+    "note": "I can't write the essay: no source about “Alexander Graham Bell and Elisha Gray” could be read.",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [],
+    "closeBy": [
+     "try again",
+     "name “Alexander Graham Bell and Elisha Gray” more specifically",
+     "attach text you want it based on"
+    ],
+    "question": "write me an essay on this",
+    "retry": true
+   },
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · nothing readable",
+    "no model call · no source was reached — the model never speaks alone",
+    "followed the conversation · carried · searched “Alexander Graham Bell Elisha Gray write me an essay on this”",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: no source about “Alexander Graham Bell and Elisha Gray” could be read. Missing: sources about “Alexander Graham Bell and Elisha Gray”. To close it: try again, or name “Alexander Graham Bell and Elisha Gray” more specifically, or attach text you want it based on."
+   ]
+  }
+ ]
+}

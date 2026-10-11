@@ -1,0 +1,25 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "khaldun",
+  "organ": "khora/native/organs/witness-sentences.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/khaldun-witness-sentences.json", "eo-teachings/manifest/ibn-khaldun-voices.json"],
+  "whatTheyArgued": "Muqaddimah, Introduction (Arabic, read in the original, Arabic Wikisource digitization; archive.org copy still pending per manifest). Snip 1: reports relied on through bare transmission, without applying the rules of custom, the principles of politics, the nature of civilization and the conditions of human social life, and without measuring the absent by the present, are liable to slip and depart from truth. Snip 2: historians, exegetes and transmitters fell into errors by trusting transmission 'lean or fat', without testing reports against their principles, their likenesses, or the standard of wisdom and the natures of things. So the test is external plausibility measured against how societies actually work, offered as a corrective to judging reports only by the standing of transmitters. A common illustration (from secondary summary) is his doubt about huge army figures.",
+  "scholarship": [
+    { "ref": "Search-result summaries: Al-Salam Institute on the Muqaddimah; 'Historical Criticism and Causality ... Ibn Khaldun's Perspective' (listing only; ResearchGate page returned 403 and IEP/SEP URLs 404, so no scholarship page was opened)", "url": "https://alsalam.ac.uk/the-muqaddimah-of-ibn-khaldun/", "supports": "he criticized acceptance of reports by the status of the reporter and demanded plausibility tests grounded in knowledge of civilization, e.g. questioning an army of 600,000", "disputes": "not verified; whether this is early sociology, philosophy of history or an extension of hadith-style criticism is debated in the literature (not read)" }
+  ],
+  "ourUse": "witness-sentences.js asks a small model whether any passage the answer was drafted from STATES each answer sentence, selecting a mechanically gathered stating sentence; verdicts states / refused / skipped; a refusal marks, never convicts.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "plausibility-to-support", "kind": "re-scoped", "ours": "The check is whether a given passage states the sentence (source support).", "theirs": "His check is whether the report is plausible given custom, politics and the nature of society, independently of any passage; the code contains no plausibility test (grep finds none)." },
+    { "id": "nature-of-things-compressed", "kind": "narrowed", "ours": "compendium: 'check it against the nature of things — the regular course of human affairs'.", "theirs": "The snip names several measures: custom, principles of politics, nature of civilization, social conditions, and comparing absent with present. 'Nature of things' (tabai' al-kainat) comes from the second snip and is a broader wording." },
+    { "id": "speaks-block", "kind": "misstated", "ours": "header: 'I believe this commitment should be absolute, and I strive to ensure this file's implementation reflects that', under 'Khaldun speaks'.", "theirs": "Generated first person; Khaldun did not say it, and 'absolute' is the opposite of his hedged 'liable to error'." },
+    { "id": "yada-owns-domain", "kind": "reinterpreted", "ours": "Header reassigns the organ to the paraphrase domain owned by YadaYadaYada.", "theirs": "Nothing in the snips is about paraphrase; the handle is kept for a function his argument does not describe." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Author of the Muqaddimah. He argued that a report accepted on transmission alone is liable to error and should be tested against custom and the nature of social life. This organ does a narrower thing: it asks whether the answer's own source passages state each sentence; it does not test plausibility.'",
+    "witness-sentences.js header: say 'Handle: Khaldun - namesake for refusing to admit a report on transmission alone; the check here is source support, not his plausibility test' and drop or mark the first-person paragraph.",
+    "gap: open a scholarly source on Ibn Khaldun's method (IEP/SEP were not reachable) and complete archive.org capture of the Arabic text."
+  ]
+}

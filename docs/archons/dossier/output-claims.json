@@ -1,0 +1,20 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "output-claims",
+  "organ": "khora/native/organs/output-claims.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "No author's work is claimed for the organ itself. But the entry's credit line and work text assign three derived forms to named thinkers: the hypothetical (ground/consequence) to Nagarjuna, the sequence to Partee, the testimony register to Terry Gross. The organ header gives different sources for the same ideas: Kant's hypothetical judgment, Kant's pure intuition of time (form of inner sense). Read in scholarship: Kant's table puts the hypothetical judgment under Relation (SEP, Kant's Philosophy of Judgment, read) and time as the form of inner sense; Nagarjuna's Mulamadhyamakakarika argues that causes and effects are mutually dependent and lack inherent nature, examining four alternatives of production (SEP, Nagarjuna, read; the entry does not describe a ground/consequence logical form); Partee (1973) is in the compendium as 'tense is anaphora' (SEP Tense and Aspect was read and does not discuss her, so I could not verify it there); Terry Gross is credited in the compendium as an interviewer who draws a guest out, not as a theorist of testimony.",
+  "scholarship": [],
+  "ourUse": "output-claims.js reads a sentence's own connectives (because/if/then/said) per language and emits a derived form (hypothetical), a sequence, or a testimony register, with the material's own image; languages without a registered image set return a typed gap.",
+  "verdict": "partial",
+  "bends": [],
+  "noBendReason": "As a nomination, 'output-claims' is our name for a seam and claims no author's work; the table of forms is the project's design. The check for smuggled authority found it does smuggle some in the credit line, which is why the verdict is partial, not justified: (1) the credit line attributes the hypothetical form to Nagarjuna, but the organ header attributes it to Kant's hypothetical judgment, and SEP's Nagarjuna entry describes his analysis of causation as a refutation of inherent causal power, not as a logical form of ground and consequence; (2) 'the sequence' is credited to Partee, but the organ header derives it from Kant's form of inner sense and Partee's published claim (as the compendium records it) is that tense behaves like a pronoun; (3) 'the testimony register ... a relation between persons' is credited to Terry Gross, whose compendium entry is about interviewing, not a theory of testimony; the header says it belongs to the practical sphere, a Kantian category; (4) the header's phrase 'transcendental illusion' borrows a Kantian term whose meaning there (illusions of reason beyond experience) differs from its use for 'four gathered kinds'. These are credit-line problems for the entry, not bends of a source we claim.",
+  "tokenized": false,
+  "fix": [
+    "compendium credit: 'The claim-form seam (output-claims) - our name. Its table follows the project's own reading of Kant's hypothetical judgment and time as form of inner sense; the adjudicating archons (Nagarjuna, Partee, Terry Gross) are cited where their entries are used elsewhere, not for these forms.'",
+    "compendium work: replace 'by Nagarjuna', '(Partee)', 'Terry Gross, the witness protocol' with 'compare the nagarjuna, partee and terry-gross entries' or drop; if Kant is the source, add a kant entry with a verified snip first.",
+    "output-claims.js header: say 'transcendental illusion' only if meaning Kant's term; otherwise 'illusion of a gathered table'."
+  ]
+}

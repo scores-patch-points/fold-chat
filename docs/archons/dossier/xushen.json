@@ -1,0 +1,59 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "xushen",
+  "organ": "khora/native/kernel/lexicon.js; khora/native/kernel/hyperlexicon.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/xushen-lexicon.json",
+    "eo-teachings/manifest/xushen-hyperlexicon.json"
+  ],
+  "whatTheyArgued": "Xu Shen (finished c. 100 CE, presented 121) compiled the Shuowen Jiezi: about 9,353 characters plus variants arranged under 540 graphic section headers (radicals), analyzing each from its Small Seal form, drawing on ancient forms and classical usage. Wieger (1927) glosses the aim as stopping later alteration of characters by setting their authentic form before scholars, i.e. a normative, form-preserving project. O'Neill (JAOS 2013) argues the book's structure is built to show that changes in writing are historically and graphemically observable so that the original intent of the classics' writers is recoverable. The central unit is character form and its analysis, not word-usage frequency.",
+  "scholarship": [
+    {
+      "ref": "Timothy O'Neill, 'Xu Shen's Scholarly Agenda: A New Interpretation of the Postface of the Shuowen jiezi', Journal of the American Oriental Society (2013); abstract read",
+      "url": "https://lockwoodonlinejournals.com/index.php/jaos/article/view/1862",
+      "supports": "structure designed to show writing change is observable and to recover original sage intent via guwen forms",
+      "disputes": "I read only the abstract; Boltz and Bottero-Harbsmeier were not accessible (access denied), so the wider scholarly debate on how normative vs descriptive Xu Shen is, is NOT checked by me"
+    },
+    {
+      "ref": "Leon Wieger, Chinese Characters (Davrout tr., 1927), pp. around the Shuowen passage, on disk",
+      "url": "https://archive.org/download/chinesecharacter0000wieg_n4b2/chinesecharacter0000wieg_n4b2_djvu.txt",
+      "supports": "Xu Shen collected, corrected, explained, classified under 540 keys, aim to prevent later alteration; later glossators arranged under his keys",
+      "disputes": "a 1927 popularizer; both snips are Wieger describing Xu Shen, not Xu Shen's own words"
+    }
+  ],
+  "ourUse": "lexicon.js projects a dictionary from the append-only witness log (headwords carry the admitting operation; terrain-organized; scrubbable by sequence). hyperlexicon.js is a ledger of relation-composition affordances where only a GIVEN affordance with a named giver licenses composition. Both headers say 'first dictionary built from attested character usage rather than decree'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "usage-vs-form",
+      "kind": "reinterpreted",
+      "ours": "'a dictionary built from attested character usage rather than decree'; 'projected from attested usage'.",
+      "theirs": "Xu Shen worked from attested character FORMS (seal, ancient script, classical glosses) and analyzed their composition; the corpus is script, not a record of how words are used in speech or reading."
+    },
+    {
+      "id": "not-decree-inverted",
+      "kind": "misstated",
+      "ours": "'never from a decree'.",
+      "theirs": "By Wieger's account the book was a corrective, canonical standard intended to fix authentic forms against later change, and became the authority consulted in doubts. That is closer to a norm than to a pure description of usage; our 'never from a decree' reverses its character."
+    },
+    {
+      "id": "hyperlexicon-not-dictionary",
+      "kind": "re-scoped",
+      "ours": "hyperlexicon.js is a ledger of composition affordances with named givers.",
+      "theirs": "It is not a dictionary of characters or words; Xu Shen's name there rests only on the word 'lexicon'. Given-by-a-giver licensing is nearer the opposite of 'attested not decreed'."
+    },
+    {
+      "id": "snips-secondhand",
+      "kind": "decorative",
+      "ours": "Both snips are shown as 'Xushen speaks'.",
+      "theirs": "They are Wieger's sentences about Xu Shen (verbatim and verified), not Xu Shen's words; the Shuowen preface was not read."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Xu Shen compiled the Shuowen Jiezi (c. 100 CE): about ten thousand characters analyzed from their Small Seal forms and ancient variants and sorted under 540 graphic headers, to fix the authentic forms against later alteration. lexicon.js borrows only the idea that a dictionary is a projection of recorded evidence with each entry traceable; the evidence there is witnessed text events, not character forms.'",
+    "compendium credit: 'Xu Shen — a dictionary compiled from recorded forms, each entry analyzed and traceable (Shuowen Jiezi); ours projects from a witness log.'",
+    "organ headers: replace 'attested usage rather than decree' with 'recorded evidence, each headword traceable'; drop Xu Shen from hyperlexicon.js (a ledger of given affordances) or mark nomination. Move the 'Xushen speaks' blocks to say 'Wieger on Xu Shen'."
+  ]
+}

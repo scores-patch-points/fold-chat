@@ -1,0 +1,56 @@
+{
+ "label": "before-seeded",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T05:20:28.438Z",
+ "patchDir": null,
+ "turns": [
+  {
+   "ask": "why is the sky blue",
+   "spoken": "",
+   "kind": "research",
+   "followed": {
+    "kind": "carried",
+    "said": "why is the sky blue",
+    "searched": "William McKinley Blue Room why is the sky blue",
+    "carried": [
+     "William McKinley",
+     "Blue Room"
+    ],
+    "topic": null
+   },
+   "feed": [
+    "Followed on from the last answer: searching for “William McKinley Blue Room why is the sky blue”",
+    "The query: searching for “William McKinley Blue Room why is the sky blue”"
+   ],
+   "reads": [],
+   "passages": [],
+   "notices": [
+    "[carry] Read your question as being about William McKinley and Blue Room."
+   ],
+   "raws": [],
+   "referents": [
+    "William McKinley(2.4)",
+    "Blue Room(2.4)",
+    "President McKinley(1.6)",
+    "Across(1.6)",
+    "Mount McKinley(1.6)",
+    "Alaska(1.6)",
+    "Named(1.6)"
+   ],
+   "summary": {
+    "topic": "who is mt. mckinlet named afer?",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I could not answer; they asked \"who is mt. mckinlet named afer?\" and I said \"President McKinley, a name that rings so bold, Across the land, a story to be told.\"; they asked \"why is the sky blue\" and I could not answer.",
+    "entities": [
+     "William McKinley",
+     "Blue Room",
+     "President McKinley",
+     "Across",
+     "Mount McKinley",
+     "Alaska",
+     "Named"
+    ]
+   },
+   "modelRequest": null
+  }
+ ]
+}

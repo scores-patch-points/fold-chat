@@ -1,0 +1,52 @@
+.nul .ask { font-size: clamp(21px, 4.4vw, 30px); line-height: 1.25; font-weight: 600; letter-spacing: -.015em; text-wrap: pretty; max-width: 26ch; margin-bottom: 6px; }
+.nul .meta { font-size: 13px; color: var(--mut); margin-bottom: 16px; max-width: 70ch; }
+/* the slot: a blank the shape of the answer */
+.slot { border-radius: var(--r-md); padding: 14px 16px; display: grid; gap: 6px; align-content: center; min-height: 128px; max-width: 760px; }
+.slot.open { border: 2px dashed var(--line2); background: repeating-linear-gradient(135deg, transparent 0 9px, color-mix(in srgb, var(--line) 55%, transparent) 9px 10px); }
+.slot.full { border: 2px solid var(--ag); background: var(--bg); }
+.slot .said { font-size: 16.5px; line-height: 1.5; color: var(--ink); }
+.slot .said2 { font-size: 16px; color: var(--ink2); max-width: 46ch; }
+.slot .who { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink2); flex-wrap: wrap; }
+.slot .stand { font-size: 12px; color: var(--mut); }
+.slot:not(.mini) .stand:not(.mono) { font-size: 13.5px; color: var(--ink2); }
+.cursor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 16px 0 0; max-width: 760px; border-top: 1px solid var(--line); }
+.cursor > div { padding: 10px 0 0; }
+.cursor > div + div { padding-left: 14px; border-left: 1px solid var(--line); }
+.cursor dd { margin: 0; }
+.cursor .n { font: 600 34px/1.1 var(--mono); color: var(--ink); letter-spacing: -.02em; }
+/* ground: the ruler of the void */
+.ruler { position: relative; height: 26px; border: 1px solid var(--line2); border-radius: var(--r-sm); margin: 22px 8px 14px 0; background: var(--bg); }
+.ruler .void { position: absolute; left: 0; top: 0; bottom: 0; background: var(--void); border-right: 2px solid var(--ink); }
+.ruler .rest { position: absolute; top: 0; bottom: 0; background: var(--ag-soft); }
+.ruler .pin { position: absolute; top: -20px; transform: translateX(-50%); font: 700 11px/1 var(--mono); color: var(--ink); background: var(--bg); border: 1.5px solid var(--ink); border-radius: var(--r-pill); width: 20px; height: 20px; display: grid; place-items: center; }
+.marks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.marks li { display: grid; grid-template-columns: 24px 1fr; gap: 8px; font-size: 14px; color: var(--ink2); align-items: baseline; }
+.marks b { color: var(--ink); font-family: var(--mono); font-weight: 600; font-size: 13px; }
+.pinlab { font: 700 11px/1 var(--mono); color: var(--ink); border: 1.5px solid var(--ink); border-radius: var(--r-pill); width: 20px; height: 20px; display: grid; place-items: center; }
+.ledger { margin: 0; display: grid; gap: 0; max-width: 720px; border-top: 1px solid var(--line); }
+.ledger > div { display: grid; grid-template-columns: 150px 1fr; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.ledger dd { margin: 0; font-size: 14px; color: var(--ink); }
+/* pattern: the same blank, per lap */
+.multis { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 0; }
+.multi { display: grid; gap: 8px; padding: 0 0 22px 18px; border-left: 2px solid var(--line2); position: relative; max-width: 760px; }
+.multi:last-child { border-left-color: transparent; padding-bottom: 0; }
+.multi::before { content: ""; position: absolute; left: -6px; top: 14px; width: 10px; height: 10px; border-radius: 50%; background: var(--bg); border: 2px solid var(--ink); }
+.multi + .multi::after { content: "went back"; position: absolute; left: 18px; top: -18px; font: 600 10px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--warn); }
+.slot.mini { min-height: 0; padding: 10px 12px; }
+.slot.mini .qs { font-size: 15px; font-family: var(--mono); color: var(--ink); overflow-wrap: anywhere; }
+.multi .mm { font-size: 12px; color: var(--mut); }
+.multi .brk, .multi .end { display: grid; gap: 3px; font-size: 14px; color: var(--ink2); }
+.multi .brk .say { font-size: 13px; color: var(--ink); }
+.multi .brk .why { font-size: 13px; color: var(--ink2); }
+@media (max-width: 520px) {
+  .ledger > div { grid-template-columns: 1fr; gap: 2px; }
+  .cursor .n { font-size: 28px; }
+  .cursor > div + div { padding-left: 10px; }
+}
+@media (min-width: 1000px) {
+  .multis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .multi { border-left: 0; padding: 18px 0 0; border-top: 2px solid var(--line2); }
+  .multi::before { left: 0; top: -7px; }
+  .multi + .multi::after { left: -16px; top: -26px; content: "\25b8 went back"; }
+  .multi:last-child { border-top-color: var(--line2); }
+}

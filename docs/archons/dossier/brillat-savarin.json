@@ -1,0 +1,26 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "brillat-savarin",
+  "organ": "khora/native/organs/variation.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/brillat-savarin-variation.json", "eo-teachings/manifest/brillat-savarin.json"],
+  "whatTheyArgued": "The Physiology of Taste (1825; Robinson 1854 English, read on disk from Gutenberg) is a miscellany: twenty aphorisms, thirty 'meditations' on taste, appetite, digestion and other topics, and anecdotes. It is not a sampling or rejection method. Its nearest relevant claims: aphorism XIII, that never changing one's drinks is a heresy because the tongue saturates and after the third glass gives an obtuse sensation; XI-XII on ordering food from substantial to light and drink from mild to foamy; VIII that at table ennui does not strike for the first hour; and IX that a new dish does humanity more good than a new star. The snip the compendium previously used is aphorism IV ('tell me what kind of food you eat...'), which says nothing on variation.",
+  "scholarship": [
+    { "ref": "Wikipedia 'Jean Anthelme Brillat-Savarin' (secondary overview; weak source, used for structure and date: twenty aphorisms, meditations, miscellany; published anonymously December 1825)", "url": "https://en.wikipedia.org/wiki/Jean_Anthelme_Brillat-Savarin", "supports": "genre and structure of the work", "disputes": "none recorded; I could not fetch Britannica (403) or an academic study of the Physiologie, so this is thinner than the brief requires" }
+  ],
+  "ourUse": "variation.js: detect a prose piece's redundant opening (first 8 words; sameOpening = 4+ shared leading words), first rewrite it mechanically (snipVariation: synonym swap or rotation, no model), and only if that fails run variedDraw: draw at rising temperature and reject any output whose opening still matches a blocked construction. Handle comment: 'flavor is measure, the chosen accent, never a dump.'",
+  "verdict": "partial",
+  "bends": [
+    { "id": "whole-method", "kind": "misstated", "ours": "Compendium: 'whose whole method is appetite varied and sampled. Varied draws, tried and kept or rejected, a tasting.'", "theirs": "The book has no method of drawing and rejecting variants; it is aphorism, essay and anecdote on food, digestion and hospitality. Rejection sampling is our device." },
+    { "id": "wrong-snip", "kind": "decorative", "ours": "The organ and its snip carry aphorism IV (you are what you eat); no manifest tied the handle to variation until aphorism XIII was added here.", "theirs": "IV is about character revealed by diet; it does not support variation. XIII (change your drinks; the tongue saturates) is the one real hook." },
+    { "id": "saturation-to-redundancy", "kind": "re-scoped", "ours": "Repeated sentence openings in prose treated as 'boring redundancy' to vary.", "theirs": "XIII is about sensory saturation of the palate when a drink is repeated; applying it to repeated prose openings is our analogy." },
+    { "id": "speaks-header", "kind": "invented-attribution", "ours": "variation.js opens 'Brillat-Savarin speaks:' with IV, then generated text: 'This file implements the teachings of Brillat-Savarin... I believe that the focus on the human experience of eating should be prioritized over a purely technical understanding.'", "theirs": "He wrote none of that, and the file implements a prose-variation algorithm, not his teachings; the first-person sentence is model-written under his name." },
+    { "id": "measure-accent-phrase", "kind": "invented-attribution", "ours": "Header: 'flavor is measure, the chosen accent, never a dump', after the gastronome.", "theirs": "I found no such sentence in the text (searched 'accent', 'measure'); the one 'accent' hits are unrelated. It is our phrase." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Brillat-Savarin, in the Physiology of Taste, held that varying what one drinks matters because the tongue saturates on repetition (aphorism XIII). Our variation.js borrows only that idea of avoiding repetition; the snip-then-rejection-sampling method is ours.'",
+    "compendium credit: 'Brillat-Savarin: change the drink, the tongue saturates (aphorism XIII); the variation algorithm is ours.'",
+    "variation.js: replace the 'speaks' block with 'Quoted: aphorism XIII, Robinson 1854 (verbatim). Commentary below is ours.' and drop the generated first-person paragraph and the 'measure, the chosen accent' attribution"
+  ]
+}

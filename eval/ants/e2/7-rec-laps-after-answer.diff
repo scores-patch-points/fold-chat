@@ -1,0 +1,98 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -2400,13 +2400,15 @@
+       // claim itself as the query, the cross-reference re-runs on the wider ground, and SYN restates only the sentences still
+       // failing, from what was found. A restatement replaces a sentence only if it then holds; otherwise the sentence stays
+       // and is marked. At most two laps, inside a time budget. Fast effort skips it.
+-      let recLoop = null;
++      let recLoop = null, recPending = false, recRunLaps = null;
+       if (!strand && wantWeb && webPassages.length && text.trim() && checkable(kind) && !(computed && computed.ok) && effort !== "fast" && !liveHit) {
+         recLoop = { passes: [], cleared: false };
+         const asPass = (ps) => ps.map((p) => ({ text: p.text, url: p.url || p.source, ref: p.ref }));
+         const t0 = Date.now(), BUDGET = effort === "deep" ? 45000 : 25000;
+         const stepFn = (st) => { feedPush(eventsForStep(tt, st)); try { pvLive?.step(st); } catch {} };
+         const textBefore = text;
++        const deferRec = (() => { try { return localStorage.getItem("fold-chat:e2recdefer") !== "off"; } catch { return true; } })();
++        const runLaps = async (deferred) => {
+         for (let lap = 1; lap <= 3; lap++) {
+           const sents = claimSentences(text);
+           const fz = falsifyAnswer(sents, asPass(webPassages));
+\ No newline at end of file
+@@ -2418,7 +2420,8 @@
+           }
+           recLoop.after = fz.summary;
+           if (lap === 3) break;   // two laps back, then the third check is the verdict
+-          if (lap >= 2 && text === textBefore && (() => { try { return localStorage.getItem("fold-chat:e2rec") !== "off"; } catch { return true; } })()) { feedPush(lineEvent(tt, "Stopped going back", { tone: "info", note: "the last lap changed no sentence, and another would ask the same of the same pages — the sentences still failing are marked" })); break; }
++          if (deferred === true) { recPending = true; recLoop.pending = true; feedPush(lineEvent(tt, `\u2217 ${failing.length} sentence${failing.length === 1 ? "" : "s"} broke on the first check`, { tone: "warn", note: failing.map((c) => `s${c.i + 1} ${c.verdict}`).join(" \u00b7 ") + " \u2014 marked now; I'll go back to search after the answer is shown" })); return; }
++          if (lap >= 2 && (text === textBefore || deferred === "after") && (() => { try { return localStorage.getItem("fold-chat:e2rec") !== "off"; } catch { return true; } })()) { feedPush(lineEvent(tt, "Stopped going back", { tone: "info", note: "the last lap changed no sentence, and another would ask the same of the same pages — the sentences still failing are marked" })); break; }
+           if (Date.now() - t0 > BUDGET) { feedPush(lineEvent(tt, "Stopped going back", { tone: "info", note: "out of time \u2014 the sentences still failing are marked" })); break; }
+           const pass = { lap, before: fz.summary, failing: failing.map((c) => ({ i: c.i, s: c.s, verdict: c.verdict, ...routeOf(c) })), added: 0, restated: [] };
+           recLoop.passes.push(pass);
+\ No newline at end of file
+@@ -2452,7 +2455,7 @@
+           // the cross-reference again on the wider ground; only what still fails is restated
+           const fz2 = falsifyAnswer(sents, asPass(webPassages));
+           const still = fz2.claims.filter((c) => FAILING.has(c.verdict)).slice(0, 3);
+-          if (!still.length || skipModel || m.none) continue;
++          if (!still.length || skipModel || m.none || deferred === "after") continue;   // E2 L2b: after the answer is shown, laps only search and re-check; they never restate
+           for (const c of still) {
+             const ctx = pickPassages(c.s, webPassages, 4);
+             if (!ctx.length) { pass.restated.push({ i: c.i, kept: true, why: "nothing read is about it" }); continue; }
+\ No newline at end of file
+@@ -2470,6 +2473,9 @@
+         }
+         if (text !== textBefore && pvStream) pvStream = text;
+         if (!recLoop.passes.length && recLoop.cleared) recLoop.firstTry = true;
++        };
++        if (deferRec) { await runLaps(true); if (recPending) recRunLaps = async () => { recPending = false; recLoop.pending = false; await runLaps("after"); }; }
++        else await runLaps(false);
+       }
+       const material = [
+         ...materialOf(s),
+\ No newline at end of file
+@@ -2611,7 +2617,7 @@
+         record.loop = recLoop;
+         const lp = recLoop.passes.length, S = recLoop.after || {};
+         record.process = record.process || [];
+-        recLoop.processLine = lp ? `reframed · went back ${lp} lap${lp === 1 ? "" : "s"} · ${recLoop.passes.reduce((n, p) => n + p.added, 0)} more source(s) read · ${recLoop.passes.reduce((n, p) => n + p.restated.filter((x) => x.to).length, 0)} sentence(s) restated · ${recLoop.cleared ? "every sentence holds" : `${(S.unsupported || 0) + (S.contested || 0) + (S.weak || 0)} still failing, marked`}` : `reframe · every sentence held on the first try`;
++        recLoop.processLine = recLoop.pending ? `reframe \u00b7 the first check broke ${(S.unsupported || 0) + (S.contested || 0) + (S.weak || 0)} sentence(s), marked; going back for more sources after the answer is shown` : lp ? `reframed · went back ${lp} lap${lp === 1 ? "" : "s"} · ${recLoop.passes.reduce((n, p) => n + p.added, 0)} more source(s) read · ${recLoop.passes.reduce((n, p) => n + p.restated.filter((x) => x.to).length, 0)} sentence(s) restated · ${recLoop.cleared ? "every sentence holds" : `${(S.unsupported || 0) + (S.contested || 0) + (S.weak || 0)} still failing, marked`}` : `reframe · every sentence held on the first try`;
+       }
+       if (record && bookFound) record.book = { title: bookFound.book.title, author: bookFound.book.author, translator: bookFound.book.translator, via: bookFound.book.via, paras: bookFound.paras, chars: bookFound.chars, names: bookFound.names, focal: bookFound.focal, matched: bookFound.matched, chapters: bookFound.chapters, used: bookFound.passages.length, scenes: bookFound.passages.map((p) => ({ ref: p.ref, url: p.url, place: p.bookPlace, text: p.text })) };
+       // Do the read pages agree on the answer's figure? (fold-chat-present.js — it decides how the answer is drawn)
+\ No newline at end of file
+@@ -2816,14 +2822,22 @@
+       const drawMeta = (prov) => ({ sealed: m.sealed, index: idx, grounding: record, notices, model: m.id, mode: "chat", authored: strand ? "sources" : null, snips: storedSnips, answerTurn: slotStored, provenance: prov });
+       let drawn = null;
+       if (isLive()) { drawn = buildMsg(s, "assistant", text, drawMeta(provenance)); if (drawn.seam) E.threadCol.append(drawn.seam); E.threadCol.append(drawn.wrap); E.thread.scrollTop = E.thread.scrollHeight; try { window.__e2answerAt = performance.now(); window.__e2pending = false; } catch {} }
+-      if (deferProv) {
++      if (deferProv || recRunLaps) {
+         // E2 L1: the answer is visible. NOW point at the source (same code, same checks), then redraw the same message with the source line under it.
+         const msgObj = s.messages[idx];
+         if (!Object.prototype.hasOwnProperty.call(s, "_after")) Object.defineProperty(s, "_after", { value: null, writable: true, enumerable: false, configurable: true });   // never persisted
+         try { window.__e2pending = true; window.__e2provAt = null; } catch {}
+         s._after = (async () => {
+           try {
+-            await provenanceWork();
++            await Promise.all([provenanceWork(), recRunLaps ? recRunLaps().catch((e) => { if (ac.signal.aborted) return; try { console.error("[fold-chat] deferred reframe:", e); } catch {} }) : null]);
++            if (recLoop && record) {
++              const lp2 = recLoop.passes.length, S2 = recLoop.after || {};
++              recLoop.processLine = lp2 ? `reframed \u00b7 went back ${lp2} lap${lp2 === 1 ? "" : "s"} (after the answer was shown) \u00b7 ${recLoop.passes.reduce((n, p) => n + p.added, 0)} more source(s) read \u00b7 0 sentence(s) restated \u00b7 ${recLoop.cleared ? "every sentence holds" : `${(S2.unsupported || 0) + (S2.contested || 0) + (S2.weak || 0)} still failing, marked`}` : "reframe \u00b7 nothing more found";
++              record.loop = recLoop; record.process = (record.process || []).filter((x) => !/^reframe/.test(x)); record.process.push(recLoop.processLine);
++              record.passages = webPassages.slice(0, 8).map((p) => ({ ref: p.ref, source: p.source, url: p.url, title: p.title, domain: p.domain, text: String(p.text || "").slice(0, 2400) }));
++              record.nSources = webPassages.length + materialOf(s).length + (threadTurn ? 1 : 0);
++              if (webTrace) record.web = webTrace;
++            }
+             if (provenance) msgObj.provenance = provenance;
+             try {
+               const tiers = (provenance?.pointers || []).map((p) => p.tier);
+\ No newline at end of file
+@@ -2835,7 +2849,7 @@
+             s.updated = now(); save("fold-chat:sessions", sessions);
+             if (isLive() && drawn && drawn.wrap.isConnected) { const again = buildMsg(s, "assistant", text, drawMeta(provenance)); drawn.wrap.replaceWith(again.wrap); drawn = again; }
+           } catch (e) { try { console.error("[fold-chat] deferred source check:", e); } catch {} }
+-          finally { try { window.__e2provAt = performance.now(); window.__e2pending = false; } catch {} if (isLive()) E.stage.textContent = ""; s._after = null; }
++          finally { try { delete recLoop.pending; } catch {} try { window.__e2provAt = performance.now(); window.__e2pending = false; } catch {} if (isLive()) E.stage.textContent = ""; s._after = null; }
+         })();
+       }
+     } catch (err) {
+\ No newline at end of file

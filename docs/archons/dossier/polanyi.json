@@ -1,0 +1,39 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "polanyi",
+  "organ": "khora/native/the-fold/expertise.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "No work is claimed by the compendium. For orientation only: Michael Polanyi (Personal Knowledge 1958; The Tacit Dimension 1966) argued that knowing is a skilled personal act, that we attend FROM subsidiary particulars (proximal) TO a focal whole (distal), and that 'we can know more than we can tell': much of what a knower relies on is not and perhaps cannot be made explicit. Read via a secondary web page (Thornton) and search summaries, not the primary texts.",
+  "scholarship": [
+    {
+      "ref": "Tim Thornton, course notes 'Polanyi' (tacit knowledge): proximal/distal, 'know more than we can tell'",
+      "url": "https://sites.google.com/site/drtimthornton/courses/tacit-knowledge/polanyi",
+      "supports": "the slogan, skilled personal knowing, proximal vs distal; that Polanyi himself is loose about what 'tacit' means",
+      "disputes": "Collins and others question whether tacit and explicit knowledge divide cleanly, and whether tacit means impossible to articulate or merely not yet articulated"
+    }
+  ],
+  "ourUse": "expertise.js records a form's learned shape on an append-only ledger (kind = form name, each revision superseding the last, every line naming its source) and moves a kind provisional -> corroborated -> confirmed at CANONICALIZATION_FLOOR = 2 distinct sources. The code also uses the string 'archon:polanyi' as the GIVER on belief lines (recordBelief default giver, 'a standing philosophical position this archon holds') and 'expertise:polanyi' as the falsifier id.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "giver-string-voice",
+      "kind": "misstated",
+      "ours": "recordBelief defaults giver to 'archon:polanyi' and calls it 'a standing philosophical position this archon holds'; falsifyOccurrence is called by 'expertise:polanyi'. Ledger lines are therefore signed with Polanyi's name.",
+      "theirs": "Polanyi authored none of those belief statements; they are written by the project or derived mechanically. A signature that reads as the author's is attribution the compendium itself disclaims."
+    },
+    {
+      "id": "tacit-made-explicit",
+      "kind": "reinterpreted",
+      "ours": "The expertise is a fully explicit, inspectable ledger of facts with counts and sources; topics list includes 'tacit'.",
+      "theirs": "Polanyi's point is the part of knowing that is NOT fully explicit and resists a ledger. Corroborated-by-two-sources is a verification discipline closer to Popper or Bukhari than to tacit knowing. The compendium's own slogan paraphrase in single quotes is put forward as a posture, but our mechanism does the opposite of what the slogan says."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: drop 'we know more than we can state outright' and the 'tacit' topic, or say plainly the mechanism is the opposite (everything explicit, revisable); keep the handle as our name for 'expertise archon'",
+    "expertise.js: change default giver 'archon:polanyi' and falsifier 'expertise:polanyi' to a neutral 'archon:expertise'; Polanyi's name signs nothing he said"
+  ],
+  "noBendReason": "The handle is our nomination: the compendium claims no specific work, so the name carries no author's argument. The bends listed are the places where the code still lets his name sign lines or lets the slogan imply a mechanism it does not have."
+}

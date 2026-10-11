@@ -1,0 +1,46 @@
+{
+  "organ": "khora/native/kernel/pending-sig.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/synapse.json"
+  ],
+  "whatTheyArgued": "Sherrington (Integrative Action of the Nervous System, 1906) is the source of the word synapse (coined 1897 for Foster's Textbook, word suggested by Verrall). In the snipped passage a subminimal stimulus favours response to a second stimulus at another point if the second follows within summation time. The surrounding text (lecture on delay in the gray matter) suggests that transmission at the synapse differs in kind from conduction along fibres and may account for the reflex delay. He does not describe a signal 'docking', waiting for a named match and being cleared.",
+  "scholarship": [
+    {
+      "ref": "Neuronal Signal, 'The synapse: people, words and connections' (Portland Press) and PMC1079269 (Sherrington and the synapse), read via search/fetch",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1079269",
+      "supports": "term introduced 1897; synaptic transmission is unidirectional contact between neurons; interaction of excitatory and inhibitory processes",
+      "disputes": "None read in these sources; I did not read the history of the electrical vs chemical transmission debate."
+    }
+  ],
+  "ourUse": "pending-sig.js: a signal is allowed to wait a caller-declared bounded window for the INS that licenses it (cataphora), resolves when a match lands, and is typed as non-resolved if the bound passes.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "summation-vs-match",
+      "kind": "reinterpreted",
+      "ours": "Docks, waits, 'fires on match or clears'.",
+      "theirs": "The snipped finding is temporal summation: sub-threshold stimuli add if close enough in time. No identity match is required; the common point is a bounded time window."
+    },
+    {
+      "id": "voice-paragraph",
+      "kind": "misstated",
+      "ours": "pending-sig.js opens with 'Synapse speaks:' quoting Sherrington, then a paragraph about 'the synaptic model of signaling' in the first person.",
+      "theirs": "That paragraph is not Sherrington's; the synapse is a structure, not a speaker. Only the quoted lines are his, and the file's own comment disclaims the biology."
+    },
+    {
+      "id": "borrowed-term",
+      "kind": "decorative",
+      "ours": "Compendium: the synapse is a 'gap across which a signal transmits or fails' and 'waiting is bounded by design'.",
+      "theirs": "'By design' is a teleological gloss; Sherrington reports a measured summation time, not a designed bound. The biology is an analogy the header itself calls a simplification."
+    }
+  ],
+  "fix": [
+    "compendium work: 'After Sherrington's synapse (1906) and his finding of temporal summation: stimuli within a short window combine. pending-sig.js borrows the bounded time window only; the match-and-fire step and the cataphora use are ours.'",
+    "pending-sig.js: remove the 'Synapse speaks' prose paragraph; keep the quote labelled as quoted",
+    "credit: 'Sherrington - summation within a time window; match-or-clear is ours.'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "synapse",
+  "tokenized": false
+}

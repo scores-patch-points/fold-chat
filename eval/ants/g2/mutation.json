@@ -1,0 +1,499 @@
+{
+ "genvoid": [
+  {
+   "name": "gate: no topic",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 5,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: own text missing",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 3,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: alone-barred",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 1,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: unusable sources (none/meta/wall/off-topic)",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 11,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: unsupported type",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 3,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: unknown type",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 2,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: model failure branch",
+   "status": "KILLED",
+   "testsFailing": 12,
+   "harness": {
+    "failuresMissed": 14,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "gate: Stop is not a void",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "error": "file:///Users/mlacy/Documents/3.0/the-fold/eval/ants/g2/mut/genvoid.mut.js:364\n "
+   }
+  },
+  {
+   "name": "gate: draft judged at all",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 14,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "page: meta pages set aside",
+   "status": "KILLED",
+   "testsFailing": 5,
+   "harness": {
+    "failuresMissed": 8,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "page: wall pages set aside",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 1,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "page: off-topic pages set aside",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 1,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "page: empty pages set aside",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: timeout",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: rate-limit",
+   "status": "KILLED",
+   "testsFailing": 3,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: sealed",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: gate (403)",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: no-model",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: network",
+   "status": "KILLED",
+   "testsFailing": 3,
+   "harness": {
+    "failuresMissed": 4,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: empty",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 2,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: refusal",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 3,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: question back",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 2,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: length floor",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 2,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: teaser with colon",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: build-size floor",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: wrote a tutorial",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 1,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "draft: off-topic",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 1,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "no fallback: default false",
+   "status": "KILLED",
+   "testsFailing": 7,
+   "harness": {
+    "failuresMissed": 35,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "no fallback: offer, not strand",
+   "status": "KILLED",
+   "testsFailing": 8,
+   "harness": {
+    "failuresMissed": 18,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "offer only with usable on-topic pages",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "had lists only usable pages",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 2,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "setAside is reported",
+   "status": "KILLED",
+   "testsFailing": 3,
+   "harness": {
+    "failuresMissed": 8,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "strandFallbackAllowed",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "topicQuery strips the writing request",
+   "status": "KILLED",
+   "testsFailing": 3,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "topicQuery strips the type words",
+   "status": "KILLED",
+   "testsFailing": 4,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: topic IS the type is exempt",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: topical title is exempt",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: body cues need the type named 3x",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: how-to-write title of any form",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: address cue",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: service cue needs the type",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: threshold",
+   "status": "KILLED",
+   "testsFailing": 5,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "meta: language-agnostic type table (unknown type is never meta)",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "failure: withheld",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "retry list",
+   "status": "KILLED",
+   "testsFailing": 4,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "topicQuery drops stated length",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "topicQuery drops unsupported type names",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "outputTypeFromAsk: stated length",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "outputTypeFromAsk: own-text need",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "no-topic: deictic words",
+   "status": "KILLED",
+   "testsFailing": 2,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  },
+  {
+   "name": "constraint: stated word count lowers the floor",
+   "status": "KILLED",
+   "testsFailing": 1,
+   "harness": {
+    "failuresMissed": 0,
+    "falseVoids": 0
+   }
+  }
+ ],
+ "channelsAndGaps": [
+  {
+   "name": "channels: VOID_KINDS has generate",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "channels: voidLabel generate",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "channels: voidText generate",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "channels: migration keeps a creative record's generate void",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "gaps: gapAnswerLine generate",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "gaps: aloneTurn names the output",
+   "status": "KILLED",
+   "testsFailing": 1
+  },
+  {
+   "name": "gaps: aloneTurn only for writing kinds",
+   "status": "KILLED",
+   "testsFailing": 1
+  }
+ ]
+}

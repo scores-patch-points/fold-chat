@@ -1,0 +1,44 @@
+{
+  "organ": "khora/native/kernel/experience-priors.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/vasana.json"
+  ],
+  "whatTheyArgued": "Vyasa's Yogabhashya on YS 1.4 (Woods tr., verified in text) says the serial order of undifferentiated consciousness and of subconscious impressions (vasana) is beginningless, like seed and sprout. Around YS 4.8-4.11 (Woods's table of contents, verified): vasanas manifest according to the fruition of karma; there is a causal continuity of vasanas across birth, place and time because of the correspondence between memory and subliminal impressions; they are beginningless since desire is permanent; they cease when cause, motive, substrate and stimulus cease. So in Yoga vasana is tied to memory and karma, not set against memory.",
+  "scholarship": [
+    {
+      "ref": "Internet Encyclopedia of Philosophy, 'Yoga' (samskara/vasana)",
+      "url": "https://iep.utm.edu/yoga/",
+      "supports": "latent impressions left by mental events; memory is their retrieval; they activate under conducive circumstances and shape traits and habits",
+      "disputes": "no dispute stated in what I read; the Samkhya-Yoga link to rebirth is a doctrinal premise"
+    }
+  ],
+  "ourUse": "experience-priors.js: portable cross-work priors (relation forms, network signatures, terrain/stance/operator expectations) that open expectations for the next reading but are never witness; 'a vasana conditions; it does not testify.'",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "not-testimony",
+      "kind": "reinterpreted",
+      "ours": "'Conditions later perception without being remembered events... never testimony.'",
+      "theirs": "In Vyasa/Yoga, memory itself is the retrieval of these impressions (4.9). 'Does not testify' is our epistemic rule, not Vyasa's."
+    },
+    {
+      "id": "beginningless-karma",
+      "kind": "narrowed",
+      "ours": "Only the conditioning role is used; a prior learned from two novels.",
+      "theirs": "Vasanas are beginningless, karma-born, and cease with cessation of their causes; none of that is modelled."
+    },
+    {
+      "id": "voice",
+      "kind": "misstated",
+      "ours": "Header has Vasana 'speaking' a critique of the file ('I believe it oversimplifies...').",
+      "theirs": "Not in the source; generated text in the author's slot."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Vyasa (on YS 1.4): the series of vasanas (subliminal impressions) is beginningless like seed and sprout; in Yoga they are tied to karma and are what memory retrieves. We borrow only the idea of a carried-over prior that shapes the next reading; the rule that it is never evidence is ours.'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "vasana",
+  "tokenized": false
+}

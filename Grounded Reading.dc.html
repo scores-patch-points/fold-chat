@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>
+html,body{margin:0;background:#f1f1f4;color:#141416;font:15px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#1d4ed8;text-decoration:none}
+a:hover{color:#1e40af;text-decoration:underline}
+button{font:inherit;color:inherit;cursor:pointer}
+</style>
+</helmet>
+<section style="padding:40px 40px 16px;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:1100px">
+    <h2 style="margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em">Picked by how the turn went</h2>
+    <span style="font-size:13.5px;color:#5f5f6b;line-height:1.5;text-wrap:pretty">There's no setting. The turn's own record (how many sources, whether they agree, whether a check changed the answer) decides which layout draws. A plain, uncontested answer stays plain. More of the working shows only when something in it is contested.</span>
+  </div>
+  <div id="4a" style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+    <div style="width:420px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">4a</span>
+        <span style="font-weight:600">The rules</span>
+        <span style="font-size:13px;color:#5f5f6b">click one to see it fire</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:8px">
+        <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5">
+          <button onClick="{{ r.pick }}" style="display:flex;flex-direction:column;gap:3px;width:100%;text-align:left;border:0;border-radius:10px;padding:10px 12px;background:{{ r.bg }}">
+            <span style="font-size:14px;font-weight:600;color:#141416">{{ r.when }}</span>
+            <span style="font-size:13px;color:#5f5f6b;line-height:1.45">→ {{ r.then }} <a href="{{ r.ref }}" style="font:11.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace">{{ r.refLabel }}</a></span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="width:600px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font-weight:600">What draws</span>
+        <span style="font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#5f5f6b">{{ why }}</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:24px 28px 24px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:50%;background:#f1f1f4;box-shadow:inset 0 0 0 1px #cfcfd7;display:grid;place-items:center;font-size:11px;font-weight:700;color:#44444e">You</div>
+          <div style="padding-top:4px;font-size:15px">{{ ask }}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+
+            <sc-if value="{{ sOne }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+              <div style="display:flex;align-items:baseline;gap:8px;font-size:14px"><span style="font-weight:600">Wikipedia — Eiffel Tower</span><span style="color:#5f5f6b;font-size:13px">en.wikipedia.org</span><a href="https://en.wikipedia.org/wiki/Eiffel_Tower" target="_blank" rel="noopener noreferrer" style="margin-left:auto;font-size:13.5px">open ↗</a></div>
+              <div style="background:#ffffff;color:#202122;border:1px solid #a2a9b1;border-radius:10px;padding:10px 16px 12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6">… <span style="background:#fef6e7;border-radius:2px;padding:0 1px">The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building.</span> …</div>
+              <div style="font-size:13px;color:#5f5f6b"><span style="color:#16793a;font-weight:700">✓</span> Held up against 3 checks · <span style="text-decoration:underline;text-decoration-color:#cfcfd7;text-underline-offset:2px">see them</span></div>
+            </sc-if>
+
+            <sc-if value="{{ sAgree }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+              <div style="position:relative;padding-bottom:14px">
+                <div style="position:relative;z-index:2;background:#ffffff;color:#202122;border:1px solid #a2a9b1;border-radius:10px;overflow:hidden">
+                  <div style="padding:12px 16px 6px;font-family:'Linux Libertine','Georgia','Times',serif;font-size:22px;border-bottom:1px solid #a2a9b1;line-height:1.3">Eiffel Tower</div>
+                  <div style="padding:10px 16px 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6">… <span style="background:#fef6e7;border-radius:2px;padding:0 1px">The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building.</span> …</div>
+                </div>
+                <div style="position:absolute;left:8px;right:8px;bottom:6px;height:20px;z-index:1;background:#ffffff;border:1px solid #e4e4e9;border-radius:0 0 10px 10px"></div>
+                <div style="position:absolute;left:16px;right:16px;bottom:0;height:20px;z-index:0;background:#ffffff;border:1px solid #e4e4e9;border-radius:0 0 10px 10px"></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13.5px;color:#44444e">
+                <span style="display:flex"><sc-for list="{{ agreeFavs }}" as="f" hint-placeholder-count="3"><span style="width:18px;height:18px;margin-right:-5px;border-radius:4px;box-shadow:0 0 0 2px #ffffff;display:grid;place-items:center;font:700 10px/1 Georgia,serif;background:{{ f.favBg }};color:{{ f.favFg }}">{{ f.fav }}</span></sc-for></span>
+                <span style="margin-left:8px">3 more say the same</span>
+              </div>
+              <div style="font-size:13px;color:#5f5f6b"><span style="color:#16793a;font-weight:700">✓</span> Survived 4 checks. No source disagrees.</div>
+            </sc-if>
+
+            <sc-if value="{{ sSplit }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+                  <button onClick="{{ g.pick }}" style="display:flex;align-items:center;gap:8px;border:1px solid {{ g.border }};background:{{ g.bg }};border-radius:999px;padding:4px 12px 4px 6px;font-size:13px;color:#141416">
+                    <span style="display:flex"><sc-for list="{{ g.favs }}" as="f" hint-placeholder-count="3"><span style="width:18px;height:18px;margin-right:-5px;border-radius:4px;box-shadow:0 0 0 2px {{ g.bg }};display:grid;place-items:center;font:700 10px/1 Georgia,serif;background:{{ f.favBg }};color:{{ f.favFg }}">{{ f.fav }}</span></sc-for></span>
+                    <span style="margin-left:6px;font-weight:600">{{ g.value }}</span><span style="color:#5f5f6b">{{ g.count }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="font-size:14px;line-height:1.55;color:#44444e;text-wrap:pretty">{{ groupNote }}</div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <div style="font-size:13px;font-weight:600;color:#44444e;margin-bottom:4px">I tried to prove this wrong 4 ways</div>
+                <sc-for list="{{ checks }}" as="c" hint-placeholder-count="4">
+                  <div style="display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;border-top:1px solid #e4e4e9;padding:7px 0;font-size:14px;line-height:1.5"><span style="font-size:13px;font-weight:700;color:{{ c.color }};text-align:center">{{ c.icon }}</span><span><span style="font-weight:600">{{ c.q }}</span> <span style="color:#5f5f6b">{{ c.a }}</span></span></div>
+                </sc-for>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ sChanged }}" hint-placeholder-val="{{ false }}">
+              <div style="font-size:17px;line-height:1.6">The Eiffel Tower was the tallest <span style="background:#e6f4ea;border-radius:3px;padding:0 2px">human-made</span> structure in the world until the Chrysler Building in New York City was finished in 1930.</div>
+              <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #a04a07;padding:2px 0 2px 14px">
+                <div style="font-size:13px;font-weight:600;color:#a04a07">A check changed this answer</div>
+                <div style="font-size:14px;line-height:1.55;color:#5f5f6b;text-decoration:line-through;text-decoration-color:#a04a07">The Eiffel Tower was the tallest structure in the world…</div>
+                <div style="font-size:14px;line-height:1.55;text-wrap:pretty"><span style="font-weight:600">Was anything taller before 1930?</span> <span style="color:#44444e">The source limits the record to human-made structures, so I put that back.</span></div>
+                <div style="background:#ffffff;color:#202122;border:1px solid #a2a9b1;border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:3px">
+                  <div style="font-family:'Linux Libertine','Georgia','Times',serif;font-size:13px">Wikipedia</div>
+                  <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5">… to become by far the tallest <span style="background:#fef6e7;border-radius:2px;padding:0 1px;font-weight:600">human-made</span> structure in the world …</div>
+                </div>
+              </div>
+              <div style="font-size:13px;color:#5f5f6b"><span style="color:#16793a;font-weight:700">✓</span> 2 other checks held</div>
+            </sc-if>
+
+            <sc-if value="{{ sNone }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:6px;border:1px dashed #cfcfd7;border-left:3px solid #a04a07;border-radius:10px;background:#f1f1f4;padding:10px 12px">
+                <div style="font-size:14px;font-weight:700"><span style="color:#a04a07;font-family:ui-monospace,SFMono-Regular,Menlo,monospace">⟂</span> No source answers this</div>
+                <div style="font-size:13.5px;line-height:1.5;color:#44444e">I looked in Wikipedia, the tower's own site and 10 web results. None of them gives a planned height for 2030, so I haven't written one.</div>
+                <div style="font-size:13px;color:#5f5f6b">What would answer it: an announcement from the tower's operator (SETE).</div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding:24px 40px 16px;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:1100px">
+    <h2 style="margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em">Trying to prove it wrong, shown by default</h2>
+    <span style="font-size:13.5px;color:#5f5f6b;line-height:1.5;text-wrap:pretty">Every answer comes with the attempts to break it, already visible. What gets shown is the attempts, not a confidence score: what was searched for, what came back, and whether the answer survived or changed.</span>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+    <div id="3a" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">3a</span>
+        <span style="font-weight:600">Checks listed</span>
+        <span style="font-size:13px;color:#5f5f6b">tap a check to see what it found</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <div style="font-size:13px;font-weight:600;color:#44444e;margin-bottom:4px">I tried to prove this wrong 4 ways</div>
+              <sc-for list="{{ checks }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #e4e4e9;padding:8px 0">
+                  <button onClick="{{ c.toggle }}" style="display:grid;grid-template-columns:20px minmax(0,1fr) 14px;gap:8px;align-items:baseline;border:0;background:none;padding:0;text-align:left">
+                    <span style="font-size:13px;font-weight:700;color:{{ c.color }};text-align:center">{{ c.icon }}</span>
+                    <span style="font-size:14px;line-height:1.5"><span style="font-weight:600">{{ c.q }}</span> <span style="color:#5f5f6b">{{ c.a }}</span></span>
+                    <span style="color:#666673;font-size:12px">{{ c.caret }}</span>
+                  </button>
+                  <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-left:28px;display:flex;flex-direction:column;gap:6px">
+                      <sc-for list="{{ c.cards }}" as="s" hint-placeholder-count="1">
+                        <div style="background:{{ s.bg }};color:{{ s.ink }};border:1px solid {{ s.edge }};border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:3px">
+                          <div style="font-family:{{ s.titleFont }};font-size:12.5px;font-weight:{{ s.titleWeight }};letter-spacing:{{ s.titleTrack }};text-transform:{{ s.titleCase }};opacity:.85">{{ s.site }}</div>
+                          <div style="font-family:{{ s.bodyFont }};font-size:14px;line-height:1.5"><span style="background:{{ s.mark }};border-radius:2px;padding:0 1px">{{ s.quote }}</span></div>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3b" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">3b</span>
+        <span style="font-weight:600">Hardest test up front</span>
+        <span style="font-size:13px;color:#5f5f6b">one line; the rest on request</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+            <div style="display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:#f1f1f4;border-radius:10px">
+              <div style="font-size:14px;line-height:1.55;text-wrap:pretty"><span style="font-weight:600">Survived 4 attempts to break it.</span> The closest call: two pages say 324 m. That was the height before the 2022 antenna.</div>
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="background:{{ hard.bg }};color:{{ hard.ink }};border:1px solid {{ hard.edge }};border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:3px">
+                  <div style="font-family:{{ hard.titleFont }};font-size:12.5px;font-weight:{{ hard.titleWeight }};letter-spacing:{{ hard.titleTrack }};text-transform:{{ hard.titleCase }}">{{ hard.site }}</div>
+                  <div style="font-family:{{ hard.bodyFont }};font-size:14px;line-height:1.5"><span style="background:{{ hard.mark }};border-radius:2px;padding:0 1px">{{ hard.quote }}</span></div>
+                </div>
+              </div>
+              <button onClick="{{ toggleAll3b }}" style="align-self:flex-start;border:0;background:none;padding:0;font-size:13px;color:#44444e">{{ all3bLabel }}</button>
+              <sc-if value="{{ all3b }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:4px">
+                  <sc-for list="{{ checks }}" as="c" hint-placeholder-count="4">
+                    <div style="display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.5"><span style="font-weight:700;color:{{ c.color }};text-align:center">{{ c.icon }}</span><span><span style="font-weight:600">{{ c.q }}</span> <span style="color:#5f5f6b">{{ c.a }}</span></span></div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="3c" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">3c</span>
+        <span style="font-weight:600">When a check wins</span>
+        <span style="font-size:13px;color:#5f5f6b">the answer changes in front of you</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:17px;line-height:1.6">The Eiffel Tower was the tallest <span style="background:#e6f4ea;border-radius:3px;padding:0 2px">human-made</span> structure in the world until the Chrysler Building in New York City was finished in 1930.</div>
+            <div style="display:flex;flex-direction:column;gap:8px;border-left:3px solid #a04a07;padding:2px 0 2px 14px">
+              <div style="font-size:13px;font-weight:600;color:#a04a07">A check changed this answer</div>
+              <div style="font-size:14px;line-height:1.55;color:#5f5f6b"><span style="text-decoration:line-through;text-decoration-color:#a04a07">The Eiffel Tower was the tallest structure in the world…</span></div>
+              <div style="font-size:14px;line-height:1.55;text-wrap:pretty"><span style="font-weight:600">Was anything taller before 1930?</span> <span style="color:#44444e">The source limits the record to human-made structures. Without that word, any taller natural formation would break the claim, so I put it back.</span></div>
+              <div style="background:#ffffff;color:#202122;border:1px solid #a2a9b1;border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:3px">
+                <div style="font-family:'Linux Libertine','Georgia','Times',serif;font-size:13px">Wikipedia</div>
+                <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5">… to become by far the tallest <span style="background:#fef6e7;border-radius:2px;padding:0 1px;font-weight:600">human-made</span> structure in the world …</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.5"><span style="font-weight:700;color:#16793a;text-align:center">✓</span><span><span style="font-weight:600">Was the Chrysler Building finished in 1930?</span> <span style="color:#5f5f6b">Same year in the source.</span></span></div>
+              <div style="display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.5"><span style="font-weight:700;color:#16793a;text-align:center">✓</span><span><span style="font-weight:600">Did anything pass it before Chrysler?</span> <span style="color:#5f5f6b">Nothing found in 3 sources.</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding:24px 40px 16px;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;flex-direction:column;gap:6px;max-width:1100px">
+    <h2 style="margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em">Lots of sources, one short answer</h2>
+    <span style="font-size:13.5px;color:#5f5f6b;line-height:1.5;text-wrap:pretty">Seven pages read for a one-line answer. The answer stays one line. Each passage is shown in its own site's typesetting, read off the page: the passage's font, size, colour and background, plus the page title's face. Our chrome stays outside the clipping. Quotes here are mock text.</span>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+    <div id="2a" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">2a</span>
+        <span style="font-weight:600">Best one, the rest stacked</span>
+        <span style="font-size:13px;color:#5f5f6b">the clearest passage on top</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+            <div style="position:relative;padding-bottom:{{ stackPad }}">
+              <div style="position:relative;z-index:2;background:{{ top.bg }};color:{{ top.ink }};border:1px solid {{ top.edge }};border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.06)">
+                <div style="padding:12px 16px 6px;font-family:{{ top.titleFont }};font-size:{{ top.titleSize }};font-weight:{{ top.titleWeight }};letter-spacing:{{ top.titleTrack }};text-transform:{{ top.titleCase }};border-bottom:1px solid {{ top.rule }};line-height:1.3">{{ top.pageTitle }}</div>
+                <div style="padding:10px 16px 14px;font-family:{{ top.bodyFont }};font-size:{{ top.bodySize }};line-height:{{ top.lh }}">… <span style="background:{{ top.mark }};border-radius:2px;padding:0 1px">{{ top.quote }}</span> …</div>
+              </div>
+              <sc-if value="{{ stackClosed }}" hint-placeholder-val="{{ true }}">
+                <div style="position:absolute;left:8px;right:8px;bottom:6px;height:20px;z-index:1;background:#ffffff;border:1px solid #e4e4e9;border-radius:0 0 10px 10px"></div>
+                <div style="position:absolute;left:16px;right:16px;bottom:0;height:20px;z-index:0;background:#ffffff;border:1px solid #e4e4e9;border-radius:0 0 10px 10px"></div>
+              </sc-if>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:#5f5f6b">
+              <span style="width:18px;height:18px;border-radius:4px;display:grid;place-items:center;font:700 10px/1 Georgia,serif;background:{{ top.favBg }};color:{{ top.favFg }}">{{ top.fav }}</span>
+              <span style="font-weight:600;color:#141416">{{ top.site }}</span><span>{{ top.domain }}</span>
+              <a href="{{ top.url }}" target="_blank" rel="noopener noreferrer" style="margin-left:auto">open ↗</a>
+            </div>
+            <button onClick="{{ toggleStack }}" style="align-self:flex-start;display:flex;align-items:center;gap:8px;border:0;background:none;padding:2px 0;font-size:13.5px;color:#44444e">
+              <span style="display:flex">
+                <sc-for list="{{ restFavs }}" as="f" hint-placeholder-count="6">
+                  <span style="width:18px;height:18px;margin-right:-5px;border-radius:4px;box-shadow:0 0 0 2px #ffffff;display:grid;place-items:center;font:700 10px/1 Georgia,serif;background:{{ f.favBg }};color:{{ f.favFg }}">{{ f.fav }}</span>
+                </sc-for>
+              </span>
+              <span style="margin-left:8px">{{ stackLabel }}</span>
+            </button>
+            <sc-if value="{{ stackOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ rest }}" as="s" hint-placeholder-count="6">
+                  <div style="background:{{ s.bg }};color:{{ s.ink }};border:1px solid {{ s.edge }};border-radius:8px;padding:9px 12px;display:flex;flex-direction:column;gap:3px">
+                    <div style="font-family:{{ s.titleFont }};font-size:13px;font-weight:{{ s.titleWeight }};letter-spacing:{{ s.titleTrack }};text-transform:{{ s.titleCase }};opacity:.85">{{ s.site }}</div>
+                    <div style="font-family:{{ s.bodyFont }};font-size:14px;line-height:1.5"><span style="background:{{ s.mark }};border-radius:2px;padding:0 1px">{{ s.quote }}</span></div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="2b" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">2b</span>
+        <span style="font-weight:600">Grouped by what they say</span>
+        <span style="font-size:13px;color:#5f5f6b">agreement is the summary</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:17px;line-height:1.6">The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+                <button onClick="{{ g.pick }}" style="display:flex;align-items:center;gap:8px;border:1px solid {{ g.border }};background:{{ g.bg }};border-radius:999px;padding:4px 12px 4px 6px;font-size:13px;color:#141416">
+                  <span style="display:flex">
+                    <sc-for list="{{ g.favs }}" as="f" hint-placeholder-count="3">
+                      <span style="width:18px;height:18px;margin-right:-5px;border-radius:4px;box-shadow:0 0 0 2px {{ g.bg }};display:grid;place-items:center;font:700 10px/1 Georgia,serif;background:{{ f.favBg }};color:{{ f.favFg }}">{{ f.fav }}</span>
+                    </sc-for>
+                  </span>
+                  <span style="margin-left:6px;font-weight:600">{{ g.value }}</span>
+                  <span style="color:#5f5f6b">{{ g.count }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="font-size:14px;line-height:1.55;color:#44444e;text-wrap:pretty">{{ groupNote }}</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ groupCards }}" as="s" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <div style="background:{{ s.bg }};color:{{ s.ink }};border:1px solid {{ s.edge }};border-radius:8px;overflow:hidden">
+                    <div style="padding:8px 12px 4px;font-family:{{ s.titleFont }};font-size:14px;font-weight:{{ s.titleWeight }};letter-spacing:{{ s.titleTrack }};text-transform:{{ s.titleCase }};border-bottom:1px solid {{ s.rule }}">{{ s.pageTitle }}</div>
+                    <div style="padding:8px 12px 10px;font-family:{{ s.bodyFont }};font-size:14.5px;line-height:{{ s.lh }}"><span style="background:{{ s.mark }};border-radius:2px;padding:0 1px">{{ s.quote }}</span></div>
+                  </div>
+                  <div style="display:flex;gap:6px;font-size:12px;color:#5f5f6b"><span style="font-weight:600;color:#141416">{{ s.site }}</span><span>{{ s.domain }}</span><a href="{{ s.url }}" target="_blank" rel="noopener noreferrer" style="margin-left:auto">open ↗</a></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="2c" style="width:560px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">2c</span>
+        <span style="font-weight:600">Icons in the line</span>
+        <span style="font-size:13px;color:#5f5f6b">smallest footprint; tap one to read it</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:17px;line-height:1.6;display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px">
+              <span>The Eiffel Tower is 330 metres (1,083 ft) tall, including its antennas.</span>
+              <span style="display:inline-flex;gap:3px">
+                <sc-for list="{{ inlineFavs }}" as="f" hint-placeholder-count="7">
+                  <button onClick="{{ f.pick }}" title="{{ f.site }}" style="width:22px;height:22px;padding:0;border-radius:5px;border:0;box-shadow:0 0 0 {{ f.ring }} #1d4ed8;display:grid;place-items:center;font:700 11px/1 Georgia,serif;background:{{ f.favBg }};color:{{ f.favFg }};opacity:{{ f.op }}">{{ f.fav }}</button>
+                </sc-for>
+              </span>
+            </div>
+            <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="background:{{ sel.bg }};color:{{ sel.ink }};border:1px solid {{ sel.edge }};border-radius:10px;overflow:hidden">
+                  <div style="padding:12px 16px 6px;font-family:{{ sel.titleFont }};font-size:{{ sel.titleSize }};font-weight:{{ sel.titleWeight }};letter-spacing:{{ sel.titleTrack }};text-transform:{{ sel.titleCase }};border-bottom:1px solid {{ sel.rule }};line-height:1.3">{{ sel.pageTitle }}</div>
+                  <div style="padding:10px 16px 14px;font-family:{{ sel.bodyFont }};font-size:{{ sel.bodySize }};line-height:{{ sel.lh }}">… <span style="background:{{ sel.mark }};border-radius:2px;padding:0 1px">{{ sel.quote }}</span> …</div>
+                </div>
+                <div style="display:flex;gap:6px;font-size:12.5px;color:#5f5f6b;align-items:baseline">
+                  <span style="font-weight:600;color:#141416">{{ sel.site }}</span><span>{{ sel.domain }}</span>
+                  <span style="color:{{ selAgreeColor }}">{{ selAgree }}</span>
+                  <a href="{{ sel.url }}" target="_blank" rel="noopener noreferrer" style="margin-left:auto">open ↗</a>
+                </div>
+              </div>
+            </sc-if>
+            <div style="font-size:13px;color:#5f5f6b">7 sources · 4 agree exactly · <span style="color:#a04a07">3 give an older height</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="padding:24px 40px 40px;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;max-width:1880px">
+    <h2 style="margin:0;font-size:20px;font-weight:650;letter-spacing:-.01em">The answer block: three ways to show the source</h2>
+    <span style="font-size:13.5px;color:#5f5f6b">Same turn in all three. It reads like a normal chat answer; the grounding shows up only when you look for it.</span>
+    <button onClick="{{ replay }}" style="margin-left:auto;border:1px solid #cfcfd7;background:#ffffff;border-radius:999px;padding:5px 14px;font-size:13px;color:#44444e">↻ replay the turn</button>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+
+    <!-- 1a -->
+    <div id="1a" style="width:600px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">1a</span>
+        <span style="font-weight:600">Underneath</span>
+        <span style="font-size:13px;color:#5f5f6b">today's layout, with the differences marked</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <sc-if value="{{ isSearching }}" hint-placeholder-val="{{ false }}">
+              <div style="padding-top:4px;font-size:14px;color:#5f5f6b">Looking in Wikipedia, WorldAtlas and Britannica…</div>
+            </sc-if>
+            <sc-if value="{{ isReading }}" hint-placeholder-val="{{ false }}">
+              <div style="padding-top:4px;display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:13px;color:#5f5f6b">Reading <span style="color:#141416;font-weight:600">Wikipedia — Eiffel Tower</span> for the part that answers you</div>
+                <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#202122;font-size:15.5px;line-height:1.6;color:#44444e"><sc-for list="{{ readSegs }}" as="s" hint-placeholder-count="6"><span style="background:{{ s.bg }};color:{{ s.fg }};border-radius:3px;transition:background .3s,color .3s">{{ s.t }}</span></sc-for></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isDone }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:17px;line-height:1.6"><sc-for list="{{ ansA }}" as="s" hint-placeholder-count="6"><span style="border-bottom:{{ s.ul }}">{{ s.t }}</span></sc-for></div>
+              <div style="display:flex;align-items:baseline;gap:8px;font-size:14px">
+                <span style="font-weight:600">Wikipedia — Eiffel Tower</span>
+                <span style="color:#5f5f6b;font-size:13px">en.wikipedia.org</span>
+                <a href="https://en.wikipedia.org/wiki/Eiffel_Tower" target="_blank" rel="noopener noreferrer" style="margin-left:auto;font-size:13.5px">open ↗</a>
+              </div>
+              <div style="border-left:3px solid #1d4ed8;padding:2px 0 2px 14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#202122;font-size:15.5px;line-height:1.6;color:#141416"><sc-for list="{{ srcSegs }}" as="s" hint-placeholder-count="8"><span style="background:{{ s.bg }};border-radius:3px;padding:0 1px">{{ s.t }}</span></sc-for></div>
+              <button onClick="{{ toggleDiffA }}" style="align-self:flex-start;border:0;background:none;padding:2px 0;font-size:13.5px;color:#a04a07;text-align:left">{{ diffLineA }}</button>
+              <sc-if value="{{ diffOpenA }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:#f1f1f4;border-radius:10px;font-size:14px">
+                  <sc-for list="{{ diffs }}" as="d" hint-placeholder-count="2">
+                    <div style="display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:8px;align-items:baseline">
+                      <span>answer: <b style="font-weight:600">{{ d.ans }}</b></span><span style="color:#666673">≠</span><span>source: <b style="font-weight:600">{{ d.src }}</b></span>
+                    </div>
+                  </sc-for>
+                  <div style="color:#44444e;font-size:13.5px;line-height:1.5;margin-top:2px">“Human-made” matters: some natural formations and masts were taller. The second change is harmless.</div>
+                </div>
+              </sc-if>
+              <div style="border-top:1px solid #e4e4e9;padding-top:10px">
+                <button onClick="{{ toggleHowA }}" style="border:0;background:none;padding:0;font-size:13.5px;color:#5f5f6b">{{ howCaretA }} How I got here</button>
+                <sc-if value="{{ howOpenA }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-direction:column;gap:6px;margin-top:10px">
+                    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+                      <div style="display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;align-items:baseline;font-size:14px;line-height:1.5">
+                        <span style="color:#666673;text-align:center">{{ s.g }}</span>
+                        <span><span style="font-weight:600">{{ s.title }}</span> <span style="color:#5f5f6b">{{ s.note }}</span></span>
+                      </div>
+                    </sc-for>
+                    <div style="margin-top:6px;padding-top:8px;border-top:1px dashed #e4e4e9;font-size:13.5px;line-height:1.5;color:#44444e"><span style="font-weight:600;color:#0d7a70">Try it yourself:</span> with any “tallest”, “first” or “biggest” claim, check what it's being compared against. That's usually where the wording shifts.</div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1b -->
+    <div id="1b" style="width:760px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">1b</span>
+        <span style="font-weight:600">Beside</span>
+        <span style="font-size:13px;color:#5f5f6b">the source sits in the margin; hover a sentence to light up its passage</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr) 250px;gap:14px 24px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0">
+            <sc-if value="{{ notDone }}" hint-placeholder-val="{{ false }}">
+              <div style="padding-top:4px;font-size:14px;color:#5f5f6b">{{ statusLine }}</div>
+            </sc-if>
+            <sc-if value="{{ isDone }}" hint-placeholder-val="{{ true }}">
+              <div onMouseEnter="{{ hoverOn }}" onMouseLeave="{{ hoverOff }}" style="font-size:17px;line-height:1.6;border-radius:6px;margin:-2px -6px;padding:2px 6px;background:{{ hoverBg }};transition:background .15s"><sc-for list="{{ ansA }}" as="s" hint-placeholder-count="6"><span style="border-bottom:{{ s.ul }}">{{ s.t }}</span></sc-for></div>
+              <div style="margin-top:12px;font-size:13.5px;color:#5f5f6b">1 passage from 1 source · <span style="color:#a04a07">2 words differ</span></div>
+            </sc-if>
+          </div>
+          <div style="min-width:0;border-left:1px solid #e4e4e9;padding-left:16px;display:flex;flex-direction:column;gap:6px">
+            <div style="font:700 10.5px/1.5 Inter,system-ui,sans-serif;letter-spacing:.07em;text-transform:uppercase;color:#5f5f6b">{{ marginLabel }}</div>
+            <sc-if value="{{ isSearching }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:6px;padding-top:2px">
+                <div style="height:7px;border-radius:4px;background:#e4e4e9;width:92%"></div>
+                <div style="height:7px;border-radius:4px;background:#e4e4e9;width:70%"></div>
+                <div style="height:7px;border-radius:4px;background:#e4e4e9;width:84%"></div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isReading }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#202122;font-size:14px;line-height:1.55;color:#44444e"><sc-for list="{{ readSegs }}" as="s" hint-placeholder-count="6"><span style="background:{{ s.bg }};color:{{ s.fg }};border-radius:3px;transition:background .3s,color .3s">{{ s.t }}</span></sc-for></div>
+            </sc-if>
+            <sc-if value="{{ isDone }}" hint-placeholder-val="{{ true }}">
+              <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#202122;font-size:14px;line-height:1.55;color:#141416"><sc-for list="{{ srcSegsB }}" as="s" hint-placeholder-count="8"><span style="background:{{ s.bg }};border-radius:3px;padding:0 1px;transition:background .15s">{{ s.t }}</span></sc-for></div>
+              <div style="display:flex;align-items:baseline;gap:6px;font-size:12.5px;color:#5f5f6b">
+                <span style="font-weight:600;color:#141416">Wikipedia</span><span>en.wikipedia.org</span>
+                <a href="https://en.wikipedia.org/wiki/Eiffel_Tower" target="_blank" rel="noopener noreferrer" style="margin-left:auto">open ↗</a>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1c -->
+    <div id="1c" style="width:600px;display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <span style="font:700 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;background:#17171a;color:#ffffff;border-radius:6px;padding:4px 7px">1c</span>
+        <span style="font-weight:600">Spot it</span>
+        <span style="font-size:13px;color:#5f5f6b">an optional nudge to compare before trusting</span>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e4e4e9;border-radius:14px;padding:28px 28px 24px">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr);gap:14px">
+          <div style="width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#2c2c33,#141416);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:700">F</div>
+          <div style="min-width:0;display:flex;flex-direction:column;gap:12px">
+            <sc-if value="{{ notDone }}" hint-placeholder-val="{{ false }}">
+              <div style="padding-top:4px;font-size:14px;color:#5f5f6b">{{ statusLine }}</div>
+            </sc-if>
+            <sc-if value="{{ isDone }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size:17px;line-height:1.6"><sc-for list="{{ ansC }}" as="s" hint-placeholder-count="6"><span style="background:{{ s.bg }};border-radius:3px;transition:background .2s">{{ s.t }}</span></sc-for></div>
+              <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#202122;font-size:15.5px;line-height:1.6;color:#141416;border-left:3px solid #1d4ed8;padding:2px 0 2px 14px"><sc-for list="{{ srcSegsC }}" as="s" hint-placeholder-count="8"><span style="background:{{ s.bg }};border-radius:3px;padding:0 1px;transition:background .2s">{{ s.t }}</span></sc-for></div>
+              <div style="font-size:13px;color:#5f5f6b">Wikipedia — Eiffel Tower · <a href="https://en.wikipedia.org/wiki/Eiffel_Tower" target="_blank" rel="noopener noreferrer">open ↗</a></div>
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 12px;border:1px solid #e4e4e9;border-radius:10px">
+                <span style="font-size:14px;line-height:1.5;flex:1 1 260px">{{ spotLine }}</span>
+                <sc-if value="{{ canSpot }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ spot }}" style="border:1px solid #cfcfd7;background:#ffffff;border-radius:999px;padding:4px 12px;font-size:13px;color:#44444e">Show me</button>
+                </sc-if>
+                <sc-if value="{{ spotted }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ unspot }}" style="border:0;background:none;padding:4px 0;font-size:13px;color:#5f5f6b">hide</button>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ANS = [
+  ["The Eiffel Tower was the ", null],
+  ["tallest structure", 0],
+  [" in the world until the Chrysler Building in New York City was ", null],
+  ["completed", 1],
+  [" in 1930.", null],
+];
+// k: 'p' plain, 'm' matches the answer, 'x' differs (dropped/swapped), r = reading order
+const SRC = [
+  ["… During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the ", "p"],
+  ["tallest", "m", 1],
+  [" human-made", "x", 0],
+  [" structure in the world", "m", 2],
+  [", a title it held for 41 years ", "p"],
+  ["until the Chrysler Building in New York City was", "m", 3],
+  [" finished", "x", 1],
+  [" in 1930.", "m", 4],
+  [" …", "p"],
+];
+const HL = "#fdf0b0", DIFF = "#fde2c8";
+const STEPS = [
+  { g: "∅", title: "Read your question.", note: "A question of fact, so it needs a source, not a guess." },
+  { g: "○", title: "Looked in 3 places.", note: "Wikipedia, WorldAtlas, Britannica. Wikipedia had the clearest sentence." },
+  { g: "●", title: "Kept one passage, word for word.", note: "It's checked to appear on the page exactly as shown." },
+  { g: "⊨", title: "Compared my sentence to it.", note: "Two words differ; one changes the meaning." },
+];
+
+const WIKI_SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Lato,'Helvetica Neue',Helvetica,Arial,sans-serif";
+const MANY = [
+  { site: "Wikipedia", domain: "en.wikipedia.org", url: "https://en.wikipedia.org/wiki/Eiffel_Tower", pageTitle: "Eiffel Tower", v: "330",
+    quote: "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building.",
+    bg: "#ffffff", ink: "#202122", edge: "#a2a9b1", rule: "#a2a9b1", mark: "#fef6e7", titleFont: "'Linux Libertine','Georgia','Times',serif", titleSize: "24px", titleWeight: "400", titleTrack: "0", titleCase: "none", bodyFont: WIKI_SANS, bodySize: "15px", lh: "1.6", fav: "W", favBg: "#ffffff", favFg: "#202122" },
+  { site: "La tour Eiffel", domain: "toureiffel.paris", url: "https://www.toureiffel.paris/en/the-monument/key-figures", pageTitle: "Key figures", v: "330",
+    quote: "330 metres: the height of the Tower since a new antenna was installed in 2022.",
+    bg: "#1d2b3a", ink: "#f2ece0", edge: "#1d2b3a", rule: "#3a4a5c", mark: "#5a4a2a", titleFont: "'Helvetica Neue',Helvetica,Arial,sans-serif", titleSize: "15px", titleWeight: "700", titleTrack: ".14em", titleCase: "uppercase", bodyFont: "'Helvetica Neue',Helvetica,Arial,sans-serif", bodySize: "15px", lh: "1.6", fav: "E", favBg: "#1d2b3a", favFg: "#c9a46a" },
+  { site: "Britannica", domain: "britannica.com", url: "https://www.britannica.com/topic/Eiffel-Tower-Paris-France", pageTitle: "Eiffel Tower | History, Height, & Facts", v: "330",
+    quote: "Including its antennas, the tower now stands 330 metres (1,083 feet) high.",
+    bg: "#ffffff", ink: "#1a1a1a", edge: "#dcdcdc", rule: "#1a1a1a", mark: "#e6f0fa", titleFont: "Georgia,'Times New Roman',serif", titleSize: "22px", titleWeight: "700", titleTrack: "-.01em", titleCase: "none", bodyFont: "Georgia,'Times New Roman',serif", bodySize: "16px", lh: "1.65", fav: "B", favBg: "#0f4c81", favFg: "#ffffff" },
+  { site: "WorldAtlas", domain: "worldatlas.com", url: "https://www.worldatlas.com/articles/how-tall-is-the-eiffel-tower.html", pageTitle: "How Tall Is the Eiffel Tower?", v: "330",
+    quote: "With its antennas, the Eiffel Tower stands 330 meters (1,083 feet) tall.",
+    bg: "#ffffff", ink: "#2b2b2b", edge: "#e2e2e2", rule: "#e2e2e2", mark: "#e3f0ff", titleFont: "'Trebuchet MS','Helvetica Neue',Arial,sans-serif", titleSize: "21px", titleWeight: "700", titleTrack: "0", titleCase: "none", bodyFont: "'Trebuchet MS','Helvetica Neue',Arial,sans-serif", bodySize: "15px", lh: "1.7", fav: "A", favBg: "#2a6fb0", favFg: "#ffffff" },
+  { site: "History", domain: "history.com", url: "https://www.history.com/topics/landmarks/eiffel-tower", pageTitle: "Eiffel Tower", v: "324",
+    quote: "At 1,063 feet (324 meters), it was the world's tallest man-made structure until 1930.",
+    bg: "#ffffff", ink: "#111111", edge: "#e5e5e5", rule: "#111111", mark: "#f3f3f3", titleFont: "'Arial Narrow','Helvetica Neue',Arial,sans-serif", titleSize: "26px", titleWeight: "700", titleTrack: "-.01em", titleCase: "uppercase", bodyFont: "Georgia,'Times New Roman',serif", bodySize: "16px", lh: "1.6", fav: "H", favBg: "#111111", favFg: "#ffffff" },
+  { site: "Guinness World Records", domain: "guinnessworldrecords.com", url: "https://www.guinnessworldrecords.com/", pageTitle: "Tallest tower (1889)", v: "324",
+    quote: "The tower stands 324 m (1,063 ft) tall including its aerial.",
+    bg: "#0a2240", ink: "#ffffff", edge: "#0a2240", rule: "#24406a", mark: "#2c4a7a", titleFont: "'Arial Black','Helvetica Neue',Arial,sans-serif", titleSize: "18px", titleWeight: "900", titleTrack: "0", titleCase: "uppercase", bodyFont: "'Helvetica Neue',Helvetica,Arial,sans-serif", bodySize: "15px", lh: "1.55", fav: "G", favBg: "#0a2240", favFg: "#ffd200" },
+  { site: "Smithsonian Magazine", domain: "smithsonianmag.com", url: "https://www.smithsonianmag.com/", pageTitle: "The Eiffel Tower at 130", v: "300",
+    quote: "When it opened in 1889, the tower stood 300 meters tall.",
+    bg: "#fbfaf7", ink: "#222222", edge: "#e6e1d6", rule: "#e6e1d6", mark: "#f2e8cf", titleFont: "'Didot','Bodoni 72','Times New Roman',serif", titleSize: "24px", titleWeight: "400", titleTrack: "0", titleCase: "none", bodyFont: "'Palatino Linotype','Book Antiqua',Palatino,serif", bodySize: "16px", lh: "1.65", fav: "S", favBg: "#fbfaf7", favFg: "#8a1c1c" },
+];
+const GROUP_NOTE = {
+  "330": "Four sources give 330 m. One of them is the tower's own site, which dates the figure to a 2022 antenna.",
+  "324": "Two give 324 m. That was the height before the 2022 antenna, so these pages are older or not updated.",
+  "300": "One gives 300 m. That's the 1889 height, before any antennas. True, but about a different moment.",
+};
+const AGREE = { "330": ["agrees with the answer", "#16793a"], "324": ["older figure: before the 2022 antenna", "#a04a07"], "300": ["1889 figure: before antennas", "#a04a07"] };
+
+class Component extends DCLogic {
+  state = { tick: 99, diffOpenA: false, howOpenA: false, hover: false, spotted: false, stackOpen: false, group: "330", sel: 0, openCheck: 0, all3b: false };
+  componentDidMount() { this.replay(); }
+  componentWillUnmount() { clearInterval(this.t); }
+  replay = () => {
+    clearInterval(this.t);
+    this.setState({ tick: 0, spotted: false });
+    this.t = setInterval(() => this.setState((s) => { if (s.tick >= 12) { clearInterval(this.t); return null; } return { tick: s.tick + 1 }; }), 380);
+  };
+  renderVals() {
+    const { tick, diffOpenA, howOpenA, hover, spotted } = this.state;
+    const phase = tick < 3 ? "search" : tick < 11 ? "read" : "done";
+    const found = tick - 4; // matched pieces light up one per tick
+    const readSegs = SRC.map(([t, k, r]) => ({
+      t,
+      bg: k === "m" && r <= found ? HL : "transparent",
+      fg: k === "m" && r <= found ? "#141416" : k === "p" ? "#9a9aa5" : "#44444e",
+    }));
+    const srcSegs = SRC.map(([t, k]) => ({ t, bg: k === "m" ? HL : "transparent" }));
+    const srcSegsB = SRC.map(([t, k]) => ({ t, bg: hover ? (k === "m" ? HL : k === "x" ? DIFF : "transparent") : (k === "m" ? "#fbf5d6" : "transparent") }));
+    const srcSegsC = SRC.map(([t, k]) => ({ t, bg: k === "m" ? HL : k === "x" && spotted ? DIFF : "transparent" }));
+    const ansA = ANS.map(([t, d]) => ({ t, ul: d == null ? "0" : "1.5px dotted #a04a07" }));
+    const ansC = ANS.map(([t, d]) => ({ t, bg: d != null && spotted ? DIFF : "transparent" }));
+    const { stackOpen, group, sel } = this.state;
+    const vals = ["330", "324", "300"];
+    const groups = vals.map((v) => {
+      const on = v === group, list = MANY.filter((s) => s.v === v);
+      return { value: v + " m", count: "· " + list.length, favs: list, border: on ? "#141416" : "#e4e4e9", bg: on ? "#f1f1f4" : "#ffffff", pick: () => this.setState({ group: v }) };
+    });
+    const selSrc = MANY[sel];
+    const many = {
+      top: MANY[0], rest: MANY.slice(1), restFavs: MANY.slice(1),
+      stackOpen, stackClosed: !stackOpen, stackPad: stackOpen ? "0" : "14px",
+      stackLabel: stackOpen ? "Hide the other 6" : "6 more sources · 3 agree, 3 give an older height",
+      toggleStack: () => this.setState({ stackOpen: !stackOpen }),
+      groups, groupNote: GROUP_NOTE[group], groupCards: MANY.filter((s) => s.v === group),
+      inlineFavs: MANY.map((s, i) => ({ ...s, ring: i === sel ? "2px" : "0", op: s.v === "330" ? 1 : 0.55, pick: () => this.setState({ sel: i }) })),
+      hasSel: true, sel: selSrc, selAgree: AGREE[selSrc.v][0], selAgreeColor: AGREE[selSrc.v][1],
+    };
+    const { openCheck, all3b } = this.state;
+    const CHECKS = [
+      { q: "Is there a different height out there?", a: "Yes: 324 m on 2 pages, 300 m on 1. Both are older heights.", icon: "✓", color: "#16793a", cards: [MANY[4], MANY[6]] },
+      { q: "Is 330 m in a source's own words?", a: "Word for word, on Wikipedia and the tower's own site.", icon: "✓", color: "#16793a", cards: [MANY[1]] },
+      { q: "Is it current?", a: "The tower's site dates it to a 2022 antenna. Nothing newer found.", icon: "✓", color: "#16793a", cards: [MANY[1]] },
+      { q: "Does “including its antennas” matter?", a: "Yes. Without them it's about 300 m, so the answer keeps the phrase.", icon: "!", color: "#a04a07", cards: [MANY[6]] },
+    ];
+    const checks = CHECKS.map((c, i) => ({ ...c, open: openCheck === i, caret: openCheck === i ? "▾" : "▸", toggle: () => this.setState({ openCheck: openCheck === i ? -1 : i }) }));
+    const scen = this.state.scen || "one";
+    const RULES = [
+      { k: "one", when: "One source, said the same", then: "source underneath, checks as one line", ref: "#1a", refLabel: "1a + 3b", ask: "How tall is the Eiffel Tower?", why: "1 source · wording matches · 3/3 checks held" },
+      { k: "agree", when: "Several sources, all agree", then: "best one on top, the rest stacked", ref: "#2a", refLabel: "2a + 3b", ask: "How tall is the Eiffel Tower?", why: "4 sources · 1 value · 4/4 checks held" },
+      { k: "split", when: "Sources disagree", then: "grouped by what they say, every check listed", ref: "#2b", refLabel: "2b + 3a", ask: "How tall is the Eiffel Tower?", why: "7 sources · 3 values · 1 check flagged" },
+      { k: "changed", when: "A check changed the answer", then: "show the draft, the check and the fix", ref: "#3c", refLabel: "3c", ask: "Was the Eiffel Tower ever the tallest building?", why: "1 source · draft dropped a qualifier · revised" },
+      { k: "none", when: "No source found", then: "no answer, only what was searched", ref: "#1a", refLabel: "gap", ask: "How tall will the Eiffel Tower be in 2030?", why: "0 sources · nothing written" },
+    ];
+    const cur = RULES.find((r) => r.k === scen);
+    const route = {
+      rules: RULES.map((r) => ({ ...r, bg: r.k === scen ? "#f1f1f4" : "transparent", pick: () => this.setState({ scen: r.k }) })),
+      ask: cur.ask, why: cur.why,
+      sOne: scen === "one", sAgree: scen === "agree", sSplit: scen === "split", sChanged: scen === "changed", sNone: scen === "none",
+      agreeFavs: MANY.slice(1, 4),
+    };
+    return {
+      ...many,
+      ...route,
+      checks, hard: MANY[4], all3b,
+      all3bLabel: all3b ? "▾ Hide the 4 checks" : "▸ See all 4 checks",
+      toggleAll3b: () => this.setState({ all3b: !all3b }),
+      replay: this.replay,
+      isSearching: phase === "search", isReading: phase === "read", isDone: phase === "done", notDone: phase !== "done",
+      statusLine: phase === "search" ? "Looking in Wikipedia, WorldAtlas and Britannica…" : "Reading Wikipedia — Eiffel Tower for the part that answers you…",
+      marginLabel: phase === "search" ? "finding a source" : phase === "read" ? "reading" : "the source's words",
+      readSegs, srcSegs, srcSegsB, srcSegsC, ansA, ansC,
+      diffs: [{ ans: "tallest structure", src: "tallest human-made structure" }, { ans: "completed", src: "finished" }],
+      diffOpenA, diffLineA: (diffOpenA ? "▾ " : "▸ ") + "2 words differ from the source",
+      toggleDiffA: () => this.setState({ diffOpenA: !diffOpenA }),
+      howOpenA, howCaretA: howOpenA ? "▾" : "▸",
+      toggleHowA: () => this.setState({ howOpenA: !howOpenA }),
+      steps: STEPS,
+      hoverBg: hover ? "#f1f1f4" : "transparent",
+      hoverOn: () => this.setState({ hover: true }), hoverOff: () => this.setState({ hover: false }),
+      spotted, canSpot: !spotted,
+      spotLine: spotted
+        ? "The answer drops “human-made” and says “completed” for “finished”. The first one narrows what the record means."
+        : "My sentence differs from the source in two places. Can you spot them?",
+      spot: () => this.setState({ spotted: true }), unspot: () => this.setState({ spotted: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

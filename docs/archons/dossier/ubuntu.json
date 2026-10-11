@@ -1,0 +1,64 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "ubuntu",
+  "organ": "khora/native/kernel/self.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/ubuntu.json"
+  ],
+  "whatTheyArgued": "Per secondary sources: Mbiti (1969) states the communal metaphysic as 'I am because we are, and since we are, therefore I am'; the Nguni formula umuntu ngumuntu ngabantu says a person is a person through other persons; Ramose develops ubuntu as humaneness with ontological and epistemological dimensions; Tutu applies it to reconciliation (the Truth and Reconciliation Commission). Scholars dispute whether personhood is given or achieved (Menkiti's strand: attained through participation in communal life and discharge of obligations; others weigh communal priority against individual standing) and whether the 'unanimous traditional' ubuntu is itself a later reinterpretation (Eze and second-generation critics).",
+  "scholarship": [
+    {
+      "ref": "Internet Encyclopedia of Philosophy, 'Hunhu/Ubuntu in Traditional Southern African Thought'",
+      "url": "https://iep.utm.edu/hunhu-ubuntu-southern-african-thought/",
+      "supports": "the Mbiti sentence and the Nguni formula; Ramose as humaneness; Tutu and the TRC; the personhood given/achieved debate",
+      "disputes": "Eze and others question romanticised unanimity and argue for individual/community parity"
+    },
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'African Ethics'",
+      "url": "https://plato.stanford.edu/entries/african-ethics/",
+      "supports": "personhood as attained (Menkiti), earned through virtue and communal participation (Gyekye discussed)",
+      "disputes": "this fetched summary did not mention Mbiti, Ramose or ubuntu by name, so it supports only the personhood-as-achieved strand"
+    }
+  ],
+  "ourUse": "self.js: READER_SELF.constitutedBy / isFold: the reader has 'no interior apart from the people it connects' and 'IS a fold held between others, never a fold of its own'. The header calls it 'the Ubuntu clause ... nomination, checkable here'. mayeroff.js uses the same clause so that a split between what is held and what is presented is 'uncomposable'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "person-to-software",
+      "kind": "re-scoped",
+      "ours": "The relational constitution is predicated of a reader program: 'no interior apart from the people it connects'.",
+      "theirs": "Ubuntu concerns human personhood in community, including obligation, ancestors and moral maturation; a program has none of these."
+    },
+    {
+      "id": "emptiness-claim",
+      "kind": "invented-attribution",
+      "ours": "'No interior' / 'an echo of human life and nothing more' is framed as the Ubuntu clause.",
+      "theirs": "Ubuntu does not say persons lack interiority; it says personhood is realised through relation. Denying an interior is the project's design choice, not a teaching of Mbiti or Ramose."
+    },
+    {
+      "id": "ramose-diminishment",
+      "kind": "misstated",
+      "ours": "Compendium work line: an act that damages relation diminishes the actor's own standing as a person, attributed as Ramose's elaboration.",
+      "theirs": "This fits the achieved-personhood strand (Menkiti/Gyekye) but I could not verify it as Ramose's wording or argument in his text; it may be a gloss. Mbiti's sentence is secondary-attested only."
+    },
+    {
+      "id": "given-vs-achieved",
+      "kind": "narrowed",
+      "ours": "Compendium presents 'achieved and sustained, not possessed prior' as the ubuntu view.",
+      "theirs": "Scholars dispute whether ubuntu personhood is wholly achieved; the compendium picks one side without saying it is contested."
+    },
+    {
+      "id": "composite-handle",
+      "kind": "decorative",
+      "ours": "One handle credits three writers (Mbiti, Ramose, Tutu) and the credit line is Mbiti's sentence alone; Tutu's work is not used by the code.",
+      "theirs": "Tutu's contribution is reconciliation practice, unrelated to the reader-self design."
+    }
+  ],
+  "fix": [
+    "compendium credit: 'Ubuntu - a person is a person through other persons (umuntu ngumuntu ngabantu); Mbiti, 1969, states the communal metaphysic as ...'. Keep the Mbiti sentence only if checked against the book page.",
+    "compendium work: mark the 'no interior' consequence and the Ramose diminishment sentence as the project's reading; add 'whether personhood is achieved or given is disputed'",
+    "self.js header: replace 'Ubuntu clause' with 'our reading of the relational-personhood idea in ubuntu thought'; drop Tutu from the handle unless code uses him"
+  ],
+  "tokenized": false
+}

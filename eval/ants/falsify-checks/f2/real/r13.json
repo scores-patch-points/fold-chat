@@ -1,0 +1,3086 @@
+{
+ "q": "How many people live in Tokyo?",
+ "spoken": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.",
+ "shown": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.\n\nP\npopulationstat.com\nopen ↗\nTokyo, Japan Population (2026) - Population Stat\n… Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries . …\n1 source · 1 of 1 sentence backed\n·\nwent back 2 laps\n·\n2 of 9 checks flagged\n82 s\n▶ watch\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.",
+     "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "source": "https://populationstat.com/japan/tokyo",
+     "span": {
+      "start": 601,
+      "end": 725
+     },
+     "address": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat#601-725",
+     "score": 20,
+     "window": {
+      "from": 425,
+      "to": 783
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "populationstat.com — Tokyo, Japan Population (2026) - Population Stat#601-725"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat#601-725",
+    "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+    "span": {
+     "start": 601,
+     "end": 725
+    },
+    "text": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat#601-725",
+     "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "span": {
+      "start": 601,
+      "end": 725
+     },
+     "label": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "source": "https://populationstat.com/japan/tokyo",
+     "url": "https://populationstat.com/japan/tokyo",
+     "domain": "populationstat.com",
+     "text": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries .",
+     "before": "",
+     "mark": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries",
+     "after": ".",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.",
+     "grounded": true,
+     "address": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat#601-725"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "How many people live in Tokyo?",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "How many people live in Tokyo?",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "web hits are encyclopedia pages (2 of top 10)"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Tokyo Population 2026 (shares-only-the-name)",
+     "Demographics of Tokyo - Wikipedia (shares-only-the-name)",
+     "Tokyo Population 2026 — 14,264,798 People | Growth & Area (shares-only-the-name)",
+     "Tokyo Population Estimate 2026: 37,720,068 — Japan - geostats.live (shares-only-the-name)",
+     "The Fast and the Furious: Tokyo Drift (shares-only-the-name)",
+     "Tokyo Story (shares-only-the-name)",
+     "Paraquat murders (no-shared-word)"
+    ]
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "skippedOff": 3,
+    "engine": "swarm gate",
+    "strict": false,
+    "dissent": {
+     "none": 3
+    }
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Tokyo",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2975,
+    "hash": "9c7a58fd"
+   },
+   {
+    "read": "https://populationstat.com/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 2852,
+    "kept": 2852,
+    "hash": "0abbc91c"
+   },
+   {
+    "read": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "via": "the fold's relay",
+    "chars": 22324,
+    "kept": 2640,
+    "hash": "a7228460"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+    "via": "direct",
+    "chars": 8217,
+    "kept": 1799,
+    "hash": "c9fefde4",
+    "skipped": true
+   },
+   {
+    "read": "https://worldpopulationreview.com/cities/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 574,
+    "kept": 574,
+    "hash": "54632403",
+    "skipped": true
+   },
+   {
+    "scope": "web",
+    "q": "Recent population estimates Tokyo hold 8.3 million people live just",
+    "engine": "Brave Search",
+    "n": 19,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://populationstat.com/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 2852,
+    "kept": 2852,
+    "hash": "0abbc91c",
+    "lap": 1
+   },
+   {
+    "read": "https://worldpopulationreview.com/cities/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 574,
+    "kept": 574,
+    "hash": "54632403",
+    "lap": 1
+   },
+   {
+    "read": "https://grokipedia.com/page/demographics_of_tokyo",
+    "via": "the fold's relay",
+    "chars": 526,
+    "kept": 526,
+    "hash": "9d728c21",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "via": "the fold's relay",
+    "chars": 22324,
+    "kept": 2906,
+    "hash": "a7228460",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "Recent population estimates Tokyo hold 8.3 million people live just",
+    "engine": "Brave Search",
+    "n": 19,
+    "ok": true,
+    "lap": 2
+   },
+   {
+    "read": "https://populationstat.com/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 2852,
+    "kept": 2852,
+    "hash": "0abbc91c",
+    "lap": 2
+   },
+   {
+    "read": "https://worldpopulationreview.com/cities/japan/tokyo",
+    "via": "the fold's relay",
+    "chars": 574,
+    "kept": 574,
+    "hash": "54632403",
+    "lap": 2
+   },
+   {
+    "read": "https://grokipedia.com/page/demographics_of_tokyo",
+    "via": "the fold's relay",
+    "chars": 526,
+    "kept": 526,
+    "hash": "9d728c21",
+    "skipped": true,
+    "lap": 2
+   },
+   {
+    "read": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "via": "the fold's relay",
+    "chars": 22324,
+    "kept": 2906,
+    "hash": "a7228460",
+    "skipped": true,
+    "lap": 2
+   }
+  ],
+  "passages": [
+   {
+    "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Tokyo",
+    "url": "https://en.wikipedia.org/wiki/Tokyo",
+    "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan.\nTokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million.\nAfter the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit.\nTokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II.\nBeginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States.\nAs of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Global 500.\nTokyo was the first city in Asia to host the Summer Olympics and Paralympics, in 1964, and also hosted in 2021.\nIt hosted three G7 summits in 1979, 1986, and 1993.\nThe Tokyo Metro Ginza Line, which opened in 1927, is the oldest underground metro line in Asia.\nThe site of Tokyo has been inhabited since ancient times, and there have been multiple Paleolithic period (around 40,000–16,000 BC) sites found in present-day Tokyo.\nDuring the subsequent Jomon period, the Holocene glacial retreat caused sea levels in Tokyo Bay to rise by 120 cm, with the coastline running along the edge of what is now the Imperial Palace.\nThe City of Tokyo was officially established on May 1, 1889.\nThe Imperial Diet, the national legislature of the country, was established in Tokyo in 1889, and it has ever since been operating in the city.\nTwo attempted military coups d'état happened in Tokyo, the May 15 incident in 1932 and the February 26 incident in 1936.\nIn 1943, Tokyo City merged with Tokyo Prefecture to form the Tokyo Metropolis (東京都, Tōkyō-to), a reorganization aimed to create a more centralized and efficient administrative structure to better manage resources, urban planning, and civil defence during wartime.\nFrom the 1950s onwards, Tokyo's Metro and railway network saw significant expansion, culminating in the launch of the world's first dedicated high-speed railway line, the Shinkansen, between Tokyo and Osaka in 1964.\nThe American-led Plaza Ac"
+   },
+   {
+    "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+    "source": "https://populationstat.com/japan/tokyo",
+    "url": "https://populationstat.com/japan/tokyo",
+    "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison\nCountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore...\nCitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore...\nTokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls.\nTokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. The modern-day city of Tokyo encompasses far more square miles than it did back in the early 20th century, forming what experts call one of the biggest examples of urban sprawl in the world. Because of this, explaining how many people call Tokyo home can be challenging.\n1/4th of Japan's Population Live in Tokyo\nOne thing's certain; there a lot of people calling Tokyo home, regardless of which side of the old boundaries they live on. In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. To put the size of Japan's metro area in perspective, it is a full 1.5 times bigger than the next biggest metro area in the world, which is Seoul, South Korea.\nFirst Asian City to Reach 1 Million People\nTokyo, once known as Edo, has a long history of being one of the biggest and most popular cities on the Asian continent. By the 1720s, it had gained a milestone distinction of being the first city in Asia to reach a population marker of 1 million people. That number doubled by 1900, and by 1940, there were 7 million people living in the metro area surrounding Tokyo.\nInteresting Facts About Tokyo's Population\nMen slightly outnumber women in Tokyo; there is an average of 97.5 men for e"
+   },
+   {
+    "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+    "source": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "text": "How Many People Live in Tokyo?\nIts approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above).\nIn plain language, about one in nine people in Japan lived in Tokyo-to in 2024.\nJapan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above).\nIn the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase.\nA third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo overview).\nTama remained highly populated in aggregate, but its density—about 3,710 people per square kilometer—was less than one-quarter of the wards’ 15,853 people per square kilometer.\nHow Tokyo became a 14-million-person metropolis\nIn particular, the 1721 figure refers to historical Edo, whose boundaries were not those of present-day Tokyo Metropolis.\nOctober 1945: The total had fallen to 3.49 million, marking a major wartime interruption in the longer trend.\n1962: Tokyo passed 10 million residents.\n1997: In-migration exceeded out-migration for the first time in 12 years.\nTokyo ranked first in the cited 2005 report, when its urban agglomeration was estimated at 31.4 million.\nThe UN-linked projection estimates that Tokyo’s urban agglomeration may decline from 33.4 million in 2025 to 30.7 million in 2050.\nThe national population is already shrinking, and people aged 65 or older represented 29.3% of Japan’s population in the official 2024 estimate (Statistics Bureau of Japan, cited above).\nIn national context, Tokyo-to held 11.5% of Japan’s population in the official 2024 estimate, even as the country’s total population continued to shrink (Statistics Bureau of Japan, cited above).\nThe broader UN-defined urban agglomeration had 33.4 million in 2025 (Tokyo Metropolitan Government and UN-linked sources cited above).\nWhy do some sources say Tokyo has 14 million people while others say 33 million?\nHow many people live in Tokyo’s 23 special wards?\nApproximately 9.95 million people li"
+   },
+   {
+    "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Tokyo",
+    "url": "https://en.wikipedia.org/wiki/Tokyo",
+    "text": "The population of the city proper was over 14 million as of 2023.\nThe Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025.\nAlthough most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis.\nTokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million.\nAs of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Global 500.\nTokyo Station is the central hub for the Shinkansen, the country's high-speed railway network, and the city's Shinjuku Station is the world's busiest train station.\nThe Tokyo Metro Ginza Line, which opened in 1927, is the oldest underground metro line in Asia.\nRecent projects include Ebisu Garden Place, Tennōzu Isle, Shiodome, Roppongi Hills, Shinagawa, and the Marunouchi side of Tokyo Station.\nOn September 7, 2013, the IOC selected Tokyo to host the 2020 Summer Olympics."
+   },
+   {
+    "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+    "source": "https://populationstat.com/japan/tokyo",
+    "url": "https://populationstat.com/japan/tokyo",
+    "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home.\nRecent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.\nBy 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls.\nTokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers.\n1/4th of Japan's Population Live in Tokyo\nIn fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area.\nFirst Asian City to Reach 1 Million People\nBy the 1720s, it had gained a milestone distinction of being the first city in Asia to reach a population marker of 1 million people.\nThat number doubled by 1900, and by 1940, there were 7 million people living in the metro area surrounding Tokyo.\nIt seems everyone is texting and talking in this busy Asian hub; in 2018, there were more than 16.9 million mobile phone subscriptions just in the main city, and nearly as many broadband contracts—12.7 million."
+   },
+   {
+    "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+    "source": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "text": "How Many People Live in Tokyo?\nUse 14.27 million for Tokyo as a Japanese administrative jurisdiction.\nIts approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above).\nTokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates.\nA broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary.\nTokyo is an exception within the broader national pattern, not evidence against it.\n1721: Edo had approximately 1.3 million residents, showing that it was already a major population center.\n1935: Tokyo’s population reached 6.36 million.\n1962: Tokyo passed 10 million residents.\nOctober 2025: Tokyo Metropolis stood at approximately 14.27 million.\nEdo and Tokyo have constituted a major population center for centuries, but the long-term history includes changing boundaries, a profound interruption and distinct phases of renewed expansion.\nTokyo Metropolis had approximately 14.27 million residents on October 1, 2025.\nWhy do some sources say Tokyo has 14 million people while others say 33 million?\nHow many people live in Tokyo’s 23 special wards?"
+   },
+   {
+    "ref": "Wikipedia — Live at Tokyo Dome",
+    "source": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+    "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+    "text": "The album features the live performances at Tokyo Dome on September 19 and September 20, 2016, which concluded the band's world tour.\nOn December 13, 2015, the band announced a new album, as well as a world tour to begin at Wembley Arena and conclude at Tokyo Dome.\nOn April 1, 2016, tickets to the show were made available for purchase to \"The One\" fanclub members, and later for presale on the band's official website on April 4, 2016.\nOn June 3, 2016, a second day was announced for Tokyo Dome, with tickets for the second show immediately made available to \"The One\" fanclub members.\nLive at Tokyo Dome was initially announced on January 23, 2017 as a \"The One\" exclusive box set release for April 1, 2017, and later on April 12, 2017 in DVD and standard and limited edition Blu-ray formats.\nA trailer for the video album was released on March 15, 2017, containing concerts denoted as \"Red Night\" (September 19, 2016) and \"Black Night\" (September 20, 2016), respectively.\nReflecting on the performance, Kobametal noted that the development for the shows was done in a little over two weeks, further commenting, \"Stage-wise, technical-wise, we had a lot of things we've never done before.\nOf course we did rehearsals, but until you do it for real you never know how it's going to turn out, or how it's going to look because we didn't have 55,000 people to test on – you're just imagining!\""
+   },
+   {
+    "ref": "World Population Review — Tokyo Population 2026",
+    "source": "https://worldpopulationreview.com/cities/japan/tokyo",
+    "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+    "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "Recent population estimates Tokyo hold 8.3 million people live just",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 1,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Tokyo",
+       "kept": 1376,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 51
+      },
+      {
+       "url": "https://populationstat.com/japan/tokyo",
+       "kept": 1325,
+       "chars": 2852,
+       "segments": 10,
+       "recalled": 13
+      },
+      {
+       "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+       "kept": 1341,
+       "chars": 22324,
+       "segments": 14,
+       "recalled": 121
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+       "kept": 1385,
+       "chars": 8217,
+       "segments": 8,
+       "recalled": 25
+      }
+     ]
+    },
+    {
+     "lap": 2,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "Recent population estimates Tokyo hold 8.3 million people live just",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 0,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Tokyo",
+       "kept": 1376,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 51
+      },
+      {
+       "url": "https://populationstat.com/japan/tokyo",
+       "kept": 1325,
+       "chars": 2852,
+       "segments": 10,
+       "recalled": 13
+      },
+      {
+       "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+       "kept": 1341,
+       "chars": 22324,
+       "segments": 14,
+       "recalled": 121
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+       "kept": 1385,
+       "chars": 8217,
+       "segments": 8,
+       "recalled": 25
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 0,
+    "weak": 0,
+    "contested": 1,
+    "unsupported": 0,
+    "backed": 0,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 12 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1002,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1535,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1530,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 857,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 289,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 12,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "How many people live in Tokyo?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 8
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “How many people live in Tokyo?”",
+    "at": 33
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:How many people live in Tokyo?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 37,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 37
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:How many people live in Tokyo?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 6005,
+    "at": 6042
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6042
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:How many people live in Tokyo?",
+    "title": "Asking Wikipedia",
+    "tone": "run",
+    "at": 6045,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 6045
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:How many people live in Tokyo?",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 5870,
+    "at": 11915
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 11915
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 11919
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "7 pages named for something else that shares the name: Tokyo Population 2026; Demographics of Tokyo - Wikipedia",
+    "at": 11964
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Set aside off-topic results",
+    "tone": "info",
+    "note": "3 results did not match the ask",
+    "at": 11968
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Tokyo",
+    "title": "Reading en.wikipedia.org — Tokyo - Wikipedia",
+    "tone": "run",
+    "at": 11971,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 11971
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://populationstat.com/japan/tokyo",
+    "title": "Reading populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+    "tone": "run",
+    "at": 11983,
+    "slowAfter": 5000,
+    "slow": "waiting on populationstat.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 11983
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "title": "Reading tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+    "tone": "run",
+    "at": 11991,
+    "slowAfter": 5000,
+    "slow": "waiting on tokyobureau.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 11991
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Tokyo",
+    "title": "Read en.wikipedia.org — Tokyo - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,975 of 24,000 chars",
+    "ms": 477,
+    "at": 12448
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12448
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+    "title": "Reading Wikipedia — Live at Tokyo Dome",
+    "tone": "run",
+    "at": 12451,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12451
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+    "title": "Read Wikipedia — Live at Tokyo Dome",
+    "tone": "ok",
+    "note": "kept 1,799 of 8,217 chars",
+    "ms": 328,
+    "at": 12779
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12779
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+    "title": "Reading worldpopulationreview.com — Tokyo Population 2026",
+    "tone": "run",
+    "at": 12803,
+    "slowAfter": 5000,
+    "slow": "waiting on worldpopulationreview.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12803
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://populationstat.com/japan/tokyo",
+    "title": "Read populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+    "tone": "ok",
+    "note": "2,852 chars",
+    "ms": 6166,
+    "at": 18149
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 18149
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "title": "Read tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+    "tone": "ok",
+    "note": "kept 2,640 of 22,324 chars",
+    "ms": 6317,
+    "at": 18308
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 18309
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+    "title": "Read worldpopulationreview.com — Tokyo Population 2026",
+    "tone": "ok",
+    "note": "574 chars",
+    "ms": 5692,
+    "at": 18495
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 18495
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read. It points to 2 original sources.",
+    "at": 31145
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 31146
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 31168,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 31168
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 35788
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "26 tokens",
+    "ms": 11819,
+    "at": 42987
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 42987
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 42993
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 43074
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 4 new impressions",
+    "tone": "ok",
+    "note": "9 sentence(s) recalled from en.wikipedia.org · 10 sentence(s) recalled from populationstat.com · 14 sentence(s) recalled from tokyobureau.com · 8 sentence(s) recalled from Wikipedi",
+    "at": 43209
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 43232,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 43232
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "19 results via Brave Search",
+    "ms": 1459,
+    "at": 44691
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 44691
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://populationstat.com/japan/tokyo",
+    "title": "Reading Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+    "tone": "run",
+    "at": 44707,
+    "slowAfter": 5000,
+    "slow": "waiting on Population Stat (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 44707
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+    "title": "Reading World Population Review — Tokyo Population 2026",
+    "tone": "run",
+    "at": 44721,
+    "slowAfter": 5000,
+    "slow": "waiting on World Population Review (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 44721
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://grokipedia.com/page/demographics_of_tokyo",
+    "title": "Reading Grokipedia — Demographics of Tokyo — Grokipedia",
+    "tone": "run",
+    "at": 44731,
+    "slowAfter": 5000,
+    "slow": "waiting on Grokipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 44731
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://populationstat.com/japan/tokyo",
+    "title": "Read Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+    "tone": "ok",
+    "note": "2,852 chars",
+    "ms": 36,
+    "at": 44743
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 44743
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+    "title": "Reading Tokyo Bureau — How Many People Live in Tokyo? The Answer Depends on the Map",
+    "tone": "run",
+    "at": 44750,
+    "slowAfter": 5000,
+    "slow": "waiting on Tokyo Bureau (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 44750
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+    "title": "Read World Population Review — Tokyo Population 2026",
+    "tone": "ok",
+    "note": "574 chars",
+    "ms": 37,
+    "at": 44758
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 82 s · read 12 sources · gemma2:2b",
+    "at": 81506,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.004,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.005,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “How many people live in Tokyo?”"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:How many people live in Tokyo?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.009,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.009,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "How many people live in Tokyo?"
+    }
+   },
+   {
+    "at": 6.013,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:How many people live in Tokyo?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 6005
+    }
+   },
+   {
+    "at": 6.013,
+    "seq": 7,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.014,
+    "seq": 8,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "How many people live in Tokyo?",
+     "n": 10
+    }
+   },
+   {
+    "at": 6.015,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:How many people live in Tokyo?",
+     "title": "Asking Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.015,
+    "seq": 10,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 6.016,
+    "seq": 11,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "How many people live in Tokyo?"
+    }
+   },
+   {
+    "at": 11.886,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:How many people live in Tokyo?",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 5870
+    }
+   },
+   {
+    "at": 11.887,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 11.888,
+    "seq": 14,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "How many people live in Tokyo?",
+     "n": 20
+    }
+   },
+   {
+    "at": 11.891,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 11.891,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 11.938,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "7 pages named for something else that shares the name: Tokyo Population 2026; Demographics of Tokyo - Wikipedia"
+    }
+   },
+   {
+    "at": 11.938,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 7
+    }
+   },
+   {
+    "at": 11.94,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Set aside off-topic results",
+     "tone": "info",
+     "note": "3 results did not match the ask"
+    }
+   },
+   {
+    "at": 11.941,
+    "seq": 20,
+    "kind": "st",
+    "st": {
+     "phase": "skipped",
+     "n": 3
+    }
+   },
+   {
+    "at": 11.943,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Tokyo",
+     "title": "Reading en.wikipedia.org — Tokyo - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 11.945,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 11.945,
+    "seq": 23,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Tokyo",
+     "site": "en.wikipedia.org",
+     "title": "Tokyo - Wikipedia"
+    }
+   },
+   {
+    "at": 11.954,
+    "seq": 24,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Reading populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 11.955,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 11.955,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "populationstat.com",
+     "title": "Tokyo, Japan Population (2026) - Population Stat"
+    }
+   },
+   {
+    "at": 11.962,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Reading tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 11.964,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 11.965,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "tokyobureau.com",
+     "title": "Tokyo, Japan Population by Boundary | Tokyo Bureau"
+    }
+   },
+   {
+    "at": 12.418,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Tokyo",
+     "title": "Read en.wikipedia.org — Tokyo - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,975 of 24,000 chars",
+     "ms": 477
+    }
+   },
+   {
+    "at": 12.419,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.419,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Tokyo",
+     "site": "en.wikipedia.org",
+     "title": "Tokyo - Wikipedia",
+     "chars": 24000,
+     "kept": 2975,
+     "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Lying at the head of Tokyo Bay, Tokyo is part of the Kantō region, on the central coast of Honshu, Japan's largest island. It is Japan's economic center and the seat of the Japanese government and the Emperor of Japan. The Tokyo Metropolitan Government administers Tokyo's central 23 special wards, which formerly made up Tokyo City; various commuter towns and suburbs in its western area; and two outlying island chains, the Tokyo Islands. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Special wards in Tokyo include Chiyoda, the site of the National Diet Building and the Tokyo Imperial Palace; Shinjuku, the city's administrative center; and Shibuya, a hub of commerce and business. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had ev"
+    }
+   },
+   {
+    "at": 12.43,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+     "title": "Reading Wikipedia — Live at Tokyo Dome",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.434,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.437,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+     "site": "Wikipedia",
+     "title": "Live at Tokyo Dome"
+    }
+   },
+   {
+    "at": 12.75,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+     "title": "Read Wikipedia — Live at Tokyo Dome",
+     "tone": "ok",
+     "note": "kept 1,799 of 8,217 chars",
+     "ms": 328
+    }
+   },
+   {
+    "at": 12.764,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.769,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome",
+     "site": "Wikipedia",
+     "title": "Live at Tokyo Dome",
+     "chars": 8217,
+     "kept": 1799,
+     "text": "Live at Tokyo Dome: Babymetal World Tour 2016 Legend Metal Resistance - Red Night & Black Night (commonly referred to as Live at Tokyo Dome) is the sixth video album by Japanese heavy metal band Babymetal. The album contains footage from the Babymetal World Tour 2016: Legend Metal Resistance and was released on April 12, 2017 by BMD Fox Records and Toy's Factory. The album features the live performances at Tokyo Dome on September 19 and September 20, 2016, which concluded the band's world tour. == Background == On December 13, 2015, the band announced a new album, as well as a world tour to begin at Wembley Arena and conclude at Tokyo Dome. Su-metal and Yuimetal expressed the idea of performing at the venue as a dream, promising to work hard to put on a great performance. On April 1, 2016, tickets to the show were made available for purchase to \"The One\" fanclub members, and later for presale on the band's official website on April 4, 2016. On June 3, 2016, a second day was announced for Tokyo Dome, with tickets for the second show immediately made available to \"The One\" fanclub members. Both days marked the band's largest venue to date. International fans were able to purchase tickets starting August 27, 2016. In response to the band playing at the venue, Su-metal commented, \"In Japan we have played many big venues like Budokan and others, but Tokyo Dome was always a place tha"
+    }
+   },
+   {
+    "at": 12.786,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Reading worldpopulationreview.com — Tokyo Population 2026",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.799,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.803,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "worldpopulationreview.com",
+     "title": "Tokyo Population 2026"
+    }
+   },
+   {
+    "at": 18.119,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Read populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "ok",
+     "note": "2,852 chars",
+     "ms": 6166
+    }
+   },
+   {
+    "at": 18.121,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 18.121,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "populationstat.com",
+     "title": "Tokyo, Japan Population (2026) - Population Stat",
+     "chars": 2852,
+     "kept": 2852,
+     "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. The modern-day city of Tokyo encompasses far more square miles than it did back in the early 20th century, forming what experts call one of the biggest examples of urban sprawl in the world. Because of this, explaining how many people call Tokyo home can be challenging. 1/4th of Japan's Population Live in Tokyo One thing's certain; there a lot of people "
+    }
+   },
+   {
+    "at": 18.279,
+    "seq": 45,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Read tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "tone": "ok",
+     "note": "kept 2,640 of 22,324 chars",
+     "ms": 6317
+    }
+   },
+   {
+    "at": 18.281,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 18.281,
+    "seq": 47,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "tokyobureau.com",
+     "title": "Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "chars": 22324,
+     "kept": 2640,
+     "text": "How Many People Live in Tokyo? The Answer Depends on the Map Tokyo-to has 14.27 million residents, versus 9.95 million in the 23 wards and 33.4 million in the UN-defined urban agglomeration. Data checked September 5, 2026. This article uses the Tokyo Metropolitan Government’s October 1, 2025 population count as its latest verified annual administrative benchmark. It uses Japan’s Statistics Bureau for national figures and UN-linked 2025 estimates for international urban comparisons. Tokyo Metropolis had approximately 14.27 million residents on October 1, 2025, according to the Tokyo Metropolitan Government’s population overview. This is the clearest answer when “Tokyo” means Tokyo-to, the prefecture-level territory governed by the Tokyo Metropolitan Government. It is not the population of every city and suburb commonly grouped into Greater Tokyo. The 23 special wards, the full metropolis and the wider continuously developed urban area are separate geographies. All figures below are rounded. The dates and boundaries matter as much as the totals. Sources: Tokyo Metropolitan Government for the wards and Tokyo-to figures; the UN-linked 2025 summary from Nippon.com for the urban-agglomeration estimate. The internal distribution of Tokyo-to explains the difference between the first two totals. In October 2025, approximately 9.95 million people lived in the 23 special wards, 4.30 milli"
+    }
+   },
+   {
+    "at": 18.465,
+    "seq": 48,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Read worldpopulationreview.com — Tokyo Population 2026",
+     "tone": "ok",
+     "note": "574 chars",
+     "ms": 5692
+    }
+   },
+   {
+    "at": 18.467,
+    "seq": 49,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 18.467,
+    "seq": 50,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "worldpopulationreview.com",
+     "title": "Tokyo Population 2026",
+     "chars": 574,
+     "kept": 574,
+     "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections."
+    }
+   },
+   {
+    "at": 18.515,
+    "seq": 51,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+     "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Tokyo"
+    }
+   },
+   {
+    "at": 19.415,
+    "seq": 52,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+     "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "url": "https://populationstat.com/japan/tokyo"
+    }
+   },
+   {
+    "at": 20.315,
+    "seq": 53,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+     "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+    }
+   },
+   {
+    "at": 21.215,
+    "seq": 54,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 23.015,
+    "seq": 55,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 25.015,
+    "seq": 56,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 27.215,
+    "seq": 57,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 30.015,
+    "seq": 58,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "Tokyo, officially the Tokyo Metropolis, is the capital and most populous city of Japan. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. After the Meiji Restoration (1868), the imperial capital in Kyoto was moved to Edo, and the city was renamed Tokyo (lit. Tokyo was greatly damaged by the 1923 Great Kantō earthquake and by Allied bombing raids during World War II. Beginning in the late 1940s, Tokyo underwent rapid reconstruction and expansion, which fueled the Japanese economic miracle, in which Japan's economy became the second-largest in the world at the time, behind that of the United States. As of 2025, Tokyo is home to 26 of the world's 500 largest comp…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 2…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). In plain language, about one in nine people in Japan lived in Tokyo-to in 2024. Japan’s five most populous prefectures in 2024—Tokyo, Kanagawa, Osaka, Aichi and Saitama—together held 37.9% of the national population (Statistics Bureau of Japan, cited above). In the official 2024 prefectural estimate, only Tokyo-to and Saitama-ken recorded population increases among Japan’s 47 prefectures, and Tokyo had the highest rate of increase. A third-party statistical overview reports that Tokyo recorded an approximately 58,490 net population gain in 2023, while also describing continued migration from elsewhere in Japan (Statista’s Tokyo ove…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 31.115,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read. It points to 2 original sources."
+    }
+   },
+   {
+    "at": 31.119,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 31.14,
+    "seq": 62,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 31.144,
+    "seq": 63,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 32.215,
+    "seq": 59,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 35.759,
+    "seq": 64,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 42.957,
+    "seq": 65,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "26 tokens",
+     "ms": 11819
+    }
+   },
+   {
+    "at": 42.962,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 42.965,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 43.047,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 43.174,
+    "seq": 69,
+    "kind": "quick",
+    "n": 1,
+    "of": 4,
+    "p": {
+     "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+     "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Tokyo"
+    }
+   },
+   {
+    "at": 43.179,
+    "seq": 78,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 4 new impressions",
+     "tone": "ok",
+     "note": "9 sentence(s) recalled from en.wikipedia.org · 10 sentence(s) recalled from populationstat.com · 14 sentence(s) recalled from tokyobureau.com · 8 sentence(s) recalled from Wikipedi"
+    }
+   },
+   {
+    "at": 43.204,
+    "seq": 79,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 43.205,
+    "seq": 80,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 43.206,
+    "seq": 81,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Recent population estimates Tokyo hold 8.3 million people live just"
+    }
+   },
+   {
+    "at": 44.074,
+    "seq": 70,
+    "kind": "quick",
+    "n": 2,
+    "of": 4,
+    "p": {
+     "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+     "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "url": "https://populationstat.com/japan/tokyo"
+    }
+   },
+   {
+    "at": 44.661,
+    "seq": 82,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "19 results via Brave Search",
+     "ms": 1459
+    }
+   },
+   {
+    "at": 44.666,
+    "seq": 83,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 44.666,
+    "seq": 84,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Recent population estimates Tokyo hold 8.3 million people live just",
+     "n": 19
+    }
+   },
+   {
+    "at": 44.683,
+    "seq": 85,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Reading Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 44.686,
+    "seq": 86,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 44.686,
+    "seq": 87,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "Population Stat",
+     "title": "Tokyo, Japan Population (2026) - Population Stat"
+    }
+   },
+   {
+    "at": 44.692,
+    "seq": 88,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Reading World Population Review — Tokyo Population 2026",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 44.695,
+    "seq": 89,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 44.695,
+    "seq": 90,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "World Population Review",
+     "title": "Tokyo Population 2026"
+    }
+   },
+   {
+    "at": 44.703,
+    "seq": 91,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://grokipedia.com/page/demographics_of_tokyo",
+     "title": "Reading Grokipedia — Demographics of Tokyo — Grokipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 44.705,
+    "seq": 92,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 44.705,
+    "seq": 93,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://grokipedia.com/page/demographics_of_tokyo",
+     "site": "Grokipedia",
+     "title": "Demographics of Tokyo — Grokipedia"
+    }
+   },
+   {
+    "at": 44.716,
+    "seq": 94,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Read Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "ok",
+     "note": "2,852 chars",
+     "ms": 36
+    }
+   },
+   {
+    "at": 44.719,
+    "seq": 95,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 44.719,
+    "seq": 96,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "Population Stat",
+     "title": "Tokyo, Japan Population (2026) - Population Stat",
+     "chars": 2852,
+     "kept": 2852,
+     "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. The modern-day city of Tokyo encompasses far more square miles than it did back in the early 20th century, forming what experts call one of the biggest examples of urban sprawl in the world. Because of this, explaining how many people call Tokyo home can be challenging. 1/4th of Japan's Population Live in Tokyo One thing's certain; there a lot of people "
+    }
+   },
+   {
+    "at": 44.721,
+    "seq": 97,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Reading Tokyo Bureau — How Many People Live in Tokyo? The Answer Depends on the Map",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 44.723,
+    "seq": 98,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 44.724,
+    "seq": 99,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "Tokyo Bureau",
+     "title": "How Many People Live in Tokyo? The Answer Depends on the Map"
+    }
+   },
+   {
+    "at": 44.73,
+    "seq": 100,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Read World Population Review — Tokyo Population 2026",
+     "tone": "ok",
+     "note": "574 chars",
+     "ms": 37
+    }
+   },
+   {
+    "at": 44.733,
+    "seq": 101,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 44.734,
+    "seq": 102,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "World Population Review",
+     "title": "Tokyo Population 2026",
+     "chars": 574,
+     "kept": 574,
+     "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections."
+    }
+   },
+   {
+    "at": 44.793,
+    "seq": 103,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Read Tokyo Bureau — How Many People Live in Tokyo? The Answer Depends on the Map",
+     "tone": "ok",
+     "note": "kept 2,906 of 22,324 chars",
+     "ms": 71
+    }
+   },
+   {
+    "at": 44.798,
+    "seq": 104,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 44.799,
+    "seq": 105,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "Tokyo Bureau",
+     "title": "How Many People Live in Tokyo? The Answer Depends on the Map",
+     "chars": 22324,
+     "kept": 2906,
+     "text": "How Many People Live in Tokyo? The Answer Depends on the Map Tokyo-to has 14.27 million residents, versus 9.95 million in the 23 wards and 33.4 million in the UN-defined urban agglomeration. Data checked September 5, 2026. This article uses the Tokyo Metropolitan Government’s October 1, 2025 population count as its latest verified annual administrative benchmark. It uses Japan’s Statistics Bureau for national figures and UN-linked 2025 estimates for international urban comparisons. Tokyo Metropolis had approximately 14.27 million residents on October 1, 2025, according to the Tokyo Metropolitan Government’s population overview. This is the clearest answer when “Tokyo” means Tokyo-to, the prefecture-level territory governed by the Tokyo Metropolitan Government. It is not the population of every city and suburb commonly grouped into Greater Tokyo. The 23 special wards, the full metropolis and the wider continuously developed urban area are separate geographies. All figures below are rounded. The dates and boundaries matter as much as the totals. Sources: Tokyo Metropolitan Government for the wards and Tokyo-to figures; the UN-linked 2025 summary from Nippon.com for the urban-agglomeration estimate. The internal distribution of Tokyo-to explains the difference between the first two totals. In October 2025, approximately 9.95 million people lived in the 23 special wards, 4.30 milli"
+    }
+   },
+   {
+    "at": 44.974,
+    "seq": 71,
+    "kind": "quick",
+    "n": 3,
+    "of": 4,
+    "p": {
+     "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+     "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+    }
+   },
+   {
+    "at": 45.874,
+    "seq": 72,
+    "kind": "quick",
+    "n": 4,
+    "of": 4,
+    "p": {
+     "text": "The album features the live performances at Tokyo Dome on September 19 and September 20, 2016, which concluded the band's world tour. On December 13, 2015, the band announced a new album, as well as a world tour to begin at Wembley Arena and conclude at Tokyo Dome. On April 1, 2016, tickets to the show were made available for purchase to \"The One\" fanclub members, and later for presale on the band's official website on April 4, 2016. On June 3, 2016, a second day was announced for Tokyo Dome, with tickets for the second show immediately made available to \"The One\" fanclub members. Live at Tokyo Dome was initially announced on January 23, 2017 as a \"The One\" exclusive box set release for April 1, 2017, and later on April 12, 2017 in DVD and standard and limited edition Blu-ray formats. A trailer for the video album was released on March 15, 2017, containing concerts denoted as \"Red Night…",
+     "ref": "Wikipedia — Live at Tokyo Dome",
+     "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome"
+    }
+   },
+   {
+    "at": 46.774,
+    "seq": 73,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 48.574,
+    "seq": 74,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 50.574,
+    "seq": 75,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 50.776,
+    "seq": 106,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://grokipedia.com/page/demographics_of_tokyo",
+     "title": "Read Grokipedia — Demographics of Tokyo — Grokipedia",
+     "tone": "ok",
+     "note": "526 chars",
+     "ms": 6075
+    }
+   },
+   {
+    "at": 50.779,
+    "seq": 107,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 50.779,
+    "seq": 108,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://grokipedia.com/page/demographics_of_tokyo",
+     "site": "Grokipedia",
+     "title": "Demographics of Tokyo — Grokipedia",
+     "chars": 526,
+     "kept": 526,
+     "text": "Administrative Divisions and Urban Structure Modern Industrialization and Growth (1868–1945) Ethnic Homogeneity and Citizenship Status Domestic In-Migration and Regional Flows International Migration and Foreign Resident Growth Distribution of Foreigners by Nationality and Ward Marriage, Divorce, and Fertility Influences Labor Force Participation and Employment Policy Responses to Demographic Pressures Debates on Immigration and Cultural Integration 1↑Japan aims to bring 820,000 foreign workers in next 5 yearsreuters.com"
+    }
+   },
+   {
+    "at": 50.863,
+    "seq": 115,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read 1 more source",
+     "tone": "ok",
+     "note": "“Recent population estimates Tokyo hold 8.3 million people live just”"
+    }
+   },
+   {
+    "at": 52.774,
+    "seq": 76,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 55.574,
+    "seq": 77,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 57.774,
+    "seq": 109,
+    "kind": "quick",
+    "n": 1,
+    "of": 1,
+    "p": {
+     "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+     "ref": "World Population Review — Tokyo Population 2026",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+    }
+   },
+   {
+    "at": 58.674,
+    "seq": 110,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_b76733",
+    "ps": [
+     {
+      "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+      "ref": "World Population Review — Tokyo Population 2026",
+      "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+     }
+    ]
+   },
+   {
+    "at": 60.474,
+    "seq": 111,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_b76733",
+    "ps": [
+     {
+      "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+      "ref": "World Population Review — Tokyo Population 2026",
+      "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+     }
+    ]
+   },
+   {
+    "at": 62.474,
+    "seq": 112,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_b76733",
+    "ps": [
+     {
+      "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+      "ref": "World Population Review — Tokyo Population 2026",
+      "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+     }
+    ]
+   },
+   {
+    "at": 64.674,
+    "seq": 113,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_b76733",
+    "ps": [
+     {
+      "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+      "ref": "World Population Review — Tokyo Population 2026",
+      "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+     }
+    ]
+   },
+   {
+    "at": 66.857,
+    "seq": 116,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 2: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 66.957,
+    "seq": 126,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 4 new impressions",
+     "tone": "ok",
+     "note": "9 sentence(s) recalled from en.wikipedia.org · 10 sentence(s) recalled from populationstat.com · 14 sentence(s) recalled from tokyobureau.com · 8 sentence(s) recalled from Wikipedi"
+    }
+   },
+   {
+    "at": 66.975,
+    "seq": 127,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 66.976,
+    "seq": 128,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 66.976,
+    "seq": 129,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Recent population estimates Tokyo hold 8.3 million people live just"
+    }
+   },
+   {
+    "at": 67.474,
+    "seq": 114,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_b76733",
+    "ps": [
+     {
+      "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections.",
+      "ref": "World Population Review — Tokyo Population 2026",
+      "url": "https://worldpopulationreview.com/cities/japan/tokyo"
+     }
+    ]
+   },
+   {
+    "at": 67.948,
+    "seq": 130,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Recent population estimates Tokyo hold 8.3 million people live just",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "19 results via Brave Search",
+     "ms": 975
+    }
+   },
+   {
+    "at": 67.949,
+    "seq": 131,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 67.949,
+    "seq": 132,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Recent population estimates Tokyo hold 8.3 million people live just",
+     "n": 19
+    }
+   },
+   {
+    "at": 67.952,
+    "seq": 133,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Reading Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 67.952,
+    "seq": 134,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 67.952,
+    "seq": 135,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "Population Stat",
+     "title": "Tokyo, Japan Population (2026) - Population Stat"
+    }
+   },
+   {
+    "at": 67.953,
+    "seq": 136,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Reading World Population Review — Tokyo Population 2026",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 67.953,
+    "seq": 137,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 67.953,
+    "seq": 138,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "World Population Review",
+     "title": "Tokyo Population 2026"
+    }
+   },
+   {
+    "at": 67.953,
+    "seq": 139,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://grokipedia.com/page/demographics_of_tokyo",
+     "title": "Reading Grokipedia — Demographics of Tokyo — Grokipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 67.954,
+    "seq": 140,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 67.954,
+    "seq": 141,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://grokipedia.com/page/demographics_of_tokyo",
+     "site": "Grokipedia",
+     "title": "Demographics of Tokyo — Grokipedia"
+    }
+   },
+   {
+    "at": 67.955,
+    "seq": 142,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://populationstat.com/japan/tokyo",
+     "title": "Read Population Stat — Tokyo, Japan Population (2026) - Population Stat",
+     "tone": "ok",
+     "note": "2,852 chars",
+     "ms": 3
+    }
+   },
+   {
+    "at": 67.956,
+    "seq": 143,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 67.956,
+    "seq": 144,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://populationstat.com/japan/tokyo",
+     "site": "Population Stat",
+     "title": "Tokyo, Japan Population (2026) - Population Stat",
+     "chars": 2852,
+     "kept": 2852,
+     "text": "ContinentsAsia 4650 MAfrica 1384 MEurope 745 MNorth America 504 MSouth America 438 MCentral America 51 MOceania 45 MCaribbean 44 Mcomparison CountriesChina 1416 MIndia 1407 MUnited States 334 MIndonesia 279 MPakistan 229 MNigeria 217 MBrazil 215 MBangladesh 168 MRussia 143 MMexico 132 Mmore... CitiesTokyo 37 MDelhi 32 MShanghai 29 MDhaka 22 MSao Paulo 22 MMexico City 22 MCairo 22 MBeijing 21 MMumbai 21 MOsaka 19 Mmore... Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. Tokyo's thriving population shows no signs of stopping. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. The modern-day city of Tokyo encompasses far more square miles than it did back in the early 20th century, forming what experts call one of the biggest examples of urban sprawl in the world. Because of this, explaining how many people call Tokyo home can be challenging. 1/4th of Japan's Population Live in Tokyo One thing's certain; there a lot of people "
+    }
+   },
+   {
+    "at": 67.956,
+    "seq": 145,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Reading Tokyo Bureau — How Many People Live in Tokyo? The Answer Depends on the Map",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 67.956,
+    "seq": 146,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 67.956,
+    "seq": 147,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "Tokyo Bureau",
+     "title": "How Many People Live in Tokyo? The Answer Depends on the Map"
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 148,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://worldpopulationreview.com/cities/japan/tokyo",
+     "title": "Read World Population Review — Tokyo Population 2026",
+     "tone": "ok",
+     "note": "574 chars",
+     "ms": 5
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 149,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 150,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://worldpopulationreview.com/cities/japan/tokyo",
+     "site": "World Population Review",
+     "title": "Tokyo Population 2026",
+     "chars": 574,
+     "kept": 574,
+     "text": "Tokyo's 2026 population is now estimated at 10,316,210.In 1995, the population of Tokyo was 7,967,614.Tokyo has grown by 99,525 in the last year, which represents a 0.97% annual change.These population values and projections come from Japan city census series 1995 to 2005 via CityPopulation fallback access, Japan 2010 Census municipal population Table 1 (e-Stat official CSV), Japan 2015 Census municipal population Table 1 (e-Stat official CSV), Japan 2020 Census municipal population Table 1-3 (e-Stat official download) and World Population Review Internal Projections."
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 151,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://grokipedia.com/page/demographics_of_tokyo",
+     "title": "Read Grokipedia — Demographics of Tokyo — Grokipedia",
+     "tone": "ok",
+     "note": "526 chars",
+     "ms": 4
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 152,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 67.957,
+    "seq": 153,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://grokipedia.com/page/demographics_of_tokyo",
+     "site": "Grokipedia",
+     "title": "Demographics of Tokyo — Grokipedia",
+     "chars": 526,
+     "kept": 526,
+     "text": "Administrative Divisions and Urban Structure Modern Industrialization and Growth (1868–1945) Ethnic Homogeneity and Citizenship Status Domestic In-Migration and Regional Flows International Migration and Foreign Resident Growth Distribution of Foreigners by Nationality and Ward Marriage, Divorce, and Fertility Influences Labor Force Participation and Employment Policy Responses to Demographic Pressures Debates on Immigration and Cultural Integration 1↑Japan aims to bring 820,000 foreign workers in next 5 yearsreuters.com"
+    }
+   },
+   {
+    "at": 67.977,
+    "seq": 154,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "title": "Read Tokyo Bureau — How Many People Live in Tokyo? The Answer Depends on the Map",
+     "tone": "ok",
+     "note": "kept 2,906 of 22,324 chars",
+     "ms": 21
+    }
+   },
+   {
+    "at": 67.978,
+    "seq": 155,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 67.978,
+    "seq": 156,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo",
+     "site": "Tokyo Bureau",
+     "title": "How Many People Live in Tokyo? The Answer Depends on the Map",
+     "chars": 22324,
+     "kept": 2906,
+     "text": "How Many People Live in Tokyo? The Answer Depends on the Map Tokyo-to has 14.27 million residents, versus 9.95 million in the 23 wards and 33.4 million in the UN-defined urban agglomeration. Data checked September 5, 2026. This article uses the Tokyo Metropolitan Government’s October 1, 2025 population count as its latest verified annual administrative benchmark. It uses Japan’s Statistics Bureau for national figures and UN-linked 2025 estimates for international urban comparisons. Tokyo Metropolis had approximately 14.27 million residents on October 1, 2025, according to the Tokyo Metropolitan Government’s population overview. This is the clearest answer when “Tokyo” means Tokyo-to, the prefecture-level territory governed by the Tokyo Metropolitan Government. It is not the population of every city and suburb commonly grouped into Greater Tokyo. The 23 special wards, the full metropolis and the wider continuously developed urban area are separate geographies. All figures below are rounded. The dates and boundaries matter as much as the totals. Sources: Tokyo Metropolitan Government for the wards and Tokyo-to figures; the UN-linked 2025 summary from Nippon.com for the urban-agglomeration estimate. The internal distribution of Tokyo-to explains the difference between the first two totals. In October 2025, approximately 9.95 million people lived in the 23 special wards, 4.30 milli"
+    }
+   },
+   {
+    "at": 67.999,
+    "seq": 157,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found nothing new",
+     "tone": "info",
+     "note": "“Recent population estimates Tokyo hold 8.3 million people live just”"
+    }
+   },
+   {
+    "at": 69.674,
+    "seq": 117,
+    "kind": "quick",
+    "n": 1,
+    "of": 4,
+    "p": {
+     "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+     "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Tokyo"
+    }
+   },
+   {
+    "at": 70.574,
+    "seq": 118,
+    "kind": "quick",
+    "n": 2,
+    "of": 4,
+    "p": {
+     "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+     "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+     "url": "https://populationstat.com/japan/tokyo"
+    }
+   },
+   {
+    "at": 71.474,
+    "seq": 119,
+    "kind": "quick",
+    "n": 3,
+    "of": 4,
+    "p": {
+     "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+     "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+     "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+    }
+   },
+   {
+    "at": 72.374,
+    "seq": 120,
+    "kind": "quick",
+    "n": 4,
+    "of": 4,
+    "p": {
+     "text": "The album features the live performances at Tokyo Dome on September 19 and September 20, 2016, which concluded the band's world tour. On December 13, 2015, the band announced a new album, as well as a world tour to begin at Wembley Arena and conclude at Tokyo Dome. On April 1, 2016, tickets to the show were made available for purchase to \"The One\" fanclub members, and later for presale on the band's official website on April 4, 2016. On June 3, 2016, a second day was announced for Tokyo Dome, with tickets for the second show immediately made available to \"The One\" fanclub members. Live at Tokyo Dome was initially announced on January 23, 2017 as a \"The One\" exclusive box set release for April 1, 2017, and later on April 12, 2017 in DVD and standard and limited edition Blu-ray formats. A trailer for the video album was released on March 15, 2017, containing concerts denoted as \"Red Night…",
+     "ref": "Wikipedia — Live at Tokyo Dome",
+     "url": "https://en.wikipedia.org/wiki/Live_at_Tokyo_Dome"
+    }
+   },
+   {
+    "at": 73.274,
+    "seq": 121,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 75.074,
+    "seq": 122,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 75.094,
+    "seq": 158,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 75.101,
+    "seq": 159,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 77.074,
+    "seq": 123,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 79.274,
+    "seq": 124,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 81.411,
+    "seq": 160,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · populationstat.com · 2 model calls"
+    }
+   },
+   {
+    "at": 81.474,
+    "seq": 161,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 81.477,
+    "seq": 162,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 82 s · read 12 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 82.074,
+    "seq": 125,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_2f09f3",
+    "ps": [
+     {
+      "text": "The population of the city proper was over 14 million as of 2023. The Greater Tokyo Area, which includes Tokyo and parts of six neighboring prefectures, is the third-most populous metropolitan area in the world, with 33 million residents as of 2025. Although most of the world recognizes Tokyo as a city, since 1943 its governing structure has been more akin to that of a prefecture, with an accompanying Governor and Assembly taking precedence over the smaller municipal governments that make up the metropolis. Tokyo, originally known as Edo, rose to political prominence in 1603 when it became the seat of the Tokugawa shogunate, and by the mid-18th century, Edo had evolved from a small fishing village into one of the largest cities in the world, with a population surpassing one million. As of 2025, Tokyo is home to 26 of the world's 500 largest companies, as listed in the annual Fortune Glo…",
+      "ref": "en.wikipedia.org — Tokyo - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tokyo"
+     },
+     {
+      "text": "Tokyo, Japan's capital and its most densely populated city, is also the world's largest metropolitan area, with roughly 37.4 million people calling its three prefectures home. Recent population estimates for Tokyo hold that around 8.3 million people live just within the city's traditional boundaries. By 2035, experts predict that Tokyo's metro area will be home to more than 36 million souls. Tokyo is divided into 23 wards that form the boundaries for the city, although those boundaries were officially done away with back in the 40s with prefecture mergers. 1/4th of Japan's Population Live in Tokyo In fact, 25 percent, a full 1/4th of the population of the entire country, lives within the greater Tokyo metropolitan area, even though the land upon which Tokyo stands only accounts for 0.6 percent of Japan's total land area. First Asian City to Reach 1 Million People By the 1720s, it had ga…",
+      "ref": "populationstat.com — Tokyo, Japan Population (2026) - Population Stat",
+      "url": "https://populationstat.com/japan/tokyo"
+     },
+     {
+      "text": "How Many People Live in Tokyo? Use 14.27 million for Tokyo as a Japanese administrative jurisdiction. Its approximately 14.27 million residents included about 4.30 million people in Tama and roughly 22,000 island residents, in addition to the 9.95 million people in the wards (Tokyo Metropolitan Government benchmark cited above). Tokyo-to was Japan’s most populous prefecture and held 11.5% of the national population, according to the Statistics Bureau of Japan’s 2024 population estimates. A broader claim—that around 30% of Japan’s population lives in the capital region—uses a much larger boundary. Tokyo is an exception within the broader national pattern, not evidence against it. 1721: Edo had approximately 1.3 million residents, showing that it was already a major population center. 1935: Tokyo’s population reached 6.36 million. 1962: Tokyo passed 10 million residents. October 2025: Tok…",
+      "ref": "tokyobureau.com — Tokyo, Japan Population by Boundary | Tokyo Bureau",
+      "url": "https://www.tokyobureau.com/2026/japan-population-tokyo"
+     }
+    ]
+   },
+   {
+    "at": 84.274,
+    "seq": 163,
+    "kind": "done"
+   }
+  ]
+ }
+}

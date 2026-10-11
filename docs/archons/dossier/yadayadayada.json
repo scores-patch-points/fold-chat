@@ -1,0 +1,18 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "yadayadayada",
+  "organ": "khora/native/organs/run-dmca.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "Nobody. The compendium itself says the handle names a posture, not a claimed work, and that the idiom's namesake is not asserted. The discipline in run-dmca.js (paraphrase chased by meaning via the fold's own claim rows, for a named whom, model-free; beyond-vocabulary paraphrase is a named gap) is credited in its header to user statements of 2026-09-14, not to any author.",
+  "scholarship": [],
+  "ourUse": "run-dmca.js: the shadow chase finds source sentences that carry a write span's claim in other words; the record chase equates the span to the fold's claim rows for a declared whom; unequated spans are named, never laundered.",
+  "verdict": "justified",
+  "bends": [],
+  "noBendReason": "This is our name for a posture and claims no author's work, so no author can be bent. The compendium entry does not smuggle in an authority: its source line disclaims the namesake, and the meaning-and-whom doctrine is credited to the user. One honest caveat on the label: the colloquial 'yada yada yada' skips details, which can hide meaning rather than restate it, so the name fits the project's concept (restating without changing meaning) only loosely and nearly inverts it; the entry's own wording ('skipping the verbatim without changing what was meant') is the project's gloss, not a property of the idiom.",
+  "tokenized": false,
+  "fix": [
+    "optional compendium source wording: 'our name; the idiom skips detail, whereas this organ requires that a restatement keep its claim; the discipline is the project's'."
+  ]
+}

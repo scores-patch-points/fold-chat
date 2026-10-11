@@ -1,0 +1,108 @@
+{
+ "follow": {
+  "n": 22,
+  "ok": 18,
+  "acc": 0.818,
+  "ci": [
+   0.61,
+   0.93
+  ]
+ },
+ "switch": {
+  "n": 24,
+  "ok": 24,
+  "acc": 1,
+  "ci": [
+   0.86,
+   1
+  ]
+ },
+ "hard": {
+  "n": 10,
+  "ok": 8,
+  "acc": 0.8,
+  "ci": [
+   0.49,
+   0.94
+  ]
+ },
+ "follow/en": {
+  "n": 14,
+  "ok": 12,
+  "acc": 0.857,
+  "ci": [
+   0.6,
+   0.96
+  ]
+ },
+ "follow/es": {
+  "n": 4,
+  "ok": 3,
+  "acc": 0.75,
+  "ci": [
+   0.3,
+   0.95
+  ]
+ },
+ "follow/fr": {
+  "n": 4,
+  "ok": 3,
+  "acc": 0.75,
+  "ci": [
+   0.3,
+   0.95
+  ]
+ },
+ "switch/en": {
+  "n": 16,
+  "ok": 16,
+  "acc": 1,
+  "ci": [
+   0.81,
+   1
+  ]
+ },
+ "switch/es": {
+  "n": 4,
+  "ok": 4,
+  "acc": 1,
+  "ci": [
+   0.51,
+   1
+  ]
+ },
+ "switch/fr": {
+  "n": 4,
+  "ok": 4,
+  "acc": 1,
+  "ci": [
+   0.51,
+   1
+  ]
+ },
+ "switch/share": {
+  "n": 6,
+  "ok": 6,
+  "acc": 1,
+  "ci": [
+   0.61,
+   1
+  ]
+ },
+ "followRightReferent": {
+  "n": 18,
+  "ok": 18
+ },
+ "thread_mode_on_non_follow": [
+  "why",
+  "who"
+ ]
+}
+
+FAILURES:
+  xf003 follow/en expect=carry got kind=standalone mode=web q="can you give an example"  ← "can you give an example"
+  xf007 follow/en expect=carry got kind=standalone mode=web q="when did that happen"  ← "when did that happen"
+  xf015 follow/es expect=carry got kind=standalone mode=web q="¿cuándo nació?"  ← "¿cuándo nació?"
+  xf019 follow/fr expect=carry got kind=standalone mode=web q="qui l'a tué ?"  ← "qui l'a tué ?"
+  xh050 hard/en expect=carry got kind=standalone mode=web q="what is a good one for beginners"  ← "what is a good one for beginners"
+  xh052 hard/en expect=carry got kind=standalone mode=web q="which one is bigger"  ← "which one is bigger"

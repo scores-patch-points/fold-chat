@@ -1,0 +1,393 @@
+{
+ "variant": "fulfill:http429",
+ "at": "2026-10-07T06:19:19.453Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The invention of the telephone is a complex topic with different perspectives.\n\n1876: Bell signs and notarizes his patent application for the telephone. Three days later, on 10 March 1876, his first intelligible telephone communication was made. On 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.",
+   "shown": "The invention of the telephone is a complex topic with different perspectives.\n\n1876: Bell signs and notarizes his patent application for the telephone. Three days later, on 10 March 1876, his first intelligible telephone communication was made. On 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\n\nW\nen.wikipedia.org\nopen ↗\nHistory of the telephone - Wikipedia\n… 20 January 1876: Bell signs and notarizes his patent application for the telephone . …\nN\n1 more source\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 4,
+     "kept": 4,
+     "dropped": 0,
+     "unsourced": 1
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.24,
+      "mean": 14.3,
+      "blinks": 0,
+      "dense": 1,
+      "n": 4
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The invention of the telephone is a complex topic with different perspectives.",
+    "calls": 2,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "unrelated"
+   },
+   "nRaw": 3,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    },
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "In 1876, Alexander Graham Bell was the first to be granted a United States patent for a device that produced clearly intelligible replication of the human voice at a second device.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nHis device appears to be the first device based on the conversion of sound into electrical impulses.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n11 February 1876: Elisha Gray invents "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nHouse of Representatives for his contributory work on the telephone.\nA subsequent counter-motion was unanimously passed in Canada's Parliament 10 days later which declared Bell its inventor.\nThe telephone exchange was an idea of the Hungarian engineer Tivadar Puskás (1844–1893) in 1876, while he was working for Thomas Edison on a telegraph exchange.\nBy 21 February 1878, however, when the first telephone directory was published by the company, fifty subscribers were listed.\nAs it expanded, the company was first renamed Connecticut Telephone, and then Southern New England Telephone in 1882.\nThe site of the first telephone"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Alexander Bell was born in Edinburgh on 3 March 1847.\nThese early experiments in speech creation, along with his knowledge of anatomy, informed his own experiments on transmitting speech, which he began in earnest from 1873.\nSo he filed an application for ‘Improvements in Telegraphy’ on 14 February 1876.\nBell was granted the patent on 7 March 1876.\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nOn 11 August 1877, Bell and Mabel arrived in Britain from the USA on honeymoon.\nMeucci was pursuing his claim in the Supreme Court wh"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "The Telephone Cases, 126 U.S.\nThe objector (or plaintiff) in the Supreme Court case was initially the Western Union telegraph company, which was then a far-larger and better financed competitor than American Bell Telephone.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nIn all, the American Bell Telephone Company and its successor, AT&T, litigated "
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "Charles Bourseul was a French telegraph engineer who proposed (but did not build) the first design of a \"make-and-break\" telephone in 1854.\nThat is about the same time that Meucci later claimed to have created his first attempt at the telephone in Italy.\nAn American District Telegraph (ADT) laboratory reportedly lost some of Meucci's working models, his wife reportedly disposed of others and Meucci, who sometimes lived on public assistance, chose not to renew his 1871 teletrofono patent caveat after 1874.\nA resolution was passed by the United States House of Representatives in 2002 that said Meucci did pioneering work on the development of the telephone.\nThe Reis telephone was developed from"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 27
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "partial",
+    "counts": {
+     "sentences": 4,
+     "grounded": 3
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     },
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "wrote the answer · local",
+    "scaffolding · 2 source label(s) removed from the model's text, 1 shown as citations",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframed · went back 1 lap · 0 more source(s) read · 0 sentence(s) restated · every sentence holds",
+    "void · ⟂ void — 1 of 4 sentence(s) had no source; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: the model is rate-limited right now.\nmissing: the model's draft of the essay\nWHAT THE TURN HAD\nBell Telephone Company · en.wikipedia.org — about the topic\nBell System · en.wikipedia.org — about the topic\nBell Canada · en.wikipedia.org — about the topic\nshow what the sources say about Bell Telephone Company and History of the telepho… (their own words, not an essay)\nto close it: wait a minute and try again · pick another model\ntry again\nread as\nRead your question as being about Bell Telephone Company and History of the telephone.\nnot Bell Telephone Company\nnot History of the telephone\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Bell Telephone Company and History of the telephone."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Bell_Telephone_Company",
+    "en.wikipedia.org/wiki/Bell_System",
+    "en.wikipedia.org/wiki/Bell_Canada",
+    "en.wikipedia.org/wiki/Pacific_Bell",
+    "en.wikipedia.org/wiki/Southwestern_Bell"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 1,
+   "searched": "Bell Telephone Company History of the telephone write me an essay on this",
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "Wikipedia — Bell Telephone Company",
+     "url": "https://en.wikipedia.org/wiki/Bell_Telephone_Company",
+     "text": "The Bell Telephone Company was an American telecommunications company active from 1877 to 1899.\nBell Telephone and New England Telephone merged on February 17, 1879, to form two new entities, the National Bell Telephone Company of Boston, and the International Bell Telephone Company.\nThe National Bell Telephone Company merged with American Speaking Telephone Company on March 20, 1880, to form the American Bell Telephone Company, also of Boston, Massachusetts.\nAt the time of the organization of the Bell Telephone Company as an association (also known as the Bell Company), on July 9, 1877, as a joint stock company in 1877 by Hubbard, who soon became its trustee and de facto president, 5,000 sh"
+    },
+    {
+     "ref": "Wikipedia — Bell System",
+     "url": "https://en.wikipedia.org/wiki/Bell_System",
+     "text": "The Bell System was a system of telecommunication companies, led by the Bell Telephone Company and later by the American Telephone and Telegraph Company, that dominated the telephone services industry in North America for over 100 years from its creation in 1877 until its antitrust breakup in 1983.\nAs a result, by 2026 most of the assets and geographical service areas of the former Bell System had been re-assembled into two Baby Bells descendants: AT&T and Verizon.\nIn 1899, American Telephone & Telegraph (AT&T) acquired the assets of its parent, the American Bell Telephone Company.\npatent for the invention of the telephone on March 7, 1876, Alexander Graham Bell formed the Bell Telephone Com"
+    },
+    {
+     "ref": "Wikipedia — Bell Canada",
+     "url": "https://en.wikipedia.org/wiki/Bell_Canada",
+     "text": "Bell Canada (commonly referred to as Bell) is a Canadian telecommunications company headquartered at 1 Carrefour Alexander-Graham-Bell in the borough of Verdun, Quebec, Canada.\nThe company serves over 13 million phone lines and is headquartered at the Campus Bell complex in the borough of Verdun in Montreal.\nIn 1879, Bell's father sold his Canadian rights to the National Bell Telephone Company, formed in Boston, Massachusetts earlier that year by the merger of the Bell Telephone Company and the New England Telephone and Telegraph Company, which in 1880 reorganized as the American Bell Telephone Company, initiating the Bell System.\nThomas and James had been good friends of Alexander Graham Be"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Bell_Telephone_Company",
+    "https://en.wikipedia.org/wiki/Bell_System",
+    "https://en.wikipedia.org/wiki/Bell_Canada",
+    "https://en.wikipedia.org/wiki/Pacific_Bell",
+    "https://en.wikipedia.org/wiki/Southwestern_Bell"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "Bell Telephone Company and History of the telephone",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "Bell Telephone Company",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "History",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "an encyclopedic ask (definition, history, comparison)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "rate-limit",
+    "outputType": "essay",
+    "topic": "Bell Telephone Company and History of the telephone",
+    "missing": [
+     "the model's draft of the essay"
+    ],
+    "had": [
+     {
+      "kind": "page",
+      "title": "Bell Telephone Company",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_Telephone_Company",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "Bell System",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_System",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "Bell Canada",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_Canada",
+      "note": "about the topic"
+     }
+    ],
+    "setAside": [],
+    "unblock": [
+     "wait a minute and try again",
+     "pick another model"
+    ],
+    "note": "I can't write the essay: the model is rate-limited right now.",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Bell Telephone Company",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_Telephone_Company"
+     },
+     {
+      "title": "Bell System",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_System"
+     },
+     {
+      "title": "Bell Canada",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Bell_Canada"
+     }
+    ],
+    "closeBy": [
+     "wait a minute and try again",
+     "pick another model"
+    ],
+    "question": "write me an essay on this",
+    "retry": true,
+    "offer": {
+     "act": "show-sources",
+     "n": 3,
+     "label": "show what the sources say about Bell Telephone Company and History of the telepho… (their own words, not an essay)"
+    }
+   },
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 3 source(s)",
+    "no model call · this kind of turn has no source, and the model never speaks alone",
+    "followed the conversation · carried · searched “Bell Telephone Company History of the telephone write me an essay on this”",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: the model is rate-limited right now. Missing: the model's draft of the essay. To close it: wait a minute and try again, or pick another model."
+   ]
+  }
+ ]
+}

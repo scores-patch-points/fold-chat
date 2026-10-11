@@ -1,0 +1,51 @@
+{
+  "organ": "khora/native/kernel/activation.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/atta.json"
+  ],
+  "whatTheyArgued": "No single author. Leaf-cutter (Atta) foraging trails are marked with a trail pheromone (Wilson and successors; Jaffe and Howse 1979 on mass recruitment in A. cephalotes: recruitment tracks pheromone concentration). Pheromone is volatile, so a trail needs deposition to stay marked. BUT the recent literature I read says Atta foraging trails also exist as physical cleared paths that can be used for months or years and that colonies prefer maintaining existing trails over building new ones, so trail persistence is not only pheromone-versus-evaporation. I could not read the primary papers (Springer paywalled, JEB/NOAA 403); claims rest on search-result summaries and one fetched SciELO article. No pre-1929 source states the decay-unless-reinforced teaching (the manifest records Belt 1874 and Lubbock 1882 were checked and do not).",
+  "scholarship": [
+    {
+      "ref": "SciELO Rev. Bras. Entomol. article on Atta trail restoration after interruption",
+      "url": "https://scielo.br/j/rbent/a/tNx5PD8zXcvqBTct3m3nJzf/?lang=en",
+      "supports": "trail = physical path plus pheromone signal; leaf-cutters prefer to maintain trails; some trails last months or years",
+      "disputes": "article does not itself measure evaporation or reinforcement; it shifts weight toward the physical trail"
+    },
+    {
+      "ref": "Jaffe & Howse 1979, mass recruitment system of Atta cephalotes (as reported in search results, not read in full)",
+      "url": "https://link.springer.com/10.1007/s00040-024-00995-y",
+      "supports": "recruitment number related to trail pheromone concentration",
+      "disputes": "none found; primary text unread"
+    }
+  ],
+  "ourUse": "activation.js: activation of a cell = value * gamma^(now-time), lazy decay on read; window is measured, not set (dmdWindow). Header names Atta: 'evaporates unless reinforced by continued traffic'. Identity is explicitly exempt from decay.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "reinforcement-missing",
+      "kind": "narrowed",
+      "ours": "Handle claims decay-against-reinforcement; activation.js implements decay only (observations refold the cell), with no traffic-dependent reinforcement of a path.",
+      "theirs": "The ant trail's dynamics are the balance of deposition by passing ants against evaporation; decay alone is half the mechanism."
+    },
+    {
+      "id": "physical-trail",
+      "kind": "re-scoped",
+      "ours": "Compendium: a trail that is not used fades, one that is used stays, full stop.",
+      "theirs": "Atta trails are also physically cleared and maintained, and can persist for months or years; fading of chemical marking is not the whole story."
+    },
+    {
+      "id": "decorative-handle",
+      "kind": "decorative",
+      "ours": "The decay rate gamma comes from a measured window (difference-that-makes-a-difference), not from any pheromone evaporation rate.",
+      "theirs": "Pheromone evaporation has its own rate and chemistry; nothing in our code derives from it. The ant is an image, not a source of the number."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Atta trail marking is a pheromone laid by passing ants and lost by evaporation; the fold borrows only the picture that presence fades without renewal. (Trails are also physical paths and can last long; we do not model that.)'",
+    "activation.js header: 'after ... ' -> 'imagery from ... trail pheromone; we implement decay only, no traffic reinforcement'"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "atta",
+  "tokenized": false
+}

@@ -1,0 +1,295 @@
+{
+ "variant": "network",
+ "at": "2026-10-07T06:12:48.471Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The invention of the telephone is a topic of ongoing historical debate.\n\nThe sources suggest that Alexander Graham Bell is credited with inventing the telephone. However, there are also accounts from sources like which mention other inventors and researchers who contributed to the development of the telephone.",
+   "shown": "The invention of the telephone is a topic of ongoing historical debate.\n\nThe sources suggest that Alexander Graham Bell is credited with inventing the telephone. However, there are also accounts from sources like which mention other inventors and researchers who contributed to the development of the telephone.\n\nW\nen.wikipedia.org\nopen ↗\nHistory of the telephone - Wikipedia\n… The Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray. …\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 3,
+     "kept": 3,
+     "dropped": 0,
+     "unsourced": 2
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": true,
+      "ratio": 0.29,
+      "mean": 15.7,
+      "blinks": 0,
+      "dense": 1,
+      "n": 3
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The invention of the telephone is a topic of ongoing historical debate.",
+    "calls": 1,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "none"
+   },
+   "nRaw": 2,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain."
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 27
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "partial",
+    "counts": {
+     "sentences": 3,
+     "grounded": 1
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "wrote the answer · local",
+    "scaffolding · 1 source label(s) removed from the model's text, 1 shown as citations",
+    "language · asker en, reply en — same",
+    "checked · the answer against the material carried",
+    "reframe · every sentence held on the first try",
+    "void · ⟂ void — 2 of 3 sentence(s) had no source; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": true,
+   "spoken": "Alexander Graham Bell ( ; born Alexander Bell; March 3, 1847 – August 2, 1922) was a Scottish-born Canadian-American inventor, scientist, and engineer who is credited with patenting the first practical telephone. He also co-founded the American Telephone and Telegraph Company (AT&T) in 1885. patent for the telephone, on March 7, 1876. Bell considered his invention an intrusion on his real work as a scientist and refused to have a telephone in his study. Bell also had a strong influence on the National Geographic Society and its magazine while serving as its second president from 1898 to 1903.\n\nThe Elisha Gray and Alexander Graham Bell controversy concerns the question of whether Elisha Gray and Alexander Graham Bell invented the telephone independently. On February 24, 1876, Bell traveled to Washington D.C. On March 8, Bell recorded an experiment in his lab notebook, with a diagram similar to that of Gray's patent caveat (see right). Bell finally got his telephone model to work on March 10, when Bell and his assistant Thomas A. Watson both recorded the famous \"Watson — come here — I want to see you\" story in their notebooks.\n\nMr. Grosvenor co-authored a biography of his great-grandfather, Alexander Graham Bell: The Life and Times of the Inventor of the Telephone, published by Harry N. Abrams Inc., and is also the co-author of 299 Things Everyone Should Know About American History.",
+   "shown": "model declined\nThe model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead.\ntry again\nFROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS\n‹ Prev\n1 of 3\nNext ›\nAlexander Graham Bell ( ; born Alexander Bell; March 3, 1847 – August 2, 1922) was a Scottish-born Canadian-American inventor, scientist, and engineer who is credited with patenting the first practical telephone. He also co-founded the American Telephone and Telegraph Company (AT&T) in 1885. patent for the telephone, on March 7, 1876. Bell considered his invention an intrusion on his real work as a scientist and refused to have a telephone in his study. Bell also had a strong influence on the National Geographic Society and its magazine while serving as its second president from 1898 to 1903. …\nit points to: [4] The Bell Family\nfound on Wikipedia “Alexander Graham Bell”\nS1\na pointer, not a source · found on en.wikipedia.org\npointer\nread as\nRead your question as being about History of the telephone and Alexander Graham Bell.\nnot History of the telephone\nnot Alexander Graham Bell\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "declined",
+     "text": "The model could not answer (bridge unreachable: Failed to fetch). Showing what the sources say instead."
+    },
+    {
+     "kind": "carry",
+     "text": "Read your question as being about History of the telephone and Alexander Graham Bell."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "en.wikipedia.org/wiki/Elisha_Gray_and_Alexander_Bell_telephone_controv",
+    "en.wikipedia.org/wiki/Edwin_S._Grosvenor",
+    "en.wikipedia.org/wiki/Avital_Ronell"
+   ],
+   "read": 4,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": "sources",
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "History of the telephone Alexander Graham Bell write me an essay on this",
+   "creative": true,
+   "voidKind": null,
+   "snips": [
+    {
+     "text": "Alexander Graham Bell ( ; born Alexander Bell; March 3, 1847 – August 2, 1922) was a Scottish-born Canadian-American inventor, scientist, and engineer who is credited with patenting the first practical telephone. He also co-founded the American Telephone and Telegraph Company (AT&T) in 1885. patent "
+    },
+    {
+     "text": "The Elisha Gray and Alexander Graham Bell controversy concerns the question of whether Elisha Gray and Alexander Graham Bell invented the telephone independently. On February 24, 1876, Bell traveled to Washington D.C. On March 8, Bell recorded an experiment in his lab notebook, with a diagram simila"
+    },
+    {
+     "text": "Mr. Grosvenor co-authored a biography of his great-grandfather, Alexander Graham Bell: The Life and Times of the Inventor of the Telephone, published by Harry N. Abrams Inc., and is also the co-author of 299 Things Everyone Should Know About American History."
+    }
+   ],
+   "fell": "facing",
+   "passages": [
+    {
+     "ref": "Wikipedia — Alexander Graham Bell",
+     "url": "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+     "text": "Alexander Graham Bell ( ; born Alexander Bell; March 3, 1847 – August 2, 1922) was a Scottish-born Canadian-American inventor, scientist, and engineer who is credited with patenting the first practical telephone.\nHe also co-founded the American Telephone and Telegraph Company (AT&T) in 1885.\npatent for the telephone, on March 7, 1876.\nBell considered his invention an intrusion on his real work as a scientist and refused to have a telephone in his study.\nBell also had a strong influence on the National Geographic Society and its magazine while serving as its second president from 1898 to 1903.\nHis work in this area has been called \"the soundest, and most useful study of human heredity propose"
+    },
+    {
+     "ref": "Wikipedia — Elisha Gray and Alexander Bell telephone controversy",
+     "url": "https://en.wikipedia.org/wiki/Elisha_Gray_and_Alexander_Bell_telephone_controversy",
+     "text": "The Elisha Gray and Alexander Graham Bell controversy concerns the question of whether Elisha Gray and Alexander Graham Bell invented the telephone independently.\nOn February 24, 1876, Bell traveled to Washington D.C.\nOn March 8, Bell recorded an experiment in his lab notebook, with a diagram similar to that of Gray's patent caveat (see right).\nBell finally got his telephone model to work on March 10, when Bell and his assistant Thomas A. Watson both recorded the famous \"Watson — come here — I want to see you\" story in their notebooks.\nIn 1928, Bell's secretary, Catherine MacKenzie, recalled Bell telling her that \"I had always entertained ungenerous thoughts of Mr. Gray and believed him capa"
+    },
+    {
+     "ref": "Wikipedia — Edwin S. Grosvenor",
+     "url": "https://en.wikipedia.org/wiki/Edwin_S._Grosvenor",
+     "text": "Edwin S. Grosvenor (born c.\nHe has published nine books and is best known for writing on his great-grandfather, Alexander Graham Bell.\nHis father was Melville Bell Grosvenor, president of the National Geographic Society and editor of National Geographic magazine from 1957 to 1967.\nHis great-grandfather was Alexander Graham Bell.\nWhen he was eleven years old, a photograph he took at the Seattle World's Fair was published in the September, 1962 issue of National Geographic.\nGrosvenor said, “When I read in The New York Times that American Heritage had folded, I said, 'We just can’t let this happen,’ \" Grosvenor told an interview in 2009.\nIn 2012 and 2013, Grosvenor led a team developing Foursco"
+    },
+    {
+     "ref": "americanheritage.com — Author: Grosvenor S. Edwin(Edwin S. Grosvenor)",
+     "url": "http://www.americanheritage.com/users/edwin-s-grosvenor",
+     "text": "Edwin S. Grosvenor is the Editor-in-Chief of American Heritage and Invention & Technology Magazines, and President of the National Historical Society. He is also the editor of twelve anthologies of essays that appeared in American Heritage including Men of the Revolution, Hamilton, Lincoln, The Civil War, The Old West, New York, World War I, Roosevelt, Churchill, and The Vietnam War, as well as anthologies from HORIZON Magazine including The Middle Ages and History's Great Confrontations.\nMr. Grosvenor co-authored a biography of his great-grandfather, Alexander Graham Bell: The Life and Times of the Inventor of the Telephone, published by Harry N. Abrams Inc., and is also the co-author of 29"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://en.wikipedia.org/wiki/Elisha_Gray_and_Alexander_Bell_telephone_controversy",
+    "https://en.wikipedia.org/wiki/Edwin_S._Grosvenor",
+    "https://en.wikipedia.org/wiki/Avital_Ronell"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "History of the telephone Alexander Graham Bell write me an essay on this",
+     "ok": true,
+     "n": 5
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "History of the telephone Alexander Graham Bell write me an essay on this",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "an encyclopedic ask (definition, history, comparison)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": null,
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 4 source(s)",
+    "no model call · answer mode: Sources only — the answer is the sources' own passages",
+    "followed the conversation · carried · searched “History of the telephone Alexander Graham Bell write me an essay on this”",
+    "fell back · the model did not answer (bridge unreachable: Failed to fetch) — drew the sources-only strand instead, no model",
+    "the sources' own words, unchanged — no model wrote this, so nothing is scored"
+   ]
+  }
+ ]
+}

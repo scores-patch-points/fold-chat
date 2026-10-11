@@ -1,0 +1,1511 @@
+{
+ "q": "Why did the Roman Empire fall?",
+ "spoken": "Historians point to multiple factors as contributing to the fall of the Western Roman Empire, such as economic collapse, military defeat, and political instability.",
+ "shown": "Historians point to multiple factors as contributing to the fall of the Western Roman Empire, such as economic collapse, military defeat, and political instability.\n\nH\nhistory.com\nopen ↗\n8 REASONS WHY ROME FELL: THE FALL OF ROME EXPLAINED | HISTORY\nFind out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat.\nW\n1 more source\n2 sources · 1 of 1 sentence backed\n·\n3 of 9 checks flagged\n86 s\n▶ watch\nWhere this came from\ncopy\nretry\n⋯",
+ "flagText": [
+  "3 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "Historians point to multiple factors as contributing to the fall of the Western Roman Empire, such as economic collapse, military defeat, and political instability.",
+     "ref": null,
+     "source": null,
+     "span": null,
+     "score": 0,
+     "why": "terms",
+     "detail": "point, contribut, instability"
+    }
+   ],
+   "grounded": 0,
+   "total": 1,
+   "refs": [],
+   "ratio": 0
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [],
+  "ungrounded": [
+   "Historians point to multiple factors as contributing to the fall of the Western Roman Empire, such as economic collapse, military defeat, and political instability."
+  ],
+  "gaps": [],
+  "facing": {
+   "sources": [],
+   "response": [
+    {
+     "tag": "M",
+     "text": "Historians point to multiple factors as contributing to the fall of the Western Roman Empire, such as economic collapse, military defeat, and political instability.",
+     "grounded": false,
+     "address": null
+    }
+   ],
+   "has": false
+  },
+  "line": "On record · turn 1 · 0 addresses checked · nothing unsupported · 1 sentence(s) ungrounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "Why did the Roman Empire fall?",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "Why did the Roman Empire fall?",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "web hits are encyclopedia pages (2 of top 10)"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Legacy of the Roman Empire (shares-only-the-name)"
+    ]
+   },
+   {
+    "read": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+    "via": "the fold's relay",
+    "chars": 157,
+    "kept": 157,
+    "hash": "803752e3"
+   },
+   {
+    "read": "https://www.history.com/articles/8-reasons-why-rome-fell",
+    "via": "the fold's relay",
+    "chars": 9440,
+    "kept": 640,
+    "hash": "5c60934b"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 1822,
+    "hash": "f0329a23"
+   },
+   {
+    "read": "https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+    "via": "the fold's relay",
+    "chars": 7099,
+    "kept": 1165,
+    "hash": "9275ba08",
+    "skipped": true
+   },
+   {
+    "read": "https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 2954,
+    "hash": "2cb52f38",
+    "skipped": true
+   }
+  ],
+  "passages": [
+   {
+    "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+    "source": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+    "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+    "text": "JavaScript is disabled\nIn order to continue, we need to verify that you're not a robot.\nThis requires JavaScript. Enable JavaScript and then reload the page."
+   },
+   {
+    "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+    "source": "https://www.history.com/articles/8-reasons-why-rome-fell",
+    "url": "https://www.history.com/articles/8-reasons-why-rome-fell",
+    "text": "Find out why one of history's most legendary empires finally came crashing down.\nHistorians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat.\nFrom then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow.\nThe Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s.\nhttps://www.history.com/articles/8-reasons-why-rome-fell"
+   },
+   {
+    "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+    "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+    "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities.\nIn 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire.\nIn 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno.\nSince 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured.\nAs one convenient marker for the end, 476 has been used since Gibbon, but other key dates for the fall of the Roman Empire in the West include the Crisis of the Third Century, the Crossing of the Rhine in 406 (or 405), the sack of Rome in 410, and the death of Julius Nepos in 480.\nThe story of its ruin is simple and obvious; and, instead of inquiring why the Roman empire was destroyed, we should rather be surprised that it had subsisted so long.\nWhile Alexander Demandt enumerated 210 different theories on why Rome fell, twenty-first century scholarship classifies the primary possibilities more concisely:\nFor a short period, the Empire split into a Gallic Empire in the West (260–274), a Palmyrene Empire in the East (260–273), and a central Roman rump state; in 271, Rome abandoned the province of Dacia on the north of the Danube.\nUnder a series of emperors who each adopted a mature and capable successor, the Empire did not require civil wars to regulate the imperial succession."
+   }
+  ],
+  "loop": {
+   "passes": [],
+   "cleared": true,
+   "after": {
+    "claims": 1,
+    "corroborated": 1,
+    "held": 0,
+    "weak": 0,
+    "contested": 0,
+    "unsupported": 0,
+    "backed": 1,
+    "swapsArmed": 0,
+    "swapsFailed": 0,
+    "cleared": true
+   },
+   "firstTry": true,
+   "processLine": "reframe · every sentence held on the first try"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 3 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframe · every sentence held on the first try",
+   "void · ⟂ void — read 3 source(s) — Why Did the Roman Empire Fall? Corruption, Inflation, and Division; 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY; Fall of the Western Roman Empire - Wikipedia — none established the claim; the search itself may have missed; \"Why did the Roman Empire fall?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1062,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 599,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 448,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 3,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "void": {
+   "kind": "unsupported",
+   "counts": {
+    "sentences": 1,
+    "grounded": 0
+   },
+   "read": [
+    {
+     "title": "Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+     "domain": "history.howstuffworks.com",
+     "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+    },
+    {
+     "title": "8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+     "domain": "history.com",
+     "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+    },
+    {
+     "title": "Fall of the Western Roman Empire - Wikipedia",
+     "domain": "en.wikipedia.org",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+    }
+   ],
+   "tried": [],
+   "question": "Why did the Roman Empire fall?",
+   "closeBy": [
+    "a broader web/records/news search",
+    "attach the document you are working from"
+   ]
+  },
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "Why did the Roman Empire fall?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 9
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “Why did the Roman Empire fall?”",
+    "at": 31
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Why did the Roman Empire fall?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 35,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 35
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:Why did the Roman Empire fall?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6043
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Why did the Roman Empire fall?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 18186,
+    "at": 18221
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 18221
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:Why did the Roman Empire fall?",
+    "title": "Asking Wikipedia",
+    "tone": "run",
+    "at": 18225,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 18225
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:Why did the Roman Empire fall?",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 8714,
+    "at": 26940
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 26940
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 26943
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "1 page named for something else that shares the name: Legacy of the Roman Empire",
+    "at": 26957
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+    "title": "Reading history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and D…",
+    "tone": "run",
+    "at": 26958,
+    "slowAfter": 5000,
+    "slow": "waiting on history.howstuffworks.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 26958
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.history.com/articles/8-reasons-why-rome-fell",
+    "title": "Reading history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTO…",
+    "tone": "run",
+    "at": 26961,
+    "slowAfter": 5000,
+    "slow": "waiting on history.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 26961
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+    "title": "Reading en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+    "tone": "run",
+    "at": 26963,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 26963
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+    "title": "Read en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+    "tone": "ok",
+    "note": "kept 1,822 of 24,000 chars",
+    "ms": 696,
+    "at": 27659
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 27659
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+    "title": "Reading worldatlas.com — Why Did The Roman Empire Fall? - WorldAtlas",
+    "tone": "run",
+    "at": 27661,
+    "slowAfter": 5000,
+    "slow": "waiting on worldatlas.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 27661
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+    "title": "Read history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and D…",
+    "tone": "ok",
+    "note": "157 chars",
+    "ms": 5451,
+    "at": 32409
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 32409
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+    "title": "Reading historycooperative.org — The Fall of Rome: When, Why, and How Did Rome Fall?",
+    "tone": "run",
+    "at": 32411,
+    "slowAfter": 5000,
+    "slow": "waiting on historycooperative.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 32411
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.history.com/articles/8-reasons-why-rome-fell",
+    "title": "Read history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTO…",
+    "tone": "ok",
+    "note": "kept 640 of 9,440 chars",
+    "ms": 5529,
+    "at": 32490
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 32490
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+    "title": "Read worldatlas.com — Why Did The Roman Empire Fall? - WorldAtlas",
+    "tone": "ok",
+    "note": "kept 1,165 of 7,099 chars",
+    "ms": 5305,
+    "at": 32966
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 32966
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+    "title": "Read historycooperative.org — The Fall of Rome: When, Why, and How Did Rome Fall?",
+    "tone": "ok",
+    "note": "kept 2,954 of 24,000 chars",
+    "ms": 7572,
+    "at": 39983
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 39983
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 41410
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 41436,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 41436
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 52185
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "31 tokens",
+    "ms": 19881,
+    "at": 61317
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 61317
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 61320
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Tried to break every sentence — none broke",
+    "tone": "ok",
+    "note": "1 corroborated · 0 on one source",
+    "at": 61366
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read the draft before speaking",
+    "tone": "ok",
+    "note": "read the draft: all 1 sentence spoken (1 marked unsourced) · 11 of 11 checks have never withheld anything — shown, not measured",
+    "at": 61388
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Asked the model where it got that",
+    "tone": "info",
+    "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself",
+    "at": 61391
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Verified where it came from",
+    "tone": "ok",
+    "note": "1 source · history.com · 2 model calls",
+    "at": 85706
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Checked the answer against what was read",
+    "tone": "ok",
+    "note": "every figure and name appears in the sources",
+    "at": 85739
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 86 s · read 3 sources · gemma2:2b",
+    "at": 85745,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.003,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.005,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “Why did the Roman Empire fall?”"
+    }
+   },
+   {
+    "at": 0.008,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Why did the Roman Empire fall?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.009,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.009,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Why did the Roman Empire fall?"
+    }
+   },
+   {
+    "at": 6.016,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:Why did the Roman Empire fall?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.017,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 18.206,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Why did the Roman Empire fall?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 18186
+    }
+   },
+   {
+    "at": 18.207,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 18.208,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Why did the Roman Empire fall?",
+     "n": 10
+    }
+   },
+   {
+    "at": 18.21,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:Why did the Roman Empire fall?",
+     "title": "Asking Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 18.211,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 18.211,
+    "seq": 13,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "Why did the Roman Empire fall?"
+    }
+   },
+   {
+    "at": 26.931,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:Why did the Roman Empire fall?",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 8714
+    }
+   },
+   {
+    "at": 26.933,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 26.933,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "Why did the Roman Empire fall?",
+     "n": 20
+    }
+   },
+   {
+    "at": 26.934,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 26.934,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 26.949,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "1 page named for something else that shares the name: Legacy of the Roman Empire"
+    }
+   },
+   {
+    "at": 26.949,
+    "seq": 20,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 1
+    }
+   },
+   {
+    "at": 26.95,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+     "title": "Reading history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and D…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 26.95,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 26.95,
+    "seq": 23,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+     "site": "history.howstuffworks.com",
+     "title": "Why Did the Roman Empire Fall? Corruption, Inflation, and Division"
+    }
+   },
+   {
+    "at": 26.953,
+    "seq": 24,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.history.com/articles/8-reasons-why-rome-fell",
+     "title": "Reading history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTO…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 26.953,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 26.954,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.history.com/articles/8-reasons-why-rome-fell",
+     "site": "history.com",
+     "title": "8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY"
+    }
+   },
+   {
+    "at": 26.954,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+     "title": "Reading en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 26.954,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 26.954,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+     "site": "en.wikipedia.org",
+     "title": "Fall of the Western Roman Empire - Wikipedia"
+    }
+   },
+   {
+    "at": 27.651,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+     "title": "Read en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+     "tone": "ok",
+     "note": "kept 1,822 of 24,000 chars",
+     "ms": 696
+    }
+   },
+   {
+    "at": 27.652,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 27.652,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire",
+     "site": "en.wikipedia.org",
+     "title": "Fall of the Western Roman Empire - Wikipedia",
+     "chars": 24000,
+     "kept": 1822,
+     "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. The Roman Empire lost the strengths that had allowed it to exercise effective control over its Western provinces; modern historians posit factors including the effectiveness and numbers of the army, the health and numbers of the Roman population, the strength of the economy, the competence of the emperors, the internal struggles for power, the religious changes of the period, and the efficiency of the civil administration. Increasing pressure from invading peoples outside Roman culture also contributed greatly to the collapse. Climatic changes and both endemic and epidemic diseases drove many of these immediate factors. The reasons for the collapse are major subjects of the historiography of the ancient world and they inform much modern discourse on state failure. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. Roman forces were unable to exterminate, expel or subjugate them (as was their normal practice). In 395, after winning two destructive civil wars, Theodosius I died. He left a collapsing field army, and the Empire divided"
+    }
+   },
+   {
+    "at": 27.657,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+     "title": "Reading worldatlas.com — Why Did The Roman Empire Fall? - WorldAtlas",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 27.658,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 27.659,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+     "site": "worldatlas.com",
+     "title": "Why Did The Roman Empire Fall? - WorldAtlas"
+    }
+   },
+   {
+    "at": 32.403,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+     "title": "Read history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and D…",
+     "tone": "ok",
+     "note": "157 chars",
+     "ms": 5451
+    }
+   },
+   {
+    "at": 32.404,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 32.405,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm",
+     "site": "history.howstuffworks.com",
+     "title": "Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+     "chars": 157,
+     "kept": 157,
+     "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page."
+    }
+   },
+   {
+    "at": 32.406,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+     "title": "Reading historycooperative.org — The Fall of Rome: When, Why, and How Did Rome Fall?",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 32.407,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 32.407,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+     "site": "historycooperative.org",
+     "title": "The Fall of Rome: When, Why, and How Did Rome Fall?"
+    }
+   },
+   {
+    "at": 32.484,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.history.com/articles/8-reasons-why-rome-fell",
+     "title": "Read history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTO…",
+     "tone": "ok",
+     "note": "kept 640 of 9,440 chars",
+     "ms": 5529
+    }
+   },
+   {
+    "at": 32.485,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 32.486,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.history.com/articles/8-reasons-why-rome-fell",
+     "site": "history.com",
+     "title": "8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+     "chars": 9440,
+     "kept": 640,
+     "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. Here are the major reasons Rome fell. The most straightforward theory for Western Rome’s collapse pins the fall on a string of military losses sustained against outside forces. Rome had tangled with Germanic tribes for centuries, but by the 300s “barbarian” groups like the Goths had encroached beyond the Empire’s borders. The Romans weathered a Germanic uprising in the late fourth century, but in 410, the Visigoth King Alaric successfully sacked the city of Rome. The Empire spent the next several decades under constant threat before “the Eternal City” was raided again in 455, this time by the Vandals. Finally, in 476, the Germanic leader Odoacer staged a revolt and deposed Emperor Romulus Augustulus. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. Sack of Rome by the Visigoths led by Alaric I in 410, during the reign of Emperor Honorius. Economic troubles and overreliance on enslaved labor Even as Rome was under attack from outside forces, it was also crumbling from within thanks to a severe financial crisis. Constant wars and overspending had lightened imp"
+    }
+   },
+   {
+    "at": 32.961,
+    "seq": 45,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+     "title": "Read worldatlas.com — Why Did The Roman Empire Fall? - WorldAtlas",
+     "tone": "ok",
+     "note": "kept 1,165 of 7,099 chars",
+     "ms": 5305
+    }
+   },
+   {
+    "at": 32.962,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 32.963,
+    "seq": 47,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.worldatlas.com/ancient-world/why-did-the-roman-empire-fall.html",
+     "site": "worldatlas.com",
+     "title": "Why Did The Roman Empire Fall? - WorldAtlas",
+     "chars": 7099,
+     "kept": 1165,
+     "text": "The Roman Empire shaped almost everything that came after it in Europe and the Mediterranean, which is why its collapse still gets so much attention. When the Western Roman Empire fell in 476 CE, the event marked the boundary between late antiquity and the early medieval period in standard historical timelines. The fall was not a single moment but the end of a long decline driven by political instability, economic decay, and the impossible scale of governing the empire from a single capital. Each of those forces fed the others, which is why no one of them by itself fully explains why Rome went down. One of the most significant problems Rome faced in the third, fourth, and fifth centuries was political instability. The core issue was the lack of a clear succession system. Emperors were not chosen by hereditary rule, nor were they elected through any consistent process. The army usually became the deciding factor in who took the throne, and individual generals often supported different claimants for the role. This dynamic produced the Year of the Four Emperors in 69 CE, when Galba, Otho, Vitellius, and Vespasian each held the title in succession during the chaos that followed Nero's suicide. An even more destructive period came between 235 and 284 CE in what historians now call the Crisis of the Third Century, when dozens of emperors rose and fell in quick succession, the empire "
+    }
+   },
+   {
+    "at": 39.979,
+    "seq": 48,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+     "title": "Read historycooperative.org — The Fall of Rome: When, Why, and How Did Rome Fall?",
+     "tone": "ok",
+     "note": "kept 2,954 of 24,000 chars",
+     "ms": 7572
+    }
+   },
+   {
+    "at": 39.981,
+    "seq": 49,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 39.982,
+    "seq": 50,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://historycooperative.org/the-fall-of-rome-last-days-of-empire/",
+     "site": "historycooperative.org",
+     "title": "The Fall of Rome: When, Why, and How Did Rome Fall?",
+     "chars": 24000,
+     "kept": 2954,
+     "text": "The fall of Rome and of the Western Roman Empire was a complex process driven by a combination of economic, political, military, and social factors, along with external barbarian invasions. It took place over several centuries and culminated in the deposition of the last Roman emperor in 476 CE. The generally agreed-upon date for the fall of Rome is September 4, 476 AD. On this date, the Germanic king Odaecer stormed the city of Rome and deposed its emperor, leading to its collapse. But the story of the fall of Rome is not this simple. By this point in the Roman Empire timeline, there were two empires, the Eastern and Western Roman empires. READ MORE: The Foundation of Rome: The Birth of an Ancient Power Whilst the western empire fell in 476 AD, the eastern half of the empire lived on, transformed into the Byzantine Empire, and flourished until 1453. Nevertheless, it is the fall of the Western Empire that has most captured the hearts and minds of later thinkers and has been immortalized in debate as “the fall of Rome.” Although debate continues around the exact nature of what followed, the demise of the Western Roman Empire has traditionally been depicted as the demise of civilization in Western Europe. Matters in the East carried on, much as they always had (with “Roman” power now centered on Byzantium (modern Istanbul), but the West experienced a collapse of centralized, impe"
+    }
+   },
+   {
+    "at": 40.057,
+    "seq": 51,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+     "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+     "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+    }
+   },
+   {
+    "at": 40.957,
+    "seq": 52,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+     "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+     "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+    }
+   },
+   {
+    "at": 41.41,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 41.434,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 41.436,
+    "seq": 62,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 41.857,
+    "seq": 53,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+     "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+    }
+   },
+   {
+    "at": 42.757,
+    "seq": 54,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_e287ad",
+    "ps": [
+     {
+      "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+      "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+      "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+     },
+     {
+      "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+      "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+      "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+     },
+     {
+      "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+      "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+     }
+    ]
+   },
+   {
+    "at": 44.557,
+    "seq": 55,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_e287ad",
+    "ps": [
+     {
+      "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+      "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+      "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+     },
+     {
+      "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+      "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+      "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+     },
+     {
+      "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+      "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+     }
+    ]
+   },
+   {
+    "at": 46.557,
+    "seq": 56,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_e287ad",
+    "ps": [
+     {
+      "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+      "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+      "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+     },
+     {
+      "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+      "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+      "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+     },
+     {
+      "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+      "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+     }
+    ]
+   },
+   {
+    "at": 48.757,
+    "seq": 57,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_e287ad",
+    "ps": [
+     {
+      "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+      "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+      "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+     },
+     {
+      "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+      "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+      "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+     },
+     {
+      "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+      "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+     }
+    ]
+   },
+   {
+    "at": 51.557,
+    "seq": 58,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_e287ad",
+    "ps": [
+     {
+      "text": "JavaScript is disabled In order to continue, we need to verify that you're not a robot. This requires JavaScript. Enable JavaScript and then reload the page.",
+      "ref": "history.howstuffworks.com — Why Did the Roman Empire Fall? Corruption, Inflation, and Division",
+      "url": "https://history.howstuffworks.com/european-history/why-did-the-roman-empire-fall.htm"
+     },
+     {
+      "text": "Find out why one of history's most legendary empires finally came crashing down. Historians cite multiple overlapping factors for the fall of the Western Roman Empire, ranging from economic collapse to military defeat. From then on, no Roman emperor would ever again rule from a post in Italy, leading many to cite 476 as the year the Western Empire suffered its death blow. The Western political structure would finally disintegrate in the fifth century, but the Eastern Empire endured in some form for another thousand years before being overwhelmed by the Ottoman Empire in the 1400s. https://www.history.com/articles/8-reasons-why-rome-fell",
+      "ref": "history.com — 8 Reasons Why Rome Fell: The Fall of Rome Explained | HISTORY",
+      "url": "https://www.history.com/articles/8-reasons-why-rome-fell"
+     },
+     {
+      "text": "The fall of the Western Roman Empire, also called the fall of the Roman Empire or the fall of Rome, was the loss of central political control in the Western Roman Empire, a process in which the Empire failed to enforce its rule, and its vast territory was divided among several successor polities. In 376, a large migration of Goths and other non-Roman people, fleeing from the Huns, entered the Empire. In 476, the Germanic barbarian king Odoacer deposed the last emperor of the Western Roman Empire in Italy, Romulus Augustulus, and the Senate sent the imperial insignia to the Eastern Roman emperor Zeno. Since 1776, when Edward Gibbon published the first volume of his The History of the Decline and Fall of the Roman Empire, Decline and Fall has been the theme around which much of the history of the Roman Empire has been structured. As one convenient marker for the end, 476 has been used sin…",
+      "ref": "en.wikipedia.org — Fall of the Western Roman Empire - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Western_Roman_Empire"
+     }
+    ]
+   },
+   {
+    "at": 52.183,
+    "seq": 63,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 53.757,
+    "seq": 59,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 61.316,
+    "seq": 64,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "31 tokens",
+     "ms": 19881
+    }
+   },
+   {
+    "at": 61.318,
+    "seq": 65,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 61.32,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 61.366,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Tried to break every sentence — none broke",
+     "tone": "ok",
+     "note": "1 corroborated · 0 on one source"
+    }
+   },
+   {
+    "at": 61.389,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken (1 marked unsourced) · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 61.394,
+    "seq": 69,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 85.705,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · history.com · 2 model calls"
+    }
+   },
+   {
+    "at": 85.742,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 85.747,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 86 s · read 3 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 85.749,
+    "seq": 73,
+    "kind": "done"
+   }
+  ]
+ }
+}

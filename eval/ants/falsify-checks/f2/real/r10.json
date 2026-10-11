@@ -1,0 +1,3011 @@
+{
+ "q": "How long is the Great Wall of China?",
+ "spoken": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China.\n\nGreat Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively.\n\nThe official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012.\n\nHow Long is the Great Wall of China Compared to ...\n\nSince then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall').\n\nStukeley wrote that, \"This mighty wall [Hadrian's Wall] of four score miles [130 km] in length is only exceeded by the Chinese Wall, which makes a considerable figure upon the terrestrial globe, and may be discerned at the Moon.\"\n\nGreat Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China.",
+ "shown": "fold note\nNone of the model's sentences could be traced to what was read, so the sources' own words are shown instead.\nFROM THE SOURCES, UNCHANGED · NO MODEL WROTE THIS\n‹ Prev\n1 of 3\nNext ›\nThe Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. …\n… Stukeley wrote that, \"This mighty wall [Hadrian's Wall] of four score miles [130 km] in length is only exceeded by the Chinese Wall, which makes a considerable figure upon the terrestrial globe, and may be discerned at the Moon.\" …\nit points to: [3] 中国长城保护报告 [9] The Great Wall [10] Great Wall of China [40] Ruysbroek, Willem van (1900) [1255]. The Journey of William of Rubruck to the Ea\nfound on Wikipedia “Great Wall of China”\nS1\na pointer, not a source · found on en.wikipedia.org\npointer\nattribution removed\nAn attribution was removed: the answer credited “the National Cultural Heritage Administration”, and what it was attached to is not in that source's text. The sentence remains as the model's own wording and is scored like any other.\n▸\nhow this was answered\nAnswered from the sources in 84 s · no model reachable · read 13 sources · effort balanced\ncopy\nretry\n⋯",
+ "flagText": [],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [],
+   "grounded": 0,
+   "total": 0,
+   "refs": [],
+   "ratio": 0
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [],
+   "response": [],
+   "has": false
+  },
+  "line": "On record · turn 1 · sources only · 7 passage(s) quoted",
+  "web": [
+   {
+    "scope": "web",
+    "q": "How long is the Great Wall of China?",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "Great Wall",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "China",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "web hits are encyclopedia pages (2 of top 10)"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "skippedOff": 8,
+    "engine": "swarm gate",
+    "strict": false,
+    "dissent": {
+     "none": 8
+    }
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "via": "direct",
+    "chars": 22942,
+    "kept": 2973,
+    "hash": "0e589eeb"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2954,
+    "hash": "ec178774"
+   },
+   {
+    "read": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "via": "the fold's relay",
+    "chars": 5367,
+    "kept": 964,
+    "hash": "c579c3ab"
+   },
+   {
+    "read": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "via": "direct",
+    "chars": 1783,
+    "kept": 1783,
+    "hash": "d1d404bb",
+    "skipped": true
+   },
+   {
+    "read": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "via": "the fold's relay",
+    "chars": 6493,
+    "kept": 483,
+    "hash": "05719ce6",
+    "skipped": true
+   },
+   {
+    "scope": "web",
+    "q": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+    "engine": "DuckDuckGo",
+    "n": 9,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "via": "direct",
+    "chars": 22942,
+    "kept": 2910,
+    "hash": "0e589eeb",
+    "lap": 1
+   },
+   {
+    "read": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "via": "the fold's relay",
+    "chars": 5367,
+    "kept": 1251,
+    "hash": "c579c3ab",
+    "lap": 1
+   },
+   {
+    "read": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "via": "direct",
+    "chars": 1783,
+    "kept": 1783,
+    "hash": "d1d404bb",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "via": "the fold's relay",
+    "chars": 6493,
+    "kept": 537,
+    "hash": "05719ce6",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+    "engine": "DuckDuckGo",
+    "n": 9,
+    "ok": true,
+    "lap": 2
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "via": "direct",
+    "chars": 22942,
+    "kept": 2910,
+    "hash": "0e589eeb",
+    "lap": 2
+   },
+   {
+    "read": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "via": "the fold's relay",
+    "chars": 5367,
+    "kept": 1251,
+    "hash": "c579c3ab",
+    "lap": 2
+   },
+   {
+    "read": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "via": "direct",
+    "chars": 1783,
+    "kept": 1783,
+    "hash": "d1d404bb",
+    "skipped": true,
+    "lap": 2
+   },
+   {
+    "read": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "via": "the fold's relay",
+    "chars": 6493,
+    "kept": 537,
+    "hash": "05719ce6",
+    "skipped": true,
+    "lap": 2
+   }
+  ],
+  "passages": [
+   {
+    "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "text": "The Great Wall of China is a series of fortifications in China.\nIt is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007.\nNone of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall.\n1346, had heard about China's Great Wall, possibly before he had arrived in China.\nIn 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall.\nPerhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India.\nThe travelogues of the later 19th century further enhanced the reputation and the mythology of the Great Wall.\nIn 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi).\nThere, at Piantou Pass (t 偏頭關, s 偏头关, Piāntóuguān) in Xinzhou, Shanxi, the Great Wall splits in two with the \"Outer Great Wall\" (t 外長城, s 外长城, Wài Chǎngchéng) extending along the Inner Mongolia border with Shanxi into Hebei province, and the \"Inner Great Wall\" (t 內長城, s 內长城, Nèi Chǎngchéng) running southeast from Piantou Pass for some 400 km (250 mi), passing through important passes like the Pingxing Pass and Yanmen Pass before joining the Outer Great Wall at Sihaiye (四海冶, Sìhǎiyě), in Beijing's Yanqing County.\nThe Badaling Great Wall saw nearly 10 million visitors in 2018, and in 2019, a daily limit of 65,000 visitors was instated.\nMade of stone and bricks from the hills, this portion of the Great Wall is 7.8 m (25 ft 7 in) high and 5 m (16 ft 5 in) wide.\nWangjing Lou (t 望京樓, s 望京楼, Wàngjīng Lóu) is one of Jinshanling's 67 watchtowers, 980 m (3,220 ft) above sea level.\nSoutheast of Jinshanling is the Mutianyu Great Wall which winds along lofty, cragged mountains from the southeast to the northwest for 2.25 km (1.40 mi).\n3 km (2 mi) north of Shanhai Pass is "
+   },
+   {
+    "ref": "Wikipedia — Great Wall Motor",
+    "source": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China.\nNamed after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks.\nIt is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024.\nBy 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively.\nHowever, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994.\nIn 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality.\nIn October 1997, the first Great Wall pickup trucks were exported to the Middle East.\nIn 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares.\nIn 1999, Great Wall faced a supply chain crisis when its sole engine supplier partnered with competitor Brilliance Auto, limiting supply to Great Wall.\nTo secure their supply chain, Wei Jianjun established the Great Wall Internal Combustion Engine Company, holding a 51% stake, and invested in advanced equipment for independent engine production.\nin October 2016, the company launched its first electric vehicle, the Great Wall C30EV.\nIn 2017, to offset the company's fleet average fuel consumption in China, GWM acquired a 25% stake of Hebei Yujie Vehicle Industry, a major company in the low-speed electric vehicle (LSEV) market.\nIn 2020, Great Wall Motor rebranded to GWM.\nIn 2023, the company sold just 6,300 vehicles in Europe, or 2% of its overseas sales.\nIn January 2026, Great Wall Motor officially launched the Guiyuan (归元) Platform at its Baoding, Hebei.\nThe Taizhou base, constructed since November 2019, is GWM's eighth vehicle assembly facility in China, with a total investment of 8 billion yuan ($1.22 billion) and an annual capacity of 100,000 vehicles.\nGreat Wall vehicles started sales in Australia in 2009 by an independent distributor, Ateco.\nIn 2012, almost 25,000 Chery and Great Wall vehicles were recalled by Ateco after discoveries of asbestos in the engine and exhaust gaskets.\nIn the first nine months of 2023, GWM saw a fourfold increase in sale"
+   },
+   {
+    "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+    "source": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012.\nIts length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length.\nHow Long is the Great Wall of China Compared to ...\nThe total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's.\n\"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC).\nSince then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall').\nWan means '10,000', and a li is half a kilometer.\nSo, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty."
+   },
+   {
+    "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "text": "The Great Wall of China is a series of fortifications in China.\nIt is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007.\nNone of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall.\n1346, had heard about China's Great Wall, possibly before he had arrived in China.\nIn 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi).\nIt was further concluded that the Ming Great Wall measures 8,850 km (5,500 mi).\nStukeley wrote that, \"This mighty wall [Hadrian's Wall] of four score miles [130 km] in length is only exceeded by the Chinese Wall, which makes a considerable figure upon the terrestrial globe, and may be discerned at the Moon.\"\nInternational Friends of the Great Wall Archived February 17, 2009, at the Wayback Machine – organization focused on conservation"
+   },
+   {
+    "ref": "Wikipedia — Great Wall Motor",
+    "source": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China.\nHowever, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994.\nRecognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux.\nIn 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality.\nThe Deer's success made Great Wall the leading pickup producer in China.\nIn October 1997, the first Great Wall pickup trucks were exported to the Middle East.\nIn 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares.\nin October 2016, the company launched its first electric vehicle, the Great Wall C30EV.\nIn 2020, Great Wall Motor rebranded to GWM.\nGreat Wall vehicles started sales in Australia in 2009 by an independent distributor, Ateco.\nIn 2012, almost 25,000 Chery and Great Wall vehicles were recalled by Ateco after discoveries of asbestos in the engine and exhaust gaskets.\nGWM vehicles went on sale in Indonesia in March 2024.\nIn the early 2020s, Great Wall Commercial Vehicles was formed to manufacture trucks.\nInitially, as the core brand of Great Wall Motor, GWM manufactured various types of vehicles."
+   },
+   {
+    "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+    "source": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012.\nThe Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections.\nIts length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length.\nThe total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's.\nSo, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty.\nIn 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wall."
+   },
+   {
+    "ref": "travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+    "source": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator.\nSubsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers.\nFinally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012."
+   },
+   {
+    "ref": "greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+    "source": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "text": "The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context.\nFast Answer: Great Wall Length in Kilometers and Miles\nThe most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles.\nThe China government conservation update describes existing sections as having a total length of over 21,000 km, and Britannica gives the often-cited total of about 21,196 km when all sections ever built are counted.\nLength changes depending on what is counted."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles) (NCHA) on June 5th, 2012.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 0,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+       "kept": 1311,
+       "chars": 22942,
+       "segments": 8,
+       "recalled": 53
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+       "kept": 1381,
+       "chars": 24000,
+       "segments": 14,
+       "recalled": 100
+      },
+      {
+       "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+       "kept": 896,
+       "chars": 5367,
+       "segments": 6,
+       "recalled": 14
+      },
+      {
+       "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+       "kept": 416,
+       "chars": 1783,
+       "segments": 3,
+       "recalled": 8
+      },
+      {
+       "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+       "kept": 545,
+       "chars": 6493,
+       "segments": 5,
+       "recalled": 38
+      }
+     ]
+    },
+    {
+     "lap": 2,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles) (NCHA) on June 5th, 2012.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 0,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+       "kept": 1311,
+       "chars": 22942,
+       "segments": 8,
+       "recalled": 53
+      },
+      {
+       "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+       "kept": 1381,
+       "chars": 24000,
+       "segments": 14,
+       "recalled": 100
+      },
+      {
+       "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+       "kept": 896,
+       "chars": 5367,
+       "segments": 6,
+       "recalled": 14
+      },
+      {
+       "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+       "kept": 416,
+       "chars": 1783,
+       "segments": 3,
+       "recalled": 8
+      },
+      {
+       "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+       "kept": 545,
+       "chars": 6493,
+       "segments": 5,
+       "recalled": 38
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 0,
+    "weak": 0,
+    "contested": 1,
+    "unsupported": 0,
+    "backed": 0,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 2 laps · 0 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 13 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "attribution · removed 1 unverifiable source name(s): the National Cultural Heritage Administration",
+   "fell back · the model did not answer (no model reachable) — drew the sources-only strand instead, no model",
+   "the sources' own words, unchanged — no model wrote this, so nothing is scored",
+   "reframed · went back 2 laps · 0 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1052,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 1,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 819,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 1,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 907,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 1,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 13,
+  "authored": "sources",
+  "answerMode": "snips",
+  "noClaims": "the sources' own words, unchanged — no model wrote this, so nothing is scored",
+  "snipsN": 7,
+  "fellBackFrom": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "attributionsRemoved": [
+   {
+    "name": "the National Cultural Heritage Administration",
+    "reason": "not-supported-by-source"
+   }
+  ],
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "How long is the Great Wall of China?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 27
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “How long is the Great Wall of China?”",
+    "at": 183
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:How long is the Great Wall of China?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 212,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 212
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:How long is the Great Wall of China?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6256
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:How long is the Great Wall of China?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 7941,
+    "at": 8153
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 8153
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:Great Wall",
+    "title": "Asking Wikipedia about “Great Wall”",
+    "tone": "run",
+    "at": 8158,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 8158
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:China",
+    "title": "Asking Wikipedia about “China”",
+    "tone": "run",
+    "at": 8165,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia and Wikipedia",
+    "at": 8165
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:Great Wall",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 5741,
+    "at": 13899
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 13899
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:China",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 5811,
+    "at": 13976
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 13976
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 13978
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Set aside off-topic results",
+    "tone": "info",
+    "note": "8 results did not match the ask",
+    "at": 14021
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "title": "Reading en.wikipedia.org — Great Wall of China - Wikipedia",
+    "tone": "run",
+    "at": 14024,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 14024
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "title": "Reading Wikipedia — Great Wall Motor",
+    "tone": "run",
+    "at": 14034,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 14034
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "title": "Reading chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+    "tone": "run",
+    "at": 14038,
+    "slowAfter": 5000,
+    "slow": "waiting on chinahighlights.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 14038
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "title": "Read en.wikipedia.org — Great Wall of China - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,973 of 22,942 chars",
+    "ms": 355,
+    "at": 14379
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 14379
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "title": "Reading travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+    "tone": "run",
+    "at": 14386,
+    "slowAfter": 5000,
+    "slow": "waiting on travelchinaguide.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 14386
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Great_Wall_Motor",
+    "title": "Read Wikipedia — Great Wall Motor",
+    "tone": "ok",
+    "note": "kept 2,954 of 24,000 chars",
+    "ms": 441,
+    "at": 14475
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 14475
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "title": "Reading greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+    "tone": "run",
+    "at": 14485,
+    "slowAfter": 5000,
+    "slow": "waiting on greatwalltravelguide.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 14485
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "title": "Read chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+    "tone": "ok",
+    "note": "kept 964 of 5,367 chars",
+    "ms": 6402,
+    "at": 20440
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 20440
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+    "title": "Read greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+    "tone": "ok",
+    "note": "kept 483 of 6,493 chars",
+    "ms": 6041,
+    "at": 20526
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 20526
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "title": "Read travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+    "tone": "ok",
+    "note": "1,783 chars",
+    "ms": 6229,
+    "at": 20615
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 20615
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references were read but do not carry this. It points to 1 original source.",
+    "at": 32818
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 32820
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read.",
+    "at": 32824
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 32849,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 32849
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 39300
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "57 tokens",
+    "ms": 13726,
+    "at": 46575
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 46575
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 46584
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 46681
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 5 new impressions",
+    "tone": "ok",
+    "note": "8 sentence(s) recalled from en.wikipedia.org · 14 sentence(s) recalled from Wikipedia · 6 sentence(s) recalled from chinahighlights.com · 3 sentence(s) recalled from travelchinagui",
+    "at": 46787
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 46801,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 46801
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "9 results via DuckDuckGo",
+    "ms": 1011,
+    "at": 47812
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 47812
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+    "title": "Reading en.wikipedia.org — Great Wall of China - Wikipedia",
+    "tone": "run",
+    "at": 47821,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 47821
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+    "title": "Reading chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+    "tone": "run",
+    "at": 47828,
+    "slowAfter": 5000,
+    "slow": "waiting on chinahighlights.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 47828
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+    "title": "Reading travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+    "tone": "run",
+    "at": 47831,
+    "slowAfter": 5000,
+    "slow": "waiting on travelchinaguide.com (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 47831
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered from the sources in 84 s · no model reachable · read 13 sources",
+    "at": 84377,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.039,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.051,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “How long is the Great Wall of China?”"
+    }
+   },
+   {
+    "at": 0.075,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:How long is the Great Wall of China?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.078,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.079,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "How long is the Great Wall of China?"
+    }
+   },
+   {
+    "at": 6.115,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:How long is the Great Wall of China?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.115,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 8.011,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:How long is the Great Wall of China?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 7941
+    }
+   },
+   {
+    "at": 8.012,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 8.013,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "How long is the Great Wall of China?",
+     "n": 10
+    }
+   },
+   {
+    "at": 8.017,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:Great Wall",
+     "title": "Asking Wikipedia about “Great Wall”",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 8.018,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 8.019,
+    "seq": 13,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "Great Wall"
+    }
+   },
+   {
+    "at": 8.024,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:China",
+     "title": "Asking Wikipedia about “China”",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 8.025,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia and Wikipedia"
+    }
+   },
+   {
+    "at": 8.026,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "China"
+    }
+   },
+   {
+    "at": 13.757,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:Great Wall",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 5741
+    }
+   },
+   {
+    "at": 13.759,
+    "seq": 18,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 13.759,
+    "seq": 19,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "Great Wall",
+     "n": 20
+    }
+   },
+   {
+    "at": 13.833,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:China",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 5811
+    }
+   },
+   {
+    "at": 13.835,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 13.835,
+    "seq": 22,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "China",
+     "n": 20
+    }
+   },
+   {
+    "at": 13.837,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 13.839,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 13.88,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Set aside off-topic results",
+     "tone": "info",
+     "note": "8 results did not match the ask"
+    }
+   },
+   {
+    "at": 13.881,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "skipped",
+     "n": 8
+    }
+   },
+   {
+    "at": 13.882,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Reading en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 13.884,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 13.884,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia"
+    }
+   },
+   {
+    "at": 13.893,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_Motor",
+     "title": "Reading Wikipedia — Great Wall Motor",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 13.893,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 13.894,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+     "site": "Wikipedia",
+     "title": "Great Wall Motor"
+    }
+   },
+   {
+    "at": 13.896,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Reading chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 13.897,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 13.897,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!"
+    }
+   },
+   {
+    "at": 14.237,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Read en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,973 of 22,942 chars",
+     "ms": 355
+    }
+   },
+   {
+    "at": 14.24,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 14.241,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia",
+     "chars": 22942,
+     "kept": 2973,
+     "text": "The Great Wall of China is a series of fortifications in China. They were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The first walls date to the 7th century BC; these were joined together in the Qin dynasty. Successive dynasties expanded the wall system; the best-known sections were built by the Ming dynasty (1368–1644). To aid in defense, the Great Wall utilized watchtowers, troop barracks, garrison stations, signaling capabilities through the means of smoke or fire, and its status as a transportation corridor. Other purposes of the Great Wall have included border controls (allowing control of immigration and emigration, and the imposition of duties on goods transported along the Silk Road), and the regulation of trade. The collective fortifications constituting the Great Wall stretch from Liaodong in the east to Lop Lake in the west, and from the present-day Sino-Russian border in the north to Tao River in the south: an arc that roughly delineates the edge of the Mongolian steppe, spanning 21,196.18 km (13,170.70 mi) in total. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. Today, the defensive system of the Great Wall is recognized as one of the most impressive architectural feats in history. == Names == The co"
+    }
+   },
+   {
+    "at": 14.257,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Reading travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 14.261,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 14.262,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km"
+    }
+   },
+   {
+    "at": 14.332,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_Motor",
+     "title": "Read Wikipedia — Great Wall Motor",
+     "tone": "ok",
+     "note": "kept 2,954 of 24,000 chars",
+     "ms": 441
+    }
+   },
+   {
+    "at": 14.341,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 14.342,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor",
+     "site": "Wikipedia",
+     "title": "Great Wall Motor",
+     "chars": 24000,
+     "kept": 2954,
+     "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. In 2020, GWM ranked 128th on China's 500 Most Valuable Brands by World Brand Lab with a brand value of 50.752 billion yuan. GWM was founded in 1984 as a small manufacturer partly owned by a local government in Hebei. Wei Jianjun, GWM's current chairman was appointed as the company director in 1990, and grew the company as one of the leading pickup truck manufacturers in China. In 1998, the company was privatized and went public on the Hong Kong Stock Exchange in 2003. The company manufactures and sells vehicles under multiple brands, including GWM, Haval, Wey, Tank, Poer, and Ora. In addition to automobiles, it produces touring motorcycles under the Souo brand. Since 2019, GWM has also operated a joint venture with BMW Group to produce electric Mini vehicles in China, under the name Spotlight Automotive. == History == === 1984–2003: Establishment and early years === GWM began as an agricultural vehicle repair workshop called Great Wall Repair Factory in Baoding, Hebei. The"
+    }
+   },
+   {
+    "at": 14.347,
+    "seq": 45,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Reading greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 14.35,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 14.351,
+    "seq": 47,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained"
+    }
+   },
+   {
+    "at": 20.298,
+    "seq": 48,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Read chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "ok",
+     "note": "kept 964 of 5,367 chars",
+     "ms": 6402
+    }
+   },
+   {
+    "at": 20.3,
+    "seq": 49,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 20.301,
+    "seq": 50,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!",
+     "chars": 5367,
+     "kept": 964,
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. This is the first time that China has scientifically and systematically measured the length of all of the Great Wall after a six-year-long archaeological survey. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long Is the Great Wall Compared to ... The Great Wall of China Length by Dynasty How Long to Walk the Great Wall of China How the Total Length of the Great Wall Was Measured How Long is the Great Wall of China Compared to ... So how long are 21,196.18 kilometers (13,170.7 miles)? Maybe the following comparisons would bring you a more vibrant picture. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. We could say instead, that the total Great Wall length for all time would cross the US east to west 4.9 times! The Great Wall of the Ming Dynasty alone would be sufficient to go across the United States - Mexican border (3,000+ km) and the southern Canadian land border (5,000+ km, not counting the Great La"
+    }
+   },
+   {
+    "at": 20.384,
+    "seq": 51,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Read greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "ok",
+     "note": "kept 483 of 6,493 chars",
+     "ms": 6041
+    }
+   },
+   {
+    "at": 20.393,
+    "seq": 52,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 20.395,
+    "seq": 53,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained",
+     "chars": 6493,
+     "kept": 483,
+     "text": "How Long Is the Great Wall of China? Length in KM, Miles, and Map Context The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context. It does not mean there is one continuous walkway stretching across northern China. The figure includes wall sections, trenches, natural barriers, branches, and remains from different dynasties. For travelers, the useful question is not only “how long is it?” but also “which part can I actually visit?” Fast Answer: Great Wall Length in Kilometers and Miles The most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles. That number includes more than the restored brick walls tourists walk on near Beijing; it also counts trenches, branches, natural barriers, and remains from different periods. For broader context, continue with the Great Wall facts and myths hub, then compare visitor sections in Badaling vs Mutianyu. Best for: readers who want a clear explanation before comparing Beijing-area sections. Main number to know: modern surveys place the total Great Wall system at over 21,000 km. Travel reality: restored visitor sections are small, separated parts of a much larger historical defense network. The short answer: over 21,000 kilometers Current public summaries normally cite a total length of more than 21,000 km for the Great Wall system"
+    }
+   },
+   {
+    "at": 20.472,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Read travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "ok",
+     "note": "1,783 chars",
+     "ms": 6229
+    }
+   },
+   {
+    "at": 20.479,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 20.481,
+    "seq": 56,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km",
+     "chars": 1783,
+     "kept": 1783,
+     "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator. This architectural marvel encompasses a staggering 43,721 relics, including 10,051 sections of wall, 1,764 sections of moat, 29,510 towers, 2,211 passes and forts, and 185 other remnants.Among all the historical iterations of the Great Wall, the Ming Great Wall (1368 - 1644) stands out as the best-preserved. Stretching from Hushan in Liaoning Province to Jiayuguan Great Wall in Gansu Province, it spans 8,851.8 kilometers (5,500.3 miles), with around 526 kilometers (327 miles) located within Beijing. How was the length of the Great Wall determined? The endeavor to measure the Great Wall commenced in 2006. Thousands of experts from cultural heritage and surveying and mapping departments joined forces. Employing techniques like GPS positioning and on-site mapping of crucial coordinates, they completed an exhaustive on-site investigation in four years. Subsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers. Finally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012. Length of the Great Wall in Each Province The wall relics are mainly distributed in 15 provinces and regions, including "
+    }
+   },
+   {
+    "at": 20.618,
+    "seq": 57,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+     "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+    }
+   },
+   {
+    "at": 21.518,
+    "seq": 58,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+     "ref": "Wikipedia — Great Wall Motor",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+    }
+   },
+   {
+    "at": 22.418,
+    "seq": 59,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+     "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+    }
+   },
+   {
+    "at": 23.318,
+    "seq": 60,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 25.118,
+    "seq": 61,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 27.118,
+    "seq": 62,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 29.318,
+    "seq": 63,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 32.118,
+    "seq": 64,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 1559, in his work \"A Treatise of China and the Adjoyning Regions\", Gaspar da Cruz offers an early discussion of the Great Wall. Perhaps the first recorded instance of a European actually entering China via the Great Wall came in 1605, when the Portuguese Jesuit brother Bento de Góis reached the northwestern Jiayu Pass from India. The travelogues of the later 19th century further enhanced the reputation and the mythology…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. Named after the Great Wall of China, the company largely produces sport-utility vehicles (SUVs) and pick-up trucks, as well as trucks. It is one of the top ten Chinese automobile manufacturers, with 1.23 million vehicles sold globally in 2024. By 1993, Great Wall produced several models based on existing designs, such as the Nissan Cedric (Y30) and Toyota Crown (S130), labeled CC1020 and CC1020S respectively. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, th…",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long is the Great Wall of China Compared to ... The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. \"Great Walls\" were first built by warring states for self-defense, and then 'First Emperor' Qin connected these walls after he unified China and established the Qin Dynasty (221–206 BC). Since then, the walls got the name 'Long Walls' or Wan-Li Changcheng (万里长城/wann-lee-channg-chnng/ '5,000-Km-Long Wall'). Wan means '10,000', and a li is half a kilometer. So, 10,000 li is 5,000 km (3,100 miles), which was a…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 32.675,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references were read but do not carry this. It points to 1 original source."
+    }
+   },
+   {
+    "at": 32.68,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 32.684,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read."
+    }
+   },
+   {
+    "at": 32.711,
+    "seq": 69,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 32.717,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 34.318,
+    "seq": 65,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 39.158,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 46.432,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "57 tokens",
+     "ms": 13726
+    }
+   },
+   {
+    "at": 46.438,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 46.443,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 46.539,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 46.641,
+    "seq": 76,
+    "kind": "quick",
+    "n": 1,
+    "of": 5,
+    "p": {
+     "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+     "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+    }
+   },
+   {
+    "at": 46.645,
+    "seq": 86,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 5 new impressions",
+     "tone": "ok",
+     "note": "8 sentence(s) recalled from en.wikipedia.org · 14 sentence(s) recalled from Wikipedia · 6 sentence(s) recalled from chinahighlights.com · 3 sentence(s) recalled from travelchinagui"
+    }
+   },
+   {
+    "at": 46.658,
+    "seq": 87,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 46.659,
+    "seq": 88,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 46.66,
+    "seq": 89,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "official length Great Wall China 21 196.18 kilometers 13 170.7"
+    }
+   },
+   {
+    "at": 47.541,
+    "seq": 77,
+    "kind": "quick",
+    "n": 2,
+    "of": 5,
+    "p": {
+     "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+     "ref": "Wikipedia — Great Wall Motor",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+    }
+   },
+   {
+    "at": 47.669,
+    "seq": 90,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "9 results via DuckDuckGo",
+     "ms": 1011
+    }
+   },
+   {
+    "at": 47.671,
+    "seq": 91,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 47.671,
+    "seq": 92,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "n": 9
+    }
+   },
+   {
+    "at": 47.68,
+    "seq": 93,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Reading en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 47.682,
+    "seq": 94,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 47.683,
+    "seq": 95,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia"
+    }
+   },
+   {
+    "at": 47.685,
+    "seq": 96,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Reading chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 47.686,
+    "seq": 97,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 47.686,
+    "seq": 98,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!"
+    }
+   },
+   {
+    "at": 47.688,
+    "seq": 99,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Reading travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 47.689,
+    "seq": 100,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 47.69,
+    "seq": 101,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km"
+    }
+   },
+   {
+    "at": 47.72,
+    "seq": 102,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Read en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,910 of 22,942 chars",
+     "ms": 42
+    }
+   },
+   {
+    "at": 47.721,
+    "seq": 103,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 47.721,
+    "seq": 104,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia",
+     "chars": 22942,
+     "kept": 2910,
+     "text": "The Great Wall of China is a series of fortifications in China. They were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The first walls date to the 7th century BC; these were joined together in the Qin dynasty. Successive dynasties expanded the wall system; the best-known sections were built by the Ming dynasty (1368–1644). To aid in defense, the Great Wall utilized watchtowers, troop barracks, garrison stations, signaling capabilities through the means of smoke or fire, and its status as a transportation corridor. Other purposes of the Great Wall have included border controls (allowing control of immigration and emigration, and the imposition of duties on goods transported along the Silk Road), and the regulation of trade. The collective fortifications constituting the Great Wall stretch from Liaodong in the east to Lop Lake in the west, and from the present-day Sino-Russian border in the north to Tao River in the south: an arc that roughly delineates the edge of the Mongolian steppe, spanning 21,196.18 km (13,170.70 mi) in total. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. Today, the defensive system of the Great Wall is recognized as one of the most impressive architectural feats in history. == Names == The co"
+    }
+   },
+   {
+    "at": 47.722,
+    "seq": 105,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Reading greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 47.722,
+    "seq": 106,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 47.722,
+    "seq": 107,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained"
+    }
+   },
+   {
+    "at": 47.732,
+    "seq": 108,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Read chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "ok",
+     "note": "kept 1,251 of 5,367 chars",
+     "ms": 46
+    }
+   },
+   {
+    "at": 47.733,
+    "seq": 109,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 47.733,
+    "seq": 110,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!",
+     "chars": 5367,
+     "kept": 1251,
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. This is the first time that China has scientifically and systematically measured the length of all of the Great Wall after a six-year-long archaeological survey. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long Is the Great Wall Compared to ... The Great Wall of China Length by Dynasty How Long to Walk the Great Wall of China How the Total Length of the Great Wall Was Measured How Long is the Great Wall of China Compared to ... So how long are 21,196.18 kilometers (13,170.7 miles)? Maybe the following comparisons would bring you a more vibrant picture. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. We could say instead, that the total Great Wall length for all time would cross the US east to west 4.9 times! The Great Wall of the Ming Dynasty alone would be sufficient to go across the United States - Mexican border (3,000+ km) and the southern Canadian land border (5,000+ km, not counting the Great La"
+    }
+   },
+   {
+    "at": 47.735,
+    "seq": 111,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Read travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "ok",
+     "note": "1,783 chars",
+     "ms": 46
+    }
+   },
+   {
+    "at": 47.735,
+    "seq": 112,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 47.735,
+    "seq": 113,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km",
+     "chars": 1783,
+     "kept": 1783,
+     "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator. This architectural marvel encompasses a staggering 43,721 relics, including 10,051 sections of wall, 1,764 sections of moat, 29,510 towers, 2,211 passes and forts, and 185 other remnants.Among all the historical iterations of the Great Wall, the Ming Great Wall (1368 - 1644) stands out as the best-preserved. Stretching from Hushan in Liaoning Province to Jiayuguan Great Wall in Gansu Province, it spans 8,851.8 kilometers (5,500.3 miles), with around 526 kilometers (327 miles) located within Beijing. How was the length of the Great Wall determined? The endeavor to measure the Great Wall commenced in 2006. Thousands of experts from cultural heritage and surveying and mapping departments joined forces. Employing techniques like GPS positioning and on-site mapping of crucial coordinates, they completed an exhaustive on-site investigation in four years. Subsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers. Finally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012. Length of the Great Wall in Each Province The wall relics are mainly distributed in 15 provinces and regions, including "
+    }
+   },
+   {
+    "at": 47.744,
+    "seq": 114,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Read greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "ok",
+     "note": "kept 537 of 6,493 chars",
+     "ms": 21
+    }
+   },
+   {
+    "at": 47.744,
+    "seq": 115,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 47.745,
+    "seq": 116,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained",
+     "chars": 6493,
+     "kept": 537,
+     "text": "How Long Is the Great Wall of China? Length in KM, Miles, and Map Context The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context. It does not mean there is one continuous walkway stretching across northern China. The figure includes wall sections, trenches, natural barriers, branches, and remains from different dynasties. For travelers, the useful question is not only “how long is it?” but also “which part can I actually visit?” Fast Answer: Great Wall Length in Kilometers and Miles The most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles. That number includes more than the restored brick walls tourists walk on near Beijing; it also counts trenches, branches, natural barriers, and remains from different periods. For broader context, continue with the Great Wall facts and myths hub, then compare visitor sections in Badaling vs Mutianyu. Best for: readers who want a clear explanation before comparing Beijing-area sections. Main number to know: modern surveys place the total Great Wall system at over 21,000 km. Travel reality: restored visitor sections are small, separated parts of a much larger historical defense network. The short answer: over 21,000 kilometers Current public summaries normally cite a total length of more than 21,000 km for the Great Wall system"
+    }
+   },
+   {
+    "at": 47.782,
+    "seq": 117,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found nothing new",
+     "tone": "info",
+     "note": "“official length Great Wall China 21 196.18 kilometers 13 170.7”"
+    }
+   },
+   {
+    "at": 48.441,
+    "seq": 78,
+    "kind": "quick",
+    "n": 3,
+    "of": 5,
+    "p": {
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+     "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+    }
+   },
+   {
+    "at": 49.341,
+    "seq": 79,
+    "kind": "quick",
+    "n": 4,
+    "of": 5,
+    "p": {
+     "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator. Subsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers. Finally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012.",
+     "ref": "travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm"
+    }
+   },
+   {
+    "at": 50.241,
+    "seq": 80,
+    "kind": "quick",
+    "n": 5,
+    "of": 5,
+    "p": {
+     "text": "The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context. Fast Answer: Great Wall Length in Kilometers and Miles The most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles. The China government conservation update describes existing sections as having a total length of over 21,000 km, and Britannica gives the often-cited total of about 21,196 km when all sections ever built are counted. Length changes depending on what is counted.",
+     "ref": "greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/"
+    }
+   },
+   {
+    "at": 51.141,
+    "seq": 81,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 52.941,
+    "seq": 82,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 54.941,
+    "seq": 83,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 57.141,
+    "seq": 84,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 59.941,
+    "seq": 85,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 68.366,
+    "seq": 118,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 2: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 68.471,
+    "seq": 119,
+    "kind": "quick",
+    "n": 1,
+    "of": 5,
+    "p": {
+     "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+     "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+    }
+   },
+   {
+    "at": 68.475,
+    "seq": 129,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 5 new impressions",
+     "tone": "ok",
+     "note": "8 sentence(s) recalled from en.wikipedia.org · 14 sentence(s) recalled from Wikipedia · 6 sentence(s) recalled from chinahighlights.com · 3 sentence(s) recalled from travelchinagui"
+    }
+   },
+   {
+    "at": 68.5,
+    "seq": 130,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 68.502,
+    "seq": 131,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 68.502,
+    "seq": 132,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "official length Great Wall China 21 196.18 kilometers 13 170.7"
+    }
+   },
+   {
+    "at": 69.294,
+    "seq": 133,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "9 results via DuckDuckGo",
+     "ms": 799
+    }
+   },
+   {
+    "at": 69.296,
+    "seq": 134,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 69.296,
+    "seq": 135,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "official length Great Wall China 21 196.18 kilometers 13 170.7",
+     "n": 9
+    }
+   },
+   {
+    "at": 69.301,
+    "seq": 136,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Reading en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 69.302,
+    "seq": 137,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 69.302,
+    "seq": 138,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia"
+    }
+   },
+   {
+    "at": 69.304,
+    "seq": 139,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Reading chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 69.305,
+    "seq": 140,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 69.305,
+    "seq": 141,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!"
+    }
+   },
+   {
+    "at": 69.306,
+    "seq": 142,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Reading travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 69.307,
+    "seq": 143,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 69.307,
+    "seq": 144,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km"
+    }
+   },
+   {
+    "at": 69.338,
+    "seq": 145,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "title": "Read en.wikipedia.org — Great Wall of China - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,910 of 22,942 chars",
+     "ms": 36
+    }
+   },
+   {
+    "at": 69.339,
+    "seq": 146,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 69.339,
+    "seq": 147,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China",
+     "site": "en.wikipedia.org",
+     "title": "Great Wall of China - Wikipedia",
+     "chars": 22942,
+     "kept": 2910,
+     "text": "The Great Wall of China is a series of fortifications in China. They were built across the historical northern borders of ancient Chinese states and Imperial China as protection against various nomadic groups from the Eurasian Steppe. The first walls date to the 7th century BC; these were joined together in the Qin dynasty. Successive dynasties expanded the wall system; the best-known sections were built by the Ming dynasty (1368–1644). To aid in defense, the Great Wall utilized watchtowers, troop barracks, garrison stations, signaling capabilities through the means of smoke or fire, and its status as a transportation corridor. Other purposes of the Great Wall have included border controls (allowing control of immigration and emigration, and the imposition of duties on goods transported along the Silk Road), and the regulation of trade. The collective fortifications constituting the Great Wall stretch from Liaodong in the east to Lop Lake in the west, and from the present-day Sino-Russian border in the north to Tao River in the south: an arc that roughly delineates the edge of the Mongolian steppe, spanning 21,196.18 km (13,170.70 mi) in total. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. Today, the defensive system of the Great Wall is recognized as one of the most impressive architectural feats in history. == Names == The co"
+    }
+   },
+   {
+    "at": 69.34,
+    "seq": 148,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Reading greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 69.34,
+    "seq": 149,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 69.34,
+    "seq": 150,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained"
+    }
+   },
+   {
+    "at": 69.35,
+    "seq": 151,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "title": "Read chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "tone": "ok",
+     "note": "kept 1,251 of 5,367 chars",
+     "ms": 46
+    }
+   },
+   {
+    "at": 69.351,
+    "seq": 152,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 69.351,
+    "seq": 153,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm",
+     "site": "chinahighlights.com",
+     "title": "How Long Is the Great Wall of China? Half the Equator!",
+     "chars": 5367,
+     "kept": 1251,
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. This is the first time that China has scientifically and systematically measured the length of all of the Great Wall after a six-year-long archaeological survey. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. How Long Is the Great Wall Compared to ... The Great Wall of China Length by Dynasty How Long to Walk the Great Wall of China How the Total Length of the Great Wall Was Measured How Long is the Great Wall of China Compared to ... So how long are 21,196.18 kilometers (13,170.7 miles)? Maybe the following comparisons would bring you a more vibrant picture. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. We could say instead, that the total Great Wall length for all time would cross the US east to west 4.9 times! The Great Wall of the Ming Dynasty alone would be sufficient to go across the United States - Mexican border (3,000+ km) and the southern Canadian land border (5,000+ km, not counting the Great La"
+    }
+   },
+   {
+    "at": 69.353,
+    "seq": 154,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "title": "Read travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "tone": "ok",
+     "note": "1,783 chars",
+     "ms": 47
+    }
+   },
+   {
+    "at": 69.354,
+    "seq": 155,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 69.355,
+    "seq": 156,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm",
+     "site": "travelchinaguide.com",
+     "title": "How long is the Great Wall of China? Total Length 21,196km",
+     "chars": 1783,
+     "kept": 1783,
+     "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator. This architectural marvel encompasses a staggering 43,721 relics, including 10,051 sections of wall, 1,764 sections of moat, 29,510 towers, 2,211 passes and forts, and 185 other remnants.Among all the historical iterations of the Great Wall, the Ming Great Wall (1368 - 1644) stands out as the best-preserved. Stretching from Hushan in Liaoning Province to Jiayuguan Great Wall in Gansu Province, it spans 8,851.8 kilometers (5,500.3 miles), with around 526 kilometers (327 miles) located within Beijing. How was the length of the Great Wall determined? The endeavor to measure the Great Wall commenced in 2006. Thousands of experts from cultural heritage and surveying and mapping departments joined forces. Employing techniques like GPS positioning and on-site mapping of crucial coordinates, they completed an exhaustive on-site investigation in four years. Subsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers. Finally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012. Length of the Great Wall in Each Province The wall relics are mainly distributed in 15 provinces and regions, including "
+    }
+   },
+   {
+    "at": 69.364,
+    "seq": 157,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "title": "Read greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "tone": "ok",
+     "note": "kept 537 of 6,493 chars",
+     "ms": 24
+    }
+   },
+   {
+    "at": 69.365,
+    "seq": 158,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 69.365,
+    "seq": 159,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/",
+     "site": "greatwalltravelguide.com",
+     "title": "How Long Is the Great Wall of China? 21,196 km Explained",
+     "chars": 6493,
+     "kept": 537,
+     "text": "How Long Is the Great Wall of China? Length in KM, Miles, and Map Context The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context. It does not mean there is one continuous walkway stretching across northern China. The figure includes wall sections, trenches, natural barriers, branches, and remains from different dynasties. For travelers, the useful question is not only “how long is it?” but also “which part can I actually visit?” Fast Answer: Great Wall Length in Kilometers and Miles The most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles. That number includes more than the restored brick walls tourists walk on near Beijing; it also counts trenches, branches, natural barriers, and remains from different periods. For broader context, continue with the Great Wall facts and myths hub, then compare visitor sections in Badaling vs Mutianyu. Best for: readers who want a clear explanation before comparing Beijing-area sections. Main number to know: modern surveys place the total Great Wall system at over 21,000 km. Travel reality: restored visitor sections are small, separated parts of a much larger historical defense network. The short answer: over 21,000 kilometers Current public summaries normally cite a total length of more than 21,000 km for the Great Wall system"
+    }
+   },
+   {
+    "at": 69.371,
+    "seq": 120,
+    "kind": "quick",
+    "n": 2,
+    "of": 5,
+    "p": {
+     "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+     "ref": "Wikipedia — Great Wall Motor",
+     "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+    }
+   },
+   {
+    "at": 69.406,
+    "seq": 160,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found nothing new",
+     "tone": "info",
+     "note": "“official length Great Wall China 21 196.18 kilometers 13 170.7”"
+    }
+   },
+   {
+    "at": 70.271,
+    "seq": 121,
+    "kind": "quick",
+    "n": 3,
+    "of": 5,
+    "p": {
+     "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+     "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+     "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+    }
+   },
+   {
+    "at": 71.171,
+    "seq": 122,
+    "kind": "quick",
+    "n": 4,
+    "of": 5,
+    "p": {
+     "text": "The total length of the Great Wall of China is 21,196.18 kilometers (13,170.70 miles), approximately half the length of the Earth's equator. Subsequently, leveraging the vast trove of field data, they conducted identification, drafting, and measurement on computers. Finally, after a meticulous verification process by experts, the definitive measurement of 21,196.18 kilometers (13,170.70 miles) was revealed in 2012.",
+     "ref": "travelchinaguide.com — How long is the Great Wall of China? Total Length 21,196km",
+     "url": "https://www.travelchinaguide.com/china_great_wall/facts/how-long.htm"
+    }
+   },
+   {
+    "at": 72.071,
+    "seq": 123,
+    "kind": "quick",
+    "n": 5,
+    "of": 5,
+    "p": {
+     "text": "The Great Wall of China is usually described as more than 21,000 kilometers long, but that number needs context. Fast Answer: Great Wall Length in Kilometers and Miles The most useful short answer is: the full Great Wall system is usually cited at about 21,196 km, or about 13,171 miles. The China government conservation update describes existing sections as having a total length of over 21,000 km, and Britannica gives the often-cited total of about 21,196 km when all sections ever built are counted. Length changes depending on what is counted.",
+     "ref": "greatwalltravelguide.com — How Long Is the Great Wall of China? 21,196 km Explained",
+     "url": "https://greatwalltravelguide.com/how-long-is-the-great-wall-of-china/"
+    }
+   },
+   {
+    "at": 72.971,
+    "seq": 124,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 74.771,
+    "seq": 125,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 76.771,
+    "seq": 126,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 78.971,
+    "seq": 127,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 81.771,
+    "seq": 128,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_10248e",
+    "ps": [
+     {
+      "text": "The Great Wall of China is a series of fortifications in China. It is a UNESCO World Heritage Site, and was voted one of the New 7 Wonders of the World in 2007. None of the Europeans who visited China or Mongolia in the 13th and 14th centuries, such as Giovanni da Pian del Carpine, William of Rubruck, Marco Polo, Odoric of Pordenone and Giovanni de' Marignolli, mentioned the Great Wall. 1346, had heard about China's Great Wall, possibly before he had arrived in China. In 2012, based on existing research and the results of a comprehensive mapping survey, the National Cultural Heritage Administration of China concluded that the remaining Great Wall associated sites include 10,051 wall sections, 1,764 ramparts or trenches, 29,510 individual buildings, and 2,211 fortifications or passes, with the walls and trenches spanning a total length of 21,196.18 km (13,170.70 mi). It was further concl…",
+      "ref": "en.wikipedia.org — Great Wall of China - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_of_China"
+     },
+     {
+      "text": "Great Wall Motor Company Limited (Chinese: 长城汽车; pinyin: Chángchéng Qìchē), trading as GWM, is a Chinese automobile manufacturer headquartered in Baoding, Hebei, China. However, new national regulations forced Great Wall to end passenger car (sedans) production by the end of 1994. Recognizing the potential of pickup trucks globally, Wei Jianjun developed a model based on the Toyota Hilux. In 1996, Great Wall launched the Great Wall Deer, priced competitively and was considered of good quality. The Deer's success made Great Wall the leading pickup producer in China. In October 1997, the first Great Wall pickup trucks were exported to the Middle East. In 1998, the local government privatized the company, forming Great Wall Motor Group Co. Ltd., with Wei Jianjun owning 25% of the shares. in October 2016, the company launched its first electric vehicle, the Great Wall C30EV. In 2020, Great …",
+      "ref": "Wikipedia — Great Wall Motor",
+      "url": "https://en.wikipedia.org/wiki/Great_Wall_Motor"
+     },
+     {
+      "text": "The official length of the Great Wall of China is 21,196.18 kilometers (13,170.7 miles), according to the National Cultural Heritage Administration (NCHA) on June 5th, 2012. The Ming Great Wall (constructed 1368–1644), measured 8,851.8 kilometers (5,500 miles) and includes most of the best-preserved sections. Its length is similar to the length of the Great Siberian Railway, but that's only 40% of the whole Great Wall's length. The total Great Wall of China is similar to the perimeter of the USA: all the 48 states as one body plus Alaska's circumference and Hawaii's. So, 10,000 li is 5,000 km (3,100 miles), which was actually a good estimation of the Great Wall's length in the Qin Dynasty. In 1984, Dong Yaohui (an electrical engineer and later a Great Wall protector), with his two companions spent 508 days (around 17 months) walking and inspecting the entire length of the Ming Great Wal…",
+      "ref": "chinahighlights.com — How Long Is the Great Wall of China? Half the Equator!",
+      "url": "https://www.chinahighlights.com/greatwall/fact/great-wall-length.htm"
+     }
+    ]
+   },
+   {
+    "at": 84.106,
+    "seq": 161,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "bad",
+     "note": "read the draft (1 sentence); none could be spoken · 10 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 84.189,
+    "seq": 162,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Fell back to the sources",
+     "tone": "ok",
+     "note": "7 passage(s), their own words — nothing the model wrote was spoken"
+    }
+   },
+   {
+    "at": 84.237,
+    "seq": 163,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered from the sources in 84 s · no model reachable · read 13 sources"
+    }
+   },
+   {
+    "at": 84.239,
+    "seq": 164,
+    "kind": "done"
+   }
+  ]
+ }
+}

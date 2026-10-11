@@ -1,0 +1,64 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "bharata",
+  "organ": "khora/native/kernel/expectations.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/bharata.json"
+  ],
+  "whatTheyArgued": "Per the Natyasastra as summarized by A. B. Keith (1924, The Sanskrit Drama, p. 315-316, the snipped passage plus the next page, which I read): aesthetic sentiment (rasa) in the audience is produced from the union of determinants (vibhava), consequents (anubhava) and transitory feelings (vyabhicarin), and an essential element is the dominant emotion (sthayibhava) that persists through the drama amid the variations of the transitory feelings. Nothing in the passage speaks of expectation, strengthening, weakening or release. NOTE: the snip is Keith's paraphrase of the treatise, not Bharata's Sanskrit or a translation of it.",
+  "scholarship": [
+    {
+      "ref": "A. B. Keith, The Sanskrit Drama (1924), read on disk at eo-teachings/sources/sanskrit-drama-keith.txt lines ~15392-15440",
+      "url": "https://archive.org/download/in.ernet.dli.2015.102820/2015.102820.The-Sanskrit-Drama-In-Its-Origin-Development-Theory-And-Practice_djvu.txt",
+      "supports": "the vibhava/anubhava/vyabhicarin/sthayibhava account; Keith himself says the treatise is unclear on how the process works",
+      "disputes": "none stated here; Keith is a 1924 colonial-era reader"
+    },
+    {
+      "ref": "Elisa Freschi (scholar blog), 'The Indian theory of taste' (read in full-page fetch)",
+      "url": "https://indianphilosophyblog.org/2017/08/20/the-indian-theory-of-taste/",
+      "supports": "rasa is the savoring of a stable emotion made manifest through transitory ones and performance means, distinct from ordinary emotion",
+      "disputes": "later Indian theorists dispute where rasa resides: actor, character, author, audience or work"
+    },
+    {
+      "ref": "Britannica 'rasa' and SEP/IEP entries: NOT read (Britannica 403, no SEP Indian-aesthetics entry located)",
+      "url": "https://www.britannica.com/art/rasa",
+      "supports": "nothing claimed",
+      "disputes": "gap: no encyclopedia-grade source read; only a scholar blog and Keith"
+    }
+  ],
+  "ourUse": "kernel/expectations.js: an expectation is a record with states open|strengthened|weakened|fulfilled|violated|reframed|superseded, moved by witnessed transitions (EVA/REC). The file header opens with a first-person block 'Bharata speaks:' under the Keith snippet, followed by text in the archon's voice ('I believe this framework ... can sometimes fall into a trap of rigid emotional scaffolding'). Compendium: 'an audience's emotion is expectation built, strengthened, weakened, and finally released by the play's own structure.'",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "rasa-is-not-expectation",
+      "kind": "misstated",
+      "ours": "Compendium work/credit say the Natyasastra founded rasa theory as 'expectation built, strengthened, weakened, and finally released' and that 'expectation is a mechanism, not a mood'.",
+      "theirs": "Rasa is an aesthetic savoring produced by the combination of determinants, consequents and transitory feelings over a persisting dominant emotion; the verified passage says nothing about expectation or a build/release arc. The sentence is ours (or a later reading), put in the treatise's mouth."
+    },
+    {
+      "id": "state-machine-invented",
+      "kind": "invented-attribution",
+      "ours": "EXPECTATION_STATES (open/strengthened/weakened/fulfilled/violated/reframed/superseded) are credited by the Handle line to 'a staged emotion' after the rasa theory.",
+      "theirs": "The treatise lists eight (later nine) rasas and 33 transitory feelings; it has no lifecycle for anticipation. The states are engineering, a sensible one, but not Bharata's."
+    },
+    {
+      "id": "voiced-header",
+      "kind": "misstated",
+      "ours": "Header 'Bharata speaks:' followed by first-person generated commentary ('I believe ...') in the archon's voice, which also mislabels a modern paraphrase as 'speaks'.",
+      "theirs": "Bharata wrote nothing of the sort; the quoted line is Keith's 1924 summary ('The statement of the Natyagastra is simple') and the rest is model text."
+    },
+    {
+      "id": "audience-vs-store",
+      "kind": "re-scoped",
+      "ours": "A belief-store item about a hypothesis in the fold.",
+      "theirs": "An audience's aesthetic experience of a staged emotion; locus of rasa is itself disputed."
+    }
+  ],
+  "fix": [
+    "compendium bharata.work: 'The Natyasastra (as summarized by Keith): aesthetic sentiment arises from the union of determinants, consequents and transitory feelings around a dominant emotion. The expectation lifecycle in kernel/expectations.js is our own engineering, named for the treatise by loose analogy; it is not rasa theory.'",
+    "compendium bharata.credit: 'Bharata - sentiment from determinants, consequents and transitory feelings (Natyasastra, via Keith). Our expectation lifecycle is ours.'",
+    "expectations.js header: delete the 'Bharata speaks:' framing and the first-person paragraph; keep the Keith quote labeled 'Keith (1924) on the Natyasastra'; change the Handle line to 'by analogy with', not 'after'."
+  ]
+}

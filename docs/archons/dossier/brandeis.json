@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "brandeis",
+  "organ": "khora/native/organs/privacy.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/brandeis.json"],
+  "whatTheyArgued": "Warren & Brandeis, 'The Right to Privacy', Harvard Law Review 4 (1890), read on disk (Gutenberg 37368): new inventions (instantaneous photographs, newspapers) call for protecting the person, 'securing to the individual what Judge Cooley calls the right to be let alone' (the snip; the phrase is credited to Cooley and footnoted to Cooley on Torts). They argue the protection of thoughts, sentiments and emotions against publication is an instance of a more general right of the individual to be let alone, grounded not in private property but in an inviolate personality, and they list limits: the right does not bar publication of matter of public or general interest, and similar exceptions. The Olmstead dissent (1928) is a separate text: the line 'the most comprehensive of rights and the right most valued by civilized men' belongs there. It could not be sourced on disk (the archive.org item for Olmstead is a web-capture archive with no text file), so that quotation is unverified here.",
+  "scholarship": [
+    { "ref": "Stanford Encyclopedia of Philosophy, 'Privacy' (read via fetch, summary)", "url": "https://plato.stanford.edu/entries/privacy/", "supports": "Warren & Brandeis present privacy as protecting an 'inviolate personality' against technology and press intrusion; Prosser later split the tort into four interests", "disputes": "Thomson (1975) argues privacy reduces to other rights, against treating it as one right; scholars dispute whether W&B ground privacy in property or in personal inviolability (the text itself rejects the property reading)." },
+    { "ref": "Search-result summary on Cooley as source of the phrase and its path to Brandeis's Olmstead dissent (not read in full); confirmed independently in the 1890 text itself (credit to Cooley, footnote 10)", "url": "https://journals.librarypublishing.arizona.edu/arizlrev/article/9025/galley/8248/download", "supports": "the phrase originates with Cooley (Treatise on Torts), later used by Brandeis in Olmstead", "disputes": "none read" }
+  ],
+  "ourUse": "privacy.js: a heuristic lint over code for data-sovereignty weak signals (raw key in localStorage, weak KDF, hardcoded secret, sensitive data to a remote sink), plus a 'sovereigntyHint' that leans code tasks toward E2EE, local-first, zero-knowledge and minimization; its instruments are UDHR Art. 12, EU Charter Art. 8, Convention 108+ and CARE/OCAP. The archon name credits Brandeis as the definer of privacy as 'the right to be let alone'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "who-named-it", "kind": "misstated", "ours": "privacy.js header: Brandeis's paper 'defined privacy as the right to be let alone'; compendium: Warren and Brandeis 'naming the right to be let alone'.", "theirs": "The 1890 text attributes the phrase to Judge Cooley. W&B's contribution is arguing that it grounds a general legal right of privacy; they did not coin it." },
+    { "id": "fused-quote", "kind": "misstated", "ours": "Credit line quotes 'the right to be let alone - the most comprehensive of rights and the right most valued by civilized men' and dates it '(1890; 1928)'.", "theirs": "The 'most comprehensive of rights' words do not appear in the 1890 article (searched). They are from the 1928 Olmstead dissent only. I could not verify the 1928 wording from a text on disk." },
+    { "id": "from-tort-to-code", "kind": "re-scoped", "ours": "Applied to static analysis of source code for weak KDFs, key storage, and E2EE/local-first design.", "theirs": "The 1890 article concerns publication by the press and photography and the common-law tort remedy; the dissent concerns wiretapping and the Fourth and Fifth Amendments. Neither addresses cryptography or software design." },
+    { "id": "individual-vs-sovereignty", "kind": "reinterpreted", "ours": "Brandeis is made archon of 'data sovereignty', alongside CARE/OCAP and Convention 108+.", "theirs": "W&B argue an individual's right against intrusion and publication, with express exceptions for public interest. Sovereignty over data, especially collective or jurisdictional (CARE/OCAP), is a different concept the instruments bring, not the source." },
+    { "id": "boundary-sentence", "kind": "misstated", "ours": "Compendium work ends 'The boundary is the person's own.'", "theirs": "That sentence is ours, in the author-credit paragraph. W&B also qualify the right (public-interest exception), which the sentence omits." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Warren and Brandeis, \"The Right to Privacy\" (1890), argue that the old common-law idea of the person - what Judge Cooley called the right to be let alone - covers thoughts, sentiments and emotions against publication, and that the right has limits (public interest). Brandeis's 1928 Olmstead dissent later called it the most comprehensive of rights (unverified from text here). privacy.js applies the spirit to code as weak signals; the lint rules and the sovereignty instruments are ours.'",
+    "compendium credit: 'Warren & Brandeis (1890): protection of the person extends to \"the right to be let alone\" (their words, credited to Judge Cooley).'",
+    "privacy.js header: say the paper cites the phrase from Cooley; keep the 1928 quote only once the Olmstead text is sourced."
+  ]
+}

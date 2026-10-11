@@ -1,0 +1,419 @@
+{
+ "variant": "control",
+ "at": "2026-10-07T06:23:39.816Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "The invention of the telephone is a complex history, and it's often linked to names like Alexander Graham Bell and Elisha Gray. Bell and Gray made claims to invention.",
+   "shown": "The invention of the telephone is a complex history, and it's often linked to names like Alexander Graham Bell and Elisha Gray. Bell and Gray made claims to invention.\n\nW\nWikipedia\nopen ↗\nThe Telephone Cases\n… Western Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell 's master and subsidiary telephone patents dating from March 1876. …\n▶ watch\nattribution removed\nAn attribution was removed: the answer credited “Bell's”, and what it was attached to is not in that source's text. The sentence remains as the model's own wording and is scored like any other.\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 3,
+     "kept": 2,
+     "dropped": 1,
+     "unsourced": 1
+    },
+    "dropped": [
+     {
+      "why": "ungrounded:figure-binding",
+      "detail": "1876",
+      "text": "Were made public in 1876."
+     }
+    ],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0.52,
+      "mean": 14.5,
+      "blinks": 1,
+      "dense": 1,
+      "n": 2
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "pass",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [
+    {
+     "kind": "attribution",
+     "text": "An attribution was removed: the answer credited “Bell's”, and what it was attached to is not in that source's text. The sentence remains as the model's own wording and is scored like any other."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/Telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele"
+   ],
+   "read": 9,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "The invention of the telephone is a complex history, and it's often linked to names like Alexander Graham Bell and Elisha Gray.",
+    "calls": 1,
+    "verified": 0,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.",
+      "rule": "none"
+     }
+    ],
+    "pointers": [],
+    "why": "none"
+   },
+   "nRaw": 3,
+   "searched": null,
+   "voidKind": "partial",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "A telephone, commonly shortened to phone, is a telecommunications device that enables two or more users to conduct a conversation when they are too far apart to be easily heard directly.\nA communication device for sailing vessels, called telephone, was invented by Captain John Taylor in 1844.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n1849: Antonio Meucci developed a voice-communication apparatus that several sources credit as the first telephone.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" "
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "This history of the telephone chronicles the development of the electrical telephone, and includes a brief overview of its predecessors.\nThe first telephone patent was granted to Alexander Graham Bell in 1876.\nThe Elisha Gray and Alexander Bell telephone controversy considers the question of whether Bell and Gray invented the telephone independently and, if not, whether Bell stole the invention from Gray.\nThis controversy is narrower than the broader question of who deserves credit for inventing the telephone, for which there are several claimants.\nOn 3 November 1877, Coy applied for and received a franchise from the Bell Telephone Company for New Haven and Middlesex Counties.\nCoy, along wit"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nOn 9 July 1877, Bell, Hubbard, Watson (and other funders) established the Bell Telephone Company to market the new device.\nIn 2002, the US Congress formally recognised Italian Antonio Meucci as the true inventor of the telephone.\nIn 1880 they formed the United Telephone Company in Britain.\n8 women in Scotland who shaped the history of science"
+    },
+    {
+     "ref": "en.wikipedia.org — Telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Telephone",
+     "text": "In 1876, Alexander Graham Bell was the first to be granted a United States patent for a device that produced clearly intelligible replication of the human voice at a second device.\nCharles Bourseul, Antonio Meucci, Johann Philipp Reis, Alexander Graham Bell, and Elisha Gray, amongst others, have all been credited with the invention of the telephone.\nAlexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.\n26 August 1854: Charles Bourseul published an article in the magazine L'Illustration (Paris): \"Transmission électrique de la parole\" (electric transmission of speech), describing a \"make-and"
+    },
+    {
+     "ref": "en.wikipedia.org — History of the telephone - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/History_of_the_telephone",
+     "text": "The first telephone patent was granted to Alexander Graham Bell in 1876.\nBefore the invention of electromagnetic telephones, mechanical acoustic devices existed for transmitting speech and music over a greater distance.\nCredit for the invention of the electric telephone is frequently disputed, and new controversies over the issue have arisen from time to time.\nAntonio Meucci, Philipp Reis, Alexander Graham Bell, and Elisha Gray amongst others, have all been credited with the telephone's invention.\nThe early history of the telephone became and still remains a confusing morass of claims and counterclaims, which were not clarified by the huge number of lawsuits filed in order to resolve the pat"
+    },
+    {
+     "ref": "nms.ac.uk — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThe box telephone was the first model of telephone to go on sale.\nBut can its creator, Alexander Graham Bell, truly lay claim to the title ‘inventor of the telephone’?\nAlexander Bell was born in Edinburgh on 3 March 1847.\nSound and speech were part of Bell’s life from a young age.\nFollowing the death of both of Bell’s brothers from tuberculosis, in 1870 the family emigrated to a healthier life in Canada.\nThese early experiments in speech creation, along with his knowledge of anatomy, informed his own experiments on transmitting speech, which he began in earnest from 1873.\n– inventor Elisha Gray filed his own idea for a telephone device at the s"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "court cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nSupreme Court that upheld the priority of the patents belonging to Alexander Graham Bell.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nThe Court's decision in the Telephone Cases is notable for the size of the opinions delivered; together, they occupy the entire 126th volume of the United States Reports.\nElisha Gray and Alexander Bell telephone controversy\nWho Invented the Tel"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "Notable people included in this process were Antonio Meucci, Philipp Reis, Elisha Gray and Alexander Graham Bell.\nThe Meucci resolution by the US Congress was promptly followed by a Canada legislative motion by Canada's 37th Parliament, declaring Alexander Graham Bell as the inventor of the telephone.\nA retired director general of the Telecom Italia central telecommunications research institute (CSELT), Basilio Catania, and the Italian Society of Electrotechnics, \"Federazione Italiana di Elettrotecnica\", have devoted a Museum to Antonio Meucci, constructing a chronology of his invention of the telephone and tracing the history of the two legal trials involving Meucci and Alexander Graham Bel"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Alexander_Graham_Bell",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "who invented the telephone?",
+     "ok": true,
+     "n": 28
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    },
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "invention telephone complex history linked names Alexander Graham Bell Elisha",
+     "ok": true,
+     "n": 4
+    }
+   ],
+   "voidFull": {
+    "kind": "partial",
+    "counts": {
+     "sentences": 2,
+     "grounded": 1
+    },
+    "read": [
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     },
+     {
+      "title": "Telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Telephone"
+     },
+     {
+      "title": "History of the telephone - Wikipedia",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/History_of_the_telephone"
+     },
+     {
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "domain": "nms.ac.uk",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone"
+     }
+    ],
+    "tried": [],
+    "question": "who invented the telephone?",
+    "closeBy": [
+     "a broader web/records/news search",
+     "attach the document you are working from"
+    ]
+   },
+   "process": [
+    "scaffolding · 1 source label(s) removed from the model's text",
+    "language · asker en, reply en — same",
+    "attribution · removed 1 unverifiable source name(s): Bell's",
+    "checked · the answer against the material carried",
+    "reframed · went back 1 lap · 0 more source(s) read · 1 sentence(s) restated · every sentence holds",
+    "void · ⟂ void — 1 of 2 sentence(s) had no source; \"who invented the telephone?\" is still open; to close it: a broader web/records/news search, or attach the document you are working from."
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No essay was written.\n⟂\ncan't write the essay\nI can't write the essay: the model could not be reached (a network error).\nmissing: the model's draft of the essay\nWHAT THE TURN HAD\nElisha Gray · en.wikipedia.org — about the topic\nThe Telephone Cases · en.wikipedia.org — about the topic\nInvention of the telephone · en.wikipedia.org — about the topic\nshow what the sources say about Elisha Gray and The Telephone Cases (their own words, not an essay)\nto close it: try again · check that the Fold's server is running (npm run serve), or load the in-tab model\ntry again\nread as\nRead your question as being about Elisha Gray and The Telephone Cases.\nnot Elisha Gray\nnot The Telephone Cases\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Elisha Gray and The Telephone Cases."
+    }
+   ],
+   "reads": [
+    "en.wikipedia.org/wiki/Elisha_Gray",
+    "en.wikipedia.org/wiki/The_Telephone_Cases",
+    "en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "en.wikipedia.org/wiki/History_of_the_telephone",
+    "en.wikipedia.org/wiki/Timeline_of_the_telephone"
+   ],
+   "read": 5,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "Elisha Gray The Telephone Cases write me an essay on this",
+   "voidKind": "generate",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "Wikipedia — Elisha Gray",
+     "url": "https://en.wikipedia.org/wiki/Elisha_Gray",
+     "text": "Elisha Gray (August 2, 1835 – January 21, 1901) was an American electrical engineer who co-founded the Western Electric Manufacturing Company.\nGray is best known for his development of a telephone prototype in 1876 in Highland Park, Illinois.\nGray is also considered to be the father of the modern music synthesizer, and was granted over 70 patents for his inventions.\nIn 1862, while at Oberlin, Gray met and married Delia Minerva Shepard.\nIn 1865, Gray invented a self-adjusting telegraph relay that automatically adapted to varying insulation of the telegraph line.\nIn 1867 Gray received a patent for the invention, the first of more than seventy.\nIn 1869, Elisha Gray and his partner Enos M. Barto"
+    },
+    {
+     "ref": "Wikipedia — The Telephone Cases",
+     "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+     "text": "The Telephone Cases, 126 U.S.\ncourt cases in the 1870s and the 1880s related to the invention of the telephone, which culminated in an 1888 decision of the U.S.\nWestern Union advocated several more recent patent claims of Daniel Drawbaugh, Elisha Gray, Antonio Meucci, and Philip Reis in a bid to invalidate Alexander Graham Bell's master and subsidiary telephone patents dating from March 1876.\nCo., 32 F. 214, and\nCo., 22 F. 309 and 25 F. 725.\nBell's second fundamental patent expired on January 30, 1894, when the gates were then opened to independent telephone companies to compete with the Bell System.\nIn all, the American Bell Telephone Company and its successor, AT&T, litigated 587 court cha"
+    },
+    {
+     "ref": "Wikipedia — Invention of the telephone",
+     "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+     "text": "The invention of the telephone was the culmination of work done by many different people, and led to an array of lawsuits relating to the conflicting patent claims made by several individuals and numerous companies.\nNotable people included in this process were Antonio Meucci, Philipp Reis, Elisha Gray and Alexander Graham Bell.\nOne precursor to the development of the electromagnetic telephone originated in 1833 when Carl Friedrich Gauss and Wilhelm Eduard Weber invented an electromagnetic device for the transmission of telegraphic signals at the University of Göttingen, in Lower Saxony, helping to create the fundamental basis for the technology that was later used in similar telecommunicatio"
+    }
+   ],
+   "web": [
+    "https://en.wikipedia.org/wiki/Elisha_Gray",
+    "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+    "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+    "https://en.wikipedia.org/wiki/History_of_the_telephone",
+    "https://en.wikipedia.org/wiki/Timeline_of_the_telephone"
+   ],
+   "trace": [
+    {
+     "scope": "web",
+     "engine": "recorded results",
+     "q": "Elisha Gray and The Telephone Cases",
+     "ok": true,
+     "n": 4
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "Elisha Gray",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "wikipedia",
+     "engine": "Wikipedia",
+     "q": "The Telephone Cases",
+     "ok": true,
+     "n": 20
+    },
+    {
+     "scope": "route",
+     "engine": "source router",
+     "ok": true,
+     "why": {
+      "web": "always — the open web is the one source that answers anything",
+      "wikipedia": "web hits are encyclopedia pages (3 of top 10)"
+     }
+    },
+    {
+     "scope": "topic",
+     "engine": "title gate",
+     "ok": true
+    },
+    {
+     "scope": "topic",
+     "engine": "swarm gate",
+     "ok": true
+    }
+   ],
+   "voidFull": {
+    "kind": "generate",
+    "reason": "network",
+    "outputType": "essay",
+    "topic": "Elisha Gray and The Telephone Cases",
+    "missing": [
+     "the model's draft of the essay"
+    ],
+    "had": [
+     {
+      "kind": "page",
+      "title": "Elisha Gray",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Elisha_Gray",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "The Telephone Cases",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases",
+      "note": "about the topic"
+     },
+     {
+      "kind": "page",
+      "title": "Invention of the telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone",
+      "note": "about the topic"
+     }
+    ],
+    "setAside": [],
+    "unblock": [
+     "try again",
+     "check that the Fold's server is running (npm run serve), or load the in-tab model"
+    ],
+    "note": "I can't write the essay: the model could not be reached (a network error).",
+    "counts": {
+     "sentences": 0,
+     "grounded": 0
+    },
+    "read": [
+     {
+      "title": "Elisha Gray",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Elisha_Gray"
+     },
+     {
+      "title": "The Telephone Cases",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/The_Telephone_Cases"
+     },
+     {
+      "title": "Invention of the telephone",
+      "domain": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/wiki/Invention_of_the_telephone"
+     }
+    ],
+    "closeBy": [
+     "try again",
+     "check that the Fold's server is running (npm run serve), or load the in-tab model"
+    ],
+    "question": "write me an essay on this",
+    "retry": true,
+    "offer": {
+     "act": "show-sources",
+     "n": 3,
+     "label": "show what the sources say about Elisha Gray and The Telephone Cases (their own words, not an essay)"
+    }
+   },
+   "process": [
+    "effort · Balanced — full scopes · swarm gate · void",
+    "searched the web · read 3 source(s)",
+    "no model call · this kind of turn has no source, and the model never speaks alone",
+    "followed the conversation · carried · searched “Elisha Gray The Telephone Cases write me an essay on this”",
+    "creative — no claims checked",
+    "void · ⟂ void — I can't write the essay: the model could not be reached (a network error). Missing: the model's draft of the essay. To close it: try again, or check that the Fold's server is running (npm run serve), or load the in-tab model."
+   ]
+  }
+ ]
+}

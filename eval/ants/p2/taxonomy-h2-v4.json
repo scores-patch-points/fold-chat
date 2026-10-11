@@ -1,0 +1,246 @@
+{
+ "set": "h2",
+ "byType": {
+  "figure": {
+   "n": 11,
+   "contains": 8,
+   "strandContains": 8,
+   "gap": 2,
+   "precisionMedian": 0.46534653465346537,
+   "strandPrecisionMedian": 0.02729181245626312
+  },
+  "date": {
+   "n": 3,
+   "contains": 3,
+   "strandContains": 1,
+   "gap": 0,
+   "precisionMedian": 0.9767441860465116,
+   "strandPrecisionMedian": 0
+  },
+  "name": {
+   "n": 3,
+   "contains": 2,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.2717391304347826,
+   "strandPrecisionMedian": 0.014688601645123384
+  },
+  "place": {
+   "n": 3,
+   "contains": 2,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.29457364341085274,
+   "strandPrecisionMedian": 0.037720033528918694
+  },
+  "definition": {
+   "n": 6,
+   "contains": 5,
+   "strandContains": 6,
+   "gap": 0,
+   "precisionMedian": 0.993856706742547,
+   "strandPrecisionMedian": 0.08909306461173681
+  },
+  "list": {
+   "n": 1,
+   "contains": 0,
+   "strandContains": 0,
+   "gap": 0,
+   "precisionMedian": 0,
+   "strandPrecisionMedian": 0
+  },
+  "reason": {
+   "n": 1,
+   "contains": 0,
+   "strandContains": 0,
+   "gap": 0,
+   "precisionMedian": 0,
+   "strandPrecisionMedian": 0
+  },
+  "yesno": {
+   "n": 2,
+   "contains": 2,
+   "strandContains": 2,
+   "gap": 0,
+   "precisionMedian": 0.7485211267605634,
+   "strandPrecisionMedian": 0.06765482757948499
+  },
+  "unanswerable": {
+   "n": 10,
+   "gap": 9,
+   "strandShipped": 10
+  }
+ },
+ "byLang": {
+  "en": {
+   "n": 36,
+   "outcomes": [
+    "contains",
+    "contains",
+    "gap",
+    "contains",
+    "gap",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "contains",
+    "WRONG",
+    "contains",
+    "contains",
+    "WRONG",
+    "WRONG",
+    "contains",
+    "contains",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "WRONG-SPAN",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok",
+    "gap-ok"
+   ]
+  },
+  "es": {
+   "n": 1,
+   "outcomes": [
+    "WRONG"
+   ]
+  },
+  "fr": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "ru": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "zh": {
+   "n": 1,
+   "outcomes": [
+    "contains"
+   ]
+  },
+  "de": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  },
+  "pt": {
+   "n": 1,
+   "outcomes": [
+    "gap-ok"
+   ]
+  }
+ },
+ "misses": [
+  {
+   "id": "k03",
+   "q": "How many people live in Switzerland?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k05",
+   "q": "How many visitors did the Metropolitan Museum of Art have in fiscal year 2025?",
+   "class": "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)",
+   "shipped": null,
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k09",
+   "q": "How many mL is a teaspoon?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "The size of teaspoons ranges from about 2.5 to 7.3 mL (0.088 to 0.257 imp fl oz; 0.085 to 0.247 US fl oz).",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k14",
+   "q": "Where is Barcelona located?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "It is one of the largest metropolises on the Mediterranean Sea, located on the coast between the mouths of the rivers Llobregat and Besòs.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k20",
+   "q": "What is caffeine?",
+   "class": "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)",
+   "shipped": "Caffeine is a central nervous system stimulant of the methylxanthine class and is the most commonly consumed psychoactive drug globally.",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k23",
+   "q": "Which cities are on the Swiss plateau?",
+   "class": "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)",
+   "shipped": "The Swiss Plateau, and the Jura Mountains; the Alps cover most of the country's territory, whereas the majority of its 9 million people are ",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "k24",
+   "q": "Why is the Challenger Deep called the Challenger Deep?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer) [reason: the page states it with a different verb/noun than the ask]",
+   "shipped": "Calcareous shells have trouble growing at extreme depths because of the high solubility of calcium carbonate in the pressurized water, scien",
+   "keyOnPrimary": true
+  },
+  {
+   "id": "m01",
+   "q": "¿Quién pintó la Gioconda?",
+   "class": "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)",
+   "shipped": "Y desde entonces se encuentra en el Salón de los Estados.​ Es pertinente decir que la mayoría de datos acerca del cuadro se conocen gracias ",
+   "keyOnPrimary": true
+  }
+ ],
+ "imperfect": {
+  "pronounUnresolved": [
+   "k06"
+  ],
+  "noSubject": [
+   "m03",
+   "m04"
+  ],
+  "overWide": [
+   "k06",
+   "k07",
+   "k15",
+   "m02",
+   "m04"
+  ],
+  "fragment": []
+ },
+ "counts": {
+  "gap on an answerable ask (the ask's words or type did not match: synonym, unsupported measure noun, low coverage)": [
+   "k03",
+   "k05"
+  ],
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer)": [
+   "k09",
+   "k14",
+   "m01"
+  ],
+  "right sentence, wrong atom or clause (the figure/name chosen inside it is not the answer, or the trim cut the answer off)": [
+   "k20",
+   "k23"
+  ],
+  "wrong sentence on the right page (a sentence that matches the ask's words better than the one that states the answer) [reason: the page states it with a different verb/noun than the ask]": [
+   "k24"
+  ]
+ }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "terry-gross",
+  "organ": "khora/native/the-fold/earned-cast.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/terry-gross.json"
+  ],
+  "whatTheyArgued": "No text of hers on method was read. From the NEH 2016 humanities profile (read): she prepares by reading, watching or listening to the guest's work; her questions can be difficult but are 'not designed for attack or to result in cute sound bites'; she sets an atmosphere where guests volunteer answers; the NEH ties her skill to curiosity and understanding the guest's work. That is a description by others of a practice, not an argued thesis.",
+  "scholarship": [
+    {
+      "ref": "National Endowment for the Humanities, 'Terry Gross' (Humanities, Fall 2016)",
+      "url": "https://www.neh.gov/humanities/2016/fall/feature/terry-gross",
+      "supports": "preparation, curiosity, non-attacking difficult questions, guests volunteering answers",
+      "disputes": "none; it does not describe 'handing the thread back' or holding a claim to its ground"
+    },
+    {
+      "ref": "Wikipedia 'Terry Gross' via search summaries (SF Chronicle characterization: empathy, warmth, curiosity)",
+      "url": "https://en.wikipedia.org/wiki/Terry_Gross",
+      "supports": "reputation for empathetic, well-researched interviews",
+      "disputes": "tertiary; not independently verified"
+    }
+  ],
+  "ourUse": "earned-cast.js cues terry-gross on every question/assertion/escalation/frame-ask/map-ask and emits covert facts: reply plainly and hand the thread back; on pushback 'hold the claim to its ground, do not smooth the disagreement away'; on flatline 'draw the guest back out with a genuine question'. output-voice.js 'oral' register frame 'And here is what happened: X - label - Y.' labeled Terry Gross. output-claims.js calls its testimony register 'Terry Gross'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "roles-inverted",
+      "kind": "re-scoped",
+      "ours": "The user is 'the guest' and the system 'draws them out'.",
+      "theirs": "Gross asks questions of a guest she researched; in chat the user asks and the system answers. The machine is in the guest's seat, so 'drawing out' maps only when the system asks a question back."
+    },
+    {
+      "id": "hold-the-claim",
+      "kind": "invented-attribution",
+      "ours": "On escalation: 'this is where the conversation tightens - hold the claim to its ground, do not smooth the disagreement away.'",
+      "theirs": "Not found in any source read; NEH stresses questions that are not designed for attack. This is our epistemic rule under her name."
+    },
+    {
+      "id": "hand-the-thread-back",
+      "kind": "narrowed",
+      "ours": "Compendium: 'let the answer be the guest's to reach, handing the thread back'.",
+      "theirs": "Closest supported statement is that guests volunteer rather than surrender answers; 'thread' language is ours."
+    },
+    {
+      "id": "oral-frame-and-testimony",
+      "kind": "decorative",
+      "ours": "Oral register opener 'And here is what happened:' and the testimony form (output-claims.js) are credited to her.",
+      "theirs": "Nothing in her practice implies either; these are our declared frames."
+    },
+    {
+      "id": "unverified-method",
+      "kind": "narrowed",
+      "ours": "A named 'interview method'.",
+      "theirs": "I could not read an interview or her own account of method; only a profile."
+    }
+  ],
+  "fix": [
+    "compendium terry-gross.work: 'Host of Fresh Air; per the NEH profile she researches the guest's work and asks hard questions that are not built for attack, so guests volunteer answers. The earned-cast facts (hand the thread back; hold a claim to its ground under pushback) are our rules, borrowing her image of an interviewer who listens.'",
+    "output-claims.js and output-voice.js: stop labeling the testimony register and the 'And here is what happened' frame as Terry Gross; mark them our own declared frames.",
+    "Drop 'hold the claim to its ground' from her cue or move it to an archon whose work it matches."
+  ]
+}

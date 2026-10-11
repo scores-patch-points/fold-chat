@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "dignaga",
+  "organ": "khora/native/organs/asserted.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/dignaga-asserted.json"
+  ],
+  "whatTheyArgued": "Dignaga (Pramanasamuccaya) founded the Buddhist apoha theory: words convey meaning through exclusion of what is other, and he rejected universals as referents. Our snip (Stcherbatsky 1930, Jinendrabuddhi's summary of Pram.-samuc.-vrtti ad V.11) says the meaning of a word consists in repudiating the discrepant meaning. He also accepted only perception and inference as pramanas and gave the three-aspect test for a valid reason (trairupya). Nothing in his work, as I read it, treats a claim as a hypothesis with counted support.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Epistemology in Classical Indian Philosophy'",
+      "url": "https://plato.stanford.edu/entries/epistemology-india/",
+      "supports": "perception and inference only; apoha; trairupya as three conditions on a reason",
+      "disputes": "Later logicians (Dharmakirti, Uddyotakara) reinterpreted apoha causally and modified the reason conditions; scholars disagree whether apoha is merely negative. I only read a summary of this and a search snippet on apoha."
+    }
+  ],
+  "ourUse": "asserted.js: a relation edge's verb is a hypothesis with counted support (witnesses by recurrence, seeded shuffled-copy counts); standing 'corroborated' at 2 witnesses, never a verdict.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "counted-support-invented",
+      "kind": "invented-attribution",
+      "ours": "Compendium: 'A claim is a hypothesis whose support is counted, never a recovered fact.'",
+      "theirs": "Not found in Dignaga or the scholarship read. His inference theory requires three conditions on the reason, which is a logical test, not a count of witnesses."
+    },
+    {
+      "id": "apoha-not-implemented",
+      "kind": "reinterpreted",
+      "ours": "'a word designates by excluding its contraries' as warrant for the verb-hypothesis tier.",
+      "theirs": "Apoha is a semantic theory of conceptual content over universals; asserted.js excludes nothing semantically and its mechanism (recurrence, shuffle nulls) is unrelated."
+    },
+    {
+      "id": "snip-is-secondary",
+      "kind": "narrowed",
+      "ours": "Quote offered as Dignaga's words.",
+      "theirs": "It is Jinendrabuddhi's summary quoting the vrtti, in Stcherbatsky's translation, with OCR line breaks; disclosed, not Dignaga's own text in his own wording."
+    },
+    {
+      "id": "speaks-block",
+      "kind": "misstated",
+      "ours": "asserted.js header 'Dignaga speaks:' then first-person 'I believe ... can be overly rigid ... a more nuanced approach' in his frame.",
+      "theirs": "Model-generated text in the author's voice; Dignaga said nothing about rigidity or nuance."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Buddhist logician who founded apoha: a word's meaning is the repudiation of what is other (snip: Jinendrabuddhi via Stcherbatsky). asserted.js is only loosely after this: it treats a mechanical reader's verb as a hypothesis with counted support. The counting is ours, not Dignaga's.'",
+    "credit: drop 'a claim is a hypothesis with counted support (Pramanasamuccaya)'.",
+    "asserted.js header: delete or relabel the model-written 'Dignaga speaks' paragraph; keep only the verbatim quote."
+  ],
+  "tokenized": false
+}

@@ -1,0 +1,65 @@
+{
+  "organ": "khora/native/kernel/universal-grammar.js; adapters/text/relations-language.js; english-parser.js; case-marked-language.js; eot-rich.js; eot-realize.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/chomsky.json"
+  ],
+  "whatTheyArgued": "In Syntactic Structures (1957) Chomsky argued that syntax is a system of its own that cannot be reduced to meaning or to probability: 'colorless green ideas sleep furiously' is grammatical though meaningless and absent from any corpus, so statistical models of sentence probability cannot define grammaticality. Later work (Aspects 1965 onward) argues for innate, language-specific constraints on acquisition (poverty of the stimulus) and a universal grammar of principles, parametrised across languages. Autonomy does not claim grammaticality is unrelated to meaning or probability, only irreducible to them. Summaries only; I read no Chomsky text.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, Innateness and Language (poverty of the stimulus, structure dependence)",
+      "url": "https://plato.stanford.edu/entries/innateness-language/",
+      "supports": "Chomsky's nativism: children's competence not explained by exposure alone; structure-dependent rules; theory evolved from transformational grammar through Principles and Parameters to Minimalism",
+      "disputes": "The entry presents nativism as contested; the page did not discuss the colorless-green example or autonomy, so those rest on the next source"
+    },
+    {
+      "ref": "Wikipedia, Syntactic Structures / Autonomy of syntax (via search)",
+      "url": "https://en.wikipedia.org/wiki/Autonomy_of_syntax",
+      "supports": "the example shows grammar independent of meaning; probability of a sentence 'useless' as grammaticality measure; autonomy means non-reducibility not isolation",
+      "disputes": "Empiricist and usage-based critics (statistical learning) reject the autonomy and poverty-of-stimulus claims; not read in depth"
+    }
+  ],
+  "ourUse": "universal-grammar.js: the arrangement is universal and is the cube's cells (Ground, Field, Pattern) worn by a language's surfaces; relations-language.js reads GFP by default and enables SVO-type roles only when a measured RoleConfig@1 declares them; english-parser.js says a grammar is learned from what was heard and then reads what it never heard; eot-rich/eot-realize speak of universal deep structure with languages as projections.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "our-universal",
+      "kind": "reinterpreted",
+      "ours": "The universal arrangement is GFP / the cube, our own theory, presented under Chomsky's name.",
+      "theirs": "Chomsky's universals are innate principles and parameters of the language faculty; he never proposed our cube or end1-label-end2 relations."
+    },
+    {
+      "id": "learned-from-heard",
+      "kind": "misstated",
+      "ours": "english-parser.js: 'a grammar is learned from what was heard' (treebank statistics, then applied to unseen text), credited to Handle: Chomsky.",
+      "theirs": "Poverty-of-the-stimulus nativism argues children cannot learn grammar from exposure alone, and 1957 rejects probability as the basis of grammaticality. A statistical learner is closer to what he opposed; the sentence is ours."
+    },
+    {
+      "id": "declared-not-default",
+      "kind": "invented-attribution",
+      "ours": "Credit line: 'a role grammar is declared, never the default' as Chomsky's teaching.",
+      "theirs": "No such tenet; it is an engineering rule from the user (2026-09-12, quoted in relations-language.js). Chomsky does posit a default (innate) endowment, if anything the opposite."
+    },
+    {
+      "id": "deep-structure",
+      "kind": "reinterpreted",
+      "ours": "eot-rich/realize use 'deep structure is universal; each language a projection'.",
+      "theirs": "Deep structure belongs to Aspects (1965); Minimalism dropped it. Our use is the older picture without saying so."
+    },
+    {
+      "id": "autonomy-narrowed",
+      "kind": "narrowed",
+      "ours": "'Structure is earned regardless of content' in the work line.",
+      "theirs": "Autonomy says syntax is not reducible to semantics; the compendium reads it as structure being independent of content in our relation extractor, which does use content-bearing statistics."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Chomsky (Syntactic Structures 1957) argued syntax is autonomous: grammaticality is not reducible to meaning or probability (colorless green ideas). Our GFP arrangement and the rule that a language-specific role grammar is declared by measured RoleConfig are ours; we borrow the example, not his universal grammar.'",
+    "english-parser.js: remove Handle: Chomsky (a statistical parser contradicts the nativist argument) or add 'against Chomsky's own view'.",
+    "credit: 'Noam Chomsky - the autonomy of syntax (1957); the universal arrangement here is our own cube.'",
+    "Gap: no Chomsky text read."
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "chomsky",
+  "tokenized": false
+}

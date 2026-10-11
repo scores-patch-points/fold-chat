@@ -1,0 +1,60 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "nagarjuna",
+  "organ": "khora/native/kernel/refutation.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/nagarjuna-refutation.json"
+  ],
+  "whatTheyArgued": "What the bytes on disk actually say. (1) The verified snip (Stcherbatsky 1927, Prasannapada I, translated from CANDRAKIRTI, not Nagarjuna) is Candrakirti defending Buddhapalita against Bhavaviveka: a Madhyamika vindicates no thesis of his own in order to convince the opponent, and what could be a more eloquent refutation than proving the opponent cannot establish his own thesis, with no need for fresh counter-arguments. That is a sixth-century-and-later commentator's defence of the prasanga reading. (2) The span in the physics file (khora/antistrauss-physics.txt, anchor 29278-29314, needle 'Nagarjuna did not advance any theory') sits in the modern Indian reprint's added 'Madhyamaka Works and Schools' chapter, which belongs to the editor Jaideva Singh (Bharatiya Vidya Prakashan, revised ed.; his dated notes are 1960s), not to Stcherbatsky and not to Nagarjuna. It says: Nagarjuna advanced no theory of his own and used only prasanga (reductio) to show opponents' theories lead to absurdity on principles they accept; the Svatantrika Bhavya held independent arguments should also be given. I read both spans with 1500 bytes of window. I did NOT read the Mulamadhyamakakarika verses themselves, so nothing here shows what Nagarjuna's own text says.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Nagarjuna' (fetched and read; thin on method)",
+      "url": "https://plato.stanford.edu/entries/nagarjuna/",
+      "supports": "Nagarjuna proceeds step by step, tailoring arguments to particular opponents' beliefs, with no single master argument; Prasangika-Madhyamaka became Tibetan Buddhism's official reading",
+      "disputes": "The bibliography flags 'does the Madhyamika have a thesis?' as a live question, and the entry flags disagreement about whether the Abhidharmika can answer Madhyamaka's inference from causation to emptiness. The Prasangika (Candrakirti, Buddhapalita) versus Svatantrika (Bhavaviveka) quarrel over whether refutation needs independent arguments is itself shown in the Stcherbatsky text. Our organ takes the Prasangika side as though settled. I could not fetch IEP or Stanford pages that treat Candrakirti or the thesis question in detail."
+    }
+  ],
+  "ourUse": "refutation.js: the veto organ. Given hyperedges and a relation, it finds what the material positively says against treating the relation as composable: a cycle (a to b to ... to a) or, when declared, a uniqueness violation. It never returns 'clean'; it reports power (insufficient below two resolved edges), unresolved edges as void candidates, and says absence of a counterexample is not refutation. Its GROUND is bytes cut from the canon at anchor 29278.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "candrakirti-not-nagarjuna",
+      "kind": "invented-attribution",
+      "ours": "Manifest and file header ('Nagarjuna speaks: \"But can there be a more eloquent refutation...\"') present the line as Nagarjuna's; compendium source says Mulamadhyamakakarika.",
+      "theirs": "The line is Candrakirti's Prasannapada (Stcherbatsky's translation), a later commentator defending the prasanga reading against Bhavaviveka. The manifest 'giver' field says so; the header and compendium do not. No verse of the karikas was snipped."
+    },
+    {
+      "id": "ground-is-editor-gloss",
+      "kind": "misstated",
+      "ours": "GROUND/GROUND_REF are described as 'the canon's own bytes... the prasanga passage', i.e. Nagarjuna's teaching.",
+      "theirs": "The anchored span is a modern editor's summary (Jaideva Singh's introduction to the 1960s Indian revised edition), not Nagarjuna, not Candrakirti, not Stcherbatsky. Also: the provenance sidecar certifies 'public domain (1927)', which covers Stcherbatsky's translation; Singh's added introduction, preface and analysis are later work by an author who died after 1980, so its public-domain status is unverified and probably wrong. Needs a rights decision."
+    },
+    {
+      "id": "no-thesis-vs-organ-outputs",
+      "kind": "reinterpreted",
+      "ours": "'Asserts nothing': the organ returns structured findings (refuted true/false, reasons, cycles, void candidates).",
+      "theirs": "The Prasangika point is about the Madhyamika holding no thesis of his own while exposing the opponent's contradiction. A returned 'refuted: true with reasons' is a positive finding, and the 'no thesis' claim is itself contested (Bhavaviveka; SEP bibliography). Closer analogy is only the cycle check: the claim 'this relation composes' plus the material's own edges yields a contradiction, a genuine reductio on premises the claimant accepted."
+    },
+    {
+      "id": "uniqueness-not-prasanga",
+      "kind": "re-scoped",
+      "ours": "The uniqueness check, applied when the caller declares a 1:1 relation, is also filed under Nagarjuna.",
+      "theirs": "A uniqueness violation refutes a declared cardinality claim, not a consequence drawn from the opponent's own principles. The source text read says nothing resembling it."
+    },
+    {
+      "id": "first-person-header",
+      "kind": "invented-attribution",
+      "ours": "organ header comment opens with a first-person 'speaks' block and commentary in the archon's voice ('My teaching prioritizes...', 'I believe...'), generated text presented as the author's own words (refutation.js: 'This file embodies Nagarjuna's Prasanga method... its use ... might potentially oversimplify').",
+      "theirs": "None of it is in Nagarjuna, Candrakirti or Stcherbatsky."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Madhyamaka founder. The prasanga reading of his method (defended by Candrakirti, contested by Bhavaviveka) refutes an opponent by drawing out consequences from the opponent's own principles without a thesis of one's own. refutation.js borrows one narrow part: it refutes a claim that a relation composes by showing a cycle in the material's own edges (and, where declared, a uniqueness violation). It never licenses.'",
+    "compendium source: 'Candrakirti, Prasannapada I (tr. Stcherbatsky 1927) on the prasanga reading of Nagarjuna's Mulamadhyamakakarika'; credit: 'Nagarjuna as read by Candrakirti - refute by consequence; our refutation.js is a narrow, structural use.'",
+    "refutation.js header: label the quoted sentence as Candrakirti (Stcherbatsky tr.); delete the first-person 'speaks' commentary.",
+    "canon-ground / antistrauss-physics.txt: either re-anchor the refutation mechanic to a Stcherbatsky-authored passage (e.g. the Prasannapada passage at 413555-413684 in the manifest) or label the current span as Jaideva Singh's gloss and resolve its copyright. Do NOT leave a modern editor's sentence as 'canon' credited to Nagarjuna.",
+    "Before 'verified' can be unqualified: snip an actual karika verse of Nagarjuna from the Sanskrit/English MMK in the same file."
+  ],
+  "tokenized": false
+}

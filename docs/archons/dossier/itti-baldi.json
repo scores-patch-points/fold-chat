@@ -1,0 +1,21 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "itti-baldi",
+  "organ": "khora/native/kernel/bayes-surprise.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "No work is claimed by the compendium, but the organ header says 'after Bayesian surprise'. Itti & Baldi (Vision Research 49, 2009, 'Bayesian surprise attracts human attention'; read in full from the open PDF): surprise is the Kullback-Leibler divergence between the observer's posterior and prior over a set of models after data D, S(D,M) = KL(P(M|D), P(M)); data that leave beliefs unchanged carry no surprise however rare or Shannon-informative. They contrast this with Shannon information via the 'white snow' paradox. Their model: 72 feature maps, each neuron a Poisson model with a Gamma prior over its rate, surprise computed temporally and spatially, tested against human eye movements on video.",
+  "scholarship": [
+    { "ref": "Itti & Baldi 2009, Vision Research 49(10):1295-1306 (primary, read via pdftotext)", "url": "http://ilab.usc.edu/publications/doc/Itti_Baldi09vr.pdf", "supports": "KL(posterior, prior) definition; contrast with Shannon rarity; Poisson/Gamma conjugate model; 72% of gaze shifts toward above-average surprise", "disputes": "authors themselves note the single-best-model limitation of their outlier/novelty comparators; no dispute on the definition recorded" }
+  ],
+  "ourUse": "bayes-surprise.js keeps SURPRISAL (-log2 p, Rubin) and BAYES (KL(posterior||prior) in bits) apart, with the holograph Pattern grain held as independent Dirichlet slots (declared alpha, optional gamma decay), measuring the delta an admitted line makes to the holograph.",
+  "verdict": "justified",
+  "bends": [],
+  "noBendReason": "This is a nomination: the name credits the definition, and the organ implements that definition (KL of posterior from prior, explicitly contrasted with rarity) faithfully. The model differs (Dirichlet slots over text-form values, not Poisson/Gamma over visual features) but the header already discloses a declared prior and independent-slot simplification, and claims no attention results. One caution: the compendium line 'surprise is the delta to belief, not the rarity of the event' matches the paper; do not add that humans attend to it for text, which the paper tested only for video.",
+  "tokenized": false,
+  "fix": [
+    "organ header: add 'prior is Dirichlet per slot, not the paper's Poisson/Gamma; the paper tests human attention on video only'",
+    "no change to the compendium line"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "output-holograph",
+  "organ": "khora/native/organs/output-holograph.js",
+  "standing": "nomination",
+  "snips": [],
+  "creditAsScholarship": false,
+  "whatTheyArgued": "No author is claimed. 'The Holograph Typing' is the project's own name for a mechanism: each generated sentence is typed MATERIAL (it carries a verified arrangement's ends through the same fold, and gets the arrangement's byte address) or SELF:MODEL (the mouth's own prose, marked). The three tiers (holograph, shadow, echo) come from the project's own native/docs/THE-HOLOGRAPH.md.",
+  "scholarship": [],
+  "ourUse": "output-holograph.js types each sentence of generated content mechanically against the ground facts, discloses a 0..1 carry for partial matches, and records a typed gap (never a guessed address) when a ground fact has no byte span. No model is asked which of its sentences it grounded.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "koestler-source-line", "kind": "decorative", "ours": "Compendium source field: 'THE-HOLOGRAPH.md ...; Koestler's holon', and topics include 'koestler'.", "theirs": "output-holograph.js never mentions Koestler (searched); the typing is sentence-to-address, not whole/part nesting. The Koestler credit lends borrowed authority to a mechanism that does not use his idea." },
+    { "id": "parmenides-same", "kind": "decorative", "ours": "The work line and organ header say identity is 'Parmenides' same (P11)'.", "theirs": "There is no 'parmenides' handle in the compendium (searched) and no dossier here; the phrase names a project principle P11, not a verified reading of Parmenides. Left to whichever agent owns that attribution." }
+  ],
+  "noBendReason": "The name 'The Holograph Typing' is ours; the entry claims no author's work as its basis, and the three-tier scheme is cited to the project's own document. The only bends listed are borrowed authority the compendium adds around it (Koestler in the source and topics, Parmenides in the wording), not anything in the mechanism.",
+  "tokenized": false,
+  "fix": [
+    "compendium source: 'THE-HOLOGRAPH.md (the project's own document)'; remove 'Koestler's holon' and the 'koestler' topic.",
+    "compendium work and organ header: say 'the project's principle P11 (same arrangement, same identity)'; do not write 'Parmenides' unless a Parmenides dossier is created."
+  ]
+}

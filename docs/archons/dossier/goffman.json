@@ -1,0 +1,51 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "goffman",
+  "organ": "khora/native/organs/goffman.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/goffman-deferred.json"
+  ],
+  "whatTheyArgued": "Everyday social life is dramaturgical: people manage the impression others form (front stage), and keep a back region where the performance is dropped; teams protect the performance. Stigma (1963) separately treats information control and concealment of discrediting facts. Neither is a theory of PII, data protection, or detection tools.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, 'Erving Goffman' (summary of Presentation of Self and Stigma; encyclopedia-level, not peer reviewed; SEP/Britannica/IEP pages were unavailable to me)",
+      "url": "https://en.wikipedia.org/wiki/Erving_Goffman",
+      "supports": "front/back stage, impression management; Stigma on concealing discrediting information",
+      "disputes": "critics argue dramaturgy is cynical/instrumental about the self; not examined further here"
+    },
+    {
+      "ref": "Search results on dramaturgical analysis (EBSCO research starter, SimplyPsychology) for front/back-stage definitions",
+      "url": "https://ebsco.com/research-starters/drama-and-theater-arts/dramaturgical-analysis",
+      "supports": "same definitions",
+      "disputes": ""
+    }
+  ],
+  "ourUse": "goffman.js detects HIPAA/GDPR/PCI identifier shapes and reports category, location, count, never the value.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "invented-attribution",
+      "kind": "invented-attribution",
+      "ours": "credit line: 'a person's identifying particulars belong to their own performance; a detector that prints them is itself a leak (1959)'.",
+      "theirs": "1959 book argues nothing about identifying particulars belonging to the performer, or about detectors; the 'detector that prints PII is a leak' rule is OUR design law, put in the credit field in Goffman's voice."
+    },
+    {
+      "id": "performance-not-property",
+      "kind": "reinterpreted",
+      "ours": "Identifiers as owned particulars of a person (a privacy/ownership frame).",
+      "theirs": "For Goffman the self-presentation is a managed impression to an audience, a social accomplishment; he is not making a claim about personal data ownership. Closest real material is Stigma on information control, which the organ does not cite."
+    },
+    {
+      "id": "legal-grounding-not-goffman",
+      "kind": "decorative",
+      "ours": "Handle: Goffman on an organ whose shapes are derived wholly from HIPAA, GDPR, CCPA, PCI-DSS.",
+      "theirs": "None of its logic comes from Goffman; the legal instruments do all the work, so the name is a label."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium credit: drop the sentence in Goffman's voice. Either re-handle this organ to its real authorities (HIPAA/GDPR/PCI) or write: 'Named for Goffman's study of how people manage what others learn about them (Presentation of Self 1959; Stigma 1963 on information control). The redact-never-print rule is ours.'",
+    "goffman.js header: remove 'the personal, the identifying attributes by which a person is singled out' as a Goffman paraphrase."
+  ]
+}

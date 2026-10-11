@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "xunzi",
+  "organ": "khora/native/kernel/kind-graph-structure.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/xunzi.json"
+  ],
+  "whatTheyArgued": "Xunzi 22 (Dubs tr., 1928): the senses and the heart/mind find sameness and difference; names are then given accordingly (alike things named alike, different things differently), with a single term where it suffices and a compound term where not. Names have no intrinsic appropriateness: they are fixed by agreement and custom, and a name that departs from the agreed one is inappropriate. Terms are then arranged by scope: one generalizes upward to the most general term ('thing') and classifies downward to specific ones ('birds and beasts' as the greatest classifying term) until no more can be done. He ends with criteria for counting realities (same form in two places = two; transformation without separation = one) and a classification of fallacies. Scholarship adds that the purpose is moral-political: kings fix names to order society.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Xunzi'",
+      "url": "https://plato.stanford.edu/entries/xunzi/",
+      "supports": "names conventional once assigned, must still track reality; senses and heart-mind detect differences; purpose is moral governance",
+      "disputes": "none read; the excerpt I got did not detail the general/specific name scheme"
+    },
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Logic and Language in Early Chinese Philosophy'",
+      "url": "https://plato.stanford.edu/entries/chinese-logic-language/",
+      "supports": "Xunzi appropriates Mohist logic, recognizes names of different scope, and rests correctness on conventions fixed by authority/ritual propriety",
+      "disputes": "Mohists appeal to more objective criteria than Xunzi does"
+    }
+  ],
+  "ourUse": "kind-graph-structure.js records structural evidence for an entity's kind from graph shape: participation depth, relation-diversity depth (predicate sets, with optional lemma folding), distinct-end role breadth. The header says 'kinds relate by resemblance in a graph, never a strict tree' and that the file 'aims to be faithful to Xunzi's teaching'.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "graph-not-tree",
+      "kind": "invented-attribution",
+      "ours": "Compendium and header: names graded by resemblance, 'a graph, not a tree', credited 'Xunzi 22'.",
+      "theirs": "Nothing in the chapter says that. What Xunzi describes is a ladder of generalization up to 'thing' and of classification down from it, i.e. nested scope, which is tree-like. 'Graded by resemblance' and 'graph' are our terms; Xunzi has same/different judged by senses and mind."
+    },
+    {
+      "id": "resemblance-vs-structure",
+      "kind": "re-scoped",
+      "ours": "The code does not compute resemblance among kinds at all; it counts graph-role and predicate-diversity depth for entities.",
+      "theirs": "The chapter's operative idea is sameness/difference of realities, then naming. Our code's inputs (how many edges, how many distinct predicates) are not that judgment."
+    },
+    {
+      "id": "convention-dropped",
+      "kind": "narrowed",
+      "ours": "'names are agreed conventions' appears in the compendium but nothing in the code treats names as conventions; it never reasons about agreement or custom.",
+      "theirs": "Conventionality, and authority of kings/elites to fix names, is Xunzi's central doctrine for why a name is appropriate."
+    },
+    {
+      "id": "faithful-claim",
+      "kind": "decorative",
+      "ours": "File head: 'aims to be faithful to Xunzi's teaching' (model-written, first person plural about an author).",
+      "theirs": "It is not faithful in the specific sense stated; the single snip (alike named alike) is real but supports only the weak idea that naming follows likeness."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Xunzi 22: names are fixed by agreement; once fixed, alike things are named alike and different things differently, and terms nest from the most general (thing) down to the most specific. kind-graph-structure.js borrows only the likeness-follows-name idea; its graph-depth evidence is ours.'",
+    "compendium credit: 'Xunzi — alike things named alike, different named differently; names by convention (Xunzi 22).'",
+    "organ header: delete 'graph, never a strict tree' and 'faithful to Xunzi'; say 'structural kind evidence, motivated loosely by alike-named-alike'. Separately: kind-standing.js (cosine over company vectors) is the closer analogue to resemblance."
+  ]
+}

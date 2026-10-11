@@ -1,0 +1,6709 @@
+[
+ {
+  "id": "E01",
+  "lang": "en",
+  "length": 30,
+  "anchor": {
+   "topic": "eiffel",
+   "turn": 3,
+   "qa0": "How tall is the Eiffel Tower?",
+   "needle0": "The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.",
+   "needle1": "It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "penicillin",
+   "greatwall",
+   "telephone",
+   "berlinwall",
+   "austen",
+   "pluto",
+   "curie"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "eiffel",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "How tall is it?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 3,
+     "topic": "eiffel",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How tall is it?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 5,
+     "topic": "eiffel",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the height?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "meta",
+    "text": "shorter"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When was the Berlin Wall built?",
+    "qi": 1
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "berlinwall",
+    "text": "When did it fall?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 10,
+     "topic": "eiffel",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How tall is the Eiffel Tower?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 12,
+     "topic": "eiffel",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Who designed the Eiffel Tower?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "telephone",
+    "text": "And when was it patented?"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "meta",
+    "text": "explain that"
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "curie",
+    "text": "And when did she win her first Nobel Prize?"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   }
+  ]
+ },
+ {
+  "id": "E02",
+  "lang": "en",
+  "length": 30,
+  "anchor": {
+   "topic": "greatwall",
+   "turn": 3,
+   "qa0": "Which dynasty built the best-known sections of the Great Wall of China?",
+   "needle0": "Successive dynasties expanded the wall system; the best-known sections were built by the Ming dynasty (1368–1644).",
+   "needle1": "The first walls date to the 7th century BC; these were joined together in the Qin dynasty."
+  },
+  "siblingInRoster": true,
+  "roster": [
+   "penicillin",
+   "eiffel",
+   "canberra",
+   "pluto",
+   "suez",
+   "photo",
+   "berlinwall"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "greatwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the dynasty?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 3,
+     "topic": "greatwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about the long wall in China?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 5,
+     "topic": "greatwall",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Great Wall of China earlier?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "Is it a planet?"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 10,
+     "topic": "greatwall",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about the long wall in China earlier?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 12,
+     "topic": "greatwall",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "penicillin",
+    "text": "And who discovered it?"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "What is the efficiency of photosynthesis in plants?",
+    "qi": 1
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "Who discovered it?"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   }
+  ]
+ },
+ {
+  "id": "E03",
+  "lang": "en",
+  "length": 30,
+  "anchor": {
+   "topic": "everest",
+   "turn": 3,
+   "qa0": "How high is Mount Everest?",
+   "needle0": "In 1856, Andrew Waugh announced Everest (then known as Peak XV) as 8,840 m (29,002 ft) high, after several years of calculations based on observations made by the Great Trigonometrical Survey.",
+   "needle1": "Tenzing Norgay and Edmund Hillary made the first documented ascent of Everest in 1953, using the Southeast Ridge route."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "austen",
+   "suez",
+   "telephone",
+   "photo",
+   "eiffel",
+   "canberra",
+   "titanic"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "everest",
+    "text": "How high is Mount Everest?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "everest",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "How high is it?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 3,
+     "topic": "everest",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to Mount Everest: Who first reached the summit of Mount Everest?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 5,
+     "topic": "everest",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "When was the telephone patented?",
+    "qi": 1
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "meta",
+    "text": "i don't get it"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "And what is its efficiency in plants?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 10,
+     "topic": "everest",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How high is it?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 12,
+     "topic": "everest",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the height?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "titanic",
+    "text": "How many people died on the Titanic?",
+    "qi": 1
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "meta",
+    "text": "why?"
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "When was the telephone patented?",
+    "qi": 1
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "meta",
+    "text": "shorter"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "chit",
+    "text": "thanks"
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "And when was it founded?"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "titanic",
+    "text": "When did the Titanic sink?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "E04",
+  "lang": "en",
+  "length": 30,
+  "anchor": {
+   "topic": "panama",
+   "turn": 3,
+   "qa0": "How long is the Panama Canal?",
+   "needle0": "The Panama Canal (Spanish: Canal de Panamá) is an artificial 82-kilometer (51-mile) waterway in Panama that connects the Caribbean Sea with the Pacific Ocean.",
+   "needle1": "Annual traffic has risen from about 1,000 ships in 1914, when the canal opened, to 14,702 vessels in 2008, for a total of 333.7 million Panama Canal/Universal Measurement System (PC/UMS) tons."
+  },
+  "siblingInRoster": true,
+  "roster": [
+   "suez",
+   "eiffel",
+   "everest",
+   "pluto",
+   "curie",
+   "pisa",
+   "telephone"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "panama",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the length?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 3,
+     "topic": "panama",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How long is the Panama Canal?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 5,
+     "topic": "panama",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "When did the Panama Canal open?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "everest",
+    "text": "And who first reached its summit?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "meta",
+    "text": "explain that"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 10,
+     "topic": "panama",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about the canal between the oceans?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 12,
+     "topic": "panama",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Panama Canal earlier?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "meta",
+    "text": "explain that"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "curie",
+    "text": "And when did she win her first Nobel Prize?"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pisa",
+    "text": "How tall is it?"
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "E05",
+  "lang": "en",
+  "length": 45,
+  "anchor": {
+   "topic": "telephone",
+   "turn": 3,
+   "qa0": "Who invented the telephone?",
+   "needle0": "Alexander Graham Bell was the first to be awarded a patent for the electric telephone by the United States Patent and Trademark Office (USPTO) in March 1876.",
+   "needle1": "The first telephone patent was granted to Alexander Graham Bell in 1876."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "curie",
+   "pisa",
+   "penicillin",
+   "berlinwall",
+   "everest",
+   "photo",
+   "canberra"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "telephone",
+    "text": "Who invented the telephone?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "telephone",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Who invented it?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "When did Marie Curie win her first Nobel Prize?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 3,
+     "topic": "telephone",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about the guy with the patent earlier?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 5,
+     "topic": "telephone",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "What did you tell me about the telegraph earlier?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "everest",
+    "text": "And who first reached its summit?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 10,
+     "topic": "telephone",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 12,
+     "topic": "telephone",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to telephone: When was the telephone patented?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "Who first reached the summit of Mount Everest?",
+    "qi": 1
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "everest",
+    "text": "How high is it?"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 25,
+     "topic": "telephone",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "When did Marie Curie win her first Nobel Prize?",
+    "qi": 1
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 27,
+     "topic": "telephone",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Who invented it?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pisa",
+    "text": "How tall is it?"
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "What is its population?"
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "chit",
+    "text": "thanks"
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   }
+  ]
+ },
+ {
+  "id": "E06",
+  "lang": "en",
+  "length": 45,
+  "anchor": {
+   "topic": "berlinwall",
+   "turn": 3,
+   "qa0": "When did the Berlin Wall fall?",
+   "needle0": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded.",
+   "needle1": "Construction of the Berlin Wall was commenced by the government of the GDR on 13 August 1961."
+  },
+  "siblingInRoster": true,
+  "roster": [
+   "greatwall",
+   "pluto",
+   "canberra",
+   "eiffel",
+   "photo",
+   "telephone",
+   "penicillin"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the fall date?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 3,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the fall date?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 5,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "When did the Berlin Wall fall?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "And when was it founded?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffel",
+    "text": "And who designed it?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 10,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "When was the Berlin Wall built?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 12,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about the wall that split the German city?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "When was the Great Wall of China first built?",
+    "qi": 1
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "greatwall",
+    "text": "Which dynasty built its best-known sections?"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "Is it a planet?"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffel",
+    "text": "And who designed it?"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 25,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Berlin Wall earlier?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 27,
+     "topic": "berlinwall",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about the wall that split the German city earlier?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "Is it a planet?"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "penicillin",
+    "text": "What is it?"
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "greatwall",
+    "text": "And when was it first built?"
+   }
+  ]
+ },
+ {
+  "id": "E07",
+  "lang": "en",
+  "length": 45,
+  "anchor": {
+   "topic": "curie",
+   "turn": 3,
+   "qa0": "Who was Marie Curie?",
+   "needle0": "Maria Salomea Skłodowska Curie (née Skłodowska; 7 November 1867 – 4 July 1934), better known as Marie Curie, was a Polish and naturalised-French physicist and chemist.",
+   "needle1": "She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\"."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "pluto",
+   "berlinwall",
+   "suez",
+   "greatwall",
+   "pisa",
+   "panama",
+   "titanic"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "curie",
+    "text": "Who was Marie Curie?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "curie",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Who was she?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 3,
+     "topic": "curie",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "What did you tell me about Albert Einstein earlier?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When was the Berlin Wall built?",
+    "qi": 1
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 5,
+     "topic": "curie",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "suez",
+    "text": "And when did it open?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "greatwall",
+    "text": "And when was it first built?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 10,
+     "topic": "curie",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to Marie Curie: When did Marie Curie win her first Nobel Prize?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 12,
+     "topic": "curie",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "titanic",
+    "text": "How many people died on the Titanic?",
+    "qi": 1
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "titanic",
+    "text": "When did it sink?"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "suez",
+    "text": "And when did it open?"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 25,
+     "topic": "curie",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Who was she?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 27,
+     "topic": "curie",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And her birthplace?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "titanic",
+    "text": "When did the Titanic sink?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "suez",
+    "text": "How long is it?"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "When was the Great Wall of China first built?",
+    "qi": 1
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "titanic",
+    "text": "When did the Titanic sink?",
+    "qi": 0
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "titanic",
+    "text": "And how many people died on it?"
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "Is it a planet?"
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "meta",
+    "text": "why?"
+   }
+  ]
+ },
+ {
+  "id": "E08",
+  "lang": "en",
+  "length": 45,
+  "anchor": {
+   "topic": "suez",
+   "turn": 3,
+   "qa0": "How long is the Suez Canal?",
+   "needle0": "The 193.3-kilometre-long (120.1-mile) canal is a key trade route between Europe and Asia.",
+   "needle1": "Construction took 11 years, and the canal opened on 17 November 1869."
+  },
+  "siblingInRoster": true,
+  "roster": [
+   "panama",
+   "curie",
+   "austen",
+   "eiffel",
+   "greatwall",
+   "pluto",
+   "photo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "suez",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the length?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 3,
+     "topic": "suez",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How long is the Suez Canal?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 5,
+     "topic": "suez",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "When did the Suez Canal open?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffel",
+    "text": "And who designed it?"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "meta",
+    "text": "shorter"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 10,
+     "topic": "suez",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about the canal in Egypt?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 12,
+     "topic": "suez",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Suez Canal earlier?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "And what is its efficiency in plants?"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 25,
+     "topic": "suez",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about the canal in Egypt earlier?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 27,
+     "topic": "suez",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffel",
+    "text": "How tall is it?"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "greatwall",
+    "text": "And when was it first built?"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "curie",
+    "text": "And when did she win her first Nobel Prize?"
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "Who wrote it?"
+   }
+  ]
+ },
+ {
+  "id": "E09",
+  "lang": "en",
+  "length": 60,
+  "anchor": {
+   "topic": "titanic",
+   "turn": 3,
+   "qa0": "When did the Titanic sink?",
+   "needle0": "RMS Titanic sank in the North Atlantic Ocean on 15 April 1912.",
+   "needle1": "Of the 2,208 passengers and crew aboard, approximately 1,500 died (estimates vary), making the incident one of the deadliest peacetime sinkings of a single ship."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "berlinwall",
+   "telephone",
+   "canberra",
+   "austen",
+   "eiffel",
+   "penicillin",
+   "pluto"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "titanic",
+    "text": "When did the Titanic sink?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "When did it sink?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 3,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to Titanic: How many people died on the Titanic?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 5,
+     "topic": "titanic",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 10,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "When did it sink?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 12,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the death toll?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "meta",
+    "text": "explain that"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 25,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "When did the Titanic sink?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 27,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "How many people died on the Titanic?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When was the Berlin Wall built?",
+    "qi": 1
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "berlinwall",
+    "text": "When did it fall?"
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "telephone",
+    "text": "And when was it patented?"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffel",
+    "text": "How tall is it?"
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "meta",
+    "text": "i don't get it"
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 46,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 47,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 48,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 49,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 50,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 51,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 52,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "penicillin",
+    "text": "And who discovered it?"
+   },
+   {
+    "n": 53,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 50,
+     "topic": "titanic",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about that ship that hit the iceberg?"
+   },
+   {
+    "n": 54,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 55,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 52,
+     "topic": "titanic",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Titanic earlier?"
+   },
+   {
+    "n": 56,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 57,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "berlinwall",
+    "text": "And when was it built?"
+   },
+   {
+    "n": 58,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 59,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "telephone",
+    "text": "And when was it patented?"
+   },
+   {
+    "n": 60,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "E10",
+  "lang": "en",
+  "length": 60,
+  "anchor": {
+   "topic": "pisa",
+   "turn": 3,
+   "qa0": "How tall is the Leaning Tower of Pisa?",
+   "needle0": "The height of the tower is 55.86 metres (183 feet 3 inches) from the ground on the low side and 56.67 m (185 ft 11 in) on the high side.",
+   "needle1": "Construction of the tower occurred in three stages over 199 years."
+  },
+  "siblingInRoster": true,
+  "roster": [
+   "eiffel",
+   "penicillin",
+   "panama",
+   "greatwall",
+   "canberra",
+   "curie",
+   "photo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the height?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "Who designed the Eiffel Tower?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 3,
+     "topic": "pisa",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about the leaning one in Italy earlier?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 5,
+     "topic": "pisa",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "When was the Great Wall of China first built?",
+    "qi": 1
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "greatwall",
+    "text": "Which dynasty built its best-known sections?"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 10,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to Leaning Tower of Pisa: When was the Leaning Tower of Pisa built?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 12,
+     "topic": "pisa",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "When was the Great Wall of China first built?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "meta",
+    "text": "i don't get it"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 25,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How tall is it?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "When did the Panama Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 27,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the height?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "curie",
+    "text": "And when did she win her first Nobel Prize?"
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "What is the efficiency of photosynthesis in plants?",
+    "qi": 1
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "Who discovered it?"
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "penicillin",
+    "text": "What is it?"
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "When was the Great Wall of China first built?",
+    "qi": 1
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "meta",
+    "text": "why?"
+   },
+   {
+    "n": 46,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 47,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 48,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 49,
+    "role": "filler",
+    "kind": "meta",
+    "text": "i don't get it"
+   },
+   {
+    "n": 50,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 51,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffel",
+    "text": "How tall is the Eiffel Tower?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 52,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 53,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 50,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "How tall is the Leaning Tower of Pisa?"
+   },
+   {
+    "n": 54,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "panama",
+    "text": "How long is the Panama Canal?",
+    "qi": 0
+   },
+   {
+    "n": 55,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 52,
+     "topic": "pisa",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "When was the Leaning Tower of Pisa built?"
+   },
+   {
+    "n": 56,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "greatwall",
+    "text": "Which dynasty built the best-known sections of the Great Wall of China?",
+    "qi": 0
+   },
+   {
+    "n": 57,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 58,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "What is its population?"
+   },
+   {
+    "n": 59,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "When did Marie Curie win her first Nobel Prize?",
+    "qi": 1
+   },
+   {
+    "n": 60,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "E11",
+  "lang": "en",
+  "length": 60,
+  "anchor": {
+   "topic": "photo",
+   "turn": 3,
+   "qa0": "Who discovered photosynthesis?",
+   "needle0": "Photosynthesis was discovered in 1779 by Jan Ingenhousz who showed that plants need light, not just soil and water.",
+   "needle1": "Plants usually convert light into chemical energy with a photosynthetic efficiency of 3–6%."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "penicillin",
+   "canberra",
+   "pisa",
+   "austen",
+   "berlinwall",
+   "everest",
+   "suez"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "photo",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Who discovered it?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 3,
+     "topic": "photo",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about how plants make food?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 5,
+     "topic": "photo",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about photosynthesis earlier?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pisa",
+    "text": "And when was it built?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "meta",
+    "text": "what?"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 10,
+     "topic": "photo",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about how plants make food earlier?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 12,
+     "topic": "photo",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "What did you tell me about cellular respiration earlier?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "And when was it founded?"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "berlinwall",
+    "text": "And when was it built?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "everest",
+    "text": "And who first reached its summit?"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "How long is the Suez Canal?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 25,
+     "topic": "photo",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "return",
+     "distance": 27,
+     "topic": "photo",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "Going back to photosynthesis: What is the efficiency of photosynthesis in plants?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "What is its population?"
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "And when was it published?"
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When was the Berlin Wall built?",
+    "qi": 1
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok"
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "suez",
+    "text": "How long is it?"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "What is penicillin?",
+    "qi": 0
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "penicillin",
+    "text": "And who discovered it?"
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?",
+    "qi": 0
+   },
+   {
+    "n": 46,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 47,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 48,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "berlinwall",
+    "text": "When did the Berlin Wall fall?",
+    "qi": 0
+   },
+   {
+    "n": 49,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok cool"
+   },
+   {
+    "n": 50,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 51,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "everest",
+    "text": "And who first reached its summit?"
+   },
+   {
+    "n": 52,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "suez",
+    "text": "When did the Suez Canal open?",
+    "qi": 1
+   },
+   {
+    "n": 53,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 50,
+     "topic": "photo",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "Actually, it was 1877."
+   },
+   {
+    "n": 54,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "penicillin",
+    "text": "Who discovered penicillin?",
+    "qi": 1
+   },
+   {
+    "n": 55,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 52,
+     "topic": "photo",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Who discovered it?"
+   },
+   {
+    "n": 56,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "canberra",
+    "text": "When was Canberra founded?",
+    "qi": 1
+   },
+   {
+    "n": 57,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "canberra",
+    "text": "What is its population?"
+   },
+   {
+    "n": 58,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 59,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 60,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "And when was it published?"
+   }
+  ]
+ },
+ {
+  "id": "E12",
+  "lang": "en",
+  "length": 60,
+  "anchor": {
+   "topic": "canberra",
+   "turn": 3,
+   "qa0": "What is the population of Canberra?",
+   "needle0": "With an estimated population of 484,630 as of 2025, Canberra is Australia's largest inland city and the eighth-largest Australian city by population.",
+   "needle1": "The capital city was founded and formally named as Canberra in 1913."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "pluto",
+   "curie",
+   "pisa",
+   "austen",
+   "everest",
+   "telephone",
+   "photo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hello"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "canberra",
+    "text": "What is the population of Canberra?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 1,
+     "near": true,
+     "topic": "canberra",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "And the population?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "elide",
+     "distance": 3,
+     "topic": "canberra",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "And the population?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 5,
+     "topic": "canberra",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "What is the population of Canberra?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "And when was it published?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "para",
+     "distance": 10,
+     "topic": "canberra",
+     "gold": {
+      "type": "needle",
+      "idx": 1
+     },
+     "wrongKind": null
+    },
+    "text": "When was Canberra founded?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 12,
+     "topic": "canberra",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Sorry, what was the answer about that Australian capital?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "chit",
+    "text": "hello again"
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pluto",
+    "text": "And when was it discovered?"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "curie",
+    "text": "And when did she win her first Nobel Prize?"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pisa",
+    "text": "How tall is it?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "When was Pride and Prejudice published?",
+    "qi": 1
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "Who wrote it?"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 25,
+     "topic": "canberra",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me about Canberra earlier?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 27,
+     "topic": "canberra",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you say about that Australian capital earlier?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "And what is its efficiency in plants?"
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 37,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "How tall is the Leaning Tower of Pisa?",
+    "qi": 0
+   },
+   {
+    "n": 38,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 39,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 40,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "austen",
+    "text": "And when was it published?"
+   },
+   {
+    "n": 41,
+    "role": "filler",
+    "kind": "meta",
+    "text": "shorter"
+   },
+   {
+    "n": 42,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "Who first reached the summit of Mount Everest?",
+    "qi": 1
+   },
+   {
+    "n": 43,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 44,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "telephone",
+    "text": "And when was it patented?"
+   },
+   {
+    "n": 45,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 46,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 47,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "photo",
+    "text": "And what is its efficiency in plants?"
+   },
+   {
+    "n": 48,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "Is Pluto a planet?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 49,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesting"
+   },
+   {
+    "n": 50,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "curie",
+    "text": "Who was Marie Curie?",
+    "qi": 0
+   },
+   {
+    "n": 51,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pisa",
+    "text": "When was the Leaning Tower of Pisa built?",
+    "qi": 1
+   },
+   {
+    "n": 52,
+    "role": "filler",
+    "kind": "chit",
+    "text": "great, thank you"
+   },
+   {
+    "n": 53,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 50,
+     "topic": "canberra",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "What did you tell me about the capital of New Zealand earlier?"
+   },
+   {
+    "n": 54,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "austen",
+    "text": "Who wrote Pride and Prejudice?",
+    "qi": 0
+   },
+   {
+    "n": 55,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 52,
+     "topic": "canberra",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "What did you tell me earlier?"
+   },
+   {
+    "n": 56,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "everest",
+    "text": "How high is Mount Everest?",
+    "qi": 0
+   },
+   {
+    "n": 57,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "telephone",
+    "text": "Who invented the telephone?",
+    "qi": 0
+   },
+   {
+    "n": 58,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "photo",
+    "text": "Who discovered photosynthesis?",
+    "qi": 0
+   },
+   {
+    "n": 59,
+    "role": "filler",
+    "kind": "chit",
+    "text": "nice"
+   },
+   {
+    "n": 60,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pluto",
+    "text": "When was Pluto discovered?",
+    "qi": 1
+   }
+  ]
+ },
+ {
+  "id": "S01",
+  "lang": "es",
+  "length": 30,
+  "anchor": {
+   "topic": "colon",
+   "turn": 3,
+   "qa0": "¿Quién fue Cristóbal Colón?",
+   "needle0": "Cristóbal Colón (¿1451?–Valladolid, 20 de mayo de 1506) fue un navegante y gobernante de las Indias Occidentales, al servicio de la Corona de Castilla, que encabezó el denominado Descubrimiento de América en 1492, lo que abrió las puertas a la exploración y conquista de este continente por parte de los europeos.",
+   "needle1": "Cristóbal Colón (¿1451?–Valladolid, 20 de mayo de 1506) fue un navegante y gobernante de las Indias Occidentales, al servicio de la Corona de Castilla, que encabezó el denominado Descubrimiento de América en 1492, lo que abrió las puertas a la exploración y conquista de este continente por parte de los europeos."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "teide",
+   "garcia"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hola"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "colon",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 3,
+     "topic": "colon",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "En realidad fue 1877."
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Cuándo ganó García Márquez el Premio Nobel?",
+    "qi": 1
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 5,
+     "topic": "colon",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Cuándo ganó García Márquez el Premio Nobel?",
+    "qi": 1
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 10,
+     "topic": "colon",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "¿Quién fue Cristóbal Colón?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 12,
+     "topic": "colon",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Perdona, ¿cuál era la respuesta sobre el navegante genovés?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "garcia",
+    "text": "¿Y cuándo ganó el Premio Nobel?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok, genial"
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "chit",
+    "text": "gracias"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "garcia",
+    "text": "¿Y cuándo ganó el Premio Nobel?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Cuándo ganó García Márquez el Premio Nobel?",
+    "qi": 1
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Cuándo ganó García Márquez el Premio Nobel?",
+    "qi": 1
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "garcia",
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   }
+  ]
+ },
+ {
+  "id": "S02",
+  "lang": "es",
+  "length": 36,
+  "anchor": {
+   "topic": "garcia",
+   "turn": 3,
+   "qa0": "¿Quién fue Gabriel García Márquez?",
+   "needle0": "Gabriel José García Márquez (Aracataca, Magdalena, 6 de marzo de 1927-Ciudad de México, 17 de abril de 2014)​​ fue un escritor, guionista y periodista colombiano.",
+   "needle1": "Gabriel José García Márquez (Aracataca, Magdalena, 6 de marzo de 1927-Ciudad de México, 17 de abril de 2014)​​ fue un escritor, guionista y periodista colombiano."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "teide",
+   "colon"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hola"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "garcia",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 3,
+     "topic": "garcia",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué me dijiste sobre Gabriel García Márquez antes?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 5,
+     "topic": "garcia",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué me dijiste sobre el escritor colombiano de Cien años de soledad antes?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "teide",
+    "text": "¿Y dónde está?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 10,
+     "topic": "garcia",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "¿Qué me dijiste sobre Mario Vargas Llosa antes?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 12,
+     "topic": "garcia",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué me dijiste antes?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "teide",
+    "text": "¿Y dónde está?"
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesante"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "meta",
+    "text": "más corto"
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesante"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "meta",
+    "text": "más corto"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 25,
+     "topic": "garcia",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "En realidad fue 1877."
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Dónde está el Teide?",
+    "qi": 1
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 27,
+     "topic": "garcia",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "chit",
+    "text": "interesante"
+   }
+  ]
+ },
+ {
+  "id": "S03",
+  "lang": "es",
+  "length": 30,
+  "anchor": {
+   "topic": "teide",
+   "turn": 3,
+   "qa0": "¿Qué altura tiene el Teide?",
+   "needle0": "En la década de 1970 se estimó que la altitud real del Teide es de 3718 metros sobre el nivel del mar y 7500 metros sobre el lecho oceánico.​ Sin embargo, recientes mediciones realizadas por el Instituto Geográfico Nacional de España establecen la altitud oficial de 3.715 metros.",
+   "needle1": "En la década de 1970 se estimó que la altitud real del Teide es de 3718 metros sobre el nivel del mar y 7500 metros sobre el lecho oceánico.​ Sin embargo, recientes mediciones realizadas por el Instituto Geográfico Nacional de España establecen la altitud oficial de 3.715 metros."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "colon",
+   "garcia"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Hola"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "teide",
+    "text": "¿Qué altura tiene el Teide?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "teide",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "¿Qué altura tiene?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Cuándo llegó Colón a América?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 3,
+     "topic": "teide",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué altura tiene el Teide?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 5,
+     "topic": "teide",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Perdona, ¿cuál era la respuesta sobre ese volcán de Tenerife?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Cuándo llegó Colón a América?",
+    "qi": 1
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Quién fue?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 10,
+     "topic": "teide",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué me dijiste sobre Teide antes?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 12,
+     "topic": "teide",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "¿Qué me dijiste sobre ese volcán de Tenerife antes?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "colon",
+    "text": "¿Y cuándo llegó a América?"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Cuándo ganó García Márquez el Premio Nobel?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok, genial"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "meta",
+    "text": "¿cómo?"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Cuándo llegó Colón a América?",
+    "qi": 1
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "garcia",
+    "text": "¿Quién fue Gabriel García Márquez?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "garcia",
+    "text": "¿Y cuándo ganó el Premio Nobel?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "meta",
+    "text": "no entiendo"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "colon",
+    "text": "¿Quién fue Cristóbal Colón?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "F01",
+  "lang": "fr",
+  "length": 30,
+  "anchor": {
+   "topic": "montblanc",
+   "turn": 3,
+   "qa0": "Quelle est la hauteur du mont Blanc ?",
+   "needle0": "Avec une altitude de 4 806 mètres, il est le plus haut sommet d'Europe occidentale et de l'Union européenne ainsi que le sixième sur le plan continental en prenant en compte les montagnes du Caucase, dont l'Elbrouz (5 643 mètres) est le plus haut sommet.",
+   "needle1": "Avec une altitude de 4 806 mètres, il est le plus haut sommet d'Europe occidentale et de l'Union européenne ainsi que le sixième sur le plan continental en prenant en compte les montagnes du Caucase, dont l'Elbrouz (5 643 mètres) est le plus haut sommet."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "eiffelfr",
+   "pasteur",
+   "hugo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Bonjour"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "montblanc",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Quelle est sa hauteur ?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 3,
+     "topic": "montblanc",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "Qu'est-ce que tu m'as dit sur le Cervin tout à l'heure ?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 5,
+     "topic": "montblanc",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "Qu'est-ce que tu m'as dit tout à l'heure ?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "chit",
+    "text": "d'accord"
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "chit",
+    "text": "intéressant"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 10,
+     "topic": "montblanc",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "En fait c'était 1877."
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 12,
+     "topic": "montblanc",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Quelle est sa hauteur ?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffelfr",
+    "text": "Et qui l'a construite ?"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok, super"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "chit",
+    "text": "merci"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffelfr",
+    "text": "Et qui l'a construite ?"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "chit",
+    "text": "intéressant"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "chit",
+    "text": "d'accord"
+   }
+  ]
+ },
+ {
+  "id": "F02",
+  "lang": "fr",
+  "length": 36,
+  "anchor": {
+   "topic": "pasteur",
+   "turn": 3,
+   "qa0": "Qui était Louis Pasteur ?",
+   "needle0": "Louis Pasteur, né le 27 décembre 1822 à Dole (Jura) et mort le 28 septembre 1895 à Marnes-la-Coquette (Hauts-de-Seine, à cette époque en Seine-et-Oise), est un scientifique français, chimiste et physicien de formation.",
+   "needle1": "Louis Pasteur, né le 27 décembre 1822 à Dole (Jura) et mort le 28 septembre 1895 à Marnes-la-Coquette (Hauts-de-Seine, à cette époque en Seine-et-Oise), est un scientifique français, chimiste et physicien de formation."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "eiffelfr",
+   "montblanc",
+   "hugo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Bonjour"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "pasteur",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Qui était-il ?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 3,
+     "topic": "pasteur",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Qui était Louis Pasteur ?"
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 5,
+     "topic": "pasteur",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Pardon, quelle était la réponse sur l'inventeur du vaccin contre la rage ?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "explicit",
+     "distance": 10,
+     "topic": "pasteur",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "Qu'est-ce que tu m'as dit sur Louis Pasteur tout à l'heure ?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "explicitPartial",
+     "distance": 12,
+     "topic": "pasteur",
+     "gold": {
+      "type": "turn"
+     },
+     "wrongKind": null
+    },
+    "text": "Qu'est-ce que tu m'as dit sur l'inventeur du vaccin contre la rage tout à l'heure ?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Qui a construit la tour Eiffel ?",
+    "qi": 1
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffelfr",
+    "text": "Quelle est sa hauteur ?"
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quand le mont Blanc a-t-il été gravi pour la première fois ?",
+    "qi": 1
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "eiffelfr",
+    "text": "Et qui l'a construite ?"
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "chit",
+    "text": "merci"
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 28,
+    "role": "probe",
+    "probe": {
+     "kind": "wrong",
+     "distance": 25,
+     "topic": "pasteur",
+     "gold": {
+      "type": "none"
+     },
+     "wrongKind": "pure"
+    },
+    "text": "Qu'est-ce que tu m'as dit sur Marie Curie tout à l'heure ?"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Qui a construit la tour Eiffel ?",
+    "qi": 1
+   },
+   {
+    "n": 30,
+    "role": "probe",
+    "probe": {
+     "kind": "none",
+     "distance": 27,
+     "topic": "pasteur",
+     "gold": {
+      "type": "turn-last"
+     },
+     "wrongKind": null
+    },
+    "text": "Qu'est-ce que tu m'as dit tout à l'heure ?"
+   },
+   {
+    "n": 31,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 32,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 33,
+    "role": "filler",
+    "kind": "meta",
+    "text": "comment ?"
+   },
+   {
+    "n": 34,
+    "role": "filler",
+    "kind": "chit",
+    "text": "ok, super"
+   },
+   {
+    "n": 35,
+    "role": "filler",
+    "kind": "chit",
+    "text": "très bien"
+   },
+   {
+    "n": 36,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?",
+    "qi": 0
+   }
+  ]
+ },
+ {
+  "id": "F03",
+  "lang": "fr",
+  "length": 30,
+  "anchor": {
+   "topic": "eiffelfr",
+   "turn": 3,
+   "qa0": "Quelle est la hauteur de la tour Eiffel ?",
+   "needle0": "La tour Eiffel [tuʁɛfɛl] est une tour autoportante de fer puddlé de 330 m de hauteur (avec antennes) située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7e arrondissement.",
+   "needle1": "La tour Eiffel [tuʁɛfɛl] est une tour autoportante de fer puddlé de 330 m de hauteur (avec antennes) située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure de la Seine dans le 7e arrondissement."
+  },
+  "siblingInRoster": false,
+  "roster": [
+   "pasteur",
+   "montblanc",
+   "hugo"
+  ],
+  "turns": [
+   {
+    "n": 1,
+    "role": "filler",
+    "kind": "greet",
+    "text": "Bonjour"
+   },
+   {
+    "n": 2,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?"
+   },
+   {
+    "n": 3,
+    "role": "anchor",
+    "topic": "eiffelfr",
+    "text": "Quelle est la hauteur de la tour Eiffel ?"
+   },
+   {
+    "n": 4,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 1,
+     "near": true,
+     "topic": "eiffelfr",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     }
+    },
+    "text": "Quelle est sa hauteur ?"
+   },
+   {
+    "n": 5,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Quand Louis Pasteur est-il mort ?",
+    "qi": 1
+   },
+   {
+    "n": 6,
+    "role": "probe",
+    "probe": {
+     "kind": "correction",
+     "distance": 3,
+     "topic": "eiffelfr",
+     "gold": {
+      "type": "conversation"
+     },
+     "wrongKind": null
+    },
+    "text": "En fait c'était 1877."
+   },
+   {
+    "n": 7,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 8,
+    "role": "probe",
+    "probe": {
+     "kind": "pron",
+     "distance": 5,
+     "topic": "eiffelfr",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Quelle est sa hauteur ?"
+   },
+   {
+    "n": 9,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 10,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 11,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0
+   },
+   {
+    "n": 12,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "pasteur",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 13,
+    "role": "probe",
+    "probe": {
+     "kind": "repeat",
+     "distance": 10,
+     "topic": "eiffelfr",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Quelle est la hauteur de la tour Eiffel ?"
+   },
+   {
+    "n": 14,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 15,
+    "role": "probe",
+    "probe": {
+     "kind": "partial",
+     "distance": 12,
+     "topic": "eiffelfr",
+     "gold": {
+      "type": "needle",
+      "idx": 0
+     },
+     "wrongKind": null
+    },
+    "text": "Pardon, quelle était la réponse sur cette tour de fer à Paris ?"
+   },
+   {
+    "n": 16,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Quand Victor Hugo est-il mort ?",
+    "qi": 1
+   },
+   {
+    "n": 17,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Quand Louis Pasteur est-il mort ?",
+    "qi": 1
+   },
+   {
+    "n": 18,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0,
+    "repeatOfBg": true
+   },
+   {
+    "n": 19,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 20,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 21,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0
+   },
+   {
+    "n": 22,
+    "role": "filler",
+    "kind": "chit",
+    "text": "intéressant"
+   },
+   {
+    "n": 23,
+    "role": "filler",
+    "kind": "chit",
+    "text": "intéressant"
+   },
+   {
+    "n": 24,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "montblanc",
+    "text": "Quelle est la hauteur du mont Blanc ?",
+    "qi": 0
+   },
+   {
+    "n": 25,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "hugo",
+    "text": "Qui a écrit Les Misérables ?",
+    "qi": 0
+   },
+   {
+    "n": 26,
+    "role": "filler",
+    "kind": "pron-bg",
+    "topic": "hugo",
+    "text": "Et quand est-il mort ?"
+   },
+   {
+    "n": 27,
+    "role": "filler",
+    "kind": "chit",
+    "text": "merci"
+   },
+   {
+    "n": 28,
+    "role": "filler",
+    "kind": "chit",
+    "text": "d'accord"
+   },
+   {
+    "n": 29,
+    "role": "filler",
+    "kind": "chit",
+    "text": "très bien"
+   },
+   {
+    "n": 30,
+    "role": "filler",
+    "kind": "ask",
+    "topic": "pasteur",
+    "text": "Qui était Louis Pasteur ?",
+    "qi": 0
+   }
+  ]
+ }
+]

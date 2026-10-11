@@ -1,0 +1,20 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "mozi",
+  "organ": "khora/native/organs/grounding.js",
+  "snips": ["eo-teachings/manifest/mozi-grounding.json"],
+  "whatTheyArgued": "A doctrine (yan) is judged by three standards, all required: root (it rests on the deeds of the ancient sage-kings), source/verifiability (it is checked against what the common people have seen and heard), and use (adopting it in government benefits state and people). Mei 1929, Anti-Fatalism (I), verbatim snip.",
+  "scholarship": [
+    { "ref": "Stanford Encyclopedia of Philosophy, 'Mohism' (san biao: root, source, use)", "url": "https://plato.stanford.edu/entries/mohism/", "supports": "three standards, their names, and that the middle one is what people see and hear", "disputes": "Hansen (1985, 1992) reads them as pragmatic appropriateness of statements, not semantic truth; Graham (1989) and Harbsmeier (1998) dispute that" }
+  ],
+  "ourUse": "grounding.js: a claim stands only if its numbers and names are string-contained in the cited material's bytes; Mozi is the namesake and the 'verifiability' test its justification.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "one-of-three", "kind": "narrowed", "ours": "Only the verifiability test is mechanized and presented as THE test ('a claim stands on what the eyes and ears can witness, or it does not stand').", "theirs": "All three tests are required together; verifiability alone never settles a doctrine. Root and use are not implemented anywhere in grounding.js." },
+    { "id": "senses-to-bytes", "kind": "reinterpreted", "ours": "'Witness' = literal string containment in a supplied document.", "theirs": "The witnesses are the senses of hearing and sight of the common people: communal perception, not a text's bytes. Containment is our analogue, not Mozi's method." },
+    { "id": "doctrine-to-claim", "kind": "re-scoped", "ours": "Applied to factual claims (figures, names).", "theirs": "The tests judge doctrines/statements about what ought to be done; whether they extend to plain factual truth is itself disputed (Hansen vs Graham)." },
+    { "id": "compendium-paraphrase", "kind": "misstated", "ours": "archon-compendium.js describes the tests as 'eyes and ears, the ancients' experience, beneficial to the people' and reorders them, putting the senses first.", "theirs": "Order in the source: basis, verifiability, applicability. The compendium also puts the quoted phrase 'It is in the bytes the eyes and ears can witness' in a work field read as the author's: that sentence is ours." }
+  ],
+  "tokenized": false,
+  "fix": ["compendium entry: restore three tests and order; mark the 'bytes' sentence ours", "grounding.js header: say it mechanizes one of three, by analogy"]
+}

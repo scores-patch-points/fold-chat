@@ -1,0 +1,11 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -2417,6 +2417,7 @@
+           }
+           recLoop.after = fz.summary;
+           if (lap === 3) break;   // two laps back, then the third check is the verdict
++          if (lap >= 2 && text === textBefore && (() => { try { return localStorage.getItem("fold-chat:e2rec") !== "off"; } catch { return true; } })()) { feedPush(lineEvent(tt, "Stopped going back", { tone: "info", note: "the last lap changed no sentence, and another would ask the same of the same pages — the sentences still failing are marked" })); break; }
+           if (Date.now() - t0 > BUDGET) { feedPush(lineEvent(tt, "Stopped going back", { tone: "info", note: "out of time \u2014 the sentences still failing are marked" })); break; }
+           const pass = { lap, before: fz.summary, failing: failing.map((c) => ({ i: c.i, s: c.s, verdict: c.verdict, ...routeOf(c) })), added: 0, restated: [] };
+           recLoop.passes.push(pass);
+\ No newline at end of file

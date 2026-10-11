@@ -1,0 +1,64 @@
+{
+  "organ": "khora/native/the-fold/archon-rules.js (gebserArrival)",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/gebser.json"
+  ],
+  "whatTheyArgued": "Gebser (Ursprung und Gegenwart, 1949-53) described five structures of consciousness (archaic, magic, mythical, mental, integral), each with efficient and deficient phases, which are discontinuous mutations rather than rungs of a ladder and which remain operative in the present. The origin is ever-present, not past. The integral structure is aperspectival and marked by diaphaneity (transparency of structures to one another). He saw the mental, perspectival structure as deficient in the 20th century and the integral as emerging. This is from secondary summaries; I read no Gebser text.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia, Jean Gebser (summary of five structures, efficient/deficient, aperspectival, origin)",
+      "url": "https://en.wikipedia.org/wiki/Jean_Gebser",
+      "supports": "five structures, efficient and deficient phases, aperspectival integral structure, origin ever-present",
+      "disputes": "Reception is mostly by integral-theory authors (Wilber, Thompson); I found no peer-reviewed critique in this session"
+    },
+    {
+      "ref": "Search results summarising Ever-Present Origin (closertotruth, P2P Foundation wiki); popular summaries",
+      "url": "https://wiki.p2pfoundation.net/Evolution_of_Consciousness_According_to_Jean_Gebser",
+      "supports": "structures are mutations not a linear ladder, each remaining operative; diaphaneity is the keyword of the integral",
+      "disputes": "None found; sources are popularising, not scholarly"
+    }
+  ],
+  "ourUse": "gebserArrival gates a piece's 'arrival' on: every part carries at least one statement traced to a witness (origin present), no source statement is lost, and no other taught archon's second reading still licenses a revision (integral). Diaphaneity = share of sentences carrying a witnessed statement, reported never gated.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "origin-as-witness",
+      "kind": "reinterpreted",
+      "ours": "The 'origin' is the source statements a part must carry; 'origin present' means a traced witnessed sentence exists.",
+      "theirs": "Ursprung is a pre-temporal, non-material source of consciousness itself, not a document or its statements."
+    },
+    {
+      "id": "integral-as-no-objection",
+      "kind": "reinterpreted",
+      "ours": "Integral = no other editor-archon still objects.",
+      "theirs": "Integral is a mode of consciousness in which the other structures show through; absence of objections from software checks is not that."
+    },
+    {
+      "id": "diaphaneity-as-ratio",
+      "kind": "narrowed",
+      "ours": "Diaphaneity is the fraction of sentences carrying a witness.",
+      "theirs": "Diaphaneity is the transparency of structures to each other and to the origin; a sentence-level ratio is our proxy. The code's own comment (reported, never maximised) is consistent with this limit."
+    },
+    {
+      "id": "arrival-gate",
+      "kind": "invented-attribution",
+      "ours": "Compendium role: 'the arrival archon ... a piece has arrived when its origin is present in every part'. Header says arrival is 'a standing relation, never a finish line' yet the function returns arrived: true/false.",
+      "theirs": "Gebser has no criterion for a text's arrival; he describes a mutation of consciousness. 'Arrival' is the user's naming, per the header's own 'named by the user'."
+    },
+    {
+      "id": "decorative-terms",
+      "kind": "decorative",
+      "ours": "German terms (Ursprung, Gegenwart, Diaphanie, aperspektivisch) in the work/topics lines.",
+      "theirs": "The terms are real; the code does not depend on them beyond naming."
+    }
+  ],
+  "fix": [
+    "compendium role: 'Named by us as the arrival archon, after Gebser's ever-present origin and diaphaneity; arrival here is a mechanical check (witnessed statement in every part, nothing lost, no editor still objecting), not Gebser's integral structure.'",
+    "credit: 'Jean Gebser (Ursprung und Gegenwart) - the image of an ever-present origin; the arrival test is ours.'",
+    "Gap: read Gebser or a peer-reviewed secondary source before upgrading from partial."
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "gebser",
+  "tokenized": false
+}

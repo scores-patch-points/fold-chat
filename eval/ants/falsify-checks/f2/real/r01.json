@@ -1,0 +1,2985 @@
+{
+ "q": "When did the Berlin Wall fall?",
+ "spoken": "The Berlin Wall fell on 9 November 1989.",
+ "shown": "The Berlin Wall fell on 9 November 1989.\n\nI\nImperial War Museums\nopen ↗\nWhat Was The Berlin Wall And How Did It Fall? - The Cold War | IWM\n… The Berlin Wall fell on 9 November 1989 . …\n1 source · 0 of 1 sentence backed\n·\nwent back 2 laps\n·\n2 of 9 checks failed\n84 s\n▶ watch\nI couldn't point to a sentence in what I read that says this, so I'm treating it as unsupported.\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks failed"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "The Berlin Wall fell on 9 November 1989.",
+     "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "source": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "span": {
+      "start": 1783,
+      "end": 1822
+     },
+     "address": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM#1783-1822",
+     "score": 8,
+     "window": {
+      "from": 1738,
+      "to": 1905
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM#1783-1822"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM#1783-1822",
+    "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+    "span": {
+     "start": 1783,
+     "end": 1822
+    },
+    "text": "The Berlin Wall fell on 9 November 1989."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM#1783-1822",
+     "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "span": {
+      "start": 1783,
+      "end": 1822
+     },
+     "label": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "source": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "domain": "iwm.org.uk",
+     "text": "The Berlin Wall fell on 9 November 1989 .",
+     "before": "",
+     "mark": "The Berlin Wall fell on 9 November 1989",
+     "after": ".",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "The Berlin Wall fell on 9 November 1989.",
+     "grounded": true,
+     "address": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM#1783-1822"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "When did the Berlin Wall fall?",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web"
+    ],
+    "skipped": [
+     "wikipedia",
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything"
+    },
+    "webDown": false
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2926,
+    "hash": "2fcc0a1e"
+   },
+   {
+    "read": "https://diplomacy.state.gov/berlin-wall/",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 1875,
+    "hash": "547b7040"
+   },
+   {
+    "read": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "via": "the fold's relay",
+    "chars": 13481,
+    "kept": 1889,
+    "hash": "386c18b1"
+   },
+   {
+    "read": "https://www.bbc.com/news/world-europe-50013048",
+    "via": "the fold's relay",
+    "chars": 9022,
+    "kept": 754,
+    "hash": "de08c287",
+    "skipped": true
+   },
+   {
+    "read": "https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+    "via": null,
+    "ok": false
+   },
+   {
+    "scope": "web",
+    "q": "Berlin Wall fell November 1989.",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true,
+    "lap": 1
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2972,
+    "hash": "2fcc0a1e",
+    "lap": 1
+   },
+   {
+    "read": "https://www.bbc.com/news/world-europe-50013048",
+    "via": "the fold's relay",
+    "chars": 9022,
+    "kept": 698,
+    "hash": "de08c287",
+    "lap": 1
+   },
+   {
+    "read": "https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 2361,
+    "hash": "e0e9322d",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "read": "https://history.state.gov/departmenthistory/short-history/berlinwall",
+    "via": "the fold's relay",
+    "chars": 2155,
+    "kept": 2155,
+    "hash": "de257eac",
+    "skipped": true,
+    "lap": 1
+   },
+   {
+    "scope": "web",
+    "q": "Berlin Wall fell November 1989.",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true,
+    "lap": 2
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2972,
+    "hash": "2fcc0a1e",
+    "lap": 2
+   },
+   {
+    "read": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989",
+    "via": "a public proxy",
+    "chars": 7122,
+    "kept": 530,
+    "hash": "84d16187",
+    "lap": 2
+   },
+   {
+    "read": "https://www.berlintourism.org/berlin-wall-history-timeline/",
+    "via": "the fold's relay",
+    "chars": 15415,
+    "kept": 2841,
+    "hash": "9adcf38f",
+    "skipped": true,
+    "lap": 2
+   },
+   {
+    "read": "https://historycrunch.com/fall-of-the-berlin-wall/",
+    "via": "a public proxy",
+    "chars": 346,
+    "kept": 346,
+    "hash": "5a847870",
+    "skipped": true,
+    "lap": 2
+   }
+  ],
+  "passages": [
+   {
+    "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded.\nSchabowski shrugged and read item 3 of the note, which confirmed that it did.\nOn 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired.\nThe Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow.\nVirtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 August 1990.\nIn Berlin alone, 184 km (114 mi) of wall, 154 km (96 mi) border fence, 144 km (89 mi) signal systems and 87 km (54 mi) barrier ditches were removed.\nVarious military units dismantled the Berlin/Brandenburg border wall, completing the job in November 1991.\nThe demolition of the Wall was completed in 1994.\nThe fall of the Wall marked the first critical step towards German reunification, which formally concluded a mere 339 days later on 3 October 1990 with the dissolution of East Germany and the official reunification of the German state along the democratic lines of the West German Basic Law.\nOn 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung.\nOn New Year's Eve 1989, David Hasselhoff performed his song \"Looking for Freedom\" while standing atop the partly demolished Wall in front of 200,000 people.\nOn 9 November 2009, Berlin celebrated the 20th anniversary of the fall of the Berlin Wall with a \"Festival of Freedom\" with dignitaries from around the world in attendance for an evening celebration around the Brandenburg Gate.\nA high point was when over 1,000 colourfully designed foam domino tiles, each over 8 feet (2.4 m) tall, that were stacked along the former route of the Wall in the city center were toppled in stages, converging in front of the Brandenburg Gate.\nThe campaign was focused on promotin"
+   },
+   {
+    "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+    "source": "https://diplomacy.state.gov/berlin-wall/",
+    "url": "https://diplomacy.state.gov/berlin-wall/",
+    "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR\nBy 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin.\nIn 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel.\nWhen the Berlin Wall went up on August 13, 1961, U.S.\nIt imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.”\ndiplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip.\nAllied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the Soviets.\nArmy tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961.\nWhen completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between.\n“There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of city administration.\nWhen John F. Kennedy visited Berlin in 1963, Ambassador’s Staff Assistant Paul Cleveland described the President’s approach as a “‘political campaign’ to try to bolster German morale.”\nThis diplomacy eased relations between Bonn and East Berlin as well as across the Wall that divided the former German capital, laying some of the groundwork for German unification in 1990.\nPresident Nixon’s triumphant 1969 visit to West Berlin.\nSo, we engaged in the Berlin agreements, which took 90% of"
+   },
+   {
+    "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+    "source": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin.\nThe Berlin Wall divided the city for 28 years.\nWhen the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks.\nThe total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length.\nAfter the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world.\nThis section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\"\nRunning through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles).\nOn 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but on the night of 12-13 August a wire barrier was constructed around West Berlin.\nWhen the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens.\nLoved ones would wave at each other over the wall or communicate through letters, as telephone lines between West and East Berlin had been cut in 1952, not to be reconnected until 1971.\nWhat was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989.\nBy 1989, the Wall was lined with 302 watchtowers\nOn 31 December 1989 half a million people from East and West Berlin returned to this spot to celebrate New Year's Eve together for the first time since the construction of the wall.\nGermany reunited on 3 October 1990, 11 months after the fall of the Berlin Wall.\nThe Rise and Fall of the Berlin Wall on Film\nThe Berlin Wall fell on 9 November 1989.\nDiscover 8 photos from IWM's collection illustrating the fall of the Berlin Wall."
+   },
+   {
+    "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded.\nOn 4 November, the Alexanderplatz demonstration took place.\nFinally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking.\nOn 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate.\nOn 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung.\nOn 9 November 1999, the 10th anniversary was observed with a concert and fireworks at the Brandenburg Gate.\nOn 9 November 2009, Berlin celebrated the 20th anniversary of the fall of the Berlin Wall with a \"Festival of Freedom\" with dignitaries from around the world in attendance for an evening celebration around the Brandenburg Gate.\nThe MTV Europe Music Awards, on 5 November, had U2 and Tokio Hotel perform songs dedicated to and about the Berlin Wall."
+   },
+   {
+    "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+    "source": "https://diplomacy.state.gov/berlin-wall/",
+    "url": "https://diplomacy.state.gov/berlin-wall/",
+    "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel.\nOn the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S.\nWhen the Berlin Wall went up on August 13, 1961, U.S.\nArmy tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961.\nWhen completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between.\nFleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989.\n“There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of city administration.\nBrandon Grove, Jr., Oral History, Interviewed by Thomas Stern, 14 November 1994, Foreign Affairs Oral History Collection, Association for Diplomatic Studies and Training, Arlington, VA, adst.org.\nThis diplomacy eased relations between Bonn and East Berlin as well as across the Wall that divided the former German capital, laying some of the groundwork for German unification in 1990.\nPresident Nixon’s triumphant 1969 visit to West Berlin."
+   },
+   {
+    "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+    "source": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin.\nThe Berlin Wall divided the city for 28 years.\nThe total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length.\nAfter the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world.\nRunning through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles).\nWhen the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens.\nWhat was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989.\nThe last person to be killed by shooting while trying to escape was 20 year old Chris Gueffroy, pictured here, in February 1989.\nBy 1989, the Wall was lined with 302 watchtowers\nIn the early hours of 10 November 1989, thousands of people from both sides of the border gathered here, at the iconic Brandenburg Gate.\nGermany reunited on 3 October 1990, 11 months after the fall of the Berlin Wall.\nThe Berlin Wall fell on 9 November 1989.\nBy the end of 1990, much of the Wall had been demolished.\nDiscover 8 photos from IWM's collection illustrating the fall of the Berlin Wall."
+   },
+   {
+    "ref": "BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+    "source": "https://www.bbc.com/news/world-europe-50013048",
+    "url": "https://www.bbc.com/news/world-europe-50013048",
+    "text": "The wall came down partly because of a bureaucratic accident but it fell amid a wave of revolutions that left the Soviet-led communist bloc teetering on the brink of collapse and helped define a new world order.\nIt was on 9 November 1989, five days after half a million people gathered in East Berlin in a mass protest, that the Berlin Wall dividing communist East Germany from West Germany crumbled.\nThe wall was eventually built in 1961 because East Berlin was haemorrhaging people to the West.\nOn 9 October, within days of East Germany celebrating its 40th anniversary, 70,000 people took to the streets.\nAnd then on 31 October, the numbers demanding democracy in East Germany swelled to half a million.\nOn 4 November, a month after the East German protests had begun, around half a million people gathered in Alexanderplatz in the heart of East Berlin.\nOn 3 December, Mr Gorbachev and US President George HW Bush sat side by side in Malta, and released a statement saying the Cold War between the two powers was coming to a close."
+   },
+   {
+    "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded.\nOn 4 November, the Alexanderplatz demonstration took place.\nFinally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking.\nOn 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate.\nOn 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung.\nOn 9 November 1999, the 10th anniversary was observed with a concert and fireworks at the Brandenburg Gate.\nOn 9 November 2009, Berlin celebrated the 20th anniversary of the fall of the Berlin Wall with a \"Festival of Freedom\" with dignitaries from around the world in attendance for an evening celebration around the Brandenburg Gate.\nThe MTV Europe Music Awards, on 5 November, had U2 and Tokio Hotel perform songs dedicated to and about the Berlin Wall."
+   }
+  ],
+  "loop": {
+   "passes": [
+    {
+     "lap": 1,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The Berlin Wall fell on 9 November 1989.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "Berlin Wall fell November 1989.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 0,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+       "kept": 1348,
+       "chars": 24000,
+       "segments": 8,
+       "recalled": 81
+      },
+      {
+       "url": "https://diplomacy.state.gov/berlin-wall/",
+       "kept": 1349,
+       "chars": 24000,
+       "segments": 10,
+       "recalled": 61
+      },
+      {
+       "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+       "kept": 1386,
+       "chars": 13481,
+       "segments": 14,
+       "recalled": 90
+      },
+      {
+       "url": "https://www.bbc.com/news/world-europe-50013048",
+       "kept": 1028,
+       "chars": 9022,
+       "segments": 7,
+       "recalled": 24
+      }
+     ]
+    },
+    {
+     "lap": 2,
+     "before": {
+      "claims": 1,
+      "corroborated": 0,
+      "held": 0,
+      "weak": 0,
+      "contested": 1,
+      "unsupported": 0,
+      "backed": 0,
+      "swapsArmed": 1,
+      "swapsFailed": 0,
+      "cleared": false
+     },
+     "failing": [
+      {
+       "i": 0,
+       "s": "The Berlin Wall fell on 9 November 1989.",
+       "verdict": "contested",
+       "op": "INS",
+       "why": "a source contradicts it — two cannot settle it, so a third, independent source",
+       "query": "Berlin Wall fell November 1989.",
+       "afterIns": "still failing"
+      }
+     ],
+     "added": 1,
+     "restated": [
+      {
+       "i": 0,
+       "kept": true,
+       "why": "the restatement did not hold either"
+      }
+     ],
+     "reImpressed": [
+      {
+       "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+       "kept": 1348,
+       "chars": 24000,
+       "segments": 8,
+       "recalled": 81
+      },
+      {
+       "url": "https://diplomacy.state.gov/berlin-wall/",
+       "kept": 1349,
+       "chars": 24000,
+       "segments": 10,
+       "recalled": 61
+      },
+      {
+       "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+       "kept": 1386,
+       "chars": 13481,
+       "segments": 14,
+       "recalled": 90
+      },
+      {
+       "url": "https://www.bbc.com/news/world-europe-50013048",
+       "kept": 1028,
+       "chars": 9022,
+       "segments": 7,
+       "recalled": 24
+      },
+      {
+       "url": "https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+       "kept": 1373,
+       "chars": 24000,
+       "segments": 9,
+       "recalled": 85
+      },
+      {
+       "url": "https://history.state.gov/departmenthistory/short-history/berlinwall",
+       "kept": 589,
+       "chars": 2155,
+       "segments": 4,
+       "recalled": 10
+      }
+     ]
+    }
+   ],
+   "cleared": false,
+   "after": {
+    "claims": 1,
+    "corroborated": 0,
+    "held": 0,
+    "weak": 0,
+    "contested": 1,
+    "unsupported": 0,
+    "backed": 0,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": false
+   },
+   "processLine": "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 14 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframed · went back 2 laps · 1 more source(s) read · 0 sentence(s) restated · 1 still failing, marked"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1074,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1530,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 1530,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "nothing-twice",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 696,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 14,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "When did the Berlin Wall fall?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 7
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “When did the Berlin Wall fall?”",
+    "at": 27
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:When did the Berlin Wall fall?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 32,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 32
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:When did the Berlin Wall fall?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6040
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:When did the Berlin Wall fall?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 9491,
+    "at": 9523
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 9523
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 9526
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "title": "Reading Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "tone": "run",
+    "at": 9539,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 9539
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://diplomacy.state.gov/berlin-wall/",
+    "title": "Reading U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum…",
+    "tone": "run",
+    "at": 9544,
+    "slowAfter": 5000,
+    "slow": "waiting on U.S. Department of State (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 9544
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "title": "Reading Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold Wa…",
+    "tone": "run",
+    "at": 9545,
+    "slowAfter": 5000,
+    "slow": "waiting on Imperial War Museums (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 9546
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+    "title": "Read Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold Wa…",
+    "tone": "ok",
+    "note": "kept 1,889 of 13,481 chars",
+    "ms": 5290,
+    "at": 14835
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 14835
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.bbc.com/news/world-europe-50013048",
+    "title": "Reading BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+    "tone": "run",
+    "at": 14837,
+    "slowAfter": 5000,
+    "slow": "waiting on BBC (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 14837
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "title": "Read Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,926 of 24,000 chars",
+    "ms": 5332,
+    "at": 14871
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 14871
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+    "title": "Reading WLWT — This Day in History: The fall of the Berlin Wall in 1989 -…",
+    "tone": "run",
+    "at": 14873,
+    "slowAfter": 5000,
+    "slow": "waiting on WLWT (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 14873
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://diplomacy.state.gov/berlin-wall/",
+    "title": "Read U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum…",
+    "tone": "ok",
+    "note": "kept 1,875 of 24,000 chars",
+    "ms": 5623,
+    "at": 15167
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 15167
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.bbc.com/news/world-europe-50013048",
+    "title": "Read BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+    "tone": "ok",
+    "note": "kept 754 of 9,022 chars",
+    "ms": 5490,
+    "at": 20327
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 20327
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+    "title": "Could not read WLWT",
+    "tone": "bad",
+    "note": "no text came back",
+    "ms": 12522,
+    "at": 27395
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 27395
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 35139
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references were read but do not carry this. It points to 2 original sources.",
+    "at": 35140
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 35151,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 35151
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 44627
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "16 tokens",
+    "ms": 11583,
+    "at": 46734
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 46734
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 46737
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "∗ Reframe, lap 1: 1 sentence broke",
+    "tone": "warn",
+    "note": "s1 contested — going back to search",
+    "at": 46783
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Looked again in the pages already read — 4 new impressions",
+    "tone": "ok",
+    "note": "8 sentence(s) recalled from Wikipedia · 10 sentence(s) recalled from U.S. Department of State · 14 sentence(s) recalled from Imperial War Museums · 7 sentence(s) recalled from BBC",
+    "at": 46894
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Berlin Wall fell November 1989.",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 46908,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 46908
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Berlin Wall fell November 1989.",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 1548,
+    "at": 48456
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 48456
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "title": "Reading Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "tone": "run",
+    "at": 48471,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 48471
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.bbc.com/news/world-europe-50013048",
+    "title": "Reading BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+    "tone": "run",
+    "at": 48472,
+    "slowAfter": 5000,
+    "slow": "waiting on BBC (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 48472
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+    "title": "Reading EBSCO — Fall of the Berlin Wall | History | Research Starters | EBS…",
+    "tone": "run",
+    "at": 48472,
+    "slowAfter": 5000,
+    "slow": "waiting on EBSCO (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 48472
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+    "title": "Read Wikipedia — Fall of the Berlin Wall - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,972 of 24,000 chars",
+    "ms": 28,
+    "at": 48499
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 48499
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://history.state.gov/departmenthistory/short-history/berlinwall",
+    "title": "Reading U.S. Department of State — The Berlin Wall Falls and USSR Dissolves - Short History -…",
+    "tone": "run",
+    "at": 48500,
+    "slowAfter": 5000,
+    "slow": "waiting on U.S. Department of State (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 48500
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.bbc.com/news/world-europe-50013048",
+    "title": "Read BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+    "tone": "ok",
+    "note": "kept 698 of 9,022 chars",
+    "ms": 39,
+    "at": 48511
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 48511
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://history.state.gov/departmenthistory/short-history/berlinwall",
+    "title": "Read U.S. Department of State — The Berlin Wall Falls and USSR Dissolves - Short History -…",
+    "tone": "ok",
+    "note": "2,155 chars",
+    "ms": 5774,
+    "at": 54274
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 54274
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+    "title": "Read EBSCO — Fall of the Berlin Wall | History | Research Starters | EBS…",
+    "tone": "ok",
+    "note": "kept 2,361 of 24,000 chars",
+    "ms": 6008,
+    "at": 54480
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 54480
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 84 s · read 14 sources · gemma2:2b",
+    "at": 84003,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.011,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.014,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “When did the Berlin Wall fall?”"
+    }
+   },
+   {
+    "at": 0.017,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:When did the Berlin Wall fall?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.017,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.017,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "When did the Berlin Wall fall?"
+    }
+   },
+   {
+    "at": 6.025,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:When did the Berlin Wall fall?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.025,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 9.508,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:When did the Berlin Wall fall?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 9491
+    }
+   },
+   {
+    "at": 9.508,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 9.509,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "When did the Berlin Wall fall?",
+     "n": 20
+    }
+   },
+   {
+    "at": 9.511,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 9.511,
+    "seq": 12,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 9.524,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Reading Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.525,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 9.525,
+    "seq": 15,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "Wikipedia",
+     "title": "Fall of the Berlin Wall - Wikipedia"
+    }
+   },
+   {
+    "at": 9.528,
+    "seq": 16,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://diplomacy.state.gov/berlin-wall/",
+     "title": "Reading U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.528,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 9.528,
+    "seq": 18,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://diplomacy.state.gov/berlin-wall/",
+     "site": "U.S. Department of State",
+     "title": "The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy"
+    }
+   },
+   {
+    "at": 9.53,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "title": "Reading Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold Wa…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 9.53,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 9.53,
+    "seq": 21,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "site": "Imperial War Museums",
+     "title": "What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM"
+    }
+   },
+   {
+    "at": 14.819,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "title": "Read Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold Wa…",
+     "tone": "ok",
+     "note": "kept 1,889 of 13,481 chars",
+     "ms": 5290
+    }
+   },
+   {
+    "at": 14.819,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 14.819,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall",
+     "site": "Imperial War Museums",
+     "title": "What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "chars": 13481,
+     "kept": 1889,
+     "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. Patrolled by guards and dogs, illuminated by floodlights and fortified by barbed wire and watchtowers, the Berlin Wall divided the city for 28 years. A border already existed, but this new physical barrier meant that the city was completely separated. Find out why the Wall was built and the events that led to the fall of the Berlin Wall. \"I’m here in Potsdamer Platz, a public square in the centre of Berlin where east and west once met. In the years following the Second World War, Germany was divided between the allied nations. Britain, America and France occupied West Germany or the Federal Republic of Germany, the FRG. East Germany became a satellite state of the Soviet Union known as the German Democratic Republic or GDR. Germany’s capital, Berlin, was situated deep within East Germany but was similarly divided with American, British and French sectors in West Berlin and the Soviet sector in East Berlin. Beneath my feet is a line which demarcates where an impenetrable border once stood, it was called the Berlin Wall. The Berlin Wall divided the city for 28 years. It was constructed on the 13th of August 1961 to prevent the movement of people from communist East Berlin and East Germany into democratic West Berlin. A Border alread"
+    }
+   },
+   {
+    "at": 14.825,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.bbc.com/news/world-europe-50013048",
+     "title": "Reading BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 14.826,
+    "seq": 26,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 14.827,
+    "seq": 27,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.bbc.com/news/world-europe-50013048",
+     "site": "BBC",
+     "title": "Fall of Berlin Wall: How 1989 reshaped the modern world"
+    }
+   },
+   {
+    "at": 14.855,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Read Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,926 of 24,000 chars",
+     "ms": 5332
+    }
+   },
+   {
+    "at": 14.857,
+    "seq": 29,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 14.857,
+    "seq": 30,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "Wikipedia",
+     "title": "Fall of the Berlin Wall - Wikipedia",
+     "chars": 24000,
+     "kept": 2926,
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Sections of the wall were breached, and planned deconstruction began the following June. It was one of the series of events that started the fall of communism in Central and Eastern Europe. The fall of the inner German border took place shortly afterward. An end to the Cold War was declared at the Malta Summit in early December, and German reunification took place in October the following year. == Background == === Opening of the Iron Curtain === The opening of the Iron Curtain between Austria and Hungary at the Pan-European Picnic on 19 August 1989 set in motion a peaceful chain reaction, at the end of which there was no longer an East Germany and the Eastern Bloc had disintegrated. After the picnic, which was based on an idea by Otto von Habsburg to test the reaction of the USSR and Mikhail Gorbachev to an opening of the border, tens of thousands of media-informed East Germans set off for Hungary. Erich Honecker dictated to the Daily Mirror for the Pan-European Picnic: \"Habsburg distributed leaflets far into Poland, on which the East German holidaymakers were invited to a picnic. When they came to the picnic, they were given gifts, food and Deutsche Mark, and then th"
+    }
+   },
+   {
+    "at": 14.858,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+     "title": "Reading WLWT — This Day in History: The fall of the Berlin Wall in 1989 -…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 14.859,
+    "seq": 32,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 14.86,
+    "seq": 33,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+     "site": "WLWT",
+     "title": "This Day in History: The fall of the Berlin Wall in 1989 - WLWT"
+    }
+   },
+   {
+    "at": 15.151,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://diplomacy.state.gov/berlin-wall/",
+     "title": "Read U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum…",
+     "tone": "ok",
+     "note": "kept 1,875 of 24,000 chars",
+     "ms": 5623
+    }
+   },
+   {
+    "at": 15.152,
+    "seq": 35,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 15.153,
+    "seq": 36,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://diplomacy.state.gov/berlin-wall/",
+     "site": "U.S. Department of State",
+     "title": "The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+     "chars": 24000,
+     "kept": 1875,
+     "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR This is the history of the Berlin Wall told through the voices of U.S. diplomats, featuring artifacts from the National Museum of American Diplomacy’s collection. As the political climate changed over the years in a divided Germany, U.S. diplomats continued to work across barriers to advance our nation’s interests even amid the tensions of the Cold War that the Wall embodied. More than thirty years after Germany’s reunification, American diplomacy continues to be a global force, continually evolving and shaping the events of today. Post-World War II diplomacy faced innumerable challenges as the Cold War strained diplomatic relations between the Western Allies and the Soviet Union. Germany’s surrender in May of 1945 left the country without a government or clear borders between European nations. The “Big Three,” U.S. President Harry Truman, Soviet Premier Joseph Stalin, and British Prime Minister Winston Churchill (soon replaced by Clement Attlee) met in Potsdam, Germany to discuss Germany’s future. Resulting negotiations from the Potsdam Conference, held between July 17 and August 2, divided Germany and Berlin among the United States, Soviet Union, Britain, and later France. Initially, these countries hoped relations with Joseph Stalin might improve, but instead, they deteriorated as an “Iron Curtain” descended across Eastern Europe"
+    }
+   },
+   {
+    "at": 20.311,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.bbc.com/news/world-europe-50013048",
+     "title": "Read BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "tone": "ok",
+     "note": "kept 754 of 9,022 chars",
+     "ms": 5490
+    }
+   },
+   {
+    "at": 20.313,
+    "seq": 38,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 20.313,
+    "seq": 39,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.bbc.com/news/world-europe-50013048",
+     "site": "BBC",
+     "title": "Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "chars": 9022,
+     "kept": 754,
+     "text": "Fall of Berlin Wall: How 1989 reshaped the modern world World events often move fast, but it is hard to match the pace and power of change in 1989. It culminated in one of the most famous scenes in recent history - the fall of the Berlin Wall. The wall came down partly because of a bureaucratic accident but it fell amid a wave of revolutions that left the Soviet-led communist bloc teetering on the brink of collapse and helped define a new world order. It was on 9 November 1989, five days after half a million people gathered in East Berlin in a mass protest, that the Berlin Wall dividing communist East Germany from West Germany crumbled. East German leaders had tried to calm mounting protests by loosening the borders, making travel easier for East Germans. They had not intended to open the border up completely. The changes were meant to be fairly minor - but the way they were delivered had major consequences. Notes about the new rules were handed to a spokesman, Günter Schabowski - who had no time to read them before his regular press conference. When he read the note aloud for the first time, reporters were stunned. \"Private travel outside the country can now be applied for without prerequisites,\" he said. Surprised journalists clamoured for more details. Shuffling through his notes, Mr Schabowski said that as far as he was aware, it was effective immediately. In fact it had be"
+    }
+   },
+   {
+    "at": 27.379,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+     "title": "Could not read WLWT",
+     "tone": "bad",
+     "note": "no text came back",
+     "ms": 12522
+    }
+   },
+   {
+    "at": 27.382,
+    "seq": 41,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 27.382,
+    "seq": 42,
+    "kind": "st",
+    "st": {
+     "phase": "unread",
+     "url": "https://www.wlwt.com/article/berlin-wall-1989-this-day-in-history/45768764",
+     "site": "WLWT",
+     "title": "This Day in History: The fall of the Berlin Wall in 1989 - WLWT",
+     "chars": 0,
+     "kept": 0,
+     "text": ""
+    }
+   },
+   {
+    "at": 27.442,
+    "seq": 43,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+     "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+    }
+   },
+   {
+    "at": 28.342,
+    "seq": 44,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+     "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+     "url": "https://diplomacy.state.gov/berlin-wall/"
+    }
+   },
+   {
+    "at": 29.242,
+    "seq": 45,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+     "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+    }
+   },
+   {
+    "at": 30.142,
+    "seq": 46,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 31.942,
+    "seq": 47,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 33.942,
+    "seq": 48,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 35.123,
+    "seq": 52,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 35.125,
+    "seq": 53,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references were read but do not carry this. It points to 2 original sources."
+    }
+   },
+   {
+    "at": 35.136,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 35.139,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 36.142,
+    "seq": 49,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 38.942,
+    "seq": 50,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Schabowski shrugged and read item 3 of the note, which confirmed that it did. On 9 October 1989, the police and army units were given permission to use force against those assembled, but this did not deter the church service and march from taking place, which gathered 70,000 people and in which not a single shot was fired. The Brandenburg Gate in the Berlin Wall was opened on 22 December 1989; on that date, West German Chancellor Helmut Kohl walked through the gate and was greeted by East German Prime Minister Hans Modrow. Virtually every road that was severed by the Berlin Wall, every road that once linked from West Berlin to East Berlin, was reconstructed and reopened by 1 Au…",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "AMERICAN DIPLOMACY IN GERMANY IN THE COLD WAR By 1949, responding to continuous Soviet attempts to cut power, food, transportation, and fuel to Berlin, the Allies created the Federal Republic of Germany (FRG), commonly referred to as West Germany, with a capital in Bonn and a mission in Berlin. In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. When the Berlin Wall went up on August 13, 1961, U.S. It imprisoned 17 million people in East Germany, but it did guarantee, in its perverse and obnoxious way, a stability in a potentially unstable area.” diplomat Bruce Flatin (Public Safety Section, Berlin, 1964-1969) recounts the refugee crisis and resulting “brain drain” in this audio clip. Allied protest against the Wall was delayed more than 48 hours, due in part to President Kennedy’s reluctance to provoke a confrontation with the …",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. When the Berlin Wall was first constructed it was formed of bricks, barbed wire and concrete blocks. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. This section of wall was acquired in 1991 by Imperial War Museums and can now be found outside Imperial War Museum London.\" Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). On 15 June, East German leader Walter Ulbricht declared that 'no one has the intention of building a wall', but…",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 41.142,
+    "seq": 51,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 44.611,
+    "seq": 56,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 46.717,
+    "seq": 57,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "16 tokens",
+     "ms": 11583
+    }
+   },
+   {
+    "at": 46.72,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 46.722,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 46.766,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 1: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 46.876,
+    "seq": 61,
+    "kind": "quick",
+    "n": 1,
+    "of": 4,
+    "p": {
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+     "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+    }
+   },
+   {
+    "at": 46.877,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 4 new impressions",
+     "tone": "ok",
+     "note": "8 sentence(s) recalled from Wikipedia · 10 sentence(s) recalled from U.S. Department of State · 14 sentence(s) recalled from Imperial War Museums · 7 sentence(s) recalled from BBC"
+    }
+   },
+   {
+    "at": 46.892,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Berlin Wall fell November 1989.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 46.892,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 46.892,
+    "seq": 73,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Berlin Wall fell November 1989."
+    }
+   },
+   {
+    "at": 47.776,
+    "seq": 62,
+    "kind": "quick",
+    "n": 2,
+    "of": 4,
+    "p": {
+     "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+     "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+     "url": "https://diplomacy.state.gov/berlin-wall/"
+    }
+   },
+   {
+    "at": 48.439,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Berlin Wall fell November 1989.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 1548
+    }
+   },
+   {
+    "at": 48.44,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 48.44,
+    "seq": 76,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Berlin Wall fell November 1989.",
+     "n": 20
+    }
+   },
+   {
+    "at": 48.454,
+    "seq": 77,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Reading Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 48.455,
+    "seq": 78,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 48.455,
+    "seq": 79,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "Wikipedia",
+     "title": "Fall of the Berlin Wall - Wikipedia"
+    }
+   },
+   {
+    "at": 48.455,
+    "seq": 80,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.bbc.com/news/world-europe-50013048",
+     "title": "Reading BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 48.455,
+    "seq": 81,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 48.455,
+    "seq": 82,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.bbc.com/news/world-europe-50013048",
+     "site": "BBC",
+     "title": "Fall of Berlin Wall: How 1989 reshaped the modern world"
+    }
+   },
+   {
+    "at": 48.456,
+    "seq": 83,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+     "title": "Reading EBSCO — Fall of the Berlin Wall | History | Research Starters | EBS…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 48.456,
+    "seq": 84,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 48.456,
+    "seq": 85,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+     "site": "EBSCO",
+     "title": "Fall of the Berlin Wall | History | Research Starters | EBSCOhost"
+    }
+   },
+   {
+    "at": 48.482,
+    "seq": 86,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Read Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,972 of 24,000 chars",
+     "ms": 28
+    }
+   },
+   {
+    "at": 48.483,
+    "seq": 87,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 48.483,
+    "seq": 88,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "Wikipedia",
+     "title": "Fall of the Berlin Wall - Wikipedia",
+     "chars": 24000,
+     "kept": 2972,
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Sections of the wall were breached, and planned deconstruction began the following June. It was one of the series of events that started the fall of communism in Central and Eastern Europe. The fall of the inner German border took place shortly afterward. An end to the Cold War was declared at the Malta Summit in early December, and German reunification took place in October the following year. == Background == === Opening of the Iron Curtain === The opening of the Iron Curtain between Austria and Hungary at the Pan-European Picnic on 19 August 1989 set in motion a peaceful chain reaction, at the end of which there was no longer an East Germany and the Eastern Bloc had disintegrated. After the picnic, which was based on an idea by Otto von Habsburg to test the reaction of the USSR and Mikhail Gorbachev to an opening of the border, tens of thousands of media-informed East Germans set off for Hungary. Erich Honecker dictated to the Daily Mirror for the Pan-European Picnic: \"Habsburg distributed leaflets far into Poland, on which the East German holidaymakers were invited to a picnic. When they came to the picnic, they were given gifts, food and Deutsche Mark, and then th"
+    }
+   },
+   {
+    "at": 48.483,
+    "seq": 89,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://history.state.gov/departmenthistory/short-history/berlinwall",
+     "title": "Reading U.S. Department of State — The Berlin Wall Falls and USSR Dissolves - Short History -…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 48.483,
+    "seq": 90,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 48.483,
+    "seq": 91,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://history.state.gov/departmenthistory/short-history/berlinwall",
+     "site": "U.S. Department of State",
+     "title": "The Berlin Wall Falls and USSR Dissolves - Short History - Department History - Office of the Historian"
+    }
+   },
+   {
+    "at": 48.494,
+    "seq": 92,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.bbc.com/news/world-europe-50013048",
+     "title": "Read BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "tone": "ok",
+     "note": "kept 698 of 9,022 chars",
+     "ms": 39
+    }
+   },
+   {
+    "at": 48.495,
+    "seq": 93,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 48.495,
+    "seq": 94,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.bbc.com/news/world-europe-50013048",
+     "site": "BBC",
+     "title": "Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "chars": 9022,
+     "kept": 698,
+     "text": "Fall of Berlin Wall: How 1989 reshaped the modern world World events often move fast, but it is hard to match the pace and power of change in 1989. It culminated in one of the most famous scenes in recent history - the fall of the Berlin Wall. The wall came down partly because of a bureaucratic accident but it fell amid a wave of revolutions that left the Soviet-led communist bloc teetering on the brink of collapse and helped define a new world order. It was on 9 November 1989, five days after half a million people gathered in East Berlin in a mass protest, that the Berlin Wall dividing communist East Germany from West Germany crumbled. East German leaders had tried to calm mounting protests by loosening the borders, making travel easier for East Germans. They had not intended to open the border up completely. The changes were meant to be fairly minor - but the way they were delivered had major consequences. Notes about the new rules were handed to a spokesman, Günter Schabowski - who had no time to read them before his regular press conference. When he read the note aloud for the first time, reporters were stunned. \"Private travel outside the country can now be applied for without prerequisites,\" he said. Surprised journalists clamoured for more details. Shuffling through his notes, Mr Schabowski said that as far as he was aware, it was effective immediately. In fact it had be"
+    }
+   },
+   {
+    "at": 48.676,
+    "seq": 63,
+    "kind": "quick",
+    "n": 3,
+    "of": 4,
+    "p": {
+     "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+     "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+    }
+   },
+   {
+    "at": 49.576,
+    "seq": 64,
+    "kind": "quick",
+    "n": 4,
+    "of": 4,
+    "p": {
+     "text": "The wall came down partly because of a bureaucratic accident but it fell amid a wave of revolutions that left the Soviet-led communist bloc teetering on the brink of collapse and helped define a new world order. It was on 9 November 1989, five days after half a million people gathered in East Berlin in a mass protest, that the Berlin Wall dividing communist East Germany from West Germany crumbled. The wall was eventually built in 1961 because East Berlin was haemorrhaging people to the West. On 9 October, within days of East Germany celebrating its 40th anniversary, 70,000 people took to the streets. And then on 31 October, the numbers demanding democracy in East Germany swelled to half a million. On 4 November, a month after the East German protests had begun, around half a million people gathered in Alexanderplatz in the heart of East Berlin. On 3 December, Mr Gorbachev and US Preside…",
+     "ref": "BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "url": "https://www.bbc.com/news/world-europe-50013048"
+    }
+   },
+   {
+    "at": 50.476,
+    "seq": 65,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 52.276,
+    "seq": 66,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 54.257,
+    "seq": 95,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://history.state.gov/departmenthistory/short-history/berlinwall",
+     "title": "Read U.S. Department of State — The Berlin Wall Falls and USSR Dissolves - Short History -…",
+     "tone": "ok",
+     "note": "2,155 chars",
+     "ms": 5774
+    }
+   },
+   {
+    "at": 54.258,
+    "seq": 96,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 54.258,
+    "seq": 97,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://history.state.gov/departmenthistory/short-history/berlinwall",
+     "site": "U.S. Department of State",
+     "title": "The Berlin Wall Falls and USSR Dissolves - Short History - Department History - Office of the Historian",
+     "chars": 2155,
+     "kept": 2155,
+     "text": "A Short History of the Department of State The Berlin Wall Falls and USSR Dissolves Initially, Department of State officials and Bush’s foreign policy team were reluctant to speak publicly about German “reunification” due to fear that hard-liners in both the German Democratic Republic (GDR) and the Soviet Union would stymie reform. Although changes in the GDR leadership and encouraging speeches by Gorbachev about nonintervention in Eastern Europe boded well for reunification, the world was taken by surprise when, during the night of November 9, 1989, crowds of Germans began dismantling the Berlin Wall—a barrier that for almost 30 years had symbolized the Cold War division of Europe. By October 1990, Germany was reunified, triggering the swift collapse of the other East European regimes. Thirteen months later, on December 25, 1991, Gorbachev resigned and the Union of Soviet Socialist Republics dissolved. President Bush and his chief foreign policy advisers were more pro-active toward Russia and the former Soviet republics after the collapse of the Communist monolith than while it was teetering. In a series of summits during the next year with the new Russian President Boris Yeltsin, Bush pledged $4.5-billion to support economic reform in Russia, as well as additional credit guarantees and technical assistance. The two former Cold War adversaries lifted restrictions on the number"
+    }
+   },
+   {
+    "at": 54.276,
+    "seq": 67,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 54.463,
+    "seq": 98,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+     "title": "Read EBSCO — Fall of the Berlin Wall | History | Research Starters | EBS…",
+     "tone": "ok",
+     "note": "kept 2,361 of 24,000 chars",
+     "ms": 6008
+    }
+   },
+   {
+    "at": 54.464,
+    "seq": 99,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 54.464,
+    "seq": 100,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.ebsco.com/research-starters/history/fall-berlin-wall/",
+     "site": "EBSCO",
+     "title": "Fall of the Berlin Wall | History | Research Starters | EBSCOhost",
+     "chars": 24000,
+     "kept": 2361,
+     "text": "The Fall of the Berlin Wall on November 9, 1989, marked a significant turning point in history, symbolizing the end of the Cold War division between East and West Germany. Erected in 1961 to prevent East Germans from fleeing to the West, the wall became a powerful symbol of repression and political division. Over its twenty-eight-year existence, it was responsible for the deaths of many individuals attempting to escape its confines, highlighting the harsh realities of life in East Germany under Communist rule. Growing discontent among the East German population, spurred by economic hardships and a desire for reform, culminated in mass protests throughout 1989. The situation escalated when the East German government unexpectedly opened its borders, leading to joyous reunions between families separated for decades. This event not only led to the physical dismantling of the wall but also facilitated the reunification of Germany on October 3, 1990. The fall of the Berlin Wall had profound global implications, improving diplomatic relations and inspiring movements for freedom across Eastern Europe. However, this transition was not without challenges, as East Germans faced significant adjustments in their new socio-economic environment. Authored by: Boon, Jo-Ellen Lipman 1 of 3 The Berlin Wall stood as a physical and psychological barrier between East and West for twenty-eight years,"
+    }
+   },
+   {
+    "at": 54.556,
+    "seq": 101,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Found nothing new",
+     "tone": "info",
+     "note": "“Berlin Wall fell November 1989.”"
+    }
+   },
+   {
+    "at": 56.476,
+    "seq": 68,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 59.276,
+    "seq": 69,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 70.612,
+    "seq": 102,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "∗ Reframe, lap 2: 1 sentence broke",
+     "tone": "warn",
+     "note": "s1 contested — going back to search"
+    }
+   },
+   {
+    "at": 70.751,
+    "seq": 103,
+    "kind": "quick",
+    "n": 1,
+    "of": 6,
+    "p": {
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+     "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+    }
+   },
+   {
+    "at": 70.752,
+    "seq": 114,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Looked again in the pages already read — 6 new impressions",
+     "tone": "ok",
+     "note": "8 sentence(s) recalled from Wikipedia · 10 sentence(s) recalled from U.S. Department of State · 14 sentence(s) recalled from Imperial War Museums · 7 sentence(s) recalled from BBC "
+    }
+   },
+   {
+    "at": 70.764,
+    "seq": 115,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Berlin Wall fell November 1989.",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 70.764,
+    "seq": 116,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 70.764,
+    "seq": 117,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Berlin Wall fell November 1989."
+    }
+   },
+   {
+    "at": 71.607,
+    "seq": 118,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Berlin Wall fell November 1989.",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 844
+    }
+   },
+   {
+    "at": 71.608,
+    "seq": 119,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 71.608,
+    "seq": 120,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Berlin Wall fell November 1989.",
+     "n": 10
+    }
+   },
+   {
+    "at": 71.614,
+    "seq": 121,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Reading en.wikipedia.org — Fall of the Berlin Wall - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 71.614,
+    "seq": 122,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 71.614,
+    "seq": 123,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "en.wikipedia.org",
+     "title": "Fall of the Berlin Wall - Wikipedia"
+    }
+   },
+   {
+    "at": 71.614,
+    "seq": 124,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989",
+     "title": "Reading berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9,…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 71.615,
+    "seq": 125,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 71.615,
+    "seq": 126,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989",
+     "site": "berlinwallmap.info",
+     "title": "The Fall of the Berlin Wall: How It Happened on November 9, 1989"
+    }
+   },
+   {
+    "at": 71.615,
+    "seq": 127,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.berlintourism.org/berlin-wall-history-timeline/",
+     "title": "Reading berlintourism.org — Berlin Wall History Timeline: Complete 1961-1989 Guide",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 71.615,
+    "seq": 128,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 71.615,
+    "seq": 129,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.berlintourism.org/berlin-wall-history-timeline/",
+     "site": "berlintourism.org",
+     "title": "Berlin Wall History Timeline: Complete 1961-1989 Guide"
+    }
+   },
+   {
+    "at": 71.639,
+    "seq": 130,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "title": "Read en.wikipedia.org — Fall of the Berlin Wall - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,972 of 24,000 chars",
+     "ms": 25
+    }
+   },
+   {
+    "at": 71.639,
+    "seq": 131,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 71.639,
+    "seq": 132,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+     "site": "en.wikipedia.org",
+     "title": "Fall of the Berlin Wall - Wikipedia",
+     "chars": 24000,
+     "kept": 2972,
+     "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. Sections of the wall were breached, and planned deconstruction began the following June. It was one of the series of events that started the fall of communism in Central and Eastern Europe. The fall of the inner German border took place shortly afterward. An end to the Cold War was declared at the Malta Summit in early December, and German reunification took place in October the following year. == Background == === Opening of the Iron Curtain === The opening of the Iron Curtain between Austria and Hungary at the Pan-European Picnic on 19 August 1989 set in motion a peaceful chain reaction, at the end of which there was no longer an East Germany and the Eastern Bloc had disintegrated. After the picnic, which was based on an idea by Otto von Habsburg to test the reaction of the USSR and Mikhail Gorbachev to an opening of the border, tens of thousands of media-informed East Germans set off for Hungary. Erich Honecker dictated to the Daily Mirror for the Pan-European Picnic: \"Habsburg distributed leaflets far into Poland, on which the East German holidaymakers were invited to a picnic. When they came to the picnic, they were given gifts, food and Deutsche Mark, and then th"
+    }
+   },
+   {
+    "at": 71.64,
+    "seq": 133,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://historycrunch.com/fall-of-the-berlin-wall/",
+     "title": "Reading historycrunch.com — Fall of the Berlin Wall: A Detailed Summary - History Crunch",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 71.64,
+    "seq": 134,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 71.64,
+    "seq": 135,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://historycrunch.com/fall-of-the-berlin-wall/",
+     "site": "historycrunch.com",
+     "title": "Fall of the Berlin Wall: A Detailed Summary - History Crunch"
+    }
+   },
+   {
+    "at": 71.651,
+    "seq": 104,
+    "kind": "quick",
+    "n": 2,
+    "of": 6,
+    "p": {
+     "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+     "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+     "url": "https://diplomacy.state.gov/berlin-wall/"
+    }
+   },
+   {
+    "at": 72.551,
+    "seq": 105,
+    "kind": "quick",
+    "n": 3,
+    "of": 6,
+    "p": {
+     "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+     "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+     "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+    }
+   },
+   {
+    "at": 73.451,
+    "seq": 106,
+    "kind": "quick",
+    "n": 4,
+    "of": 6,
+    "p": {
+     "text": "The wall came down partly because of a bureaucratic accident but it fell amid a wave of revolutions that left the Soviet-led communist bloc teetering on the brink of collapse and helped define a new world order. It was on 9 November 1989, five days after half a million people gathered in East Berlin in a mass protest, that the Berlin Wall dividing communist East Germany from West Germany crumbled. The wall was eventually built in 1961 because East Berlin was haemorrhaging people to the West. On 9 October, within days of East Germany celebrating its 40th anniversary, 70,000 people took to the streets. And then on 31 October, the numbers demanding democracy in East Germany swelled to half a million. On 4 November, a month after the East German protests had begun, around half a million people gathered in Alexanderplatz in the heart of East Berlin. On 3 December, Mr Gorbachev and US Preside…",
+     "ref": "BBC — Fall of Berlin Wall: How 1989 reshaped the modern world",
+     "url": "https://www.bbc.com/news/world-europe-50013048"
+    }
+   },
+   {
+    "at": 74.351,
+    "seq": 107,
+    "kind": "quick",
+    "n": 5,
+    "of": 6,
+    "p": {
+     "text": "The Fall of the Berlin Wall on November 9, 1989, marked a significant turning point in history, symbolizing the end of the Cold War division between East and West Germany. Erected in 1961 to prevent East Germans from fleeing to the West, the wall became a powerful symbol of repression and political division. The next twenty-eight years produced a multitude of political crises, from the Cuban Missile Crisis of 1962 to the execution of Romanian dictator Nicolae Ceauşescu on December 25, 1989. On October 9, nearly 70,000 people marched in Leipzig, East Germany, demanding governmental reforms. On November 7 and 8, the entire East German cabinet, or Politburo, resigned; the members were replaced by politicians in favor of reform. One of the most symbolically important acts surrounding the fall of the wall occurred when, on November 12, a new crossing point was installed at Potsdamerplatz (a …",
+     "ref": "EBSCO — Fall of the Berlin Wall | History | Research Starters | EBSCOhost",
+     "url": "https://www.ebsco.com/research-starters/history/fall-berlin-wall/"
+    }
+   },
+   {
+    "at": 75.251,
+    "seq": 108,
+    "kind": "quick",
+    "n": 6,
+    "of": 6,
+    "p": {
+     "text": "Although changes in the GDR leadership and encouraging speeches by Gorbachev about nonintervention in Eastern Europe boded well for reunification, the world was taken by surprise when, during the night of November 9, 1989, crowds of Germans began dismantling the Berlin Wall—a barrier that for almost 30 years had symbolized the Cold War division of Europe. Thirteen months later, on December 25, 1991, Gorbachev resigned and the Union of Soviet Socialist Republics dissolved. The End of the Cold War, 1981-1992The Berlin Wall Falls and USSR Dissolves The Berlin Wall Falls and USSR Dissolves",
+     "ref": "U.S. Department of State — The Berlin Wall Falls and USSR Dissolves - Short History - Department History - Office of the Historian",
+     "url": "https://history.state.gov/departmenthistory/short-history/berlinwall"
+    }
+   },
+   {
+    "at": 76.151,
+    "seq": 109,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 77.263,
+    "seq": 136,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.berlintourism.org/berlin-wall-history-timeline/",
+     "title": "Read berlintourism.org — Berlin Wall History Timeline: Complete 1961-1989 Guide",
+     "tone": "ok",
+     "note": "kept 2,841 of 15,415 chars",
+     "ms": 5648
+    }
+   },
+   {
+    "at": 77.263,
+    "seq": 137,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 77.263,
+    "seq": 138,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.berlintourism.org/berlin-wall-history-timeline/",
+     "site": "berlintourism.org",
+     "title": "Berlin Wall History Timeline: Complete 1961-1989 Guide",
+     "chars": 15415,
+     "kept": 2841,
+     "text": "Berlin Wall History Timeline: Complete 1961-1989 Guide Complete Berlin Wall history timeline 1961-1989: construction, escapes, deaths, Kennedy speech, fall of the Wall, and reunification. Get the 3-day itinerary with this route built in. The Berlin Wall stood for 28 years, two months, and 27 days — from August 13, 1961, to November 9, 1989. In that time, it killed at least 140 people, divided 4 million Berliners, became the global symbol of the Cold War, and ended in one of the 20th century’s most extraordinary single nights. The full Berlin Wall history timeline reaches from post-WWII division through the 1961 construction crisis, the years of ever-tightening control, the gradual diplomatic shifts of the 1970s and 1980s, and the surprise opening on November 9, 1989. This guide walks through the complete timeline year-by-year, with the key events, dates, and figures that shaped how the Wall rose and fell. For a focused guide to where to visit Berlin Wall sites today, see our best Berlin Wall sites and memorials guide. For Checkpoint Charlie specifically, see our Checkpoint Charlie history and visiting guide. Background: How Berlin Was Divided (1945-1961) Following Nazi Germany’s surrender on May 8, 1945, the four Allied powers (US, UK, France, Soviet Union) divided Germany and Berlin into four occupation zones. Despite Berlin sitting deep within the Soviet zone of Germany, the "
+    }
+   },
+   {
+    "at": 77.951,
+    "seq": 110,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 78.132,
+    "seq": 139,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989",
+     "title": "Read berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9,…",
+     "tone": "ok",
+     "note": "kept 530 of 7,122 chars",
+     "ms": 6518
+    }
+   },
+   {
+    "at": 78.133,
+    "seq": 140,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 78.133,
+    "seq": 141,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989",
+     "site": "berlinwallmap.info",
+     "title": "The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+     "chars": 7122,
+     "kept": 530,
+     "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The event was triggered by a mistaken announcement at a press conference and became the defining moment of the Cold War’s end. The fall of the Wall did not happen in a vacuum. Throughout 1989, the communist regimes of Eastern Europe were buckling under economic stagnation, political rigidity, and growing popular unrest. Mikhail Gorbachev’s policies of glasnost (openness) and perestroika (restructuring) in the Soviet Union had created expectations of reform that the hardline East German leadership under Erich Honecker stubbornly resisted. In May 1989, Hungary dismantled its border fence with Austria, punching the first hole in the Iron Curtain. Thousands of East Germans traveled to Hungary on “holiday” and crossed into Austria, then continued to West Germany. Others sought refuge in West German embassies in Prague and Warsaw. By September, the exodus had become a flood. Meanwhile, Monday demonstrations in Leipzig grew from a few hundred protesters in September to over 300,000 by late October. The chant “Wir sind das Volk!” (“We are the people!”) echoed through the streets. On October 18, Honecker w"
+    }
+   },
+   {
+    "at": 78.614,
+    "seq": 142,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://historycrunch.com/fall-of-the-berlin-wall/",
+     "title": "Read historycrunch.com — Fall of the Berlin Wall: A Detailed Summary - History Crunch",
+     "tone": "ok",
+     "note": "346 chars",
+     "ms": 6975
+    }
+   },
+   {
+    "at": 78.614,
+    "seq": 143,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 78.614,
+    "seq": 144,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://historycrunch.com/fall-of-the-berlin-wall/",
+     "site": "historycrunch.com",
+     "title": "Fall of the Berlin Wall: A Detailed Summary - History Crunch",
+     "chars": 346,
+     "kept": 346,
+     "text": "Ronald Reagan was the 40th president of the United States and played an important role in the history of the United States in relation to the Cold War. He is remembered for his conservative leadership, economic policies, and strong stance against the Soviet Union during the 1980s. This article details the life and significance of Ronald Reagan."
+    }
+   },
+   {
+    "at": 78.65,
+    "seq": 151,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read 1 more source",
+     "tone": "ok",
+     "note": "“Berlin Wall fell November 1989.”"
+    }
+   },
+   {
+    "at": 79.951,
+    "seq": 111,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 80.205,
+    "seq": 152,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 80.206,
+    "seq": 153,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 82.151,
+    "seq": 112,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 83.966,
+    "seq": 154,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Could not verify a source sentence",
+     "tone": "warn",
+     "note": "none"
+    }
+   },
+   {
+    "at": 83.985,
+    "seq": 155,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 83.986,
+    "seq": 156,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 84 s · read 14 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 84.951,
+    "seq": 113,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_3617a3",
+    "ps": [
+     {
+      "text": "The Berlin Wall fell on 9 November 1989 during the Peaceful Revolution, marking the beginning of the destruction of the figurative Iron Curtain, as East Berlin transit restrictions were overwhelmed and discarded. On 4 November, the Alexanderplatz demonstration took place. Finally, at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints and let people through with little or no identity-checking. On 21 November 1989, Crosby, Stills & Nash performed the song \"Chippin' Away\" from Graham Nash's 1986 solo album Innocent Eyes in front of the Brandenburg Gate. On 25 December 1989, Leonard Bernstein gave a concert in Berlin celebrating the end of the Wall, including Beethoven's 9th symphony (Ode to Joy) with the word \"Joy\" (Freude) changed to \"Freedom\" (Freiheit) in the lyrics sung. …",
+      "ref": "Wikipedia — Fall of the Berlin Wall - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+     },
+     {
+      "text": "In 1948, Stalin blockaded all land and water routes into West Berlin, depriving its dwellers of food and fuel. On the original memorial, constructed in 1951 and located at the now-closed Tempelhof Airport in Berlin, the names of the U.S. When the Berlin Wall went up on August 13, 1961, U.S. Army tanks, foreground, face off against Soviet tanks across the Berlin Wall at Checkpoint Charlie in a tense standoff, October 27-28, 1961. When completed, the Wall ran 26.8 miles across Berlin (96.3 miles total across Germany) evolving from barbed wire into over 13-foot high parallel walls with a “dead man’s zone” in between. Fleeing a repressive regime, many East Germans—at least 100 and likely more—died violently attempting to leave between 1961 and 1989. “There were many potential crises during the years 1965-69, incidents at the Wall and checkpoints, on the Autobahn [highway], or in areas of ci…",
+      "ref": "U.S. Department of State — The Rise and Fall of the Berlin Wall - The National Museum of American Diplomacy",
+      "url": "https://diplomacy.state.gov/berlin-wall/"
+     },
+     {
+      "text": "The Berlin Wall was constructed on the 13 August 1961 to prevent the movement of people from communist East Berlin and East Germany into West Berlin. The Berlin Wall divided the city for 28 years. The total length of the Berlin Wall, through the city and around the outskirts, was over 155km in length. After the fall of the Berlin Wall in 1989, individual sections were dismantled and sold and can now be found in over 100 locations all over the world. Running through the city and around the outskirts, the Berlin Wall stretched over 155 kilometres (96 miles). When the Berlin wall was constructed on the 13th of August 1961, it was painful for citizens. What was once part of the border between East and West Berlin is now a memorial, dedicated to over 140 people who lost their lives at the wall between 1961 and 1989. The last person to be killed by shooting while trying to escape was 20 year …",
+      "ref": "Imperial War Museums — What Was The Berlin Wall And How Did It Fall? - The Cold War | IWM",
+      "url": "https://www.iwm.org.uk/history/cold-war/germany/berlin-wall"
+     }
+    ]
+   },
+   {
+    "at": 87.151,
+    "seq": 145,
+    "kind": "quick",
+    "n": 1,
+    "of": 1,
+    "p": {
+     "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+     "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+     "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+    }
+   },
+   {
+    "at": 88.051,
+    "seq": 146,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_314737",
+    "ps": [
+     {
+      "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+      "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+      "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+     }
+    ]
+   },
+   {
+    "at": 89.851,
+    "seq": 147,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_314737",
+    "ps": [
+     {
+      "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+      "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+      "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+     }
+    ]
+   },
+   {
+    "at": 91.851,
+    "seq": 148,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_314737",
+    "ps": [
+     {
+      "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+      "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+      "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+     }
+    ]
+   },
+   {
+    "at": 94.051,
+    "seq": 149,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_314737",
+    "ps": [
+     {
+      "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+      "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+      "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+     }
+    ]
+   },
+   {
+    "at": 96.851,
+    "seq": 150,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_314737",
+    "ps": [
+     {
+      "text": "The Fall of the Berlin Wall: How It Happened on November 9, 1989 The Berlin Wall fell on the night of November 9, 1989, when East German border guards, overwhelmed by crowds of citizens demanding passage, opened the checkpoints and allowed free crossing for the first time in 28 years. The regulations were supposed to take effect on November 10, with time for border guards to be briefed. On October 3, 1990, less than a year after the Wall fell, Germany was formally reunified. Journey through Berlin Wall history from 1945 to 1990.",
+      "ref": "berlinwallmap.info — The Fall of the Berlin Wall: How It Happened on November 9, 1989",
+      "url": "https://berlinwallmap.info/the-fall-of-the-berlin-wall-how-it-happened-on-november-9-1989"
+     }
+    ]
+   },
+   {
+    "at": 99.051,
+    "seq": 157,
+    "kind": "done"
+   }
+  ]
+ }
+}

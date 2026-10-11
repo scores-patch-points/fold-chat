@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "koopman",
+  "organ": "khora/native/kernel/dmd.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/koopman-dmd.json"
+  ],
+  "whatTheyArgued": "Koopman (PNAS 17(5), 1931), read on disk: for a Hamiltonian system (more generally a steady flow of a fluid of positive density, with an invariant positive integral) the flow S_t acts on complex-valued functions of state by U_t g(A) = g(S_t A); on a Hilbert space of such functions U_t is a LINEAR, UNITARY operator even though the dynamics is nonlinear. That is the move: nonlinear dynamics becomes linear action on observables, which brings Hilbert-space spectral theory to classical mechanics. Because U_t is unitary the eigenvalues lie on the unit circle: pure frequency, no growth or decay. Growth and decay appear in later generalizations (Mezic and co-workers), not in the 1931 note. DMD (Schmid 2010, J. Fluid Mech.) is a data algorithm whose eigenvalues can approximate the Koopman spectrum under conditions.",
+  "scholarship": [
+    {
+      "ref": "Brunton, Budisic, Kaiser, Kutz, 'Modern Koopman Theory for Dynamical Systems', SIAM Review (2022), abstract read",
+      "url": "https://arxiv.org/abs/2102.12086",
+      "supports": "Koopman operator is an infinite-dimensional linear operator on measurement functions representing nonlinear dynamics; DMD is one of the numerical algorithms built on it",
+      "disputes": "finite-dimensional embeddings in which dynamics appear linear are described as a central open problem; DMD eigenvalues approximate Koopman eigenvalues only under assumptions (I read only the abstract)"
+    }
+  ],
+  "ourUse": "dmd.js: SVD-based Dynamic Mode Decomposition of a state trajectory; returns complex eigenvalues with magnitude, growth = log|lambda|/dt, and frequency (argument). The header states DMD eigenvalues approximate Koopman eigenvalues and that the Hilbert-space structure is 'measured rather than asserted'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "growth-not-1931",
+      "kind": "re-scoped",
+      "ours": "Compendium credit: 'modes with growth and frequency (1931; DMD, 2010)'.",
+      "theirs": "The 1931 operator is unitary, so its modes have frequency only. Growth comes from later work and from DMD on dissipative or finite data; the date range in the credit puts both in one name."
+    },
+    {
+      "id": "dmd-approximates",
+      "kind": "narrowed",
+      "ours": "'the operator whose eigenvalues DMD approximates' stated flatly; a finite-sample DMD of a short text trajectory.",
+      "theirs": "DMD approximates Koopman spectra only under conditions (observable richness, sufficient data). Our use is a finite linear fit; calling its modes Koopman modes is conditional, and the file does not check the conditions."
+    },
+    {
+      "id": "first-person-voice",
+      "kind": "invented-attribution",
+      "ours": "File head, in Koopman's voice: 'My teaching, however, emphasizes the importance of understanding the underlying mathematical principles ...'.",
+      "theirs": "Koopman wrote no such sentence; it is model-written text in the author's first person."
+    },
+    {
+      "id": "stream-spectral-face",
+      "kind": "reinterpreted",
+      "ours": "'the spectral face of a stream' (a text or event trajectory).",
+      "theirs": "Koopman's setting is a measure-preserving deterministic flow on a state space; applying it to a symbolic stream is our analogy."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Koopman (1931) showed that a measure-preserving flow acts as a linear, unitary operator on functions of state, so nonlinear dynamics can be studied spectrally. Later work (Mezic; DMD, Schmid 2010) extended this to modes with growth and frequency estimated from data. dmd.js is a finite-sample DMD; its modes approximate Koopman modes only under assumptions we do not check.'",
+    "compendium credit: 'the Koopman operator (1931) and DMD (Schmid 2010) — linear spectral view of nonlinear dynamics; modes with growth and frequency come from the later work.'",
+    "organ header: delete the first-person 'My teaching' sentence; keep the verbatim snip only."
+  ]
+}

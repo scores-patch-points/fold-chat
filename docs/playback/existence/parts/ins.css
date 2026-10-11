@@ -1,0 +1,61 @@
+.ins .mut { color: var(--mut); font-size: 13px; }
+.ins .tl { margin-top: 12px; }
+/* figure: page header in the margin, clippings pulled out as paper */
+.ins .pg { display: grid; gap: 10px; padding: 14px 0; border-top: 1px solid var(--line); }
+.ins .pg:first-of-type { border-top: 0; padding-top: 0; }
+.ins .ph { display: grid; gap: 3px; align-content: start; }
+.ins .ph .who { display: flex; align-items: center; gap: 8px; }
+.ins .ph b { font-size: 13.5px; }
+.ins .pt { font-size: 13px; color: var(--ink2); }
+.ins .pm { font-size: 11.5px; color: var(--mut); }
+.ins .clips { display: grid; gap: 10px; min-width: 0; }
+.ins .clip { margin: 0; border: 1px solid; border-left-width: 4px; border-radius: 3px; padding: 8px 12px 10px; box-shadow: var(--shadow-sm); }
+.ins .clip .ct { font: 600 10.5px/1.2 var(--mono); letter-spacing: .04em; text-transform: uppercase; opacity: .78; margin-bottom: 5px; }
+.ins .clip .cb { display: block; width: 100%; line-height: 1.5; }
+.ins .clip .cb .clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-line; }
+.ins .clip .cb span:not(.clamp) { white-space: pre-line; display: block; }
+.ins .clip .cb2 { margin: 0; line-height: 1.5; }
+.ins .clip.cited { border-left-color: var(--ag); border-width: 1px 1px 1px 6px; }
+.ins .clip strong { font-weight: 700; }
+.ins .quiet { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 12px; }
+.ins .quiet ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 6px; }
+.ins .quiet li { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink2); }
+@container (min-width: 700px) {
+  .ins .pg { grid-template-columns: 210px minmax(0, 1fr); gap: 18px; }
+}
+/* ground: rulers, one per page */
+.ins .grows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ins .grow { border-bottom: 1px solid var(--line); padding: 8px 0 10px; }
+.ins .gh { display: grid; gap: 3px; width: 100%; }
+.ins .gh:hover .ttl { color: var(--link); }
+.ins .gh .who { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.ins .gh b { font-size: 13.5px; flex: none; }
+.ins .gh .ttl { font-size: 13px; color: var(--ink2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.ins .gh .out { font: 12px/1.3 var(--mono); color: var(--mut); }
+.ins .rul { margin-top: 6px; }
+.ins .pagebar { display: block; height: 14px; border: 1.5px solid var(--ink2); border-radius: 3px; position: relative; min-width: 6px; }
+.ins .keptbar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); min-width: 2px; display: block; }
+.ins .gmore { margin: 12px 0 4px; display: grid; gap: 10px; }
+.ins .loupe { display: grid; }
+.ins .loupe .lp { height: 22px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
+.ins .ktrack { position: relative; height: 14px; border: 1.5px solid var(--ink); border-radius: 3px; background: var(--bg); }
+.ins .ktick { position: absolute; top: -1px; bottom: -1px; background: var(--ag); border-radius: 2px; min-width: 4px; }
+.ins .cap2 { font-size: 12px; color: var(--mut); margin-top: 4px; }
+.ins .pap .scroll { max-height: 280px; overflow: auto; }
+.ins .pap { border: 1px solid; border-radius: 3px; padding: 12px 14px; box-shadow: var(--shadow-sm); max-width: 70ch; }
+.ins .pap p { margin: 0 0 8px; line-height: 1.55; white-space: pre-line; }
+.ins .pap .pt2 { font-size: 17px; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+.ins .pap .torn { font: 12.5px/1.4 var(--sans); opacity: .85; border-top: 2px dotted currentColor; padding-top: 8px; margin: 10px 0 0; }
+/* pattern: concordance */
+.ins .chead, .ins .crow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.ins .chead { margin-top: 8px; padding-bottom: 4px; }
+.ins .dcols { display: grid; grid-auto-flow: column; grid-auto-columns: 22px; justify-items: center; align-items: center; padding: 0; }
+.ins .crows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.ins .crow { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.ins .ctx { font-size: 14px; color: var(--ink); overflow-wrap: anywhere; }
+.ins .ctx.mono { font-size: 13.5px; }
+.ins .cn { display: block; font-style: normal; font: 11.5px/1.4 var(--mono); color: var(--mut); }
+.ins .dot.y { color: var(--ink); font-size: 14px; }
+.ins .dot.n { color: var(--ink2); }
+.ins .legend2 { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 14px; font-size: 12.5px; color: var(--ink2); }
+.ins .legend2 span { display: inline-flex; gap: 6px; align-items: center; }

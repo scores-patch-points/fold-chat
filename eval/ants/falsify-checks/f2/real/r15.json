@@ -1,0 +1,1804 @@
+{
+ "q": "Who wrote Pride and Prejudice and when was it published?",
+ "spoken": "Pride and Prejudice was written by English author Jane Austen. It was published in 1813.",
+ "shown": "Pride and Prejudice was written by English author Jane Austen. It was published in 1813.\n\nW\nen.wikipedia.org\nopen ↗\nPride and Prejudice - Wikipedia\nPride and Prejudice is a novel by English author Jane Austen . …\n1 source · 2 of 2 sentences backed\n·\n3 of 9 checks flagged\n59 s\n▶ watch\ncopy\nretry\n⋯",
+ "flagText": [
+  "3 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "Pride and Prejudice was written by English author Jane Austen.",
+     "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "source": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "span": {
+      "start": 31,
+      "end": 60
+     },
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#31-60",
+     "score": 5,
+     "window": {
+      "from": 0,
+      "to": 192
+     }
+    },
+    {
+     "text": "It was published in 1813.",
+     "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "source": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "span": {
+      "start": 166,
+      "end": 190
+     },
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#166-190",
+     "score": 5,
+     "window": {
+      "from": 0,
+      "to": 442
+     }
+    }
+   ],
+   "grounded": 2,
+   "total": 2,
+   "refs": [
+    "en.wikipedia.org — Pride and Prejudice - Wikipedia#31-60",
+    "en.wikipedia.org — Pride and Prejudice - Wikipedia#166-190"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#31-60",
+    "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+    "span": {
+     "start": 31,
+     "end": 60
+    },
+    "text": "Pride and Prejudice was written by English author Jane Austen."
+   },
+   {
+    "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#166-190",
+    "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+    "span": {
+     "start": 166,
+     "end": 190
+    },
+    "text": "It was published in 1813."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#31-60",
+     "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "span": {
+      "start": 31,
+      "end": 60
+     },
+     "label": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "source": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "domain": "en.wikipedia.org",
+     "text": "Pride and Prejudice is a novel by English author Jane Austen .",
+     "before": "Pride and Prejudice is a novel",
+     "mark": "by English author Jane Austen",
+     "after": ".",
+     "ellipsisBefore": false,
+     "ellipsisAfter": true,
+     "cite": 1
+    },
+    {
+     "n": "S2",
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#166-190",
+     "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "span": {
+      "start": 166,
+      "end": 190
+     },
+     "label": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "source": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "domain": "en.wikipedia.org",
+     "text": "Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813 .",
+     "before": "Written when she was aged 20–21, it was her third novel written and became the second to see print when",
+     "mark": "it was published in 1813",
+     "after": ".",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "Pride and Prejudice was written by English author Jane Austen.",
+     "grounded": true,
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#31-60"
+    },
+    {
+     "tag": "S2",
+     "text": "It was published in 1813.",
+     "grounded": true,
+     "address": "en.wikipedia.org — Pride and Prejudice - Wikipedia#166-190"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 2 addresses checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "Who wrote Pride and Prejudice and when was it published?",
+    "engine": "DuckDuckGo",
+    "n": 10,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "Prejudice",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "wikipedia",
+    "q": "Pride",
+    "engine": "Wikipedia",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web",
+     "wikipedia"
+    ],
+    "skipped": [
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything",
+     "wikipedia": "web hits are encyclopedia pages (4 of top 10)"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Pride and Prejudice - Wikipedia (shares-only-the-name)",
+     "When was Pride and Prejudice written? | Britannica (shares-only-the-name)",
+     "Jane Austen - Wikipedia (no-shared-word)",
+     "Pride and Prejudice - JASNA (shares-only-the-name)",
+     "Pride and Prejudice - Encyclopedia Britannica (shares-only-the-name)",
+     "Pride and Prejudice - Jane Austen's House (shares-only-the-name)",
+     "Pride and Prejudice by Jane Austen | History, Plot & Facts - Jane ... (shares-only-the-name)",
+     "Pride and Prejudice (shares-only-the-name)",
+     "Extreme Prejudice (shares-only-the-name)",
+     "Bride and Prejudice (shares-only-the-name)",
+     "Pride and Prejudice and Zombies (film) (shares-only-the-name)",
+     "Pride parade (shares-only-the-name)",
+     "Pride and Prejudice (shares-only-the-name)",
+     "Pride flag (shares-only-the-name)",
+     "Kia Pride (shares-only-the-name)",
+     "Rainbow flag (LGBTQ) (no-shared-word)"
+    ]
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Prejudice",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2391,
+    "hash": "9b23528a"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Pride",
+    "via": "direct",
+    "chars": 20754,
+    "kept": 1028,
+    "hash": "89fae2da"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 916,
+    "hash": "98f0813e"
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+    "via": "direct",
+    "chars": 11012,
+    "kept": 1518,
+    "hash": "44a84449",
+    "skipped": true
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2441,
+    "hash": "74485ee6",
+    "skipped": true
+   }
+  ],
+  "passages": [
+   {
+    "ref": "Wikipedia — Prejudice",
+    "source": "https://en.wikipedia.org/wiki/Prejudice",
+    "url": "https://en.wikipedia.org/wiki/Prejudice",
+    "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership.\nAuestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization.\nIn 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people\nThe word prejudice has been used since Middle English around the year 1300.\nThe first psychological research conducted on prejudice occurred in the 1920s.\nIn the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis.\nIn 1954, Gordon Allport, in his classic work The Nature of Prejudice, linked prejudice to categorical thinking.\nIn the 1970s, research began to show that prejudice tends to be based on favoritism towards one's own groups, rather than negative feelings towards another group.\nIn 1979, Thomas Pettigrew described the ultimate attribution error and its role in prejudice.\nThe ultimate attribution error occurs when ingroup members \"(1) attribute negative outgroup behavior to dispositional causes (more than they would for identical ingroup behavior), and (2) attribute positive outgroup behavior to one or more of the following causes: (a) a fluke or exceptional case, (b) luck or special advantage, (c) high motivation and effort, and (d) situational factors\"/\nYoung-Bruehl (1996) argued that prejudice cannot be treated in the singular; one should rather speak of different prejudices as characteristic of different character types.\nThe justification-suppression model of prejudice was created by Christian Crandall and Amy Eshleman.\nThis can occur in someone who is a prejudice victim, being the target of someone else's prejudice, or when people have prejudice against themselves that causes their own depression.\nPaul Bloom argues that while prejudice can be irrational and have terrible consequences, it is natural and often quite rational.\nFor example, studies show that gay men earn 10–32% less than heterosexual men in the United States, and that there is significant discrimination in hiring on the basis of sexual orientation in many labor mar"
+   },
+   {
+    "ref": "Wikipedia — Pride",
+    "source": "https://en.wikipedia.org/wiki/Pride",
+    "url": "https://en.wikipedia.org/wiki/Pride",
+    "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments.\nWhen viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging.\nPickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing.\nResearch from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination.\nThe modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s.\nIn June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots.\nDuring the Renaissance, it was typically represented as a naked woman, sometimes seated or reclining on a couch.\nGreece and Rome, Vol. 23, No. 1 (April 1976), pages 14–31."
+   },
+   {
+    "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+    "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+    "text": "Pride and Prejudice is a novel by English author Jane Austen.\nWritten when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813.\nA novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.\nGeorgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins.\nWhen still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises.\nAccording to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dick's \"Call me Ishmael\"."
+   }
+  ],
+  "loop": {
+   "passes": [],
+   "cleared": true,
+   "after": {
+    "claims": 2,
+    "corroborated": 0,
+    "held": 2,
+    "weak": 0,
+    "contested": 0,
+    "unsupported": 0,
+    "backed": 2,
+    "swapsArmed": 2,
+    "swapsFailed": 0,
+    "cleared": true
+   },
+   "firstTry": true,
+   "processLine": "reframe · every sentence held on the first try"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 3 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframe · every sentence held on the first try"
+  ],
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1010,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 624,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 354,
+    "estimated": true,
+    "window": 8192,
+    "struckChars": 1,
+    "findings": [
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 291,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 251,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 3,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "Who wrote Pride and Prejudice and when was it published?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 14
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “Who wrote Pride and Prejudice and when was it published?”",
+    "at": 64
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 73,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 73
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6094
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "10 results via DuckDuckGo",
+    "ms": 6363,
+    "at": 6436
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6436
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:Pride",
+    "title": "Asking Wikipedia about “Pride”",
+    "tone": "run",
+    "at": 6446,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 6446
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:wikipedia:Prejudice",
+    "title": "Asking Wikipedia about “Prejudice”",
+    "tone": "run",
+    "at": 6454,
+    "slowAfter": 3000,
+    "slow": "waiting on Wikipedia (slow: over 3 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia and Wikipedia",
+    "at": 6454
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:Prejudice",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 5840,
+    "at": 12294
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on Wikipedia",
+    "at": 12294
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:wikipedia:Pride",
+    "title": "Asked Wikipedia",
+    "tone": "ok",
+    "note": "20 results",
+    "ms": 5850,
+    "at": 12296
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 12296
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 12297
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "16 pages named for something else that shares the name: Pride and Prejudice - Wikipedia; When was Pride and Prejudice written? |…",
+    "at": 12307
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Prejudice",
+    "title": "Reading Wikipedia — Prejudice",
+    "tone": "run",
+    "at": 12308,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 12308
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Pride",
+    "title": "Reading Wikipedia — Pride",
+    "tone": "run",
+    "at": 12311,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12311
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+    "title": "Reading en.wikipedia.org — Pride and Prejudice - Wikipedia",
+    "tone": "run",
+    "at": 12312,
+    "slowAfter": 5000,
+    "slow": "waiting on en.wikipedia.org (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12312
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Pride",
+    "title": "Read Wikipedia — Pride",
+    "tone": "ok",
+    "note": "kept 1,028 of 20,754 chars",
+    "ms": 207,
+    "at": 12518
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12518
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+    "title": "Reading Wikipedia — Prejudice (legal term)",
+    "tone": "run",
+    "at": 12520,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12520
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Prejudice",
+    "title": "Read Wikipedia — Prejudice",
+    "tone": "ok",
+    "note": "kept 2,391 of 24,000 chars",
+    "ms": 256,
+    "at": 12564
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12564
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+    "title": "Reading Wikipedia — Pride & Prejudice (2005 film)",
+    "tone": "run",
+    "at": 12566,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12566
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+    "title": "Read en.wikipedia.org — Pride and Prejudice - Wikipedia",
+    "tone": "ok",
+    "note": "kept 916 of 24,000 chars",
+    "ms": 315,
+    "at": 12627
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12627
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+    "title": "Read Wikipedia — Prejudice (legal term)",
+    "tone": "ok",
+    "note": "kept 1,518 of 11,012 chars",
+    "ms": 177,
+    "at": 12697
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 12697
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+    "title": "Read Wikipedia — Pride & Prejudice (2005 film)",
+    "tone": "ok",
+    "note": "kept 2,441 of 24,000 chars",
+    "ms": 362,
+    "at": 12928
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 12928
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read.",
+    "at": 25281
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references were read but do not carry this. It points to 1 original source.",
+    "at": 25281
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 25283
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references were read but do not carry this. It points to 1 original source.",
+    "at": 25283
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 25284
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 25289,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 25289
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 29088
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "23 tokens",
+    "ms": 5658,
+    "at": 30947
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 30947
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 30952
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Tried to break every sentence — none broke",
+    "tone": "ok",
+    "note": "0 corroborated · 2 on one source",
+    "at": 31022
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read the draft before speaking",
+    "tone": "ok",
+    "note": "read the draft: all 2 sentences spoken · 11 of 11 checks have never withheld anything — shown, not measured",
+    "at": 31039
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Asked the model where it got that",
+    "tone": "info",
+    "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself",
+    "at": 31043
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "No primary page said it",
+    "tone": "info",
+    "note": "en.wikipedia.org: tertiary (tertiary_host) · en.wikipedia.org: tertiary (tertiary_host) · britannica.com: tertiary (encyclopedia) · britannica.com: tertiary (encyclopedia) · en.wikipedia.org: tertiar…",
+    "at": 59223
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Verified where it came from",
+    "tone": "ok",
+    "note": "1 source · en.wikipedia.org · 1 model call",
+    "at": 59226
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Checked the answer against what was read",
+    "tone": "ok",
+    "note": "every figure and name appears in the sources",
+    "at": 59255
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 59 s · read 3 sources · gemma2:2b",
+    "at": 59261,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.008,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.011,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “Who wrote Pride and Prejudice and when was it published?”"
+    }
+   },
+   {
+    "at": 0.021,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.023,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.023,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "Who wrote Pride and Prejudice and when was it published?"
+    }
+   },
+   {
+    "at": 6.04,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.04,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.381,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:Who wrote Pride and Prejudice and when was it published?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "10 results via DuckDuckGo",
+     "ms": 6363
+    }
+   },
+   {
+    "at": 6.383,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.383,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "Who wrote Pride and Prejudice and when was it published?",
+     "n": 10
+    }
+   },
+   {
+    "at": 6.393,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:Pride",
+     "title": "Asking Wikipedia about “Pride”",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.395,
+    "seq": 12,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 6.395,
+    "seq": 13,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "Pride"
+    }
+   },
+   {
+    "at": 6.4,
+    "seq": 14,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:wikipedia:Prejudice",
+     "title": "Asking Wikipedia about “Prejudice”",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.405,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia and Wikipedia"
+    }
+   },
+   {
+    "at": 6.405,
+    "seq": 16,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "wikipedia",
+     "q": "Prejudice"
+    }
+   },
+   {
+    "at": 12.239,
+    "seq": 17,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:Prejudice",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 5840
+    }
+   },
+   {
+    "at": 12.24,
+    "seq": 18,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on Wikipedia"
+    }
+   },
+   {
+    "at": 12.24,
+    "seq": 19,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "Prejudice",
+     "n": 20
+    }
+   },
+   {
+    "at": 12.242,
+    "seq": 20,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:wikipedia:Pride",
+     "title": "Asked Wikipedia",
+     "tone": "ok",
+     "note": "20 results",
+     "ms": 5850
+    }
+   },
+   {
+    "at": 12.242,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 12.242,
+    "seq": 22,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "wikipedia",
+     "q": "Pride",
+     "n": 20
+    }
+   },
+   {
+    "at": 12.242,
+    "seq": 23,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web + Wikipedia (not GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 12.242,
+    "seq": 24,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 12.253,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "16 pages named for something else that shares the name: Pride and Prejudice - Wikipedia; When was Pride and Prejudice written? |…"
+    }
+   },
+   {
+    "at": 12.253,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 16
+    }
+   },
+   {
+    "at": 12.253,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Prejudice",
+     "title": "Reading Wikipedia — Prejudice",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.254,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 12.254,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Prejudice",
+     "site": "Wikipedia",
+     "title": "Prejudice"
+    }
+   },
+   {
+    "at": 12.256,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Pride",
+     "title": "Reading Wikipedia — Pride",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.257,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.257,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Pride",
+     "site": "Wikipedia",
+     "title": "Pride"
+    }
+   },
+   {
+    "at": 12.257,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "title": "Reading en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.257,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.257,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "site": "en.wikipedia.org",
+     "title": "Pride and Prejudice - Wikipedia"
+    }
+   },
+   {
+    "at": 12.463,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Pride",
+     "title": "Read Wikipedia — Pride",
+     "tone": "ok",
+     "note": "kept 1,028 of 20,754 chars",
+     "ms": 207
+    }
+   },
+   {
+    "at": 12.463,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.463,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Pride",
+     "site": "Wikipedia",
+     "title": "Pride",
+     "chars": 20754,
+     "kept": 1028,
+     "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. Depending on the context, pride may be viewed as either a virtue or a vice. Typically, pride arises from praise, independent self-reflection, or a fulfilled feeling of belonging. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. In this sense it is defined as synonymous with confidence, self-respect or magnanimity, and as the opposite of shame. It may encompass a sense of patriotism, national identity, regional identity, or other affiliations (e.g. proud to be a university alumnus). It can also be used by members of marginalized groups to signal a celebration of their unique cultural identity, such as in Black pride, Mad pride, or especially LGBTQ Pride movements. When depicted as a vice, pride may also be used to refer to foolhardiness, or an unearned, irrational sense of one's personal value, status, or accomplishments. Negative definitions of pride are synonymous with arrogance, vanity or hubris, and as the opposite of humility. It is in this sense that pride is interpreted in various theologies as one of the seven deadly sins. Despite their differences, the positive and negative definitions of pride share a nonverbal expression and evolutionary function. == Etymology == The word proud originated fr"
+    }
+   },
+   {
+    "at": 12.468,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+     "title": "Reading Wikipedia — Prejudice (legal term)",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.469,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.47,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+     "site": "Wikipedia",
+     "title": "Prejudice (legal term)"
+    }
+   },
+   {
+    "at": 12.509,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Prejudice",
+     "title": "Read Wikipedia — Prejudice",
+     "tone": "ok",
+     "note": "kept 2,391 of 24,000 chars",
+     "ms": 256
+    }
+   },
+   {
+    "at": 12.51,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.511,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Prejudice",
+     "site": "Wikipedia",
+     "title": "Prejudice",
+     "chars": 24000,
+     "kept": 2391,
+     "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. The word is often used to refer to a preconceived (usually unfavourable) evaluation or classification of another person based on that person's perceived personal characteristics, such as sex, gender, gender identity, beliefs, values, social class, friendship, age, disability, religion, sexuality, race, ethnicity, language, nationality, culture, complexion, beauty, height, body weight, occupation, wealth, education, criminality, sport-team affiliation, fandom, music tastes, enthusiasm or other perceived characteristics. The word \"prejudice\" can also refer to unfounded or pigeonholed beliefs and it may apply to \"any unreasonable attitude that is unusually resistant to rational influence\". Gordon Allport defined prejudice as a \"feeling, favorable or unfavorable, toward a person or thing, prior to, or not based on, actual experience\". Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. According to American Psychological Association (APA), Implicit Association test (IAT) is an evaluation of certain negative attitudes towards people which are usually hidden or \"Implicit\". "
+    }
+   },
+   {
+    "at": 12.511,
+    "seq": 45,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+     "title": "Reading Wikipedia — Pride & Prejudice (2005 film)",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.512,
+    "seq": 46,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.513,
+    "seq": 47,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+     "site": "Wikipedia",
+     "title": "Pride & Prejudice (2005 film)"
+    }
+   },
+   {
+    "at": 12.572,
+    "seq": 48,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "title": "Read en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "tone": "ok",
+     "note": "kept 916 of 24,000 chars",
+     "ms": 315
+    }
+   },
+   {
+    "at": 12.573,
+    "seq": 49,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.573,
+    "seq": 50,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice",
+     "site": "en.wikipedia.org",
+     "title": "Pride and Prejudice - Wikipedia",
+     "chars": 24000,
+     "kept": 916,
+     "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Her father, Mr Bennet—owner of the Longbourn estate in Hertfordshire—has five daughters; but this estate is entailed and so can only be inherited in the male line. To his regret, he has failed to save out of the income from the Longbourn estate to provide for his daughters. From the Bennets' perspective, it is imperative that at least one of their daughters marry well to support the others, which is a primary motivation driving the plot. Pride and Prejudice has consistently appeared near the top of lists of \"most-loved books\" among literary scholars and the reading public. It has become one of the most popular novels in English literature, with over 20 million copies sold, and has inspired many derivatives in modern literature. For more than a century, dramatic adaptations, reprints, unofficial sequels, films, and TV versions of Pride and Prejudice have portrayed the memorable characters and themes of the novel, reaching mass audiences. == Plot"
+    }
+   },
+   {
+    "at": 12.642,
+    "seq": 51,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+     "title": "Read Wikipedia — Prejudice (legal term)",
+     "tone": "ok",
+     "note": "kept 1,518 of 11,012 chars",
+     "ms": 177
+    }
+   },
+   {
+    "at": 12.644,
+    "seq": 52,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 12.645,
+    "seq": 53,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Prejudice_(legal_term)",
+     "site": "Wikipedia",
+     "title": "Prejudice (legal term)",
+     "chars": 11012,
+     "kept": 1518,
+     "text": "Prejudice is a legal term with different meanings, which depend on whether it is used in criminal, civil, or common law. In legal context, prejudice differs from the more common use of the word and so the term has specific technical meanings. Two of the most common applications of the word are as part of the terms with prejudice and without prejudice. In general, an action taken with prejudice is final. For example, dismissal with prejudice forbids a party to refile the case and might occur because the court finds the alleged facts cannot form a valid claim, or due to misconduct on the part of the party that filed the claim or criminal complaint, or as the result of an out-of-court agreement or settlement. Dismissal without prejudice (Latin: salvis iuribus, lit. 'with preserved rights') allows the party the option to refile and is often a response to procedural or technical problems with the filing that the party may be able to correct by making a new or amended filing. == Etymology == The origin of the word in its legal sense is Latin: prejūdicium, 'a preceding judgement or decision'. == With prejudice and without prejudice == === Criminal law === Depending on the country, a criminal proceeding which ends prematurely due to error, mistake, or misconduct may end as being dismissed with prejudice or without prejudice. If the case ends without prejudice, the accused in the case ("
+    }
+   },
+   {
+    "at": 12.873,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+     "title": "Read Wikipedia — Pride & Prejudice (2005 film)",
+     "tone": "ok",
+     "note": "kept 2,441 of 24,000 chars",
+     "ms": 362
+    }
+   },
+   {
+    "at": 12.875,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 12.875,
+    "seq": 56,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Pride_%26_Prejudice_(2005_film)",
+     "site": "Wikipedia",
+     "title": "Pride & Prejudice (2005 film)",
+     "chars": 24000,
+     "kept": 2441,
+     "text": "Pride & Prejudice is a 2005 period romance film directed by Joe Wright, in his feature directorial debut, based on Jane Austen's 1813 novel of the same name. The film features five sisters from an English family of landed gentry as they deal with issues of marriage, morality, and misconceptions. Keira Knightley stars as Elizabeth Bennet, while Matthew Macfadyen plays Mr Darcy, who falls in love with her. Screenwriter Deborah Moggach initially attempted to make her script as faithful to the novel as possible, writing from Elizabeth's perspective while preserving much of the original dialogue. Wright encouraged greater deviation from the text, including changing the Bennet family dynamics. Wright and Moggach set the film in an earlier period and avoided depicting a \"perfectly clean Regency world\", presenting instead a \"muddy hem version\" of the time. It was shot entirely on location in England on an 11-week schedule. Wright found casting difficult due to past performances of particular characters. The filmmakers had to balance who they thought was best for each role with the studio's desire for stars. Knightley was well known in part from her role in the Pirates of the Caribbean film series, while Macfadyen had no international name recognition. Produced by Working Title Films in association with StudioCanal, Pride & Prejudice was released on 16 September 2005 in the United Kingd"
+    }
+   },
+   {
+    "at": 12.953,
+    "seq": 57,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+     "ref": "Wikipedia — Prejudice",
+     "url": "https://en.wikipedia.org/wiki/Prejudice"
+    }
+   },
+   {
+    "at": 13.853,
+    "seq": 58,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+     "ref": "Wikipedia — Pride",
+     "url": "https://en.wikipedia.org/wiki/Pride"
+    }
+   },
+   {
+    "at": 14.753,
+    "seq": 59,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+     "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+    }
+   },
+   {
+    "at": 15.653,
+    "seq": 60,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_3dbf23",
+    "ps": [
+     {
+      "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+      "ref": "Wikipedia — Prejudice",
+      "url": "https://en.wikipedia.org/wiki/Prejudice"
+     },
+     {
+      "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+      "ref": "Wikipedia — Pride",
+      "url": "https://en.wikipedia.org/wiki/Pride"
+     },
+     {
+      "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+      "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+     }
+    ]
+   },
+   {
+    "at": 17.453,
+    "seq": 61,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_3dbf23",
+    "ps": [
+     {
+      "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+      "ref": "Wikipedia — Prejudice",
+      "url": "https://en.wikipedia.org/wiki/Prejudice"
+     },
+     {
+      "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+      "ref": "Wikipedia — Pride",
+      "url": "https://en.wikipedia.org/wiki/Pride"
+     },
+     {
+      "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+      "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+     }
+    ]
+   },
+   {
+    "at": 19.453,
+    "seq": 62,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_3dbf23",
+    "ps": [
+     {
+      "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+      "ref": "Wikipedia — Prejudice",
+      "url": "https://en.wikipedia.org/wiki/Prejudice"
+     },
+     {
+      "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+      "ref": "Wikipedia — Pride",
+      "url": "https://en.wikipedia.org/wiki/Pride"
+     },
+     {
+      "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+      "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+     }
+    ]
+   },
+   {
+    "at": 21.653,
+    "seq": 63,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_3dbf23",
+    "ps": [
+     {
+      "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+      "ref": "Wikipedia — Prejudice",
+      "url": "https://en.wikipedia.org/wiki/Prejudice"
+     },
+     {
+      "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+      "ref": "Wikipedia — Pride",
+      "url": "https://en.wikipedia.org/wiki/Pride"
+     },
+     {
+      "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+      "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+     }
+    ]
+   },
+   {
+    "at": 24.453,
+    "seq": 64,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_3dbf23",
+    "ps": [
+     {
+      "text": "Prejudice can be an affective feeling towards a person based on their perceived social group membership. Auestad (2015) defines prejudice as characterized by \"symbolic transfer\", transfer of a value-laden meaning content onto a socially-formed category and then on to individuals who are taken to belong to that category, resistance to change, and overgeneralization. In 2023 alone, more than 40 million IATs were completed by people at the Project Implicit website, which means it is the most comprehensive scales to assess hidden biases among people The word prejudice has been used since Middle English around the year 1300. The first psychological research conducted on prejudice occurred in the 1920s. In the 1930s and 1940s, this perspective began to change due to the increasing concern about anti-Semitism due to the ideology of the Nazis. In 1954, Gordon Allport, in his classic work The Na…",
+      "ref": "Wikipedia — Prejudice",
+      "url": "https://en.wikipedia.org/wiki/Prejudice"
+     },
+     {
+      "text": "Pride is a primary emotion characterized by a sense of security with one's identity, performance, and/or accomplishments. When viewed as a virtue, pride refers to a reasonable sense of one's worth, accomplishments and belonging. Pickett found that those who express pride by being filled with humility while focusing on members' efforts and hard work tend to achieve high social standing. Research from the University of Sydney found that hubristic pride is correlated with arrogance and self-aggrandizement and promotes prejudice and discrimination. The modern gay pride movement began after the Stonewall riots—the nearly week-long uprising between New York City youth and police officers following a raid of Stonewall Inn—of the late 1960s. In June 1970, the first pride parade in the United States commemorated the one-year anniversary of the Stonewall riots. During the Renaissance, it was typi…",
+      "ref": "Wikipedia — Pride",
+      "url": "https://en.wikipedia.org/wiki/Pride"
+     },
+     {
+      "text": "Pride and Prejudice is a novel by English author Jane Austen. Written when she was aged 20–21, it was her third novel written and became the second to see print when it was published in 1813. A novel of manners, it follows the character development of Elizabeth Bennet, the protagonist of the book, who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness. Georgiana Darcy – Georgiana is Mr Darcy's quiet, amiable and shy younger sister, with a settled dowry of £30,000 from the Pemberley estate, who is 16 when the story begins. When still 15, Miss Darcy almost eloped with Mr Wickham but was saved by her brother, whom she idolises. According to American Book Review the opening line of Pride and Prejudice is considered second on their list of top 100 greatest opening lines in English literature after Moby Dic…",
+      "ref": "en.wikipedia.org — Pride and Prejudice - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pride_and_Prejudice"
+     }
+    ]
+   },
+   {
+    "at": 25.226,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read."
+    }
+   },
+   {
+    "at": 25.227,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references were read but do not carry this. It points to 1 original source."
+    }
+   },
+   {
+    "at": 25.228,
+    "seq": 68,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 25.228,
+    "seq": 69,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references were read but do not carry this. It points to 1 original source."
+    }
+   },
+   {
+    "at": 25.229,
+    "seq": 70,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 25.234,
+    "seq": 71,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 25.235,
+    "seq": 72,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 26.653,
+    "seq": 65,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 29.033,
+    "seq": 73,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 30.892,
+    "seq": 74,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "23 tokens",
+     "ms": 5658
+    }
+   },
+   {
+    "at": 30.896,
+    "seq": 75,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 30.899,
+    "seq": 76,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 30.971,
+    "seq": 77,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Tried to break every sentence — none broke",
+     "tone": "ok",
+     "note": "0 corroborated · 2 on one source"
+    }
+   },
+   {
+    "at": 30.987,
+    "seq": 78,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 2 sentences spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 30.988,
+    "seq": 79,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 59.168,
+    "seq": 80,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "No primary page said it",
+     "tone": "info",
+     "note": "en.wikipedia.org: tertiary (tertiary_host) · en.wikipedia.org: tertiary (tertiary_host) · britannica.com: tertiary (encyclopedia) · britannica.com: tertiary (encyclopedia) · en.wikipedia.org: tertiary (tertiary_host) · janeausten.org: unreadable (too_short) · jasna.org: unsupported (none) · jane.austen.com: unsupported (missing_stem:write,english,jane)"
+    }
+   },
+   {
+    "at": 59.173,
+    "seq": 81,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · en.wikipedia.org · 1 model call"
+    }
+   },
+   {
+    "at": 59.204,
+    "seq": 82,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 59.208,
+    "seq": 83,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 59 s · read 3 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 59.209,
+    "seq": 84,
+    "kind": "done"
+   }
+  ]
+ }
+}

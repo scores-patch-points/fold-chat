@@ -1,0 +1,33 @@
+--- a/fold-chat-web.js
++++ b/fold-chat-web.js
+@@ -313,6 +313,11 @@
+ // reachable at all answers in a second or two (measured: 100 ms–2 s), and the public
+ // proxies' failures took 8 s each to arrive.
+ export const GATEWAY_BUDGET_MS = 3500;
++export const DOOR_TTL_MS = 10 * 60 * 1000;   // E2: how long a door that has never answered is left alone
++const DOORS = new Map();
++const doorUp = (key) => { try { if (localStorage.getItem("fold-chat:e2doors") === "off") return true; } catch {} const d = DOORS.get(key); if (!d) return true; if (Date.now() - d.at > DOOR_TTL_MS) { DOORS.delete(key); return true; } return !(d.fail >= d.limit && d.ok === 0); };
++const doorSaw = (key, ok, limit) => { const d = DOORS.get(key) || { ok: 0, fail: 0, at: Date.now(), limit }; if (ok) d.ok++; else d.fail++; d.at = Date.now(); DOORS.set(key, d); };
++export const _doors = DOORS;
+ export const WEB_GRACE_MS = 2000;   // E2: once another source has answered with a usable list, how much longer the open web may keep the turn waiting
+ export const READ_GRACE_MS = 1500;   // E2: once enough pages are read, how long reads still in flight may keep the turn waiting
+ export const DIRECT_BUDGET_MS = 1500;   // E2: the browser's own read of a page; past it the relay chain is tried
+@@ -407,7 +412,8 @@
+         }
+       } catch (e) {}
+     } }
+-  try { return await attempt(url, "direct", null, (() => { try { return localStorage.getItem("fold-chat:e2cap") === "off" ? timeoutMs : Math.min(timeoutMs, DIRECT_BUDGET_MS); } catch { return Math.min(timeoutMs, DIRECT_BUDGET_MS); } })()); } catch (e) {}   // E2: a CORS-closed host answers only to be refused (5-7 s measured); the relay chain follows as before
++  const dKey = "direct:" + hostKey(url);
++  if (direct || doorUp(dKey)) { try { const v = await attempt(url, "direct", null, (() => { try { return localStorage.getItem("fold-chat:e2cap") === "off" ? timeoutMs : Math.min(timeoutMs, DIRECT_BUDGET_MS); } catch { return Math.min(timeoutMs, DIRECT_BUDGET_MS); } })()); doorSaw(dKey, true, 1); return v; } catch (e) { if (!(e && e.name === "AbortError")) doorSaw(dKey, false, 1); } }   // E2: a CORS-closed host answers only to be refused (5-7 s measured); the relay chain follows as before
+   // AN EXTENSION'S OWN FETCH IS THE DOOR: it has host permissions, so a refusal here is the site's own,
+   // and no proxy or text reader (each a third party that would learn the address) could change it.
+   if (direct) return { ok: false, text: "", title: "", via: null, url, error: "refused", direct: true };
+@@ -431,7 +437,7 @@
+       }
+     });
+   };
+-  const viaProxy = await firstOf(CORS_PROXIES.map((p, i) => (ctl) => attempt(p(url), i === 0 ? "the fold's relay" : "a public proxy", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS))));
++  const viaProxy = await firstOf(CORS_PROXIES.map((p, i) => ({ p, i })).filter(({ i }) => i === 0 || doorUp("proxy:" + i)).map(({ p, i }) => (ctl) => attempt(p(url), i === 0 ? "the fold's relay" : "a public proxy", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS)).then((v) => { if (i) doorSaw("proxy:" + i, true, 6); return v; }, (e) => { if (i && !(e && e.name === "AbortError")) doorSaw("proxy:" + i, false, 6); throw e; })));
+   if (viaProxy) return viaProxy;
+   const viaReader = await firstOf(TEXT_READERS.map((rd) => (ctl) => attempt(rd(url), "a text reader", ctl, Math.min(timeoutMs, GATEWAY_BUDGET_MS))));
+   if (viaReader) return viaReader;

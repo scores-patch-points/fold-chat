@@ -1,0 +1,27 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "saltzer",
+  "organ": "khora/native/organs/salzter.js",
+  "standing": "deferred",
+  "snips": ["eo-teachings/manifest/saltzer.json"],
+  "whatTheyArgued": "Saltzer & Schroeder, 'The Protection of Information in Computer Systems' (Proceedings of the IEEE 63(9), 1975; copyrighted, not reproduced; manifest is copyrighted_deferred). Read via the MIT-hosted copy and paraphrased only. They list eight design principles: economy of mechanism, fail-safe defaults, complete mediation, open design, separation of privilege, least privilege, least common mechanism, psychological acceptability. They say these are not absolute rules but best used as warnings, that nobody knows how to build a flawless system, and that the principles aim to reduce the number and seriousness of flaws. Complete mediation needs a system-wide view of access control; protection works best when part of the design, not added on.",
+  "scholarship": [
+    { "ref": "Saltzer & Schroeder, primary text, MIT-hosted copy (read via fetch, paraphrased)", "url": "https://web.mit.edu/Saltzer/www/publications/protection/Basic.html", "supports": "the eight principles, their warning-not-rule status, and the limits claim", "disputes": "none" },
+    { "ref": "Richard E. Smith, 'A Contemporary Look at Saltzer and Schroeder's 1975 Design Principles', IEEE Security & Privacy, Nov-Dec 2012 (title seen in search results only; not read)", "url": "https://comp97109.doc.ic.ac.uk/reading/look-at-1975.pdf", "supports": "that the principles are still the standard reference and have been re-examined for modern systems", "disputes": "not read, so no dispute is reported" }
+  ],
+  "ourUse": "salzter.js: a native scan of generated code (Python via the AST, HTML/JS via the DOM surface) for shapes the CWE insecure-code evals measure (os.system with concatenation, f-string SQL, md5, random for tokens, pickle.loads, verify=False, debug=True, bare except). It names the CWE, line and shape, and is a witness, never proof. The header says these are flaws that 'violate' least privilege, fail-safe defaults and complete mediation; the exported principles list adds economy of mechanism.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "design-vs-detector", "kind": "re-scoped", "ours": "The archon 'natively detects the CWE gaps' with per-line pattern checks on generated code.", "theirs": "S&S give design principles for a protection architecture, explicitly as warnings and not rules or tests; they offer no catalogue of coding flaws, and CWE did not exist in 1975." },
+    { "id": "flaw-to-principle", "kind": "decorative", "ours": "Header says the flaws each violate least privilege, fail-safe defaults and complete mediation.", "theirs": "Most of the detected shapes (md5, random tokens, pickle) have no direct mapping to those principles; the mapping is ours and is not shown per finding." },
+    { "id": "four-of-eight", "kind": "narrowed", "ours": "Credit names economy of mechanism, fail-safe defaults, least privilege (and complete mediation in the work line): four of the eight.", "theirs": "The paper has eight; open design, separation of privilege, least common mechanism and psychological acceptability are absent, and open design bears on the project's own 'weak signal, disclosed' posture." },
+    { "id": "never-a-patch", "kind": "reinterpreted", "ours": "Compendium: 'Security is structural - a design property, never a patch.'", "theirs": "S&S say protection works best designed in; 'never a patch' and the phrase as a quotation are ours. Our organ is a post-hoc scanner, which is a patch-style tool by that standard." },
+    { "id": "spelling", "kind": "decorative", "ours": "The organ file is named salzter.js (and the handle spelled Saltzer elsewhere).", "theirs": "The author's name is Saltzer; file and constant SALZTER_ARCHON carry a typo." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Jerome Saltzer and Michael Schroeder (1975) set out eight design principles for protection (economy of mechanism, fail-safe defaults, complete mediation, open design, separation of privilege, least privilege, least common mechanism, psychological acceptability) as warnings, not rules. salzter.js is a separate, project-built scanner for common insecure-code shapes (CWE); it is named after the paper, not derived from it.'",
+    "compendium credit: 'Saltzer & Schroeder (1975) - eight design principles for protection.'",
+    "salzter.js: either map each finding kind to the principle it actually relates to, or drop 'each violate' from the header; consider renaming the file to saltzer.js."
+  ]
+}

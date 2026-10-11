@@ -1,0 +1,29 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "strunk-white",
+  "organ": "khora/native/organs/strunk-white.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/strunk-white.json"],
+  "whatTheyArgued": "Strunk (1918 edition, Gutenberg 37134, read on disk) lists 18 numbered rules of composition. Rule 13 'Omit needless words' says vigorous writing is concise: no unnecessary words in a sentence, no unnecessary sentences in a paragraph, and this does not require short sentences or the omission of detail, only that every word tell. Rule 10 'Use the active voice' says the active is usually more direct, and states plainly that the writer should not entirely discard the passive, which is frequently convenient and sometimes necessary. Rule 13 illustrates with a list of wordy phrases (e.g. 'the fact that'; 'the question as to whether'). The 1918 text has no readability metric and no rule against clichés or weasel words that I could find by search. E. B. White's 1959 revision is a separate, still-copyrighted text that was not read.",
+  "scholarship": [
+    { "ref": "Geoffrey K. Pullum, Language Log, 'The Land of the Free in the grip of The Elements of Style' (read in full via fetch)", "url": "https://languagelog.ldc.upenn.edu/nll/?p=1318", "supports": "that Strunk & White's passive-voice advice is applied unreliably (three of four 'passive' examples are not passive) and the authors themselves use passives in their own advice", "disputes": "Pullum is a hostile critic of the book as grammar authority; defenders treat it as rhetorical advice, not grammar. This dossier does not adjudicate; it only notes that a regex that flags every passive is not what Strunk's rule 10 says." },
+    { "ref": "Pullum, 'The Grammarians Have No Clothes' / '50 Years of Stupid Grammar Advice' (seen only as search-result summary, not read in full)", "url": "https://www.wilsonquarterly.com/quarterly/_/grammarians-have-no-clothes/", "supports": "same critique of passive-voice advice", "disputes": "same" }
+  ],
+  "ourUse": "strunk-white.js: a set of regex detectors (weak 'is/are/was/were/there is', weak adverbs, weasel phrases, clichés, any passive, nominalizations, a short list of wordy phrases) plus a Flesch readability grade, each finding labelled with an 'Elements §II.13/14' citation. The file header opens with the 1918 rule 13 passage as 'Strunk & White speaks', then a paragraph in first person.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "header-first-person", "kind": "misstated", "ours": "Header block under 'Strunk & White speaks:' follows the verbatim quote with 'This file implements the principles ... while preserving the integrity of the original work. I believe the focus on conciseness can sometimes lead to a loss of nuance and depth in the code' - a first-person voice sitting inside the author's speaking block.", "theirs": "Strunk wrote nothing about code, and 'I believe' is not his or White's sentence. The sentence is ours (or generated) and must not sit in the author's block." },
+    { "id": "first-rule", "kind": "misstated", "ours": "Compendium: 'Its first rule for prose: Omit needless words.'", "theirs": "In the 1918 edition it is rule 13 of 18 (the Elementary Principles of Composition). The first rule is the possessive singular." },
+    { "id": "section-cites", "kind": "invented-attribution", "ours": "Rule texts cite '(Elements §II.13)' for active voice, weak adverbs and nominalizations, and '(Elements §II.14)' for clichés.", "theirs": "In the 1918 text active voice is rule 10; rule 14 is 'avoid a succession of loose sentences'. I found no cliché rule, no nominalization rule, and no stated rule that 'very' weakens a word. Those checks are ours (the organ itself credits proselint for weasel words)." },
+    { "id": "passive-overreach", "kind": "reinterpreted", "ours": "passive and weak_verb detectors flag every passive and every 'is/are/was/were' as a violation of 'use the active voice - the subject acts'.", "theirs": "Strunk says the active is usually better and explicitly says the passive is frequently convenient and sometimes necessary; copular 'is' is not passive voice at all. Our detector is stricter than the source." },
+    { "id": "readability-grade", "kind": "decorative", "ours": "Compendium role: 'readability grade' attributed to the Strunk & White archon.", "theirs": "Flesch/Flesch-Kincaid are later formulas. Nothing in the 1918 text computes or recommends a grade." },
+    { "id": "white-1959", "kind": "re-scoped", "ours": "Credit names 'Strunk & White' and cites the 1959 revision as 'kept alive'.", "theirs": "Only Strunk's 1918 text was verified. White's additions are copyrighted and unread; any rule we attribute to White is unverified." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Strunk's 1918 rulebook (public domain; White revised it in 1959, not verified here). Rule 13: \"Omit needless words.\" The detectors here are our regex approximations of that rule and of rule 10 (active voice), not Strunk's own tests; the readability grade is Flesch, not Strunk.'",
+    "compendium credit: 'Strunk - rule 13, Omit needless words (The Elements of Style, 1918).'",
+    "strunk-white.js header: move the sentence 'I believe the focus on conciseness...' and 'preserving the integrity of the original work' out of the quote block, or delete them.",
+    "strunk-white.js RULES: drop '§II.13/§II.14' citations except where the 1918 rule is real (active voice = rule 10; needless words = rule 13); label cliché/weasel/nominalization/weak-adverb as 'our additions'. Narrow 'passive' to a hint with Strunk's own caveat that the passive is sometimes necessary."
+  ]
+}

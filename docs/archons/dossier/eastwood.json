@@ -1,0 +1,51 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "eastwood",
+  "organ": "khora/native/the-fold/earned-cast.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/eastwood.json"
+  ],
+  "whatTheyArgued": "Press reporting (/Film, read): Eastwood tries to get scenes in the first take, saying the objective is to make everything sound like the first time it is said; he asks for more takes only for rhythm or timing; he keeps sets relaxed and fast. His economy is economy of production process, not a doctrine about the brevity of a finished work or an answer.",
+  "scholarship": [
+    {
+      "ref": "/Film, 'Why Clint Eastwood Always Tries To Use The First Take As A Director'",
+      "url": "https://slashfilm.com/975697/why-clint-eastwood-always-tries-to-use-the-first-take-as-a-director",
+      "supports": "first-take practice, few takes, quick relaxed sets, purpose is spontaneity",
+      "disputes": "journalism, not peer-reviewed; no film-studies scholarship read (gap)"
+    }
+  ],
+  "ourUse": "earned-cast.js: cues eastwood on question/escalation/assertion; fact 'answer in the fewest true words ... no preamble'. output-voice.js 'lean' register: frame '<end1> <label> <end2>.' labeled 'Eastwood - the shortest true sentence, no wasted frames'. Compendium puts 'Answer in the fewest true words.' in a work field that reads as his.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "shooting-to-answering",
+      "kind": "re-scoped",
+      "ours": "Economy applied to the length of a reply: shortest true answer.",
+      "theirs": "Economy of takes and set time; the reason is naturalness of performance, not brevity of content."
+    },
+    {
+      "id": "quote-is-ours",
+      "kind": "misstated",
+      "ours": "Compendium work ends with ''Answer in the fewest true words.'' in quotation marks as if his.",
+      "theirs": "Not his words; his reported words are about the first time something is said sounding natural."
+    },
+    {
+      "id": "frames-pun",
+      "kind": "decorative",
+      "ours": "'no wasted frames' and the lean register's bare 'X label Y.' frame.",
+      "theirs": "Nothing in the sources links his method to sentence shape; 'frames' is our word play."
+    },
+    {
+      "id": "duel-staging",
+      "kind": "invented-attribution",
+      "ours": "earned-cast 'directors duel': Eastwood takes questions/escalations, Kubrick takes frame-asks, both fire on assertions.",
+      "theirs": "The pairing as a contrast of process (one take versus many) is real in press; assigning them to conversational acts is ours."
+    }
+  ],
+  "fix": [
+    "compendium eastwood.work: 'Director known for economy of process: first takes, few retakes, fast sets (press accounts). Our lean register borrows the image for short replies; the sentence shape and the instruction to use the fewest true words are our rules.'",
+    "Remove the quoted 'Answer in the fewest true words' from work or mark it as the project's instruction."
+  ]
+}

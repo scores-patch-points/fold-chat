@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "tokenized": false,
+  "handle": "arokin",
+  "organ": "khora/native/kernel/notes.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/arokin.json"
+  ],
+  "whatTheyArgued": "Samuel Johnson (1921, History of the Yorubas, read at line ~7131 of the source): the Arokins are hereditary rhapsodists or national historians of the Oyo court who repeat daily in songs the genealogy of the kings, the principal events of their lives and other notable events in Yoruba history. That is all the snip claims; it describes an office and its practice, not a record-keeping rule.",
+  "scholarship": [
+    {
+      "ref": "Robin Law, 'How Truly Traditional Is Our Traditional History? The Case of Samuel Johnson and the Recording of Yoruba Oral Tradition', History in Africa 11 (1984) 195-221 (found in search; summary only)",
+      "url": "https://doi.org/10.2307/3171634",
+      "supports": "Johnson's account of the sources is itself a constructed, filtered record of Oyo tradition",
+      "disputes": "the search summary adds that Johnson alone names the Arokin explicitly as a source and that they had no monopoly on historical knowledge"
+    },
+    {
+      "ref": "History in Africa, 'History and Consolation: Royal Yoruba Bards Comment on Their Craft' (read in full-page fetch)",
+      "url": "https://www.cambridge.org/core/journals/history-in-africa/article/history-and-consolation-royal-yoruba-bards-comment-on-their-craft/32D824B3623903506ED42F8599D22EFF",
+      "supports": "Arokin performed with instruments, adapted precedent and assimilated new events to present circumstance, and understood their work as consolation (restoring equanimity to a grieving ruler) as much as documentation",
+      "disputes": "implicitly against a fixed-archive picture"
+    }
+  ],
+  "ourUse": "kernel/notes.js: an append-only event stream of what a reading was heard to say, with witnesses and byte spans; current belief is a projection. File header opens with the Johnson quote, then a first-person paragraph in the Arokin's voice ('My teaching necessitates fidelity to original sources...'). Compendium still says 'Reserved ... the module is not yet built, so no work is claimed'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "oral-recitation-to-append-only-ledger",
+      "kind": "reinterpreted",
+      "ours": "'The Yoruba court historians ... kept an append-only record of what was said' (notes.js Handle line).",
+      "theirs": "Johnson: they repeat in song, daily, the kings' genealogy and events. Recitation is live performance; the Bards article reports adaptation and consolation, the opposite of an immutable log. Append-only is our design, a legitimate contrast, not their practice."
+    },
+    {
+      "id": "compendium-stale",
+      "kind": "misstated",
+      "ours": "Compendium entry says the module is reserved and unbuilt with no work claimed, while notes.js is built, 'verified' and cites Arokin as the namesake.",
+      "theirs": "n/a: the compendium contradicts the code; one of them is wrong, and it is the compendium."
+    },
+    {
+      "id": "voiced-header",
+      "kind": "misstated",
+      "ours": "First-person model text ('My teaching necessitates fidelity to original sources ... tension between preserving the original record and ... responsible use') presented as 'Arokin speaks:'.",
+      "theirs": "Johnson wrote none of this, and the Arokin's own stated aim, per the Bards article, was consolation and adaptive use of precedent."
+    },
+    {
+      "id": "what-was-said-vs-kings",
+      "kind": "narrowed",
+      "ours": "Record of what was said by any reading, any medium.",
+      "theirs": "Genealogy and notable events of kings and the Yoruba country, performed at court."
+    }
+  ],
+  "fix": [
+    "compendium arokin: replace 'reserved/unbuilt' with: 'Johnson (1921): the Arokin, hereditary court rhapsodists of Oyo, recited the kings' genealogies and notable events daily in song. kernel/notes.js is an append-only ledger named for them by contrast: their recitation adapted to circumstance; ours never rewrites.'",
+    "notes.js header: remove the first-person 'Arokin speaks' paragraph; relabel the Johnson quote as Johnson's description.",
+    "Handle line: 'after Johnson's account of ...' is fine, but drop 'kept an append-only record'."
+  ]
+}

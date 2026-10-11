@@ -1,0 +1,58 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "kanada",
+  "organ": "khora/native/kernel/kind-induction.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/kanada.json"
+  ],
+  "whatTheyArgued": "Vaisheshika Sutras 1.2.3 (Sinha 1923 tr.): the notions Genus and Species are relative to understanding (buddhyapeksam). Read with the commentary on the page (Upaskara, as printed by Sinha), genus is recognised by the cognition of recurrence across many individuals and species by the cognition of reversion; the commentary calls genus eternal and residing in more than one individual. In the wider school, samanya (generality) is one of the real categories (padartha), eternal and inhering in many particulars, not a construct summed up from them; the original list is six bhava padarthas with abhava added by later commentators. The sutras are traditionally ascribed to Kanada; dating is uncertain.",
+  "scholarship": [
+    {
+      "ref": "Sinha tr., Vaisesika Sutras with Upaskara (Sacred Books of the Hindus vol. 6, 1923), pp. around 1.2.3, read on disk in eo-teachings/sources/vaisheshika-sutras-sinha.txt",
+      "url": "https://archive.org/download/vaisheshika_202510/vaisheshika_djvu.txt",
+      "supports": "sutra wording; genus/species tied to cognition of recurrence and reversion; genus eternal and in more than one individual",
+      "disputes": "the commentary (Upaskara, 15th c.) is a later layer than the sutra"
+    },
+    {
+      "ref": "Padartha (Wikipedia summary of Mishra 1987, Conception of Matter according to Nyayavaisesika; abhava a later addition) - low-authority secondary, used only for the six-category point",
+      "url": "https://en.wikipedia.org/wiki/Pad%C4%81rtha",
+      "supports": "six original bhava padarthas, abhava added later by Sridhara, Udayana, Sivaditya",
+      "disputes": "not peer reviewed; I could not open SEP/IEP pages (404) so a stronger secondary source on samanya as a real eternal universal is NOT confirmed by me beyond the Upaskara text and general summaries"
+    }
+  ],
+  "ourUse": "kind-induction.js: a kind is induced from what its instances share (structural features, evidence types); nothing declared in advance. The header, and a model-written paragraph in the file head, present this as 'Kanada's atomist principles of kind-induction'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "induced-vs-real-universal",
+      "kind": "reinterpreted",
+      "ours": "A kind is induced from shared features of instances; a kind is 'what instances have in common, never a list handed down'.",
+      "theirs": "In Vaisheshika samanya is an eternal real inhering in many, not a result of tallying shared features. The recurrence-cognition (anuvrtti) that reveals it is an epistemic route, but the universal is not made by it. Only the 'relative to understanding' sutra and the recurrence gloss resemble our induction."
+    },
+    {
+      "id": "padartha-are-kinds",
+      "kind": "misstated",
+      "ours": "Compendium: 'whose categories (padartha) are kinds induced from what their instances share.'",
+      "theirs": "The padarthas are a fixed enumerated ontology (substance, quality, action, generality, particularity, inherence) laid down by the school; they are not induced from instances. samanya is only one of them."
+    },
+    {
+      "id": "atomist-attribution",
+      "kind": "invented-attribution",
+      "ours": "File head: 'Kanada's atomist principles of kind-induction ... shared features are sufficient to infer a kind'; and a warning that misuse would 'misapply the atomist principles'.",
+      "theirs": "Atomism (paramanu) is a Vaisheshika physics claim about matter; it is not a theory of kind-induction. The sentence is model-generated prose in the author's voice, not in the text, and the 'sufficient to infer a kind' clause is not Kanada's."
+    },
+    {
+      "id": "snip-thinner-than-claim",
+      "kind": "narrowed",
+      "ours": "One snip (genus and species are relative to understanding) is offered as the speaker's voice for the whole organ.",
+      "theirs": "The sutra supports mind-relativity of genus/species (a thing is genus relative to a lower one, species relative to a higher), which is the only part our code honors, and then only loosely."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Vaisheshika Sutras 1.2.3 holds that genus and species are relative to understanding, and its commentary ties genus to the cognition of recurrence across individuals. kind-induction.js borrows that epistemic route (a kind is recognized from what instances share); Vaisheshika itself treats the universal as a real eternal, not an inference.'",
+    "compendium credit: 'Kanada — genus and species relative to understanding, recognized by recurrence (Vaisheshika Sutras 1.2.3); our induction is a loose analogue.'",
+    "organ header: delete the model-written 'atomist principles' paragraph; keep only the verbatim snip and say 'analogue, not doctrine'. Do not call padartha induced kinds."
+  ]
+}

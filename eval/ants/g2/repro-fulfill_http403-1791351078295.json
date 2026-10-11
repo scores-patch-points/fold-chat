@@ -1,0 +1,151 @@
+{
+ "variant": "fulfill:http403",
+ "at": "2026-10-07T05:30:02.850Z",
+ "turns": [
+  {
+   "ask": "who invented the telephone?",
+   "abortModel": false,
+   "spoken": "Alexander Graham Bell is credited with inventing the telephone.",
+   "shown": "Alexander Graham Bell is credited with inventing the telephone.\n\nN\nNMS\nopen ↗\nDid Alexander Graham Bell invent the telephone? | National Museums Scotland\nDid Alexander Graham Bell invent the telephone?\n▶ watch\ncopy\n</>\nretry\n⋯",
+   "pivot": {
+    "schema": "Pivot@1",
+    "read": "en",
+    "write": "en",
+    "standing": "sourced",
+    "stats": {
+     "in": 1,
+     "kept": 1,
+     "dropped": 0,
+     "unsourced": 1
+    },
+    "dropped": [],
+    "felt": {
+     "who": "gemma2:2b",
+     "rhythm": {
+      "flatline": false,
+      "ratio": 0,
+      "mean": 9,
+      "blinks": 0,
+      "dense": 1,
+      "n": 1
+     },
+     "strain": "report"
+    },
+    "gates": {
+     "no_words": "unmeasured",
+     "orphan_anaphor": "unmeasured",
+     "label": "unmeasured",
+     "boilerplate": "unmeasured",
+     "third_person": "unmeasured",
+     "attribution": "unmeasured",
+     "number_not_given": "unmeasured",
+     "ungrounded": "unmeasured",
+     "question": "unmeasured",
+     "truncated": "unmeasured",
+     "verify": "unmeasured"
+    }
+   },
+   "notices": [],
+   "reads": [
+    "loc.gov/item/who-is-credited-with-inventing-the-telephone/",
+    "nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-tele",
+    "community.element14.com/members-area/personalblogs/b/blog/posts/no-ale",
+    "crows.org/stem-blog/who-invented-that-the-telephone/",
+    "telefonica.com/en/communication-room/blog/history-of-the-telephone/"
+   ],
+   "read": 5,
+   "kind": "research",
+   "nMessages": 2,
+   "authored": null,
+   "provenance": {
+    "schema": "Provenance@1",
+    "claim": "Alexander Graham Bell is credited with inventing the telephone.",
+    "calls": 3,
+    "verified": 1,
+    "parts": [
+     {
+      "kind": "app",
+      "text": "I got this from Did Alexander Graham Bell invent the telephone? | National Museums Scotland (nms.ac.uk). It says:",
+      "rule": "primary"
+     },
+     {
+      "kind": "quote",
+      "text": "“Did Alexander Graham Bell invent the telephone?”",
+      "index": 1,
+      "start": 0,
+      "end": 47,
+      "host": "nms.ac.uk"
+     }
+    ],
+    "pointers": [
+     {
+      "index": 1,
+      "ref": "NMS — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+      "host": "nms.ac.uk",
+      "title": "Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+      "tier": "primary",
+      "start": 0,
+      "end": 47
+     }
+    ],
+    "why": null
+   },
+   "nRaw": 4,
+   "searched": null,
+   "voidKind": "unsupported",
+   "snips": [],
+   "fell": null,
+   "passages": [
+    {
+     "ref": "LOC — Who is credited with inventing the telephone? | Library of Congress",
+     "url": "https://www.loc.gov/item/who-is-credited-with-inventing-the-telephone/",
+     "text": "![Image 1: Icon for www.loc.gov](https://www.loc.gov/favicon.ico)\n\n## www.loc.gov\n\n## Performing security verification\n\nThis website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot."
+    },
+    {
+     "ref": "NMS — Did Alexander Graham Bell invent the telephone? | National Museums Scotland",
+     "url": "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+     "text": "Did Alexander Graham Bell invent the telephone?\nThree days later, on 10 March 1876, his first intelligible telephone communication was made.\nIn 1880 they formed the United Telephone Company in Britain."
+    },
+    {
+     "ref": "element14 Community — No, Alexander Graham Bell did not invent the telephone - element14 Community",
+     "url": "https://community.element14.com/members-area/personalblogs/b/blog/posts/no-alexander-graham-bell-did-not-invent-the-telephone",
+     "text": "## Oops!\n\n## Something went wrong and we cannot process your request\n\n*   **There are a number of reasons why this might happen**\n  \n*   The site might be down\n*   You might have got caught by our bot protection logic\n*   You might have tried to access a private document\n*   To fix this you might try going back to the [home page](https://community.element14.com/?ICID=ERR-403) and trying again\n*    If you still get this there, you may have either got caught by our bot protection, or the site may be down. Either way, go make a cup of warm brew, come back and try again, and it'll probably be resolved.\n*   You might also check our [twitter page](https://twitter.com/e14community)\n\nIf you believe "
+    }
+   ],
+   "web": [
+    "https://www.loc.gov/item/who-is-credited-with-inventing-the-telephone/",
+    "https://www.nms.ac.uk/discover-catalogue/did-alexander-graham-bell-invent-the-telephone",
+    "https://community.element14.com/members-area/personalblogs/b/blog/posts/no-alexander-graham-bell-did-not-invent-the-telephone",
+    "https://crows.org/stem-blog/who-invented-that-the-telephone/",
+    "https://www.telefonica.com/en/communication-room/blog/history-of-the-telephone/"
+   ]
+  },
+  {
+   "ask": "write me an essay on this",
+   "abortModel": false,
+   "spoken": "",
+   "shown": "No answer was written: no source could be read to write one from.\n⟂\nno source was reached\nSearched for “write me an essay on this”: Web failed — Web search answered 502. Nothing readable came back.\nWeb — failed: Web search answered 502\nto close it: try the question again · attach the document you are working from · rephrase it with a name or a place the search can find\ntry again\nread as\nRead your question as being about Alexander Graham Bell.\nnot Alexander Graham Bell\ncopy\n</>\nretry\n⋯",
+   "pivot": null,
+   "notices": [
+    {
+     "kind": "carry",
+     "text": "Read your question as being about Alexander Graham Bell."
+    }
+   ],
+   "reads": [],
+   "read": 0,
+   "kind": "generate",
+   "nMessages": 4,
+   "authored": null,
+   "provenance": null,
+   "nRaw": 0,
+   "searched": "Alexander Graham Bell write me an essay on this",
+   "voidKind": "unreached",
+   "snips": [],
+   "fell": null,
+   "passages": [],
+   "web": []
+  }
+ ]
+}

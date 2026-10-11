@@ -1,0 +1,51 @@
+{
+  "organ": "khora/native/kernel/completion.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/brahmagupta.json"
+  ],
+  "whatTheyArgued": "Brahmasphutasiddhanta XVIII, in Colebrooke 1817: rules for addition and subtraction of positive, negative and cipher (zero), e.g. sum of cipher and negative is negative, negative less cipher is negative, positive less cipher is positive (rule 32-33 in the same text, which I read), cipher times anything is nought. MacTutor adds that he also tried division by zero, and held 0/0 = 0, which is wrong. His content is operational arithmetic for zero as a number; he does not say 'a declared absence is a value' in the sense of missing data.",
+  "scholarship": [
+    {
+      "ref": "MacTutor (St Andrews), Brahmagupta",
+      "url": "https://mathshistory.st-andrews.ac.uk/Biographies/Brahmagupta/",
+      "supports": "rules for zero and for debts and fortunes; zero is a number with arithmetic",
+      "disputes": "his division-by-zero claims (n/0 meaningful, 0/0 = 0) are judged mistaken"
+    }
+  ],
+  "ourUse": "completion.js: a declared-absent role slot is a typed NUL, resolved by an ordinary CON via adjudicate; slots are never silently skipped.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "snip-is-addition",
+      "kind": "misstated",
+      "ours": "File header quotes rule 31 (addition) as the basis of 'a declared absence is a value, not a gap'.",
+      "theirs": "Rule 31 is addition; the 'debt minus zero is a debt' line corresponds to rule 32-33 (negative less cipher is negative), which is not the one snipped."
+    },
+    {
+      "id": "quoted-phrase",
+      "kind": "misstated",
+      "ours": "Compendium puts 'a debt minus zero is a debt' in quote marks as his words.",
+      "theirs": "Colebrooke renders it 'Negative, less cipher, is negative'; the 'debt' wording is a modern paraphrase of his debt/fortune vocabulary."
+    },
+    {
+      "id": "absence-as-value",
+      "kind": "reinterpreted",
+      "ours": "Zero stands for a declared missing role (ellipsis, gapping).",
+      "theirs": "Zero is a number with rules; mapping it to grammatical absence is an analogy of ours."
+    },
+    {
+      "id": "voice",
+      "kind": "misstated",
+      "ours": "Header continues in Brahmagupta's voice: 'a testament to a rigorous understanding of arithmetic...'",
+      "theirs": "generated prose, not from the source."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Brahmagupta (628 CE) gave arithmetic rules for zero, e.g. a negative less cipher is negative (Colebrooke tr.). Treating declared absence as a typed value is our analogy; he also erred on 0/0.'",
+    "re-cut the manifest to rule 32-33 once snip.mjs works"
+  ],
+  "schema": "ArchonDossier@1",
+  "handle": "brahmagupta",
+  "tokenized": false
+}

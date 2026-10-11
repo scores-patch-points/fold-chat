@@ -1,0 +1,40 @@
+--- a/fold-chat.js
++++ b/fold-chat.js
+@@ -2122,12 +2122,13 @@
+       if (slotRes.handoff) feedPush(lineEvent(tt, "Handling this the usual way", { tone: "info", note: slotRes.handoff.why }));
+       else if (endsTurn(slotRes)) { slotTurn = slotRes; feedPush(traceFeed(tt, slotRes, lineEvent)); }   // the app's own first-person reasoning, one row per line
+     }
++    let originLate = null;
+     // AN ENCYCLOPEDIA IS A POINTER, NEVER A CITATION (fold-chat-origin.js, user 2026-10-06): every encyclopedia page this turn read is followed — the
+     // sentences the answer would rest on, to the pages the article's own footnotes name (or a page already read that says the same), read and checked
+     // to carry the claim by identity-by-consequence, the path kept. The originals join the passages; the encyclopedia page stays but is never cited.
+     if (!slotTurn && wantWeb && webPassages.some((p) => p && !p.snippetOnly && isTertiary(p.url || p.source))) {
+       say(`turn \u00b7 ${kindWord} \u00b7 following the encyclopedia's references to the pages they name\u2026`);
+-      try {
++      const originRun = (async () => { try {
+         const { trails } = await raceAbort(originatePassages(webPassages, searchQ, { fetchImpl: withSignal(outbound.auditedFetch("web search", runId), ac.signal), memo: pageMemo, signal: ac.signal }), ac.signal);
+         const seenTrail = new Set();
+         for (const t of trails) {
+\ No newline at end of file
+@@ -2136,7 +2137,10 @@
+           feedPush(lineEvent(tt, t.trail.status === "origin" ? "Followed the encyclopedia to its source" : "The encyclopedia only points", { tone: t.trail.status === "origin" ? "ok" : "warn", note: traceWords(t.trail).replace(/^That sentence is on Wikipedia [^.]*\.\s*/, "").slice(0, 160) }));
+         }
+         if (webPassages.some((p) => p && p.origin)) sourceBlock = sourcesPrompt(webPassages) + (webPassages.some((p) => p.recipe) ? "\n\n" + CARD_PROMPT : "");
+-      } catch (e) { if (ac.signal.aborted) throw e; feedPush(lineEvent(tt, "Could not follow the encyclopedia's references", { tone: "warn", note: String(e?.message || e).slice(0, 90) })); }
++      } catch (e) { if (ac.signal.aborted) throw e; feedPush(lineEvent(tt, "Could not follow the encyclopedia's references", { tone: "warn", note: String(e?.message || e).slice(0, 90) })); } })();
++      const originWait = (() => { try { return localStorage.getItem("fold-chat:e2origin") === "off" ? 0 : 2000; } catch { return 2000; } })();
++      if (!originWait) await originRun;
++      else { const early = await Promise.race([originRun.then(() => true), new Promise((r) => setTimeout(() => r(false), originWait))]); if (!early) { originLate = originRun; originLate.catch(() => {}); feedPush(lineEvent(tt, "Writing while the encyclopedia's references are still being followed", { tone: "info", note: "they are joined before the draft is read" })); } }
+     }
+     let plan = null;
+     if (wantWeb && !webPassages.length && !slotTurn) {
+\ No newline at end of file
+@@ -2394,6 +2398,7 @@
+       if (genOt && !genGate && !strand && !skipModel) { const gj = genVoid({ outputType: genOt, webPassages, modelResult: { text, finish: out.finish }, hasMaterial: materialOf(s).length > 0, question }); if (!gj.ok) { genGate = gj; text = ""; } }
+       const bad = text && !strand ? memory.ungroundedIdentity(text, { readerName, facts: s.facts || {} }) : null;
+       if (bad) notices.push({ kind: "identity", text: memory.identityCorrection(bad, { readerName }) });
++      if (originLate) { try { await raceAbort(originLate, ac.signal); } catch (e) { if (ac.signal.aborted) throw e; } }   // E2 L9: joined before anything reads the draft
+       // THE REC LOOP (reframe). Every sentence is tried against everything read (fold-chat-falsify.js). A sentence no source
+       // states, one a source contradicts, or one the swap test shows loose sends the turn BACK: SIG searches again with the
+       // claim itself as the query, the cross-reference re-runs on the wider ground, and SYN restates only the sentences still
+\ No newline at end of file

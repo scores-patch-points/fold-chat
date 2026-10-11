@@ -1,0 +1,55 @@
+// G1 corpus ROUND 2 — written AFTER the first held measurement exposed 14 failures and BEFORE any fix was applied or run.
+// Fresh phrasings, not copies of the round-1 failures; same gold schema as corpus.mjs. Used only as the generalisation check of the post-hoc fixes.
+import { PRIORS } from "./corpus.mjs";
+export { PRIORS };
+const C = (set, q, gold, extra = {}) => ({ set, q, gold, ...extra });
+const G = (type, needsSources, topicKeys = [], more = {}) => ({ type, wants: type !== "none", needsSources, topicKeys, voids: [], ...more });
+const NONE = { type: "none", wants: false, needsSources: false, topicKeys: [], voids: [] };
+export const CORPUS2 = [
+  C("r2", "write a dialogue between a pirate and a parrot", G("script", false, ["pirate", "parrot"])),
+  C("r2", "write a short scene where a detective meets her double", G("script", false, ["detective"])),
+  C("r2", "write a tweet celebrating our product launch", G("slogan", false, ["launch"])),
+  C("r2", "write a cover letter for a job as a nurse", G("letter", false, ["nurse"])),
+  C("r2", "give me a summary of the causes of the Cold War", G("summary", true, ["cold war"])),
+  C("r2", "dame un resumen de la historia de Roma", G("summary", true, ["roma"])),
+  C("r2", "give me a list of 20 pet names", G("list", false, ["pet names"], { constraints: { count: 20 } })),
+  C("r2", "make a grocery list for the week", G("list", false, [])),
+  C("r2", "create a comparison table of cats and dogs", G("table", true, ["cats", "dogs"])),
+  C("r2", "make a pros and cons list for buying a house", G("list", false, ["house"])),
+  C("r2", "напиши заявление начальнику с просьбой о повышении", G("letter", false, [])),
+  C("r2", "schreibe einen brief an meinen vermieter wegen der heizung", G("letter", false, [])),
+  C("r2", "write a letter to the mayor about the new bike lanes", G("letter", true, ["bike lanes"])),
+  C("r2", "paint me a sunset over the ocean", G("other", false, ["sunset"], { voids: ["unsupported-type"] })),
+  C("r2", "draw a map of the solar system", G("other", false, ["solar system"], { voids: ["unsupported-type"] })),
+  C("r2", "write an essay on this", G("essay", true, ["telephone"], { anaphora: true }), { prior: "tel" }),
+  C("r2", "turn this into a poem", G("poem", false, ["telephone"], { anaphora: true }), { prior: "tel" }),
+  C("r2", "convert that into a table", G("table", true, ["dolphin"], { anaphora: true }), { prior: "dol" }),
+  C("r2", "write a haiku about it", G("poem", false, ["dolphin"], { anaphora: true }), { prior: "dol" }),
+  C("r2", "write a 300 word essay about the above in a serious tone", G("essay", true, ["telephone"], { anaphora: true, constraints: { tone: "serious", length: { n: 300, unit: "words" } } }), { prior: "tel" }),
+  C("r2", "summarize the following: Our quarterly sales rose four percent. Costs fell two percent. The board approved a new office in Denver.", G("summary", false, [], { material: "inline" })),
+  C("r2", "translate that into German", G("translation", false, [], { material: "thread-answer", constraints: { language: "german" } }), { prior: "tel" }),
+  C("r2", "write me a bedtime story about a sleepy bear", G("story", false, ["bear"])),
+  C("r2", "wirte a speach about teamwork", G("speech", true, ["teamwork"])),
+  C("r2", "could you please draft an email to the team about friday's meeting", G("email", false, ["meeting"])),
+  C("r2", "give me five reasons to learn Spanish", G("list", false, ["spanish"], { constraints: { count: 5 } })),
+  C("r2", "i want a limerick about my dog", G("poem", false, ["dog"])),
+  C("r2", "write a function that sorts a list in javascript", G("code", false, [])),
+  C("r2", "write a poem about a function", G("poem", false, ["function"])),
+  C("r2", "outline an essay on the printing press", G("outline", true, ["printing press"])),
+  // negatives
+  C("r2", "what is a limerick", NONE),
+  C("r2", "who wrote the story The Lottery", NONE),
+  C("r2", "when was the first essay published", NONE),
+  C("r2", "I can't write today, my hand hurts", NONE),
+  C("r2", "she wrote me a letter last year", NONE),
+  C("r2", "list of presidents of the United States", NONE),
+  C("r2", "what is a tweet", NONE),
+  C("r2", "how do you write a haiku", NONE),
+  C("r2", "should I draft the email before the meeting", NONE),
+  C("r2", "the speech was great, thanks", NONE),
+  C("r2", "can you recommend a good book about the telephone", NONE),
+  C("r2", "why do poems rhyme", NONE),
+  C("r2", "write down that I'm out of milk", NONE),
+  C("r2", "make a left at the corner", NONE),
+  C("r2", "create an account on the website", NONE),
+];

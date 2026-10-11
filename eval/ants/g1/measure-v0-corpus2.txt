@@ -1,0 +1,49 @@
+ALL  {"n":45,"recall":"83% (25/30)","falseWants":"20% (3/15)","typeExact":"76% (34/45)","topic":"72% (13/18)","needsSources":"86% (19/22)","voids":"100% (22/22)","searchQuery":"95% (21/22)","constraints":"100% (2/2)","material":"50% (1/2)","steps":"n/a (0/0)"}
+per-type exact: script 2/2  slogan 1/1  letter 2/4  summary 3/3  list 2/4  table 0/2  other 0/2  essay 2/2  poem 4/4  translation 1/1  story 1/1  speech 1/1  email 1/1  code 1/1  outline 1/1
+[r2] FAIL write a dialogue between a pirate and a parrot
+      topic null lacks pirate,parrot
+[r2] FAIL write a short scene where a detective meets her double
+      topic null lacks detective
+[r2] FAIL write a tweet celebrating our product launch
+      topic null lacks launch
+[r2] FAIL write a cover letter for a job as a nurse
+      topic null lacks nurse
+[r2] FAIL give me a summary of the causes of the Cold War
+      needsSources false != true
+[r2] FAIL dame un resumen de la historia de Roma
+      needsSources false != true
+[r2] FAIL give me a list of 20 pet names
+      type none != list
+[r2] FAIL create a comparison table of cats and dogs
+      type essay != table
+[r2] FAIL make a pros and cons list for buying a house
+      topic null lacks house
+[r2] FAIL напиши заявление начальнику с просьбой о повышении
+      type other != letter
+[r2] FAIL schreibe einen brief an meinen vermieter wegen der heizung
+      type other != letter
+[r2] FAIL paint me a sunset over the ocean
+      type none != other
+[r2] FAIL draw a map of the solar system
+      type none != other
+[r2] FAIL convert that into a table
+      type none != table
+[r2] FAIL translate that into German
+      material inline != thread-answer
+[r2] FAIL could you please draft an email to the team about friday's meeting
+      needsSources true != false
+[r2] FAIL give me five reasons to learn Spanish
+      type none != list
+[r2] FAIL outline an essay on the printing press
+      searchQuery "an essay on the printing press"
+[r2] FAIL I can't write today, my hand hurts
+      type other != none
+[r2] FAIL should I draft the email before the meeting
+      type email != none
+[r2] FAIL create an account on the website
+      type other != none
+classifyTurn false-wants on negatives: 3 [
+  'how do you write a haiku',
+  'should I draft the email before the meeting',
+  'create an account on the website'
+]

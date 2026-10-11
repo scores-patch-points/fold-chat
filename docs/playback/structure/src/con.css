@@ -1,0 +1,92 @@
+/* CON ⋈  things the pages name in common ------------------------------------------------------ */
+.things { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 16px; align-items:center; }
+.things .lab { font-size:12.5px; color:var(--mut); margin-right:4px; }
+.things button { padding:6px 11px; border:1px solid var(--line2); border-radius:999px; font-size:13.5px; min-height:34px; color:var(--ink2); }
+.things button b { font-weight:600; }
+.things button span { font:11.5px var(--mono); color:var(--mut); margin-left:6px; }
+.things button[aria-pressed="true"] { background:var(--ag); border-color:var(--ag); color:var(--bg); }
+.things button[aria-pressed="true"] span { color:var(--bg); }
+
+/* Figure: many pages -> one thing -> what each says (a bow-tie) ------------------------------------ */
+.bind { position:relative; }
+.bt { position:relative; margin-left:12px; padding-left:16px; border-left:2px solid var(--ag); display:flex; flex-direction:column; gap:12px; }
+.bt svg.wires { display:none; }
+.hub { position:relative; background:var(--ag-soft); border:2px solid var(--ag); border-radius:16px; padding:14px 16px; margin:0 0 12px; }
+.hub h2 { margin:0; font-size:24px; line-height:1.15; letter-spacing:-.01em; }
+.hub .hn { font-size:13px; color:var(--ink2); margin-top:4px; }
+.hub .also { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; font-size:12.5px; color:var(--mut); align-items:center; }
+.hub .also button { border:1px solid var(--ag); border-radius:999px; padding:4px 10px; color:var(--ink); min-height:30px; }
+.brow { position:relative; display:block; }
+.brow::before { content:""; position:absolute; left:-18px; top:20px; width:16px; border-top:2px solid var(--ag); }
+.lc, .rc { background:var(--side); border:1px solid var(--line2); border-radius:12px; padding:10px 12px; min-width:0; text-align:left; width:100%; display:block; }
+.lc { border-bottom-left-radius:0; border-bottom-right-radius:0; border-bottom:0; padding-bottom:2px; }
+.rc { border-top-left-radius:0; border-top-right-radius:0; }
+.brow.focus .lc, .brow.focus .rc { border-color:var(--ag); }
+.brow.focus .lc { box-shadow:0 -2px 0 var(--ag) inset; }
+.lc .who { display:flex; align-items:center; gap:8px; }
+.lc .who .pos { font:11.5px var(--mono); color:var(--mut); }
+.lc .before { font-size:12.5px; color:var(--mut); margin-top:4px; overflow:hidden; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; }
+.rc .says { font-size:16px; line-height:1.5; color:var(--ink); display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+.rc .says b { font-weight:700; }
+.rc .thing { font-size:12px; font-family:var(--mono); color:var(--ag); display:block; margin-bottom:2px; }
+.apart { margin-top:18px; border-top:1px dashed var(--line2); padding-top:12px; }
+.apart h3 { margin:0 0 8px; font-size:13px; font-weight:600; color:var(--mut); }
+.apart button { display:flex; gap:10px; align-items:flex-start; border:1px dashed var(--line2); border-radius:12px; padding:9px 12px; width:100%; margin-bottom:8px; font-size:13.5px; color:var(--ink2); }
+.apart .t { min-width:0; }
+.apart .t i { color:var(--mut); display:block; font-style:normal; font-size:12.5px; }
+@media (min-width:860px) {
+  .bt { display:grid; grid-template-columns:minmax(0,1fr) 230px minmax(0,1.5fr); column-gap:56px; row-gap:12px; margin-left:0; padding-left:0; border-left:0; align-items:stretch; }
+  .bt svg.wires { display:block; position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+  .hub { grid-column:2; align-self:center; margin:0; text-align:center; z-index:1; }
+  .hub .also { justify-content:center; }
+  .brow { display:contents; }
+  .brow::before { display:none; }
+  .lc, .rc { border-radius:12px; border:1px solid var(--line2); z-index:1; align-self:center; }
+  .lc { grid-column:1; padding-bottom:10px; text-align:right; }
+  .lc .who { justify-content:flex-end; }
+  .rc { grid-column:3; }
+  .brow.focus .lc { box-shadow:none; }
+  .wire { fill:none; stroke:var(--ag); stroke-width:2; opacity:.7; }
+}
+
+/* Ground: every kept sentence, bound or standing alone ------------------------------------------ */
+.field { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:20px 22px; }
+.fp { min-width:0; }
+.fp .fh { display:flex; align-items:center; gap:8px; margin-bottom:8px; min-height:30px; width:100%; }
+.fp .fh .dom { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; }
+.fp .fh .cnt { font:11.5px var(--mono); color:var(--mut); }
+.cells { display:flex; flex-wrap:wrap; gap:5px; }
+.cell { width:22px; height:22px; border-radius:6px; border:1.5px dashed var(--line2); background:transparent; position:relative; }
+.cell.some { border:1.5px solid var(--ink2); background:transparent; }
+.cell.on { border:1.5px solid var(--ag); background:var(--ag); }
+.cell.on::after { content:""; position:absolute; inset:5px; border-radius:50%; background:var(--bg); }
+.cell:hover { outline:2px solid var(--ink); outline-offset:1px; }
+.cell.focus { outline:2px solid var(--ink); outline-offset:2px; }
+.flegend { display:flex; flex-wrap:wrap; gap:6px 20px; margin:20px 0 0; font-size:12.5px; color:var(--mut); align-items:center; }
+.flegend .cell { display:inline-block; width:16px; height:16px; vertical-align:middle; margin-right:6px; border-radius:5px; pointer-events:none; }
+.flegend .cell.on::after { inset:3px; }
+.fsum { margin:0 0 14px; font-size:14px; color:var(--ink2); }
+
+/* Pattern: the pages as a network, joined by what they share ------------------------------------------ */
+.net { display:grid; gap:20px; grid-template-columns:minmax(0,1fr); }
+@media (min-width:860px) { .net { grid-template-columns:minmax(300px,520px) minmax(0,1fr); align-items:start; gap:36px; } }
+.netsvg { width:100%; height:auto; display:block; max-width:520px; margin:0 auto; overflow:visible; }
+.netsvg .e { fill:none; stroke:var(--line2); stroke-linecap:round; }
+.netsvg .e.on { stroke:var(--ag); }
+.netsvg .e.sel { stroke:var(--ink); }
+.netsvg .hit { fill:none; stroke:transparent; stroke-width:16; cursor:pointer; }
+.netsvg .hit:focus-visible { stroke:var(--link); stroke-opacity:.35; outline:none; }
+.netsvg .nd circle { fill:var(--bg); stroke:var(--ink2); stroke-width:1.5; }
+.netsvg .nd.in circle { stroke:var(--ag); stroke-width:2.5; }
+.netsvg .nd { cursor:pointer; }
+.netsvg .nd:focus-visible circle { stroke:var(--link); stroke-width:3; }
+.netsvg text { font-family:var(--sans); fill:var(--ink2); }
+.netsvg .nd text.l { font-size:11px; }
+.netsvg .cn circle { fill:var(--ink); } .netsvg .cn text { fill:var(--bg); font:600 10px var(--mono); }
+.trace h3 { margin:0 0 8px; font-size:14px; font-weight:600; }
+.trace .route { display:flex; flex-wrap:wrap; align-items:center; gap:6px 4px; margin-bottom:18px; }
+.trace .route button { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line2); border-radius:999px; padding:5px 11px 5px 6px; font-size:13px; min-height:34px; }
+.trace .route .arr { color:var(--mut); }
+.trace .shared { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 6px; }
+.trace .shared button { border:1px solid var(--line2); border-radius:999px; padding:5px 11px; font-size:13.5px; min-height:34px; }
+.trace p { margin:0 0 10px; font-size:13.5px; color:var(--ink2); }

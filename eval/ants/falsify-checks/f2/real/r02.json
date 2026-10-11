@@ -1,0 +1,1456 @@
+{
+ "q": "How tall is the Eiffel Tower?",
+ "spoken": "The Eiffel Tower is currently about 1,083 feet tall.",
+ "shown": "The Eiffel Tower is currently about 1,083 feet tall.\n\nA\nArchitectural Digest\nopen ↗\nThe Eiffel Tower Is Now 20 Feet Taller | Architectural Digest\n… Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall . …\nW\n1 more say the same\n1 source · 1 of 1 sentence backed\n·\n2 of 9 checks flagged\n58 s\n▶ watch\nI got this from The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest (architecturaldigest.com). It says: Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. open ↗\ncopy\nretry\n⋯",
+ "flagText": [
+  "2 of 9 checks flagged"
+ ],
+ "grounding": {
+  "turn": 1,
+  "hasMaterial": true,
+  "examined": true,
+  "coverage": {
+   "entries": [
+    {
+     "text": "The Eiffel Tower is currently about 1,083 feet tall.",
+     "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+     "source": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "span": {
+      "start": 783,
+      "end": 798
+     },
+     "address": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest#783-798",
+     "score": 4,
+     "window": {
+      "from": 602,
+      "to": 1108
+     }
+    }
+   ],
+   "grounded": 1,
+   "total": 1,
+   "refs": [
+    "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest#783-798"
+   ],
+   "ratio": 1
+  },
+  "unsupported": {
+   "numbers": [],
+   "names": []
+  },
+  "sources": [
+   {
+    "address": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest#783-798",
+    "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+    "span": {
+     "start": 783,
+     "end": 798
+    },
+    "text": "The Eiffel Tower is currently about 1,083 feet tall."
+   }
+  ],
+  "ungrounded": [],
+  "gaps": [],
+  "facing": {
+   "sources": [
+    {
+     "n": "S1",
+     "address": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest#783-798",
+     "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+     "span": {
+      "start": 783,
+      "end": 798
+     },
+     "label": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+     "source": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "domain": "architecturaldigest.com",
+     "text": "Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall .",
+     "before": "Today, though, with the new antenna, the Eiffel Tower stands just under",
+     "mark": "1,083 feet tall",
+     "after": ".",
+     "ellipsisBefore": true,
+     "ellipsisAfter": true,
+     "cite": 1
+    }
+   ],
+   "response": [
+    {
+     "tag": "S1",
+     "text": "The Eiffel Tower is currently about 1,083 feet tall.",
+     "grounded": true,
+     "address": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest#783-798"
+    }
+   ],
+   "has": true
+  },
+  "line": "On record · turn 1 · 1 address checked · nothing unsupported · every sentence grounded",
+  "web": [
+   {
+    "scope": "web",
+    "q": "How tall is the Eiffel Tower?",
+    "engine": "Brave Search",
+    "n": 20,
+    "ok": true
+   },
+   {
+    "scope": "route",
+    "ok": true,
+    "engine": "source router",
+    "picked": [
+     "web"
+    ],
+    "skipped": [
+     "wikipedia",
+     "github",
+     "archive",
+     "openalex",
+     "crossref"
+    ],
+    "why": {
+     "web": "always — the open web is the one source that answers anything"
+    },
+    "webDown": false
+   },
+   {
+    "scope": "topic",
+    "ok": true,
+    "engine": "title gate",
+    "demoted": [
+     "Eiffel Tower key stats : the Tower in numbers (shares-only-the-name)",
+     "The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest (shares-only-the-name)",
+     "Gustave Eiffel, The Eiffel Tower - YouTube (shares-only-the-name)",
+     "10 Fascinating Facts about the Eiffel Tower you should know (shares-only-the-name)",
+     "Discover the Eiffel Tower, the greatest symbol of Paris! (shares-only-the-name)",
+     "Eiffel Tower opens in Paris | March 31, 1889 | HISTORY (shares-only-the-name)"
+    ]
+   },
+   {
+    "read": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+    "via": "direct",
+    "chars": 24000,
+    "kept": 2907,
+    "hash": "96d16a32"
+   },
+   {
+    "read": "https://www.toureiffel.paris/en/the-monument/key-figures",
+    "via": null,
+    "ok": false
+   },
+   {
+    "read": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+    "via": "the fold's relay",
+    "chars": 3298,
+    "kept": 1641,
+    "hash": "2cbde243"
+   },
+   {
+    "read": "https://www.youtube.com/watch?v=vurh8_SO6_c",
+    "via": "the fold's relay",
+    "chars": 24000,
+    "kept": 24000,
+    "hash": "707c86df"
+   },
+   {
+    "read": "https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+    "via": "the fold's relay",
+    "chars": 7549,
+    "kept": 1633,
+    "hash": "d98a7cea",
+    "skipped": true
+   }
+  ],
+  "passages": [
+   {
+    "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+    "source": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+    "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+    "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France.\nIt is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.\nThe tower received 5,889,000 visitors in 2022.\nThe Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015.\nThe tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris.\nIts base is square, measuring 125 metres (410 ft) on each side.\nDuring its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930.\nDue to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 11 metres (36 ft).\nThe top level's upper platform is 276 m (906 ft) above the ground—the highest public observation deck in the European Union.\nEiffel was to receive all income from the commercial exploitation of the tower during the exhibition and for the next 20 years.\nPrior to the Eiffel Tower's construction, no structure had ever been constructed to a height of 300 m, or even 200 m for that matter, and many people believed it was impossible.\nA petition called \"Artists against the Eiffel Tower\" was sent to the Minister of Works and Commissioner for the Exposition, Adolphe Alphand, and it was published by Le Temps on 14 February 1887:\nThe main structural work was completed at the end of March 1889 and, on 31 March, Eiffel celebrated by leading a group of government officials, accompanied by representatives of the press, to the top of the tower.\nAt 2:35 pm, Eiffel hoisted a large Tricolour to the accompaniment of a 25-gun salute fired at the first level.\nEdison signed the guestbook with this message on September 10, 1889: To M Eiffel the Engineer the brave builder of so gigantic and original specimen of modern Engineering from one who has the greatest respect and admiration for all Engineers including the Great Engineer the Bon Dieu, Thomas Edison.\nOriginally commissioned as a temporary structure for the 1889 Exposition Universelle, Eiffel was slated for dismantling in 1909, at which point ownership would have reverted to the Ci"
+   },
+   {
+    "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+    "source": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+    "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+    "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions.\nIn fact, radio is often credited for the famous structure’s survival into the 21st century.\nThough the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution.\nAnd among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won.\nThe goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did.\nToday, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall.\nRegarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François Martins, told the Associated Press, “From the invention of the radio at the beginning of the 20th century to right now, decades after decades, the Eiffel Tower has been a partner for all the radio technology.”\nMartins added, “It’s a historical moment, because the Eiffel Tower is getting higher, which is not so common.”\nFor instance, in September 2017, the Eiffel Tower underwent quite a drastic renovation to modernize everything from visitor reception area to one of the restaurants, La Bulle Parisienne.\nThe designers of the original tower, back in the late 19th century, wanted to build the world’s tallest structure, and for nearly four decades, it was.\nOf course, New York City’s Chrysler Building, which shot up in 1929, surpassed Paris’s tower."
+   },
+   {
+    "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+    "source": "https://www.youtube.com/watch?v=vurh8_SO6_c",
+    "url": "https://www.youtube.com/watch?v=vurh8_SO6_c",
+    "text": "(function ytBootstrapConfig() {window.ytplayer={};\nytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"browse_reload_continuations_migration_home\":true,\"c3_enable_button_impression_logging\":true,\"c3_watch_page_component\":true,\"cancel_pending_navs\":true,\"channel_details_shelf_resize_observer\":true,\"check_user_lact_at_prompt_shown_time_on_web\":true,\"client_respect_autoplay_switch_button_renderer\":true,\"client_ui_enable_multi_track_audio_on_web_embedded_player\":true,\"cold_missing_history\":true,\"compress_gel\":true,\"course_hide_playlist_panel_shuffle_and_loop_buttons\":true,\"cow_optimize_idom_compat\":true,\"csi_on_gel\":true,\"dedupping_server_ve\":true,\"defer_menus\":true,\"defer_overlays\":true,\"delay_sheet_open_killswitch\":true,\"delhi_modern_web_player_compact_video_actions_controls\":true,\"delhi_modern_web_player_disable_frosted_glass\":true,\"delhi_modern_web_player_icons\":true,\"delhi_mweb_colorful_sd\":true,\"delhi_mweb_colorful_sd_v2\":true,\"delhi_web_player_use_external_playlist_panel\":true,\"deprecate_pair_servlet_enabled\":true,\"desktop_add_to_playlist_renderer_dialog_popup\":true,\"desktop_delay_player_resizing\":true,\"desktop_enable_dmpanel_click_drag_scroll\":true,\"desktop_enable_dmpanel_scroll\":true,\"desktop_enable_dmpanel_wheel_scroll\":true,\"desktop_enable_entity_suggest\":true,\"desktop_enable_new_video_metadata\":true,\"desktop_enable_scrollable_suggestions_panel\":true,\"desktop_enable_single_suggestion_highlight\":true,\"desktop_enable_suggestions_panel_padding\":true,\"desktop_enable_visual_suggest\":true,\"desktop_keyboard_capture_keydown_killswitch\":true,\"desktop_mix_use_sampled_color_for_bottom"
+   }
+  ],
+  "loop": {
+   "passes": [],
+   "cleared": true,
+   "after": {
+    "claims": 1,
+    "corroborated": 1,
+    "held": 0,
+    "weak": 0,
+    "contested": 0,
+    "unsupported": 0,
+    "backed": 1,
+    "swapsArmed": 1,
+    "swapsFailed": 0,
+    "cleared": true
+   },
+   "firstTry": true,
+   "processLine": "reframe · every sentence held on the first try"
+  },
+  "process": [
+   "classified · question of fact",
+   "effort · Balanced — full scopes · swarm gate · void",
+   "searched the web · read 3 source(s)",
+   "wrote the answer · local",
+   "language · asker en, reply en — same",
+   "checked · the answer against the material carried",
+   "reframe · every sentence held on the first try"
+  ],
+  "agreement": {
+   "unit": "ft",
+   "answer": 1083,
+   "answerLabel": "1,083 ft",
+   "groups": [
+    {
+     "value": 1083,
+     "label": "1,083 ft",
+     "sources": [
+      {
+       "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+       "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+       "domain": "en.wikipedia.org",
+       "site": "Wikipedia"
+      },
+      {
+       "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+       "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+       "domain": "architecturaldigest.com",
+       "site": "Architectural Digest"
+      }
+     ]
+    }
+   ]
+  },
+  "gary": [
+   {
+    "act": "gary-turn",
+    "model": "gemma2:2b",
+    "tokens": 1870,
+    "estimated": true,
+    "window": 8192,
+    "findings": [
+     {
+      "rule": "no-apparatus",
+      "severity": "flag"
+     },
+     {
+      "rule": "information-not-prohibition",
+      "severity": "flag"
+     }
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 568,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   },
+   {
+    "act": "gary-call",
+    "model": "gemma2:2b",
+    "tokens": 307,
+    "estimated": true,
+    "window": 8192,
+    "findings": [],
+    "gaps": [
+     "no_material_view"
+    ]
+   }
+  ],
+  "flow": {
+   "act": "question",
+   "cues": [
+    "terry-gross"
+   ]
+  },
+  "pathos": {
+   "condition": null,
+   "gap": "no_model_authored_answers"
+  },
+  "nSources": 3,
+  "answerMode": "facing",
+  "language": {
+   "question": "en",
+   "reply": "en",
+   "same": true,
+   "restated": false
+  },
+  "kind": "research",
+  "effort": "balanced",
+  "feed": [
+   {
+    "type": "start",
+    "at": 0,
+    "task": "How tall is the Eiffel Tower?"
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read your question",
+    "tone": "ok",
+    "note": "question of fact",
+    "at": 16
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The query",
+    "tone": "info",
+    "note": "searching for “How tall is the Eiffel Tower?”",
+    "at": 52
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "q:web:How tall is the Eiffel Tower?",
+    "title": "Searching the web",
+    "tone": "run",
+    "at": 58,
+    "slowAfter": 6000,
+    "slow": "waiting on the web (slow: 6 s budget, then I go on without it)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Waiting on the web",
+    "at": 58
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "q:web:How tall is the Eiffel Tower?",
+    "tone": "warn",
+    "text": "nothing else answered — waiting for the web",
+    "at": 6069
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "q:web:How tall is the Eiffel Tower?",
+    "title": "Searched the web",
+    "tone": "ok",
+    "note": "20 results via Brave Search",
+    "ms": 6243,
+    "at": 6301
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 6301
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Chose where to look",
+    "tone": "info",
+    "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)",
+    "at": 6305
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read look-alike pages last",
+    "tone": "info",
+    "note": "6 pages named for something else that shares the name: Eiffel Tower key stats : the Tower in n…; The Eiffel Tower Is Now 20 Feet Taller…",
+    "at": 6320
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://en.wikipedia.org/wiki/Eiffel_Tower",
+    "title": "Reading Wikipedia — Eiffel Tower - Wikipedia",
+    "tone": "run",
+    "at": 6320,
+    "slowAfter": 5000,
+    "slow": "waiting on Wikipedia (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 6320
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.toureiffel.paris/en/the-monument/key-figures",
+    "title": "Reading Eiffel Tower — Eiffel Tower key stats : the Tower in numbers",
+    "tone": "run",
+    "at": 6323,
+    "slowAfter": 5000,
+    "slow": "waiting on Eiffel Tower (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 6323
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+    "title": "Reading Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Dige…",
+    "tone": "run",
+    "at": 6325,
+    "slowAfter": 5000,
+    "slow": "waiting on Architectural Digest (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 6325
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://en.wikipedia.org/wiki/Eiffel_Tower",
+    "title": "Read Wikipedia — Eiffel Tower - Wikipedia",
+    "tone": "ok",
+    "note": "kept 2,907 of 24,000 chars",
+    "ms": 5349,
+    "at": 11669
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 11669
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.youtube.com/watch?v=vurh8_SO6_c",
+    "title": "Reading YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+    "tone": "run",
+    "at": 11672,
+    "slowAfter": 5000,
+    "slow": "waiting on YouTube (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 11672
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+    "title": "Read Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Dige…",
+    "tone": "ok",
+    "note": "kept 1,641 of 3,298 chars",
+    "ms": 5917,
+    "at": 12241
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 12241
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "r:https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+    "title": "Reading Tootbus — 10 Fascinating Facts about the Eiffel Tower you should know",
+    "tone": "run",
+    "at": 12245,
+    "slowAfter": 5000,
+    "slow": "waiting on Tootbus (slow: pages get an 8 s budget)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 3 pages",
+    "at": 12245
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+    "title": "Read Tootbus — 10 Fascinating Facts about the Eiffel Tower you should know",
+    "tone": "ok",
+    "note": "kept 1,633 of 7,549 chars",
+    "ms": 5258,
+    "at": 17503
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 2 pages",
+    "at": 17503
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.youtube.com/watch?v=vurh8_SO6_c",
+    "title": "Read YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+    "tone": "ok",
+    "note": "24,000 chars",
+    "ms": 7088,
+    "at": 18760
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Reading 1 page",
+    "at": 18760
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "r:https://www.toureiffel.paris/en/the-monument/key-figures",
+    "title": "Could not read Eiffel Tower",
+    "tone": "bad",
+    "note": "no text came back",
+    "ms": 12452,
+    "at": 18775
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 18775
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "it cites nothing for this sentence.",
+    "at": 20021
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "The encyclopedia only points",
+    "tone": "warn",
+    "note": "its references could not be read. It points to 1 original source.",
+    "at": 20023
+   },
+   {
+    "type": "t",
+    "op": "begin",
+    "id": "write",
+    "title": "Writing the answer from 3 source(s) · gemma2:2b",
+    "tone": "run",
+    "at": 20037,
+    "slowAfter": 8000,
+    "slow": "waiting on gemma2:2b (slow: a model on this machine can take 10–20 s)"
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "Writing the answer (gemma2:2b)",
+    "at": 20037
+   },
+   {
+    "type": "t",
+    "op": "note",
+    "id": "write",
+    "tone": "info",
+    "text": "the first words are coming in",
+    "at": 36412
+   },
+   {
+    "type": "t",
+    "op": "end",
+    "id": "write",
+    "title": "Wrote the answer · gemma2:2b",
+    "tone": "ok",
+    "note": "17 tokens",
+    "ms": 18416,
+    "at": 38453
+   },
+   {
+    "type": "t",
+    "op": "verb",
+    "text": "",
+    "at": 38453
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Holding the answer until every sentence is checked",
+    "tone": "info",
+    "note": "against everything read",
+    "at": 38456
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Tried to break every sentence — none broke",
+    "tone": "ok",
+    "note": "1 corroborated · 0 on one source",
+    "at": 38498
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Read the draft before speaking",
+    "tone": "ok",
+    "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured",
+    "at": 38512
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Asked the model where it got that",
+    "tone": "info",
+    "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself",
+    "at": 38513
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Verified where it came from",
+    "tone": "ok",
+    "note": "1 source · architecturaldigest.com · 2 model calls",
+    "at": 58131
+   },
+   {
+    "type": "t",
+    "op": "line",
+    "title": "Checked the answer against what was read",
+    "tone": "ok",
+    "note": "every figure and name appears in the sources",
+    "at": 58157
+   },
+   {
+    "type": "t",
+    "op": "done",
+    "title": "Answered in 58 s · read 3 sources · gemma2:2b",
+    "at": 58157,
+    "ok": true
+   }
+  ],
+  "tape": [
+   {
+    "at": 0,
+    "seq": 0,
+    "kind": "start"
+   },
+   {
+    "at": 0.018,
+    "seq": 1,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read your question",
+     "tone": "ok",
+     "note": "question of fact"
+    }
+   },
+   {
+    "at": 0.02,
+    "seq": 2,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The query",
+     "tone": "info",
+     "note": "searching for “How tall is the Eiffel Tower?”"
+    }
+   },
+   {
+    "at": 0.025,
+    "seq": 3,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "q:web:How tall is the Eiffel Tower?",
+     "title": "Searching the web",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 0.026,
+    "seq": 4,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Waiting on the web"
+    }
+   },
+   {
+    "at": 0.026,
+    "seq": 5,
+    "kind": "st",
+    "st": {
+     "phase": "searching",
+     "scope": "web",
+     "q": "How tall is the Eiffel Tower?"
+    }
+   },
+   {
+    "at": 6.036,
+    "seq": 6,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "q:web:How tall is the Eiffel Tower?",
+     "tone": "warn",
+     "text": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.037,
+    "seq": 7,
+    "kind": "st",
+    "st": {
+     "phase": "waiting",
+     "scope": "web",
+     "why": "nothing else answered — waiting for the web"
+    }
+   },
+   {
+    "at": 6.268,
+    "seq": 8,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "q:web:How tall is the Eiffel Tower?",
+     "title": "Searched the web",
+     "tone": "ok",
+     "note": "20 results via Brave Search",
+     "ms": 6243
+    }
+   },
+   {
+    "at": 6.269,
+    "seq": 9,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 6.269,
+    "seq": 10,
+    "kind": "st",
+    "st": {
+     "phase": "found",
+     "scope": "web",
+     "q": "How tall is the Eiffel Tower?",
+     "n": 20
+    }
+   },
+   {
+    "at": 6.272,
+    "seq": 11,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Chose where to look",
+     "tone": "info",
+     "note": "the web (not Wikipedia, GitHub, the Internet Archive, OpenAlex, Crossref)"
+    }
+   },
+   {
+    "at": 6.273,
+    "seq": 12,
+    "kind": "st",
+    "st": {
+     "phase": "routed"
+    }
+   },
+   {
+    "at": 6.287,
+    "seq": 13,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read look-alike pages last",
+     "tone": "info",
+     "note": "6 pages named for something else that shares the name: Eiffel Tower key stats : the Tower in n…; The Eiffel Tower Is Now 20 Feet Taller…"
+    }
+   },
+   {
+    "at": 6.287,
+    "seq": 14,
+    "kind": "st",
+    "st": {
+     "phase": "demoted",
+     "n": 6
+    }
+   },
+   {
+    "at": 6.287,
+    "seq": 15,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://en.wikipedia.org/wiki/Eiffel_Tower",
+     "title": "Reading Wikipedia — Eiffel Tower - Wikipedia",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.288,
+    "seq": 16,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 6.288,
+    "seq": 17,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+     "site": "Wikipedia",
+     "title": "Eiffel Tower - Wikipedia"
+    }
+   },
+   {
+    "at": 6.29,
+    "seq": 18,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.toureiffel.paris/en/the-monument/key-figures",
+     "title": "Reading Eiffel Tower — Eiffel Tower key stats : the Tower in numbers",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.29,
+    "seq": 19,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 6.29,
+    "seq": 20,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+     "site": "Eiffel Tower",
+     "title": "Eiffel Tower key stats : the Tower in numbers"
+    }
+   },
+   {
+    "at": 6.291,
+    "seq": 21,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "title": "Reading Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Dige…",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 6.291,
+    "seq": 22,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 6.291,
+    "seq": 23,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "site": "Architectural Digest",
+     "title": "The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest"
+    }
+   },
+   {
+    "at": 11.636,
+    "seq": 24,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://en.wikipedia.org/wiki/Eiffel_Tower",
+     "title": "Read Wikipedia — Eiffel Tower - Wikipedia",
+     "tone": "ok",
+     "note": "kept 2,907 of 24,000 chars",
+     "ms": 5349
+    }
+   },
+   {
+    "at": 11.637,
+    "seq": 25,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 11.637,
+    "seq": 26,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://en.wikipedia.org/wiki/Eiffel_Tower",
+     "site": "Wikipedia",
+     "title": "Eiffel Tower - Wikipedia",
+     "chars": 24000,
+     "kept": 2907,
+     "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. Locally nicknamed \"La dame de fer\" (French for \"Iron Lady\") for its use of wrought iron, it was constructed as the centrepiece of the 1889 World's Fair, and to crown the centennial anniversary of the French Revolution. Although initially criticised by some of France's leading artists and intellectuals for its design, it has since become a global cultural icon of France and one of the most recognisable structures in the world. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. It was designated a monument historique in 1964, and was named part of a UNESCO World Heritage Site (\"Paris, Banks of the Seine\") in 1991. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. It was th"
+    }
+   },
+   {
+    "at": 11.643,
+    "seq": 27,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.youtube.com/watch?v=vurh8_SO6_c",
+     "title": "Reading YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 11.646,
+    "seq": 28,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 11.646,
+    "seq": 29,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.youtube.com/watch?v=vurh8_SO6_c",
+     "site": "YouTube",
+     "title": "Gustave Eiffel, The Eiffel Tower - YouTube"
+    }
+   },
+   {
+    "at": 12.208,
+    "seq": 30,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "title": "Read Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Dige…",
+     "tone": "ok",
+     "note": "kept 1,641 of 3,298 chars",
+     "ms": 5917
+    }
+   },
+   {
+    "at": 12.21,
+    "seq": 31,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 12.211,
+    "seq": 32,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller",
+     "site": "Architectural Digest",
+     "title": "The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+     "chars": 3298,
+     "kept": 1641,
+     "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Of course, over the last several decades, the most famous building in the City of Lights has become a beloved piece of history that will never be taken down. That said, while it may never be demolished, that doesn't change subtly every few years. And as of this week, it underwent a small but mighty development: It’s 20 feet taller than it was last week, bringing its total height to 1,082.68 feet. The additional six meters (roughly 20 feet) come courtesy of a new communications antenna that was installed atop the city’s tallest monument, which shares a nickname with the famed Margaret Thatcher: The Iron Lady. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. It started at the Journal Officiel de la République Française, which initiated the launch of what would soon become one of most visited landmarks in the world, with a competition. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. Th"
+    }
+   },
+   {
+    "at": 12.213,
+    "seq": 33,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "r:https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+     "title": "Reading Tootbus — 10 Fascinating Facts about the Eiffel Tower you should know",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 12.215,
+    "seq": 34,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 3 pages"
+    }
+   },
+   {
+    "at": 12.216,
+    "seq": 35,
+    "kind": "st",
+    "st": {
+     "phase": "reading",
+     "url": "https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+     "site": "Tootbus",
+     "title": "10 Fascinating Facts about the Eiffel Tower you should know"
+    }
+   },
+   {
+    "at": 17.469,
+    "seq": 36,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+     "title": "Read Tootbus — 10 Fascinating Facts about the Eiffel Tower you should know",
+     "tone": "ok",
+     "note": "kept 1,633 of 7,549 chars",
+     "ms": 5258
+    }
+   },
+   {
+    "at": 17.474,
+    "seq": 37,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 2 pages"
+    }
+   },
+   {
+    "at": 17.476,
+    "seq": 38,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.tootbus.com/en/paris/inspiration/10-fascinating-facts-about-eiffel-tower-you-should-know",
+     "site": "Tootbus",
+     "title": "10 Fascinating Facts about the Eiffel Tower you should know",
+     "chars": 7549,
+     "kept": 1633,
+     "text": "10 Fascinating Facts about the Eiffel Tower you should know On arrival in Paris, tourists who have never previously set foot in the French capital dream only of one thing: admiring the place nicknamed “the Iron Lady”. At over 300 metres high, for more than 40 years after its completion it was the tallest structure ever built. Here are some facts few people know about the Eiffel Tower. The Eiffel Tower has dominated the Parisian horizon for more than 130 years, with a fame and attraction that seems never to dim — quite the contrary, in fact. Although it is now admired around the world, its beginnings were rather more difficult. To easily get there, hop-off at stop 9 with a hop-on hop-off Paris bus tour, then stroll around the Iron lady with Tootwalk. What is the eventful history of the Eiffel Tower? The iconic symbol of France and Paris actually has its roots in… the United States! For the 1876 Centennial International Exhibition in Philadelphia, a team of American engineers imagined constructing a tower that was more than 300 metres tall. Their project was quite different to the Eiffel Tower that we know today. The project ultimately never came to fruition, but it inspired others, including the Eiffel company, which specialised in large metal structures, specifically iron, and gave its name to the tower. While today Paris wouldn’t be Paris without the Eiffel Tower, responses to"
+    }
+   },
+   {
+    "at": 18.726,
+    "seq": 39,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.youtube.com/watch?v=vurh8_SO6_c",
+     "title": "Read YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+     "tone": "ok",
+     "note": "24,000 chars",
+     "ms": 7088
+    }
+   },
+   {
+    "at": 18.731,
+    "seq": 40,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Reading 1 page"
+    }
+   },
+   {
+    "at": 18.732,
+    "seq": 41,
+    "kind": "st",
+    "st": {
+     "phase": "read",
+     "url": "https://www.youtube.com/watch?v=vurh8_SO6_c",
+     "site": "YouTube",
+     "title": "Gustave Eiffel, The Eiffel Tower - YouTube",
+     "chars": 24000,
+     "kept": 24000,
+     "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"browse_reload_continuations_migration_home\":true,\"c3_enable_button_impression_logging\":true,\"c3_watch_page_component\":true,\"cancel_pending_navs\":true,\"channel_details_shelf_resize_observer\":true,\"check_user_lact_at_prompt_shown_time_on_web\":true,\"client_respect_autoplay_switch_button_renderer\":true,\"client_ui_enable_multi_track_audio_on_web_embedded_player\":true,\"cold_missing_history\":true,\"compress_gel\":true,\"course_hide_playlist_panel_shuffle_and_loop_buttons\":true,\"cow_optimize_idom_compat\":true,"
+    }
+   },
+   {
+    "at": 18.741,
+    "seq": 42,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "r:https://www.toureiffel.paris/en/the-monument/key-figures",
+     "title": "Could not read Eiffel Tower",
+     "tone": "bad",
+     "note": "no text came back",
+     "ms": 12452
+    }
+   },
+   {
+    "at": 18.745,
+    "seq": 43,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 18.747,
+    "seq": 44,
+    "kind": "st",
+    "st": {
+     "phase": "unread",
+     "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+     "site": "Eiffel Tower",
+     "title": "Eiffel Tower key stats : the Tower in numbers",
+     "chars": 0,
+     "kept": 0,
+     "text": ""
+    }
+   },
+   {
+    "at": 18.849,
+    "seq": 45,
+    "kind": "quick",
+    "n": 1,
+    "of": 3,
+    "p": {
+     "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+     "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+    }
+   },
+   {
+    "at": 19.749,
+    "seq": 46,
+    "kind": "quick",
+    "n": 2,
+    "of": 3,
+    "p": {
+     "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+     "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+     "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+    }
+   },
+   {
+    "at": 19.988,
+    "seq": 54,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "it cites nothing for this sentence."
+    }
+   },
+   {
+    "at": 19.991,
+    "seq": 55,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "The encyclopedia only points",
+     "tone": "warn",
+     "note": "its references could not be read. It points to 1 original source."
+    }
+   },
+   {
+    "at": 20.005,
+    "seq": 56,
+    "kind": "ev",
+    "e": {
+     "op": "begin",
+     "id": "write",
+     "title": "Writing the answer from 3 source(s) · gemma2:2b",
+     "tone": "run"
+    }
+   },
+   {
+    "at": 20.007,
+    "seq": 57,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": "Writing the answer (gemma2:2b)"
+    }
+   },
+   {
+    "at": 20.649,
+    "seq": 47,
+    "kind": "quick",
+    "n": 3,
+    "of": 3,
+    "p": {
+     "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+     "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+     "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+    }
+   },
+   {
+    "at": 21.549,
+    "seq": 48,
+    "kind": "deep",
+    "k": 3,
+    "sub": 0,
+    "key": "src_d01d96",
+    "ps": [
+     {
+      "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+      "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+     },
+     {
+      "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+      "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+      "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+     },
+     {
+      "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+      "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+      "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+     }
+    ]
+   },
+   {
+    "at": 23.349,
+    "seq": 49,
+    "kind": "deep",
+    "k": 3,
+    "sub": 1,
+    "key": "src_d01d96",
+    "ps": [
+     {
+      "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+      "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+     },
+     {
+      "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+      "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+      "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+     },
+     {
+      "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+      "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+      "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+     }
+    ]
+   },
+   {
+    "at": 25.349,
+    "seq": 50,
+    "kind": "deep",
+    "k": 3,
+    "sub": 2,
+    "key": "src_d01d96",
+    "ps": [
+     {
+      "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+      "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+     },
+     {
+      "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+      "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+      "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+     },
+     {
+      "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+      "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+      "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+     }
+    ]
+   },
+   {
+    "at": 27.549,
+    "seq": 51,
+    "kind": "deep",
+    "k": 4,
+    "sub": 0,
+    "key": "src_d01d96",
+    "ps": [
+     {
+      "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+      "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+     },
+     {
+      "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+      "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+      "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+     },
+     {
+      "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+      "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+      "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+     }
+    ]
+   },
+   {
+    "at": 30.349,
+    "seq": 52,
+    "kind": "deep",
+    "k": 5,
+    "sub": 0,
+    "key": "src_d01d96",
+    "ps": [
+     {
+      "text": "The Eiffel Tower ( EYE-fəl; French: Tour Eiffel [tuʁ ɛfɛl] ) is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889. The tower received 5,889,000 visitors in 2022. The Eiffel Tower is the most visited monument with an entrance fee in the world: 6.91 million people ascended it in 2015. The tower is 330 metres (1,083 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become by far the tallest human-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. Due to the addition of a broadcasting aerial at the top of the tower in 1957,…",
+      "ref": "Wikipedia — Eiffel Tower - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+     },
+     {
+      "text": "Over the past century or so, Paris’s most iconic landmark, the Eiffel Tower, has been used for broadcast transmissions. In fact, radio is often credited for the famous structure’s survival into the 21st century. Though the tower is known affectionately among Parisians and visitors alike as a monument that is synonymous with the glamorous city in which it lives, it was erected to mark the 100th anniversary of the French Revolution. And among the 107 projects submitted for the contest, entrepreneur Gustave Eiffel, engineers Maurice Koechlin and Emile Nouguier, and architect Stephen Sauvestre won. The goal set before them was to construct a tower 300 meters high for the 1889 World’s Fair, which they did. Today, though, with the new antenna, the Eiffel Tower stands just under 1,083 feet tall. Regarding the structure’s new soaring height, the Eiffel Tower company’s president, Jean-François M…",
+      "ref": "Architectural Digest — The Eiffel Tower Is Now 20 Feet Taller | Architectural Digest",
+      "url": "https://www.architecturaldigest.com/story/eiffel-tower-20-feet-taller"
+     },
+     {
+      "text": "(function ytBootstrapConfig() {window.ytplayer={}; ytcfg.set({\"CLIENT_CANARY_STATE\":\"none\",\"DEVICE\":\"cbr\\u003dChrome\\u0026cbrand\\u003dapple\\u0026cbrver\\u003d143.0.0.0\\u0026ceng\\u003dWebKit\\u0026cengver\\u003d537.36\\u0026cos\\u003dMacintosh\\u0026cosver\\u003d10_15_7\\u0026cplatform\\u003dDESKTOP\",\"DISABLE_YT_IMG_DELAY_LOADING\":false,\"ELEMENT_POOL_DEFAULT_CAP\":75,\"EVENT_ID\":\"Yr3Fau_5DoO3y-8PzIrUmQU\",\"EXPERIMENT_FLAGS\":{\"PremiumClientSharedConfig__enable_att_context_processor\":true,\"ab_det_apm\":true,\"ab_det_el_h\":true,\"ab_fix_creator_view_cnt\":true,\"ab_net_tp_e\":true,\"action_companion_center_align_description\":true,\"align_ask_youtube_input_on_focus\":true,\"all_web_enable_network_machine\":true,\"all_web_network_machine_raw_request\":true,\"allow_skip_networkless\":true,\"att_web_record_metrics\":true,\"attmusi\":true,\"attmusiw\":true,\"bg_st_hr\":true,\"browse_next_continuations_migration_playlist\":true,\"bro…",
+      "ref": "YouTube — Gustave Eiffel, The Eiffel Tower - YouTube",
+      "url": "https://www.youtube.com/watch?v=vurh8_SO6_c"
+     }
+    ]
+   },
+   {
+    "at": 32.549,
+    "seq": 53,
+    "kind": "writing",
+    "srcs": 3
+   },
+   {
+    "at": 36.378,
+    "seq": 58,
+    "kind": "ev",
+    "e": {
+     "op": "note",
+     "id": "write",
+     "tone": "info",
+     "text": "the first words are coming in"
+    }
+   },
+   {
+    "at": 38.419,
+    "seq": 59,
+    "kind": "ev",
+    "e": {
+     "op": "end",
+     "id": "write",
+     "title": "Wrote the answer · gemma2:2b",
+     "tone": "ok",
+     "note": "17 tokens",
+     "ms": 18416
+    }
+   },
+   {
+    "at": 38.421,
+    "seq": 60,
+    "kind": "ev",
+    "e": {
+     "op": "verb",
+     "text": ""
+    }
+   },
+   {
+    "at": 38.424,
+    "seq": 61,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Holding the answer until every sentence is checked",
+     "tone": "info",
+     "note": "against everything read"
+    }
+   },
+   {
+    "at": 38.464,
+    "seq": 62,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Tried to break every sentence — none broke",
+     "tone": "ok",
+     "note": "1 corroborated · 0 on one source"
+    }
+   },
+   {
+    "at": 38.478,
+    "seq": 63,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Read the draft before speaking",
+     "tone": "ok",
+     "note": "read the draft: all 1 sentence spoken · 11 of 11 checks have never withheld anything — shown, not measured"
+    }
+   },
+   {
+    "at": 38.478,
+    "seq": 64,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Asked the model where it got that",
+     "tone": "info",
+     "note": "a second call, only to point at a sentence in the pages I read — I check it and write the line myself"
+    }
+   },
+   {
+    "at": 58.096,
+    "seq": 65,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Verified where it came from",
+     "tone": "ok",
+     "note": "1 source · architecturaldigest.com · 2 model calls"
+    }
+   },
+   {
+    "at": 58.122,
+    "seq": 66,
+    "kind": "ev",
+    "e": {
+     "op": "line",
+     "title": "Checked the answer against what was read",
+     "tone": "ok",
+     "note": "every figure and name appears in the sources"
+    }
+   },
+   {
+    "at": 58.123,
+    "seq": 67,
+    "kind": "ev",
+    "e": {
+     "op": "done",
+     "title": "Answered in 58 s · read 3 sources · gemma2:2b"
+    }
+   },
+   {
+    "at": 58.124,
+    "seq": 68,
+    "kind": "done"
+   }
+  ]
+ }
+}

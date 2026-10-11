@@ -1,0 +1,25 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "hubel",
+  "organ": "khora/native/kernel/terrain-activation.js",
+  "standing": "deferred",
+  "snips": ["eo-teachings/manifest/hubel-terrain-activation.json"],
+  "whatTheyArgued": "Hubel & Wiesel (J. Physiol. 1959, cat striate cortex; 1962, cat visual cortex architecture; 1968, macaque) recorded single cortical neurons and showed each responds to light in a restricted region of the retina (its receptive field), with a preferred stimulus type (oriented bars, edges) and a classification into simple, complex and (in cat) hypercomplex cells, plus columnar organization by orientation and eye dominance. In the 1968 monkey paper (read from the journal PDF): receptive fields are smaller than in cat on average; the retinotopic map is coarser in the periphery but compensated by larger fields. Nothing in it concerns time, 'the present', or decay. The papers are copyrighted; manifest is copyrighted_deferred and nothing is quoted.",
+  "scholarship": [
+    { "ref": "Hubel & Wiesel 1968, 'Receptive fields and functional architecture of monkey striate cortex', J. Physiol. 195:215-243 (read via pdftotext)", "url": "https://www.cns.nyu.edu/~tony/vns/readings/hubel-wiesel-1968.pdf", "supports": "fields are local regions of retina; sizes vary with eccentricity and cell type; simple/complex/hypercomplex categories; columnar organization", "disputes": "I did not read literature on extra-classical (surround/contextual) influences on cortical responses, so I cannot say here whether 'responds only to a bounded region' is too strong; flagged unverified" }
+  ],
+  "ourUse": "terrain-activation.js lights the terrains a proposition touches across the nine-cell grid (Entity, Link, Network, Field, Void, Lens), fades everything at the reader's own gamma (measured by dmdWindow), so per-proposition cost is O(what it touches). Handle comment: 'the reach of the present moment is local and bounded, like a cortical neuron's patch of the visual field'.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "space-to-time", "kind": "re-scoped", "ours": "'Reach of the present': a time-decaying set of lit graph terrains for one reader.", "theirs": "A receptive field is a spatial region of the retina for one neuron; Hubel & Wiesel's papers do not treat time-decay or a reader's present." },
+    { "id": "bounded-fixed-vs-tunable", "kind": "narrowed", "ours": "Bound is a decay window we measure or declare (gamma, dmdWindow), with a null arm (gamma null) in which nothing fades.", "theirs": "Field extent is a measured property of each cell that varies by cell type and eccentricity; there is no single bound, and no undecayed control." },
+    { "id": "credit-in-author-voice", "kind": "misstated", "ours": "credit line: 'a neuron's reach is local and bounded: the present never spans the whole field.' The second clause is our design rule written as if part of their finding; the work line also says 'activation never spans the whole'.", "theirs": "They did not claim anything about 'the present' or about whole-field activation being excluded; many cells together do cover the whole field (the retinotopic map)." },
+    { "id": "name-for-pair", "kind": "decorative", "ours": "Handle 'hubel' alone, credit says 'Hubel & Wiesel'.", "theirs": "Wiesel shared the 1981 Nobel and co-authored every cited paper; the manifest giver is Hubel only." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Hubel and Wiesel showed each visual-cortex neuron responds to a restricted retinal region (its receptive field). Our terrain-activation borrows only the picture of a bounded patch; the decay in time and the terrains are ours.'",
+    "compendium credit: 'after Hubel & Wiesel's receptive field (analogy: reach is bounded; the time decay and the nine terrains are ours).'",
+    "terrain-activation.js header: drop 'the present never spans the whole'; say it is our rule, by analogy"
+  ]
+}

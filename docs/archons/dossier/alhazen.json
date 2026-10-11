@@ -1,0 +1,26 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "alhazen",
+  "organ": "khora/native/organs/frame.js",
+  "standing": "verified",
+  "snips": ["eo-teachings/manifest/alhazen-frame.json"],
+  "whatTheyArgued": "In the opening of Kitab al-Manazir, Book I ch. 1 (Arabic, read from the on-disk Wikisource file; translation below is my paraphrase): earlier researchers laboured at how sight works yet disagree on what vision is, so perplexity prevails and certainty is hard to reach; truths are obscure, premises are gathered from senses which are not safe from error, and the investigator is fallible. He then sorts the rival positions into two opposed camps (natural philosophers vs mathematicians) and subtypes of each, reasons that of two conflicting doctrines either one is false, both are false, or both point to one truth with one party having stopped short, and lays out the seven-book plan. He says he is abandoning an earlier treatise whose arguments were persuasive but not demonstrative once demonstrations became available. The passage concerns the state of the question and the method of resolving it, not an instruction to declare the conditions of an observation before comparing results.",
+  "scholarship": [
+    { "ref": "A. I. Sabra, The Optics of Ibn al-Haytham Books I-III On Direct Vision (Warburg Institute, 1989): the standard critical edition and translation", "url": "https://wellcomecollection.org/works/qvsvmks4", "supports": "existence and authority of the edition; catalogue record only, I did not read the book", "disputes": "search summaries (not primary reading) show the common claim that he was the 'father of the scientific method' is a modern label; I could not verify scholarly dispute over it first-hand" },
+    { "ref": "Wikipedia 'Book of Optics' (secondary overview; weak source, used only to confirm the work's accepted description)", "url": "https://en.wikipedia.org/wiki/Book_of_Optics", "supports": "book describes many experiments supporting intromission and the eye's physiology", "disputes": "none stated; article does not discuss methodology debates" }
+  ],
+  "ourUse": "frame.js declareFrame({organs, givers, numbers}) names the organs, givers and number values in force and hashes them to a frame id; framed() stamps a verdict with it; comparable(a,b) refuses a comparison across different frames (REFUSALS: undeclared_frame, cross_frame, unframed). Built to a pre-registered derivation as the depth-sibling of measure.js and geometry's extent-and-units guard.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "frame-not-in-passage", "kind": "misstated", "ours": "Compendium: 'insisted on declaring the conditions, the frame, of an observation before comparing results'. The snip on file is cited as the support.", "theirs": "The snipped passage is about predecessors disagreeing and the unreliability of senses and investigators. Its nearest relevant move is that he sets out each camp's premises before judging between them, which is close to but not the same as declaring one's own conditions. I did not locate a declaration-before-comparison rule in the passage; elsewhere in the Optics he does describe apparatus and conditions in experiments, which I did not read." },
+    { "id": "doubt-as-path", "kind": "narrowed", "ours": "'doubt as the path to truth'.", "theirs": "The passage records doubt and fallibility as the condition of inquiry and the reason for caution; it also states that demonstrative proof, not doubt itself, is what he substitutes for persuasion. The 'doubt' framing may rest on his Doubts on Ptolemy, which I did not read." },
+    { "id": "alhazen-speaks-header", "kind": "invented-attribution", "ours": "frame.js opens with 'Alhazen speaks:' then the Arabic, then two first-person-sounding sentences ('...the code accurately reflects the historical context, it might overemphasize the strict adherence to the original text...') that are model-written commentary under his name.", "theirs": "He wrote nothing about code; those sentences are generated and carry his name by position. The Arabic quote is real and verbatim, untranslated for the reader." },
+    { "id": "founder-label", "kind": "decorative", "ours": "'father of optics and one of the founders of the experimental method'.", "theirs": "Common modern honorific; not something he claims, and the 'founder of the scientific method' label is a historiographical claim I could not verify here." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Ibn al-Haytham opened his Book of Optics by sorting his predecessors' conflicting premises about vision and admitting that senses and investigators err, then promised demonstrations instead of persuasion. Our frame.js borrows the spirit: name the premises a verdict was computed under before comparing it with another. The declare-before-compare rule is ours.'",
+    "compendium credit: 'Ibn al-Haytham: premises laid out and doubt admitted before judging (Optics I.1); frame declaration is our rule.'",
+    "frame.js: replace the generated 'Alhazen speaks' commentary with a plain label 'Quoted: Optics I.1 (Arabic, verbatim). Commentary below is ours.' and add an English translation marked as ours"
+  ]
+}

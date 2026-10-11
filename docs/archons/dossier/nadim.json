@@ -1,0 +1,46 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "nadim",
+  "organ": "khora/native/organs/source.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/nadim-source.json"
+  ],
+  "whatTheyArgued": "In his own preface, the Fihrist (987 CE) is a catalogue of the books of all nations, Arab and non-Arab, those extant in Arabic, by branches of knowledge and with news of their authors: classes, genealogies, birth dates, lifespans, death dates, homelands, and their merits and faults (manaqib wa mathalib), from the origin of each science to his own year, 377 AH. Verified verbatim from Arabic Wikisource (archive pointer still pending).",
+  "scholarship": [
+    {
+      "ref": "Search results on Dodge's Fihrist translation (Columbia UP, 1970) and library summaries; I read snippets only, not the full works",
+      "url": "https://muslimheritage.com/the-catalogue-al-fihrist/",
+      "supports": "ten maqalat arranged by subject (scripts and languages, scripture, grammar, history, poetry, ...) and the catalogue is arranged by persons and groups with titles listed under them",
+      "disputes": "None found; I did not locate scholarship on the 'merits and faults' clause."
+    }
+  ],
+  "ourUse": "source.js: pasted text is chunked at paragraph boundaries, each chunk has a byte range, retrieval is mechanical term overlap; unaddressable things are typed gaps.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "never-judgment",
+      "kind": "misstated",
+      "ours": "'retrieval by where a work sits, never a judgment of the work's worth'.",
+      "theirs": "The preface verified in our own snip says the entries include authors' merits and faults, i.e. evaluation. The catalogue is also arranged by subject and by person, not by a location address."
+    },
+    {
+      "id": "address-reinterpreted",
+      "kind": "reinterpreted",
+      "ours": "'Addressed catalogue' = byte-range chunk addresses in pasted text.",
+      "theirs": "Fihrist 'address' is a place in a subject-ordered bibliography of books; byte offsets and term-overlap retrieval are our mechanism."
+    },
+    {
+      "id": "speaks-block",
+      "kind": "misstated",
+      "ours": "source.js header 'Nadim speaks:' block: the Arabic line is real, but the paragraph after it ('a repository of verified words ... not by imposing judgments') is model-written prose set in the author's frame.",
+      "theirs": "Nothing of the sort is in the preface; the Fihrist does not describe 'verified words'."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Kitab al-Fihrist (987): a subject-ordered catalogue of the books of all nations with news of their authors, including their merits and faults. source.js borrows only the idea of a catalogue in which every item has a findable place; retrieval here by address and term overlap is ours, and the Fihrist did not forgo evaluation.'",
+    "credit: 'Ibn al-Nadim — the catalogue idea (al-Fihrist, 987); address-by-byte-range is ours.'",
+    "source.js: delete the model-generated paragraph under 'Nadim speaks' or label it 'generated, not Nadim'."
+  ],
+  "tokenized": false
+}

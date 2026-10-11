@@ -1,0 +1,85 @@
+{
+ "label": "style-before-1",
+ "model": "gemma2:2b",
+ "at": "2026-10-07T06:09:37.335Z",
+ "patchDir": "/private/tmp/claude-501/-Users-mlacy-Documents-3-0-the-fold/0c804cde-75c0-4276-bf91-3cc3a46d1c35/scratchpad/before-patch",
+ "turns": [
+  {
+   "ask": "who is mt. mckinlet named afer?",
+   "web": [
+    "{\"scope\":\"wikipedia\",\"q\":\"who is mt. mckinlet named afer?\",\"engine\":\"Wikipedia\",\"n\":0,\"ok\":true}",
+    "{\"scope\":\"web\",\"q\":\"who is mt. mckinlet named afer?\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":true}",
+    "{\"scope\":\"route\",\"ok\":true,\"engine\":\"source router\",\"picked\":[\"web\",\"wikipedia\"],\"skipped\":[\"github\",\"archive\",\"openalex\",\"crossref\"],\"why\":{\"web\":\"always — the",
+    "{\"scope\":\"topic\",\"ok\":true,\"engine\":\"title gate\",\"demoted\":[\"Denali - Wikipedia (no-shared-word)\",\"Molly of Denali - Wikipedia (no-shared-word)\",\"List of unusua",
+    "{\"scope\":\"topic\",\"ok\":true,\"skippedOff\":2,\"engine\":\"swarm gate\",\"strict\":false,\"dissent\":{\"no-content-word\":2}}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute\",\"via\":\"direct\",\"chars\":14258,\"kept\":1204,\"hash\":\"c1ed2de0\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/McKinley_Tower_Apartments\",\"via\":\"direct\",\"chars\":2281,\"kept\":2281,\"hash\":\"91e426cf\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Denali\",\"via\":\"direct\",\"chars\":24000,\"kept\":1674,\"hash\":\"9fa9f33c\"}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/Molly_of_Denali\",\"via\":\"direct\",\"chars\":5377,\"kept\":304,\"hash\":\"4c8dddb3\",\"skipped\":true}",
+    "{\"read\":\"https://en.wikipedia.org/wiki/List_of_unusual_deaths_in_the_21st_century\",\"via\":\"direct\",\"chars\":231,\"kept\":231,\"hash\":\"fa4cbaed\",\"skipped\":true}",
+    "{\"scope\":\"web\",\"q\":\"Verse rubber's strong springy leap joyful song Trampoline's name bouncing\",\"ok\":false,\"why\":\"Web search did not answer in time.\",\"lap\":1}",
+    "{\"scope\":\"web\",\"q\":\"president's honor legacy William McKinley strong bold name peak story\",\"engine\":\"Wikipedia search (shim for the 502 relay)\",\"n\":8,\"ok\":true,"
+   ],
+   "spoken": "Up and down, the rubber's strong A springy leap, a joyful song Kids and grown-ups jump with all their might\n\n(Chorus) Trampolines, trampolines, a colorful scene Laughter and glee, a happy routine Where dreams take flight, and energy flows\n\nWho's the mountain's name a reminder of?",
+   "kind": "research",
+   "followed": null,
+   "feed": [
+    "The query: searching for “who is mt. mckinlet named afer?”"
+   ],
+   "reads": [
+    "https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute",
+    "https://en.wikipedia.org/wiki/McKinley_Tower_Apartments",
+    "https://en.wikipedia.org/wiki/Denali",
+    "https://en.wikipedia.org/wiki/Molly_of_Denali",
+    "https://en.wikipedia.org/wiki/List_of_unusual_deaths_in_the_21st_century",
+    "https://en.wikipedia.org/wiki/William_Howard_Taft",
+    "https://en.wikipedia.org/wiki/Everett_Dirksen",
+    "https://en.wikipedia.org/wiki/Ronald_Reagan",
+    "https://en.wikipedia.org/wiki/George_W._Bush"
+   ],
+   "passages": [
+    "en.wikipedia.org — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "en.wikipedia.org — McKinley Tower Apartments - Wikipedia <https://en.wikipedia.org/wiki/McKinley_Tower_Apartments>",
+    "en.wikipedia.org — Denali - Wikipedia <https://en.wikipedia.org/wiki/Denali>",
+    "en.wikipedia.org — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>",
+    "en.wikipedia.org — McKinley Tower Apartments - Wikipedia <https://en.wikipedia.org/wiki/McKinley_Tower_Apartments>",
+    "en.wikipedia.org — Denali - Wikipedia <https://en.wikipedia.org/wiki/Denali>",
+    "en.wikipedia.org — Molly of Denali - Wikipedia <https://en.wikipedia.org/wiki/Molly_of_Denali>",
+    "en.wikipedia.org — Denali–Mount McKinley naming dispute - Wikipedia <https://en.wikipedia.org/wiki/Denali%E2%80%93Mount_McKinley_naming_dispute>"
+   ],
+   "notices": [],
+   "raws": [
+    "(Verse 1)\nUp and down, the rubber's strong\nA springy leap, a joyful song\nTrampoline's the name, a bouncing delight\nKids and grown-ups jump with all their might\n\n(Chorus)\nTrampolines, trampolines, a colorful scene\nLaughter and glee, a happy routine\nTwirling high, then bouncing low\nWhere dreams take flight, and energy flows\n\n(Verse 2)\nWho's the mountain's name a reminder of?\nA president's honor, a legacy of\nWilliam McKinley, strong and bold\nHis name on the peak, a story told\n\n(Chorus)\nTrampolines,",
+    "The mountain's name is a reminder of. \n",
+    "A president's honor, a legacy of William McKinley, strong and bold His name on the peak, a story told \n",
+    "14 \n",
+    "14 \n"
+   ],
+   "referents": [
+    "Kids(2.0)",
+    "Chorus(2.0)",
+    "Trampolines(2.0)",
+    "Laughter(2.0)",
+    "Where(2.0)",
+    "Who(2.0)"
+   ],
+   "summary": {
+    "topic": "who is mt. mckinlet named afer?",
+    "flow": "So far, in order: they asked \"write me a song about trampolines\" and I could not answer; they asked \"who is mt. mckinlet named afer?\" and I said \"Up and down, the rubber's strong A springy leap, a joyful song Kids and grown-ups jump wi…\".",
+    "entities": [
+     "Kids",
+     "Chorus",
+     "Trampolines",
+     "Laughter",
+     "Where",
+     "Who"
+    ]
+   },
+   "modelRequest": [
+    "system: You are the fold — the reading and research surface over this person's own material: their documents, transcripts, reports, pages, records, and the live web. Reply plainly, in a warm, grounded voice. You research people, relationships, and events from SOURCES:",
+    "user: write me a song about trampolines",
+    "user: who is mt. mckinlet named afer?"
+   ]
+  }
+ ]
+}

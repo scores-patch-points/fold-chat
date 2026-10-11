@@ -1,0 +1,18 @@
+/* A — bottom-sheet stack with detents; each ancestor is a visible strip above the top sheet (the strips ARE the breadcrumbs) */
+#scrim { position:fixed; inset:0; z-index:650; background:rgba(8,8,12,.38); opacity:0; pointer-events:none; transition:opacity var(--dur) var(--ease); }
+#scrim.on { opacity:1; pointer-events:auto; }
+html[data-model="a"] .layer { border-radius:16px 16px 0 0; transition:top var(--dur) var(--ease), left var(--dur) var(--ease), width var(--dur) var(--ease); will-change:transform; }
+#rail { transition:height var(--dur) var(--ease); }
+#rail .st { pointer-events:auto; display:flex; align-items:center; gap:8px; width:100%; height:32px; padding:0 12px; border-radius:12px 12px 0 0; border:0; border-bottom:1px solid rgba(0,0,0,.14); box-shadow:0 -1px 0 rgba(0,0,0,.08); font:600 12.5px/1 var(--sans); text-align:left; white-space:nowrap; overflow:hidden; background:var(--side); color:var(--ink); animation:stin var(--dur) var(--ease) 1; }
+@keyframes stin { from { height:0; opacity:0; } to { height:32px; opacity:1; } }
+#rail .st .k { font:600 10px/1 var(--mono); letter-spacing:.07em; text-transform:uppercase; opacity:.7; }
+#rail .st .l { overflow:hidden; text-overflow:ellipsis; }
+#rail .st .cv { margin-left:auto; opacity:.6; font-size:14px; }
+#rail .st.chat { height:40px; border-radius:0; background:var(--side); color:var(--ink); padding:0 14px; font-size:13.5px; border-bottom:1px solid var(--line); }
+#rail .st.chat b { font-weight:600; color:var(--ag); font-size:15px; }
+#rail .st.more { height:32px; background:var(--side2); color:var(--ink2); }
+#rail .st:focus-visible { outline-offset:-3px; }
+.grab { position:absolute; left:0; right:0; top:0; height:20px; cursor:grab; touch-action:none; }
+.grab::before { content:""; position:absolute; left:50%; top:6px; width:38px; height:4px; margin-left:-19px; border-radius:2px; background:currentColor; opacity:.28; }
+html[data-model="a"] .l-head { position:relative; padding-top:14px; touch-action:none; }
+@media (min-width:700px) { html[data-model="a"] .l-head { cursor:grab; } }

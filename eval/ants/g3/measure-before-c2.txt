@@ -1,0 +1,126 @@
+{
+ "follow": {
+  "n": 22,
+  "ok": 11,
+  "acc": 0.5,
+  "ci": [
+   0.31,
+   0.69
+  ]
+ },
+ "switch": {
+  "n": 24,
+  "ok": 16,
+  "acc": 0.667,
+  "ci": [
+   0.47,
+   0.82
+  ]
+ },
+ "hard": {
+  "n": 10,
+  "ok": 5,
+  "acc": 0.5,
+  "ci": [
+   0.24,
+   0.76
+  ]
+ },
+ "follow/en": {
+  "n": 14,
+  "ok": 11,
+  "acc": 0.786,
+  "ci": [
+   0.52,
+   0.92
+  ]
+ },
+ "follow/es": {
+  "n": 4,
+  "ok": 0,
+  "acc": 0,
+  "ci": [
+   0,
+   0.49
+  ]
+ },
+ "follow/fr": {
+  "n": 4,
+  "ok": 0,
+  "acc": 0,
+  "ci": [
+   0,
+   0.49
+  ]
+ },
+ "switch/en": {
+  "n": 16,
+  "ok": 8,
+  "acc": 0.5,
+  "ci": [
+   0.28,
+   0.72
+  ]
+ },
+ "switch/es": {
+  "n": 4,
+  "ok": 4,
+  "acc": 1,
+  "ci": [
+   0.51,
+   1
+  ]
+ },
+ "switch/fr": {
+  "n": 4,
+  "ok": 4,
+  "acc": 1,
+  "ci": [
+   0.51,
+   1
+  ]
+ },
+ "switch/share": {
+  "n": 6,
+  "ok": 5,
+  "acc": 0.833,
+  "ci": [
+   0.44,
+   0.97
+  ]
+ },
+ "followRightReferent": {
+  "n": 11,
+  "ok": 9
+ },
+ "thread_mode_on_non_follow": [
+  "why",
+  "who"
+ ]
+}
+
+FAILURES:
+  xf001 follow/en expect=carry got kind=standalone mode=web q="what else"  ← "what else"
+  xf003 follow/en expect=carry got kind=standalone mode=web q="can you give an example"  ← "can you give an example"
+  xf012 follow/en expect=carry got kind=standalone mode=web q="and in 1893?"  ← "and in 1893?"
+  xf015 follow/es expect=carry got kind=standalone mode=web q="¿cuándo nació?"  ← "¿cuándo nació?"
+  xf016 follow/es expect=carry got kind=standalone mode=web q="cuéntame más sobre ella"  ← "cuéntame más sobre ella"
+  xf017 follow/es expect=carry got kind=standalone mode=web q="¿y su asesino?"  ← "¿y su asesino?"
+  xf018 follow/es expect=carry got kind=standalone mode=web q="¿y por qué?"  ← "¿y por qué?"
+  xf019 follow/fr expect=carry got kind=standalone mode=web q="qui l'a tué ?"  ← "qui l'a tué ?"
+  xf020 follow/fr expect=carry got kind=standalone mode=web q="parle-moi plus d'elle"  ← "parle-moi plus d'elle"
+  xf021 follow/fr expect=carry got kind=standalone mode=web q="et sa femme ?"  ← "et sa femme ?"
+  xf022 follow/fr expect=carry got kind=standalone mode=web q="et alors ?"  ← "et alors ?"
+  xs023 switch/en expect=none got kind=carried mode=web q="Abraham Lincoln United States why is the ocean blue"  ← "why is the ocean blue"
+  xs025 switch/en expect=none got kind=carried mode=web q="Nikola Tesla Serbian-American what is the best way to learn spanish"  ← "what is the best way to learn spanish"
+  xs030 switch/en expect=none got kind=carried mode=web q="Mars Phobos how far is the sun from the earth"  ← "how far is the sun from the earth"
+  xs032 switch/en expect=none got kind=carried mode=web q="Cretaceous–Paleogene extinction event Earth what is the largest animal alive today"  ← "what is the largest animal alive today"
+  xs033 switch/en expect=none got kind=carried mode=web q="Marie Curie Polish-French what is the periodic table"  ← "what is the periodic table"
+  xs034 switch/en expect=none got kind=carried mode=web q="The Eiffel Tower Paris when is the next full moon"  ← "when is the next full moon"
+  xs036 switch/en expect=none got kind=carried mode=web q="Abraham Lincoln United States what is the population of canada"  ← "what is the population of canada"
+  xs038 switch/en expect=none got kind=carried mode=web q="Abraham Lincoln Mars why is the sea salty"  ← "why is the sea salty"
+  xh047 hard/en expect=none got kind=carried mode=web q="Nikola Tesla Serbian-American is it hard to learn the piano"  ← "is it hard to learn the piano"
+  xh048 hard/en expect=none got kind=carried mode=web q="Mars Phobos does it snow in texas"  ← "does it snow in texas"
+  xh051 hard/en expect=carry got kind=standalone mode=web q="what about birds"  ← "what about birds"
+  xh053 hard/en expect=none got kind=elliptical mode=web q="more thing current president abraham lincoln"  ← "one more thing, who is the current president"
+  xh055 hard/en expect=none got kind=carried mode=web q="Nikola Tesla Serbian-American how come the sky is blue"  ← "how come the sky is blue"

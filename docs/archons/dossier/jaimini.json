@@ -1,0 +1,53 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "jaimini",
+  "organ": "khora/native/kernel/obligations.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/jaimini.json"
+  ],
+  "whatTheyArgued": "Purva Mimamsa Sutra 1.1.2 (Jha 1916, verbatim snip): dharma or duty is the desirable thing indicated by Vedic injunction (codana). Jha's commentary frames the point as an epistemic one: there is a valid means of knowing dharma, namely the Vedic injunction, since it lies beyond senses and inference. A nearby sutra (1.2.19) argues a vidhi (injunction) is an injunction because it lays down something new (apurva) that is not otherwise known. I found no statement in what I read that an injunction 'persists until discharged', nor that discharge is a recorded act.",
+  "scholarship": [
+    {
+      "ref": "Wikipedia 'Purva Mimamsa Sutras' (fetched; weak, used for dating and structure only)",
+      "url": "https://en.wikipedia.org/wiki/Purva_Mimamsa_Sutras",
+      "supports": "text c. 300-200 BCE in twelve chapters; 1.1.2 'duty is that which is indicated by Vedic injunctions'; Sabara's commentary is the main complete one",
+      "disputes": "Not a scholarly source. No SEP/IEP page could be fetched (404s), so no peer-reviewed treatment of obligation, apurva or nitya-karma persistence was read. The notion of an unfulfilled duty continuing (as in later nitya karma and apurva doctrine) I know only in general and did not verify."
+    }
+  ],
+  "ourUse": "obligations.js: an injunction opens a standing obligation record (id, grounds, consequences, persistence counter); carryObligations increments persistence on each carry unless status is resolved/closed/superseded; resolveObligation records the discharge as an operation. Header: 'after Mimamsa's vidhi: a scriptural injunction opens a standing obligation that persists until the enjoined act discharges it.'",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "persistence-not-in-snip",
+      "kind": "misstated",
+      "ours": "Compendium: 'An injunction persists until it is discharged; it does not fade with neglect, and discharging it is a recorded act, not an assumption.' Credit given to Jaimini.",
+      "theirs": "The verified sutra defines dharma by its source of knowledge (injunction). Persistence, neglect and recorded discharge are not in the passage read; they are our design (or later Mimamsa doctrine, unverified by me)."
+    },
+    {
+      "id": "scripture-to-any-obligation",
+      "kind": "re-scoped",
+      "ours": "Any declared grounds may open an obligation (pledges, promises, tasks); topics include 'pledge'.",
+      "theirs": "Mimamsa duty is what Vedic injunction teaches; the sutra argues it cannot be known from perception or inference, which excludes our everyday use."
+    },
+    {
+      "id": "knowing-vs-binding",
+      "kind": "reinterpreted",
+      "ours": "The injunction creates a ledger entry that stays open.",
+      "theirs": "The sutra concerns how dharma is known (injunction as the only means), not an object's lifetime."
+    },
+    {
+      "id": "first-person-header",
+      "kind": "invented-attribution",
+      "ours": "organ header comment opens with a first-person 'speaks' block and commentary in the archon's voice ('My teaching prioritizes...', 'I believe...'), generated text presented as the author's own words (obligations.js: 'While the principle is sound, the implementation... potentially neglecting the nuance of obligation').",
+      "theirs": "Not in Jaimini or Jha."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Author of the Mimamsa Sutras, which define dharma as what Vedic injunction (codana) teaches. obligations.js borrows the idea that an injunction creates a duty independent of perception; the open-until-discharged ledger, the persistence counter and the recorded-discharge rule are our design.'",
+    "compendium credit: 'Jaimini - duty is what an injunction teaches (Mimamsa Sutra 1.1.2); persistence ledger ours.'",
+    "obligations.js: delete first-person 'speaks' commentary; handle line: 'after Mimamsa's codana (duty is what an injunction teaches); the persistence rule is ours'.",
+    "Before claiming persistence for Mimamsa: read Sabara or a peer-reviewed account of nitya karma and apurva."
+  ],
+  "tokenized": false
+}

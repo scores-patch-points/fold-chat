@@ -1,0 +1,52 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "liu-hui",
+  "organ": "khora/native/organs/derivation.js",
+  "standing": "verified",
+  "snips": [
+    "eo-teachings/manifest/liu-hui.json"
+  ],
+  "whatTheyArgued": "In his 263 CE commentary on the Jiuzhang suanshu (Nine Chapters), Liu Hui explains why the book's bare algorithms work. For the circle (problem 1.32, area = half circumference x half diameter) he inscribes a hexagon and doubles the sides (12-gon, 24-gon...), claims the leftover shrinks until 'no more cut is possible' and the polygon coincides with the circle, and concludes the area formula (Mikami 1913 translation, verbatim snip; Siu 1993 summarizes the same three steps). He also corrects the book's implicit pi = 3, saying it is only the ratio for the inscribed hexagon. What I read does not show him laying down axioms or a rule that results 'not derived from premises do not count'.",
+  "scholarship": [
+    {
+      "ref": "Man-Keung Siu, 'Proof and Pedagogy in Ancient China: Examples from Liu Hui's Commentary on Jiu Zhang Suan Shu', Educational Studies in Mathematics 24 (1993), 345-357 (full text read)",
+      "url": "https://hkumath.hku.hk/~mks/ProofAndPedagogyInAncientChina.pdf",
+      "supports": "the circle-area commentary in three steps (polygon doubling, limit claim with sandwich, conclusion); Liu Hui's remark that pi = 3 is only the hexagon ratio",
+      "disputes": "Siu notes that if 'proof' means deductive demonstration from stated definitions and postulates, ancient Chinese mathematics has none (Szabo's view); if it means an explanation that convinces and enlightens, Liu Hui supplies many. Which sense applies is the dispute. This reading is Siu's; I did not read competing scholars (e.g. Chemla, Guo Shuchun) in full."
+    }
+  ],
+  "ourUse": "derivation.js (floor 6): a corroborated note becomes a PREMISE; licensed composition derives products that land with no witnesses, only premises and provenance to bytes; conceding a premise withdraws every product resting on it transitively. Handle comment: 'after the mathematician who proved each step from results already established; what isn't derived from a premise doesn't count'.",
+  "verdict": "partial",
+  "bends": [
+    {
+      "id": "explain-vs-premise-wall",
+      "kind": "reinterpreted",
+      "ours": "A derived note counts only if it rests on corroborated premises on the ledger; a hard wall (no witnesses, withdrawn when a premise is conceded).",
+      "theirs": "Liu Hui's commentary justifies existing algorithms by explanation and geometric argument (polygon doubling plus a limit claim). Siu stresses it is not axiomatic deduction. The 'premise or it does not count' wall is our design, and the corroboration/withdrawal ledger has no counterpart in the text read."
+    },
+    {
+      "id": "compendium-sentence-his-voice",
+      "kind": "misstated",
+      "ours": "Compendium work/credit: 'a derived result rests on established premises or it does not count' and 'gave geometry its rigour'.",
+      "theirs": "Not a statement Liu Hui makes in the passage snipped; 'rigour' is our gloss and, per Siu, contested as a description of his proofs."
+    },
+    {
+      "id": "narrowed-to-one-example",
+      "kind": "narrowed",
+      "ours": "One verified snip (circle area by exhaustion) stands for a general doctrine of derivation.",
+      "theirs": "The snip shows a limiting argument for one formula. It does not state a general epistemic rule."
+    },
+    {
+      "id": "first-person-header",
+      "kind": "invented-attribution",
+      "ours": "organ header comment opens with a first-person 'speaks' block and commentary in the archon's voice ('My teaching prioritizes...', 'I believe...'), generated text presented as the author's own words (derivation.js opening block: 'My teaching prioritizes the clarity and precision of the derivation process...').",
+      "theirs": "Liu Hui wrote nothing of the kind; only the quoted commentary lines are his (in Mikami's translation)."
+    }
+  ],
+  "fix": [
+    "compendium work: 'Third-century commentator on the Nine Chapters. For the circle he inscribes polygons, doubles the sides, and argues the leftover vanishes in the limit, so the area is half the circumference times half the diameter. derivation.js borrows the habit of showing a result from earlier steps; the premise ledger and withdrawal wall are ours.'",
+    "compendium credit: 'Liu Hui (Nine Chapters commentary) - explained a result from earlier steps; the premise wall is ours.'",
+    "derivation.js: replace the 'Liu Hui speaks' first-person commentary with the quoted lines only, marked as Mikami's translation; keep the engineering record; handle line: 'after Liu Hui's practice of explaining a result step by step (by analogy; the ledger discipline is ours)'."
+  ],
+  "tokenized": false
+}

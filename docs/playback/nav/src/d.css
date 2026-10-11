@@ -1,0 +1,13 @@
+/* D — side by side on wide screens: the chat stays live on the left, older layers fold into 40px spines, the previous layer stays readable,
+   the current layer takes the rest. Below 900px this file does nothing and model A (sheet stack) runs instead. */
+html[data-model="d"][data-mode="split"] #app { right:auto; width:var(--chat-w,360px); border-right:1px solid var(--line2); transition:width var(--dur) var(--ease); }
+html[data-model="d"][data-mode="split"] .layer { border-radius:0; box-shadow:-6px 0 18px rgba(0,0,0,.10); border-left:1px solid var(--s-rule, var(--line2)); transition:left var(--dur) var(--ease), width var(--dur) var(--ease); }
+html[data-model="d"][data-mode="split"] .layer .grab { display:none; }
+html[data-model="d"][data-mode="split"] .l-head { padding-top:6px; }
+#dsp { position:fixed; z-index:800; top:0; bottom:0; display:flex; pointer-events:none; }
+#dsp button { pointer-events:auto; width:40px; height:100%; display:flex; flex-direction:column; align-items:center; gap:10px; padding:14px 0; border:0; border-left:1px solid var(--s-rule, var(--line2)); background:var(--side); color:var(--ink); writing-mode:vertical-rl; font:600 13px/1 var(--sans); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+#dsp button .n { writing-mode:horizontal-tb; font:700 11px/1 var(--mono); opacity:.7; }
+#dsp button .dot { writing-mode:horizontal-tb; width:10px; height:10px; border-radius:50%; background:var(--ag); flex:none; }
+#dsp button:focus-visible { outline-offset:-3px; }
+.veil { position:fixed; z-index:790; background:linear-gradient(90deg, rgba(0,0,0,.0), rgba(0,0,0,.10)); cursor:pointer; border:0; }
+.veil:focus-visible { outline:2px solid var(--link); outline-offset:-3px; }

@@ -1,0 +1,63 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "levinas",
+  "organ": "khora/native/organs/askshape.js",
+  "standing": "deferred",
+  "snips": [
+    "eo-teachings/manifest/levinas-deferred.json"
+  ],
+  "whatTheyArgued": "Ethics, not ontology, is first philosophy. The face of the Other is the way the Other exceeds my idea of the Other; it expresses vulnerability and summons me to responsibility before any choice, in radical ASYMMETRY (my responsibility is not conditional on reciprocity). The Other is infinitely other, irreducible to a concept or role; the face is meaning without context. Levinas criticized Buber's I-Thou for being reciprocal and aesthetic.",
+  "scholarship": [
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Emmanuel Levinas'",
+      "url": "https://plato.stanford.edu/entries/levinas/",
+      "supports": "face as expression of defenselessness ('do not kill me'); ethics as first philosophy; asymmetry",
+      "disputes": "Not itself addressing Buber's I-Thou in the text I read."
+    },
+    {
+      "ref": "Stanford Encyclopedia of Philosophy, 'Martin Buber'",
+      "url": "https://plato.stanford.edu/entries/buber/",
+      "supports": "Levinas's objection that Buber's I-Thou stays within an aestheticizing attitude and symmetric mutuality, not asymmetric ethical demand",
+      "disputes": ""
+    }
+  ],
+  "ourUse": "askshape.js reads an ask for shapes that dismiss/destroy an entity's 'fold' (identity, experience, authorship) in a medium-blind kernel via language lenses; socratic.js quotes two French sentences as Levinas.",
+  "verdict": "fails",
+  "bends": [
+    {
+      "id": "invented-quotations",
+      "kind": "invented-attribution",
+      "ours": "socratic.js presents «Le visage d'autrui m'oblige.» and «Traiter autrui comme un objet, c'est nier son visage.» as Levinas (Totalité et infini, 1961), in French, as quotations.",
+      "theirs": "I searched for both sentences and found neither in any source; the face passages that exist (e.g. the face as that which surpasses the idea of the Other in me) read differently. Treat as unverified or fabricated pastiche in his voice."
+    },
+    {
+      "id": "face-to-category",
+      "kind": "reinterpreted",
+      "ours": "'Harm is the erasure of the face' implemented as a classifier of ask-shapes with arms dismissExperience/dismissIdentity/destroyAuthorship, grounded in UDHR articles.",
+      "theirs": "The face is precisely what is NOT a category or content; it cannot be thematized, and Levinas treats reducing the Other to a thematized object as the violence. A kernel that sorts utterances into 'foldless' vs 'fold' is the totalizing move he opposes."
+    },
+    {
+      "id": "fold-is-identity",
+      "kind": "invented-attribution",
+      "ours": "'An entity IS a fold: the accumulated reading that is their identity' offered with Levinas's name.",
+      "theirs": "The fold is the user's/EO's own concept (the file says 'user direction, verbatim'); for Levinas the Other exceeds every accumulated idea of them."
+    },
+    {
+      "id": "asymmetry-lost",
+      "kind": "narrowed",
+      "ours": "A protective rule the reader applies to asks; the reader decides when the face is dismissed.",
+      "theirs": "Levinas's key move is my unconditional, asymmetric responsibility; a rule that fires per ask on classified shape is conditional and symmetric (a policy), not that responsibility."
+    },
+    {
+      "id": "not-buber",
+      "kind": "re-scoped",
+      "ours": "Levinas (harm/face) and Buber (I-Thou) both feed the same 'respect the other' stance across askshape, interlocutor and socratic.",
+      "theirs": "Levinas explicitly criticized Buber on exactly the points where the code merges them (reciprocity, symmetry). See buber dossier."
+    }
+  ],
+  "tokenized": false,
+  "fix": [
+    "socratic.js: delete or mark unverified both French sentences; do not print them as Levinas. If a real quote is wanted, source a verified sentence from Totalite et infini (e.g. the face as that which exceeds the idea of the Other in me, which SEP-adjacent sources quote).",
+    "compendium work: 'For Levinas the face of the Other is not a category: it exceeds every idea of the Other and calls me to responsibility prior to choice. Our askshape reader tests, by rule, whether an ask treats a person as having no experience, identity or authorship; that classifier is ours and is a policy, not the face.' Credit: 'Named for Levinas's ethics of the face; the classifier is ours.'"
+  ]
+}

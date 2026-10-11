@@ -1,0 +1,25 @@
+{
+  "schema": "ArchonDossier@1",
+  "handle": "koestler",
+  "organ": "khora/native/organs/void-holarchy.js",
+  "standing": "deferred",
+  "snips": ["eo-teachings/manifest/koestler.json"],
+  "whatTheyArgued": "In The Ghost in the Machine (1967, copyrighted; no text on disk, manifest is copyrighted_deferred) Koestler coins 'holon' and 'holarchy': a unit that is a quasi-autonomous whole facing downward and a subordinate part facing upward in a larger system (the 'Janus-faced' holon). Each holon has a self-assertive tendency (as a whole) and an integrative tendency (as a part), and Koestler built a diagnosis of human behaviour on that tension, arguing that devotion to a larger whole causes at least as much harm as aggression. This is taken from the secondary literature read below, not from the book.",
+  "scholarship": [
+    { "ref": "Stephen Jay Gould, 'Koestler's Solution', New York Review of Books, 20 Apr 1978 (read via fetch)", "url": "https://www.nybooks.com/articles/1978/04/20/koestlers-solution/", "supports": "the whole/part Janus-face definition of holon and holarchy", "disputes": "Gould accepts the appeal of hierarchy but rejects Koestler's specific applications to evolution and brain structure ('evolutionary misfit' claim); he says hierarchy alone is not a mechanism. The review does not mention any rule of the form 'low sets possibility, high sets probability'." },
+    { "ref": "Search result summaries on the Janus tension (integrative vs self-assertive), not read in full: Koestler, Janus: A Summing Up (1978)", "url": "https://www.nybooks.com/?p=26020", "supports": "self-assertive vs integrative tendencies as the core of the holon concept", "disputes": "none read" }
+  ],
+  "ourUse": "void-holarchy.js: every level of an artifact (document, section, paragraph, sentence; or work, movement, bar; or module, function) is called a void that is a whole (its own nine-operator definition) and a part (a filler in the void above). A 'LAW OF HOLONS, FOR VOIDS: low sets possibility for high, high sets probability for low' governs what a part may assert. The same structure is claimed across text, music, film and code.",
+  "verdict": "partial",
+  "bends": [
+    { "id": "law-of-holons", "kind": "invented-attribution", "ours": "Compendium work and the organ header present 'Low sets possibility for high; high sets probability for low' as Koestler's law of holons.", "theirs": "I could not find this rule in the sources I read (Gould's review states the Janus definition and nothing like it). The book text is not on disk, so it cannot be ruled out, but as written the sentence is ours or from another hierarchy theorist and must not be credited to Koestler without a page." },
+    { "id": "same-structure", "kind": "reinterpreted", "ours": "'The void is the same structure at every level', each level defined by the same nine operators.", "theirs": "Koestler's claim is the whole/part duality at every level, not an identical internal structure; the nine operators are the project's own." },
+    { "id": "omnimodal", "kind": "re-scoped", "ours": "The holarchy is asserted over text, music, film and code in one level scheme.", "theirs": "Koestler's examples are biological, neural, social and linguistic hierarchies; the media table is ours." },
+    { "id": "tendencies-dropped", "kind": "narrowed", "ours": "Only the whole-and-part nesting is used; no self-assertive vs integrative tension is implemented.", "theirs": "That tension is what makes a holon a Janus-faced entity in Koestler's account, and the point of his book." }
+  ],
+  "tokenized": false,
+  "fix": [
+    "compendium work: 'Arthur Koestler (The Ghost in the Machine, 1967) coined holon and holarchy: a unit that is a whole to what it contains and a part of what contains it. void-holarchy.js uses only that nesting; the nine-operator definition per level and the rule that a part cannot claim what no sub-part could carry are the project's own.'",
+    "void-holarchy.js: reword 'THE LAW OF HOLONS, FOR VOIDS' to 'our rule' unless a page of Koestler (or the true source) is cited for 'low sets possibility, high sets probability'."
+  ]
+}
